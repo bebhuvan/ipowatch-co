@@ -1,9 +1,14 @@
 from __future__ import annotations
 
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from types import SimpleNamespace
+from unittest.mock import patch
 
 from ipo_portal.normalize_v2.parsers.registry import ParserContext
 from ipo_portal.orchestrator.cli import build_parser
+from ipo_portal.orchestrator.refresh import run_refresh
 from ipo_portal.normalize_v2.parsers.yahoo_performance import parse as parse_yahoo
 from ipo_portal.yahoo_v2 import parse_chart
 
@@ -67,6 +72,54 @@ class YahooV2Tests(unittest.TestCase):
         args = build_parser().parse_args(["refresh-daily", "--skip-kite", "--skip-enrich"])
         self.assertTrue(args.skip_kite)
         self.assertTrue(args.skip_enrich)
+
+    def test_refresh_bootstraps_site_v2_before_yahoo_on_clean_checkout(self) -> None:
+        with TemporaryDirectory() as tmp:
+            data_root = Path(tmp) / "data"
+            normalize_calls = []
+
+            def fake_normalize(*, raw_root: Path, out_root: Path, schema_root: Path) -> None:
+                normalize_calls.append((raw_root, out_root, schema_root))
+                (out_root / "issues" / "by-slug").mkdir(parents=True, exist_ok=True)
+                (out_root / "manifest.json").write_text(
+                    '{"issues_published": 1, "issues_quarantined": 0, "companies_total": 1}\n',
+                    encoding="utf-8",
+                )
+
+            def fake_yahoo_export(*, site_root: Path, data_root: Path) -> Path:
+                self.assertTrue((site_root / "issues" / "by-slug").exists())
+                snap = data_root / "raw" / "yahoo" / "performance" / "snapshot.json"
+                snap.parent.mkdir(parents=True, exist_ok=True)
+                snap.write_text('{"body": []}\n', encoding="utf-8")
+                return snap
+
+            def fake_export_v3(*, source_root: Path, out_root: Path, schema_root: Path):
+                return SimpleNamespace(
+                    issues=1,
+                    companies=1,
+                    trajectories=0,
+                    prospectuses=1,
+                    dataset_version="v3.test",
+                )
+
+            with (
+                patch("ipo_portal.normalize_v2.pipeline.run_normalize", side_effect=fake_normalize),
+                patch("ipo_portal.yahoo_v2.export_snapshot", side_effect=fake_yahoo_export),
+                patch("ipo_portal.site_v3.export_v3", side_effect=fake_export_v3),
+            ):
+                summary = run_refresh(
+                    skip_sebi=True,
+                    skip_kite=True,
+                    skip_tijori=True,
+                    skip_enrich=True,
+                    hot=True,
+                    data_root=data_root,
+                )
+
+            self.assertTrue(summary["ok"])
+            self.assertGreaterEqual(len(normalize_calls), 2)
+            self.assertEqual(summary["steps"][3]["name"], "yahoo_prices")
+            self.assertEqual(summary["steps"][3]["status"], "ok")
 
 
 if __name__ == "__main__":

@@ -162,10 +162,11 @@ def run_refresh(
     #     This keeps market-performance calculations populated while Kite
     #     credentials are unavailable. Kite still wins precedence when present.
     def _yahoo() -> dict[str, Any]:
+        from ..normalize_v2.pipeline import run_normalize
         from ..yahoo_v2 import export_snapshot
 
         if not (site_v2 / "issues" / "by-slug").exists():
-            return {"skipped": True, "reason": "missing site_v2; run normalize once before Yahoo fallback"}
+            run_normalize(raw_root=raw_root, out_root=site_v2, schema_root=schema_root)
         snap = export_snapshot(site_root=site_v2, data_root=data_root)
         body = json.loads(snap.read_text(encoding="utf-8")).get("body") or []
         ok = sum(1 for row in body if isinstance(row, dict) and row.get("status") == "ok")

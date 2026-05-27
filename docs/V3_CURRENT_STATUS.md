@@ -1,7 +1,99 @@
 # IPO Watch V3 Current Status
 
-Date: 2026-05-26  
+Date: 2026-05-27
 Workspace: `/home/bhuvanesh.r/Documents/Bhuvan projects/IPO`
+
+## Current Operational Status As Of 2026-05-27
+
+The project now has a private GitHub baseline and active GitHub Actions
+workflows. The repository is:
+
+```txt
+https://github.com/bebhuvan/ipowatch-co
+```
+
+Repository facts verified locally with `gh`:
+
+- Owner/repo: `bebhuvan/ipowatch-co`
+- Visibility: private
+- Default branch: `main`
+- Current pushed baseline: `fb67d9a1 Initialize IPO Watch site pipelines`
+- Local branch tracks: `origin/main`
+- Actions default workflow token permission: `write`
+
+The private repo contains the application code, docs, workflows, and the
+publishable V3 dataset. It deliberately does not track local secrets or
+high-churn/intermediate working trees:
+
+- `.env`
+- `.venv/`
+- `data/raw/`
+- `data/cache/`
+- `data/processed/`
+- `data/reports/`
+- `data/.last_good/`
+- `data/private/`
+- `data/site/`
+- `data/site_v2/`
+- `web/node_modules/`, `web/dist/`, and Astro build cache via `web/.gitignore`
+
+Important: the repo baseline has been committed and pushed. Older notes in this
+file that described the workspace as wholly untracked are obsolete.
+
+## GitHub Actions Status
+
+Active workflows:
+
+| Workflow | File | Purpose | Trigger |
+|---|---|---|---|
+| Deploy IPOWatch Worker | `.github/workflows/deploy-worker.yml` | Manual Cloudflare Worker build/deploy from the committed V3 dataset | `workflow_dispatch` |
+| Refresh IPOWatch V3 daily | `.github/workflows/refresh-daily.yml` | NSE/BSE fetch, Kite/Yahoo market data, Tijori enrichment, normalize, export V3, gates, build, deploy, commit refreshed dataset | Daily `01:30 UTC` / `07:00 IST`, manual |
+| Refresh SEBI new filings | `.github/workflows/refresh-new-filings.yml` | Fetch SEBI filing PDFs, extract/generate article, build, deploy, commit new filing article data | Weekdays `13:30 UTC` / `19:00 IST`, manual |
+| Refresh IPOWatch V3 subscriptions | `.github/workflows/refresh-subscriptions.yml` | Active subscription refresh, V3 subscription modules/trajectories, build, deploy, commit subscription deltas | Weekdays every 30 minutes from `04:00-11:30 UTC`, manual |
+
+The daily workflow now includes Tijori:
+
+- `ipo_portal.orchestrator.refresh.run_refresh(..., skip_tijori=False)` fetches
+  `https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/` before
+  normalization.
+- It writes `data/derived/tijori_ipo_enrichment.json`.
+- It writes `data/derived/sector_map.json`.
+- `refresh` and `refresh-daily` expose `--skip-tijori` for emergency bypass.
+- `.github/workflows/refresh-daily.yml` commits `data/derived` with the V3
+  dataset and uploads it as diagnostics.
+
+Secrets currently present in GitHub Actions:
+
+- `DEEPSEEK_API_KEY`
+- `GEMINI_API_KEY`
+- `INDIA_DATAHUB_API_KEY`
+- `KITE_API_KEY`
+- `KITE_API_SECRET`
+- `OPENROUTER_API_KEY`
+
+Secrets still missing when last checked with `gh secret list` on 2026-05-27:
+
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+- `KITE_USER_ID`
+- `KITE_PASSWORD`
+- `KITE_TOTP_SECRET`
+
+Effect of missing secrets:
+
+- Cloudflare deploy steps will fail until both Cloudflare secrets exist.
+- Kite API key/secret are present, but unattended Kite auto-login cannot work
+  until Kite user ID, password, and TOTP seed exist.
+- The daily refresh is coded to skip Kite gracefully if a valid session cannot
+  be created, and to use Yahoo fallback market data where available.
+
+If the missing secrets were added after this check, re-run:
+
+```bash
+gh secret list --repo bebhuvan/ipowatch-co
+```
+
+Do not print secret values.
 
 ## Canonical Dataset Location
 
@@ -38,63 +130,83 @@ contract and operating model:
 - Astro V3 loader: [web/src/lib/ipodata.ts](../web/src/lib/ipodata.ts)
 - Daily GitHub workflow: [../.github/workflows/refresh-daily.yml](../.github/workflows/refresh-daily.yml)
 - Subscription GitHub workflow: [../.github/workflows/refresh-subscriptions.yml](../.github/workflows/refresh-subscriptions.yml)
+- New filings GitHub workflow: [../.github/workflows/refresh-new-filings.yml](../.github/workflows/refresh-new-filings.yml)
+- Manual deploy workflow: [../.github/workflows/deploy-worker.yml](../.github/workflows/deploy-worker.yml)
 
 ## New Codex Session Brief
 
-IPOWatch is intended to become the canonical, public, Git-hosted Indian primary
-market data platform for IPOwatch.net. The system should cover the complete IPO
-lifecycle from SEBI DRHP filing, to coming-soon article creation, to date
-announcement, upcoming/open/closed/listed status transitions, live subscription
-tracking, listing performance, and historical market analytics. It should also
-cover nearby primary-market products where they belong in the product taxonomy:
-mainboard IPOs, SME IPOs, FPOs, rights issues, buybacks, OFS, QIPs, InvITs,
-REITs, public debt/NCDs, and other exchange-published public issue actions.
-NSE LWF, G-Sec/non-competitive bidding, MFSS, and discontinued SGB are currently
-out of scope by product decision.
+Start from the GitHub-backed state, not from a local-only prototype. IPOWatch is
+now a private repository with an initial committed V3 dataset and scheduled
+workflows. The remaining work is to prove the scheduled runs end-to-end in
+GitHub Actions and harden the failure behavior.
 
-A fresh Codex session should treat automation as the main unresolved product
-problem. Do not merely check whether commands exist. Granularly reason through
-every stage and make it reliable: source discovery, source fetch, raw snapshot
-storage, parser coverage, schema drift detection, normalization, entity
-matching, status graduation, V3 export, prospectus fact preservation, live
-subscription deltas, market-price refresh, validation gates, static Astro build,
-Git commit/push, Cloudflare deploy, rollback, stale-source handling, and
-operator alerts. The expected end state is a scheduled system that can run
-without manual intervention for public data, while model-based filing
-intelligence remains budgeted, cached, citation-verified, and safe to skip or
-queue when API credentials/cost budgets are unavailable.
+Product scope remains: SEBI DRHP/RHP filing discovery, new filing article
+generation, upcoming/open/closed/listed IPO lifecycle, live subscription
+tracking, listing performance, historical analytics, and nearby primary-market
+products in their own sections: FPOs, rights issues, buybacks, OFS, QIPs,
+InvITs, REITs, public debt/NCDs, call-money/partly-paid flows, and other
+exchange-published public issue actions. Equity IPO/FPO pages take precedence
+under `/ipos/`; non-equity and secondary/other instruments route to their own
+sections such as `/ofs/`, `/buybacks/`, `/rights/`, `/debt/`, `/reits/`,
+`/invits/`, `/call-money/`, and `/public-issues/`.
 
-The key open question for the next session is: can this be made fully automated
-on GitHub Actions and Cloudflare without a server, or should the data refresh
-move to a small scheduled worker/VM that commits artifacts back to Git? Answer
-that by testing real failure modes, not by assuming happy-path cron. In
-particular, prove how the system behaves when SEBI/NSE/BSE is down, DNS fails,
-an endpoint changes shape, Yahoo/Kite has no symbol match, a current issue has
-zero subscription rows, an IPO moves status, a filing PDF cannot be extracted,
-or the Astro build fails after a data refresh. Wrong public data is worse than
-missing data; when in doubt, preserve the last good V3 build and mark the new
-one degraded instead of publishing it.
+The next session should verify the live automation path, not just inspect code:
+
+1. Confirm the newly added GitHub secrets actually appear in
+   `gh secret list --repo bebhuvan/ipowatch-co`.
+2. Trigger `Deploy IPOWatch Worker` for production only after Cloudflare secrets
+   are present.
+3. Trigger `Refresh SEBI new filings` once manually to confirm Gemini PDF/article
+   generation works inside Actions.
+4. Trigger `Refresh IPOWatch V3 daily` once manually to confirm NSE/BSE, Tijori,
+   Yahoo/Kite behavior, quality gates, Astro build, Cloudflare deploy, and data
+   commit all work in Actions.
+5. Trigger `Refresh IPOWatch V3 subscriptions` during a market/public-issue
+   window to confirm subscription delta generation and commit behavior.
+
+Failure policy: wrong public data is worse than missing data. If a fetch,
+normalization, audit, build, or deploy step fails, the workflow should not commit
+or publish a bad public V3 tree. Preserve the last good build and commit
+diagnostics only. Any future hardening should make degraded/stale source state
+visible in `manifest.json`, run summaries, and public UI where appropriate.
 
 ## Dataset Snapshot
 
-From `data/ipo_watch_v3/manifest.json`:
+From `data/ipo_watch_v3/manifest.json` after the latest committed local export:
 
 | Metric | Count |
 |---|---:|
-| Public issues | 5,202 |
-| Companies | 4,356 |
-| Subscription trajectories | 220 |
-| Performance rows | 2,486 |
+| Public issues | 5,200 |
+| Companies | 4,355 |
+| Subscription trajectories | 223 |
+| Performance rows | 2,488 |
 | Quarantined / removed from public indexes | 1,891 |
-| Review-tier public issues | 2,012 |
-| Dataset version | `v3.2026.05.26-0338` |
+| Review-tier public issues | 2,010 |
+| Dataset version | `v3.2026.05.26-0936` |
 | Schema version | `3.0.0` |
+| Manifest degraded flag | `true` |
 
 The manifest was updated to identify `data/ipo_watch_v3` as the root and `data/site_v3` as a compatibility alias.
 
+Current source freshness in the manifest is mixed:
+
+- Fresh: `capitalmarket`, `moneycontrol`, `prime`, `trendlyne`
+- Stale: `bse`, `nse`, `sebi`, `yahoo`, `kite`
+- Synthetic stale/missing source: `market_data`
+
+This degraded flag is expected until the scheduled Action runs successfully with
+fresh source snapshots and deploy credentials.
+
+New filing article dataset:
+
+- `data/ipo_watch_v3/new_filings/m-k-sons-fine-jewels-20260520-d6ac2d77/article.json`
+- This article is acceptable as a first pipeline artifact but still needs
+  editorial/product refinements before treating the generated article format as
+  final.
+
 ## Validation State
 
-Current gates:
+Current gates and checks:
 
 ```bash
 .venv/bin/python scripts/audit_v3_quality.py --site-root data/ipo_watch_v3 --gate
@@ -120,30 +232,29 @@ Strict prospectus gate intentionally fails because one real extraction is `revie
 
 ## Current Launch Caveats
 
-The static Astro build is deployable as a controlled V3 beta, but the unattended
-automation path still has caveats:
+The private repo baseline exists and Actions are active, but the live system is
+not fully proven until the missing secrets are visible and at least one manual
+run of each workflow succeeds.
 
-- The latest local `refresh-daily --skip-enrich` run was a partial pass because
-  SEBI DNS resolution for `www.sebi.gov.in` failed locally. NSE/BSE fetching,
-  Yahoo fallback pricing, normalization, V3 export, source audit, tests, and
-  Astro build passed after that.
-- The latest NSE current IPO snapshot returned zero rows, so no active NSE
-  current IPO row was available to validate on 2026-05-26. Historical nested NSE
-  issue pages are preserved where raw snapshots exist.
-- The latest BSE current public issue snapshot returned 19 rows. V3 currently
-  has 17 open/upcoming public records; 13 have normalized subscription category
-  data and 4 now carry explicit `subscription.data_availability` explanations:
-  two NSE rights rows have null exchange demand fields
-  (`prabha-energy-call-money-7e37ab`, `avg-logistics-5c82c4`), and two BSE
-  OTB/buyback rows are outside the IPO/FPO bid-book category contract
-  (`shantai-190011`, `garware-technical-fibres-831bde`).
-- The latest drift scan recorded 331 blocking drift events. The
-  `audit-source-structure --gate` command still passed with zero blocking parser
-  gaps, but `data/reports/upstream_drift.jsonl` should be reviewed before
-  declaring the pipeline fully autonomous.
-- This local workspace currently reports all top-level paths as untracked in
-  Git. Before GitHub/Cloudflare automation can be trusted, the repository needs
-  a normal committed baseline.
+Known caveats:
+
+- Cloudflare deploy cannot succeed until `CLOUDFLARE_API_TOKEN` and
+  `CLOUDFLARE_ACCOUNT_ID` are present in GitHub Actions secrets.
+- Kite unattended login cannot succeed until `KITE_USER_ID`, `KITE_PASSWORD`,
+  and `KITE_TOTP_SECRET` are present. Until then, the daily pipeline should skip
+  Kite and use Yahoo fallback where possible.
+- The committed manifest is currently `degraded: true` because several source
+  snapshots are stale relative to the freshness thresholds.
+- The latest local Wrangler dry run was not re-run successfully because local
+  Node is `20.20.2`, while Wrangler requires Node `>=22`. GitHub Actions uses
+  Node 22, so this is a local workstation limitation, not an Actions design
+  issue.
+- The Actions have not yet been manually triggered after the private repo push.
+  Do not assume Cloudflare deploy or scheduled data commits work until a real
+  Action run proves it.
+- Review `data/reports/upstream_drift.jsonl` and source coverage diagnostics
+  after the first successful Action refresh before declaring the data pipeline
+  autonomous.
 
 ## V3 Exporter And Contract
 
@@ -379,6 +490,10 @@ Scheduled Git refresh:
 - `.github/workflows/refresh-daily.yml`: once daily at 01:30 UTC / 07:00 IST.
 - `.github/workflows/refresh-subscriptions.yml`: every 30 minutes during the
   Indian market/public-issue window on weekdays.
+- `.github/workflows/refresh-new-filings.yml`: weekdays at 13:30 UTC / 19:00
+  IST for SEBI new filing PDF/article generation.
+- `.github/workflows/deploy-worker.yml`: manual deploy for preview or
+  production.
 
 ## Automation Design Checklist For Next Session
 
@@ -475,7 +590,7 @@ python3 -m pytest -q --ignore=tests/test_kite_auth.py
 cd web && npm run build
 ```
 
-Results:
+Results from the 2026-05-26 full acceptance pass:
 
 - `refresh-daily --skip-enrich`: partial pass. NSE/BSE fetch, Yahoo fallback pricing,
   normalize, export, and drift scan completed; SEBI failed due local DNS resolution
@@ -487,9 +602,37 @@ Results:
 - Python tests: `164 passed`.
 - Astro build: passed, 1,387 pages built from `data/ipo_watch_v3`.
 
+Additional repo/pipeline setup checks rerun on 2026-05-27:
+
+```bash
+.venv/bin/python -m py_compile \
+  ipo_portal/orchestrator/refresh.py \
+  ipo_portal/orchestrator/cli.py \
+  ipo_portal/new_filings.py \
+  ipo_portal/tijori.py
+
+.venv/bin/python -m ipo_portal.orchestrator refresh-daily --help
+.venv/bin/python scripts/update_tijori_enrichment.py
+cd web && npm run build
+```
+
+Results from the 2026-05-27 setup pass:
+
+- Python compile checks: passed.
+- `refresh-daily --help`: includes `--skip-tijori` and `--skip-enrich`.
+- Tijori feed update: passed with 547 rows, 547 ISINs, 543 financial profiles,
+  and 547 sector-map entries.
+- Astro build: passed, 2,093 static pages generated.
+- GitHub repo creation/push: passed, private repo `bebhuvan/ipowatch-co`,
+  commit `fb67d9a1`.
+- GitHub workflow token permission: set to `write`.
+- GitHub workflows: all four expected workflows are active.
+- Local Wrangler dry run: not validated locally because local Node is 20.20.2;
+  workflows use Node 22.
+
 Additional demand-data verification:
 
-- `export-v3` now writes 220 trajectory files.
+- `export-v3` now writes 223 trajectory files in the current committed dataset.
 - `bio-medica-laboratories-d385c5` and `q-line-biotech-7c0bb8` include NSE
   `demand_curves` from the raw `demand_data_nse_*` / `demand_data_all_*`
   snapshots currently on disk.

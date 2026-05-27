@@ -442,6 +442,42 @@ const governanceRows = [
   ...factList('Related-party transaction', governanceFacts.related_party_transactions, 4),
 ].slice(0, 12);
 
+const tijori = issue.research?.tijori ?? null;
+const tijoriValuationRows = tijori ? [
+  { label: 'IPO size', value: tijori.valuation?.ipo_size },
+  { label: 'Market cap', value: tijori.valuation?.market_cap },
+  { label: 'P/E', value: tijori.valuation?.pe },
+  { label: 'P/B', value: tijori.valuation?.pb },
+  { label: 'Sector P/E', value: tijori.valuation?.sector_pe },
+  { label: 'Sector P/B', value: tijori.valuation?.sector_pb },
+].filter((row) => row.value != null && row.value !== '') : [];
+const tijoriOfferRows = tijori ? [
+  { label: 'Fresh issue', value: [tijori.offer_split?.fresh_issue_percent, tijori.offer_split?.fresh_issue_value].filter(Boolean).join(' · ') },
+  { label: 'OFS / existing holders', value: [tijori.offer_split?.ofs_percent, tijori.offer_split?.ofs_value].filter(Boolean).join(' · ') },
+].filter((row) => row.value) : [];
+const tijoriFinancialRows = tijori?.financials?.yearly_results?.filter((row) =>
+  row.period || row.net_sales_cr != null || row.pat_cr != null || row.debt_cr != null
+) ?? [];
+const tijoriRevenueRows = tijori?.revenue_mix?.latest?.filter((row) => row.segment && row.percent != null) ?? [];
+const tijoriPeerRows = tijori?.peers?.filter((row) => row.company_name).slice(0, 6) ?? [];
+const tijoriHoldingRows = tijori ? [
+  { label: 'Promoter holding', pre: tijori.shareholding?.promoter?.pre_ipo, post: tijori.shareholding?.promoter?.post_ipo },
+  { label: 'Public holding', pre: tijori.shareholding?.public?.pre_ipo, post: tijori.shareholding?.public?.post_ipo },
+].filter((row) => row.pre || row.post) : [];
+const fmtCr = (value: number | null | undefined) =>
+  value == null ? '—' : `${value.toLocaleString('en-IN', { maximumFractionDigits: 2 })} Cr`;
+const fmtMultiple = (value: number | string | null | undefined) =>
+  value == null || value === '' ? '—' : typeof value === 'number' ? value.toLocaleString('en-IN', { maximumFractionDigits: 2 }) : value;
+const hasTijoriResearch = Boolean(tijori && (
+  tijori.business_description ||
+  tijoriValuationRows.length ||
+  tijoriOfferRows.length ||
+  tijoriFinancialRows.length ||
+  tijoriRevenueRows.length ||
+  tijoriPeerRows.length ||
+  tijoriHoldingRows.length
+));
+
 // Subscription window progress (current issues)
 let progressPct = 0;
 if (status === 'current' && issue.timeline.open_date && issue.timeline.close_date) {
@@ -722,6 +758,152 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
         </div>
       )}
     </div>
+  </section>
+)}
+
+<!-- THIRD-PARTY RESEARCH SNAPSHOT -->
+{hasTijoriResearch && tijori && (
+  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="flex flex-wrap items-baseline justify-between gap-4 mb-9">
+      <h2 class="section-title">Research snapshot</h2>
+      <span class="text-[12px] mute">Tijori enrichment</span>
+    </header>
+
+    {tijori.business_description && (
+      <p class="serif text-[22px] leading-[1.46] text-[color:var(--color-ink-soft)] max-w-[72ch] mb-10">
+        {tijori.business_description}
+      </p>
+    )}
+
+    {(tijoriValuationRows.length > 0 || tijoriOfferRows.length > 0) && (
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
+        {tijoriValuationRows.length > 0 && (
+          <div>
+            <div class="label mb-4">Valuation</div>
+            <dl class="grid grid-cols-2 sm:grid-cols-3 gap-px bg-[color:var(--color-rule)] border border-[color:var(--color-rule)]">
+              {tijoriValuationRows.map((row) => (
+                <div class="bg-white p-4 min-w-0">
+                  <dt class="text-[11px] mute uppercase tracking-[0.08em]">{row.label}</dt>
+                  <dd class="mt-2 serif text-[22px] leading-tight num break-words">{fmtMultiple(row.value)}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+        {tijoriOfferRows.length > 0 && (
+          <div>
+            <div class="label mb-4">Offer split</div>
+            <dl class="border-t border-[color:var(--color-ink)]">
+              {tijoriOfferRows.map((row) => (
+                <div class="grid grid-cols-1 sm:grid-cols-[180px_minmax(0,1fr)] gap-1 sm:gap-5 py-3 border-b border-[color:var(--color-rule)]">
+                  <dt class="text-[12px] mute leading-snug">{row.label}</dt>
+                  <dd class="text-[14px] leading-snug num">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+      </div>
+    )}
+
+    {(tijoriFinancialRows.length > 0 || tijoriRevenueRows.length > 0) && (
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
+        {tijoriFinancialRows.length > 0 && (
+          <div>
+            <div class="label mb-4">Financial trend</div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-t border-[color:var(--color-ink)]">
+                <thead>
+                  <tr class="text-[11px] mute uppercase tracking-[0.08em]">
+                    <th class="py-3 pr-4 font-semibold">Period</th>
+                    <th class="py-3 px-4 font-semibold text-right">Sales</th>
+                    <th class="py-3 px-4 font-semibold text-right">PAT</th>
+                    <th class="py-3 pl-4 font-semibold text-right">Debt</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tijoriFinancialRows.map((row) => (
+                    <tr class="border-t border-[color:var(--color-rule)] text-[13px]">
+                      <td class="py-3 pr-4 whitespace-nowrap">{row.period ?? '—'}</td>
+                      <td class="py-3 px-4 text-right num whitespace-nowrap">{fmtCr(row.net_sales_cr)}</td>
+                      <td class="py-3 px-4 text-right num whitespace-nowrap">{fmtCr(row.pat_cr)}</td>
+                      <td class="py-3 pl-4 text-right num whitespace-nowrap">{fmtCr(row.debt_cr)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+        {tijoriRevenueRows.length > 0 && (
+          <div>
+            <div class="label mb-4">Revenue mix</div>
+            <div class="space-y-3">
+              {tijoriRevenueRows.slice(0, 8).map((row) => (
+                <div>
+                  <div class="flex items-baseline justify-between gap-4 text-[13px]">
+                    <span class="min-w-0 break-words">{row.segment}</span>
+                    <span class="num serif text-[20px]">{row.percent?.toFixed(1)}%</span>
+                  </div>
+                  <div class="mt-2 h-[8px] bg-[color:var(--color-rule)] relative">
+                    <span class="absolute inset-y-0 left-0 bg-[color:var(--color-ink)]" style={`width: ${Math.max(0, Math.min(100, row.percent ?? 0)).toFixed(1)}%`}></span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )}
+
+    {(tijoriPeerRows.length > 0 || tijoriHoldingRows.length > 0) && (
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        {tijoriPeerRows.length > 0 && (
+          <div>
+            <div class="label mb-4">Peers</div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-t border-[color:var(--color-ink)]">
+                <thead>
+                  <tr class="text-[11px] mute uppercase tracking-[0.08em]">
+                    <th class="py-3 pr-4 font-semibold">Company</th>
+                    <th class="py-3 px-4 font-semibold text-right">Sales</th>
+                    <th class="py-3 px-4 font-semibold text-right">P/E</th>
+                    <th class="py-3 pl-4 font-semibold text-right">P/B</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tijoriPeerRows.map((row) => (
+                    <tr class="border-t border-[color:var(--color-rule)] text-[13px]">
+                      <td class="py-3 pr-4 min-w-[140px]">{row.company_name}</td>
+                      <td class="py-3 px-4 text-right num whitespace-nowrap">{fmtCr(row.net_sales_cr)}</td>
+                      <td class="py-3 px-4 text-right num whitespace-nowrap">{fmtMultiple(row.pe)}</td>
+                      <td class="py-3 pl-4 text-right num whitespace-nowrap">{fmtMultiple(row.pb)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+        {tijoriHoldingRows.length > 0 && (
+          <div>
+            <div class="label mb-4">Shareholding</div>
+            <dl class="border-t border-[color:var(--color-ink)]">
+              {tijoriHoldingRows.map((row) => (
+                <div class="grid grid-cols-1 sm:grid-cols-[180px_minmax(0,1fr)] gap-1 sm:gap-5 py-3 border-b border-[color:var(--color-rule)]">
+                  <dt class="text-[12px] mute leading-snug">{row.label}</dt>
+                  <dd class="text-[14px] leading-snug num">
+                    {row.pre && <>Pre-IPO {row.pre}</>}
+                    {row.pre && row.post && <span class="mute-2"> · </span>}
+                    {row.post && <>Post-IPO {row.post}</>}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+      </div>
+    )}
   </section>
 )}
 

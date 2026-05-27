@@ -55,11 +55,43 @@ jobs:
       - name: Publish safety guard
         run: python scripts/guard_publish_v3.py
 
+      - name: Commit subscription delta
+        env:
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+        run: |
+          git add data/ipo_watch_v3 data/site_v3
+          git add -f data/reports/latest_refresh_summary.json
+          if git diff --cached --quiet; then
+            echo "No subscription changes; skipping commit."
+            exit 0
+          fi
+          stamp="$(date -u +'%Y-%m-%dT%H:%MZ')"
+          git commit -m "chore(data): refresh IPO subscriptions at ${stamp}"
+          git push
+
+      - name: Check Cloudflare secrets
+        id: cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Cloudflare secrets missing; skipping deploy."
+            echo "available=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Wrangler dry run
+        if: steps.cloudflare.outputs.available == 'true'
         working-directory: web
         run: npm run cf:preview
 
       - name: Deploy production Worker
+        if: steps.cloudflare.outputs.available == 'true'
         working-directory: web
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -76,21 +108,3 @@ jobs:
             data/ipo_watch_v3/_meta
           retention-days: 14
           if-no-files-found: ignore
-
-      - name: Commit subscription delta
-        if: success()
-        env:
-          GIT_AUTHOR_NAME: github-actions[bot]
-          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-          GIT_COMMITTER_NAME: github-actions[bot]
-          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-        run: |
-          git add data/ipo_watch_v3 data/site_v3
-          git add -f data/reports/latest_refresh_summary.json
-          if git diff --cached --quiet; then
-            echo "No subscription changes; skipping commit."
-            exit 0
-          fi
-          stamp="$(date -u +'%Y-%m-%dT%H:%MZ')"
-          git commit -m "chore(data): refresh IPO subscriptions at ${stamp}"
-          git push

@@ -116,6 +116,8 @@ export interface Issue extends Envelope {
     sponsor_bank?: string | null;
   };
   exchange_details?: Record<string, unknown>;
+  research_path?: string | null;
+  research?: Record<string, unknown>;
 }
 
 export interface Company extends Envelope {

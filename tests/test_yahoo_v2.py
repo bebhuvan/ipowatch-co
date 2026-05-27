@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 
 from ipo_portal.normalize_v2.parsers.registry import ParserContext
+from ipo_portal.orchestrator.cli import build_parser
 from ipo_portal.normalize_v2.parsers.yahoo_performance import parse as parse_yahoo
 from ipo_portal.yahoo_v2 import parse_chart
 
@@ -61,6 +62,11 @@ class YahooV2Tests(unittest.TestCase):
         self.assertEqual(contribution.join_key.discriminator, "name_year")
         self.assertEqual(contribution.fields["listing_performance.current_price_paise"], 13000)
         self.assertEqual(contribution.fields["identity.aliases"], ["yahoo:EXAMPLE.NS"])
+
+    def test_refresh_daily_accepts_skip_kite_flag(self) -> None:
+        args = build_parser().parse_args(["refresh-daily", "--skip-kite", "--skip-enrich"])
+        self.assertTrue(args.skip_kite)
+        self.assertTrue(args.skip_enrich)
 
 
 if __name__ == "__main__":

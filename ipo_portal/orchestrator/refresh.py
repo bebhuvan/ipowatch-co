@@ -84,6 +84,7 @@ def run_refresh(
     *,
     skip_fetch: bool = False,
     skip_sebi: bool = False,
+    skip_kite: bool = False,
     skip_tijori: bool = False,
     skip_enrich: bool = False,
     hot: bool = False,
@@ -127,7 +128,8 @@ def run_refresh(
 
     # 2b. Kite prices — current LTPs + new listing candles → v2 snapshot.
     #     Runs before normalize so the snapshot is in data/raw/kite/.
-    #     Skips gracefully if there's no valid Kite session.
+    #     Skips gracefully if there's no valid Kite session. CI can disable
+    #     this while Yahoo is the launch market-data source.
     def _kite() -> dict[str, Any]:
         from ..kite import (
             DEFAULT_DB_PATH,
@@ -154,7 +156,7 @@ def run_refresh(
             "snapshot": str(snap),
         }
 
-    results.append(_run_step("kite_prices", _kite, enabled=not skip_fetch))
+    results.append(_run_step("kite_prices", _kite, enabled=not skip_fetch and not skip_kite))
 
     # 2c. Yahoo Finance fallback — public current/listing prices → v2 snapshot.
     #     This keeps market-performance calculations populated while Kite
@@ -186,16 +188,42 @@ def run_refresh(
     #     before normalize when fresh Tijori sector data is desired.
     def _tijori() -> dict[str, Any]:
         from ..tijori import (
+            TIJORI_IPO_URL,
             fetch_tijori_ipo_feed,
             write_sector_map_from_tijori,
             write_tijori_enrichment,
         )
+        from ..storage import append_source_event, save_raw_snapshot
 
-        rows = fetch_tijori_ipo_feed()
+        try:
+            rows = fetch_tijori_ipo_feed()
+        except Exception as exc:  # noqa: BLE001 - Tijori is enrichment, not a primary-source gate.
+            append_source_event(
+                data_root,
+                {
+                    "source": "tijori",
+                    "endpoint": "ipo_feed",
+                    "url": TIJORI_IPO_URL,
+                    "status": "failed",
+                    "error": f"{type(exc).__name__}: {exc}",
+                    "stale_if_fail": True,
+                },
+            )
+            return {"skipped": True, "reason": f"{type(exc).__name__}: {exc}"}
+
+        snapshot = save_raw_snapshot(
+            data_root,
+            "tijori",
+            "ipo_feed",
+            TIJORI_IPO_URL,
+            rows,
+            status_code=200,
+        )
         enrichment = write_tijori_enrichment(rows, data_root / "derived" / "tijori_ipo_enrichment.json")
         sector_map = write_sector_map_from_tijori(enrichment, data_root / "derived" / "sector_map.json")
         stats = enrichment.get("stats") or {}
         return {
+            "snapshot": str(snapshot),
             "rows": stats.get("rows"),
             "with_isin": stats.get("with_isin"),
             "with_financials": stats.get("with_financials"),
@@ -261,11 +289,12 @@ def run_refresh(
             catalog_root=PROJECT_ROOT / "docs" / "schema" / "raw_catalog",
             drift_log=PROJECT_ROOT / "data" / "reports" / "upstream_drift.jsonl",
         )
-        return {
+        detail = {
             "inspected": report.inspected,
             "events": len(report.events),
             "blocking": len(report.blocking),
         }
+        return detail
 
     results.append(_run_step("drift", _drift, enabled=not hot))
 

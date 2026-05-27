@@ -20,6 +20,7 @@ class SiteV3ExportTests(unittest.TestCase):
             (source / "issues" / "example-ipo").mkdir(parents=True)
             (source / "companies" / "by-slug").mkdir(parents=True)
             (source / "trajectories").mkdir(parents=True)
+            (root / "derived").mkdir()
             schemas.mkdir()
 
             self._write_json(
@@ -56,6 +57,33 @@ class SiteV3ExportTests(unittest.TestCase):
                 {"slug": "example-limited", "url_path": "/company/example-limited/"},
             )
             self._write_json(source / "trajectories" / "example-ipo.json", {"slug": "example-ipo"})
+            self._write_json(
+                root / "derived" / "tijori_ipo_enrichment.json",
+                {
+                    "source": "tijori",
+                    "source_url": "https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/",
+                    "items": {
+                        "example": {
+                            "company_name": "Example Limited",
+                            "isin": "INE000000000",
+                            "sector": "Software",
+                            "details": "Example provides vertical software products.",
+                            "ipo_size": "100 Cr",
+                            "market_cap": "500 Cr",
+                            "pe": 25.5,
+                            "pb": 4.2,
+                            "business_perc": "60%",
+                            "business_value": "60 Cr",
+                            "existing_perc": "40%",
+                            "existing_value": "40 Cr",
+                            "financials": {"yearly_results": [{"year_end": "Mar 2025", "net_sales": 75, "consolidated_netprofit": 9, "debt": 3}]},
+                            "revenue_mix": {"revenue_mix": {"latest_data": [["Products", 80], ["Services", 20]]}},
+                            "peers": [{"compname": "PEERCO", "net_sales": 100, "consolidated_netprofit": 10, "pe": 20, "pb": 3}],
+                            "shareholding": {"prom_holding": {"pre_ipo": "75%", "post_ipo": "55%"}, "public_holding": {"pre_ipo": "25%", "post_ipo": "45%"}},
+                        }
+                    },
+                },
+            )
             self._write_json(schemas / "issue.schema.json", {"$id": "https://ipo-watch.local/schema/v2/issue.schema.json"})
 
             stats = export_v3(source_root=source, out_root=out, schema_root=schemas)
@@ -67,6 +95,7 @@ class SiteV3ExportTests(unittest.TestCase):
 
             manifest = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
             issue = json.loads((out / "issues" / "by-slug" / "example-ipo.json").read_text(encoding="utf-8"))
+            research = json.loads((out / "issues" / "example-ipo" / "research.json").read_text(encoding="utf-8"))
             index = json.loads((out / "issues" / "index.json").read_text(encoding="utf-8"))
             contract = json.loads((out / "_meta" / "contract.json").read_text(encoding="utf-8"))
 
@@ -77,8 +106,12 @@ class SiteV3ExportTests(unittest.TestCase):
             self.assertTrue(manifest["site_contract"]["self_contained"])
             self.assertEqual(issue["url_path"], "/ipos/example-ipo/")
             self.assertTrue(issue["prospectus_available"])
+            self.assertEqual(issue["research_path"], "issues/example-ipo/research.json")
+            self.assertEqual(issue["research"]["tijori"]["sector"], "Software")
+            self.assertEqual(research["research"]["tijori"]["financials"]["yearly_results"][0]["net_sales_cr"], 75)
             self.assertEqual(index["items"][0]["url_path"], "/ipos/example-ipo/")
             self.assertTrue(contract["self_contained"])
+            self.assertEqual(contract["canonical_paths"]["research"], "issues/<slug>/research.json")
             self.assertTrue((out / "_meta" / "schemas" / "issue.schema.json").exists())
 
     def test_source_freshness_marks_required_sources_stale(self) -> None:

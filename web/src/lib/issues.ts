@@ -79,6 +79,46 @@ export type IssueSource = {
   observed_at: string;
 };
 
+export type TijoriResearch = {
+  source: 'tijori' | string;
+  source_url: string | null;
+  source_quality: string;
+  company_name: string;
+  normalized_name: string | null;
+  isin: string | null;
+  symbol: string | null;
+  sector: string | null;
+  business_description: string | null;
+  matched_on?: string | null;
+  valuation: {
+    ipo_size: string | null;
+    market_cap: string | null;
+    pe: number | null;
+    pb: number | null;
+    sector_pe: number | null;
+    sector_pb: number | null;
+  };
+  offer_split: {
+    fresh_issue_percent: string | null;
+    fresh_issue_value: string | null;
+    ofs_percent: string | null;
+    ofs_value: string | null;
+  };
+  financials: {
+    unit: string;
+    yearly_results: { period: string | null; net_sales_cr: number | null; pat_cr: number | null; debt_cr: number | null }[];
+  };
+  revenue_mix: {
+    latest: { segment: string | null; percent: number | null }[];
+    historical: { segment: string | null; points: { timestamp_ms: number | null; percent: number | null }[] }[];
+  };
+  peers: { company_name: string; market_cap: string | null; net_sales_cr: number | null; pat_cr: number | null; pe: number | null; pb: number | null }[];
+  shareholding: {
+    promoter: { pre_ipo: string | null; post_ipo: string | null } | null;
+    public: { pre_ipo: string | null; post_ipo: string | null } | null;
+  };
+};
+
 export type IssueDetail = {
   id: string;
   slug: string;
@@ -119,6 +159,7 @@ export type IssueDetail = {
   exchange_details: Record<string, any>;
   documents: { type: string; url: string; date?: string; source_date?: string }[];
   prospectus_facts: Record<string, any> | null;
+  research: { tijori?: TijoriResearch } | null;
   data_quality: { state: string; error_count: number; warning_count: number };
   sources: IssueSource[];
   redactions?: { field: string; reason: string; count?: number }[];
@@ -627,6 +668,7 @@ const detailFromV2 = (issue: V2Issue): IssueDetail => {
     exchange_details: issue.exchange_details ?? {},
     documents: documentRows(issue),
     prospectus_facts: v2Prospectus(issue.slug) as Record<string, any> | null,
+    research: ((issue as any).research ?? null) as IssueDetail['research'],
     data_quality: {
       state: quality(issue.data_quality?.state),
       error_count: issue.data_quality?.errors?.length ?? 0,

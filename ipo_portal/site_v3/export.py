@@ -125,10 +125,11 @@ def export_v3(
     quarantined_records = [r for r in records if validation["states"].get(r.get("slug")) == "quarantined"]
 
     exchange_details = _exchange_details_by_symbol(raw_snapshots)
+    research_enrichment = _load_research_enrichment(canonical_root=canonical_root, raw_root=raw_root)
 
     public_issue_slugs = _public_issue_slug_map(public_records, validation)
     for record in public_records:
-        _write_issue_bundle(tmp_root, record, meta, validation, existing_facts, exchange_details, public_issue_slugs)
+        _write_issue_bundle(tmp_root, record, meta, validation, existing_facts, exchange_details, public_issue_slugs, research_enrichment)
     for record in quarantined_records:
         slug = record.get("slug")
         if slug:
@@ -251,12 +252,17 @@ def _write_issue_bundle(
     existing_facts: dict[str, dict[str, Any]] | None = None,
     exchange_details: dict[str, dict[str, Any]] | None = None,
     public_slugs: dict[str, str] | None = None,
+    research_enrichment: dict[str, dict[str, Any]] | None = None,
 ) -> None:
     slug = record.get("slug")
     if not slug:
         return
     issue_dir = root / "issues" / slug
+    research = _research_doc(record, meta, research_enrichment)
     public = _issue_public_doc(record, meta, validation, exchange_details, public_slugs)
+    if research:
+        public["research_path"] = f"issues/{slug}/research.json"
+        public["research"] = research["research"]
     _write_json(root / "issues" / "by-slug" / f"{slug}.json", public)
     _write_json(issue_dir / "core.json", _core_doc(record, meta, validation, exchange_details))
     _write_json(issue_dir / "market.json", _market_doc(record, meta))
@@ -264,6 +270,8 @@ def _write_issue_bundle(
     _write_json(issue_dir / "filings.json", _filings_doc(record, meta))
     existing = (existing_facts or {}).get(slug)
     _write_json(issue_dir / "prospectus_facts.json", existing or _prospectus_facts_doc(record, meta))
+    if research:
+        _write_json(issue_dir / "research.json", research)
     _write_json(issue_dir / "provenance.json", _provenance_doc(record, meta, validation))
 
 
@@ -517,6 +525,201 @@ def _filings_doc(record: dict[str, Any], meta: dict[str, Any]) -> dict[str, Any]
     return {**meta, "$schema": _schema_url("filings"), "slug": record.get("slug"), "documents": docs}
 
 
+def _load_research_enrichment(*, canonical_root: Path, raw_root: Path) -> dict[str, dict[str, Any]]:
+    candidates = [
+        canonical_root.parent / "derived" / "tijori_ipo_enrichment.json",
+        raw_root.parent / "derived" / "tijori_ipo_enrichment.json",
+        PROJECT_ROOT / "data" / "derived" / "tijori_ipo_enrichment.json",
+    ]
+    path = next((p for p in candidates if p.exists()), None)
+    if path is None:
+        return {}
+    try:
+        doc = _read_json(path)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if not isinstance(doc, dict):
+        return {}
+    source_url = doc.get("source_url")
+    items = doc.get("items")
+    if not isinstance(items, dict):
+        return {}
+
+    out: dict[str, dict[str, Any]] = {}
+    for key, row in items.items():
+        if not isinstance(row, dict):
+            continue
+        compact = _compact_tijori_research(row, source_url=source_url)
+        if compact:
+            out[str(key)] = compact
+    return out
+
+
+def _research_doc(record: dict[str, Any], meta: dict[str, Any], enrichment: dict[str, dict[str, Any]] | None) -> dict[str, Any] | None:
+    tijori = _match_tijori_research(record, enrichment or {})
+    if not tijori:
+        return None
+    return {
+        **meta,
+        "$schema": _schema_url("research"),
+        "slug": record.get("slug"),
+        "research": {"tijori": tijori},
+    }
+
+
+def _match_tijori_research(record: dict[str, Any], enrichment: dict[str, dict[str, Any]]) -> dict[str, Any] | None:
+    if not enrichment:
+        return None
+    identity = record.get("identity") or {}
+    company_name = identity.get("company_name")
+    key = _research_name_key(company_name)
+    row = enrichment.get(key)
+    if not row:
+        return None
+    isin = str(identity.get("isin") or "").strip().upper()
+    tijori_isin = str(row.get("isin") or "").strip().upper()
+    if isin and tijori_isin and isin != tijori_isin:
+        return None
+    out = dict(row)
+    out["matched_on"] = "isin" if isin and tijori_isin == isin else "normalized_company_name"
+    return out
+
+
+def _research_name_key(value: Any) -> str:
+    try:
+        from ..normalize_v2.identity import normalize_name
+
+        return normalize_name(str(value or ""))
+    except Exception:
+        return re.sub(r"[^a-z0-9]+", " ", str(value or "").lower()).strip()
+
+
+def _compact_tijori_research(row: dict[str, Any], *, source_url: str | None) -> dict[str, Any] | None:
+    company_name = _text(row.get("company_name"))
+    if not company_name:
+        return None
+
+    latest_mix = (((row.get("revenue_mix") or {}).get("revenue_mix") or {}).get("latest_data") or [])
+    historical_mix = (((row.get("revenue_mix") or {}).get("revenue_mix") or {}).get("historical_data") or [])
+    revenue_mix = _compact_revenue_mix(latest_mix, historical_mix)
+    shareholding = row.get("shareholding") if isinstance(row.get("shareholding"), dict) else {}
+    financials = row.get("financials") if isinstance(row.get("financials"), dict) else {}
+    peers = row.get("peers") if isinstance(row.get("peers"), list) else []
+    yearly_results = financials.get("yearly_results") if isinstance(financials.get("yearly_results"), list) else []
+
+    return {
+        "source": "tijori",
+        "source_url": source_url,
+        "source_quality": "third_party_enrichment_not_primary_filing",
+        "company_name": company_name,
+        "normalized_name": _text(row.get("normalized_name")),
+        "isin": _text(row.get("isin")),
+        "symbol": _text(row.get("symbol")),
+        "sector": _text(row.get("sector")),
+        "business_description": _text(row.get("details")),
+        "valuation": {
+            "ipo_size": _text(row.get("ipo_size")),
+            "market_cap": _text(row.get("market_cap")),
+            "pe": _number(row.get("pe")),
+            "pb": _number(row.get("pb")),
+            "sector_pe": _number(row.get("sector_pe")),
+            "sector_pb": _number(row.get("sector_pb")),
+        },
+        "offer_split": {
+            "fresh_issue_percent": _text(row.get("business_perc")),
+            "fresh_issue_value": _text(row.get("business_value")),
+            "ofs_percent": _text(row.get("existing_perc")),
+            "ofs_value": _text(row.get("existing_value")),
+        },
+        "financials": {
+            "unit": "INR crore",
+            "yearly_results": [
+                {
+                    "period": _text(item.get("year_end")),
+                    "net_sales_cr": _number(item.get("net_sales")),
+                    "pat_cr": _number(item.get("consolidated_netprofit")),
+                    "debt_cr": _number(item.get("debt")),
+                }
+                for item in yearly_results
+                if isinstance(item, dict)
+            ][:6],
+        },
+        "revenue_mix": revenue_mix,
+        "peers": [
+            {
+                "company_name": _text(peer.get("compname")),
+                "market_cap": _text(peer.get("market_cap")),
+                "net_sales_cr": _number(peer.get("net_sales")),
+                "pat_cr": _number(peer.get("consolidated_netprofit")),
+                "pe": _number(peer.get("pe")),
+                "pb": _number(peer.get("pb")),
+            }
+            for peer in peers
+            if isinstance(peer, dict) and _text(peer.get("compname"))
+        ][:8],
+        "shareholding": {
+            "promoter": _compact_holding(shareholding.get("prom_holding")),
+            "public": _compact_holding(shareholding.get("public_holding")),
+        },
+    }
+
+
+def _compact_revenue_mix(latest: Any, historical: Any) -> dict[str, Any]:
+    latest_rows = []
+    if isinstance(latest, list):
+        for item in latest:
+            if isinstance(item, (list, tuple)) and len(item) >= 2:
+                latest_rows.append({"segment": _text(item[0]), "percent": _number(item[1])})
+            elif isinstance(item, dict):
+                latest_rows.append({"segment": _text(item.get("name") or item.get("segment")), "percent": _number(item.get("value") or item.get("percent"))})
+    latest_rows = [row for row in latest_rows if row.get("segment") and row.get("percent") is not None][:12]
+
+    historical_rows = []
+    if isinstance(historical, list):
+        for item in historical[:12]:
+            if not isinstance(item, (list, tuple)) or len(item) < 2:
+                continue
+            points = []
+            values = item[1] if isinstance(item[1], list) else []
+            for point in values[:6]:
+                if isinstance(point, (list, tuple)) and len(point) >= 2:
+                    points.append({"timestamp_ms": _number(point[0]), "percent": _number(point[1])})
+            historical_rows.append({"segment": _text(item[0]), "points": points})
+    historical_rows = [row for row in historical_rows if row.get("segment") and row.get("points")]
+    return {"latest": latest_rows, "historical": historical_rows}
+
+
+def _compact_holding(value: Any) -> dict[str, Any] | None:
+    if not isinstance(value, dict):
+        return None
+    return {
+        "pre_ipo": _text(value.get("pre_ipo") or value.get("pre")),
+        "post_ipo": _text(value.get("post_ipo") or value.get("post")),
+    }
+
+
+def _text(value: Any) -> str | None:
+    if value is None:
+        return None
+    text = re.sub(r"\s+", " ", str(value)).strip()
+    return text or None
+
+
+def _number(value: Any) -> float | int | None:
+    if isinstance(value, bool) or value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return value if isinstance(value, int) else round(value, 4)
+    text = str(value).replace(",", "").replace("₹", "").strip()
+    if not text or text == "-":
+        return None
+    try:
+        parsed = float(text)
+    except ValueError:
+        return None
+    return int(parsed) if parsed.is_integer() else round(parsed, 4)
+
+
 _NSE_SYMBOL_ENDPOINT_RE = re.compile(
     r"^(issue_detail|bid_details|consolidated_bid_details|demand_data_nse|demand_data_all)_([a-z0-9]+)(?:_[a-z0-9]+)?$",
     re.IGNORECASE,
@@ -747,6 +950,7 @@ def _source_freshness(snapshots: list[dict[str, Any]]) -> dict[str, Any]:
         "bse": 2,
         "yahoo": 24,
         "kite": 24,
+        "tijori": 24,
     }
     required = {"sebi", "nse", "bse"}
     sources: dict[str, dict[str, Any]] = {}
@@ -845,7 +1049,7 @@ def _write_meta(
         },
     }
     _write_json(tmp_root / "manifest.json", manifest)
-    _write_json(tmp_root / "_meta" / "contract.json", {**meta, "self_contained": True, "description": "IPO Watch V3 public static data contract.", "canonical_paths": {"issue": "issues/by-slug/<slug>.json", "core": "issues/<slug>/core.json", "market": "issues/<slug>/market.json", "subscription": "issues/<slug>/subscription.json", "filings": "issues/<slug>/filings.json", "prospectus_facts": "issues/<slug>/prospectus_facts.json", "provenance": "issues/<slug>/provenance.json"}})
+    _write_json(tmp_root / "_meta" / "contract.json", {**meta, "self_contained": True, "description": "IPO Watch V3 public static data contract.", "canonical_paths": {"issue": "issues/by-slug/<slug>.json", "core": "issues/<slug>/core.json", "market": "issues/<slug>/market.json", "subscription": "issues/<slug>/subscription.json", "filings": "issues/<slug>/filings.json", "prospectus_facts": "issues/<slug>/prospectus_facts.json", "research": "issues/<slug>/research.json", "provenance": "issues/<slug>/provenance.json"}})
     _write_json(tmp_root / "_meta" / "build_report.json", {**meta, "raw_first": raw_first, "issues_written": issue_count, "companies_written": company_count, "trajectories_written": trajectory_count, "source_endpoint_count": source_coverage["summary"]["total_endpoints"], "fetch_failed": source_coverage["summary"]["fetch_failed"], "parser_failed": source_coverage["summary"]["parser_failed"], "degraded": freshness["degraded"], "stale_sources": freshness["stale_sources"], "source_freshness": freshness["sources"], "deepseek": {"used": False, "cost_usd": "0.0000", "reason": "No verified prospectus extraction was run in this build; facts remain redacted."}})
     _write_json(tmp_root / "_meta" / "source_coverage.json", source_coverage)
     _write_json(tmp_root / "_meta" / "validation_report.json", validation_report)
@@ -966,7 +1170,7 @@ def _coverage_row(source: str, endpoint: str, url: str | None, snap: dict[str, A
         klass = "intentionally ignored helper/dropdown feed"
     elif parser is not None:
         klass = "parsed as document metadata only" if any(t in endpoint for t in ("offer_documents", "ipo_documents", "documents", "filings", "advertisements")) else "parsed into V3 canonical records"
-    elif source in {"capitalmarket", "prime", "trendlyne", "moneycontrol"}:
+    elif source in {"capitalmarket", "prime", "trendlyne", "moneycontrol", "tijori"}:
         klass = "unsupported gap"
     else:
         klass = "parser failed"

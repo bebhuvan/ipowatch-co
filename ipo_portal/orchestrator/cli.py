@@ -309,6 +309,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     refresh_p.add_argument("--skip-fetch", action="store_true", help="Skip the NSE/BSE v1 fetch.")
     refresh_p.add_argument("--skip-sebi", action="store_true", help="Skip the SEBI scrape.")
+    refresh_p.add_argument("--skip-kite", action="store_true", help="Skip Kite market data and rely on Yahoo fallback.")
     refresh_p.add_argument("--skip-tijori", action="store_true", help="Skip Tijori IPO screener enrichment.")
     refresh_p.add_argument("--skip-enrich", action="store_true", help="Skip RHP enrichment.")
     refresh_p.add_argument("--hot", action="store_true", help="Fast subset for frequent runs.")
@@ -325,6 +326,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     refresh_daily_p.add_argument("--skip-fetch", action="store_true", help="Skip NSE/BSE fetch.")
     refresh_daily_p.add_argument("--skip-sebi", action="store_true", help="Skip SEBI scrape.")
+    refresh_daily_p.add_argument("--skip-kite", action="store_true", help="Skip Kite market data and rely on Yahoo fallback.")
     refresh_daily_p.add_argument("--skip-tijori", action="store_true", help="Skip Tijori IPO screener enrichment.")
     refresh_daily_p.add_argument("--skip-enrich", action="store_true", help="Skip legacy RHP enrichment.")
     refresh_daily_p.add_argument("--enrich-limit", type=int, default=25, help="Cap legacy RHP extractions per run.")
@@ -664,6 +666,7 @@ def _run_refresh(args: argparse.Namespace) -> int:
     summary = run_refresh(
         skip_fetch=args.skip_fetch,
         skip_sebi=args.skip_sebi,
+        skip_kite=args.skip_kite,
         skip_tijori=args.skip_tijori,
         skip_enrich=args.skip_enrich,
         hot=args.hot,
@@ -681,6 +684,7 @@ def _run_refresh_daily(args: argparse.Namespace) -> int:
     summary = run_refresh(
         skip_fetch=args.skip_fetch,
         skip_sebi=args.skip_sebi,
+        skip_kite=args.skip_kite,
         skip_tijori=args.skip_tijori,
         skip_enrich=args.skip_enrich,
         hot=False,

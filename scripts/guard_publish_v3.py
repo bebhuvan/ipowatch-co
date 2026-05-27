@@ -77,7 +77,8 @@ def _check_manifest(site_root: Path, manifest: dict[str, Any], allow_degraded: b
 def _check_refresh_summary(summary: dict[str, Any], findings: list[str]) -> None:
     if summary.get("ok") is not True:
         findings.append("latest refresh summary is not ok")
-    failed = [step.get("name") for step in summary.get("steps") or [] if step.get("status") == "failed"]
+    steps = summary.get("steps") or []
+    failed = [step.get("name") for step in steps if step.get("status") == "failed"]
     if failed:
         findings.append(f"latest refresh has failed steps: {failed}")
     if (summary.get("last_good_build") or {}).get("restored") is True:

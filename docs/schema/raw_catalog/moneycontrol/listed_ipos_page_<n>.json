@@ -1,0 +1,528 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "listed_ipos_page_000500",
+    "estimated_cost_usd": 0.0058568000000000005,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 5200,
+    "tokens_out": 4048
+  },
+  "currency": "INR",
+  "data_kind": "performance_history",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0412",
+  "endpoint": "listed_ipos_page_<n>",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "market_data.change_abs",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value is a string representing a number; may contain leading zeros or trailing zeros.",
+          "suggested_mitigation": "Parse as float after stripping whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-0.55",
+        "2.37",
+        "0.00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "change",
+      "nested_table": false,
+      "notes": "May be negative; string type.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].change",
+      "semantic": "Absolute change in last price from previous close (in INR).",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "meta.company_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused or change over time; not guaranteed stable across endpoints.",
+          "suggested_mitigation": "Treat as opaque key; do not assume permanence."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        16491034,
+        14120025
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "company_code",
+      "nested_table": false,
+      "notes": "Integer, likely stable for a given IPO.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].company_code",
+      "semantic": "Unique internal identifier for the company/IPO on Moneycontrol.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "meta.company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "May contain non-ASCII characters or special characters.",
+          "suggested_mitigation": "Normalize Unicode; trim whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Neelam Linens And Garments India",
+        "Niva Bupa Health Insurance Company"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company_name",
+      "nested_table": false,
+      "notes": "Plain text.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].company_name",
+      "semantic": "Full name of the company that issued the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "market_data.prev_close",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "May be null; numeric type.",
+          "suggested_mitigation": "Handle null gracefully."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        38.05,
+        74.02,
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "dt_close",
+      "nested_table": false,
+      "notes": "Numeric, may be null.",
+      "null_meaning": "Possibly no trading data available (e.g., newly listed or suspended).",
+      "nullable": true,
+      "path": "$.data.listedIpo[*].dt_close",
+      "semantic": "Previous day's closing price of the stock (in INR).",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "market_data.open",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "May be null; numeric type.",
+          "suggested_mitigation": "Handle null gracefully."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        40.05,
+        78.14,
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "dt_open",
+      "nested_table": false,
+      "notes": "Numeric, may be null.",
+      "null_meaning": "Possibly no trading data available (e.g., newly listed or suspended).",
+      "nullable": true,
+      "path": "$.data.listedIpo[*].dt_open",
+      "semantic": "Today's opening price of the stock (in INR).",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.ipo_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Possible new categories in future.",
+          "suggested_mitigation": "Use enum with fallback for unknown values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "SME",
+        "Mainline"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ipo_type",
+      "nested_table": false,
+      "notes": "Enum-like: 'SME' or 'Mainline'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].ipo_type",
+      "semantic": "Type of IPO: Mainline (main board) or SME (small and medium enterprises).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.issue_price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer, but may be represented as string in other endpoints.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        24,
+        74,
+        289
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issue_price",
+      "nested_table": false,
+      "notes": "Integer.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].issue_price",
+      "semantic": "The price at which shares were offered during the IPO (in INR).",
+      "type": "integer",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.issue_size_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.CUR",
+          "description": "Value is in rupees, but may be misinterpreted as paise or crores. Large numbers may be truncated.",
+          "suggested_mitigation": "Assume INR; verify with other sources."
+        },
+        {
+          "category": "E.NUM",
+          "description": "Large integer; may overflow in some systems.",
+          "suggested_mitigation": "Use 64-bit integer or string for precision."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        130032000,
+        22000000052,
+        113274266820
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issue_size",
+      "nested_table": false,
+      "notes": "Integer, likely in rupees.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].issue_size",
+      "semantic": "Total size of the IPO issue in INR (paise? likely in rupees, but magnitude suggests rupees).",
+      "type": "integer",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "market_data.last_price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value is a string representing a number; may contain commas or currency symbols in other contexts.",
+          "suggested_mitigation": "Parse as float after stripping non-numeric characters."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "11.10",
+        "85.99",
+        "290.20"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "last_price",
+      "nested_table": false,
+      "notes": "String type; parse to float.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].last_price",
+      "semantic": "Current/last traded price of the stock (in INR).",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.listing_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Format is YYYY-MM-DD; ensure correct parsing.",
+          "suggested_mitigation": "Parse as date using ISO format."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2024-11-18",
+        "2024-11-14"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "listing_date",
+      "nested_table": false,
+      "notes": "ISO date string.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].listing_date",
+      "semantic": "Date on which the stock was listed on the exchange.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.listing_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Floating point precision issues; may have many decimal places.",
+          "suggested_mitigation": "Round to reasonable precision (e.g., 2 decimals)."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        66.87499999999999,
+        5.594594594594595,
+        -13.148788927335639
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "listing_gain",
+      "nested_table": false,
+      "notes": "Percentage, may be null.",
+      "null_meaning": "Possibly no listing data (e.g., not yet listed or data missing).",
+      "nullable": true,
+      "path": "$.data.listedIpo[*].listing_gain",
+      "semantic": "Percentage gain from issue price to listing day open (or close? likely open).",
+      "type": "number",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "market_data.change_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representing a number; may have leading/trailing zeros.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-4.72",
+        "2.83",
+        "0.00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "perChange",
+      "nested_table": false,
+      "notes": "String type; parse to float.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].perChange",
+      "semantic": "Percentage change in last price from previous close.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "meta.sc_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "May be reused or changed; not guaranteed unique across time.",
+          "suggested_mitigation": "Treat as opaque key; combine with company_code for uniqueness."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "NLAGIL",
+        "NBH",
+        "ASH02"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "sc_id",
+      "nested_table": false,
+      "notes": "Alphanumeric, likely unique per IPO.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].sc_id",
+      "semantic": "Short identifier or ticker symbol for the stock on Moneycontrol.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.todays_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Floating point precision; may be negative.",
+          "suggested_mitigation": "Round to reasonable precision."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        -72.28464419475655,
+        10.04607115433836,
+        15.617529880478084
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "todays_gain",
+      "nested_table": false,
+      "notes": "Percentage, may be null.",
+      "null_meaning": "Possibly no trading data (e.g., no open price).",
+      "nullable": true,
+      "path": "$.data.listedIpo[*].todays_gain",
+      "semantic": "Percentage gain from today's open to current last price.",
+      "type": "number",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "subscription.total_subs_x",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.SUB",
+          "description": "May be aggregate of multiple categories; could be stale after listing.",
+          "suggested_mitigation": "Use as final subscription figure; note that it may not update after listing."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        85.51,
+        1.8,
+        2.75
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "total_subs",
+      "nested_table": false,
+      "notes": "Numeric, times subscribed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].total_subs",
+      "semantic": "Overall subscription ratio of the IPO (times subscribed).",
+      "type": "number",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "meta.url_path",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL structure may change; may contain special characters.",
+          "suggested_mitigation": "Treat as opaque string; do not parse."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "textilesapparel/neelamlinensgarmentsindia/NLAGIL",
+        "lifehealth-insurance/nivabupahealthinsurancecompany/NBH"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "url",
+      "nested_table": false,
+      "notes": "Relative URL, not full.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.listedIpo[*].url",
+      "semantic": "Relative URL path to the company's page on Moneycontrol.",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:12:12+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The sc_id field can be used to fetch detailed IPO data from Moneycontrol's stock detail endpoint.",
+      "follow_up_endpoint_pattern": "https://api.moneycontrol.com/mcapi/v1/stock/detail?sc_id={sc_id}",
+      "key_field": "sc_id"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 20,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/moneycontrol/listed_ipos_page_<n>.json",
+  "schema_version": "1.0.0",
+  "source": "moneycontrol",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000500",
+      "snapshot_at": "2026-05-22T10:40:04+00:00",
+      "source": "moneycontrol",
+      "url": "https://api.moneycontrol.com/mcapi/v1/ipo/get-listed-ipo?start=500&limit=20"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "Provides a paginated list of recently listed IPOs with current market data, issue details, and subscription information. Each row represents an IPO with fields like company name, issue price, listing date, current price, gains, and subscription ratio.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The issue_size field is a large integer; verify unit (likely INR, but could be paise).",
+    "Some fields like dt_close, dt_open, listing_gain, todays_gain may be null for certain rows (e.g., newly listed or data missing).",
+    "The url field is a relative path; may need base URL to construct full link.",
+    "No pagination metadata in response; pagination is handled via start and limit query parameters."
+  ]
+}

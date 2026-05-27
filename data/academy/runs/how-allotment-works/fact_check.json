@@ -1,0 +1,227 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/factcheck.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.factcheck.schema",
+  "dataset_version": "v2026.05.23-0538",
+  "estimated_cost_usd": 0.013301710000000001,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T05:38:10+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-5 fact-check produced by deepseek-reasoner.",
+  "report": {
+    "blocking_count": 0,
+    "checks": [
+      {
+        "note": "Lottery mechanic for oversubscribed retail is described in Example B of Schedule XIII.",
+        "sentence": "That is the core mechanic of Indian retail allotment. It is not a market where the highest bidder wins. It is a lottery, set out in Schedule XIII of the ICDR Regulations, and it applies once the retail category is oversubscribed.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "the number of applicants who shall receive the minimum bid lot is computed as (1,75,000 / 2,00,000) × number of applicants at that tier — i.e. the same proportion (87.5%) at every lot size, with the recipients within each tier selected by a lottery",
+        "tag_index": 1,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 32(1) exactly matches the percentages and spillover rule.",
+        "sentence": "The allocation rules that govern this process are set out in Regulation 32 of the ICDR Regulations. For a normal book-built IPO on the main board, the net offer is split into three buckets: at least 35% to retail individual investors, at least 15% to non-institutional investors (NII), and not more than 50% to qualified institutional buyers (QIB). Within the QIB portion, 5% is reserved for mutual funds. If the retail or NII category is undersubscribed, the unsubscribed portion can spill over to any other category.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "not less than thirty five per cent. to retail individual investors; not less than fifteen per cent. to non-institutional investors; not more than fifty per cent. to qualified institutional buyers, five per cent. of which shall be allocated to mutual funds: Provided that the unsubscribed portion in either of the categories specified in clauses (a) or (b) may be allocated to applicants in any other category",
+        "tag_index": 2,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 32(2) text matches the claim.",
+        "sentence": "For issues built under Regulation 32(2) — the compulsory-QIB route — the allocation shifts. Retail gets no more than 10%, NII gets no more than 15%, and QIB gets at least 75%. The same 5% mutual-fund reservation inside the QIB portion applies.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "not more than ten per cent. to retail individual investors; not more than fifteen per cent. to non-institutional investors; not less than seventy five per cent. to qualified institutional buyers, five per cent. of which shall be allocated to mutual funds",
+        "tag_index": 3,
+        "verdict": "supported"
+      },
+      {
+        "note": "Provisos in the regulation differentiate spillover rules as stated.",
+        "sentence": "In a normal book-built issue under Regulation 32(1), an unsubscribed retail or NII portion may be allocated to applicants in any other category. In a compulsory-QIB issue under Regulation 32(2), an unsubscribed retail or NII portion may be allocated only to applicants in the other of those two categories — not to QIB.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "Reg 32(1) proviso: 'may be allocated to applicants in any other category'; Reg 32(2) proviso: 'may be allocated to applicants in the other category'",
+        "tag_index": 4,
+        "verdict": "supported"
+      },
+      {
+        "note": "Schedule XIII, section (10) confirms 60% limit, definition, and discretionary allocation.",
+        "sentence": "Before the public issue opens, the issuer can allocate up to 60% of the QIB portion to anchor investors. An anchor investor is a QIB that applies for at least ₹10 crore in a main-board book-built IPO. The allocation is discretionary — the issuer and merchant bankers choose who gets in.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "Up to sixty per cent. of the portion available for allocation to qualified institutional buyers shall be available for allocation... to anchor investor(s). 'anchor investor' means a qualified institutional buyer who makes an application for a value of at least ten crore rupees... Allocation to the anchor investors shall be on a discretionary basis",
+        "tag_index": 5,
+        "verdict": "supported"
+      },
+      {
+        "note": "Schedule XIII investor count and minimum allotment limits match the table.",
+        "sentence": "The number of anchor investors is capped by the total anchor size. Schedule XIII of the ICDR Regulations lays out the limits: (table)",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "maximum of 2 such investors for allocation up to ten crore rupees; minimum of 2 and maximum of 15 for allocation above ten crore rupees and up to two fifty crore rupees... minimum allotment of five crore rupees per such investor",
+        "tag_index": 6,
+        "verdict": "supported"
+      },
+      {
+        "note": "All mechanics directly from Schedule XIII section (10).",
+        "sentence": "One-third of the anchor portion is reserved for domestic mutual funds. The anchor bidding opens one day before the issue opening date. Anchor investors pay the same margin as other categories on application, and the balance is due within two days of issue closure. If the final issue price is higher than the anchor allocation price, the anchor pays the difference. If the final price is lower, the anchor keeps the shares at the higher price — no refund.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "One-third of the anchor investor portion shall be reserved for domestic mutual funds. The bidding for anchor investors shall open one day before the issue opening date. The anchor investors shall pay on application the same margin... balance... within two days of the date of closure of the issue. If the price fixed as a result of book building is higher... anchor investors shall pay the additional amount... if lower... excess amount shall not be refunded",
+        "tag_index": 7,
+        "verdict": "supported"
+      },
+      {
+        "note": "Footnote 725 confirms the old lock-in, new lock-in, and delayed effective date for large issues.",
+        "sentence": "The lock-in for anchor investors was changed in April 2022. Before the amendment, all anchor shares were locked in for 30 days from allotment. After the amendment, 50% of the shares are locked in for 90 days, and the remaining 50% for 30 days. For issues of ₹10,000 crore or more that opened on or after April 1, 2022, the effective date was pushed to July 1, 2022.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "Prior to the substitution, the sub-clause read as follows: 'There shall be a lock-in of 30 days on the shares allotted to the anchor investors from the date of allotment.' ... lock-in of 90 days on fifty per cent ... 30 days on the remaining fifty per cent ... for public issues of a size equal to or more than ₹10,000 crore and opening on or after April 1, 2022, the amendment has been made effective from 1.7.2022",
+        "tag_index": 8,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 32(3A) matches the sub-split and effective date.",
+        "sentence": "The non-institutional investor category was split into two sub-categories by an amendment effective April 1, 2022. One-third of the NII portion is reserved for applicants with an application size between ₹2 lakh and ₹10 lakh — the small high net-worth individual (sHNI) bucket. Two-thirds is reserved for applicants with an application size above ₹10 lakh — the big high net-worth individual (bHNI) bucket.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "one third of the portion available to non-institutional investors shall be reserved for applicants with application size of more than two lakh rupees and up to ten lakh rupees; two third ... for applicants with application size of more than ten lakh rupees",
+        "tag_index": 9,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 32(3A) proviso allows cross-filling between sHNI and bHNI.",
+        "sentence": "If one sub-category is undersubscribed, the unsubscribed portion may be allocated to applicants in the other sub-category.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "Provided that the unsubscribed portion in either of the sub-categories specified in clauses (a) or (b), may be allocated to applicants in the other sub-category of non-institutional investors.",
+        "tag_index": 10,
+        "verdict": "supported"
+      },
+      {
+        "note": "Footnote 83 confirms delayed effective date for large issues.",
+        "sentence": "For issues of ₹10,000 crore or more, the effective date was July 1, 2022.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "Vide SEBI (Issue of Capital and Disclosure Requirements) (Second Amendment) Regulations, 2022, for public issues of a size equal to or more than ₹10,000 crore and opening on or after April 1, 2022, the amendment has been made effective from 1.7.2022.",
+        "tag_index": 11,
+        "verdict": "supported"
+      },
+      {
+        "note": "Definition (vv) of the ICDR Regulations.",
+        "sentence": "The retail individual investor is defined as an individual who bids for a value of not more than ₹2 lakh.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "retail individual investor means an individual investor who applies or bids for specified securities for a value of not more than two lakhs rupees",
+        "tag_index": 12,
+        "verdict": "supported"
+      },
+      {
+        "note": "Example A in Schedule XIII describes proportional allotment after minimum lot.",
+        "sentence": "Undersubscribed case. Every applicant gets at least the minimum bid lot. The remaining shares, after every applicant has received one minimum lot, are distributed proportionally. SEBI's worked example (Example A in Schedule XIII) walks through five investors who bid 320, 220, 120, 60, and 20 shares respectively, with a minimum lot of 20. Each receives the 20-share minimum first. The residual shares are then allocated in proportion to each investor's original bid.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "As the allotment to a retail individual investor cannot be less than the minimum bid lot, subject to availability of shares, the remaining available shares, if any, shall be allotted on a proportionate basis. The example then walks through five investors A–E who bid 320, 220, 120, 60, and 20 specified securities respectively, with the minimum bid lot being 20.",
+        "tag_index": 13,
+        "verdict": "supported"
+      },
+      {
+        "note": "Example B gives exact figures used in the claim.",
+        "sentence": "Oversubscribed case. This is where the lottery kicks in. SEBI's worked example (Example B) uses these numbers: Total shares on offer in the retail category: 35,00,000; Minimum bid lot: 20 shares; Total retail applicants: 2,00,000; Oversubscription in retail: 9.37 times. The maximum number of allottees is 35,00,000 divided by 20, which is 1,75,000. That is the number of applicants who can receive the minimum lot. The remaining 25,000 applicants get nothing.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "Total number of specified securities on offer... 35 lakh specified securities... minimum bid lot is 20 shares... two lakh retail individual investors have applied... oversubscribed 9.37 times... maximum number of investors who can be allotted this minimum bid lot should be 1,75,000... remaining 25,000 retail applicants will not get any allotment.",
+        "tag_index": 14,
+        "verdict": "supported"
+      },
+      {
+        "note": "Example B lottery mechanic described verbatim.",
+        "sentence": "The selection is done by lottery, applied proportionally across all bid-lot tiers. The 2,00,000 applicants bid in varying lot sizes — from 1 lot to 16 lots. At every tier, the number of successful applicants is computed as (1,75,000 / 2,00,000) × the number of applicants at that tier. That is 87.5% at every lot size. The recipients within each tier are selected by lottery.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "the number of applicants who shall receive the minimum bid lot is computed as (1,75,000 / 2,00,000) × number of applicants at that tier — i.e. the same proportion (87.5%) at every lot size, with the recipients within each tier selected by a lottery",
+        "tag_index": 15,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 33(2)(a) confirms limits and roll-up provision.",
+        "sentence": "Employee reservation. The aggregate reservation for employees cannot exceed 5% of the post-issue capital. The value of allotment to any single employee cannot exceed ₹2 lakh. There is a roll-up provision: if the employee portion is undersubscribed, the unsubscribed portion can be allotted on a proportionate basis for a value up to ₹5 lakh per employee.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "the aggregate of reservations for employees shall not exceed five per cent. of the post-issue capital of the issuer and the value of allotment to any employee shall not exceed two lakhs rupees: Provided that in the event of under-subscription in the employee reservation portion, the unsubscribed portion may be allotted on a proportionate basis, for a value in excess of two lakhs rupees, subject to the total allotment to an employee not exceeding five lakhs rupees.",
+        "tag_index": 16,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 33(1)(b) and 33(2)(b).",
+        "sentence": "Shareholder reservation. The reservation for shareholders cannot exceed 10% of the issue size. Only shareholders of listed subsidiaries or listed promoter companies are eligible — not promoter group members.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "reservation for shareholders shall not exceed ten per cent. of the issue size; 'shareholders (other than promoters and promoter group) of listed subsidiaries or listed promoter companies'",
+        "tag_index": 17,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 33(2)(d) and (e).",
+        "sentence": "Spillover mechanics. Any unsubscribed portion in a reserved category can be added to another reserved category. After inter-se adjustments among the reserved categories, any remaining unsubscribed portion is added to the net offer category. Conversely, if the net offer category is undersubscribed, spillover from the reserved categories is permitted.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "any unsubscribed portion in any reserved category may be added to any other reserved category and the unsubscribed portion, if any, after such inter-se adjustments among the reserved categories shall be added to the net offer category; in case of under-subscription in the net offer category, spill-over to the extent of under-subscription shall be permitted from the reserved category to the net offer.",
+        "tag_index": 18,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 33(2)(c).",
+        "sentence": "A person who applies under a reservation category cannot make a further application in the net offer — except for employees and retail individual shareholders.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "no further application for subscription in the net offer can be made by persons (except an employee and retail individual shareholder) in favour of whom reservation on a competitive basis is made",
+        "tag_index": 19,
+        "verdict": "supported"
+      },
+      {
+        "note": "Master Circular Chapter 5, para 1.",
+        "sentence": "Applications Supported by Block Amount (ASBA) has eliminated most refund-related complaints. But there are cases where an applicant fails to get allotment because of a failure on the part of the Self Certified Syndicate Bank (SCSB) — the bank that processes the ASBA application.",
+        "source_id": "sebi-master-circular-icdr-2024-11-11",
+        "supporting_excerpt_quote": "ASBA has resulted in almost complete elimination of complaints pertaining to refunds, there have been instances where the applicants... have failed to get allotment... due to the following factors: Failure on part of the Self Certified Syndicate Banks...",
+        "tag_index": 20,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact three failure scenarios listed.",
+        "sentence": "SEBI's Master Circular identifies three failure scenarios: the SCSB fails to make the bid in the exchange system even after blocking the amount; the SCSB fails to process the ASBA application submitted within time; or any other SCSB failure that results in rejection of the application.",
+        "source_id": "sebi-master-circular-icdr-2024-11-11",
+        "supporting_excerpt_quote": "1.1. Failure on part of the Self Certified Syndicate Banks (SCSB) to make bids in the concerned Exchange system even after the amount has been blocked... 1.2. Failure on part of the SCSB to process the ASBA applications even when they have been submitted within time. 1.3. Any other failures on part of an SCSB which has resulted in the rejection of the application form.",
+        "tag_index": 21,
+        "verdict": "supported"
+      },
+      {
+        "note": "Master Circular Chapter 5, para 3 and footnote.",
+        "sentence": "Compensation = (Listing price − Issue price) × (Shares that would have been allotted) × (Probability of allotment). The listing price is taken as the highest of the opening prices on the day of listing across all recognised stock exchanges.",
+        "source_id": "sebi-master-circular-icdr-2024-11-11",
+        "supporting_excerpt_quote": "Compensation = (Listing price* − Issue Price) × (No. of shares that would have been allotted if bid was successful) × (Probability of allotment of shares determined on the basis of allotment). *Listing price shall be taken as the highest of the opening prices on the day of listing across the recognized stock Exchanges.",
+        "tag_index": 22,
+        "verdict": "supported"
+      },
+      {
+        "note": "Master Circular Chapter 5, paras 4 and 5.",
+        "sentence": "For issues subscribed between 90% and 100% — that is, non-oversubscribed issues — the applicant is compensated for all the shares they would have been allotted. No compensation is payable if the listing price is below the issue price.",
+        "source_id": "sebi-master-circular-icdr-2024-11-11",
+        "supporting_excerpt_quote": "In case of issues which are subscribed between 90-100%, i.e. non oversubscribed issues, the applicants would be compensated for all the shares which they would have been allotted. No compensation would be payable to the applicant in case the listing price is below the issue price.",
+        "tag_index": 23,
+        "verdict": "supported"
+      },
+      {
+        "note": "Master Circular Chapter 5, paras 7 and 8.",
+        "sentence": "The redress process: the applicant must approach the SCSB within three months of the listing date. The SCSB must resolve the grievance within 15 days. If it fails to do so, it must pay interest at 15% per annum for the delay. SEBI may also initiate action against the SCSB.",
+        "source_id": "sebi-master-circular-icdr-2024-11-11",
+        "supporting_excerpt_quote": "any applicant ... shall have the option to seek redressal of the same within three months of the listing date with the concerned SCSB. ... SCSB would be required to resolve the same within 15 days, failing which it would have to pay interest at the rate of 15% per annum for any delay beyond the said period of 15 days. ... additionally SEBI may initiate action as deemed fit.",
+        "tag_index": 24,
+        "verdict": "supported"
+      }
+    ],
+    "summary": "All sourced claims are fully supported by the corpus. No untagged factual claims were identified. The draft accurately reflects the regulations and master circular.",
+    "untagged_claims": []
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "how-allotment-works",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 7433,
+  "tokens_out": 10268
+}

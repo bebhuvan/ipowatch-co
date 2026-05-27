@@ -1,0 +1,120 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/factcheck.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.factcheck.schema",
+  "dataset_version": "v2026.05.23-0808",
+  "estimated_cost_usd": 0.009049780000000002,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T08:08:52+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-5 fact-check produced by deepseek-reasoner.",
+  "report": {
+    "blocking_count": 0,
+    "checks": [
+      {
+        "note": "Each route's definition is present in the source excerpts.",
+        "sentence": "The main routes are the IPO, the FPO, the OFS, the rights issue, and the QIP. Each is a different answer to those three questions, and each is defined in the SEBI (Issue of Capital and Disclosure Requirements) Regulations, 2018 — the ICDR Regulations.",
+        "source_id": "sebi-icdr-2018-issue-types",
+        "supporting_excerpt_quote": "The excerpts contain definitions for FPO (clause q), OFS (clause bbb), QIP (clause tt), rights issue (clause xx), and IPO is functionally defined via Chapter II.",
+        "tag_index": 1,
+        "verdict": "supported"
+      },
+      {
+        "note": "Verbatim match with the excerpt.",
+        "sentence": "The ICDR Regulations do not define 'initial public offer' in their definitions chapter. The term is the heading of Chapter II, which governs the first public issue of specified securities by an issuer whose securities are not already listed. Functionally, an IPO is the first public issue by an unlisted company. That is the only route an unlisted company can take.",
+        "source_id": "sebi-icdr-2018-issue-types",
+        "supporting_excerpt_quote": "The ICDR Regulations do not define 'initial public offer' in the definitions chapter; the term is the heading of Chapter II, which governs the first public issue of specified securities by an issuer whose securities are not already listed. Functionally, an IPO is the first public issue by an unlisted company.",
+        "tag_index": 2,
+        "verdict": "supported"
+      },
+      {
+        "note": "Verbatim match with the excerpt.",
+        "sentence": "The ICDR defines 'further public offer' as an offer of specified securities by a listed issuer to the public for subscription, and it includes an offer for sale of specified securities to the public by any existing holders of such specified securities in a listed issuer.",
+        "source_id": "sebi-icdr-2018-issue-types",
+        "supporting_excerpt_quote": "(q) 'further public offer' means an offer of specified securities by a listed issuer to the public for subscription and includes an offer for sale of specified securities to the public by any existing holders of such specified securities in a listed issuer;",
+        "tag_index": 3,
+        "verdict": "supported"
+      },
+      {
+        "note": "Verbatim match with the excerpt.",
+        "sentence": "The ICDR defines 'selling shareholder' as any shareholder of the issuer who is offering for sale the specified securities in a public issue.",
+        "source_id": "sebi-icdr-2018-issue-types",
+        "supporting_excerpt_quote": "(bbb) 'selling shareholder(s)' means any shareholder of the issuer who is offering for sale the specified securities in a public issue in accordance with these Regulations;",
+        "tag_index": 4,
+        "verdict": "supported"
+      },
+      {
+        "note": "Verbatim match with the excerpt.",
+        "sentence": "The ICDR defines 'rights issue' as an offer of specified securities by a listed issuer to the shareholders of the issuer as on the record date fixed for the said purpose.",
+        "source_id": "sebi-icdr-2018-issue-types",
+        "supporting_excerpt_quote": "(xx) 'rights issue' means an offer of specified securities by a listed issuer to the shareholders of the issuer as on the record date fixed for the said purpose;",
+        "tag_index": 5,
+        "verdict": "supported"
+      },
+      {
+        "note": "Definition limits to QIBs; retail and HNI are excluded by implication.",
+        "sentence": "A QIP is open only to qualified institutional buyers, not to retail investors or high-net-worth individuals.",
+        "source_id": "sebi-icdr-2018-issue-types",
+        "supporting_excerpt_quote": "'qualified institutions placement' means issue of eligible securities by a listed issuer to qualified institutional buyers on a private placement basis",
+        "tag_index": 6,
+        "verdict": "supported"
+      },
+      {
+        "note": "Verbatim match with the excerpt.",
+        "sentence": "The ICDR defines 'qualified institutions placement' as the issue of eligible securities by a listed issuer to qualified institutional buyers on a private placement basis, and it includes an offer for sale of specified securities by the promoters or promoter group on a private placement basis.",
+        "source_id": "sebi-icdr-2018-issue-types",
+        "supporting_excerpt_quote": "(tt) 'qualified institutions placement' means issue of eligible securities by a listed issuer to qualified institutional buyers on a private placement basis and includes an offer for sale of specified securities by the promoters and/or promoter group on a private placement basis, in terms of these regulations;",
+        "tag_index": 7,
+        "verdict": "supported"
+      },
+      {
+        "note": "Verbatim match with the excerpt.",
+        "sentence": "Regulation 172(1) says a listed issuer may make a QIP only if a special resolution approving the placement has been passed by its shareholders, and the special resolution must specify that the allotment is proposed to be made through a QIP. There is one exception: no shareholders' resolution is required if the QIP is an offer for sale by promoters or promoter group for compliance with minimum public shareholding requirements.",
+        "source_id": "sebi-icdr-2018-issue-types",
+        "supporting_excerpt_quote": "Regulation 172(1) — Conditions for a qualified institutions placement... (a) a special resolution... Provided that no shareholders' resolution will be required in case the qualified institutions placement is through an offer for sale by promoters or promoter group for compliance with minimum public shareholding requirements.",
+        "tag_index": 8,
+        "verdict": "supported"
+      }
+    ],
+    "summary": "All tagged claims are supported by the source. Several untagged factual claims throughout the draft lack source citations; while they do not contain specific numbers/dates/rules that would block publication, they should be sourced for completeness.",
+    "untagged_claims": [
+      {
+        "kind": "other",
+        "sentence": "Because it is a private placement to institutions, it bypasses the full public-offer machinery — the draft red herring prospectus, the public bidding window, the retail allotment process.",
+        "suggestion": "needs source"
+      },
+      {
+        "kind": "other",
+        "sentence": "Mutual funds, insurance companies, pension funds, foreign portfolio investors, banks, and other entities that SEBI considers sophisticated enough to fend for themselves.",
+        "suggestion": "needs source"
+      },
+      {
+        "kind": "other",
+        "sentence": "An OFS can appear in two contexts. It can be a component of an IPO or FPO... Or it can be a standalone transaction on the exchange, often used by promoters to reduce their own stake — one way to meet the minimum public shareholding requirement that listed companies are subject to.",
+        "suggestion": "needs source"
+      },
+      {
+        "kind": "other",
+        "sentence": "The company sets a record date. Every shareholder on that date receives a rights entitlement: for every share they hold, they can buy a certain number of new shares at a fixed price, usually at a discount to the market price. They have three choices. They can subscribe and buy the shares. They can sell the rights in the open market to someone who wants them. Or they can let the rights lapse, in which case the unsubscribed portion may be taken up by other shareholders or by the underwriters.",
+        "suggestion": "needs source"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "the-primary-issue-family",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 3614,
+  "tokens_out": 7340
+}

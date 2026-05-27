@@ -1,0 +1,285 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "buyback_open_market_documents",
+    "estimated_cost_usd": 0.0031181400000000006,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 2162,
+    "tokens_out": 2304
+  },
+  "currency": "INR",
+  "data_kind": "document_index",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0402",
+  "endpoint": "buyback_open_market_documents",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company.id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company ID may be reused or inconsistent across endpoints; some values are numeric strings, others may be alphanumeric.",
+          "suggested_mitigation": "Treat as opaque string; validate against BSE company master if needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "7777777",
+        "10761",
+        "1427"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "Fld_CompanyId",
+      "nested_table": false,
+      "notes": "Appears to be a numeric string; may correspond to BSE security code.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Fld_CompanyId",
+      "semantic": "Unique identifier for the company (likely BSE security code or internal ID).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company names may contain non-ASCII characters or inconsistent casing.",
+          "suggested_mitigation": "Normalize case and trim whitespace; preserve Unicode."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Marathon Nextgen Realty Ltd",
+        "CL EDUCATE LIMITED"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Fld_NameOfTheCompany",
+      "nested_table": false,
+      "notes": "Mixed case; some all caps, some title case.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Fld_NameOfTheCompany",
+      "semantic": "Full name of the company as registered.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "buyback.in_principle_status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may be limited (e.g., 'New', 'Approved', 'Rejected') but not documented; could change over time.",
+          "suggested_mitigation": "Treat as enum; log unknown values for review."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "New"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "InPrincipleStatus",
+      "nested_table": false,
+      "notes": "Only 'New' observed; may indicate pending approval.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].InPrincipleStatus",
+      "semantic": "Status of the in-principle approval for the buyback.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.listing_status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may be limited; 'New' might indicate recently listed or updated.",
+          "suggested_mitigation": "Treat as enum; monitor for other values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "New"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ListingStatus",
+      "nested_table": false,
+      "notes": "Only 'New' observed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ListingStatus",
+      "semantic": "Status of the company's listing on the exchange.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.post_offer.path",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Path structure may change if BSE reorganizes file storage.",
+          "suggested_mitigation": "Construct full URL by prepending base URL; validate file existence."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/BOMUploadDocument/BOM_600001_132202620811.xml"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "postdoc",
+      "nested_table": false,
+      "notes": "Empty string when not available.",
+      "null_meaning": "No post-offer document uploaded yet.",
+      "nullable": true,
+      "path": "$[*].postdoc",
+      "semantic": "Relative path to the post-offer document XML file on the BSE server.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.post_offer.timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is 'M/d/yyyy h:mm:ss tt' (12-hour clock) with AM/PM; ambiguous for day/month.",
+          "suggested_mitigation": "Parse using 'M/d/yyyy h:mm:ss tt' culture (en-US); convert to ISO 8601."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2/13/2026 8:08:11 PM",
+        "12/6/2023 6:08:22 PM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "postti",
+      "nested_table": false,
+      "notes": "Empty string when not available.",
+      "null_meaning": "No post-offer document uploaded yet.",
+      "nullable": true,
+      "path": "$[*].postti",
+      "semantic": "Timestamp of the post-offer document upload.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.pre_offer.path",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Path structure may change if BSE reorganizes file storage.",
+          "suggested_mitigation": "Construct full URL by prepending base URL; validate file existence."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/BOMUploadDocument/BOM_600001_132202620916.xml"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "predoc",
+      "nested_table": false,
+      "notes": "Empty string when not available.",
+      "null_meaning": "No pre-offer document uploaded yet.",
+      "nullable": true,
+      "path": "$[*].predoc",
+      "semantic": "Relative path to the pre-offer document XML file on the BSE server.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.pre_offer.timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is 'M/d/yyyy h:mm:ss tt' (12-hour clock) with AM/PM; ambiguous for day/month.",
+          "suggested_mitigation": "Parse using 'M/d/yyyy h:mm:ss tt' culture (en-US); convert to ISO 8601."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2/13/2026 8:09:16 PM",
+        "8/4/2023 1:19:51 PM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "preti",
+      "nested_table": false,
+      "notes": "Empty string when not available.",
+      "null_meaning": "No pre-offer document uploaded yet.",
+      "nullable": true,
+      "path": "$[*].preti",
+      "semantic": "Timestamp of the pre-offer document upload.",
+      "type": "datetime",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:02:06+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The XML documents at predoc and postdoc paths likely contain detailed buyback offer information; may need to be fetched separately.",
+      "follow_up_endpoint_pattern": "https://api.bseindia.com/BseIndiaAPI/api/Pubissues_FIS_Buyback_Openmkt_isd_ng/w?scrip_cd={Fld_CompanyId}",
+      "key_field": "Fld_CompanyId"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 5,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/buyback_open_market_documents.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "buyback_open_market_documents",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/Pubissues_FIS_Buyback_Openmkt_isd_ng/w"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a list of companies that have submitted documents for open market buyback, including pre- and post-offer document file paths and timestamps, along with company identifiers and statuses.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Document paths are relative; need to prepend base URL (e.g., https://www.bseindia.com) to access files.",
+    "Timestamps use 12-hour format with AM/PM; ensure correct parsing.",
+    "Only 5 rows observed; may be paginated but no pagination tokens visible.",
+    "Empty strings for predoc/preti indicate missing documents; treat as null."
+  ]
+}

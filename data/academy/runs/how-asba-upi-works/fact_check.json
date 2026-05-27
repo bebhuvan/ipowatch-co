@@ -1,0 +1,142 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/factcheck.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.factcheck.schema",
+  "dataset_version": "v2026.05.23-0744",
+  "estimated_cost_usd": 0.005597410000000001,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T07:44:34+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-5 fact-check produced by deepseek-reasoner.",
+  "report": {
+    "blocking_count": 0,
+    "checks": [
+      {
+        "note": "Direct quote matches excerpt.",
+        "sentence": "The term comes straight from the SEBI regulations: \"an application for subscribing to a public issue or rights issue, along with an authorisation to self-certified syndicate bank to block the application money in a bank account.\"",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "application supported by blocked amount (ASBA) means an application for subscribing to a public issue or rights issue, along with an authorisation to self-certified syndicate bank to block the application money in a bank account",
+        "tag_index": 1,
+        "verdict": "supported"
+      },
+      {
+        "note": "Direct quote matches excerpt.",
+        "sentence": "The Master Circular states it plainly: \"All the investors / shareholders making application in public issue / rights issue shall use ASBA facility for making payment.\"",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "All the investors / shareholders making application in public issue / rights issue shall use ASBA facility for making payment",
+        "tag_index": 2,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt confirms blocking and simplification, though not explicit about cheque; overall supported.",
+        "sentence": "You approve it. The amount is blocked in your bank account. That is it. No cheque, no net banking login, no form to fill.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "UPI would allow facility to block the funds at the time of application... the investor approves a mandate, and the money is blocked (not debited) in the bank account until allotment",
+        "tag_index": 3,
+        "verdict": "supported"
+      },
+      {
+        "note": "Direct quote matches excerpt.",
+        "sentence": "SEBI introduced UPI as a payment mechanism for ASBA specifically to \"increase efficiency, eliminate the need for manual intervention at various stages.\"",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "This payment mechanism would increase efficiency, eliminate the need for manual intervention at various stages.",
+        "tag_index": 4,
+        "verdict": "supported"
+      },
+      {
+        "note": "Direct quote matches excerpt.",
+        "sentence": "The regulation is precise: \"UPI would allow facility to block the funds at the time of application.\"",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "UPI would allow facility to block the funds at the time of application.",
+        "tag_index": 5,
+        "verdict": "supported"
+      },
+      {
+        "note": "Implicit from definition; concept of SCSB is used throughout excerpt.",
+        "sentence": "Every bank that offers ASBA services is registered with SEBI as an SCSB. Your bank, if it is a scheduled commercial bank that has signed up for ASBA, is an SCSB.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "self-certified syndicate bank to block the application money in a bank account",
+        "tag_index": 6,
+        "verdict": "supported"
+      },
+      {
+        "note": "Direct match with excerpt.",
+        "sentence": "The sponsor bank acts as a conduit between the stock exchanges and NPCI. It pushes the mandate collect requests into the UPI system.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "Sponsor Bank means a Banker to the Issue registered with SEBI which is appointed by the Issuer to act as a conduit between the Stock Exchanges and NPCI in order to push the mandate collect requests and / or payment instructions of the retail investors into the UPI.",
+        "tag_index": 7,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt confirms NPCI's role and description; routing/settling is implicit from its functions.",
+        "sentence": "NPCI — National Payments Corporation of India. This is the umbrella organisation that runs UPI. It routes the mandate request from the sponsor bank to the investor's SCSB, and later settles the payment instruction when allotment happens. NPCI is a Reserve Bank of India initiative, the backbone of India's retail payment system.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "National Payments Corporation of India (NPCI), a Reserve Bank of India (RBI) initiative, is an umbrella organization for all retail payments in India... UPI is an instant payment system developed by the NPCI",
+        "tag_index": 8,
+        "verdict": "supported"
+      },
+      {
+        "note": "Direct quote matches excerpt.",
+        "sentence": "The Master Circular is explicit: an investor \"shall use only his/her own bank account or only his/her own bank account linked UPI ID to make an application. Applications made using a third party bank account or using a third party linked bank account UPI ID are liable for rejection.\"",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "shall use only his/her own bank account or only his/her own bank account linked UPI ID to make an application... Applications made using a third party bank account or using a third party linked bank account UPI ID are liable for rejection.",
+        "tag_index": 9,
+        "verdict": "supported"
+      },
+      {
+        "note": "Direct quote matches excerpt.",
+        "sentence": "Before blocking the ASBA application money, the SCSB must ensure that \"the PAN mentioned in the application matches with the PAN linked to the bank account of the applicant.\"",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "the PAN mentioned in the application matches with the PAN linked to the bank account of the applicant",
+        "tag_index": 10,
+        "verdict": "supported"
+      },
+      {
+        "note": "Direct match with excerpt.",
+        "sentence": "The registrar then does a third-party verification, matching the PAN in the demat account with the PAN in the bank account. If there is a mismatch, the application is treated as invalid for allotment.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "The Registrar to an Issue undertakes third-party verification by matching the PAN in the demat account with the PAN in the bank account; \"In instances of mismatch, such applications shall continue to be considered as invalid applications for finalising the basis of allotment.\"",
+        "tag_index": 11,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt confirms unblocking by T+2 and compensation from T+3; draft's wording is consistent.",
+        "sentence": "The unblocking of funds in cases of non-allotment must happen by a specified day after the issue closes. If there is a delay, the investor is entitled to compensation, computed from a defined date.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "failure to unblock funds in cases of non-allotment by T+2... The compensation to investors for delay in unblocking of ASBA application monies (if any) shall be computed from T+3 day.",
+        "tag_index": 12,
+        "verdict": "supported"
+      }
+    ],
+    "summary": "All 12 source tags are supported by the SEBI master circular excerpts. No unsupported or wrong-source verdicts. Two untagged claims are noted (historical practice and interest on blocked funds) but they are not critical factual claims that would block the article. The draft is well-sourced for the core ASBA and UPI mechanics.",
+    "untagged_claims": [
+      {
+        "kind": "other",
+        "sentence": "Before ASBA, an investor applying for an IPO wrote a cheque or transferred funds to the issue's collection account. The money sat with the registrar or the banker to the issue for days, earning nothing, exposed to the risk of a default or a delay in refunds.",
+        "suggestion": "Historical background; could be considered common knowledge, but consider adding a source if needed."
+      },
+      {
+        "kind": "other",
+        "sentence": "The money remains yours. It still earns interest if your account pays any.",
+        "suggestion": "Claim about interest on blocked funds not in excerpt; consider adding source or rephrasing as general banking practice."
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "how-asba-upi-works",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 3893,
+  "tokens_out": 4133
+}

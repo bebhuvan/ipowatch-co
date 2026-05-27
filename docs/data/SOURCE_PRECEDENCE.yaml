@@ -1,0 +1,128 @@
+# Source precedence rules for v2 normalization.
+#
+# When two or more upstream sources contribute to the same canonical field,
+# the normalizer applies the rule below and records the decision in the
+# record's `field_provenance[]`. Default ordering is:
+#
+#   primary (exchange of listing) > secondary (other exchange / aggregator)
+#   > enrichment (Kite / Trendlyne / Moneycontrol / RHP extract)
+#
+# A rule overrides the default for a specific field. Rules are evaluated in
+# the order they appear here; the first match wins. Adding a new field
+# requires adding a rule here OR accepting the default.
+#
+# Format
+# ------
+# - field: <dotted canonical field path>
+#   tiers: [list of source identifiers in priority order]
+#   reason: <one-sentence rationale>
+#   rule_id: <validation rule_id this enforces, if any>
+#
+# Tiers reference source identifiers used in records' `sources[].source`
+# values: `nse`, `bse`, `prime`, `trendlyne`, `moneycontrol`, `kite`,
+# `yahoo`, `capitalmarket`, `datahub`, `rhp_extract`.
+
+# ------------------------------------------------------------------ defaults
+
+defaults:
+  primary:    [nse, bse]
+  secondary:  [capitalmarket, prime]
+  enrichment: [kite, yahoo, trendlyne, moneycontrol, rhp_extract]
+
+# ------------------------------------------------------------------ rules
+
+rules:
+
+  # Pricing — final issue price is canonical from exchange of listing.
+  - field: pricing.issue_price_paise
+    tiers: [nse_of_listing, bse_of_listing, nse, bse, prime]
+    reason: >
+      Issue price is set by the issuer and reflected by the exchange of
+      listing first. Other sources occasionally lag or carry stale price.
+    rule_id: E.SRC.002
+
+  - field: pricing.price_band.upper_paise
+    tiers: [nse_of_listing, bse_of_listing, nse, bse, prime, trendlyne]
+    reason: Same rationale as issue price; band is exchange-published.
+    rule_id: E.SRC.002
+
+  - field: pricing.price_band.lower_paise
+    tiers: [nse_of_listing, bse_of_listing, nse, bse, prime, trendlyne]
+    rule_id: E.SRC.002
+
+  # Subscription — see EDGE_CASES E.SUB.002 for aggregation note.
+  - field: subscription.times_x
+    tiers: [nse_of_listing, bse_of_listing, computed_aggregate, trendlyne]
+    reason: >
+      Headline `times` is computed from aggregated bid volume across NSE
+      and BSE when both feed a dual listing. Single-exchange listings
+      use the exchange-of-listing value directly.
+    rule_id: E.SUB.002
+
+  - field: subscription.by_category.qib.times_x
+    tiers: [nse, bse]
+    reason: Category-level numbers are exchange-reported and never aggregated.
+    rule_id: E.SUB.002
+
+  # Anchor — only exchange of listing publishes the anchor book.
+  - field: subscription.anchor.allotment_paise
+    tiers: [nse_of_listing, bse_of_listing, rhp_extract]
+    reason: Anchor allocation is in the RHP and confirmed on listing eve.
+    rule_id: E.SUB.001
+
+  # Listing performance — exchange-of-listing close beats third-party tickers.
+  - field: listing_performance.listing_day_open_paise
+    tiers: [nse_of_listing, bse_of_listing, kite, yahoo, trendlyne, moneycontrol]
+    reason: Quote provenance preferred from exchange tape, then licensed feed.
+
+  - field: listing_performance.listing_day_close_paise
+    tiers: [nse_of_listing, bse_of_listing, kite, yahoo, trendlyne, moneycontrol]
+
+  - field: listing_performance.current_price_paise
+    tiers: [yahoo, kite, trendlyne, nse, bse, moneycontrol]
+    reason: >
+      Live quotes are tier-enrichment by definition. Yahoo Finance is the
+      interim public quote source for launch calculations while Kite
+      credentials are unavailable; Kite can move back to first priority once
+      it is configured and refreshed reliably.
+
+  # Identity — preferred join key when present.
+  - field: identity.isin
+    tiers: [nse, bse, prime, capitalmarket]
+    reason: ISIN is allocation-time authoritative; first source to publish wins.
+
+  - field: identity.symbol_nse
+    tiers: [nse]
+    reason: Symbol is exchange-scoped; never read from other source.
+
+  - field: identity.symbol_bse
+    tiers: [bse]
+
+  - field: identity.scrip_code_bse
+    tiers: [bse]
+
+  - field: identity.pan
+    tiers: [nse, bse]
+    reason: >
+      Either exchange may publish PAN; cross-check before accepting. See
+      EDGE_CASES E.ID.003 — PAN-only joins are forbidden.
+    rule_id: E.ID.003
+
+  # Documents
+  - field: documents
+    tiers: [nse, bse, rhp_extract]
+    reason: >
+      Documents from both exchanges are merged (not deduped by source);
+      duplicates by URL are coalesced post-merge.
+
+  # Company name display
+  - field: company.display_name
+    tiers: [bse, nse, prime, capitalmarket]
+    reason: >
+      BSE tends to use the legal entity name including "Limited" suffix
+      which is what readers expect on a finance site. NSE is fallback.
+
+  # SEBI aggregates — only one source, listed for completeness.
+  - field: aggregates.sebi.*
+    tiers: [datahub]
+    reason: SEBI-derived series from IndiaDataHub is authoritative.

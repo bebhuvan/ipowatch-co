@@ -1,0 +1,452 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": true,
+    "cached": false,
+    "endpoint_concrete": "upcoming",
+    "estimated_cost_usd": 0.011352150000000002,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 26535,
+    "tokens_out": 3807
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0432",
+  "endpoint": "upcoming",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "bid_close_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format unknown; always null so no parsing needed.",
+          "suggested_mitigation": "Treat as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "bid_close_date",
+      "nested_table": false,
+      "notes": "Always null in this snapshot.",
+      "null_meaning": "Bid dates not yet announced.",
+      "nullable": true,
+      "path": "$[*].bid_close_date",
+      "semantic": "The closing date for bidding; always null for upcoming IPOs.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "bid_open_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format unknown; always null so no parsing needed.",
+          "suggested_mitigation": "Treat as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "bid_open_date",
+      "nested_table": false,
+      "notes": "Always null in this snapshot.",
+      "null_meaning": "Bid dates not yet announced.",
+      "nullable": true,
+      "path": "$[*].bid_open_date",
+      "semantic": "The opening date for bidding; always null for upcoming IPOs.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company_logo_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Field may be populated in future; schema drift risk.",
+          "suggested_mitigation": "Accept null and handle future non-null values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company_logo",
+      "nested_table": false,
+      "notes": "Always null in this snapshot.",
+      "null_meaning": "Logo not provided.",
+      "nullable": true,
+      "path": "$[*].company_logo",
+      "semantic": "URL to the company logo; always null in this snapshot.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company names may have variations (e.g., abbreviations, misspellings) that could cause duplicate entries.",
+          "suggested_mitigation": "Normalize by trimming whitespace and standardizing common suffixes (Ltd, Limited)."
+        },
+        {
+          "category": "E.HTM",
+          "description": "Names may contain non-ASCII characters (e.g., é, ü).",
+          "suggested_mitigation": "Ensure UTF-8 encoding; strip or replace non-ASCII if needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Playsimple Games",
+        "Jindal Supreme"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company_name",
+      "nested_table": false,
+      "notes": "Used for display and joining with other endpoints.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].company_name",
+      "semantic": "The name of the company filing for IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company_slug",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Slug may change if company name changes; not a stable identifier.",
+          "suggested_mitigation": "Use ipo_id as primary key; slug for display only."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "playsimple-games-ltd",
+        "jindal-supreme-india-ltd"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "company_slug_name",
+      "nested_table": false,
+      "notes": "Used in Trendlyne URLs for company pages.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].company_slug_name",
+      "semantic": "URL-friendly slug derived from the company name.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "drhp_filing_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is 'dd MMM yy' (e.g., '23 Apr 26') which is ambiguous for years (e.g., 26 could be 1926 or 2026).",
+          "suggested_mitigation": "Assume 2000+ for yy values less than 50; parse with format 'dd MMM yy'."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "23 Apr 26",
+        "13 Apr 26"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "drhp_filing_date",
+      "nested_table": false,
+      "notes": "Format: 'dd MMM yy' (e.g., '23 Apr 26').",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].drhp_filing_date",
+      "semantic": "The date when the Draft Red Herring Prospectus (DRHP) was filed with SEBI.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "drhp_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "URLs may contain spaces or special characters encoded as %20.",
+          "suggested_mitigation": "Ensure proper URL decoding when accessing."
+        },
+        {
+          "category": "E.SNP",
+          "description": "URLs may become stale if the document is moved or removed.",
+          "suggested_mitigation": "Periodically verify link validity; handle 404s gracefully."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://playsimple.in/IR/IPO/Draft%20Red%20Herring%20Prospectus.pdf",
+        "https://www.bseindia.com/corporates/download/386492/IPO%20Prior/Jindal_Supreme_DRHP_20260413215106.pdf"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ipo_drhp_document",
+      "nested_table": false,
+      "notes": "Links to external PDF files; may require separate fetch.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ipo_drhp_document",
+      "semantic": "URL to the Draft Red Herring Prospectus (DRHP) PDF document.",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "ipo_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "ID is internal to Trendlyne; may not match other sources.",
+          "suggested_mitigation": "Use as primary key for Trendlyne data; map to external IDs if needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        2425,
+        2300
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "ipo_id",
+      "nested_table": false,
+      "notes": "Primary identifier for this endpoint.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ipo_id",
+      "semantic": "Unique identifier for the IPO record in Trendlyne's system.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "rhp_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Field may be populated later; schema drift risk.",
+          "suggested_mitigation": "Accept null and handle future non-null values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ipo_rhp_document",
+      "nested_table": false,
+      "notes": "Always null in this snapshot.",
+      "null_meaning": "RHP not yet filed.",
+      "nullable": true,
+      "path": "$[*].ipo_rhp_document",
+      "semantic": "URL to the Red Herring Prospectus (RHP) PDF; always null for upcoming IPOs.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue_size_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.CUR",
+          "description": "Values are in absolute rupees, not crores; zero may indicate undisclosed size.",
+          "suggested_mitigation": "Treat zero as 'not disclosed'; do not convert to crores."
+        },
+        {
+          "category": "E.NUM",
+          "description": "Large numbers may lose precision if stored as float; use decimal or long integer.",
+          "suggested_mitigation": "Store as integer or decimal with appropriate precision."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        31500000000.0,
+        0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issue_size",
+      "nested_table": false,
+      "notes": "Zero means not disclosed; values are in rupees, not crores.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issue_size",
+      "semantic": "The total issue size in Indian Rupees (absolute value, not in crores).",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "pre_ipo_placement_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.CUR",
+          "description": "Unit is crores; if populated, must be converted to rupees for consistency.",
+          "suggested_mitigation": "If non-null, multiply by 10^7 to convert to rupees."
+        },
+        {
+          "category": "E.UPS",
+          "description": "Field may be populated later; schema drift risk.",
+          "suggested_mitigation": "Accept null and handle future non-null values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "pre_ipo_placement_in_cr",
+      "nested_table": false,
+      "notes": "Always null in this snapshot; unit is crores.",
+      "null_meaning": "Not disclosed or not applicable.",
+      "nullable": true,
+      "path": "$[*].pre_ipo_placement_in_cr",
+      "semantic": "Pre-IPO placement amount in crores; always null in this snapshot.",
+      "type": "null",
+      "units": "INR_crore"
+    },
+    {
+      "canonical_field_hint": "price_band_max",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Field may be populated later; schema drift risk.",
+          "suggested_mitigation": "Accept null and handle future non-null values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "price_range_max",
+      "nested_table": false,
+      "notes": "Always null in this snapshot.",
+      "null_meaning": "Price band not yet announced.",
+      "nullable": true,
+      "path": "$[*].price_range_max",
+      "semantic": "Upper end of the price band; always null for upcoming IPOs.",
+      "type": "null",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "price_band_min",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Field may be populated later; schema drift risk.",
+          "suggested_mitigation": "Accept null and handle future non-null values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "price_range_min",
+      "nested_table": false,
+      "notes": "Always null in this snapshot.",
+      "null_meaning": "Price band not yet announced.",
+      "nullable": true,
+      "path": "$[*].price_range_min",
+      "semantic": "Lower end of the price band; always null for upcoming IPOs.",
+      "type": "null",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "rhp_external_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Field may be populated later; schema drift risk.",
+          "suggested_mitigation": "Accept null and handle future non-null values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "rhp_external_document",
+      "nested_table": false,
+      "notes": "Always null in this snapshot.",
+      "null_meaning": "Not available.",
+      "nullable": true,
+      "path": "$[*].rhp_external_document",
+      "semantic": "URL to an external RHP document; always null in this snapshot.",
+      "type": "null",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:32:17+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "Each IPO has an ipo_id that can be used to fetch detailed subscription data from Trendlyne's IPO detail endpoint.",
+      "follow_up_endpoint_pattern": "https://trendlyne.com/ipo/api/ipo/{ipo_id}/",
+      "key_field": "ipo_id"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 200,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/trendlyne/upcoming.json",
+  "schema_version": "1.0.0",
+  "source": "trendlyne",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "upcoming",
+      "snapshot_at": "2026-05-22T10:27:57+00:00",
+      "source": "trendlyne",
+      "url": "https://trendlyne.com/ipo/api/upcoming/"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 48,
+  "summary": "This endpoint provides a list of upcoming IPOs in India, including company name, DRHP filing date, issue size, and links to the DRHP document. It does not include bid dates or price ranges, as these IPOs are still in the filing stage.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The body was truncated; the full list may contain more IPOs. Pagination or a larger limit may be needed.",
+    "All bid dates and price ranges are null; this endpoint only provides pre-IPO filing metadata.",
+    "issue_size of 0 may indicate undisclosed size; do not treat as zero value.",
+    "drhp_filing_date uses ambiguous 'dd MMM yy' format; assume 2000+ for yy < 50."
+  ]
+}

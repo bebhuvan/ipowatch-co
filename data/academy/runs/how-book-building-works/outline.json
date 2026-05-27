@@ -1,0 +1,216 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/outline.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.outline.schema",
+  "dataset_version": "v2026.05.23-0724",
+  "estimated_cost_usd": 0.00472728,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T07:24:18+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-3 outline produced by deepseek-reasoner.",
+  "outline": {
+    "dek_candidates": [
+      "A price range, not a single number—until demand settles it. Here's how the band works.",
+      "Why IPOs show a range instead of a price, and what the limits on that range mean for investors."
+    ],
+    "design_notes": [
+      "The intro should lead with the core idea: book-building discovers price from demand. No source needed for that definition.",
+      "Each section opens with a plain-language teaching beat before grounding with regulations.",
+      "Radical restraint: 6 sections total, no filler. The article will be around 1400 words.",
+      "Banned constructions and vocabulary avoided in beats as per anti-slop spec."
+    ],
+    "gaps": [],
+    "kicker_candidates": [
+      "PRIMARY MARKET MECHANICS",
+      "IPO BASICS"
+    ],
+    "section_order": [
+      "intro",
+      "price-band-limits",
+      "subscription-timeline",
+      "minimum-application",
+      "underwriting-lead-manager",
+      "minimum-allottees-allotment"
+    ],
+    "sections": {
+      "intro": {
+        "beats": [
+          {
+            "beat": "Book-building means the company announces a price band, not a fixed price, and lets investor demand over a few days determine the final price. Contrast with fixed-price where a single price is set upfront.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "The final price is set after the bidding closes, based on demand, and is filed in the prospectus with the Registrar of Companies.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          }
+        ],
+        "heading": null,
+        "purpose": "Define book-building and contrast with fixed-price issue in plain terms."
+      },
+      "minimum-allottees-allotment": {
+        "beats": [
+          {
+            "beat": "An IPO cannot proceed to allotment if the number of successful allottees is less than 1,000.",
+            "kind": "number",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          },
+          {
+            "beat": "Allotment for categories other than retail, non-institutional, and anchor investors (i.e., QIBs and employees) must be done on a proportionate basis within the category.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          }
+        ],
+        "heading": "The floor on valid allotment",
+        "purpose": "Explain that at least 1,000 allottees are required for a valid IPO, and that QIB and employee allotments are on a proportionate basis."
+      },
+      "minimum-application": {
+        "beats": [
+          {
+            "beat": "The issuer sets a minimum application value between ₹10,000 and ₹15,000. All applications must be in multiples of that minimum lot.",
+            "kind": "number",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          },
+          {
+            "beat": "For a fresh issue, at least 25% of the issue price must be paid at the time of application. For an offer for sale, the full price must be paid upfront.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          }
+        ],
+        "heading": "The minimum you can apply for",
+        "purpose": "Explain the minimum application value (₹10,000 to ₹15,000), multiples, and the minimum payment required on application (25% for fresh issue, full for offer for sale)."
+      },
+      "price-band-limits": {
+        "beats": [
+          {
+            "beat": "The price band has a floor (lowest price) and a cap (highest). The cap cannot be more than 120% of the floor, and must be at least 105% of the floor.",
+            "kind": "number",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          },
+          {
+            "beat": "The floor price or final price cannot be less than the face value of the share (typically ₹1 or ₹10). This sets a minimum.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          },
+          {
+            "beat": "The issuer must announce the floor price or price band at least two working days before the issue opens, through pre-issue and price band advertisements in newspapers.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          },
+          {
+            "beat": "The advertisement must include relevant financial ratios for both ends of the band and a note directing investors to the 'basis of issue price' section.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          }
+        ],
+        "heading": "The price band: what it is and the hard limits on it",
+        "purpose": "Explain the price band as a range with a floor price and cap, with the regulatory constraints: cap ≤120% of floor, floor ≥ face value, must be advertised at least 2 working days before issue opens."
+      },
+      "subscription-timeline": {
+        "beats": [
+          {
+            "beat": "An IPO must be open for at least three working days and no more than ten working days.",
+            "kind": "number",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          },
+          {
+            "beat": "If the price band is revised during the issue, the bidding period is extended by a minimum of three working days (within the overall 10-day limit).",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          },
+          {
+            "beat": "In case of force majeure or banking strike, the period may be extended by at least one working day, with reasons recorded in writing.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          }
+        ],
+        "heading": "How long the IPO stays open",
+        "purpose": "Explain the minimum and maximum subscription period, and what happens if the price band is revised or a force majeure event occurs."
+      },
+      "underwriting-lead-manager": {
+        "beats": [
+          {
+            "beat": "The issuer appoints one or more merchant bankers as lead managers. Their names appear in the offer document.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          },
+          {
+            "beat": "The lead manager must compulsorily underwrite the issue. If the issue is undersubscribed, the shortfall is made good by the lead manager(s). Syndicate members sub-underwrite with the lead.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-bookbuilding"
+            ]
+          }
+        ],
+        "heading": "Who runs the book and underwrites it",
+        "purpose": "Explain the role of the lead manager (merchant banker) and compulsory underwriting."
+      }
+    },
+    "title_candidates": [
+      "Book-building: how an IPO's price is set",
+      "The price band explained: who decides the final IPO price",
+      "How book-building works in Indian IPOs"
+    ],
+    "visual_targets": [
+      {
+        "kind": "table",
+        "purpose": "Summarise the key constraints on the price band: cap ≤120% of floor, floor ≥ face value, minimum 2 working days advertisement.",
+        "where": "price-band-limits"
+      },
+      {
+        "kind": "timeline",
+        "purpose": "Show the bidding window: at least 3 working days, max 10, with extensions for revision or force majeure.",
+        "where": "subscription-timeline"
+      },
+      {
+        "kind": "table",
+        "purpose": "List the minimum application value range (₹10,000–₹15,000) and payment percentages: 25% for fresh, 100% for OFS.",
+        "where": "minimum-application"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "how-book-building-works",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 9234,
+  "tokens_out": 2031
+}

@@ -1,0 +1,272 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "ipo_tracker_current_year",
+    "estimated_cost_usd": 0.00250721,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 1643,
+    "tokens_out": 1876
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0405",
+  "endpoint": "ipo_tracker_current_year",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "listing_performance.listing_day_losses_count",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer count, no formatting issues expected.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "24"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IPOWithListingDayLosses",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].IPOWithListingDayLosses",
+      "semantic": "Number of IPOs that had a negative return on listing day.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "listing_performance.overall_losses_count",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer count.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "18"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IPOWithListingLosses",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].IPOWithListingLosses",
+      "semantic": "Number of IPOs that are currently trading below issue price (overall losses since listing).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "listing_performance.listing_day_gains_count",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer count.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "26"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IPOWithPositiveListingDayGains",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].IPOWithPositiveListingDayGains",
+      "semantic": "Number of IPOs that had a positive return on listing day.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "listing_performance.overall_gains_count",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer count.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "32"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IPOWithPositiveListingGain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].IPOWithPositiveListingGain",
+      "semantic": "Number of IPOs that are currently trading above issue price (overall gains since listing).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "ipo_counts.mainboard",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer count.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "20"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "NoOfIpo",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].NoOfIpo",
+      "semantic": "Number of mainboard IPOs in the period.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "ipo_counts.sme",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer count.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "30"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "NoOfSMEIpo",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].NoOfSMEIpo",
+      "semantic": "Number of SME IPOs in the period.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "reporting_period_end",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "ISO 8601 date with time set to midnight; timezone not specified, likely IST.",
+          "suggested_mitigation": "Parse as date, ignore time component; assume IST if needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2026-12-31T00:00:00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Time",
+      "nested_table": false,
+      "notes": "Time component is always 00:00:00, effectively a date.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].Time",
+      "semantic": "Timestamp indicating the end of the reporting period (likely year-end).",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "ipo_counts.total",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer count.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "50"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "TotalIPO",
+      "nested_table": false,
+      "notes": "Should equal NoOfIpo + NoOfSMEIpo.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].TotalIPO",
+      "semantic": "Total number of IPOs (mainboard + SME) in the period.",
+      "type": "integer",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:05:10+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 1,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/ipo_tracker_current_year.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_tracker_current_year",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=20260101&Todt=20260522"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "Provides aggregated statistics on IPOs for a given year, including counts of IPOs with listing day gains/losses and overall positive listing gains, split by mainboard and SME.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Only one row returned; may be a summary for the entire year. Ensure the date range query parameters are correctly set to get desired period.",
+    "No individual IPO details; this is an aggregate endpoint."
+  ]
+}

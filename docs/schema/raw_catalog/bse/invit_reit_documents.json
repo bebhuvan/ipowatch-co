@@ -1,0 +1,253 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "invit_reit_documents",
+    "estimated_cost_usd": 0.00280625,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 2555,
+    "tokens_out": 1924
+  },
+  "currency": "INR",
+  "data_kind": "document_index",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0403",
+  "endpoint": "invit_reit_documents",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "entity.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company names may have slight variations (e.g., extra spaces, hyphens) across rows, causing duplicate entries.",
+          "suggested_mitigation": "Normalize whitespace and punctuation; consider using a canonical identifier if available."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Property Share Investment Trust PropShare Celestia",
+        "BAGMANE PRIME OFFICE REIT"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "COMPANY",
+      "nested_table": false,
+      "notes": "Names may contain trailing spaces or inconsistent punctuation.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].COMPANY",
+      "semantic": "Name of the InvIT or REIT trust.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.draft_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd/MM/yyyy, which may be ambiguous (e.g., 01/02/2023 could be Jan 2 or Feb 1).",
+          "suggested_mitigation": "Parse explicitly as dd/MM/yyyy; validate year range."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "09/01/2026",
+        "30/12/2025"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Draft_DTTM",
+      "nested_table": false,
+      "notes": "Format: dd/MM/yyyy. Empty string indicates no draft document.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].Draft_DTTM",
+      "semantic": "Date when the draft offer document was filed.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.draft_file",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Filenames may contain special characters (e.g., en-dash, spaces) that could cause URL encoding issues.",
+          "suggested_mitigation": "URL-encode when constructing download links."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Draft KIS - Property Share Investment Trust – PropShare Celestia.pdf",
+        "Nexus DOD.pdf"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Draft_FILE",
+      "nested_table": false,
+      "notes": "Filename only; full URL likely constructed by prefixing a base path.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].Draft_FILE",
+      "semantic": "Filename of the draft offer document PDF.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.prospectus_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Same date format ambiguity as Draft_DTTM.",
+          "suggested_mitigation": "Parse as dd/MM/yyyy; treat empty string as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "09/02/2021",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Prospectus_DTTM",
+      "nested_table": false,
+      "notes": "Format: dd/MM/yyyy. Empty string means not available.",
+      "null_meaning": "Empty string indicates no prospectus document filed yet.",
+      "nullable": true,
+      "path": "$.table[*].Prospectus_DTTM",
+      "semantic": "Date when the final prospectus was filed.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.prospectus_file",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Filenames may contain special characters.",
+          "suggested_mitigation": "URL-encode when constructing download links."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Prospectus_Brookfield.pdf",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Prospectus_FILE",
+      "nested_table": false,
+      "notes": "Filename only.",
+      "null_meaning": "Empty string indicates no prospectus document.",
+      "nullable": true,
+      "path": "$.table[*].Prospectus_FILE",
+      "semantic": "Filename of the final prospectus PDF.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.red_herring_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Same date format ambiguity.",
+          "suggested_mitigation": "Parse as dd/MM/yyyy; treat empty string as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "28/04/2023",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Red_Herring_DTTM",
+      "nested_table": false,
+      "notes": "Format: dd/MM/yyyy. Empty string means not available.",
+      "null_meaning": "Empty string indicates no red herring document filed.",
+      "nullable": true,
+      "path": "$.table[*].Red_Herring_DTTM",
+      "semantic": "Date when the red herring prospectus (RHP) was filed.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.red_herring_file",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Filenames may contain special characters.",
+          "suggested_mitigation": "URL-encode when constructing download links."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "NexusOD.pdf",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Red_Herring_FILE",
+      "nested_table": false,
+      "notes": "Filename only.",
+      "null_meaning": "Empty string indicates no red herring document.",
+      "nullable": true,
+      "path": "$.table[*].Red_Herring_FILE",
+      "semantic": "Filename of the red herring prospectus PDF.",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:03:38+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 10,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/invit_reit_documents.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "invit_reit_documents",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/Pubissues_INVSTSandREITS_File_ng/w"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a list of InvITs and REITs with links to their draft, prospectus, and red herring documents (PDFs) along with the dates those documents were filed.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "No unique identifier (e.g., ISIN, scrip code) is provided; company names may be used as keys but are not guaranteed unique.",
+    "Filenames are provided without full URLs; the base path for downloading documents is not included in the response.",
+    "Empty strings are used to indicate missing documents; downstream should treat them as null."
+  ]
+}

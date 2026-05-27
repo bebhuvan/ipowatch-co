@@ -1,0 +1,34 @@
+---
+import IssueDetailPage from '../../components/IssueDetailPage.astro';
+import {
+  getCurrent,
+  getUpcoming,
+  getRecentHistorical,
+  getDetailBySlug,
+  isEquityIPOType,
+  listExtractedProspectusSlugs,
+  publicIssueSlug,
+  type IssueDetail,
+} from '../../lib/issues';
+
+export function getStaticPaths() {
+  const slugs = new Set<string>();
+  for (const i of getCurrent()) slugs.add(i.slug);
+  for (const i of getUpcoming()) slugs.add(i.slug);
+  for (const i of getRecentHistorical(50)) slugs.add(i.slug);
+  for (const slug of listExtractedProspectusSlugs()) slugs.add(slug);
+
+  const out: { params: { slug: string }; props: { issue: IssueDetail } }[] = [];
+  for (const slug of slugs) {
+    const issue = getDetailBySlug(slug);
+    if (issue && isEquityIPOType(issue.classification.issue_type)) {
+      out.push({ params: { slug: publicIssueSlug(slug) }, props: { issue } });
+    }
+  }
+  return out;
+}
+
+const { issue } = Astro.props as { issue: IssueDetail };
+---
+
+<IssueDetailPage issue={issue} />

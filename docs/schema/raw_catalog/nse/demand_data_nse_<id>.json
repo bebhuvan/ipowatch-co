@@ -1,0 +1,219 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "demand_data_nse_qline",
+    "estimated_cost_usd": 0.00245291,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 2163,
+    "tokens_out": 1699
+  },
+  "currency": "INR",
+  "data_kind": "live_subscription",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0413",
+  "endpoint": "demand_data_nse_qline",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "issue.company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company name may contain non-ASCII characters or special characters.",
+          "suggested_mitigation": "Normalize to UTF-8, trim whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Q-Line Biotech Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company",
+      "nested_table": false,
+      "notes": "Constant across all rows for a given symbol.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].company",
+      "semantic": "Name of the company issuing the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.cumulative_quantity_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers are formatted with Indian comma separators (e.g., 3,37,74,400) and represented as strings.",
+          "suggested_mitigation": "Strip commas and parse as integer."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Magnitude may be in lakhs/crores; ensure correct parsing to integer shares.",
+          "suggested_mitigation": "Parse as integer after removing commas."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "3,37,74,400",
+        "3,38,51,600"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumQty",
+      "nested_table": false,
+      "notes": "Indian number format: last three digits before decimal are grouped, then every two digits.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].cumQty",
+      "semantic": "Cumulative number of shares bid at or above the corresponding price level, formatted with Indian comma separators.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "demand.price_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Price is represented as a string; may contain commas or decimals in other contexts.",
+          "suggested_mitigation": "Parse as integer or float after removing any formatting."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Price is in INR; ensure no currency symbol is present.",
+          "suggested_mitigation": "Strip any currency symbols if present."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "343",
+        "342",
+        "326"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "price",
+      "nested_table": false,
+      "notes": "Appears as integer string; no decimal places observed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].price",
+      "semantic": "Price level in Indian Rupees (INR) per share at which the cumulative bid quantity is reported.",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.symbol",
+      "collision_risk_with": [
+        "nse.issue_metadata.symbol"
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused across different IPOs over time; not unique without date.",
+          "suggested_mitigation": "Combine with timestamp or issue date for uniqueness."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "QLINE"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Constant across all rows for a given endpoint call.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].symbol",
+      "semantic": "Ticker symbol of the IPO on the NSE exchange.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.snapshot_timestamp_ist",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy HH:mm:ss (e.g., 22-May-2026 14:56:01). No timezone offset provided; assumed IST.",
+          "suggested_mitigation": "Parse using pattern 'dd-MMM-yyyy HH:mm:ss' and treat as IST; convert to UTC if needed."
+        },
+        {
+          "category": "E.SNP",
+          "description": "Timestamp may be stale if the endpoint is not refreshed; all rows share the same timestamp.",
+          "suggested_mitigation": "Compare with system time to detect staleness."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "22-May-2026 14:56:01"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "timestamp",
+      "nested_table": false,
+      "notes": "All rows in a single response share the same timestamp.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].timestamp",
+      "semantic": "Timestamp of the demand data snapshot, in IST (Indian Standard Time).",
+      "type": "datetime",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:13:12+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The symbol field can be used to fetch issue metadata (e.g., price band, dates) from the NSE IPO metadata endpoint.",
+      "follow_up_endpoint_pattern": "nse.issue_metadata?symbol={symbol}",
+      "key_field": "symbol"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 5,
+  "row_count_observed": 10,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/demand_data_nse_<id>.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_qline",
+      "snapshot_at": "2026-05-22T09:28:39+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/ipo-chart-demand?symbol=QLINE&exchange=NSE"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 0.5,
+  "summary": "This endpoint provides a snapshot of cumulative demand (bid quantity) at various price levels for a specific IPO (Q-Line Biotech Limited) on the NSE exchange. Each row represents the total number of shares bid at or above a given price point, updated in near real-time during the subscription period.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "All rows share the same timestamp; the data is a snapshot at that moment.",
+    "cumQty uses Indian number formatting (commas every two digits after the first three); must be parsed carefully.",
+    "No explicit timezone; assumed IST. Consider converting to UTC for consistency.",
+    "The endpoint returns data for a single symbol; to get demand for multiple IPOs, separate calls are needed."
+  ]
+}

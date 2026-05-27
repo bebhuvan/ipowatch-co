@@ -1,0 +1,546 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "public_issue_details",
+    "estimated_cost_usd": 0.006420030000000001,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 6129,
+    "tokens_out": 4332
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0409",
+  "endpoint": "public_issue_details",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "buyback.cumulative_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Cum_Shares_BuyBack",
+      "nested_table": false,
+      "notes": "Always null in this snapshot; may be populated for buyback issues.",
+      "null_meaning": "Not applicable or not disclosed for this issue type.",
+      "nullable": true,
+      "path": "$.Table[*].Cum_Shares_BuyBack",
+      "semantic": "Cumulative shares bought back (likely for buyback issues).",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.end_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date-time format may include time component; some entries have only date (midnight).",
+          "suggested_mitigation": "Parse as ISO 8601 datetime; treat missing time as 00:00:00."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2026-05-22T00:00:00",
+        "2026-05-25T15:30:00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "End_Dt",
+      "nested_table": false,
+      "notes": "ISO 8601 format; time may be 00:00:00 if not provided.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].End_Dt",
+      "semantic": "Closing date/time of the issue (bid end).",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.type_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "FLAG values may change or new codes added; mapping to issue type may drift.",
+          "suggested_mitigation": "Maintain a mapping table and alert on unknown values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        8,
+        15,
+        16,
+        17,
+        23,
+        24
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "FLAG",
+      "nested_table": false,
+      "notes": "Seems to be a BSE internal code; IR_FLAG_FULL provides human-readable type.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].FLAG",
+      "semantic": "Numeric code indicating the issue type (e.g., 1=IPO, 2=FPO, 3=OFS, 6=Debt, 7=IPO, 8=FPO, 15=RI, 16=RI, 17=OTB, 23=CMN, 24=CMN).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.face_value",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are floats; may have precision issues.",
+          "suggested_mitigation": "Parse as float; consider rounding to 2 decimal places."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        10.0,
+        2.0,
+        1.0,
+        5.0,
+        3.75,
+        0.33
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Face_Val",
+      "nested_table": false,
+      "notes": "Can be fractional (e.g., 0.33).",
+      "null_meaning": "Not applicable (e.g., debt issues).",
+      "nullable": true,
+      "path": "$.Table[*].Face_Val",
+      "semantic": "Face value per share in Indian Rupees.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused after a period; check uniqueness over time.",
+          "suggested_mitigation": "Combine with source and date for a global unique key."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        7722,
+        7726,
+        7729
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "IPO_NO",
+      "nested_table": false,
+      "notes": "Primary key for this endpoint.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].IPO_NO",
+      "semantic": "Unique identifier for the issue (IPO number).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "New issue types may be added; values may change.",
+          "suggested_mitigation": "Use as enum; alert on unknown values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "IPO",
+        "FPO",
+        "OFS",
+        "RI",
+        "OTB",
+        "CMN",
+        "DPI"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IR_FLAG_FULL",
+      "nested_table": false,
+      "notes": "Human-readable; IR_flag is an abbreviation.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].IR_FLAG_FULL",
+      "semantic": "Full description of the issue type (e.g., IPO, FPO, OFS, RI, OTB, CMN, DPI).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.type_abbrev",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Same as IR_FLAG_FULL but abbreviated; may drift.",
+          "suggested_mitigation": "Derive from IR_FLAG_FULL if needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "IPO",
+        "FPO",
+        "OFS",
+        "RI",
+        "OTB",
+        "CMN",
+        "DPI"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IR_flag",
+      "nested_table": false,
+      "notes": "Redundant with IR_FLAG_FULL.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].IR_flag",
+      "semantic": "Abbreviated issue type (e.g., IPO, FPO, OFS, RI, OTB, CMN, DPI).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.retail_eligible",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        1
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Is_retailertype",
+      "nested_table": false,
+      "notes": "Always 1 in this snapshot; may be 0 for institutional-only issues.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].Is_retailertype",
+      "semantic": "Indicates if the issue is open to retail investors (1 = yes).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.long_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "May contain special characters (e.g., '$' in 'Sarla Performance Fibers Ltd-$').",
+          "suggested_mitigation": "Strip non-ASCII characters if needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Central Bank of India",
+        "Shah Foods Ltd",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "LONG_NAME",
+      "nested_table": false,
+      "notes": "Not always populated; Scrip_Name is more consistently filled.",
+      "null_meaning": "Not provided; Scrip_Name may be used instead.",
+      "nullable": true,
+      "path": "$.Table[*].LONG_NAME",
+      "semantic": "Full legal name of the issuing company (may be null).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pricing.price_band",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings; may contain range or single price.",
+          "suggested_mitigation": "Parse as string; extract min/max if range."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Prices are in INR; no currency symbol.",
+          "suggested_mitigation": "Assume INR."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "91.00 - 96.00",
+        "41.00",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Price_Band",
+      "nested_table": false,
+      "notes": "Format: 'low - high' for band, 'price' for fixed.",
+      "null_meaning": "No price band (e.g., debt, rights, or not yet announced).",
+      "nullable": true,
+      "path": "$.Table[*].Price_Band",
+      "semantic": "Price band or fixed price for the issue (e.g., '91.00 - 96.00' or '41.00').",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "row_number",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        1
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "RN",
+      "nested_table": false,
+      "notes": "Seems to be a sequential row number; may be ignored.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].RN",
+      "semantic": "Row number (always 1 in this snapshot; may be used for pagination).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "May contain non-ASCII characters or inconsistent casing.",
+          "suggested_mitigation": "Normalize case; handle special characters."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Harikanta overseas Limited",
+        "CENTRAL BANK OF INDIA"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Scrip_Name",
+      "nested_table": false,
+      "notes": "Primary company name field.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].Scrip_Name",
+      "semantic": "Name of the scrip (company) as listed on BSE.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "security.bse_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Scrip codes are stable but may be reused after delisting?",
+          "suggested_mitigation": "Combine with source for uniqueness."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        4580,
+        532885,
+        519031
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "Scrip_cd",
+      "nested_table": false,
+      "notes": "Key to join with other BSE endpoints.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].Scrip_cd",
+      "semantic": "BSE security code (unique identifier for the scrip).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.start_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Same as End_Dt; may include time.",
+          "suggested_mitigation": "Parse as ISO 8601 datetime."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2026-05-20T00:00:00",
+        "2026-05-22T09:15:00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Start_Dt",
+      "nested_table": false,
+      "notes": "ISO 8601 format.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].Start_Dt",
+      "semantic": "Opening date/time of the issue (bid start).",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status codes may expand (e.g., 'C' for closed).",
+          "suggested_mitigation": "Map to enum; alert on unknown."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "L",
+        "F"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Status",
+      "nested_table": false,
+      "notes": "Only 'L' and 'F' observed; may have others.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].Status",
+      "semantic": "Issue status: 'L' for Live/Open, 'F' for Future/Upcoming.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.platform",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Platform names may change or new ones added.",
+          "suggested_mitigation": "Use as enum; alert on unknown."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "SME",
+        "MainBoard",
+        "Debt"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "eXCHANGE_PLATFORM",
+      "nested_table": false,
+      "notes": "Indicates market segment.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.Table[*].eXCHANGE_PLATFORM",
+      "semantic": "Exchange platform where the issue is listed (e.g., SME, MainBoard, Debt).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.ticker",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "CENTRAL BK",
+        "SHAH FOODS L",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "short_name",
+      "nested_table": false,
+      "notes": "Not always populated.",
+      "null_meaning": "Not provided; Scrip_Name may be used.",
+      "nullable": true,
+      "path": "$.Table[*].short_name",
+      "semantic": "Short/ticker name of the company (may be null).",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:09:01+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "Scrip_cd can be used to fetch detailed company information or price data from other BSE endpoints.",
+      "follow_up_endpoint_pattern": "https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w?scrip_cd={Scrip_cd}",
+      "key_field": "Scrip_cd"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 23,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/public_issue_details.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/GetPublicIssue_par/w"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint returns a list of current and upcoming public issues (IPOs, FPOs, OFS, Rights Issues, Open Offers, etc.) listed on BSE, including issue dates, price bands, face value, and status.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "No pagination observed; endpoint may return all current issues in one response.",
+    "Some fields (LONG_NAME, short_name) are inconsistently populated.",
+    "Price_Band is a string that may contain a range or single value; parsing needed.",
+    "FLAG values overlap with IR_FLAG_FULL; mapping may be redundant.",
+    "Cum_Shares_BuyBack is always null in this snapshot; may be populated for buyback issues."
+  ]
+}

@@ -1,0 +1,1091 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>06 · Editorial, white & restrained — IPO Watch mock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:        #ffffff;
+    --paper-soft:   #fafaf7;
+    --ink:          #0f0e0c;
+    --ink-soft:     #2a2825;
+    --mute:         #6f6d66;
+    --mute-2:       #b3b1a8;
+    --rule:         #ebe7da;
+    --rule-card:    #ebe7d9;
+    --rule-strong:  #0f0e0c;
+    --accent:       #e8765a;
+    --accent-deep:  #d05a3f;
+    --accent-soft:  #fce5dd;
+    --gold:         #b07a35;
+    --pos:          #2f6a3e;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); color: var(--ink); }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14.5px;
+    line-height: 1.55;
+    letter-spacing: -0.004em;
+    font-feature-settings: "tnum", "kern";
+    font-variant-numeric: tabular-nums lining-nums;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; transition: color .2s ease, opacity .2s ease; }
+  .serif {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-feature-settings: "lnum","tnum";
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  .num   { font-variant-numeric: tabular-nums lining-nums; }
+  .mute  { color: var(--mute); }
+  .mute-2 { color: var(--mute-2); }
+  .acc   { color: var(--accent); }
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 56px; }
+  .page-tight { max-width: 1040px; margin: 0 auto; padding: 0 56px; }
+
+  /* ────────────  MASTHEAD  ──────────── */
+  .masthead {
+    padding: 32px 0 22px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead .top {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: baseline; gap: 32px;
+  }
+  .strap {
+    font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mute); font-weight: 500;
+  }
+  .wordmark {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 34px; line-height: 1;
+    letter-spacing: -0.012em;
+    text-align: center;
+  }
+  .wordmark .dot { color: var(--accent); font-style: normal; padding: 0 1px; }
+  .masthead .right { display: flex; justify-content: flex-end; gap: 22px; }
+  .masthead .right nav { display: flex; gap: 18px; font-size: 13px; }
+  .masthead .right nav a { color: var(--mute); font-weight: 500; }
+  .masthead .right nav a:hover { color: var(--ink); }
+
+  .meta-row {
+    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule);
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-size: 12.5px; color: var(--mute);
+  }
+  .meta-row .stats { display: flex; gap: 28px; align-items: baseline; }
+  .meta-row .stats strong { color: var(--ink); font-weight: 600; }
+  .live-dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); margin-right: 7px;
+    animation: pulse 2.4s ease-in-out infinite;
+    vertical-align: 1px;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.3; transform: scale(0.8); }
+  }
+  .meta-row .updated { font-size: 11.5px; color: var(--mute-2); }
+
+  /* ────────────  LEAD  ──────────── */
+  .lead { padding: 96px 0 104px; border-bottom: 1px solid var(--rule); }
+  .lead-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 96px; align-items: start; }
+  .kicker-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+    margin-bottom: 26px;
+  }
+  h1.lead-h {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(60px, 7.2vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.012em;
+    margin: 0 0 32px;
+  }
+  .lead-standfirst {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: 22px; line-height: 1.46; color: var(--ink-soft);
+    max-width: 36ch;
+    margin-bottom: 30px;
+    letter-spacing: 0;
+  }
+  .lead-standfirst em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .lead-tagline {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    font-size: 12.5px; color: var(--mute); letter-spacing: 0.02em;
+  }
+  .lead-tagline span { padding-right: 14px; border-right: 1px solid var(--rule); }
+  .lead-tagline span:last-child { border-right: 0; }
+
+  /* Progress bar — subscription window elapsed */
+  .lead-progress { margin-top: 36px; max-width: 36ch; }
+  .lead-progress .p-h {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 11px; letter-spacing: 0.08em; color: var(--mute); text-transform: uppercase; font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .lead-progress .p-bar {
+    height: 3px; background: var(--rule); position: relative; overflow: hidden;
+  }
+  .lead-progress .p-bar .fill {
+    position: absolute; inset: 0 auto 0 0;
+    background: var(--accent);
+    animation: grow 1.2s ease-out both;
+  }
+  @keyframes grow { from { width: 0; } to { width: 33%; } }
+  .lead-progress .p-meta { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--mute); margin-top: 8px; }
+  .lead-progress .p-meta .num { color: var(--ink); }
+
+  .lead aside .aside-label {
+    font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink); font-weight: 600;
+    margin-bottom: 26px;
+    display: block;
+  }
+  .lead aside .spec-list { border-top: 1px solid var(--ink); }
+  .lead aside .spec {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 14px 0; border-bottom: 1px solid var(--rule);
+  }
+  .lead aside .spec .l {
+    font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mute); font-weight: 600;
+  }
+  .lead aside .spec .v {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: 24px; letter-spacing: 0;
+  }
+
+  /* ────────────  BANNER  ──────────── */
+  .banner {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  .banner p {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.32;
+    max-width: 46ch;
+    margin: 0 auto;
+    color: var(--ink-soft);
+    letter-spacing: 0;
+  }
+  .banner p .acc-num {
+    font-style: normal; font-weight: 500;
+    color: var(--accent);
+  }
+
+  /* ────────────  SECTION COMMONS  ──────────── */
+  .section { padding: 96px 0; border-bottom: 1px solid var(--rule); }
+  .section-h {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 36px;
+  }
+  .section-h h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 32px; margin: 0; letter-spacing: -0.008em;
+  }
+  .section-h a {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mute); font-weight: 600;
+  }
+  .section-h a:hover { color: var(--accent); }
+
+  /* ────────────  OPEN ISSUES — paper cards  ──────────── */
+  .open-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .open-card {
+    background: #ffffff;
+    border: 1px solid var(--rule-card);
+    padding: 44px 44px 38px;
+    position: relative;
+    transition: border-color .3s ease, background .3s ease, transform .3s ease;
+    overflow: hidden;
+  }
+  .open-card:hover {
+    border-color: var(--accent);
+    background: #fffaf7;
+  }
+  .open-card:hover h3 { color: var(--accent-deep); }
+  /* Discrete editorial numeral, top-right */
+  .open-card .ornament {
+    position: absolute;
+    top: 28px;
+    right: 36px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300; font-style: italic;
+    font-size: 28px; line-height: 1;
+    color: var(--mute-2);
+    letter-spacing: 0;
+  }
+  .open-card:hover .ornament { color: var(--accent); }
+  .open-card .card-kicker {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mute); font-weight: 600;
+    margin-bottom: 24px;
+    padding-right: 60px;  /* leave room for the ornament */
+  }
+  .open-card .badge {
+    background: var(--ink); color: #ffffff;
+    padding: 3px 9px; font-size: 9.5px;
+    letter-spacing: 0.12em;
+  }
+  .open-card .badge.live { background: var(--accent); color: #ffffff; }
+  .open-card h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400; font-style: italic;
+    font-size: 34px; margin: 0 0 12px;
+    line-height: 1.04; letter-spacing: -0.005em;
+    transition: color .25s ease;
+  }
+  .open-card .context {
+    font-size: 12.5px; color: var(--mute);
+    line-height: 1.5;
+    margin-bottom: 28px;
+    letter-spacing: 0.01em;
+    max-width: 38ch;
+  }
+  .open-card .context em {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic; color: var(--accent); font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+  .open-card .specs-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px 32px;
+    padding: 24px 0 4px;
+    border-top: 1px solid var(--rule);
+  }
+  .open-card .specs-grid .l {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mute); font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .open-card .specs-grid .v {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: 22px; letter-spacing: 0; line-height: 1.1;
+    color: var(--ink);
+  }
+  .open-card .specs-grid .v.dim { color: var(--mute-2); }
+  .open-card .card-footer {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px;
+    margin-top: 28px; padding-top: 18px;
+    border-top: 1px solid var(--rule);
+  }
+  .open-card .sub-block {
+    display: flex; align-items: center; gap: 12px;
+    flex: 1; min-width: 0;
+  }
+  .open-card .sub-block .sb {
+    flex: 0 0 90px; height: 3px;
+    background: var(--rule); position: relative; overflow: hidden;
+  }
+  .open-card .sub-block .sb .f { position: absolute; inset: 0 auto 0 0; background: var(--ink); }
+  .open-card .sub-block .sb .f.hot { background: var(--accent); }
+  .open-card .sub-block .sv {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500; font-style: italic;
+    font-size: 16px; color: var(--ink);
+    letter-spacing: 0;
+  }
+  .open-card .sub-block .sv.dim { color: var(--mute); font-weight: 400; }
+  .open-card .closes {
+    font-size: 11px; letter-spacing: 0.12em;
+    color: var(--mute); text-transform: uppercase; font-weight: 600;
+    white-space: nowrap;
+  }
+  .open-card .closes.urgent { color: var(--accent); }
+
+  /* ────────────  PIPELINE — vertical date-row timeline  ──────────── */
+  .pipeline { border-top: 1px solid var(--ink); }
+  .pipe-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 56px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+    transition: background .2s ease;
+  }
+  .pipe-row.today { background: linear-gradient(90deg, rgba(232,118,90,0.06) 0%, transparent 60%); }
+  .pipe-row .date { display: flex; align-items: baseline; gap: 14px; }
+  .pipe-row .date .dow {
+    font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mute); font-weight: 600;
+  }
+  .pipe-row .date .dnum {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-size: 36px; line-height: 1; letter-spacing: -0.008em;
+  }
+  .pipe-row.today .date .dnum { color: var(--accent); font-style: italic; }
+  .pipe-row.weekend .date .dnum { color: var(--mute-2); }
+  .pipe-row .events {
+    display: flex; flex-wrap: wrap; gap: 8px 36px;
+  }
+  .pipe-row .event {
+    display: inline-flex; align-items: baseline; gap: 8px;
+    padding: 4px 0;
+  }
+  .pipe-row .event .verb {
+    font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 600;
+  }
+  .pipe-row .event.close .verb { color: var(--accent); }
+  .pipe-row .event.open  .verb { color: var(--gold); }
+  .pipe-row .event .name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic; font-weight: 400;
+    font-size: 19px; line-height: 1.2;
+    letter-spacing: 0;
+    transition: color .2s ease;
+  }
+  .pipe-row .event:hover .name { color: var(--accent); }
+  .pipe-row .event .ttag {
+    font-size: 11px; letter-spacing: 0.06em;
+    color: var(--mute);
+  }
+  .pipe-row .empty { font-size: 13px; color: var(--mute-2); font-style: italic; font-family: 'Cormorant Garamond', Georgia, serif; }
+
+  /* ────────────  YEAR  ──────────── */
+  .year-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 72px; align-items: start; }
+  .year-grid .text-col h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 44px; line-height: 1.06; margin: 0 0 22px; letter-spacing: -0.01em;
+  }
+  .year-grid .text-col p.lede {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: 21px; line-height: 1.5; color: var(--ink-soft);
+    margin: 0;
+  }
+  .year-grid .text-col p.lede em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .year-grid .text-col p:not(.lede) {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: 17px; line-height: 1.5; color: var(--mute);
+    margin-top: 18px;
+  }
+
+  .year-numerals { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 48px; }
+  .yn { padding-top: 14px; border-top: 1px solid var(--ink); }
+  .yn .v {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-size: 52px; letter-spacing: -0.012em; line-height: 0.98;
+  }
+  .yn .v.italic { font-style: italic; font-weight: 400; }
+  .yn .v.acc { color: var(--accent); }
+  .yn .v sup { font-size: 0.4em; font-weight: 400; letter-spacing: 0.02em; color: var(--mute); }
+  .yn .l { margin-top: 10px; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); font-weight: 600; }
+
+  .charts {
+    margin-top: 56px; padding-top: 40px;
+    border-top: 1px solid var(--rule);
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px;
+  }
+  .chart-card h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 20px; margin: 0 0 4px; letter-spacing: 0;
+  }
+  .chart-card .sub { font-size: 11.5px; color: var(--mute); margin-bottom: 18px; }
+
+  /* Distribution */
+  .dist { display: flex; align-items: flex-end; gap: 3px; height: 160px; position: relative; }
+  .dist .bar { flex: 1; background: var(--ink); transition: opacity .15s; }
+  .dist .bar.neg { background: var(--mute); }
+  .dist .bar:hover { opacity: 0.55; }
+  .dist .zero { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--accent); opacity: 0.7; }
+  .dist-axis { display: grid; grid-template-columns: repeat(7, 1fr); margin-top: 8px; font-size: 11px; color: var(--mute); }
+  .dist-axis .c { text-align: center; }
+  .dist-axis .r { text-align: right; }
+
+  /* Line chart */
+  .monthly { height: 180px; }
+  .monthly svg { width: 100%; height: 100%; display: block; }
+
+  /* ────────────  RECENTLY LISTED  ──────────── */
+  .recent ol { list-style: none; padding: 0; margin: 0; }
+  .recent li {
+    display: grid; grid-template-columns: 32px 1fr 140px 90px 100px;
+    align-items: center; gap: 20px;
+    padding: 18px 8px;
+    border-bottom: 1px solid var(--rule);
+    transition: padding .25s ease;
+    position: relative;
+  }
+  .recent li::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: var(--accent);
+    transform: scaleY(0); transform-origin: center;
+    transition: transform .25s ease;
+  }
+  .recent li:hover { padding-left: 16px; }
+  .recent li:hover::before { transform: scaleY(1); }
+  .recent li:hover h3 { color: var(--accent); }
+  .recent .r {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--mute-2); font-size: 18px;
+  }
+  .recent h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 23px; margin: 0; line-height: 1.06; letter-spacing: 0;
+    transition: color .2s;
+  }
+  .recent .meta { font-size: 11.5px; color: var(--mute); margin-top: 3px; }
+  .recent .perf-bar { position: relative; height: 5px; }
+  .recent .perf-bar .center { position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--rule); }
+  .recent .perf-bar .b { position: absolute; top: 0; bottom: 0; background: var(--ink); }
+  .recent .perf-bar .b.pos { left: 50%; }
+  .recent .perf-bar .b.neg { right: 50%; }
+  .recent .perf-bar .b.acc { background: var(--accent); }
+  .recent .date-col { font-size: 11.5px; color: var(--mute); text-align: right; }
+  .recent .gain {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: 22px; text-align: right; letter-spacing: -0.005em;
+  }
+  .recent .gain.acc { color: var(--accent); }
+  .recent .gain.neg { color: var(--mute); font-style: italic; }
+
+  /* ────────────  ARCHIVE  ──────────── */
+  .archive-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: end; }
+  .archive-wrap .text p {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: 19px; line-height: 1.5; color: var(--ink-soft);
+    margin: 0 0 14px;
+  }
+  .archive-wrap .text p strong { font-style: italic; font-weight: 500; color: var(--accent); }
+  .archive-wrap .text .stat-line {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 36px; line-height: 1.1; margin-top: 18px; letter-spacing: -0.008em;
+  }
+  .archive-chart { display: flex; align-items: flex-end; gap: 4px; height: 130px; }
+  .archive-chart a { flex: 1; display: flex; align-items: flex-end; min-width: 0; }
+  .archive-chart .b { width: 100%; background: var(--ink); transition: opacity .15s; }
+  .archive-chart a:hover .b { opacity: 0.55; }
+  .archive-chart .b.curr { background: var(--accent); }
+  .archive-chart .b.peak { background: var(--gold); }
+  .archive-axis {
+    display: flex; justify-content: space-between;
+    margin-top: 8px; font-size: 11px; color: var(--mute);
+  }
+  .archive-axis .acc { color: var(--accent); font-weight: 600; }
+
+  .archive-years { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--rule); }
+  .archive-years a { padding: 6px 11px; font-size: 12.5px; border: 1px solid var(--rule); color: var(--ink-soft); transition: all .18s ease; font-variant-numeric: tabular-nums; }
+  .archive-years a:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .archive-years a.curr { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+
+  /* ────────────  FOOTER  ──────────── */
+  footer { border-top: 1px solid var(--rule); padding: 56px 0; margin-top: 0; }
+  footer .row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; align-items: start; }
+  footer h4 { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); font-weight: 600; margin: 0 0 10px; }
+  footer p { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: 16px; line-height: 1.5; color: var(--ink-soft); margin: 0; max-width: 38ch; }
+  footer p em { font-style: italic; font-weight: 500; }
+  footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  footer ul a { font-size: 13px; color: var(--mute); }
+  footer ul a:hover { color: var(--accent); }
+  footer .footnote {
+    margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 11.5px; color: var(--mute);
+  }
+  footer .footnote .signature {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  @media (max-width: 1060px) {
+    .lead-grid, .year-grid, .charts, .archive-wrap { grid-template-columns: 1fr; gap: 36px; }
+    .pipeline { grid-template-columns: repeat(3, 1fr); }
+    .also-list li { grid-template-columns: 28px 1fr 100px 80px; }
+    .also-list .size, .also-list .sub { display: none; }
+    footer .row { grid-template-columns: 1fr 1fr; }
+    .page, .page-tight { padding: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead page">
+  <div class="top">
+    <span class="strap">Indian public issues, since 2001</span>
+    <a href="./" class="wordmark">b<span class="dot">·</span>urse</a>
+    <div class="right">
+      <nav>
+        <a href="#">Open</a>
+        <a href="#">Upcoming</a>
+        <a href="#">Archive</a>
+        <a href="#">Companies</a>
+        <a href="#">Bankers</a>
+      </nav>
+    </div>
+  </div>
+  <div class="meta-row">
+    <span><span class="num">Friday, 22 May 2026</span> · Vol. 1, № 142</span>
+    <div class="stats">
+      <span><span class="live-dot"></span><strong class="num">10</strong> open</span>
+      <span><strong class="num">3</strong> close today</span>
+      <span><strong class="num">8</strong> upcoming</span>
+      <span class="acc num"><strong>+18%</strong> raised vs '25 YTD</span>
+      <span class="updated">updated 16:38 IST · 2m ago</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- LEAD -->
+<section class="lead page-tight">
+  <div class="lead-grid">
+    <div>
+      <div class="kicker-chip"><span class="live-dot"></span> Today's book</div>
+      <h1 class="lead-h">Q-Line Biotech.</h1>
+      <p class="lead-standfirst">
+        A small-cap diagnostics specialist opens its public issue on
+        the National exchange. Subscription closes Monday — bidders have
+        <em>three days</em> to commit ₹1.37 lakh apiece.
+      </p>
+      <div class="lead-tagline">
+        <span>IPO</span><span>NSE SME</span><span>Symbol QLINE</span>
+        <span>Hem Securities, BRLM</span><span>Bigshare, Registrar</span>
+      </div>
+      <div class="lead-progress">
+        <div class="p-h"><span>Subscription window</span><span class="num">33%</span></div>
+        <div class="p-bar"><div class="fill"></div></div>
+        <div class="p-meta"><span>Opened Wed 21 May</span><span class="num">Closes Mon 25 May, 17:00</span></div>
+      </div>
+    </div>
+    <aside>
+      <span class="aside-label">The deal, in numbers</span>
+      <div class="spec-list">
+        <div class="spec"><span class="l">Price band</span><span class="v num">₹326 – 343</span></div>
+        <div class="spec"><span class="l">Shares per lot</span><span class="v num">400</span></div>
+        <div class="spec"><span class="l">Retail minimum</span><span class="v num">₹1,37,200</span></div>
+        <div class="spec"><span class="l">Issue size</span><span class="v num">₹153.39 Cr</span></div>
+        <div class="spec"><span class="l">Face value</span><span class="v num">₹10</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- BANNER -->
+<section class="banner">
+  <p>
+    Three of today's ten issues close
+    <span class="acc-num">in eight hours.</span>
+    One has already drawn bids of <span class="acc-num">11.7×</span>.
+  </p>
+</section>
+
+<!-- ALSO OPEN -->
+<section class="section page-tight">
+  <div class="section-h">
+    <h2>Currently open for subscription</h2>
+    <a href="#">All ten open →</a>
+  </div>
+  <div class="open-grid">
+    <article class="open-card">
+      <span class="ornament">I</span>
+      <div class="card-kicker">
+        <span class="badge live">Live</span>
+        <span>IPO · BSE SME · Hem Securities</span>
+      </div>
+      <h3>Vegorama Punjabi Angithi</h3>
+      <p class="context">Demand running well ahead of issue — bids of <em>11.7× the offer</em>.</p>
+      <div class="specs-grid">
+        <div><div class="l">Price band</div><div class="v num">₹73 – 77</div></div>
+        <div><div class="l">Shares per lot</div><div class="v num">1,600</div></div>
+        <div><div class="l">Retail minimum</div><div class="v num">₹1,23,200</div></div>
+        <div><div class="l">Issue size</div><div class="v num">₹27.5 Cr</div></div>
+      </div>
+      <div class="card-footer">
+        <div class="sub-block">
+          <span class="sb"><span class="f hot" style="width:100%"></span></span>
+          <span class="sv">11.7× subscribed</span>
+        </div>
+        <span class="closes urgent">Closes today</span>
+      </div>
+    </article>
+
+    <article class="open-card">
+      <span class="ornament">II</span>
+      <div class="card-kicker">
+        <span class="badge live">Live</span>
+        <span>IPO · BSE SME · Beeline Capital</span>
+      </div>
+      <h3>Harikanta Overseas</h3>
+      <p class="context">Final day of subscription. Bid book opens 10:00, closes 17:00 IST.</p>
+      <div class="specs-grid">
+        <div><div class="l">Price band</div><div class="v num">₹91 – 96</div></div>
+        <div><div class="l">Shares per lot</div><div class="v num">1,200</div></div>
+        <div><div class="l">Retail minimum</div><div class="v num">₹1,15,200</div></div>
+        <div><div class="l">Issue size</div><div class="v num">₹25.6 Cr</div></div>
+      </div>
+      <div class="card-footer">
+        <div class="sub-block">
+          <span class="sb"></span>
+          <span class="sv dim">Awaiting first bids</span>
+        </div>
+        <span class="closes urgent">Closes today</span>
+      </div>
+    </article>
+
+    <article class="open-card">
+      <span class="ornament">III</span>
+      <div class="card-kicker">
+        <span class="badge live">Live</span>
+        <span>IPO · BSE SME · Khambatta Securities</span>
+      </div>
+      <h3>Bio Medica Laboratories</h3>
+      <p class="context">A diagnostics platform raising for capacity expansion across south India.</p>
+      <div class="specs-grid">
+        <div><div class="l">Price band</div><div class="v num">₹132 – 139</div></div>
+        <div><div class="l">Shares per lot</div><div class="v num">1,000</div></div>
+        <div><div class="l">Retail minimum</div><div class="v num">₹1,39,000</div></div>
+        <div><div class="l">Issue size</div><div class="v num">₹52.4 Cr</div></div>
+      </div>
+      <div class="card-footer">
+        <div class="sub-block">
+          <span class="sb"></span>
+          <span class="sv dim">Awaiting first bids</span>
+        </div>
+        <span class="closes">Closes Mon 25 May</span>
+      </div>
+    </article>
+
+    <article class="open-card">
+      <span class="ornament">IV</span>
+      <div class="card-kicker">
+        <span class="badge live">Live</span>
+        <span>FPO · BSE</span>
+      </div>
+      <h3>Autofurnish</h3>
+      <p class="context">Follow-on offer at a flat price. Used by promoter to dilute holdings.</p>
+      <div class="specs-grid">
+        <div><div class="l">Offer price</div><div class="v num">₹41</div></div>
+        <div><div class="l">Shares per lot</div><div class="v num">3,000</div></div>
+        <div><div class="l">Retail minimum</div><div class="v num">₹1,23,000</div></div>
+        <div><div class="l">Issue size</div><div class="v num">₹14.6 Cr</div></div>
+      </div>
+      <div class="card-footer">
+        <div class="sub-block">
+          <span class="sb"></span>
+          <span class="sv dim">Awaiting first bids</span>
+        </div>
+        <span class="closes">Closes Mon 25 May</span>
+      </div>
+    </article>
+
+    <article class="open-card">
+      <span class="ornament">V</span>
+      <div class="card-kicker">
+        <span class="badge live">Live</span>
+        <span>IPO · BSE SME · SMC Capitals</span>
+      </div>
+      <h3>M R Maniveni Foods</h3>
+      <p class="context">A regional foods processor opening its first public issue.</p>
+      <div class="specs-grid">
+        <div><div class="l">Price band</div><div class="v num">₹51 – 52</div></div>
+        <div><div class="l">Shares per lot</div><div class="v num">2,000</div></div>
+        <div><div class="l">Retail minimum</div><div class="v num">₹1,04,000</div></div>
+        <div><div class="l">Issue size</div><div class="v num">₹27.0 Cr</div></div>
+      </div>
+      <div class="card-footer">
+        <div class="sub-block">
+          <span class="sb"></span>
+          <span class="sv dim">Awaiting first bids</span>
+        </div>
+        <span class="closes">Closes Tue 26 May</span>
+      </div>
+    </article>
+
+    <article class="open-card">
+      <span class="ornament">VI</span>
+      <div class="card-kicker">
+        <span class="badge live">Live</span>
+        <span>Rights · NSE</span>
+      </div>
+      <h3>EFC (I) Limited</h3>
+      <p class="context">Rights issue offered to existing shareholders. Ratio and price set by issuer.</p>
+      <div class="specs-grid">
+        <div><div class="l">Offer price</div><div class="v num dim">Not disclosed</div></div>
+        <div><div class="l">Lot</div><div class="v num dim">—</div></div>
+        <div><div class="l">Retail minimum</div><div class="v num dim">—</div></div>
+        <div><div class="l">Issue size</div><div class="v num dim">—</div></div>
+      </div>
+      <div class="card-footer">
+        <div class="sub-block">
+          <span class="sb"></span>
+          <span class="sv dim">Rights issue</span>
+        </div>
+        <span class="closes urgent">Closes today</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="section page-tight">
+  <div class="section-h">
+    <h2>The week ahead</h2>
+    <a href="#">Full calendar →</a>
+  </div>
+  <div class="pipeline">
+    <div class="pipe-row today">
+      <div class="date"><span class="dow">Fri</span><span class="dnum num">22</span></div>
+      <div class="events">
+        <span class="event close"><span class="verb">Closes</span><span class="name">Vegorama Punjabi Angithi</span><span class="ttag">IPO · BSE SME</span></span>
+        <span class="event close"><span class="verb">Closes</span><span class="name">Harikanta Overseas</span><span class="ttag">IPO · BSE SME</span></span>
+        <span class="event close"><span class="verb">Closes</span><span class="name">EFC (I) Limited</span><span class="ttag">Rights · NSE</span></span>
+      </div>
+    </div>
+    <div class="pipe-row weekend">
+      <div class="date"><span class="dow">Sat</span><span class="dnum num">23</span></div>
+      <div class="events"><span class="empty">Markets closed</span></div>
+    </div>
+    <div class="pipe-row weekend">
+      <div class="date"><span class="dow">Sun</span><span class="dnum num">24</span></div>
+      <div class="events"><span class="empty">Markets closed</span></div>
+    </div>
+    <div class="pipe-row">
+      <div class="date"><span class="dow">Mon</span><span class="dnum num">25</span></div>
+      <div class="events">
+        <span class="event close"><span class="verb">Closes</span><span class="name">Q-Line Biotech</span><span class="ttag">IPO · NSE SME</span></span>
+        <span class="event close"><span class="verb">Closes</span><span class="name">Bio Medica Laboratories</span><span class="ttag">IPO · BSE SME</span></span>
+        <span class="event open"><span class="verb">Opens</span><span class="name">Yaashvi Jewellers</span><span class="ttag">FPO · BSE</span></span>
+      </div>
+    </div>
+    <div class="pipe-row">
+      <div class="date"><span class="dow">Tue</span><span class="dnum num">26</span></div>
+      <div class="events">
+        <span class="event close"><span class="verb">Closes</span><span class="name">M R Maniveni Foods</span><span class="ttag">IPO · BSE SME</span></span>
+        <span class="event open"><span class="verb">Opens</span><span class="name">SMR Jewels</span><span class="ttag">IPO · BSE SME</span></span>
+        <span class="event open"><span class="verb">Opens</span><span class="name">Prabha Energy</span><span class="ttag">Rights · NSE</span></span>
+      </div>
+    </div>
+    <div class="pipe-row">
+      <div class="date"><span class="dow">Wed</span><span class="dnum num">27</span></div>
+      <div class="events">
+        <span class="event close"><span class="verb">Closes</span><span class="name">Sarla Performance Fibers</span><span class="ttag">Buyback · NSE</span></span>
+        <span class="event close"><span class="verb">Closes</span><span class="name">Yaashvi Jewellers</span><span class="ttag">FPO · BSE</span></span>
+      </div>
+    </div>
+    <div class="pipe-row">
+      <div class="date"><span class="dow">Thu</span><span class="dnum num">28</span></div>
+      <div class="events"><span class="empty">No events scheduled</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- YEAR -->
+<section class="section page-tight">
+  <div class="year-grid">
+    <div class="text-col">
+      <h2>The shape of 2026.</h2>
+      <p class="lede">
+        Three hundred and eighty-three companies have made it to the exchanges
+        this year, of which <em>Sedemac Mechatronics</em> doubled on its first
+        day in May. The median first-day move sits at <em>+6.4%</em> across the
+        last twenty-four months — close to the long-run average.
+      </p>
+      <p>
+        2025 set the record at 1,516 listings. 2026 is on track to surpass it
+        by year-end.
+      </p>
+    </div>
+    <div class="year-numerals">
+      <div class="yn"><div class="v num">383</div><div class="l">Listings YTD</div></div>
+      <div class="yn"><div class="v num italic">299<span class="mute-2"> / </span>84</div><div class="l">Mainboard / SME</div></div>
+      <div class="yn"><div class="v num acc">+100<sup>.1%</sup></div><div class="l">Best day · Sedemac</div></div>
+      <div class="yn"><div class="v num">₹56,400<sup> Cr</sup></div><div class="l">Total raised</div></div>
+    </div>
+  </div>
+
+  <div class="charts">
+    <div class="chart-card">
+      <h3>Day-one moves of the last twenty-four months</h3>
+      <p class="sub">n = 1,865 · median +6.4% · 72% positive · σ 18.2%</p>
+      <div class="dist">
+        <div class="zero" style="left:42.85%"></div>
+        <div class="bar neg" style="height:1%"></div>
+        <div class="bar neg" style="height:2%"></div>
+        <div class="bar neg" style="height:4%"></div>
+        <div class="bar neg" style="height:7%"></div>
+        <div class="bar neg" style="height:33%"></div>
+        <div class="bar neg" style="height:43%"></div>
+        <div class="bar" style="height:100%"></div>
+        <div class="bar" style="height:40%"></div>
+        <div class="bar" style="height:27%"></div>
+        <div class="bar" style="height:19%"></div>
+        <div class="bar" style="height:10%"></div>
+        <div class="bar" style="height:18%"></div>
+        <div class="bar" style="height:32%"></div>
+        <div class="bar" style="height:17%"></div>
+      </div>
+      <div class="dist-axis">
+        <span>−100%</span><span>−30%</span><span>−10%</span><span class="c">0</span><span class="r">+20%</span><span class="r">+50%</span><span class="r">+100%+</span>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>New listings, last twelve months</h3>
+      <p class="sub">monthly count, mainboard + SME</p>
+      <div class="monthly">
+        <svg viewBox="0 0 360 180" preserveAspectRatio="none">
+          <line x1="0" y1="160" x2="360" y2="160" stroke="#ebe7da" />
+          <line x1="0" y1="110" x2="360" y2="110" stroke="#ebe7da" stroke-dasharray="2 3" />
+          <line x1="0" y1="60"  x2="360" y2="60"  stroke="#ebe7da" stroke-dasharray="2 3" />
+          <defs>
+            <linearGradient id="lf" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#e8765a" stop-opacity="0.16"/>
+              <stop offset="100%" stop-color="#e8765a" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M 0,108 L 30,122 L 60,82 L 90,90 L 120,72 L 150,62 L 180,48 L 210,36 L 240,44 L 270,40 L 300,26 L 330,34 L 360,68 L 360,160 L 0,160 Z" fill="url(#lf)"/>
+          <polyline points="0,108 30,122 60,82 90,90 120,72 150,62 180,48 210,36 240,44 270,40 300,26 330,34 360,68" fill="none" stroke="#e8765a" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="360" cy="68" r="3.5" fill="#ffffff" stroke="#e8765a" stroke-width="1.6"/>
+          <text x="354" y="58" text-anchor="end" font-family="'Cormorant Garamond', Georgia, serif" font-size="14" font-style="italic" fill="#0f0e0c">May, 142</text>
+        </svg>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10.5px;color:var(--mute)">
+        <span class="num">Jun '25</span><span class="num">Sep</span><span class="num">Dec</span><span class="num">Mar '26</span><span class="num">May '26</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENTLY LISTED -->
+<section class="section page-tight recent">
+  <div class="section-h">
+    <h2>Recently listed</h2>
+    <a href="#">All listings →</a>
+  </div>
+  <ol>
+    <li>
+      <span class="r num">01</span>
+      <div>
+        <h3>Sedemac Mechatronics</h3>
+        <div class="meta">IPO · NSE · ₹1,240 Cr raised</div>
+      </div>
+      <div class="perf-bar"><div class="center"></div><div class="b pos acc" style="width:50%"></div></div>
+      <span class="date-col num">5 May</span>
+      <span class="gain acc num">+100.1%</span>
+    </li>
+    <li>
+      <span class="r num">02</span>
+      <div>
+        <h3>Goldline Pharmaceutical</h3>
+        <div class="meta">IPO · NSE SME · ₹38 Cr raised</div>
+      </div>
+      <div class="perf-bar"><div class="center"></div><div class="b pos" style="width:19.5%"></div></div>
+      <span class="date-col num">19 May</span>
+      <span class="gain num">+39.0%</span>
+    </li>
+    <li>
+      <span class="r num">03</span>
+      <div>
+        <h3>Teamtech Formwork Solutions</h3>
+        <div class="meta">IPO · NSE SME · ₹42 Cr raised</div>
+      </div>
+      <div class="perf-bar"><div class="center"></div><div class="b pos" style="width:19.5%"></div></div>
+      <span class="date-col num">19 May</span>
+      <span class="gain num">+39.0%</span>
+    </li>
+    <li>
+      <span class="r num">04</span>
+      <div>
+        <h3>Accord Transformer</h3>
+        <div class="meta">IPO · BSE SME · ₹25.6 Cr raised</div>
+      </div>
+      <div class="perf-bar"><div class="center"></div><div class="b pos" style="width:4.4%"></div></div>
+      <span class="date-col num">2 Mar</span>
+      <span class="gain num">+8.7%</span>
+    </li>
+    <li>
+      <span class="r num">05</span>
+      <div>
+        <h3>RFBL Flexi Pack</h3>
+        <div class="meta">IPO · NSE SME · ₹14 Cr raised</div>
+      </div>
+      <div class="perf-bar"><div class="center"></div><div class="b pos" style="width:2.5%"></div></div>
+      <span class="date-col num">19 May</span>
+      <span class="gain num">+5.0%</span>
+    </li>
+    <li>
+      <span class="r num">06</span>
+      <div>
+        <h3>Simca Advertising</h3>
+        <div class="meta">IPO · NSE SME · ₹11 Cr raised</div>
+      </div>
+      <div class="perf-bar"><div class="center"></div><div class="b neg" style="width:7.4%"></div></div>
+      <span class="date-col num">15 May</span>
+      <span class="gain neg num">−14.8%</span>
+    </li>
+  </ol>
+</section>
+
+<!-- ARCHIVE -->
+<section class="section page-tight">
+  <div class="section-h">
+    <h2>A quarter-century, in issues.</h2>
+    <a href="#">All years →</a>
+  </div>
+  <div class="archive-wrap">
+    <div class="text">
+      <p>
+        The Indian primary market has grown sevenfold since 2017, with
+        <strong>2025</strong> setting the all-time record at 1,516 listings.
+        A single year now produces more public issues than the entire
+        decade from 2001 to 2010.
+      </p>
+      <div class="stat-line">
+        <span class="acc">2025</span> · 1,516 listings, all-time peak
+      </div>
+    </div>
+    <div>
+      <div class="archive-chart">
+        <a href="#"><div class="b" style="height:1%"></div></a>
+        <a href="#"><div class="b" style="height:0.5%"></div></a>
+        <a href="#"><div class="b" style="height:1%"></div></a>
+        <a href="#"><div class="b" style="height:2%"></div></a>
+        <a href="#"><div class="b" style="height:4%"></div></a>
+        <a href="#"><div class="b" style="height:8%"></div></a>
+        <a href="#"><div class="b" style="height:7%"></div></a>
+        <a href="#"><div class="b" style="height:5%"></div></a>
+        <a href="#"><div class="b" style="height:6%"></div></a>
+        <a href="#"><div class="b" style="height:11%"></div></a>
+        <a href="#"><div class="b" style="height:8%"></div></a>
+        <a href="#"><div class="b" style="height:5%"></div></a>
+        <a href="#"><div class="b" style="height:4%"></div></a>
+        <a href="#"><div class="b" style="height:7%"></div></a>
+        <a href="#"><div class="b" style="height:14%"></div></a>
+        <a href="#"><div class="b" style="height:13%"></div></a>
+        <a href="#"><div class="b" style="height:30%"></div></a>
+        <a href="#"><div class="b" style="height:50%"></div></a>
+        <a href="#"><div class="b" style="height:48%"></div></a>
+        <a href="#"><div class="b" style="height:51%"></div></a>
+        <a href="#"><div class="b" style="height:68%"></div></a>
+        <a href="#"><div class="b" style="height:62%"></div></a>
+        <a href="#"><div class="b" style="height:70%"></div></a>
+        <a href="#"><div class="b" style="height:93%"></div></a>
+        <a href="#"><div class="b peak" style="height:100%"></div></a>
+        <a href="#"><div class="b curr" style="height:25%"></div></a>
+      </div>
+      <div class="archive-axis">
+        <span>2001</span><span>2010</span><span>2015</span><span>2020</span><span class="acc">2026</span>
+      </div>
+    </div>
+  </div>
+  <div class="archive-years">
+    <a class="curr" href="#">2026</a>
+    <a href="#">2025</a>
+    <a href="#">2024</a>
+    <a href="#">2023</a>
+    <a href="#">2022</a>
+    <a href="#">2021</a>
+    <a href="#">2020</a>
+    <a href="#">2019</a>
+    <a href="#">2018</a>
+    <a href="#">2017</a>
+    <a href="#">2016</a>
+    <a href="#">2015</a>
+    <a href="#">2014</a>
+    <a href="#">2013</a>
+    <a href="#">2012</a>
+    <a href="#">2011</a>
+    <a href="#">2010</a>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="page-tight">
+  <div class="row">
+    <div>
+      <h4>About</h4>
+      <p>
+        <em>ipowatch.co</em> is an editorial database of public issues on the
+        National and Bombay stock exchanges. Sourced directly from the
+        exchanges, hourly. No grey-market premium. No broker affiliates.
+        No "Apply Now" buttons.
+      </p>
+    </div>
+    <div>
+      <h4>Browse</h4>
+      <ul>
+        <li><a href="#">Open issues</a></li>
+        <li><a href="#">Upcoming</a></li>
+        <li><a href="#">Archive</a></li>
+        <li><a href="#">All companies</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>By party</h4>
+      <ul>
+        <li><a href="#">Lead managers</a></li>
+        <li><a href="#">Registrars</a></li>
+        <li><a href="#">Sponsor banks</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>The data</h4>
+      <ul>
+        <li><a href="#">Methodology</a></li>
+        <li><a href="#">API access</a></li>
+        <li><a href="#">Schema</a></li>
+        <li><a href="#">Changelog</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footnote">
+    <span class="signature">ipowatch.co</span>
+    <span><span class="num">11,662</span> issues · <span class="num">8,285</span> companies · sourced NSE, BSE, Capital Market, Trendlyne · built Friday 22 May 2026, 16:38 IST</span>
+  </div>
+</footer>
+
+</body>
+</html>

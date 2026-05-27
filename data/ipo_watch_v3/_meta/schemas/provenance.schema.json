@@ -1,0 +1,30 @@
+{
+  "$id": "https://ipo-watch.local/schema/v3/provenance.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "field_provenance": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "3.0.0"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "slug",
+    "sources",
+    "field_provenance"
+  ],
+  "title": "IPO Watch V3 Provenance",
+  "type": "object"
+}

@@ -1,0 +1,340 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "ipo_performance_mainboard_2025",
+    "estimated_cost_usd": 0.007554140000000001,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 17732,
+    "tokens_out": 2515
+  },
+  "currency": "INR",
+  "data_kind": "performance_history",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0404",
+  "endpoint": "ipo_performance_mainboard_<year>",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company names may contain non-ASCII characters or trailing spaces.",
+          "suggested_mitigation": "Trim whitespace and normalize Unicode."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Vikran Engineering Limited",
+        "VIDYA WIRES LIMITED"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "CompanyName",
+      "nested_table": false,
+      "notes": "Some names have trailing spaces (e.g., 'Corona Remedies Limited ').",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].CompanyName",
+      "semantic": "Full legal name of the company that issued the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "ticker",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Short names may not be unique across years or exchanges.",
+          "suggested_mitigation": "Use BSE security ID (from IMAGE URL) as primary key."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "VIKRAN",
+        "VIDYAWIRES"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "Company_Short_Name",
+      "nested_table": false,
+      "notes": "Some have trailing spaces (e.g., 'HILINFRA ', 'HEXT ').",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Company_Short_Name",
+      "semantic": "Short ticker symbol or abbreviation for the company, used as a URL slug.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "current_price_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Prices are floats; may have precision issues.",
+          "suggested_mitigation": "Parse as float and round to 2 decimal places."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        65.0,
+        88.63
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "CurrentPrice",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].CurrentPrice",
+      "semantic": "Most recent trading price of the stock on BSE as of the snapshot time.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "gain_loss_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "May be negative; ensure sign is preserved.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        -32.0,
+        36.63
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "GainLoss",
+      "nested_table": false,
+      "notes": "Derived field; could be computed from CurrentPrice and IssuePrice.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].GainLoss",
+      "semantic": "Absolute change from issue price to current price (CurrentPrice - IssuePrice).",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "bse_security_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "URL structure may change; BSE security ID is the last path segment.",
+          "suggested_mitigation": "Extract security ID from URL as canonical identifier."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://www.bseindia.com/stock-share-price/vikran-engineering-ltd/vikran/544496/"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "IMAGE",
+      "nested_table": false,
+      "notes": "Contains the BSE security ID (e.g., 544496) which is a stable identifier.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].IMAGE",
+      "semantic": "URL to the BSE stock price page for the company, containing the BSE security ID.",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue_price_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "May be integer or float; parse as float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        97.0,
+        52.0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IssuePrice",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].IssuePrice",
+      "semantic": "The price at which the IPO was offered to investors.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "listing_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Time component is always midnight; treat as date.",
+          "suggested_mitigation": "Parse as date, ignoring time."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2025-09-03T00:00:00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ListedOn",
+      "nested_table": false,
+      "notes": "ISO 8601 format with zero time.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ListedOn",
+      "semantic": "The date the stock was listed on the exchange.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "listing_day_close_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Float; may have precision issues.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        95.64,
+        53.14
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ListingDayClose",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ListingDayClose",
+      "semantic": "Closing price of the stock on its first day of trading.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "listing_day_gain_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "May be negative; ensure sign preserved.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        -1.36,
+        1.14
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ListingDayGain",
+      "nested_table": false,
+      "notes": "Derived field.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ListingDayGain",
+      "semantic": "Absolute change from issue price to listing day close (ListingDayClose - IssuePrice).",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "snapshot_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Time component is midnight; treat as date.",
+          "suggested_mitigation": "Parse as date."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2025-12-31T00:00:00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Time",
+      "nested_table": false,
+      "notes": "All rows have same value; indicates the date of the performance snapshot.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Time",
+      "semantic": "Timestamp of the snapshot data, likely indicating the date of the current price.",
+      "type": "datetime",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:04:36+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "BSE stock price page for each company, accessible via the IMAGE URL. The BSE security ID can be extracted from the URL to fetch detailed quote data.",
+      "follow_up_endpoint_pattern": "https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w?scrip_cd={security_id}",
+      "key_field": "IMAGE (extract security ID)"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 100,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/ipo_performance_mainboard_<year>.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2025",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2025&company=&flag=1&type=2"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint returns a list of mainboard IPOs listed in a given year, with their issue price, current price, listing day close, and gains/losses, providing a performance snapshot as of a specific date.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "All rows have the same Time value (2025-12-31), suggesting this is a year-end snapshot; current prices may be stale if fetched later.",
+    "Company_Short_Name may have trailing spaces; trim before use.",
+    "The IMAGE field contains a URL that can be used to derive a stable BSE security ID; consider extracting it as a canonical identifier."
+  ]
+}

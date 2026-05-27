@@ -1,0 +1,562 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": true,
+    "cached": false,
+    "endpoint_concrete": "tender_past",
+    "estimated_cost_usd": 0.01236898,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 28704,
+    "tokens_out": 4199
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0428",
+  "endpoint": "tender_past",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "meta.serial_number",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Serial number is not a stable identifier; it may change if the list order changes.",
+          "suggested_mitigation": "Do not use as a primary key; use symbol+offerDate instead."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        1,
+        2,
+        3
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "sr_no",
+      "nested_table": false,
+      "notes": "Sequential integer, not guaranteed to be unique across different API calls.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].sr_no",
+      "semantic": "Serial number of the record in the list.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "instrument.symbol",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbols may be reused or changed over time; some symbols may have trailing spaces.",
+          "suggested_mitigation": "Trim whitespace and validate against a master symbol list."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "emapartner",
+        "kwil",
+        "stylamind"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Lowercase, may contain spaces or special characters.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].symbol",
+      "semantic": "NSE trading symbol of the company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "instrument.company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company names may contain special characters like apostrophes or ampersands.",
+          "suggested_mitigation": "Ensure proper encoding when parsing."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "EMA Partners India Limited",
+        "Kwality Wall's (India) Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company",
+      "nested_table": false,
+      "notes": "May include trailing spaces or punctuation.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].company",
+      "semantic": "Full legal name of the company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "offer.series",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Series may be inconsistent (e.g., 'BB' vs 'Buyback' in offerType).",
+          "suggested_mitigation": "Map to a canonical set of offer types."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "BB",
+        "TO",
+        "DS"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "series",
+      "nested_table": false,
+      "notes": "Two-letter code.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].series",
+      "semantic": "Series code indicating the type of offer: BB (Buyback), TO (Takeover), DS (Delisting).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "offer.offer_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Inconsistent casing and spelling (e.g., 'Buy back', 'Buyback', 'BuyBack').",
+          "suggested_mitigation": "Normalize to a standard set of values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Buy back",
+        "Takeover",
+        "Delisting",
+        "BuyBack",
+        "Buyback"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "offerType",
+      "nested_table": false,
+      "notes": "Free text, may vary.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].offerType",
+      "semantic": "Description of the offer type (e.g., Buy back, Takeover, Delisting).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "offer.issue_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Issue type may have variations (e.g., 'Fixed price' vs 'Fixed Price').",
+          "suggested_mitigation": "Normalize to a standard set."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Fixed price",
+        "Reverse Book Building",
+        "Counter Offer",
+        "Withdrawal Window"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueType",
+      "nested_table": false,
+      "notes": "Free text.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issueType",
+      "semantic": "Pricing mechanism of the offer (e.g., Fixed price, Reverse Book Building, Counter Offer, Withdrawal Window).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "offer.start_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy (e.g., 07-May-2026). Must be parsed correctly.",
+          "suggested_mitigation": "Parse using a locale-aware date parser with pattern 'dd-MMM-yyyy'."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "07-May-2026",
+        "23-Apr-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "offerDate",
+      "nested_table": false,
+      "notes": "String in dd-MMM-yyyy format.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].offerDate",
+      "semantic": "Start date of the offer period.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "offer.end_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Same date format as offerDate.",
+          "suggested_mitigation": "Parse using pattern 'dd-MMM-yyyy'."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "13-May-2026",
+        "07-May-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "offerEndDate",
+      "nested_table": false,
+      "notes": "String in dd-MMM-yyyy format.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].offerEndDate",
+      "semantic": "End date of the offer period.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "offer.issue_size_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings; may contain commas or leading/trailing spaces.",
+          "suggested_mitigation": "Strip whitespace and parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "725000",
+        "610893729",
+        "4406496"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueSize",
+      "nested_table": false,
+      "notes": "String representation of integer.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issueSize",
+      "semantic": "Total number of shares offered in the tender (issue size).",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "offer.price_per_share",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings; may have leading/trailing spaces.",
+          "suggested_mitigation": "Strip whitespace and parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "100",
+        "21.33",
+        "2250",
+        "256.3"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "band",
+      "nested_table": false,
+      "notes": "String representation of number.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].band",
+      "semantic": "Offer price per share (or indicative band for reverse book building).",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "offer.allocated_price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings; '-' indicates not applicable or not yet allocated.",
+          "suggested_mitigation": "Treat '-' as null; parse as float otherwise."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "100",
+        "21.33",
+        "-",
+        "0.00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "allocatedPrice",
+      "nested_table": false,
+      "notes": "String; '-' means no allocation.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].allocatedPrice",
+      "semantic": "Final price at which shares were allocated (may differ from band for reverse book building).",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "offer.allocated_demat_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings; '-' indicates not applicable.",
+          "suggested_mitigation": "Treat '-' as null; parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "725000",
+        "25036",
+        "-",
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "allocatedDmQty",
+      "nested_table": false,
+      "notes": "String; '-' means no allocation.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].allocatedDmQty",
+      "semantic": "Number of shares allocated in dematerialized (electronic) form.",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "offer.allocated_physical_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings; '-' indicates not applicable.",
+          "suggested_mitigation": "Treat '-' as null; parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "0",
+        "11",
+        "452",
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "allocatedPhyQty",
+      "nested_table": false,
+      "notes": "String; '-' means no allocation.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].allocatedPhyQty",
+      "semantic": "Number of shares allocated in physical form.",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "offer.cumulative_demat_tendered",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings; '-' indicates not available.",
+          "suggested_mitigation": "Treat '-' as null; parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2180000",
+        "142126",
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumQtyDmat",
+      "nested_table": false,
+      "notes": "String; '-' means no data.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].cumQtyDmat",
+      "semantic": "Cumulative quantity of shares tendered in demat form.",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "offer.cumulative_physical_tendered",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings; '-' indicates not available.",
+          "suggested_mitigation": "Treat '-' as null; parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-",
+        "1500",
+        "118"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumQtyPhy",
+      "nested_table": false,
+      "notes": "String; '-' means no data.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].cumQtyPhy",
+      "semantic": "Cumulative quantity of shares tendered in physical form.",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "offer.total_tendered_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings or null; may have leading spaces.",
+          "suggested_mitigation": "Strip whitespace and parse as integer; treat null as missing."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2180000",
+        "142126",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totQty",
+      "nested_table": false,
+      "notes": "String or null.",
+      "null_meaning": "Data not available or not applicable.",
+      "nullable": true,
+      "path": "$[*].totQty",
+      "semantic": "Total quantity of shares tendered (demat + physical).",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "offer.subscription_times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings with leading spaces; may be null.",
+          "suggested_mitigation": "Strip whitespace and parse as float; treat null as missing."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "      3.01",
+        "       .00",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "numberOfTimes",
+      "nested_table": false,
+      "notes": "String with leading spaces or null.",
+      "null_meaning": "Data not available.",
+      "nullable": true,
+      "path": "$[*].numberOfTimes",
+      "semantic": "Subscription ratio (times subscribed) of the offer.",
+      "type": "number",
+      "units": "x"
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:28:09+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The symbol field can be used to fetch more details about the company from the NSE equity master or corporate actions endpoints.",
+      "follow_up_endpoint_pattern": "/api/equity-master?symbol={symbol}",
+      "key_field": "symbol"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 150,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/tender_past.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/liveTenderPast-issues"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 48,
+  "summary": "This endpoint provides a list of past tender offers (buybacks, takeovers, delistings) on the NSE, including allocation details, issue size, subscription ratios, and offer dates.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The body was truncated; the full list may contain more records.",
+    "Some fields like numberOfTimes and totQty can be null, indicating missing data.",
+    "Fields allocatedDmQty, allocatedPhyQty, allocatedPrice, cumQtyDmat, cumQtyPhy may contain '-' meaning not applicable.",
+    "Date format is dd-MMM-yyyy; ensure correct parsing.",
+    "Symbols may have trailing spaces; trim before use."
+  ]
+}

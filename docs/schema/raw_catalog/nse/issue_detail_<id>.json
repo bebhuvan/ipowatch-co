@@ -1,0 +1,1272 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "issue_detail_qline_sme",
+    "estimated_cost_usd": 0.01213898,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 5404,
+    "tokens_out": 9709
+  },
+  "currency": "INR",
+  "data_kind": "live_subscription",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0417",
+  "endpoint": "issue_detail_<id>",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "subscription.active_categories.category",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Category names may change or be added",
+          "suggested_mitigation": "Map to canonical categories"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Category",
+        "Total"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "category",
+      "nested_table": false,
+      "notes": "Header row has 'Category' as value, data row has 'Total'",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.activeCat.dataList[*].category",
+      "semantic": "Category name for subscription data (e.g., 'Total', 'Category')",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.active_categories.shares_offered",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings with decimal point",
+          "suggested_mitigation": "Parse as float, convert to integer if whole number"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "0.0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfShareOffered",
+      "nested_table": false,
+      "notes": "Value '0.0' may indicate no shares offered",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.activeCat.dataList[*].noOfShareOffered",
+      "semantic": "Number of shares offered/reserved for the category",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.active_categories.shares_bid",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings with decimal point",
+          "suggested_mitigation": "Parse as float, convert to integer if whole number"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "0.0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfSharesBid",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.activeCat.dataList[*].noOfSharesBid",
+      "semantic": "Number of shares bid for the category",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.active_categories.subscription_times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings with decimal point",
+          "suggested_mitigation": "Parse as float"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "0.00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfTotalMeant",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.activeCat.dataList[*].noOfTotalMeant",
+      "semantic": "Number of times the total meant for the category (subscription ratio)",
+      "type": "string",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "subscription.active_categories.serial_number",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "srNo",
+      "nested_table": false,
+      "notes": "Null for total row",
+      "null_meaning": "No serial number for total row",
+      "nullable": true,
+      "path": "$.activeCat.dataList[*].srNo",
+      "semantic": "Serial number for the category row",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.active_categories.heading",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "heading",
+      "nested_table": false,
+      "notes": "Always null in observed data",
+      "null_meaning": "No heading provided",
+      "nullable": true,
+      "path": "$.activeCat.heading",
+      "semantic": "Heading for active category section",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.symbol",
+      "collision_risk_with": [
+        "nse.issue_detail_<id>.issueInfo.symbol"
+      ],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Always null; symbol available in issueInfo",
+      "null_meaning": "Symbol not provided in this section",
+      "nullable": true,
+      "path": "$.activeCat.symbol",
+      "semantic": "Ticker symbol for the issue",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.active_categories.update_time",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Timestamp embedded in string, may contain 'null' literal",
+          "suggested_mitigation": "Parse with regex to extract date, handle 'null' as missing"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Updated as on null"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "updateTime",
+      "nested_table": false,
+      "notes": "Format: 'Updated as on <date>' or 'Updated as on null'",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.activeCat.updateTime",
+      "semantic": "Update timestamp for active category data",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.bid_details.category",
+      "collision_risk_with": [
+        "$.activeCat.dataList[*].category"
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Category names may change or be added",
+          "suggested_mitigation": "Map to canonical categories"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Qualified Institutional Buyers(QIBs)",
+        "Total"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "category",
+      "nested_table": false,
+      "notes": "Includes subcategories like '1(a)', '2.1(b)'",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.bidDetails[*].category",
+      "semantic": "Investor category name for bid details",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.bid_details.shares_bid",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings without commas",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "6159600",
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfshareBid",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.bidDetails[*].noOfshareBid",
+      "semantic": "Number of shares bid in this category",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.bid_details.applications",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "23",
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noofapplication",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.bidDetails[*].noofapplication",
+      "semantic": "Number of applications received in this category",
+      "type": "string",
+      "units": "applications"
+    },
+    {
+      "canonical_field_hint": "subscription.bid_details.serial_number",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "1",
+        "1(a)",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "srNo",
+      "nested_table": false,
+      "notes": "Null for total row",
+      "null_meaning": "No serial number for total row",
+      "nullable": true,
+      "path": "$.bidDetails[*].srNo",
+      "semantic": "Serial number for the bid category row",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "QLINE"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "companyName",
+      "nested_table": false,
+      "notes": "Appears to be the ticker symbol, not full company name",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.companyName",
+      "semantic": "Company name (ticker symbol)",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.bse.company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "Q-Line Biotech Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandDataBSE[*].company",
+      "semantic": "Company name for BSE demand data",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.bse.cumulative_quantity",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value may be '-' indicating no data",
+          "suggested_mitigation": "Treat '-' as null"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumQty",
+      "nested_table": false,
+      "notes": "Always '-' in observed data",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandDataBSE[*].cumQty",
+      "semantic": "Cumulative quantity at price point on BSE",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "demand.bse.price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value may be '-' indicating no data",
+          "suggested_mitigation": "Treat '-' as null"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "price",
+      "nested_table": false,
+      "notes": "Always '-' in observed data",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandDataBSE[*].price",
+      "semantic": "Price point for BSE demand data",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.symbol",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "QLINE"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandDataBSE[*].symbol",
+      "semantic": "Ticker symbol for BSE demand data",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.bse.timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Value may be '-' indicating no data",
+          "suggested_mitigation": "Treat '-' as null"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "timestamp",
+      "nested_table": false,
+      "notes": "Always '-' in observed data",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandDataBSE[*].timestamp",
+      "semantic": "Timestamp for BSE demand data",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.nse.company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "Q-Line Biotech Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandDataNSE[*].company",
+      "semantic": "Company name for NSE demand data",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.nse.cumulative_quantity",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers with Indian comma format (lakhs, crores)",
+          "suggested_mitigation": "Strip commas and parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "3,37,74,400"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumQty",
+      "nested_table": false,
+      "notes": "Comma-separated Indian number format",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandDataNSE[*].cumQty",
+      "semantic": "Cumulative quantity at price point on NSE",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "demand.nse.price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "343"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "price",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandDataNSE[*].price",
+      "semantic": "Price point for NSE demand data",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.symbol",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "QLINE"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandDataNSE[*].symbol",
+      "semantic": "Ticker symbol for NSE demand data",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.nse.timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format dd-MMM-yyyy HH:mm:ss, no timezone",
+          "suggested_mitigation": "Parse with format 'dd-MMM-yyyy HH:mm:ss', assume IST"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "22-May-2026 14:56:01"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "timestamp",
+      "nested_table": false,
+      "notes": "IST assumed",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandDataNSE[*].timestamp",
+      "semantic": "Timestamp for NSE demand data",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.graph.price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "326"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "type",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.graphData[*].type",
+      "semantic": "Price point for graph data",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "demand.graph.percentage",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings",
+          "suggested_mitigation": "Parse as float"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "0.388"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "value",
+      "nested_table": false,
+      "notes": "Values sum to 100? Not exactly in sample",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.graphData[*].value",
+      "semantic": "Percentage of total bids at this price point",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "demand.graph.logic_url",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "graphLogic",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.graphLogic",
+      "semantic": "URL to PDF explaining graph logic",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.graph.heading1",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "Q-Line Biotech Limited- Graphical display of bids received *"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "heading1",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.heading1",
+      "semantic": "Heading for demand graph section",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.graph.heading2",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "(* indicates bids position and not necessarily the subscription to the issue)"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "heading2",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.heading2",
+      "semantic": "Subheading for demand graph section",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.graph.y_axis_label",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "Cumulative Demand(no. of shares in lakhs)"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfShare",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.noOfShare",
+      "semantic": "Label for y-axis of graph (cumulative demand)",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.overall_times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings",
+          "suggested_mitigation": "Parse as float"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "7.57"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfTimesIssueSubscribed",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.noOfTimesIssueSubscribed",
+      "semantic": "Overall subscription ratio (times subscribed)",
+      "type": "string",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "demand.graph.note",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        " Cumulative (NSE) bid quantity at each price point includes the quantity (NSE) bidded at that relevant price point and all valid bids above that price point."
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "note",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.note",
+      "semantic": "Note explaining cumulative bid quantity calculation",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.graph.plot_data",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings with Indian comma format",
+          "suggested_mitigation": "Strip commas and parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        {
+          "326": "3,38,51,600"
+        }
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "plotData",
+      "nested_table": false,
+      "notes": "Keys are price strings, values are quantity strings",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.plotData",
+      "semantic": "Map of price to cumulative quantity (in lakhs) for graph plotting",
+      "type": "object",
+      "units": "shares (lakhs)"
+    },
+    {
+      "canonical_field_hint": "demand.graph.timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Timestamp embedded in string with 'As on' prefix and timezone",
+          "suggested_mitigation": "Parse with regex, extract date and time, assume IST"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "As on 22-May-2026 14:56:01 IST"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "timestamp",
+      "nested_table": false,
+      "notes": "Format: 'As on dd-MMM-yyyy HH:mm:ss IST'",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.timestamp",
+      "semantic": "Timestamp for demand graph data",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.graph.total_bid_at_cutoff",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value may be '-' indicating no data",
+          "suggested_mitigation": "Treat '-' as null"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totalBidAtCutOff",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.totalBidAtCutOff",
+      "semantic": "Total bids at cut-off price",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "demand.graph.total_bids_received",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings without commas",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "33851600"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totalBidRecieved",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.totalBidRecieved",
+      "semantic": "Total number of bids received (NSE)",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "issue.total_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "4472000"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totalIssueSize",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraph.totalIssueSize",
+      "semantic": "Total issue size in number of shares",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "demand.combined.graph_data",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        []
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "graphData",
+      "nested_table": false,
+      "notes": "Empty array in sample",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraphALL.graphData",
+      "semantic": "Graph data for combined NSE+BSE demand (empty in sample)",
+      "type": "array",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.combined.heading1",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "Q-Line Biotech Limited- Graphical display of bids received *"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "heading1",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraphALL.heading1",
+      "semantic": "Heading for combined demand graph",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.combined.heading2",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "(* indicates bids position and not necessarily the subscription to the issue)"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "heading2",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraphALL.heading2",
+      "semantic": "Subheading for combined demand graph",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.combined.y_axis_label",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "Cumulative Demand(no. of shares in lakhs)"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfShare",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraphALL.noOfShare",
+      "semantic": "Label for y-axis of combined graph",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.combined.note",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        " Cumulative bid quantity at each price point includes the quantity bid at that relevant price point and all valid bids at the next higher price point as specified. The graph is updated every hour."
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "note",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraphALL.note",
+      "semantic": "Note explaining combined cumulative bid quantity",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.combined.plot_data",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be '-' indicating no data",
+          "suggested_mitigation": "Treat '-' as null"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        {
+          "-": "-"
+        }
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "plotData",
+      "nested_table": false,
+      "notes": "Placeholder data in sample",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraphALL.plotData",
+      "semantic": "Map of price to cumulative quantity for combined graph",
+      "type": "object",
+      "units": "shares (lakhs)"
+    },
+    {
+      "canonical_field_hint": "issue.total_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "4472000"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totalIssueSize",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.demandGraphALL.totalIssueSize",
+      "semantic": "Total issue size for combined graph",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "issue.info.title",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "Symbol",
+        "Issue Period",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "title",
+      "nested_table": false,
+      "notes": "First item has null title and contains a disclaimer",
+      "null_meaning": "No title for the first item (disclaimer text)",
+      "nullable": true,
+      "path": "$.issueInfo.dataList[*].title",
+      "semantic": "Title/label for issue information field",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.info.value",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Some values contain HTML anchor tags",
+          "suggested_mitigation": "Strip HTML tags or extract href"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "QLINE",
+        "21-May-2026 to 25-May-2026",
+        "<a href=...>e-Forms</a>"
+      ],
+      "html_content": true,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "value",
+      "nested_table": false,
+      "notes": "May contain HTML, URLs, or plain text",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.issueInfo.dataList[*].value",
+      "semantic": "Value for the issue information field",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.info.heading",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "Q-Line Biotech Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "heading",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.issueInfo.heading",
+      "semantic": "Heading for issue information section",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.symbol",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "QLINE"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.issueInfo.symbol",
+      "semantic": "Ticker symbol for the issue",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "meta_info",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        {}
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "metaInfo",
+      "nested_table": false,
+      "notes": "Empty object in sample",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.metaInfo",
+      "semantic": "Metadata object (empty in sample)",
+      "type": "object",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:17:02+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "Issue forms page for e-forms",
+      "follow_up_endpoint_pattern": "https://ipoforms.nseindia.com/issueforms/html/index.jsp",
+      "key_field": "issueInfo.dataList[title='e-form link'].value"
+    },
+    {
+      "description": "Red Herring Prospectus ZIP file",
+      "follow_up_endpoint_pattern": "https://nsearchives.nseindia.com/content/ipo/RHP_<SYMBOL>.zip",
+      "key_field": "issueInfo.dataList[title='Red Herring Prospectus'].value"
+    },
+    {
+      "description": "Ratios / Basis of Issue Price ZIP file",
+      "follow_up_endpoint_pattern": "https://nsearchives.nseindia.com/content/ipo/RATIOS_<SYMBOL>.zip",
+      "key_field": "issueInfo.dataList[title='Ratios / Basis of Issue Price'].value"
+    },
+    {
+      "description": "Sample Application Forms ZIP file",
+      "follow_up_endpoint_pattern": "https://nsearchives.nseindia.com/content/ipo/FORMS_<SYMBOL>.zip",
+      "key_field": "issueInfo.dataList[title='Sample Application Forms'].value"
+    },
+    {
+      "description": "Security Parameters ZIP file",
+      "follow_up_endpoint_pattern": "https://nsearchives.nseindia.com/content/ipo/PREANCHOR_PARAMETERS_<SYMBOL>.zip",
+      "key_field": "issueInfo.dataList[title='Security Parameters '].value"
+    },
+    {
+      "description": "Security Parameters (Post Anchor) ZIP file",
+      "follow_up_endpoint_pattern": "https://nsearchives.nseindia.com/content/ipo/POSTANCHOR_PARAMETERS_<SYMBOL>.zip",
+      "key_field": "issueInfo.dataList[title='Security Parameters (Post Anchor)'].value"
+    },
+    {
+      "description": "Anchor Allocation Report ZIP file",
+      "follow_up_endpoint_pattern": "https://nsearchives.nseindia.com/content/ipo/ANCHOR_<SYMBOL>.zip",
+      "key_field": "issueInfo.dataList[title='Anchor Allocation Report'].value"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 5,
+  "row_count_observed": null,
+  "row_shape": "dict",
+  "schema_url_self": "docs/schema/raw_catalog/nse/issue_detail_<id>.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "issue_detail_qline_sme",
+      "snapshot_at": "2026-05-22T09:28:39+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/ipo-detail?symbol=QLINE&series=SME"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 0.5,
+  "summary": "This endpoint provides detailed subscription and issue information for a specific IPO on NSE, including bid details by category, demand data at various price points, graphical demand data, and issue metadata such as price range, lot size, and key dates.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Some issueInfo values contain HTML anchor tags; need to strip or extract URLs.",
+    "activeCat.updateTime contains literal 'null' string when not available.",
+    "demandDataBSE fields are all '-' indicating no BSE data; may be placeholder.",
+    "demandGraphALL.graphData is empty array; combined graph data may not be available.",
+    "metaInfo is empty object; may be placeholder for future use.",
+    "No pagination or dropdown dependencies observed."
+  ]
+}

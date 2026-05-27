@@ -1,0 +1,341 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": true,
+    "endpoint_concrete": "ipo_current_issue",
+    "estimated_cost_usd": 0.0034145,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 1740,
+    "tokens_out": 2677
+  },
+  "currency": "INR",
+  "data_kind": "live_subscription",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0414",
+  "endpoint": "ipo_current_issue",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company names may contain non-ASCII characters or special characters.",
+          "suggested_mitigation": "Normalize Unicode, trim whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Bio Medica Laboratories Limited",
+        "Q-Line Biotech Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "companyName",
+      "nested_table": false,
+      "notes": "May include suffixes like 'Limited', 'Private Limited', etc.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].companyName",
+      "semantic": "Full legal name of the company issuing the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "listing.bse_flag",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value is a string '1' but could be interpreted as boolean or integer.",
+          "suggested_mitigation": "Coerce to boolean: '1' -> true, else false."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "isBse",
+      "nested_table": false,
+      "notes": "Only '1' observed; may be absent or '0' for non-BSE issues.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].isBse",
+      "semantic": "Flag indicating whether the IPO is also listed on BSE (1 = yes, 0 or empty = no).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.end_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy (e.g., 25-May-2026). Month abbreviations may vary (e.g., 'May' vs 'MAY').",
+          "suggested_mitigation": "Parse using a locale-aware date parser with pattern 'dd-MMM-yyyy'."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "25-May-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueEndDate",
+      "nested_table": false,
+      "notes": "May be revised; check status field for changes.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issueEndDate",
+      "semantic": "Closing date of the IPO subscription period.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.start_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Same date format as issueEndDate.",
+          "suggested_mitigation": "Parse using same pattern."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "21-May-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueStartDate",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issueStartDate",
+      "semantic": "Opening date of the IPO subscription period.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.shares_offered",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value is a string representing an integer; may contain commas in some endpoints.",
+          "suggested_mitigation": "Parse as integer after removing any commas."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "3772000",
+        "4472000"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfSharesOffered",
+      "nested_table": false,
+      "notes": "May include both fresh issue and OFS shares.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].noOfSharesOffered",
+      "semantic": "Total number of shares offered in the IPO (including any OFS portion).",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.times_subscribed",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value is a string representing a decimal number; may have leading zeros or trailing spaces.",
+          "suggested_mitigation": "Parse as float after trimming."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "0.87",
+        "7.57"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfTime",
+      "nested_table": false,
+      "notes": "Calculated as noOfsharesBid / noOfSharesOffered.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].noOfTime",
+      "semantic": "Subscription ratio: number of times the issue has been subscribed (total bids / shares offered).",
+      "type": "number",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "subscription.total_bids_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representing integer; may include commas in other endpoints.",
+          "suggested_mitigation": "Parse as integer after removing commas."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "3263000",
+        "33851600"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfsharesBid",
+      "nested_table": false,
+      "notes": "Aggregate across all investor categories.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].noOfsharesBid",
+      "semantic": "Total number of shares bid across all categories (QIB, NII, Retail, etc.).",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "listing.series",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Possible new series values may be introduced (e.g., 'EQ', 'SM', 'ST').",
+          "suggested_mitigation": "Maintain a whitelist and alert on unknown values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "SME"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "series",
+      "nested_table": false,
+      "notes": "SME indicates SME platform; mainboard issues may have 'EQ'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].series",
+      "semantic": "Market segment or series of the IPO (e.g., 'SME' for SME platform, 'EQ' for mainboard).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may include 'Active', 'Closed', 'Withdrawn', 'Listed', etc. Inconsistent casing possible.",
+          "suggested_mitigation": "Normalize to lowercase and map to enum."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Active"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "status",
+      "nested_table": false,
+      "notes": "Only 'Active' observed; other statuses may appear for past issues.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].status",
+      "semantic": "Current status of the IPO issue (e.g., 'Active' for ongoing, 'Closed' for ended).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "security.symbol",
+      "collision_risk_with": [
+        "nse.ipo_listed_companies.symbol",
+        "nse.equity_master.symbol"
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbols may be reused after a company delists or changes name; also may have minor variations (e.g., hyphens).",
+          "suggested_mitigation": "Use symbol in combination with series or ISIN for uniqueness."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "BMLL",
+        "QLINE"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Primary key for joining with other NSE endpoints.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].symbol",
+      "semantic": "Trading symbol of the company on NSE (unique identifier for the scrip).",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:14:03+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The symbol field can be used to fetch detailed IPO information from the IPO detail endpoint.",
+      "follow_up_endpoint_pattern": "https://www.nseindia.com/api/ipo-detail?symbol={symbol}",
+      "key_field": "symbol"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 5,
+  "row_count_observed": 2,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/ipo_current_issue.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_current_issue",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/ipo-current-issue"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 1,
+  "summary": "Provides a list of currently active IPO issues on NSE, including company name, symbol, series, subscription details (shares offered, shares bid, times subscribed), issue dates, and listing status. This endpoint returns live subscription data for ongoing IPOs.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Only 2 rows observed; schema may have additional fields for other IPOs (e.g., price band, lot size, category-wise subscription).",
+    "The endpoint may return more fields when IPOs have different characteristics (e.g., mainboard vs SME).",
+    "No pagination observed; but if many IPOs are active, the API might paginate or truncate."
+  ]
+}

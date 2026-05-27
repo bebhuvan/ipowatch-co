@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Page not found"
+  description="The IPO Watch page you requested could not be found."
+>
+  <main class="page py-16 md:py-24">
+    <section class="max-w-2xl">
+      <p class="site-kicker mb-4">404</p>
+      <h1 class="serif text-4xl md:text-6xl leading-tight text-[color:var(--color-ink)]">
+        Page not found
+      </h1>
+      <p class="mt-5 text-[color:var(--color-muted)] text-lg leading-8">
+        This page is not in the current IPO Watch public dataset.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a class="inline-flex items-center border border-[color:var(--color-ink)] bg-[color:var(--color-ink)] px-4 py-2 text-sm font-semibold text-white" href="/">Home</a>
+        <a class="inline-flex items-center border border-[color:var(--color-line)] px-4 py-2 text-sm font-semibold text-[color:var(--color-ink)]" href="/live/">Open issues</a>
+        <a class="inline-flex items-center border border-[color:var(--color-line)] px-4 py-2 text-sm font-semibold text-[color:var(--color-ink)]" href="/upcoming/">Upcoming</a>
+      </div>
+    </section>
+  </main>
+</Base>

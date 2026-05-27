@@ -1,0 +1,332 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { SECTION_ORDER, getSection, type AcademySection } from '../../../lib/academy';
+import { GLOSSARY } from '../../../lib/glossary';
+
+export async function getStaticPaths() {
+  return SECTION_ORDER.map((s) => ({ params: { section: s.slug } }));
+}
+
+const { section } = Astro.params;
+const meta = getSection(section as AcademySection);
+const isGlossary = meta.slug === 'glossary';
+
+const allEntries = await getCollection(
+  'academy',
+  (entry) => entry.data.section === meta.slug && entry.data.status !== 'draft',
+);
+allEntries.sort((a, b) => (a.data.published_at < b.data.published_at ? 1 : -1));
+
+const glossary = isGlossary
+  ? [...GLOSSARY].sort((a, b) => a.term.localeCompare(b.term))
+  : [];
+---
+
+<Base title={`${meta.label} — Academy`} description={meta.blurb}>
+  <article class="ax-section-page page-tight">
+    <nav class="ax-crumbs">
+      <a href="/academy/">Academy</a>
+      <span aria-hidden="true">/</span>
+      <span>{meta.label}</span>
+    </nav>
+
+    <header class="ax-section-masthead">
+      <div class="ax-ordinal-large serif">{meta.ordinal}</div>
+      <div>
+        <div class="ax-section-kicker">Academy · Section {meta.ordinal}</div>
+        <h1 class="ax-section-title serif">{meta.label}</h1>
+        <p class="ax-section-blurb serif">{meta.blurb}</p>
+      </div>
+    </header>
+
+    {isGlossary ? (
+      <dl class="ax-glossary">
+        {glossary.map((t) => (
+          <div class="ax-glossary-row" id={t.term.toLowerCase().replace(/[^a-z0-9]+/g, '-')}>
+            <dt>
+              <span class="ax-glossary-term serif">{t.term}</span>
+              {t.short && <span class="ax-glossary-short">{t.short}</span>}
+            </dt>
+            <dd>
+              <p class="serif">{t.def}</p>
+              {t.see && (
+                <a class="ax-glossary-see" href={t.see.href}>{t.see.label} →</a>
+              )}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    ) : allEntries.length === 0 ? (
+      <p class="ax-section-empty serif">
+        In preparation. Check back, or browse the {' '}
+        <a href="/academy/">other sections</a> of the Academy in the meantime.
+      </p>
+    ) : (
+      <ol class="ax-section-article-list">
+        {allEntries.map((entry) => (
+          <li>
+            <a class="ax-section-article-link" href={`/academy/${entry.data.section}/${entry.data.slug}/`}>
+              <span class="ax-article-kicker">{entry.data.kicker}</span>
+              <span class="ax-article-title serif">{entry.data.title}</span>
+              <span class="ax-article-dek serif">{entry.data.dek}</span>
+              <span class="ax-article-meta">
+                {entry.data.reading_time_minutes} min · published{' '}
+                {new Date(entry.data.published_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    )}
+
+    <nav class="ax-section-jump">
+      <span class="ax-jump-label">Other sections</span>
+      <ul>
+        {SECTION_ORDER.filter((s) => s.slug !== meta.slug).map((s) => (
+          <li>
+            <a href={`/academy/${s.slug}/`}>
+              <span class="ax-jump-ord">{s.ordinal}</span>
+              <span class="serif">{s.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </article>
+</Base>
+
+<style>
+  .ax-section-page {
+    padding-top: 56px;
+    padding-bottom: 96px;
+    max-width: 880px;
+  }
+
+  /* Glossary */
+  .ax-glossary { margin: 0 0 64px; }
+  .ax-glossary-row {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 24px;
+    padding: 22px 0;
+    border-top: 1px solid var(--color-rule);
+  }
+  .ax-glossary-row:last-child { border-bottom: 1px solid var(--color-rule); }
+  .ax-glossary-row dt { margin: 0; }
+  .ax-glossary-term {
+    display: block;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+  .ax-glossary-short {
+    display: block;
+    margin-top: 4px;
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    color: var(--color-mute);
+    font-style: normal;
+  }
+  .ax-glossary-row dd { margin: 0; }
+  .ax-glossary-row dd p {
+    margin: 0;
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+  }
+  .ax-glossary-see {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    color: var(--color-accent-deep);
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 2px;
+  }
+  @media (max-width: 640px) {
+    .ax-glossary-row { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  .ax-crumbs {
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    margin-bottom: 36px;
+  }
+  .ax-crumbs a:hover { color: var(--color-ink); }
+  .ax-crumbs span { margin: 0 8px; }
+  .ax-crumbs a + span + span { margin-left: 0; }
+
+  .ax-section-masthead {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 28px;
+    align-items: end;
+    border-bottom: 2px solid var(--color-ink);
+    padding-bottom: 28px;
+    margin-bottom: 40px;
+  }
+  .ax-ordinal-large {
+    font-style: italic;
+    font-weight: 200;
+    font-size: 96px;
+    line-height: 0.85;
+    color: var(--color-accent-deep);
+    text-align: right;
+  }
+  .ax-section-kicker {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    margin-bottom: 10px;
+  }
+  .ax-section-title {
+    font-size: clamp(40px, 5.2vw, 60px);
+    line-height: 1;
+    letter-spacing: -0.018em;
+    font-weight: 500;
+    margin: 0 0 14px;
+  }
+  .ax-section-blurb {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .ax-section-empty {
+    font-style: italic;
+    font-size: 17px;
+    color: var(--color-mute);
+    padding: 32px 0;
+    text-align: center;
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .ax-section-empty a {
+    color: var(--color-accent-deep);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .ax-section-article-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 80px;
+  }
+  .ax-section-article-list li {
+    border-top: 1px solid var(--color-rule);
+    padding: 22px 0;
+  }
+  .ax-section-article-list li:last-child {
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .ax-section-article-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "kicker meta"
+      "title title"
+      "dek dek";
+    gap: 6px 16px;
+    align-items: baseline;
+  }
+  .ax-section-article-link:hover .ax-article-title { color: var(--color-accent-deep); }
+  .ax-article-kicker {
+    grid-area: kicker;
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+  }
+  .ax-article-title {
+    grid-area: title;
+    font-size: 24px;
+    line-height: 1.18;
+    letter-spacing: -0.012em;
+    font-weight: 500;
+    color: var(--color-ink);
+    transition: color .15s ease;
+  }
+  .ax-article-dek {
+    grid-area: dek;
+    font-size: 16px;
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--color-ink-soft);
+    margin-top: 4px;
+    max-width: 60ch;
+  }
+  .ax-article-meta {
+    grid-area: meta;
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    color: var(--color-mute);
+    white-space: nowrap;
+  }
+
+  /* Jump nav at bottom */
+  .ax-section-jump {
+    border-top: 1px solid var(--color-rule);
+    padding-top: 24px;
+  }
+  .ax-jump-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    margin-bottom: 16px;
+  }
+  .ax-section-jump ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px 24px;
+  }
+  .ax-section-jump a {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .ax-section-jump a:hover .serif { color: var(--color-accent-deep); }
+  .ax-jump-ord {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-accent-deep);
+    font-size: 18px;
+    width: 24px;
+  }
+  .ax-section-jump .serif {
+    font-size: 17px;
+    color: var(--color-ink);
+    transition: color .15s ease;
+  }
+
+  @media (max-width: 640px) {
+    .ax-section-masthead {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .ax-ordinal-large {
+      text-align: left;
+      font-size: 64px;
+    }
+  }
+</style>

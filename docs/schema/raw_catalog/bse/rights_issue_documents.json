@@ -1,0 +1,371 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": true,
+    "cached": false,
+    "endpoint_concrete": "rights_issue_documents",
+    "estimated_cost_usd": 0.010655830000000002,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 27859,
+    "tokens_out": 2849
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0409",
+  "endpoint": "rights_issue_documents",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "bse_company_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused or reassigned over time.",
+          "suggested_mitigation": "Treat as internal BSE ID, not a permanent security identifier."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "8255",
+        "14044"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "COMPANY_CODE",
+      "nested_table": false,
+      "notes": "Appears to be a numeric string; may be used as a foreign key.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].COMPANY_CODE",
+      "semantic": "Internal BSE company identifier code.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company names may contain special characters or suffixes like '-$'",
+          "suggested_mitigation": "Strip non-ASCII characters and normalize suffixes."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "GACM Technologies Ltd",
+        "Krishival Foods Ltd"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Company_Name",
+      "nested_table": false,
+      "notes": "Some names end with '-$' which may indicate a specific status.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Company_Name",
+      "semantic": "Full legal name of the company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "in_principle_status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may be limited to 'New' and 'Revised' but could expand.",
+          "suggested_mitigation": "Enumerate known values and alert on unknown."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "New",
+        "Revised"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "InPrincipleStatus",
+      "nested_table": false,
+      "notes": "Indicates whether the in-principle document is new or revised.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].InPrincipleStatus",
+      "semantic": "Status of the in-principle approval for the rights issue.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "in_principle_datetime",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is 'M/d/yyyy h:mm:ss tt' with 12-hour clock and AM/PM.",
+          "suggested_mitigation": "Parse using format 'M/d/yyyy h:mm:ss tt' and convert to ISO 8601."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1/18/2025 12:00:00 AM",
+        "11/26/2025 12:00:00 AM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "InPrinciple_date",
+      "nested_table": false,
+      "notes": "Time component is always midnight, suggesting date-only significance.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].InPrinciple_date",
+      "semantic": "Date and time when the in-principle approval was granted or filed.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "in_principle_document_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Path structure may change if BSE reorganizes file storage.",
+          "suggested_mitigation": "Treat as opaque URL; do not parse path components."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/RIIPSUploadDocument/RIIPS_570005_1812025172238.xml"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "In_Principle_Stage",
+      "nested_table": false,
+      "notes": "Relative path; prepend base URL to access document.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].In_Principle_Stage",
+      "semantic": "URL path to the XBRL document for the in-principle stage.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "listing_status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may be limited to 'New' and 'Revised' but could expand.",
+          "suggested_mitigation": "Enumerate known values and alert on unknown."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "New",
+        "Revised"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ListingStatus",
+      "nested_table": false,
+      "notes": "Indicates whether the listing document is new or revised.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ListingStatus",
+      "semantic": "Status of the listing stage for the rights issue.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "listing_document_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Path structure may change if BSE reorganizes file storage.",
+          "suggested_mitigation": "Treat as opaque URL; do not parse path components."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/RIListingUploadDocument/RI_ListingStage570005_2682024112436.xml",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Listing_Stage",
+      "nested_table": false,
+      "notes": "Empty string when not available; relative path.",
+      "null_meaning": "Empty string indicates no listing document has been uploaded yet.",
+      "nullable": true,
+      "path": "$[*].Listing_Stage",
+      "semantic": "URL path to the XBRL document for the listing stage.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "listing_stage_datetime",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is 'M/d/yyyy h:mm:ss tt' with 12-hour clock and AM/PM.",
+          "suggested_mitigation": "Parse using format 'M/d/yyyy h:mm:ss tt' and convert to ISO 8601."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "8/26/2024 12:00:00 AM",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Listing_stage_date",
+      "nested_table": false,
+      "notes": "Empty string when not available; time component is always midnight.",
+      "null_meaning": "Empty string indicates no listing stage date available.",
+      "nullable": true,
+      "path": "$[*].Listing_stage_date",
+      "semantic": "Date and time when the listing stage document was filed or approved.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "record_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused or reassigned over time.",
+          "suggested_mitigation": "Treat as internal BSE record ID, not a permanent security identifier."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1450",
+        "1584"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "Recordid",
+      "nested_table": false,
+      "notes": "Numeric string; may be used as a foreign key.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Recordid",
+      "semantic": "Internal record identifier for the rights issue entry.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "record_id_secondary",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused or reassigned over time.",
+          "suggested_mitigation": "Treat as internal BSE record ID, not a permanent security identifier."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1058",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "recordid1",
+      "nested_table": false,
+      "notes": "Empty string when not available; purpose unclear.",
+      "null_meaning": "Empty string indicates no secondary record ID.",
+      "nullable": true,
+      "path": "$[*].recordid1",
+      "semantic": "Secondary internal record identifier, possibly for a related entity.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "bse_scrip_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Scrip codes are stable but may be reused after delisting.",
+          "suggested_mitigation": "Treat as primary security identifier for BSE."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "570005",
+        "544416"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "scripcode",
+      "nested_table": false,
+      "notes": "Numeric string; used to join with other BSE endpoints.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].scripcode",
+      "semantic": "BSE scrip code (security identifier) for the company.",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:09:49+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "XBRL documents for in-principle and listing stages are referenced by relative paths; these documents may contain detailed rights issue terms.",
+      "follow_up_endpoint_pattern": "https://api.bseindia.com/{path}",
+      "key_field": "In_Principle_Stage, Listing_Stage"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 200,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/rights_issue_documents.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "rights_issue_documents",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/Pubissues_FurtherIssuesummary_RI_isd_ng/w"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a list of companies that have filed rights issue documents with BSE, including in-principle approval and listing stage statuses, along with links to the underlying XBRL documents.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Body was truncated; only first 200 rows observed. Full dataset may contain more records.",
+    "Listing_Stage and Listing_stage_date are empty strings when not available, not null.",
+    "Date fields use US format with 12-hour clock; ensure correct parsing.",
+    "Company names may contain special characters like '-$' which could indicate status."
+  ]
+}

@@ -1,0 +1,999 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": true,
+    "cached": false,
+    "endpoint_concrete": "offer_documents_sme",
+    "estimated_cost_usd": 0.0163089,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 28100,
+    "tokens_out": 7929
+  },
+  "currency": "INR",
+  "data_kind": "document_index",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0420",
+  "endpoint": "offer_documents_sme",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "documents.advertisement.label",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Field may be renamed or removed in future schema changes.",
+          "suggested_mitigation": "Map to a generic document type field."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Advertisement",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "adv",
+      "nested_table": false,
+      "notes": "Often empty string when no advertisement filed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].adv",
+      "semantic": "Label for advertisement document, typically 'Advertisement' or empty string.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.advertisement.url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "URL may contain non-ASCII characters or spaces; PDF may be missing or broken.",
+          "suggested_mitigation": "Validate URL format and check HTTP response status."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://nsearchives.nseindia.com/emerge/corporates/content/ADV_INE319Z01013_SUPREMEENG.pdf",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "advAttach",
+      "nested_table": false,
+      "notes": "Empty string when no advertisement.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].advAttach",
+      "semantic": "URL to the advertisement PDF document.",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.advertisement.date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy; may be empty string.",
+          "suggested_mitigation": "Parse using dd-MMM-yyyy; treat empty as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "05-Sep-2018",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "advDate",
+      "nested_table": false,
+      "notes": "Empty string when no advertisement.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].advDate",
+      "semantic": "Date when the advertisement was filed.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company name may have variations (e.g., 'Ltd.' vs 'Limited') across records.",
+          "suggested_mitigation": "Normalize to a standard form or use ISIN as primary identifier."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Five Core Electronics Limited",
+        "Macpower CNC Machines Ltd."
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company",
+      "nested_table": false,
+      "notes": "Used for display; not a stable identifier.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].company",
+      "semantic": "Full legal name of the company filing the offer document.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.draft_red_herring_prospectus.label",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Label may change in future.",
+          "suggested_mitigation": "Map to a generic document type field."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Draft Prospectus/Draft Red Herring Prospectus",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "drhp",
+      "nested_table": false,
+      "notes": "Often empty string when no DRHP filed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].drhp",
+      "semantic": "Label for draft red herring prospectus document, typically 'Draft Prospectus/Draft Red Herring Prospectus' or empty.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.draft_red_herring_prospectus.url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "URL may contain non-ASCII characters; PDF may be missing or broken.",
+          "suggested_mitigation": "Validate URL format and check HTTP response status."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://nsearchives.nseindia.com/emerge/corporates/content/5Core_DP.pdf",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "drhpAttach",
+      "nested_table": false,
+      "notes": "Empty string when no DRHP.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].drhpAttach",
+      "semantic": "URL to the draft red herring prospectus PDF document.",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.draft_red_herring_prospectus.file_size_bytes",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Always null; may be populated in future.",
+          "suggested_mitigation": "Treat as optional integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "drhpAttachFileSize",
+      "nested_table": false,
+      "notes": "Currently always null.",
+      "null_meaning": "File size not provided.",
+      "nullable": true,
+      "path": "$[*].drhpAttachFileSize",
+      "semantic": "File size of the DRHP PDF in bytes. Always null in observed data.",
+      "type": "null",
+      "units": "bytes"
+    },
+    {
+      "canonical_field_hint": "documents.draft_red_herring_prospectus.alternate_link",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Field may be populated in future; meaning unclear.",
+          "suggested_mitigation": "Treat as optional URL."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "drhpAvLink",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "No alternate link available.",
+      "nullable": true,
+      "path": "$[*].drhpAvLink",
+      "semantic": "Alternate link for DRHP, possibly for audio/video. Always null in observed data.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.draft_red_herring_prospectus.date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy; may be empty string.",
+          "suggested_mitigation": "Parse using dd-MMM-yyyy; treat empty as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "28-Feb-2018",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "drhpDate",
+      "nested_table": false,
+      "notes": "Empty string when no DRHP.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].drhpDate",
+      "semantic": "Date when the draft red herring prospectus was filed.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.draft_red_herring_prospectus.status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "May be populated in future with values like 'Approved', 'Pending'.",
+          "suggested_mitigation": "Treat as optional string."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "drhpStatus",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "Status not provided.",
+      "nullable": true,
+      "path": "$[*].drhpStatus",
+      "semantic": "Status of the DRHP filing. Always null in observed data.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.draft_red_herring_prospectus.submission_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "May be populated in future.",
+          "suggested_mitigation": "Treat as optional date."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "drhpSubDate",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "Submission date not provided.",
+      "nullable": true,
+      "path": "$[*].drhpSubDate",
+      "semantic": "Submission date of DRHP. Always null in observed data.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.final_prospectus.label",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Label may change.",
+          "suggested_mitigation": "Map to generic document type."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Final Prospectus",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "fp",
+      "nested_table": false,
+      "notes": "Empty string when no final prospectus.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].fp",
+      "semantic": "Label for final prospectus document, typically 'Final Prospectus' or empty.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.final_prospectus.url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "URL may contain non-ASCII characters; PDF may be missing.",
+          "suggested_mitigation": "Validate URL and check HTTP status."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://nsearchives.nseindia.com/emerge/corporates/content/FiveCore_PROSP.pdf",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "fpAttach",
+      "nested_table": false,
+      "notes": "Empty string when no final prospectus.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].fpAttach",
+      "semantic": "URL to the final prospectus PDF document.",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.final_prospectus.file_size_bytes",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Always null; may be populated in future.",
+          "suggested_mitigation": "Treat as optional integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "fpAttachFileSize",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "File size not provided.",
+      "nullable": true,
+      "path": "$[*].fpAttachFileSize",
+      "semantic": "File size of the final prospectus PDF in bytes. Always null in observed data.",
+      "type": "null",
+      "units": "bytes"
+    },
+    {
+      "canonical_field_hint": "documents.final_prospectus.date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy; may be empty string.",
+          "suggested_mitigation": "Parse using dd-MMM-yyyy; treat empty as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "19-Apr-2018",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "fpDate",
+      "nested_table": false,
+      "notes": "Empty string when no final prospectus.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].fpDate",
+      "semantic": "Date when the final prospectus was filed.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.initial_advertisement.alternate_link",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "May be populated in future.",
+          "suggested_mitigation": "Treat as optional URL."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "iapAvLink",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "No alternate link.",
+      "nullable": true,
+      "path": "$[*].iapAvLink",
+      "semantic": "Alternate link for IAP (Initial Advertisement?); always null.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.initial_advertisement.submission_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "May be populated in future.",
+          "suggested_mitigation": "Treat as optional date."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "iapSubDate",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "Not provided.",
+      "nullable": true,
+      "path": "$[*].iapSubDate",
+      "semantic": "Submission date for IAP; always null.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.abridged_prospectus_xbrl.url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "May be a URL in future; currently placeholder.",
+          "suggested_mitigation": "Treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ipo_abridged_prospectus_xbrl_link",
+      "nested_table": false,
+      "notes": "Always '-' in observed data.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ipo_abridged_prospectus_xbrl_link",
+      "semantic": "Link to XBRL file for abridged prospectus. Often '-' indicating not available.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.abridged_prospectus_xbrl.file_size_bytes",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Always null.",
+          "suggested_mitigation": "Treat as optional integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ipo_abridged_prospectus_xbrl_link_file_size",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "Not provided.",
+      "nullable": true,
+      "path": "$[*].ipo_abridged_prospectus_xbrl_link_file_size",
+      "semantic": "File size of the XBRL abridged prospectus. Always null.",
+      "type": "null",
+      "units": "bytes"
+    },
+    {
+      "canonical_field_hint": "documents.in_principle_listing_xbrl.url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "May be a URL in future.",
+          "suggested_mitigation": "Treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ipo_inlisting_xbrl_link",
+      "nested_table": false,
+      "notes": "Always '-'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ipo_inlisting_xbrl_link",
+      "semantic": "Link to XBRL file for in-principle listing approval. Often '-'.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.in_principle_listing_xbrl.file_size_bytes",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Always null.",
+          "suggested_mitigation": "Treat as optional integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ipo_inlisting_xbrl_link_file_size",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "Not provided.",
+      "nullable": true,
+      "path": "$[*].ipo_inlisting_xbrl_link_file_size",
+      "semantic": "File size of the in-listing XBRL. Always null.",
+      "type": "null",
+      "units": "bytes"
+    },
+    {
+      "canonical_field_hint": "documents.in_principle_approval_xbrl.url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "May be a URL in future.",
+          "suggested_mitigation": "Treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ipo_inprincipal_xbrl_link",
+      "nested_table": false,
+      "notes": "Always '-'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ipo_inprincipal_xbrl_link",
+      "semantic": "Link to XBRL file for in-principle approval. Often '-'.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.in_principle_approval_xbrl.file_size_bytes",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Always null.",
+          "suggested_mitigation": "Treat as optional integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ipo_inprincipal_xbrl_link_file_size",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "Not provided.",
+      "nullable": true,
+      "path": "$[*].ipo_inprincipal_xbrl_link_file_size",
+      "semantic": "File size of the in-principal XBRL. Always null.",
+      "type": "null",
+      "units": "bytes"
+    },
+    {
+      "canonical_field_hint": "security.isin",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "ISIN may be null for companies that haven't listed yet; ensure uniqueness.",
+          "suggested_mitigation": "Use ISIN as primary key when available; fall back to company name or symbol."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "INE155Z01011",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "isin",
+      "nested_table": false,
+      "notes": "Stable identifier once assigned.",
+      "null_meaning": "ISIN not yet assigned or not available.",
+      "nullable": true,
+      "path": "$[*].isin",
+      "semantic": "International Securities Identification Number for the company's equity shares.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.close_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Placeholder '-' indicates not available; may be populated in future.",
+          "suggested_mitigation": "Treat '-' as null; parse date if present."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issue_close_date",
+      "nested_table": false,
+      "notes": "Always '-' in this dataset.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issue_close_date",
+      "semantic": "Date when the IPO issue closes. Always '-' in observed data.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.open_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Placeholder '-' indicates not available.",
+          "suggested_mitigation": "Treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issue_open_date",
+      "nested_table": false,
+      "notes": "Always '-'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issue_open_date",
+      "semantic": "Date when the IPO issue opens. Always '-' in observed data.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.pan",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.LEG",
+          "description": "PAN is PII; should be masked or excluded from downstream schemas unless required.",
+          "suggested_mitigation": "Redact or hash if stored; ensure compliance with data protection regulations."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": true,
+      "name": "pan_no",
+      "nested_table": false,
+      "notes": "Always null; may be populated in future.",
+      "null_meaning": "PAN not provided.",
+      "nullable": true,
+      "path": "$[*].pan_no",
+      "semantic": "Permanent Account Number of the company. Always null in observed data.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.red_herring_prospectus.label",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Label may change.",
+          "suggested_mitigation": "Map to generic document type."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Red Herring Prospectus",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "rhp",
+      "nested_table": false,
+      "notes": "Empty string when no RHP.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].rhp",
+      "semantic": "Label for red herring prospectus document, typically 'Red Herring Prospectus' or empty.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.red_herring_prospectus.url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "URL may contain non-ASCII characters; PDF may be missing.",
+          "suggested_mitigation": "Validate URL and check HTTP status."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://nsearchives.nseindia.com/emerge/corporates/content/Macpower_RHP.pdf",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "rhpAttach",
+      "nested_table": false,
+      "notes": "Empty string when no RHP.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].rhpAttach",
+      "semantic": "URL to the red herring prospectus PDF document.",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.red_herring_prospectus.file_size_bytes",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Always null.",
+          "suggested_mitigation": "Treat as optional integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "rhpAttachFileSize",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "Not provided.",
+      "nullable": true,
+      "path": "$[*].rhpAttachFileSize",
+      "semantic": "File size of the RHP PDF in bytes. Always null.",
+      "type": "null",
+      "units": "bytes"
+    },
+    {
+      "canonical_field_hint": "documents.red_herring_prospectus.alternate_link",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "May be populated in future.",
+          "suggested_mitigation": "Treat as optional URL."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "rhpAvLink",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "No alternate link.",
+      "nullable": true,
+      "path": "$[*].rhpAvLink",
+      "semantic": "Alternate link for RHP; always null.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.red_herring_prospectus.date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy; may be empty string.",
+          "suggested_mitigation": "Parse using dd-MMM-yyyy; treat empty as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "28-Feb-2018",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "rhpDate",
+      "nested_table": false,
+      "notes": "Empty string when no RHP.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].rhpDate",
+      "semantic": "Date when the red herring prospectus was filed.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.red_herring_prospectus.submission_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "May be populated in future.",
+          "suggested_mitigation": "Treat as optional date."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "rhpSubDate",
+      "nested_table": false,
+      "notes": "Always null.",
+      "null_meaning": "Not provided.",
+      "nullable": true,
+      "path": "$[*].rhpSubDate",
+      "semantic": "Submission date of RHP; always null.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "security.symbol",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be '-' for companies not yet listed; may change after listing.",
+          "suggested_mitigation": "Use ISIN as primary identifier; symbol may be updated later."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Always '-' in observed data; may be populated after listing.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].symbol",
+      "semantic": "Trading symbol of the company on NSE. Often '-' indicating not yet assigned.",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:20:43+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The ISIN field can be used to join with other NSE endpoints that provide detailed company or security information.",
+      "follow_up_endpoint_pattern": "https://www.nseindia.com/api/...?symbol={symbol}",
+      "key_field": "isin"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [
+    "$[*].pan_no"
+  ],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 100,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/offer_documents_sme.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_sme",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/corporates/offerdocs?index=sme"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 48,
+  "summary": "This endpoint provides a list of SME companies that have filed offer documents (draft red herring prospectus, red herring prospectus, final prospectus, advertisement) with NSE for IPO on the Emerge platform. Each entry includes company name, ISIN, symbol, and links to the PDF documents along with their filing dates.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Body was truncated; only first 100 rows observed. Full dataset may contain more records.",
+    "Many fields are always null or '-' placeholder; actual data may be populated for active IPOs.",
+    "Dates are in dd-MMM-yyyy format; ensure parser handles this.",
+    "No pagination or dropdown dependencies observed in this snapshot, but the endpoint may support query parameters (e.g., index=sme).",
+    "The body size is large (1.4 MB) suggesting many records; consider incremental fetching if full dataset is needed."
+  ]
+}

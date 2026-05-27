@@ -1,0 +1,24 @@
+---
+import IssueDetailPage from '../../components/IssueDetailPage.astro';
+import {
+  getDetailBySlug,
+  issueSectionForType,
+  listNonEquityIssueDetailPaths,
+  type IssueDetail,
+} from '../../lib/issues';
+
+export function getStaticPaths() {
+  const out: { params: { section: string; slug: string }; props: { issue: IssueDetail } }[] = [];
+  for (const { section, slug, publicSlug } of listNonEquityIssueDetailPaths()) {
+    const issue = getDetailBySlug(slug);
+    if (issue && issueSectionForType(issue.classification.issue_type) === section) {
+      out.push({ params: { section, slug: publicSlug }, props: { issue } });
+    }
+  }
+  return out;
+}
+
+const { issue } = Astro.props as { issue: IssueDetail };
+---
+
+<IssueDetailPage issue={issue} />

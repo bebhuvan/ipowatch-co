@@ -1,0 +1,23 @@
+{
+  "$id": "https://ipo-watch.local/schema/v3/subscription.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "const": "3.0.0"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "subscription": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "slug",
+    "subscription"
+  ],
+  "title": "IPO Watch V3 Subscription",
+  "type": "object"
+}

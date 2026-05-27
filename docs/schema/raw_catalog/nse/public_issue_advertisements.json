@@ -1,0 +1,707 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "public_issue_advertisements",
+    "estimated_cost_usd": 0.007412760000000001,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 3658,
+    "tokens_out": 5841
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0424",
+  "endpoint": "public_issue_advertisements",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "board_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Possible addition of new board types in the future.",
+          "suggested_mitigation": "Accept any string; validate against known list but allow unknown values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Main Board",
+        "SME Board"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "boardType",
+      "nested_table": false,
+      "notes": "Values observed: 'Main Board' and 'SME Board'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].boardType",
+      "semantic": "The board under which the IPO is listed, either Main Board or SME Board.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "draft_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MM-yyyy, which may be ambiguous with MM-dd-yyyy.",
+          "suggested_mitigation": "Parse using dd-MM-yyyy pattern; validate day <= 31."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "15-05-2026",
+        "23-04-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "draftDate",
+      "nested_table": false,
+      "notes": "Format: dd-MM-yyyy. Note that the same date appears in ISO format inside nested records.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].draftDate",
+      "semantic": "The date when the draft offer document was filed, in dd-MM-yyyy format.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Possible future values like 'FPO' or 'OFS'.",
+          "suggested_mitigation": "Accept any string; validate against known list but allow unknown."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "IPO"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueType",
+      "nested_table": false,
+      "notes": "Currently only 'IPO' observed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issueType",
+      "semantic": "The type of issue, typically 'IPO' for initial public offerings.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company names may have slight variations across endpoints (e.g., abbreviations).",
+          "suggested_mitigation": "Normalize by trimming whitespace and standardizing suffixes (e.g., 'Limited' vs 'Ltd')."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Paramotor Digital Technology Limited",
+        "Pramodini Medicare Limited"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "issuerName",
+      "nested_table": false,
+      "notes": "Used as a key to identify the company.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issuerName",
+      "semantic": "The name of the company issuing the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pan",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "PAN may be reused across different entities? Typically unique per entity.",
+          "suggested_mitigation": "Treat as unique identifier; validate format (5 letters, 4 digits, 1 letter)."
+        },
+        {
+          "category": "E.LEG",
+          "description": "PAN is personally identifiable information (PII) and may be subject to data protection regulations.",
+          "suggested_mitigation": "Mask or hash PAN in downstream systems if not needed for joins; restrict access."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "AAICP8409K",
+        "AACCP0383J"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": true,
+      "name": "panNo",
+      "nested_table": false,
+      "notes": "PII field. Format: 5 uppercase letters, 4 digits, 1 uppercase letter.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].panNo",
+      "semantic": "Permanent Account Number (PAN) of the issuer company, a 10-character alphanumeric identifier.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "advertisements_record10",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Empty arrays indicate no advertisement of that type for the company.",
+          "suggested_mitigation": "Treat empty array as no records; do not infer missing data."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "record10",
+      "nested_table": true,
+      "notes": "Each element has its own fields (see nested fields).",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record10",
+      "semantic": "Array of advertisement records of type 10 (Filing of draft offer document).",
+      "type": "array",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "advertisements_record20",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Empty arrays indicate no advertisement of that type.",
+          "suggested_mitigation": "Treat empty array as no records."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "record20",
+      "nested_table": true,
+      "notes": "Each element has its own fields.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record20",
+      "semantic": "Array of advertisement records of type 20 (Pre-filing of draft offer document).",
+      "type": "array",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "advertisements_record30",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Empty arrays indicate no advertisement of that type.",
+          "suggested_mitigation": "Treat empty array as no records."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "record30",
+      "nested_table": true,
+      "notes": "All observed empty.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record30",
+      "semantic": "Array of advertisement records of type 30 (likely Draft Red Herring Prospectus filing).",
+      "type": "array",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "advertisements_record40",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Empty arrays indicate no advertisement of that type.",
+          "suggested_mitigation": "Treat empty array as no records."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "record40",
+      "nested_table": true,
+      "notes": "All observed empty.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record40",
+      "semantic": "Array of advertisement records of type 40 (likely Final Prospectus filing).",
+      "type": "array",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "advertisements_record50",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Empty arrays indicate no advertisement of that type.",
+          "suggested_mitigation": "Treat empty array as no records."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "record50",
+      "nested_table": true,
+      "notes": "Each element has its own fields.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record50",
+      "semantic": "Array of advertisement records of type 50 (Price Band Advertisement).",
+      "type": "array",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "advertisements_record60",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Empty arrays indicate no advertisement of that type.",
+          "suggested_mitigation": "Treat empty array as no records."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "record60",
+      "nested_table": true,
+      "notes": "All observed empty.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record60",
+      "semantic": "Array of advertisement records of type 60 (likely Issue Opening/Closing Advertisement).",
+      "type": "array",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "advertisements_record70",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Empty arrays indicate no advertisement of that type.",
+          "suggested_mitigation": "Treat empty array as no records."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "record70",
+      "nested_table": true,
+      "notes": "Each element has its own fields.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record70",
+      "semantic": "Array of advertisement records of type 70 (Pre-IPO Placement/Promoter Transaction Advertisement).",
+      "type": "array",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "advertisements_record80",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Empty arrays indicate no advertisement of that type.",
+          "suggested_mitigation": "Treat empty array as no records."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "record80",
+      "nested_table": true,
+      "notes": "Each element has its own fields.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record80",
+      "semantic": "Array of advertisement records of type 80 (Basis Advertisement / Basis of Allotment).",
+      "type": "array",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "advertisements_record90",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Empty arrays indicate no advertisement of that type.",
+          "suggested_mitigation": "Treat empty array as no records."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "record90",
+      "nested_table": true,
+      "notes": "All observed empty.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record90",
+      "semantic": "Array of advertisement records of type 90 (likely Final Post-Issue Advertisement).",
+      "type": "array",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "advertisement_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Advertisement types may change or new types may be added.",
+          "suggested_mitigation": "Accept any string; map to known types if needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Filing of draft offer document",
+        "Pre-filing of draft offer document",
+        "Price Band Advertisement",
+        "Basis Advertisement",
+        "Pre Ipo Placement/Promoter(s) & Promoter Group(s) Transaction"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "advertisementType",
+      "nested_table": false,
+      "notes": "Observed values vary by record type.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record10[*].advertisementType",
+      "semantic": "The type of advertisement, describing the stage of the IPO process.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "attachment_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "URL may contain special characters or be malformed.",
+          "suggested_mitigation": "Validate URL format; percent-encode if necessary."
+        },
+        {
+          "category": "E.SNP",
+          "description": "URL may become stale if the file is removed or moved.",
+          "suggested_mitigation": "Check HTTP status before relying on link; cache with timestamp."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://nsearchives.nseindia.com/corporate/IPO_19052026102413_PDTL_PDRHP_Filing_Ad.pdf",
+        "https://nsearchives.nseindia.com/corporate/IPO_18052026181430_AllPublications_PMPL.pdf"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "attFilename",
+      "nested_table": false,
+      "notes": "Links to NSE archives. File extensions: .pdf or .zip.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record10[*].attFilename",
+      "semantic": "URL to the attached advertisement document (PDF or ZIP file).",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Possible new company types in the future.",
+          "suggested_mitigation": "Accept any string; map to known types."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "EQ",
+        "SM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cmpyType",
+      "nested_table": false,
+      "notes": "Corresponds to boardType: 'EQ' for Main Board, 'SM' for SME Board.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record10[*].cmpyType",
+      "semantic": "Company type code: 'EQ' for Main Board equity, 'SM' for SME Board.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "draft_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is ISO yyyy-MM-dd, but the parent-level draftDate is dd-MM-yyyy. Inconsistent formatting across levels.",
+          "suggested_mitigation": "Parse both formats; prefer ISO format for consistency."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2026-05-15",
+        "2026-04-23"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "draftDate",
+      "nested_table": false,
+      "notes": "ISO format; same semantic as parent draftDate but different format.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record10[*].draftDate",
+      "semantic": "The date when the draft offer document was filed, in ISO format (yyyy-MM-dd).",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Possible future values like 'FPO'.",
+          "suggested_mitigation": "Accept any string."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "IPO"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueType",
+      "nested_table": false,
+      "notes": "Same as parent issueType.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record10[*].issueType",
+      "semantic": "The type of issue, typically 'IPO'.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Same as parent issuerName; may have slight variations.",
+          "suggested_mitigation": "Normalize consistently."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Paramotor Digital Technology Limited",
+        "Pramodini Medicare Limited"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "issuerName",
+      "nested_table": false,
+      "notes": "Duplicate of parent field.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record10[*].issuerName",
+      "semantic": "The name of the issuing company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pan",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Same as parent panNo.",
+          "suggested_mitigation": "Treat as unique identifier."
+        },
+        {
+          "category": "E.LEG",
+          "description": "PII field.",
+          "suggested_mitigation": "Mask or hash."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "AAICP8409K",
+        "AACCP0383J"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": true,
+      "name": "panNo",
+      "nested_table": false,
+      "notes": "PII; duplicate of parent field.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record10[*].panNo",
+      "semantic": "PAN of the issuer company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "record_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "New record types may be added in the future.",
+          "suggested_mitigation": "Accept any string; map to known types."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "10",
+        "20",
+        "50",
+        "70",
+        "80"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "recordType",
+      "nested_table": false,
+      "notes": "Corresponds to the parent array key (e.g., record10 -> recordType '10').",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record10[*].recordType",
+      "semantic": "The record type code indicating the stage of advertisement (e.g., '10', '20', '50', '70', '80').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "submit_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MM-yyyy.",
+          "suggested_mitigation": "Parse using dd-MM-yyyy pattern."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "16-05-2026",
+        "25-04-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "submitDate",
+      "nested_table": false,
+      "notes": "Format: dd-MM-yyyy.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].record10[*].submitDate",
+      "semantic": "The date when the advertisement was submitted, in dd-MM-yyyy format.",
+      "type": "date",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:24:16+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The attFilename field contains URLs to documents hosted on NSE archives. These documents may contain further structured data (e.g., PDFs with tables) but are not directly accessible via API.",
+      "follow_up_endpoint_pattern": "None (static file download)",
+      "key_field": "attFilename"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [
+    "$[*].panNo",
+    "$[*].record10[*].panNo",
+    "$[*].record20[*].panNo",
+    "$[*].record50[*].panNo",
+    "$[*].record70[*].panNo",
+    "$[*].record80[*].panNo"
+  ],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 7,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/public_issue_advertisements.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/public-issue-advertisement?"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a list of companies that have filed for an IPO (Initial Public Offering) on the NSE, along with associated advertisement records (e.g., draft offer document filings, price band advertisements, basis of allotment) categorized by record type (10-90). Each company entry contains metadata such as board type, issue type, issuer name, PAN, and arrays of advertisement records for different stages of the IPO process.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The endpoint returns a list of companies with nested advertisement arrays. The arrays are keyed by record type (record10, record20, etc.) and may be empty. The same metadata (issuerName, panNo, draftDate, issueType) is duplicated at both parent and child levels, but with different date formats (dd-MM-yyyy vs yyyy-MM-dd). This inconsistency should be normalized.",
+    "PAN numbers are present and considered PII; they should be masked or hashed in downstream systems unless required for joins.",
+    "The attFilename field contains URLs to external files (PDF/ZIP) which may become stale or be removed. There is no pagination or dropdown dependency observed in this snapshot.",
+    "No HTML blobs or encoding issues detected in the sample."
+  ]
+}

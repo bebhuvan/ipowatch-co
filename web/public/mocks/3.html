@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 · Editorial — IPO Watch mock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fbf8f1;
+    --paper-2: #f6f1e5;
+    --ink: #161613;
+    --ink-soft: #2a2925;
+    --mute: #6b6a64;
+    --mute-2: #aaa89f;
+    --rule: #d8d3c4;
+    --rule-strong: #161613;
+    --accent: #8e1f24; /* oxblood, very sparing */
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--paper); color: var(--ink); }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14.5px;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    font-feature-settings: "tnum", "kern";
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .serif { font-family: 'Source Serif 4', Georgia, serif; }
+
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 56px; }
+  .mute { color: var(--mute); }
+  .mute-2 { color: var(--mute-2); }
+  .num { font-variant-numeric: tabular-nums; }
+  .acc { color: var(--accent); }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+  /* Masthead */
+  .masthead { padding: 40px 0 24px; border-bottom: 2px solid var(--rule-strong); }
+  .masthead .top-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 16px; }
+  .wordmark { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 400; font-size: 36px; letter-spacing: -0.02em; }
+  .strap { font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--mute); }
+  .masthead .meta { display: flex; align-items: baseline; justify-content: space-between; font-size: 13px; }
+  .masthead nav { display: flex; gap: 24px; }
+  .masthead nav a { font-size: 13px; color: var(--mute); }
+  .masthead nav a:hover { color: var(--ink); }
+
+  /* Below masthead band */
+  .above-fold { padding: 32px 0 48px; border-bottom: 1px solid var(--rule); }
+  .above-fold .row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .above-fold .date { font-size: 14px; color: var(--mute); }
+  .above-fold .stats { display: flex; gap: 24px; font-size: 14px; }
+  .above-fold .stats strong { font-weight: 600; }
+
+  /* Lead — magazine */
+  .lead { display: grid; grid-template-columns: 5fr 3fr; gap: 56px; padding: 64px 0 80px; border-bottom: 1px solid var(--rule); }
+  .lead .kicker { font-family: 'Inter', sans-serif; font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; font-weight: 600; }
+  .lead h1.serif {
+    font-style: italic; font-weight: 400;
+    font-size: clamp(64px, 8vw, 112px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    margin: 0 0 24px;
+  }
+  .lead .standfirst {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 400; font-style: normal;
+    font-size: 20px; line-height: 1.42;
+    color: var(--ink-soft);
+    max-width: 30ch;
+    margin-bottom: 28px;
+  }
+  .lead .tagline { font-size: 13px; color: var(--mute); display: flex; gap: 14px; }
+  .lead .tagline span { padding-right: 14px; border-right: 1px solid var(--rule); }
+  .lead .tagline span:last-child { border-right: 0; }
+  .lead aside .spec { padding: 14px 0; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: baseline; }
+  .lead aside .spec:first-child { padding-top: 0; }
+  .lead aside .spec .l { font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute); }
+  .lead aside .spec .v.serif { font-family: 'Source Serif 4', serif; font-size: 26px; font-weight: 400; letter-spacing: -0.02em; }
+
+  /* Secondaries */
+  .also { padding: 64px 0; border-bottom: 1px solid var(--rule); }
+  .also h2.section, .col-block h2.section { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 400; font-size: 28px; margin: 0 0 28px; letter-spacing: -0.015em; }
+  .also .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .also .item { padding: 20px; background: var(--paper-2); border-radius: 4px; }
+  .also .item .ttype { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); font-weight: 600; margin-bottom: 12px; }
+  .also .item h3 { font-family: 'Source Serif 4', serif; font-weight: 400; font-style: italic; font-size: 22px; margin: 0 0 8px; letter-spacing: -0.015em; line-height: 1.1; }
+  .also .item .stats-line { font-size: 13px; color: var(--mute); margin-bottom: 12px; }
+  .also .item .num-line { display: flex; gap: 14px; font-size: 14px; }
+  .also .item .num-line strong { font-weight: 600; }
+
+  /* Year section */
+  .year { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+  .year-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .year h2.section { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 400; font-size: 32px; margin: 0 0 16px; }
+  .year p.lede { font-family: 'Source Serif 4', serif; font-size: 19px; line-height: 1.5; color: var(--ink-soft); }
+  .year p.lede strong { font-style: italic; }
+
+  .year-numerals { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding-top: 8px; }
+  .yn .v { font-family: 'Source Serif 4', serif; font-size: 56px; font-weight: 400; letter-spacing: -0.025em; line-height: 0.95; }
+  .yn .v.acc { color: var(--accent); }
+  .yn .l { font-size: 12px; color: var(--mute); margin-top: 8px; letter-spacing: 0.03em; }
+
+  /* Distribution chart with caption */
+  .dist-wrap { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--rule); }
+  .dist-wrap .dist-h { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
+  .dist-wrap h3 { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 400; font-size: 20px; margin: 0; }
+  .dist-wrap .n { font-size: 12.5px; color: var(--mute); }
+  .dist { display: flex; align-items: flex-end; gap: 3px; height: 140px; position: relative; }
+  .dist .bar { flex: 1; background: var(--ink); }
+  .dist .bar.neg { background: var(--mute); }
+  .dist .zero { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--accent); }
+  .dist-axis { display: grid; grid-template-columns: repeat(7, 1fr); margin-top: 6px; font-size: 11px; color: var(--mute); }
+  .dist-axis .c { text-align: center; }
+  .dist-axis .r { text-align: right; }
+
+  /* Recently listed */
+  .recent { padding: 64px 0; border-bottom: 1px solid var(--rule); }
+  .recent h2.section { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 400; font-size: 28px; margin: 0 0 28px; }
+  .recent ol { list-style: none; padding: 0; margin: 0; }
+  .recent li { display: grid; grid-template-columns: 32px 1fr 100px 80px; align-items: baseline; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+  .recent .r { font-family: 'Source Serif 4', serif; font-style: italic; color: var(--mute-2); font-size: 18px; }
+  .recent .co h3 { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 400; font-size: 22px; margin: 0; line-height: 1.1; }
+  .recent .co .meta { font-size: 12.5px; color: var(--mute); margin-top: 4px; }
+  .recent .date { font-size: 12.5px; color: var(--mute); text-align: right; }
+  .recent .gain { font-family: 'Source Serif 4', serif; font-size: 24px; text-align: right; }
+  .recent .gain.acc { color: var(--accent); }
+
+  /* Archive */
+  .archive { padding: 64px 0 32px; }
+  .archive h2.section { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 400; font-size: 28px; margin: 0 0 28px; }
+  .archive-chart { display: flex; align-items: flex-end; gap: 4px; height: 120px; }
+  .archive-chart a { flex: 1; display: flex; align-items: flex-end; }
+  .archive-chart .bar { width: 100%; background: var(--ink); }
+  .archive-chart .bar.curr { background: var(--accent); }
+  .archive-axis { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--mute); }
+
+  footer { border-top: 2px solid var(--rule-strong); padding: 40px 0 56px; margin-top: 56px; }
+  footer .row { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; color: var(--mute); }
+
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  @media (max-width: 1000px) {
+    .lead { grid-template-columns: 1fr; gap: 40px; }
+    .year-grid { grid-template-columns: 1fr; gap: 32px; }
+    .also .grid { grid-template-columns: 1fr; }
+    .page { padding: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead page">
+  <div class="top-row">
+    <a href="./" class="wordmark">ipowatch.co</a>
+    <span class="strap">A journal of Indian public issues</span>
+  </div>
+  <div class="meta">
+    <span class="num">Friday, 22 May 2026 · Vol. 1 No. 142</span>
+    <nav>
+      <a href="#">Open</a>
+      <a href="#">Upcoming</a>
+      <a href="#">Archive</a>
+      <a href="#">Companies</a>
+      <a href="#">Lead managers</a>
+    </nav>
+  </div>
+</header>
+
+<div class="above-fold page">
+  <div class="row">
+    <span class="date serif" style="font-style:italic;font-size:18px">The week in primary markets.</span>
+    <div class="stats">
+      <span><strong>10</strong> open</span>
+      <span><strong>3</strong> close today</span>
+      <span><strong>8</strong> opening soon</span>
+      <span class="acc"><strong>+18%</strong> raised vs '25 YTD</span>
+    </div>
+  </div>
+</div>
+
+<main class="page">
+
+<!-- Lead -->
+<section class="lead">
+  <div>
+    <div class="kicker">Today's book</div>
+    <h1 class="serif">Q-Line Biotech</h1>
+    <p class="standfirst">A small-cap diagnostics specialist opens its public issue on the National exchange. Subscription closes Monday — bidders have three days to commit ₹1.37 lakh apiece.</p>
+    <div class="tagline">
+      <span>IPO</span>
+      <span>NSE SME</span>
+      <span>Symbol QLINE</span>
+      <span>Hem Securities, BRLM</span>
+    </div>
+  </div>
+  <aside>
+    <div class="spec"><span class="l">Price band</span><span class="v serif num">₹326 – 343</span></div>
+    <div class="spec"><span class="l">Shares per lot</span><span class="v serif num">400</span></div>
+    <div class="spec"><span class="l">Retail minimum</span><span class="v serif num">₹1,37,200</span></div>
+    <div class="spec"><span class="l">Issue size</span><span class="v serif num">₹153.39 Cr</span></div>
+    <div class="spec"><span class="l">Closes</span><span class="v serif num">Mon 25 May</span></div>
+  </aside>
+</section>
+
+<!-- Also open — three column -->
+<section class="also">
+  <h2 class="section">Also open this week</h2>
+  <div class="grid">
+    <div class="item">
+      <div class="ttype">Rights · NSE</div>
+      <h3>EFC (I) Limited</h3>
+      <div class="stats-line">Closes <strong>today</strong></div>
+      <div class="num-line"><span class="mute">band</span><strong>—</strong><span class="mute">size</span><strong>—</strong></div>
+    </div>
+    <div class="item">
+      <div class="ttype">IPO · BSE SME</div>
+      <h3>Harikanta Overseas</h3>
+      <div class="stats-line">Closes <strong>today</strong></div>
+      <div class="num-line"><span class="mute">band</span><strong>₹91 – 96</strong><span class="mute">size</span><strong>₹25.6 Cr</strong></div>
+    </div>
+    <div class="item">
+      <div class="ttype">IPO · BSE SME</div>
+      <h3>Vegorama Punjabi Angithi</h3>
+      <div class="stats-line">Closes <strong>today</strong> · subscribed <strong class="acc">11.75×</strong></div>
+      <div class="num-line"><span class="mute">band</span><strong>₹73 – 77</strong><span class="mute">size</span><strong>₹27.5 Cr</strong></div>
+    </div>
+    <div class="item">
+      <div class="ttype">FPO · BSE</div>
+      <h3>Autofurnish</h3>
+      <div class="stats-line">Closes 25 May</div>
+      <div class="num-line"><span class="mute">price</span><strong>₹41</strong><span class="mute">size</span><strong>₹14.6 Cr</strong></div>
+    </div>
+    <div class="item">
+      <div class="ttype">IPO · BSE SME</div>
+      <h3>Bio Medica Laboratories</h3>
+      <div class="stats-line">Closes 25 May</div>
+      <div class="num-line"><span class="mute">band</span><strong>₹132 – 139</strong><span class="mute">size</span><strong>₹52.4 Cr</strong></div>
+    </div>
+    <div class="item">
+      <div class="ttype">Buyback · NSE</div>
+      <h3>Sarla Performance Fibers</h3>
+      <div class="stats-line">Closes 27 May</div>
+      <div class="num-line"><span class="mute">at</span><strong>₹110</strong><span class="mute">size</span><strong>₹44 Cr</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- Year in numbers -->
+<section class="year">
+  <div class="year-grid">
+    <div>
+      <h2 class="section">The shape of 2026</h2>
+      <p class="lede">Three hundred and eighty-three Indian companies have made it to the exchanges so far this year. <strong>Sedemac Mechatronics</strong> doubled on its first day in May. The median listing, when day-one data is available, has popped <strong>+6.4%</strong> — close to the twenty-four-month average.</p>
+      <p class="lede" style="margin-top:16px;font-size:16px;color:var(--mute)">2025 set a record at 1,516 listings. 2026 is, by linear extrapolation, on track to exceed it.</p>
+    </div>
+    <div class="year-numerals">
+      <div class="yn"><div class="v num">383</div><div class="l">LISTINGS</div></div>
+      <div class="yn"><div class="v num">299 / 84</div><div class="l">MAINBOARD / SME</div></div>
+      <div class="yn"><div class="v num acc">+100.1%</div><div class="l">BEST DAY · SEDEMAC</div></div>
+      <div class="yn"><div class="v num">2 / 383</div><div class="l">DAY-ONE TRACKED</div></div>
+    </div>
+  </div>
+
+  <div class="dist-wrap">
+    <div class="dist-h">
+      <h3>Day-one moves of the last 24 months</h3>
+      <span class="n">n = 1,865 · median +6.4% · 72% positive</span>
+    </div>
+    <div class="dist">
+      <div class="zero" style="left: 42.85%"></div>
+      <div class="bar neg" style="height: 1%"></div>
+      <div class="bar neg" style="height: 2%"></div>
+      <div class="bar neg" style="height: 4%"></div>
+      <div class="bar neg" style="height: 7%"></div>
+      <div class="bar neg" style="height: 33%"></div>
+      <div class="bar neg" style="height: 43%"></div>
+      <div class="bar" style="height: 100%"></div>
+      <div class="bar" style="height: 40%"></div>
+      <div class="bar" style="height: 27%"></div>
+      <div class="bar" style="height: 19%"></div>
+      <div class="bar" style="height: 10%"></div>
+      <div class="bar" style="height: 18%"></div>
+      <div class="bar" style="height: 32%"></div>
+      <div class="bar" style="height: 17%"></div>
+    </div>
+    <div class="dist-axis">
+      <span>−100%</span><span>−30%</span><span>−10%</span><span class="c">0</span><span class="r">+20%</span><span class="r">+50%</span><span class="r">+100%+</span>
+    </div>
+  </div>
+</section>
+
+<!-- Recently listed -->
+<section class="recent">
+  <h2 class="section">Recently listed</h2>
+  <ol>
+    <li>
+      <span class="r num">01</span>
+      <div class="co"><h3>Sedemac Mechatronics</h3><div class="meta">IPO · NSE · listed 5 May</div></div>
+      <span class="date num">5 May</span>
+      <span class="gain acc">+100.1%</span>
+    </li>
+    <li>
+      <span class="r num">02</span>
+      <div class="co"><h3>Goldline Pharmaceutical</h3><div class="meta">IPO · NSE SME · listed 19 May</div></div>
+      <span class="date num">19 May</span>
+      <span class="gain">+39.0%</span>
+    </li>
+    <li>
+      <span class="r num">03</span>
+      <div class="co"><h3>Teamtech Formwork</h3><div class="meta">IPO · NSE SME · listed 19 May</div></div>
+      <span class="date num">19 May</span>
+      <span class="gain">+39.0%</span>
+    </li>
+    <li>
+      <span class="r num">04</span>
+      <div class="co"><h3>Accord Transformer</h3><div class="meta">IPO · BSE SME · listed 2 Mar</div></div>
+      <span class="date num">2 Mar</span>
+      <span class="gain">+8.7%</span>
+    </li>
+    <li>
+      <span class="r num">05</span>
+      <div class="co"><h3>RFBL Flexi Pack</h3><div class="meta">IPO · NSE SME · listed 19 May</div></div>
+      <span class="date num">19 May</span>
+      <span class="gain">+5.0%</span>
+    </li>
+    <li>
+      <span class="r num">06</span>
+      <div class="co"><h3>Simca Advertising</h3><div class="meta">IPO · NSE SME · listed 15 May</div></div>
+      <span class="date num">15 May</span>
+      <span class="gain" style="color:var(--mute)">−14.8%</span>
+    </li>
+  </ol>
+</section>
+
+<!-- Archive -->
+<section class="archive">
+  <h2 class="section">A quarter-century, in issues</h2>
+  <div class="archive-chart">
+    <a href="#"><div class="bar" style="height:1%"></div></a>
+    <a href="#"><div class="bar" style="height:0.5%"></div></a>
+    <a href="#"><div class="bar" style="height:1%"></div></a>
+    <a href="#"><div class="bar" style="height:2%"></div></a>
+    <a href="#"><div class="bar" style="height:4%"></div></a>
+    <a href="#"><div class="bar" style="height:8%"></div></a>
+    <a href="#"><div class="bar" style="height:7%"></div></a>
+    <a href="#"><div class="bar" style="height:5%"></div></a>
+    <a href="#"><div class="bar" style="height:6%"></div></a>
+    <a href="#"><div class="bar" style="height:11%"></div></a>
+    <a href="#"><div class="bar" style="height:8%"></div></a>
+    <a href="#"><div class="bar" style="height:5%"></div></a>
+    <a href="#"><div class="bar" style="height:4%"></div></a>
+    <a href="#"><div class="bar" style="height:7%"></div></a>
+    <a href="#"><div class="bar" style="height:14%"></div></a>
+    <a href="#"><div class="bar" style="height:13%"></div></a>
+    <a href="#"><div class="bar" style="height:30%"></div></a>
+    <a href="#"><div class="bar" style="height:50%"></div></a>
+    <a href="#"><div class="bar" style="height:48%"></div></a>
+    <a href="#"><div class="bar" style="height:51%"></div></a>
+    <a href="#"><div class="bar" style="height:68%"></div></a>
+    <a href="#"><div class="bar" style="height:62%"></div></a>
+    <a href="#"><div class="bar" style="height:70%"></div></a>
+    <a href="#"><div class="bar" style="height:93%"></div></a>
+    <a href="#"><div class="bar" style="height:100%"></div></a>
+    <a href="#"><div class="bar curr" style="height:25%"></div></a>
+  </div>
+  <div class="archive-axis">
+    <span>2001</span><span>2010</span><span>2015</span><span>2020</span><span>2026</span>
+  </div>
+</section>
+
+</main>
+
+<footer class="page">
+  <div class="row">
+    <span class="serif" style="font-style:italic">ipowatch.co</span>
+    <span>11,662 issues · 8,285 companies · NSE, BSE, Capital Market, Trendlyne</span>
+    <span>Built 22 May 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>

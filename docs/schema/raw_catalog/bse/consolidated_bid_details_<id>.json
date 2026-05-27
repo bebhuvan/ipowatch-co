@@ -1,0 +1,297 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "consolidated_bid_details_new_7726",
+    "estimated_cost_usd": 0.00365914,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 3852,
+    "tokens_out": 2381
+  },
+  "currency": "INR",
+  "data_kind": "live_subscription",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0402",
+  "endpoint": "consolidated_bid_details_<id>",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "bid_data.last_updated",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is ambiguous (M/d/yyyy h:mm:ss tt) and may vary by locale.",
+          "suggested_mitigation": "Parse using a fixed format like 'M/d/yyyy h:mm:ss tt' and convert to ISO 8601."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "5/22/2026 2:55:52 PM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Maxdt",
+      "nested_table": false,
+      "notes": "All rows share the same timestamp; may represent snapshot time.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table1[*].Maxdt",
+      "semantic": "Timestamp of the last update for this bid data.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "bid_data.category_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "SRNo is not a stable identifier; it is a hierarchical code that can change if categories are reordered.",
+          "suggested_mitigation": "Use the combination of SRNo and col2 (category name) as a composite key."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1",
+        "1(a)",
+        "2.1",
+        "Total",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "SRNo",
+      "nested_table": false,
+      "notes": "Empty for total row.",
+      "null_meaning": "Empty string indicates a summary row (e.g., 'Total').",
+      "nullable": true,
+      "path": "$.table1[*].SRNo",
+      "semantic": "Serial number or category code for the bid row (e.g., '1', '1(a)', '2.1', 'Total').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company name may have minor variations across endpoints (e.g., abbreviations).",
+          "suggested_mitigation": "Use a canonical company identifier (e.g., IPO_NO) instead of name for joins."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Vegorama Punjabi Angithi Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Scripname",
+      "nested_table": false,
+      "notes": "Repeated in every row; could be normalized out.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table1[*].Scripname",
+      "semantic": "Name of the company (scrip) for which the IPO is being conducted.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "bid_data.category_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Category names may change over time or across issues (e.g., 'Eligible Employees (EMP)' vs 'Employee').",
+          "suggested_mitigation": "Map to a standardized set of category codes."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Qualified Institutional Buyers (QIBs)",
+        "Non Institutional Investors",
+        "Total"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "col2",
+      "nested_table": false,
+      "notes": "Contains hierarchical subcategories; may need parsing.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table1[*].col2",
+      "semantic": "Investor category description (e.g., 'Qualified Institutional Buyers (QIBs)', 'Non Institutional Investors', 'Total').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "bid_data.shares_offered",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers are represented as strings; may contain commas or other formatting.",
+          "suggested_mitigation": "Parse as integer after stripping whitespace; treat empty as 0 or null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "948800",
+        "961600",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "col3",
+      "nested_table": false,
+      "notes": "Only populated for parent categories; subcategories often empty.",
+      "null_meaning": "Empty string indicates no shares offered/reserved for that subcategory (often subcategories inherit from parent).",
+      "nullable": true,
+      "path": "$.table1[*].col3",
+      "semantic": "Number of shares offered or reserved for the category (as a string, may be empty).",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "bid_data.shares_bid",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers as strings; may have commas or leading zeros.",
+          "suggested_mitigation": "Parse as integer; treat empty as 0 or null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "14408000",
+        "36918400",
+        "0",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "col4",
+      "nested_table": false,
+      "notes": "Most important field for subscription analysis.",
+      "null_meaning": "Empty string indicates no bids or data not available.",
+      "nullable": true,
+      "path": "$.table1[*].col4",
+      "semantic": "Number of shares bid for in this category (as a string, may be empty).",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "bid_data.subscription_times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Decimal numbers as strings; may have varying precision.",
+          "suggested_mitigation": "Parse as float; treat empty as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "15.1855",
+        "38.3927",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "col5",
+      "nested_table": false,
+      "notes": "Only for parent categories; subcategories often empty.",
+      "null_meaning": "Empty string indicates ratio not applicable or not calculated.",
+      "nullable": true,
+      "path": "$.table1[*].col5",
+      "semantic": "Subscription ratio (number of times the category was subscribed) as a decimal string.",
+      "type": "string",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "bid_data.applications",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers as strings; may have commas.",
+          "suggested_mitigation": "Parse as integer; treat empty as 0 or null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "14",
+        "3439",
+        "0",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "col8",
+      "nested_table": false,
+      "notes": "Number of bids/applications, not shares.",
+      "null_meaning": "Empty string indicates no applications or data not available.",
+      "nullable": true,
+      "path": "$.table1[*].col8",
+      "semantic": "Number of applications (bids) received for this category (as a string, may be empty).",
+      "type": "string",
+      "units": "applications"
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:02:46+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "IPO details (e.g., price band, dates) can be fetched using the IPO_NO parameter.",
+      "follow_up_endpoint_pattern": "Pubissues_GetBkbldgCatdem_PAR_bbnew_ng/w?IPO_NO={id}",
+      "key_field": "IPO_NO (in URL, not in body)"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 5,
+  "row_count_observed": 25,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/consolidated_bid_details_<id>.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_new_7726",
+      "snapshot_at": "2026-05-22T09:28:39+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/Pubissues_GetBkbldgCatdem_PAR_bbnew_ng/w?IPO_NO=7726"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 0.5,
+  "summary": "Provides consolidated subscription bid details for an IPO, broken down by investor category (QIB, NII, Retail, etc.), including shares offered, shares bid, subscription ratio, and number of applications.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Column names are generic (col2, col3, col4, col5, col8) and require mapping based on header row (first row with SRNo='Sr.No.').",
+    "The first row is a header row and should be filtered out or used to rename columns.",
+    "Empty strings in numeric fields may represent zero or missing data; need consistent handling.",
+    "The timestamp (Maxdt) is repeated in every row; may be redundant.",
+    "No unique row identifier; composite key of SRNo and col2 is needed."
+  ]
+}

@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getAvailableYears, getYearStats } from '../../lib/issues';
+
+const years = getAvailableYears();
+const allYearStats = years.map((y) => getYearStats(y));
+const yearMax = Math.max(...allYearStats.map((s) => s.total), 1);
+const peakYear = allYearStats.slice().sort((a, b) => b.total - a.total)[0];
+const todayYear = new Date().getFullYear();
+
+const fmtGain = (g: number | null | undefined) => g == null ? '—' : `${g > 0 ? '+' : ''}${g.toFixed(1)}%`;
+---
+
+<Base title="Archive">
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6">
+    <span class="label" style="color: inherit">The archive</span>
+  </div>
+  <h1 class="headline mb-7 max-w-[18ch]">IPO archive.</h1>
+  <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[60ch]">
+    Indian IPO and FPO listings since 2001, year by year. Adjacent instruments
+    such as OFS, buybacks and rights issues live in their own sections.
+  </p>
+</section>
+
+<section class="page-tight pt-12 pb-12 border-t border-[color:var(--color-rule)]">
+  <div class="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-14 items-end">
+    <div>
+      {peakYear && (
+        <p class="serif text-[19px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[40ch]">
+          The Indian primary market has grown sevenfold since 2017, with
+          <strong class="italic acc font-medium"> {peakYear.year}</strong> setting the all-time record at
+          <span class="num"> {peakYear.total.toLocaleString('en-IN')}</span> listings.
+        </p>
+      )}
+      {peakYear && (
+        <div class="serif italic font-normal text-[30px] leading-[1.15] tracking-[-0.008em] mt-5">
+          <span class="acc">{peakYear.year}</span> · <span class="num">{peakYear.total.toLocaleString('en-IN')}</span> listings, all-time peak
+        </div>
+      )}
+    </div>
+    <div>
+      <div class="flex gap-1 h-[160px]">
+        {allYearStats.slice().reverse().map((s) => {
+          const h = (s.total / yearMax) * 100;
+          const isCurr = s.year === todayYear;
+          const isPeak = s.year === peakYear?.year;
+          return (
+            <a href={`/archive/${s.year}/`} class="flex-1 h-full flex flex-col justify-end min-w-0 group" title={`${s.year}: ${s.total} issues`}>
+              <span class={`w-full transition-opacity ${isPeak ? 'bg-[color:var(--color-gold)]' : isCurr ? 'bg-[color:var(--color-accent)]' : 'bg-[color:var(--color-ink)]'} group-hover:opacity-55`} style={`height: ${h.toFixed(1)}%; min-height: 2px;`}></span>
+            </a>
+          );
+        })}
+      </div>
+      <div class="flex justify-between mt-2 text-[11px] mute num">
+        <span>{allYearStats[allYearStats.length - 1]?.year}</span>
+        <span>2010</span>
+        <span>2015</span>
+        <span>2020</span>
+        <span class="acc font-semibold">{allYearStats[0]?.year}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-24 border-t border-[color:var(--color-rule)]">
+  <header class="flex items-baseline justify-between mb-9">
+    <h2 class="section-title">Year by year</h2>
+    <span class="label">{allYearStats.length} years</span>
+  </header>
+  <ul class="list-none p-0 m-0">
+    {allYearStats.map((s) => (
+      <li>
+        <a href={`/archive/${s.year}/`} class="grid grid-cols-[74px_minmax(0,1fr)_84px] sm:grid-cols-[100px_minmax(0,1fr)_140px_120px] gap-4 sm:gap-6 items-baseline py-5 border-b border-[color:var(--color-rule)] group transition-all duration-200 hover:pl-2">
+          <span class={`serif font-normal text-[32px] num ${s.year === todayYear ? 'acc' : ''} ${s.year === peakYear?.year ? 'text-[color:var(--color-gold)]' : ''}`}>{s.year}</span>
+          <span class="text-[13px] mute num">
+            {s.total} {s.total === 1 ? 'listing' : 'listings'}
+            {(s.mainboard || s.sme) && <>  <span class="mute-2">·</span>  {s.mainboard} mainboard, {s.sme} SME</>}
+          </span>
+          <span class="serif text-[20px] num text-right">{fmtGain(s.median_gain)}</span>
+          <span class="text-[12.5px] mute num text-right hidden sm:block">{s.positive_pct != null ? `${s.positive_pct.toFixed(0)}% positive` : '—'}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+</Base>

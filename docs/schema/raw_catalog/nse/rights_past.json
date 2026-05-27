@@ -1,0 +1,289 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "rights_past",
+    "estimated_cost_usd": 0.01038289,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 28987,
+    "tokens_out": 2324
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0425",
+  "endpoint": "rights_past",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "rights_issue.bid_quantity_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers reported as strings; may contain commas or leading zeros.",
+          "suggested_mitigation": "Parse as integer after stripping commas."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Units are shares, not currency; no currency conversion needed.",
+          "suggested_mitigation": "Treat as integer count."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "15844800",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "bidQty",
+      "nested_table": false,
+      "notes": "Null for call money issues; some values are very large (e.g., 11093768673).",
+      "null_meaning": "Indicates a call money issue (no bid quantity applicable).",
+      "nullable": true,
+      "path": "$[*].bidQty",
+      "semantic": "Bid quantity for the rights issue (number of shares bid for), reported as a string; null for call money issues.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "rights_issue.company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company name may have trailing spaces or inconsistent formatting (e.g., 'SEPC LIMITED' vs 'SEPC Limited').",
+          "suggested_mitigation": "Normalize case and trim whitespace."
+        },
+        {
+          "category": "E.HTM",
+          "description": "May contain non-ASCII characters (e.g., '&' in company names).",
+          "suggested_mitigation": "Ensure UTF-8 encoding."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Silgo Retail Limited - Call Money",
+        "Falcon Technoprojects India Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company",
+      "nested_table": false,
+      "notes": "Call money issues have '- Call Money' appended; some entries have extra spaces.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].company",
+      "semantic": "Name of the company issuing the rights, sometimes appended with '- Call Money' for call money issues.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "rights_issue.cumulative_bid_quantity_nse_bse_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers reported as strings; may contain commas.",
+          "suggested_mitigation": "Parse as integer after stripping commas."
+        },
+        {
+          "category": "E.SRC",
+          "description": "This field aggregates NSE and BSE data; may not match individual exchange data.",
+          "suggested_mitigation": "Use as-is for cumulative view; cross-check with exchange-specific endpoints if needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "71913614",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "nse_bse_cumu",
+      "nested_table": false,
+      "notes": "Often null for call money issues and some older issues.",
+      "null_meaning": "Indicates that cumulative data is not provided (often for call money issues or older issues).",
+      "nullable": true,
+      "path": "$[*].nse_bse_cumu",
+      "semantic": "Cumulative bid quantity across NSE and BSE exchanges, reported as a string; null when not available.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "rights_issue.end_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy; one entry has year '0202' which is likely a data entry error (should be 2022).",
+          "suggested_mitigation": "Parse using dd-MMM-yyyy; flag years outside reasonable range (e.g., <1900 or >2100)."
+        },
+        {
+          "category": "E.UPS",
+          "description": "Date format may change; some entries may have different separators.",
+          "suggested_mitigation": "Use flexible date parser with expected format."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "08-May-2026",
+        "07-Feb-0202"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "rightEndDate",
+      "nested_table": false,
+      "notes": "One entry has year '0202' (sr_no 242) – likely a typo for 2022.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].rightEndDate",
+      "semantic": "The closing date of the rights issue period.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "rights_issue.start_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy.",
+          "suggested_mitigation": "Parse using dd-MMM-yyyy."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "24-Apr-2026",
+        "17-Jan-2022"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "rightStartDate",
+      "nested_table": false,
+      "notes": "All dates appear valid except possibly the end date anomaly.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].rightStartDate",
+      "semantic": "The opening date of the rights issue period.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "rights_issue.serial_number",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Serial number is not a stable identifier; it may change if the list is reordered.",
+          "suggested_mitigation": "Do not use as primary key; use symbol instead."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        1,
+        2,
+        330
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "sr_no",
+      "nested_table": false,
+      "notes": "Sequential integer, not guaranteed to be stable across snapshots.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].sr_no",
+      "semantic": "Serial number of the record in the list, starting from 1.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "rights_issue.symbol",
+      "collision_risk_with": [
+        "nse.equity_symbol.symbol"
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused for different issues over time; suffix indicates issue type (R=rights, CM=call money).",
+          "suggested_mitigation": "Use symbol combined with start/end dates as composite key."
+        },
+        {
+          "category": "E.STA",
+          "description": "Some symbols may be for withdrawn issues (e.g., 'NGILTD' includes 'Issue Withdrawn' in company name).",
+          "suggested_mitigation": "Check company name for withdrawal status."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "SILGOFCM",
+        "FALCONR",
+        "MAHAPEXR"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Suffix conventions: 'R' for rights, 'CM' for call money, 'RR' for repeat rights, etc.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].symbol",
+      "semantic": "NSE trading symbol for the rights issue (often the company symbol with a suffix like 'R' or 'CM').",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:25:43+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The symbol field can be used to join with equity master data for company details.",
+      "follow_up_endpoint_pattern": "nse.equity_master?symbol={symbol}",
+      "key_field": "symbol"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 330,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/rights_past.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "rights_past",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/liveWatchRights-issues?index=pastIssues"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 48,
+  "summary": "This endpoint provides a list of past rights issues (including call money issues) on the NSE, with bid quantities and cumulative NSE+BSE figures for each issue.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "One record (sr_no 242) has rightEndDate '07-Feb-0202' which is likely a data entry error (should be 2022).",
+    "Call money issues have null bidQty and nse_bse_cumu; they are included in the same list.",
+    "Symbols are not unique across time; same symbol may appear for different issues (e.g., 'ASTECR' appears twice).",
+    "Company names sometimes have trailing spaces or inconsistent capitalization."
+  ]
+}

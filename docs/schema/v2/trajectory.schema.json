@@ -1,0 +1,313 @@
+{
+  "$id": "https://ipo-watch.local/schema/v2/trajectory.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Trajectory",
+  "description": "Subscription (bid-book) time-series for an issue that was active. Root carries the metadata envelope plus the trajectory body.",
+  "x-ipo-watch": {
+    "design_notes": [
+      "Trajectory schema is designed to capture time-series data for subscription and demand.",
+      "Data points array allows multiple snapshots; each snapshot includes timestamp and relevant metrics.",
+      "Demand data is an array of price-quantity pairs representing the demand curve.",
+      "Subscription data includes overall and category-wise multiples.",
+      "All monetary values in paise, subscription multiples as decimal strings."
+    ],
+    "field_provenance": {
+      "data_points[].categories": {
+        "sources": [
+          "nse",
+          "bse"
+        ],
+        "tier": "primary"
+      },
+      "data_points[].demand_data": {
+        "sources": [
+          "nse",
+          "bse"
+        ],
+        "tier": "primary"
+      },
+      "data_points[].overall_times_x": {
+        "sources": [
+          "nse",
+          "bse"
+        ],
+        "tier": "primary"
+      },
+      "data_points[].timestamp": {
+        "sources": [
+          "nse",
+          "bse"
+        ],
+        "tier": "primary"
+      },
+      "identity.issue_slug": {
+        "sources": [
+          "ipo-watch"
+        ],
+        "tier": "primary"
+      },
+      "identity.source": {
+        "sources": [
+          "nse",
+          "bse"
+        ],
+        "tier": "primary"
+      },
+      "identity.trajectory_type": {
+        "sources": [
+          "ipo-watch"
+        ],
+        "tier": "primary"
+      }
+    },
+    "version": "2.0.0"
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issue_slug",
+    "observations"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "URL of the JSON Schema this record conforms to."
+    },
+    "schema_version": {
+      "type": "string",
+      "description": "SemVer of that schema."
+    },
+    "schema_url_self": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Stable URL where this document lives."
+    },
+    "dataset": {
+      "type": "string",
+      "description": "Dataset short-name, e.g. ipo-watch.issues."
+    },
+    "dataset_version": {
+      "type": "string",
+      "description": "Build-time version; increments every build. Pin for reproducible builds."
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "generated_by": {
+      "type": "string"
+    },
+    "time_zone": {
+      "type": "string",
+      "description": "Date-only fields are in this zone (Asia/Kolkata)."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Monetary fields are in this currency (INR)."
+    },
+    "language": {
+      "type": "string",
+      "description": "BCP-47 language tag."
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Every source that contributed to this record."
+    },
+    "field_provenance": {
+      "type": "object",
+      "description": "Map of field-path -> {source, snapshot_at, rule_id} for contested fields."
+    },
+    "data_quality": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "enum": [
+            "clean",
+            "review",
+            "quarantine"
+          ]
+        },
+        "errors": {
+          "type": "array"
+        },
+        "warnings": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "description": "Render only state in (clean, review)."
+    },
+    "freshness": {
+      "type": "object",
+      "description": "Map of source -> last successful refresh ISO instant."
+    },
+    "license": {
+      "type": "string"
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "issue_slug": {
+      "type": "string"
+    },
+    "frozen_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "ISO instant the curve was frozen (7 days post-close); null while still accreting."
+    },
+    "observation_count": {
+      "type": "integer"
+    },
+    "demand_curve_count": {
+      "type": "integer",
+      "description": "Number of price-level cumulative demand curve snapshots."
+    },
+    "demand_curves": {
+      "type": "array",
+      "description": "NSE Demand Data snapshots by price point. scope=nse is NSE-only; scope=all is all-exchange where available.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "observed_at",
+          "points"
+        ],
+        "properties": {
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source": {
+            "type": "string"
+          },
+          "scope": {
+            "enum": [
+              "nse",
+              "all"
+            ]
+          },
+          "source_updated_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "price_paise",
+                "cumulative_quantity"
+              ],
+              "properties": {
+                "price_paise": {
+                  "type": "integer"
+                },
+                "cumulative_quantity": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "observed_at"
+        ],
+        "properties": {
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_updated_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "total": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "shares_bid": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "shares_offered": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "times": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Subscription multiple (raw number, not the _x decimal-string convention)."
+              }
+            }
+          },
+          "categories": {
+            "type": "object",
+            "description": "Per-category bid buckets (qib, retail, nii, employee, shareholder, sub-buckets…). Keys vary by issue.",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "shares_bid": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "shares_offered": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "times": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "Subscription multiple (raw number, not the _x decimal-string convention)."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

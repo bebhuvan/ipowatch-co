@@ -1,0 +1,26 @@
+{
+  "$id": "https://ipo-watch.local/schema/v3/filings.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "documents": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "3.0.0"
+    },
+    "slug": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "slug",
+    "documents"
+  ],
+  "title": "IPO Watch V3 Filings",
+  "type": "object"
+}

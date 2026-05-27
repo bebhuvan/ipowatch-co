@@ -1,0 +1,307 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": true,
+    "cached": false,
+    "endpoint_concrete": "bond_issue_documents",
+    "estimated_cost_usd": 0.010950230000000002,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 31239,
+    "tokens_out": 2287
+  },
+  "currency": "INR",
+  "data_kind": "document_index",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0401",
+  "endpoint": "bond_issue_documents",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "document.drhp_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is ambiguous (M/d/yyyy h:mm:ss tt) and may be parsed incorrectly.",
+          "suggested_mitigation": "Parse using format 'M/d/yyyy h:mm:ss tt' and convert to ISO 8601."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "5/22/2026 1:08:21 AM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DRHP_Date",
+      "nested_table": false,
+      "notes": "Format: M/d/yyyy h:mm:ss tt",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].DRHP_Date",
+      "semantic": "Date and time when the Draft Red Herring Prospectus was filed.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.drhp_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused or reassigned over time.",
+          "suggested_mitigation": "Treat as opaque string; do not assume monotonicity."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "269002"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "DRHP_ID",
+      "nested_table": false,
+      "notes": "Appears to be numeric string.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].DRHP_ID",
+      "semantic": "Unique identifier for the DRHP document.",
+      "type": "identifier",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.open_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is ambiguous (M/d/yyyy h:mm:ss tt) and may be parsed incorrectly.",
+          "suggested_mitigation": "Parse using format 'M/d/yyyy h:mm:ss tt' and convert to ISO 8601."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "5/22/2026 1:08:21 AM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Open_Date",
+      "nested_table": false,
+      "notes": "Format: M/d/yyyy h:mm:ss tt",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Open_Date",
+      "semantic": "Date and time when the issue opened for subscription.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.open_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused or reassigned.",
+          "suggested_mitigation": "Treat as opaque string."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "268451"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "Open_ID",
+      "nested_table": false,
+      "notes": "Often empty string when not applicable.",
+      "null_meaning": "No open issue associated or not yet opened.",
+      "nullable": true,
+      "path": "$[*].Open_ID",
+      "semantic": "Identifier for the open issue, possibly linking to another document.",
+      "type": "identifier",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.prior_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused or reassigned.",
+          "suggested_mitigation": "Treat as opaque string."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "268651"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "Prior_ID",
+      "nested_table": false,
+      "notes": "Often empty string when not applicable.",
+      "null_meaning": "No prior version.",
+      "nullable": true,
+      "path": "$[*].Prior_ID",
+      "semantic": "Identifier for a prior version of the document or issue.",
+      "type": "identifier",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.prospectus_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Path may contain special characters or spaces.",
+          "suggested_mitigation": "URL-encode when constructing full URL."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "13828/IPO/PCL_Draft Prospectus_20260522010752.pdf"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Prospectus",
+      "nested_table": false,
+      "notes": "Often empty string when not available.",
+      "null_meaning": "No prospectus available yet.",
+      "nullable": true,
+      "path": "$[*].Prospectus",
+      "semantic": "File path or URL to the final prospectus document (PDF or ZIP).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.red_herring_prospectus_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Path may contain special characters or spaces.",
+          "suggested_mitigation": "URL-encode when constructing full URL."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "13828/IPO/PCL_Draft Prospectus_20260522010752.pdf"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Red_Herring_Prospectus",
+      "nested_table": false,
+      "notes": "Always present in observed data.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Red_Herring_Prospectus",
+      "semantic": "File path or URL to the Red Herring Prospectus document (PDF).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company names may have variations (e.g., 'Ltd' vs 'Limited').",
+          "suggested_mitigation": "Normalize by removing punctuation and standardizing suffixes."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "PRACHAY CAPITAL Ltd"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Scrip_Name",
+      "nested_table": false,
+      "notes": "May contain extra spaces or inconsistent capitalization.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Scrip_Name",
+      "semantic": "Name of the company issuing the bond.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.scrip_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Scrip codes may be reused or reassigned over time.",
+          "suggested_mitigation": "Treat as opaque string; use with caution for joins."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "940227"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "scrip_cd",
+      "nested_table": false,
+      "notes": "Numeric string, may have leading zeros.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].scrip_cd",
+      "semantic": "Unique scrip code assigned by BSE to the company.",
+      "type": "identifier",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:01:46+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The scrip_cd field can be used to join with other BSE endpoints for company details.",
+      "follow_up_endpoint_pattern": "https://api.bseindia.com/BseIndiaAPI/api/CompanyDetails/w?scrip_cd={scrip_cd}",
+      "key_field": "scrip_cd"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": null,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/bond_issue_documents.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "bond_issue_documents",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/Pubissues_BondIssues_DRHP_ng/w"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a list of bond issue documents (DRHP, Prospectus, etc.) for various companies, including metadata such as dates, IDs, and links to PDF files.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Body was truncated; full data may contain more rows.",
+    "Date fields use ambiguous format M/d/yyyy h:mm:ss tt; ensure correct parsing.",
+    "File paths in Prospectus and Red_Herring_Prospectus may need URL encoding.",
+    "Empty strings in Open_ID, Prior_ID, Prospectus may represent nulls."
+  ]
+}

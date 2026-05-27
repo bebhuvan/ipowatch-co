@@ -1,0 +1,171 @@
+# Seed list for the anchor Academy article.
+# Article: How IPO allotment actually works
+# Section: mechanics
+#
+# This is the planning step. Each entry is a candidate primary source
+# we intend to fetch and excerpt into data/academy/sources/.
+#
+# Before any WebFetch runs:
+#   1. Review the URL for each entry. SEBI/NSE/BSE/AIBI move documents
+#      around and we have not verified every URL is the most recent.
+#   2. Confirm `intended_excerpts` actually exist on the page. If a
+#      document was superseded, replace it with the current version.
+#   3. Strike entries you don't want included; we will not over-harvest.
+#
+# Once you've reviewed and amended, I (Claude) will run WebFetch on
+# each URL, extract verbatim excerpts, and write the SourceDoc JSONs.
+
+slug: how-allotment-works
+section: mechanics
+working_title: How IPO allotment actually works
+audience_one_line: >
+  An Indian retail or HNI applicant who has bid in an IPO and wants
+  to understand exactly how the shares get distributed across QIB,
+  NII (small and big), retail, employee, and shareholder buckets.
+
+# ---------------------------------------------------------------- PRIMARY (SEBI)
+sources:
+
+  - source_id: sebi-icdr-2018
+    url: https://www.sebi.gov.in/legal/regulations/jan-2024/securities-and-exchange-board-of-india-issue-of-capital-and-disclosure-requirements-regulations-2018-last-amended-on-december-26-2023-_80459.html
+    publisher: SEBI
+    document_kind: regulation
+    source_tier: primary
+    intended_excerpts: >
+      Regulation 31 (Allocation in net offer to public), Regulation 32
+      (Manner of bidding), Regulation 33 (Allotment procedure including
+      lottery for oversubscribed retail), and Schedule XIII / relevant
+      schedules defining QIB/NII/retail/employee/shareholder reservation
+      proportions.
+    notes: >
+      Master regulation. URL is the consolidated text as of Dec 2023.
+      If SEBI publishes a newer consolidation, switch to that.
+
+  - source_id: sebi-circ-2012-allotment-lottery
+    url: https://www.sebi.gov.in/legal/circulars/sep-2012/changes-to-the-mechanism-of-allotment-to-retail-individual-investors-in-public-issues_22910.html
+    publisher: SEBI
+    document_kind: circular
+    source_tier: primary
+    intended_excerpts: >
+      The 2012 circular replacing proportionate allotment with the
+      minimum-application-size-based lottery for oversubscribed retail
+      books. Specifically the rule that every successful retail
+      applicant gets the minimum application size (one lot), with
+      ballot if oversubscribed.
+    notes: >
+      Historically important — this is the moment the lottery
+      principle was established. Verify the circular reference number
+      (CIR/CFD/DIL/...) when fetching.
+
+  - source_id: sebi-master-circ-issue-of-capital
+    url: https://www.sebi.gov.in/legal/master-circulars/
+    publisher: SEBI
+    document_kind: master-direction
+    source_tier: primary
+    intended_excerpts: >
+      Most recent SEBI Master Circular consolidating Issue of Capital
+      requirements. Anchor investor rules, sHNI/bHNI split for non-
+      institutional, employee and shareholder reservation caps.
+    notes: >
+      URL is the master-circulars index; find the most recent ICDR
+      master circular and use its direct URL when fetching.
+
+  - source_id: sebi-circ-2021-shni-bhni-split
+    url: https://www.sebi.gov.in/legal/circulars/apr-2022/revised-allotment-methodology-for-non-institutional-investors-nii_57930.html
+    publisher: SEBI
+    document_kind: circular
+    source_tier: primary
+    intended_excerpts: >
+      The 2022 split of the NII bucket into sHNI (₹2 lakh to ₹10 lakh,
+      one-third of NII) and bHNI (above ₹10 lakh, two-thirds of NII),
+      with draw-of-lots applied separately. This is the rule retail
+      writers most often get wrong.
+    notes: >
+      Cross-check the publication date and circular reference when
+      fetching. The split applies to issues opening on or after a
+      specific date in 2022.
+
+  - source_id: sebi-circ-anchor-investors
+    url: https://www.sebi.gov.in/legal/circulars/aug-2021/revised-norms-for-allocation-to-anchor-investors_51866.html
+    publisher: SEBI
+    document_kind: circular
+    source_tier: primary
+    intended_excerpts: >
+      The 2021 revision of anchor allocation norms — proportion of QIB
+      portion reservable for anchors, lock-in periods, minimum anchor
+      bid sizes, mutual-fund sub-allocation.
+    notes: >
+      Anchor allocation is part of the QIB book mechanics; we cover it
+      to explain why the QIB book is "soft" before bidding opens.
+
+# -------------------------------------------------------------- PRIMARY (EXCHANGE)
+
+  - source_id: nse-faq-ipo-allotment
+    url: https://www.nseindia.com/products-services/initial-public-offerings-igr
+    publisher: NSE
+    document_kind: rulebook
+    source_tier: primary
+    intended_excerpts: >
+      NSE's published IPO process FAQ — bid window, ASBA/UPI flow,
+      allotment basis publication, listing-day mechanics.
+    notes: >
+      URL may redirect; we'll capture the canonical exchange page on
+      IPO procedure.
+
+  - source_id: bse-faq-ipo-allotment
+    url: https://www.bseindia.com/static/markets/PublicIssues/IPO_FAQ.aspx
+    publisher: BSE
+    document_kind: rulebook
+    source_tier: primary
+    intended_excerpts: >
+      BSE's published IPO process FAQ. Used for cross-exchange
+      consistency check and to capture any BSE-specific mechanics
+      (e.g., bidding terminal procedures).
+    notes: ""
+
+# ----------------------------------------------------------------- PRIMARY (AIBI)
+
+  - source_id: aibi-handbook-book-building
+    url: https://www.aibi.org.in/
+    publisher: Association of Investment Bankers of India
+    document_kind: handbook
+    source_tier: primary
+    intended_excerpts: >
+      AIBI's procedural handbook chapter on book-building, allotment
+      basis-of-allotment certification, role of the registrar.
+    notes: >
+      AIBI's site can be patchy; if a public handbook URL isn't
+      reachable, we drop this entry and rely on SEBI + exchange
+      sources alone.
+
+# ----------------------------------------------------- SECONDARY (specific events)
+
+  - source_id: news-zomato-2021-allotment-basis
+    url: ""
+    publisher: TBD (Reuters / Mint / BusinessLine)
+    document_kind: news
+    source_tier: secondary
+    intended_excerpts: >
+      Zomato July 2021 IPO: actual subscription numbers across QIB,
+      NII, retail; final allotment ratio per category. Used as a
+      single concrete worked example in the article.
+    notes: >
+      Two-source rule applies. We will pick two of {Reuters, Mint,
+      BusinessLine, ET, BQ Prime} that independently report the same
+      numbers. URL filled at harvest time.
+
+  - source_id: news-lic-2022-retail-employee-reservation
+    url: ""
+    publisher: TBD (Reuters / Mint / BusinessLine)
+    document_kind: news
+    source_tier: secondary
+    intended_excerpts: >
+      LIC May 2022 IPO: a useful counter-example because of the policy-
+      holder and employee reservation buckets that don't exist in
+      typical IPOs. Subscription multiples per category.
+    notes: >
+      Two-source rule applies. URL filled at harvest time.
+
+# Total candidates: 10. If a candidate fails to fetch or its content
+# does not support our intended excerpts, we drop it rather than
+# stretch to fit. The brief's `source_ids` is finalised AFTER harvest.

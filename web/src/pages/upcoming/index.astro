@@ -1,0 +1,105 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getUpcoming, getDetailBySlug, extractIngredient } from '../../lib/issues';
+import {
+  formatDateShort,
+  formatLakhCr,
+  formatRupee,
+  formatRupeeRange,
+  formatInt,
+  daysFromNow,
+} from '../../lib/format';
+
+const today = new Date();
+const enriched = getUpcoming().map((issue) => {
+  const detail = getDetailBySlug(issue.slug);
+  const ing = detail ? extractIngredient(detail) : null;
+  return {
+    issue: {
+      ...issue,
+      price_band: {
+        min: issue.price_band.min ?? ing?.priceMin ?? null,
+        max: issue.price_band.max ?? ing?.priceMax ?? null,
+        text: issue.price_band.text,
+      },
+    },
+    lotSize: ing?.lotSize ?? null,
+    brlmName: ing?.brlmName ?? null,
+    raise: ing?.impliedSize ? formatLakhCr(ing.impliedSize) : detail?.issue_size?.text ?? null,
+    openDays: daysFromNow(issue.open_date, today) ?? 999,
+  };
+}).sort((a, b) => a.openDays - b.openDays);
+
+const typeTag = (issue: { issue_type: string | null; exchange_platform: string | null }) => {
+  const t = issue.issue_type ?? '';
+  const ex = (issue.exchange_platform ?? '').replace(/\s+/g, ' ').trim();
+  return [t, ex].filter(Boolean).join('  ·  ');
+};
+
+const openWindow = (open: string | null, close: string | null) => {
+  if (!open && !close) return '—';
+  const o = open ? formatDateShort(open) : '—';
+  const c = close ? formatDateShort(close) : '';
+  return c ? `${o} — ${c}` : o;
+};
+
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+---
+
+<Base title="Opening soon">
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6">
+    <span class="label" style="color: inherit">Opening soon</span>
+  </div>
+  <h1 class="headline mb-7 max-w-[18ch]">
+    {enriched.length} {enriched.length === 1 ? 'issue' : 'issues'} on the calendar.
+  </h1>
+  <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[58ch]">
+    Issues with announced opening dates that are not yet accepting bids.
+    Dates and price bands can still change before the issue opens.
+  </p>
+</section>
+
+<section class="page-tight pt-12 pb-24">
+  {enriched.length === 0 ? (
+    <p class="serif italic text-[20px] mute">No upcoming issues with confirmed dates.</p>
+  ) : (
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {enriched.map(({ issue, lotSize, raise, openDays, brlmName }, idx) => (
+        <a href={issue.url_path} class="group block bg-white border border-[color:var(--color-rule-card)] p-[28px_32px_24px] relative overflow-hidden transition-all duration-300 hover:border-[color:var(--color-accent)] hover:bg-[#fffaf7]">
+          <span class="absolute top-[20px] right-[26px] serif italic font-light text-[22px] leading-none text-[color:var(--color-mute-2)] group-hover:text-[color:var(--color-accent)] transition-colors">{ROMAN[idx] ?? idx + 1}</span>
+          <div class="flex items-center gap-[10px] text-[10px] tracking-[0.18em] uppercase font-semibold mute mb-4 pr-[40px]">
+            <span class="issue-badge issue-badge-dark">Upcoming</span>
+            <span>{typeTag(issue)}{brlmName ? ` · ${brlmName}` : ''}</span>
+          </div>
+          <h3 class="serif font-medium text-[22px] leading-[1.18] mb-2 group-hover:text-[color:var(--color-accent-deep)] transition-colors">{issue.company_name}</h3>
+          <div class="grid grid-cols-2 gap-[14px_24px] pt-4 mt-4 border-t border-[color:var(--color-rule)]">
+            <div>
+              <div class="label mb-1">Price band</div>
+              <div class="serif text-[19px] num leading-tight">{formatRupeeRange(issue.price_band.min, issue.price_band.max)}</div>
+            </div>
+            <div>
+              <div class="label mb-1">Shares per lot</div>
+              <div class="serif text-[19px] num leading-tight">{lotSize ? formatInt(lotSize) : '—'}</div>
+            </div>
+            <div>
+              <div class="label mb-1">Retail minimum</div>
+              <div class="serif text-[19px] num leading-tight">{lotSize && issue.price_band.max ? formatRupee(lotSize * issue.price_band.max) : '—'}</div>
+            </div>
+            <div>
+              <div class="label mb-1">Issue size</div>
+              <div class="serif text-[19px] num leading-tight">{raise ?? '—'}</div>
+            </div>
+          </div>
+          <div class="flex items-baseline justify-between gap-4 mt-4 pt-[14px] border-t border-[color:var(--color-rule)]">
+            <span class="text-[12.5px] mute num">{openWindow(issue.open_date, issue.close_date)}</span>
+            <span class={`text-[11px] tracking-[0.12em] uppercase font-semibold whitespace-nowrap ${openDays === 0 ? 'text-[color:var(--color-accent)]' : openDays === 1 ? 'text-[color:var(--color-gold)]' : 'mute'}`}>
+              {openDays === 0 ? 'Opens today' : openDays === 1 ? 'Opens tomorrow' : openDays > 0 ? `Opens in ${openDays}d` : formatDateShort(issue.open_date)}
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  )}
+</section>
+</Base>

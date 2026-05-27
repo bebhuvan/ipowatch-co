@@ -1,0 +1,115 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/factcheck.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.factcheck.schema",
+  "dataset_version": "v2026.05.23-0647",
+  "estimated_cost_usd": 0.005655670000000001,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T06:47:49+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-5 fact-check produced by deepseek-reasoner.",
+  "report": {
+    "blocking_count": 0,
+    "checks": [
+      {
+        "note": "Regulation 5(1)(b) directly states this restriction.",
+        "sentence": "The restriction also extends to a promoter or director who is linked to another company that is debarred — if you are a promoter of Company A and Company B is banned, you cannot take Company A public either.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "if any of the promoters or directors of the issuer is a promoter or director of any other company which is debarred from accessing the capital market by the Board.",
+        "tag_index": 1,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 5(1)(c) and (d) cover these categories.",
+        "sentence": "Second, wilful defaulters and fraudulent borrowers — as defined by the Reserve Bank of India — are barred. So are fugitive economic offenders under the Fugitive Economic Offenders Act, 2012.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "if the issuer or any of its promoters or directors is a wilful defaulter or a fraudulent borrower. ... if any of its promoters or directors is a fugitive economic offender.",
+        "tag_index": 2,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 5(2) matches the prohibition and exceptions.",
+        "sentence": "Third, an IPO cannot happen if the company has any outstanding convertible securities — instruments like convertible bonds or warrants that could later be turned into equity shares. ... There are two exceptions: employee stock options and stock appreciation rights are allowed, and any other convertible securities must be fully converted before the prospectus is filed.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "An issuer shall not be eligible to make an initial public offer if there are any outstanding convertible securities or any other right which would entitle any person with any option to receive equity shares of the issuer (subject to specific exceptions for employee stock options, stock appreciation rights, and fully-paid-up convertible securities required to be converted before filing the red herring or fixed-price prospectus).",
+        "tag_index": 3,
+        "verdict": "supported"
+      },
+      {
+        "note": "Explanation to Regulation 5(1) confirms the nuance.",
+        "sentence": "One important nuance: if a past debarment period has ended by the time the draft offer document is filed with SEBI, the restriction no longer applies. The ban is not a permanent stain; it expires with the penalty.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "The restrictions under (a) and (b) above shall not apply to the persons or entities mentioned therein, who were debarred in the past by the Board and the period of debarment is already over as on the date of filing of the draft offer document with the Board.",
+        "tag_index": 4,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 6(1)(d) exactly states this rule.",
+        "sentence": "There is one more rule: if the company changed its name in the last year, at least half of its revenue must come from the activity reflected in the new name.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "if it has changed its name within the last one year, at least fifty per cent. of the revenue, calculated on a restated and consolidated basis, for the preceding one full year has been earned by it from the activity indicated by its new name.",
+        "tag_index": 5,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 32(1) provides these allocation percentages. The 'any issue method' claim is correct because the profitability route allows both book-building and fixed price.",
+        "sentence": "A company that meets these thresholds can use any issue method — fixed price or book-building — and the allocation rules are relatively flexible: at least 35% of the net offer to retail investors, at least 15% to non-institutional investors, and up to 50% to qualified institutional buyers.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "In an issue made through the book building process under sub-regulation (1) of regulation 6 the allocation in the net offer category shall be as follows: (a) not less than thirty five per cent. to retail individual investors; (b) not less than fifteen per cent. to non-institutional investors; (c) not more than fifty per cent. to qualified institutional buyers",
+        "tag_index": 6,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 6(2) verbatim includes both the 75% QIB requirement and the refund condition.",
+        "sentence": "It must allot at least 75% of the net offer to qualified institutional buyers — the big money: mutual funds, insurance companies, pension funds, foreign portfolio investors. If it cannot achieve that allotment, it must refund the entire subscription amount.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "the issuer undertakes to allot at least seventy five per cent. of the net offer to qualified institutional buyers and to refund the full subscription money if it fails to do so.",
+        "tag_index": 7,
+        "verdict": "supported"
+      },
+      {
+        "note": "Regulation 32(2) provides these caps.",
+        "sentence": "The allocation for retail investors under this route is capped at 10% of the net offer, and for non-institutional investors at 15%.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "In an issue made through the book building process under sub-regulation (2) of regulation 6, the allocation in the net offer category shall be as follows: (a) not more than ten per cent. to retail individual investors; (b) not more than fifteen per cent. to non-institutional investors",
+        "tag_index": 8,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact definition from the definitions section of the regulations.",
+        "sentence": "The ICDR Regulations define it as 'an offer of specified securities by a listed issuer to the public for subscription' and explicitly include an offer for sale by existing holders in a listed issuer.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "'further public offer' means an offer of specified securities by a listed issuer to the public for subscription and includes an offer for sale of specified securities to the public by any existing holders of such specified securities in a listed issuer",
+        "tag_index": 9,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact definition from the regulations.",
+        "sentence": "The ICDR Regulations define a 'selling shareholder' as any shareholder of the issuer who is offering shares for sale in a public issue.",
+        "source_id": "sebi-icdr-2018-2025-03-08",
+        "supporting_excerpt_quote": "'selling shareholder(s)' means any shareholder of the issuer who is offering for sale the specified securities in a public issue in accordance with these Regulations",
+        "tag_index": 10,
+        "verdict": "supported"
+      }
+    ],
+    "summary": "All tagged claims are fully supported by the source corpus. No untagged factual claims requiring sourcing were identified. The draft is accurate and well-sourced against the ICDR Regulations.",
+    "untagged_claims": []
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "what-is-an-ipo",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 7091,
+  "tokens_out": 3401
+}

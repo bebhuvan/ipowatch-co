@@ -1,0 +1,173 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "ipo_historic_table_index",
+    "estimated_cost_usd": 0.003313,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 7300,
+    "tokens_out": 1220
+  },
+  "currency": "INR",
+  "data_kind": "document_index",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0411",
+  "endpoint": "ipo_historic_table_index",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "page.endpoint",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Endpoint names may change if the site restructures pages.",
+          "suggested_mitigation": "Treat as opaque identifier; do not parse for meaning."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "ipo_historic_table_page_001"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "endpoint",
+      "nested_table": false,
+      "notes": "Format: ipo_historic_table_page_XXX where XXX is zero-padded page number.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].endpoint",
+      "semantic": "Identifier for the specific page endpoint within the IPO historic table index.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "page.number",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Page numbers are integers; no parsing issues expected.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        1,
+        120
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "page",
+      "nested_table": false,
+      "notes": "Sequential from 1 to 120.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].page",
+      "semantic": "Page number of the IPO historic table.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "page.url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.SNP",
+          "description": "URL may become stale if site changes routing.",
+          "suggested_mitigation": "Validate URL before fetching; consider using endpoint name as key."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://www.capitalmarket.com/markets/IPOs/ipo-historic-table"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "url",
+      "nested_table": false,
+      "notes": "All pages share the same base URL; actual page content likely determined by query parameters or session state.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].url",
+      "semantic": "URL to access the specific page of the IPO historic table.",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "table_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Table name may change if schema is updated.",
+          "suggested_mitigation": "Treat as constant; alert if value changes."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "ipo_historic_table"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "table",
+      "nested_table": false,
+      "notes": "Constant value 'ipo_historic_table'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table",
+      "semantic": "Name of the table being indexed.",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:11:01+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "Each page entry references a sub-endpoint that contains the actual IPO historic data rows. The endpoint field provides the identifier for that page.",
+      "follow_up_endpoint_pattern": "ipo_historic_table_page_XXX",
+      "key_field": "endpoint"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 120,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/capitalmarket/ipo_historic_table_index.json",
+  "schema_version": "1.0.0",
+  "source": "capitalmarket",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_historic_table_index",
+      "snapshot_at": "2026-05-22T09:39:09+00:00",
+      "source": "capitalmarket",
+      "url": "https://www.capitalmarket.com/markets/IPOs/ipo-historic-table"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a paginated index of historical IPO data pages on Capital Market. Each page entry contains metadata (endpoint name, page number, URL) for accessing individual pages of the IPO historic table. The actual IPO data rows are not included in this snapshot; only the page index is returned.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "This snapshot contains only a page index; actual IPO data is not included. Each page must be fetched separately using the provided URLs.",
+    "The URLs are identical for all pages; the actual page content likely depends on ASP.NET ViewState or similar state mechanism, requiring session handling.",
+    "No actual IPO data fields are present in this snapshot; the downstream team must fetch individual pages to build the canonical schema.",
+    "The page count (120) suggests a large dataset; pagination may be required to retrieve all records."
+  ]
+}

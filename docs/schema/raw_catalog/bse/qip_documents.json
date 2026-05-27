@@ -1,0 +1,382 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "qip_documents",
+    "estimated_cost_usd": 0.0105362,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 26650,
+    "tokens_out": 3037
+  },
+  "currency": "INR",
+  "data_kind": "document_index",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0409",
+  "endpoint": "qip_documents",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company.bse_company_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused or reassigned over time.",
+          "suggested_mitigation": "Treat as internal ID, not a stable external key."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        691,
+        3035,
+        null
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "COMPANY_CODE",
+      "nested_table": false,
+      "notes": "Nullable in some rows; appears to be an internal BSE code.",
+      "null_meaning": "Company code not provided, possibly a new or unlisted entity.",
+      "nullable": true,
+      "path": "$[*].COMPANY_CODE",
+      "semantic": "Internal BSE numeric identifier for the company.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company names may contain trailing commas or non-ASCII characters.",
+          "suggested_mitigation": "Trim whitespace and punctuation; handle Unicode."
+        },
+        {
+          "category": "E.ID",
+          "description": "Company names may be abbreviated inconsistently (e.g., 'ADANI ENTER' vs 'Adani Enterprises').",
+          "suggested_mitigation": "Map to a canonical name using scripcode or other identifier."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "CG Power and Industrial Solutions Limited",
+        "State Bank Of India,",
+        "ADANI ENTER"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Company_Name",
+      "nested_table": false,
+      "notes": "Some names have trailing commas or are abbreviated.",
+      "null_meaning": "Company name not provided.",
+      "nullable": true,
+      "path": "$[*].Company_Name",
+      "semantic": "Name of the company as registered with BSE.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "qip.in_principle_status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may be limited to 'New' or 'Revised'; other values may appear.",
+          "suggested_mitigation": "Enumerate known values and flag unknown ones."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "New",
+        "Revised",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "InPrincipleStatus",
+      "nested_table": false,
+      "notes": "Seems to be a simple status indicator.",
+      "null_meaning": "In-principle approval not yet filed or status unknown.",
+      "nullable": true,
+      "path": "$[*].InPrincipleStatus",
+      "semantic": "Status of the in-principle approval for the QIP issue.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "qip.in_principle_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Dates are in ISO 8601 format with time component always midnight; timezone is IST implied.",
+          "suggested_mitigation": "Parse as date only, ignore time component."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2025-06-30T00:00:00",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "InPrinciple_date",
+      "nested_table": false,
+      "notes": "Always midnight time; treat as date.",
+      "null_meaning": "In-principle approval date not available.",
+      "nullable": true,
+      "path": "$[*].InPrinciple_date",
+      "semantic": "Date when the in-principle approval was granted or filed.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "qip.in_principle_document_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Path structure may change if BSE reorganizes file storage.",
+          "suggested_mitigation": "Treat as opaque URL; do not parse path components."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/QIPIPSUploadDocument/QIPIPS_500093_3062025151831.xml",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "In_Principle_Stage",
+      "nested_table": false,
+      "notes": "Relative path; likely needs base URL to form full URL.",
+      "null_meaning": "No in-principle document uploaded.",
+      "nullable": true,
+      "path": "$[*].In_Principle_Stage",
+      "semantic": "Path to the XBRL document for the in-principle approval stage.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "qip.listing_status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may be limited to 'New' or 'Revised'; other values may appear.",
+          "suggested_mitigation": "Enumerate known values and flag unknown ones."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "New",
+        "Revised",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ListingStatus",
+      "nested_table": false,
+      "notes": "Similar to InPrincipleStatus.",
+      "null_meaning": "Listing status not provided.",
+      "nullable": true,
+      "path": "$[*].ListingStatus",
+      "semantic": "Status of the listing document for the QIP issue.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "qip.listing_document_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Path structure may change if BSE reorganizes file storage.",
+          "suggested_mitigation": "Treat as opaque URL; do not parse path components."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/QIPLSUploadDocument/QIPLS_500093_572025142818.xml",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Listing_Stage",
+      "nested_table": false,
+      "notes": "Relative path; likely needs base URL to form full URL.",
+      "null_meaning": "No listing document uploaded.",
+      "nullable": true,
+      "path": "$[*].Listing_Stage",
+      "semantic": "Path to the XBRL document for the listing stage.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "qip.listing_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Dates are in ISO 8601 format with time component always midnight; timezone is IST implied.",
+          "suggested_mitigation": "Parse as date only, ignore time component."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2025-07-05T00:00:00",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Listing_stage_date",
+      "nested_table": false,
+      "notes": "Always midnight time; treat as date.",
+      "null_meaning": "Listing stage date not available.",
+      "nullable": true,
+      "path": "$[*].Listing_stage_date",
+      "semantic": "Date when the listing document was filed or approved.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "qip.record_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Record IDs may be reused or reassigned; appears as float.",
+          "suggested_mitigation": "Cast to integer after confirming no decimal values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        1167.0,
+        null
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "Recordid",
+      "nested_table": false,
+      "notes": "Appears as float; likely should be integer.",
+      "null_meaning": "Record ID not assigned.",
+      "nullable": true,
+      "path": "$[*].Recordid",
+      "semantic": "Numeric identifier for the record, possibly a database row ID.",
+      "type": "number",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "qip.record_id_alt",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Record IDs may be reused or reassigned; appears as float.",
+          "suggested_mitigation": "Cast to integer after confirming no decimal values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        1167.0,
+        null
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "recordid1",
+      "nested_table": false,
+      "notes": "Appears as float; likely should be integer.",
+      "null_meaning": "Record ID not assigned.",
+      "nullable": true,
+      "path": "$[*].recordid1",
+      "semantic": "Another numeric identifier for the record, possibly a different system ID.",
+      "type": "number",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.bse_scrip_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Scrip codes are stable but may be reused after delisting.",
+          "suggested_mitigation": "Use as primary key for company identification."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        500093,
+        null
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "scripcode",
+      "nested_table": false,
+      "notes": "Standard BSE identifier.",
+      "null_meaning": "Scrip code not provided, possibly for unlisted entities.",
+      "nullable": true,
+      "path": "$[*].scripcode",
+      "semantic": "BSE scrip code (stock symbol number) for the company.",
+      "type": "integer",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:09:27+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "XBRL document files for in-principle and listing stages are referenced by relative paths. These files likely contain detailed QIP issue data.",
+      "follow_up_endpoint_pattern": "https://api.bseindia.com/BseIndiaAPI/api/<base_path>/<relative_path>",
+      "key_field": "In_Principle_Stage, Listing_Stage"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 120,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/qip_documents.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "qip_documents",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/Pubissues_FurtherIssuesummary_QIP_isd_ng/w"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a list of companies that have filed QIP (Qualified Institutional Placement) documents with BSE, including the status and dates of in-principle approval and listing, along with links to the actual XBRL document files.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The In_Principle_Stage and Listing_Stage fields contain relative paths to XBRL files; these files may contain more detailed data but require separate requests to fetch.",
+    "Some rows have null values for many fields, possibly indicating incomplete data or different stages of filing.",
+    "Company names may have trailing commas or inconsistent abbreviations; normalization recommended.",
+    "Recordid and recordid1 appear as floats but likely represent integers; cast appropriately.",
+    "Dates are in ISO 8601 format with time always midnight; treat as dates only."
+  ]
+}

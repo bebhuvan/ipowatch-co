@@ -1,0 +1,119 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCurrent, getDetailBySlug, extractIngredient } from '../../lib/issues';
+import {
+  formatLakhCr,
+  formatRupee,
+  formatRupeeRange,
+  formatTimes,
+  formatInt,
+  daysFromNow,
+} from '../../lib/format';
+
+const today = new Date();
+const current = getCurrent();
+
+const enriched = current.map((issue) => {
+  const detail = getDetailBySlug(issue.slug);
+  const traj = detail?.subscription?.trajectory ?? [];
+  const last = traj.length ? traj[traj.length - 1] : null;
+  const subscriptionTimes = last?.total?.times ?? detail?.subscription?.times ?? null;
+  const ing = detail ? extractIngredient(detail) : null;
+  const closeDays = daysFromNow(issue.close_date, today) ?? 999;
+  return {
+    issue: {
+      ...issue,
+      price_band: {
+        min: issue.price_band.min ?? ing?.priceMin ?? null,
+        max: issue.price_band.max ?? ing?.priceMax ?? null,
+        text: issue.price_band.text,
+      },
+    },
+    subscriptionTimes,
+    lotSize: ing?.lotSize ?? null,
+    closeDays,
+    raise: ing?.impliedSize ? formatLakhCr(ing.impliedSize) : detail?.issue_size?.text ?? null,
+    brlmName: ing?.brlmName ?? null,
+  };
+}).sort((a, b) => a.closeDays - b.closeDays);
+
+const typeTag = (issue: { issue_type: string | null; exchange_platform: string | null }) => {
+  const t = issue.issue_type ?? '';
+  const ex = (issue.exchange_platform ?? '').replace(/\s+/g, ' ').trim();
+  return [t, ex].filter(Boolean).join('  ·  ');
+};
+
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+const closeTiming = (d: number) => d === 0 ? 'Closes today' : d === 1 ? 'Closes tomorrow' : d > 0 ? `Closes in ${d} days` : 'Closed';
+---
+
+<Base title="Open for subscription">
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6 inline-flex items-center gap-2">
+    <span class="live-dot"></span>
+    <span class="label" style="color: inherit">Open for subscription</span>
+  </div>
+  <h1 class="headline mb-7 max-w-[18ch]">
+    {enriched.length} {enriched.length === 1 ? 'issue' : 'issues'} open right now.
+  </h1>
+  <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[58ch]">
+    Issues currently accepting bids on the exchange order books. Subscription
+    numbers are refreshed from NSE and BSE feeds through the day.
+  </p>
+</section>
+
+<section class="page-tight pt-12 pb-24">
+  {enriched.length === 0 ? (
+    <p class="serif italic text-[20px] mute">A quiet day on the primary market.</p>
+  ) : (
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {enriched.map(({ issue, subscriptionTimes, lotSize, closeDays, raise, brlmName }, idx) => {
+        const subPct = subscriptionTimes != null ? Math.min(100, (Math.min(subscriptionTimes, 10) / 10) * 100) : 0;
+        return (
+          <a href={issue.url_path} class="group block bg-white border border-[color:var(--color-rule-card)] p-[28px_32px_24px] relative overflow-hidden transition-all duration-300 hover:border-[color:var(--color-accent)] hover:bg-[#fffaf7]">
+            <span class="absolute top-[20px] right-[26px] serif italic font-light text-[22px] leading-none text-[color:var(--color-mute-2)] group-hover:text-[color:var(--color-accent)] transition-colors">{ROMAN[idx] ?? idx + 1}</span>
+            <div class="flex items-center gap-[10px] text-[10px] tracking-[0.18em] uppercase font-semibold mute mb-4 pr-[40px]">
+              <span class="issue-badge issue-badge-live">Live</span>
+              <span>{typeTag(issue)}{brlmName ? ` · ${brlmName}` : ''}</span>
+            </div>
+            <h3 class="serif font-medium text-[22px] leading-[1.18] mb-2 group-hover:text-[color:var(--color-accent-deep)] transition-colors">{issue.company_name}</h3>
+            <div class="grid grid-cols-2 gap-[14px_24px] pt-4 mt-4 border-t border-[color:var(--color-rule)]">
+              <div>
+                <div class="label mb-1">Price band</div>
+                <div class="serif text-[19px] num leading-tight">{formatRupeeRange(issue.price_band.min, issue.price_band.max)}</div>
+              </div>
+              <div>
+                <div class="label mb-1">Shares per lot</div>
+                <div class="serif text-[19px] num leading-tight">{lotSize ? formatInt(lotSize) : '—'}</div>
+              </div>
+              <div>
+                <div class="label mb-1">Retail minimum</div>
+                <div class="serif text-[19px] num leading-tight">{lotSize && issue.price_band.max ? formatRupee(lotSize * issue.price_band.max) : '—'}</div>
+              </div>
+              <div>
+                <div class="label mb-1">Issue size</div>
+                <div class="serif text-[19px] num leading-tight">{raise ?? '—'}</div>
+              </div>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 mt-4 pt-[14px] border-t border-[color:var(--color-rule)]">
+              <div class="flex items-center gap-3 flex-1 min-w-0">
+                <span class="flex-none w-[90px] h-[3px] bg-[color:var(--color-rule)] relative overflow-hidden">
+                  {subscriptionTimes != null && (
+                    <span class="absolute inset-y-0 left-0 bg-[color:var(--color-accent)]" style={`width: ${subPct}%`}></span>
+                  )}
+                </span>
+                <span class={`serif font-medium text-[15px] ${subscriptionTimes != null ? '' : 'mute font-normal'}`}>
+                  {subscriptionTimes != null ? `${formatTimes(subscriptionTimes)} subscribed` : 'Awaiting first bids'}
+                </span>
+              </div>
+              <span class={`text-[11px] tracking-[0.12em] uppercase font-semibold whitespace-nowrap ${closeDays === 0 ? 'text-[color:var(--color-accent)]' : 'mute'}`}>
+                {closeTiming(closeDays)}
+              </span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  )}
+</section>
+</Base>

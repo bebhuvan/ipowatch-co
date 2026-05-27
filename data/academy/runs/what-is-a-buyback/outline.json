@@ -1,0 +1,211 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/outline.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.outline.schema",
+  "dataset_version": "v2026.05.23-0824",
+  "estimated_cost_usd": 0.00568585,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T08:24:24+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-3 outline produced by deepseek-reasoner.",
+  "outline": {
+    "dek_candidates": [
+      "A company uses its own cash to buy back shares from its shareholders, then cancels them — the opposite of raising money by issuing new shares.",
+      "How a buyback works, the two methods SEBI allows, and the limits that keep it from loading the company with debt.",
+      "The buyback is an IPO in reverse: instead of raising capital, a company returns it by buying and extinguishing its own shares."
+    ],
+    "design_notes": [
+      "The intro uses a hypothetical company (XYZ Ltd) to make the concept concrete without relying on a real example not in the corpus.",
+      "The 'limits and guardrails' section combines the 25% cap and the 2:1 debt ratio into one section because they are the two main financial limits and are closely related.",
+      "The open-market sub-limits are described qualitatively to avoid inventing a specific current number; the corpus only describes a phased reduction.",
+      "No section on 'why companies do buybacks' to stay within the corpus and avoid the forbidden empirical claims.",
+      "The article length target of 1200 words should fit comfortably with 5 sections plus intro."
+    ],
+    "gaps": [
+      {
+        "blocking": false,
+        "reason": "The corpus describes a phased reduction (15%, 10%, 5%) but no single current number. The article will describe it qualitatively as 'phased down' without quoting a specific current percentage.",
+        "topic": "Exact current open-market sub-limit percentages (e.g., the current phased figure)"
+      }
+    ],
+    "kicker_candidates": [
+      "PRIMARY MARKET MECHANICS",
+      "CAPITAL RETURN",
+      "CORPORATE ACTIONS"
+    ],
+    "section_order": [
+      "intro",
+      "two-methods",
+      "limits-and-guardrails",
+      "funding-sources",
+      "extinguishment-and-completion"
+    ],
+    "sections": {
+      "extinguishment-and-completion": {
+        "beats": [
+          {
+            "beat": "The buyback does not just let the company hold the shares as treasury stock — India does not allow that for buybacks. Instead, the shares must be extinguished and physically destroyed within seven working days after the buyback period ends. This ensures the share capital is genuinely reduced, not just parked.",
+            "kind": "narrative",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          },
+          {
+            "beat": "SEBI also prohibits indirect buybacks: a company cannot buy its own shares through a subsidiary or an investment company. This anti-avoidance rule prevents the company from circumventing the limits and disclosure requirements.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          },
+          {
+            "beat": "The entire buyback must be completed within one year from the date of board or shareholder approval. After that, the company cannot extend it without fresh approval.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          }
+        ],
+        "heading": "Cancelling the shares and anti-avoidance rules",
+        "purpose": "Explain that the shares bought back must be physically destroyed within seven working days, genuinely reducing share capital, and that the company cannot buy back through subsidiaries or investment companies."
+      },
+      "funding-sources": {
+        "beats": [
+          {
+            "beat": "A company cannot just use any cash. The regulation specifies three allowed sources: free reserves (retained earnings), the securities premium account (money collected above face value from previous share issues), or the proceeds of a fresh issue of shares. The company must pick one or more of these.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          },
+          {
+            "beat": "Important restriction: the buyback cannot be funded out of proceeds from an earlier issue of the same kind of shares. For example, if the company raised money through a rights issue of equity shares, it cannot use that same pool of money to buy back equity shares. This prevents the company from effectively returning the capital it just raised.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          }
+        ],
+        "heading": "Where the money comes from",
+        "purpose": "Explain that the buyback can be funded only from free reserves, the securities premium account, or proceeds of a share issue — but not from proceeds of an earlier issue of the same kind."
+      },
+      "intro": {
+        "beats": [
+          {
+            "beat": "Open with the core idea: a buyback is a company using its own cash to buy back its own shares from shareholders, then cancelling them — the mirror image of an IPO that raises capital. It returns capital instead of raising it, and shrinks the share count.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Give a concrete hypothetical: XYZ Ltd, which raised ₹100 crore in its IPO five years ago, now has extra cash. It decides to buy back 10% of its shares for ₹20 crore. After the buyback, those shares are cancelled, and the company's total shares in the market are fewer. The shareholders who sold get cash; the remaining ones own a bigger slice of the same company.",
+            "kind": "example",
+            "source_ids": []
+          },
+          {
+            "beat": "Ground the definition: SEBI's Buy-Back of Securities Regulations, 2018 govern the process. The regulations define 'tender offer' as an offer to buy-back shares through a letter of offer from existing holders. The buyback is a regulated transaction, not a simple market purchase.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          }
+        ],
+        "heading": null,
+        "purpose": "Define buyback in plain terms as the reverse of an IPO — company buys its own shares and cancels them, returning capital to shareholders."
+      },
+      "limits-and-guardrails": {
+        "beats": [
+          {
+            "beat": "The first limit: a buyback cannot be for more than 25% of the aggregate of the company's paid-up capital and free reserves. This is the maximum, based on standalone or consolidated financials, whichever gives the lower amount. It prevents the company from using too much of its equity base for a buyback.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          },
+          {
+            "beat": "The second limit is the debt-to-capital ratio: after the buyback, the company's total (secured and unsecured) debt must be no more than twice its paid-up capital and free reserves. This guardrail ensures the company does not take on excessive debt to fund the buyback. The ratio is calculated on the lower of standalone or consolidated financials.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          },
+          {
+            "beat": "Additionally, only fully paid-up shares can be bought back. A company cannot buy back partly paid shares, because those are not fully owned by the shareholder.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          }
+        ],
+        "heading": "The 25% cap and the debt guardrail",
+        "purpose": "Explain the two key limits: the buyback cannot exceed 25% of paid-up capital and free reserves, and after the buyback the company's debt cannot exceed twice its capital and reserves (2:1 ratio)."
+      },
+      "two-methods": {
+        "beats": [
+          {
+            "beat": "Introduce the two methods: a company can buy back shares either from existing shareholders on a proportionate basis (tender offer) or from the open market through the stock exchange. The regulation explicitly lists both.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          },
+          {
+            "beat": "Describe the tender offer: the company issues a letter of offer to all shareholders, inviting them to sell a specified number of shares at a fixed price. Shareholders can tender up to their proportionate share. If the buyback is oversubscribed (too many shares offered), the company buys on a proportionate basis. This method is fair and guarantees equal treatment.",
+            "kind": "narrative",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          },
+          {
+            "beat": "Describe the open-market route: the company buys shares on the stock exchange like any other investor, but subject to volume limits set by SEBI. The regulator has phased down these limits over time — for instance, the maximum that may be bought through the stock-exchange route has been reduced in stages (current percentages are not stated as a single figure in the regulation, but the principle is clear: a phased reduction to prevent market distortion).",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          },
+          {
+            "beat": "Note that the company can use only one method per buyback — it cannot mix them. The board or shareholders must approve the method before the buyback begins.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-buyback-2018"
+            ]
+          }
+        ],
+        "heading": "Two ways to buy back",
+        "purpose": "Explain the two methods SEBI allows: the tender offer (proportionate from existing holders) and the open-market route (through the stock exchange)."
+      }
+    },
+    "title_candidates": [
+      "What is a buyback: The mirror image of an IPO",
+      "Buyback explained: How a company buys its own shares",
+      "The buyback: Returning capital to shareholders"
+    ],
+    "visual_targets": [
+      {
+        "kind": "table",
+        "purpose": "Compare tender offer vs open market: method, pricing, process, fairness.",
+        "where": "two-methods"
+      },
+      {
+        "kind": "pull_quote",
+        "purpose": "Highlight the mirror-image idea: 'A buyback is an IPO in reverse — returning capital instead of raising it.'",
+        "where": "intro"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "what-is-a-buyback",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 8645,
+  "tokens_out": 3047
+}

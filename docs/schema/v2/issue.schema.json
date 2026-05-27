@@ -1,0 +1,1727 @@
+{
+  "$id": "https://ipo-watch.local/schema/v2/issue.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Canonical schema for an IPO/FPO/rights issue event. Captures pricing, timeline, subscription, and listing performance. Root carries the standard metadata envelope (see properties) plus the canonical body sections; additionalProperties:false now covers the whole record.",
+  "properties": {
+    "$schema": {
+      "description": "URL of the JSON Schema this record conforms to.",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "book_building": {
+      "description": "Day-by-day subscription progression and the demand schedule (price→quantity).",
+      "properties": {
+        "daily_subscription": {
+          "description": "Subscription multiple by bidding day.",
+          "items": {
+            "properties": {
+              "day": {
+                "type": "integer"
+              },
+              "times_x": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "demand_schedule": {
+          "description": "Demand at each price point (the book).",
+          "items": {
+            "properties": {
+              "cumulative_quantity": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "price_paise": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "quantity": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          "type": "array",
+          "x-ipo-watch-units": "paise/shares"
+        }
+      },
+      "title": "Book building",
+      "type": "object",
+      "x-ipo-watch-source-tier": "primary"
+    },
+    "classification": {
+      "description": "Sector/industry classification. From the RHP prospectus where available, else DeepSeek bulk classification.",
+      "properties": {
+        "industry": {
+          "description": "Industry within the sector.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sector": {
+          "description": "Broad sector, e.g. Financials, Healthcare, Industrials.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "description": "rhp | deepseek-classification.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sub_industry": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "title": "Classification",
+      "type": "object",
+      "x-ipo-watch-source-tier": "enrichment"
+    },
+    "currency": {
+      "description": "Monetary fields are in this currency (INR).",
+      "type": "string"
+    },
+    "data_quality": {
+      "description": "Render only state in (clean, review).",
+      "properties": {
+        "errors": {
+          "type": "array"
+        },
+        "state": {
+          "enum": [
+            "clean",
+            "review",
+            "quarantine"
+          ]
+        },
+        "warnings": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "type": "object"
+    },
+    "dataset": {
+      "description": "Dataset short-name, e.g. ipo-watch.issues.",
+      "type": "string"
+    },
+    "dataset_version": {
+      "description": "Build-time version; increments every build. Pin for reproducible builds.",
+      "type": "string"
+    },
+    "documents": {
+      "additionalProperties": false,
+      "description": "URLs and metadata for key issue documents.",
+      "properties": {
+        "basis_allotment_url": {
+          "description": "URL to the basis of allotment document.",
+          "examples": [
+            "https://www.bseindia.com/downloads/ipo/BasisAllotment.pdf"
+          ],
+          "format": "uri",
+          "title": "Basis of Allotment URL",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.HTM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": null
+        },
+        "drhp_url": {
+          "description": "URL to the Draft Red Herring Prospectus.",
+          "examples": [
+            "https://nsearchives.nseindia.com/corporate/IPO_19052026102413_PDTL_PDRHP_Filing_Ad.pdf"
+          ],
+          "format": "uri",
+          "title": "DRHP URL",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.HTM"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        },
+        "prospectus_url": {
+          "description": "URL to the final prospectus.",
+          "examples": [
+            "https://nsearchives.nseindia.com/emerge/corporates/content/FiveCore_PROSP.pdf"
+          ],
+          "format": "uri",
+          "title": "Prospectus URL",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.HTM"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        },
+        "rhp_url": {
+          "description": "URL to the Red Herring Prospectus.",
+          "examples": [
+            "https://nsearchives.nseindia.com/emerge/corporates/content/Macpower_RHP.pdf"
+          ],
+          "format": "uri",
+          "title": "RHP URL",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.HTM"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        }
+      },
+      "required": [],
+      "title": "Documents",
+      "type": "object"
+    },
+    "field_provenance": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "rule_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "snapshot_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source"
+        ],
+        "type": "object"
+      },
+      "description": "Per-field record of which source contributed each disputed value. Keys are dotted field paths; values record the source, snapshot timestamp, and the precedence rule that fired. Replayable audit of every multi-source resolution (FUTURE_PROOFING §3).",
+      "title": "Field Provenance",
+      "type": "object"
+    },
+    "freshness": {
+      "description": "Map of source -> last successful refresh ISO instant.",
+      "type": "object"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "generated_by": {
+      "type": "string"
+    },
+    "identity": {
+      "additionalProperties": false,
+      "description": "Identifiers and classification for the issue.",
+      "properties": {
+        "aliases": {
+          "description": "Alternative identifiers or names for the issue from various sources.",
+          "examples": [
+            [
+              "7722",
+              "IPO-7726"
+            ]
+          ],
+          "items": {
+            "type": "string"
+          },
+          "title": "Aliases",
+          "type": "array",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.ID"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": null
+        },
+        "board_type": {
+          "description": "Whether the issue is on the Main Board or SME Board.",
+          "enum": [
+            "Main Board",
+            "SME Board"
+          ],
+          "enumDescriptions": {
+            "Main Board": "Listed on the main board of the exchange",
+            "SME Board": "Listed on the SME platform"
+          },
+          "examples": [
+            "Main Board",
+            "SME Board"
+          ],
+          "title": "Board Type",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.UPS"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": null
+        },
+        "company_name": {
+          "description": "Full legal name of the issuing company.",
+          "examples": [
+            "Marathon Nextgen Realty Ltd",
+            "ZYDUS LIFESCIENCES LIMITED"
+          ],
+          "title": "Company Name",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.HTM",
+            "E.ID"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        },
+        "isin": {
+          "description": "International Securities Identification Number for the issue security.",
+          "examples": [
+            "IN0020250042",
+            "IN0020250125"
+          ],
+          "pattern": "^IN[0-9A-Z]{10}$",
+          "title": "ISIN",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.ID"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        },
+        "issue_type": {
+          "description": "Type of issue (e.g., IPO, FPO, Rights, Buyback).",
+          "enum": [
+            "IPO",
+            "FPO",
+            "Rights",
+            "Buyback",
+            "OFS",
+            "NCD",
+            "InvIT",
+            "REIT",
+            "Call Money",
+            "Others"
+          ],
+          "enumDescriptions": {
+            "Buyback": "Buyback Offer",
+            "FPO": "Follow-on Public Offering",
+            "IPO": "Initial Public Offering",
+            "Call Money": "Call money on partly-paid shares",
+            "InvIT": "Infrastructure Investment Trust public issue",
+            "NCD": "Public issue of Non-Convertible Debentures (debt IPO)",
+            "OFS": "Offer for Sale",
+            "Others": "Other issue types",
+            "REIT": "Real Estate Investment Trust public issue",
+            "Rights": "Rights Issue"
+          },
+          "examples": [
+            "IPO",
+            "FPO"
+          ],
+          "title": "Issue Type",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.UPS"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        },
+        "slug": {
+          "description": "Stable unique identifier for the issue, composed of normalized company name and a 6-character hash.",
+          "examples": [
+            "marathon-nextgen-realty-ltd-abc123"
+          ],
+          "pattern": "^[a-z0-9-]+-[a-z0-9]{6}$",
+          "title": "Slug",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.ID"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        },
+        "status": {
+          "description": "Current status of the issue (e.g., Filed, Open, Closed, Listed, Withdrawn).",
+          "enum": [
+            "Filed",
+            "Open",
+            "Closed",
+            "Listed",
+            "Withdrawn",
+            "Upcoming"
+          ],
+          "enumDescriptions": {
+            "Closed": "Issue has closed for bidding",
+            "Filed": "Offer document (DRHP/RHP) filed; issue dates not yet known or the outcome is unconfirmed in the source feed",
+            "Listed": "Issue has been listed on the exchange",
+            "Open": "Issue is currently open for bidding",
+            "Upcoming": "Issue is announced but not yet open",
+            "Withdrawn": "Issue has been withdrawn"
+          },
+          "examples": [
+            "Open",
+            "Listed"
+          ],
+          "title": "Status",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.STA"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        },
+        "symbol": {
+          "description": "Trading symbol for the issue on the exchange.",
+          "examples": [
+            "VPAL",
+            "QLINE"
+          ],
+          "title": "Symbol",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.ID"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        }
+      },
+      "required": [
+        "slug",
+        "company_name"
+      ],
+      "title": "Identity",
+      "type": "object"
+    },
+    "language": {
+      "description": "BCP-47 language tag.",
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    },
+    "listing_performance": {
+      "additionalProperties": false,
+      "description": "Performance of the issue on listing day and subsequent trading.",
+      "properties": {
+        "current_gain_bps": {
+          "description": "Percentage gain from issue price to current price in basis points.",
+          "examples": [
+            921,
+            5545
+          ],
+          "title": "Current Gain (bps)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "bps"
+        },
+        "current_gain_percent_text": {
+          "description": "Human-readable current gain percentage.",
+          "examples": [
+            "9.21%",
+            "55.45%"
+          ],
+          "title": "Current Gain (percent text)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "%"
+        },
+        "current_price_inr_text": {
+          "description": "Human-readable current price in INR.",
+          "examples": [
+            "₹261.00",
+            "₹342.00"
+          ],
+          "title": "Current Price (INR text)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "INR"
+        },
+        "current_price_paise": {
+          "description": "Most recent trading price in paise.",
+          "examples": [
+            26100,
+            34200
+          ],
+          "title": "Current Price (paise)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.CUR",
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "paise"
+        },
+        "listing_close_price_inr_text": {
+          "description": "Human-readable listing close price in INR.",
+          "examples": [
+            "₹200.75",
+            "₹245.70"
+          ],
+          "title": "Listing Close Price (INR text)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "INR"
+        },
+        "listing_close_price_paise": {
+          "description": "Closing price on listing day in paise.",
+          "examples": [
+            20075,
+            24570
+          ],
+          "title": "Listing Close Price (paise)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.CUR",
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "paise"
+        },
+        "listing_gain_bps": {
+          "description": "Percentage gain from issue price to listing open/close in basis points.",
+          "examples": [
+            6687,
+            559
+          ],
+          "title": "Listing Gain (bps)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "bps"
+        },
+        "listing_gain_percent_text": {
+          "description": "Human-readable listing gain percentage.",
+          "examples": [
+            "66.87%",
+            "5.59%"
+          ],
+          "title": "Listing Gain (percent text)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "%"
+        },
+        "listing_open_price_inr_text": {
+          "description": "Human-readable listing open price in INR.",
+          "examples": [
+            "₹191.20",
+            "₹234.00"
+          ],
+          "title": "Listing Open Price (INR text)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "INR"
+        },
+        "listing_open_price_paise": {
+          "description": "Opening price on listing day in paise.",
+          "examples": [
+            19120,
+            23400
+          ],
+          "title": "Listing Open Price (paise)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.CUR",
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "paise"
+        }
+      },
+      "required": [],
+      "title": "Listing Performance",
+      "type": "object"
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "parties": {
+      "description": "Intermediaries: lead managers, registrar, sponsor bank, syndicate.",
+      "properties": {
+        "co_lead_managers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "lead_managers": {
+          "description": "Book Running Lead Manager(s).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "x-ipo-watch-source-tier": "primary"
+        },
+        "registrar": {
+          "description": "Registrar / RTA.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sponsor_bank": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "syndicate_members": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Parties (dealmakers)",
+      "type": "object",
+      "x-ipo-watch-rule-ids": [
+        "E.HTM"
+      ],
+      "x-ipo-watch-source-tier": "primary"
+    },
+    "pricing": {
+      "additionalProperties": false,
+      "description": "Pricing details of the issue including price band, face value, and issue size.",
+      "properties": {
+        "face_value_inr_text": {
+          "description": "Human-readable face value in INR.",
+          "examples": [
+            "₹10.00",
+            "₹2.00"
+          ],
+          "title": "Face Value (INR text)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "INR"
+        },
+        "face_value_paise": {
+          "description": "Face value per share in paise.",
+          "examples": [
+            1000,
+            200
+          ],
+          "title": "Face Value (paise)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "paise"
+        },
+        "issue_price_inr_text": {
+          "description": "Human-readable issue price in INR.",
+          "examples": [
+            "₹97.00",
+            "₹52.00"
+          ],
+          "title": "Issue Price (INR text)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "INR"
+        },
+        "issue_price_paise": {
+          "description": "Final issue price per share in paise (for fixed price or cut-off).",
+          "examples": [
+            9700,
+            5200
+          ],
+          "title": "Issue Price (paise)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.CUR",
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "paise"
+        },
+        "issue_size_inr_text": {
+          "description": "Human-readable issue size in INR (e.g., '₹130.03 Cr').",
+          "examples": [
+            "₹130.03 Cr",
+            "₹22,000.00 Cr"
+          ],
+          "title": "Issue Size (INR text)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "INR"
+        },
+        "issue_size_paise": {
+          "description": "Total issue size in paise (value).",
+          "examples": [
+            13003200000,
+            2200000005200
+          ],
+          "title": "Issue Size (paise)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.CUR",
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "paise"
+        },
+        "issue_size_shares": {
+          "description": "Total number of shares offered in the issue.",
+          "examples": [
+            3568000,
+            4000000
+          ],
+          "title": "Issue Size (shares)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "shares"
+        },
+        "market_lot": {
+          "description": "Number of shares per market lot.",
+          "examples": [
+            1600,
+            3200
+          ],
+          "title": "Market Lot",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "shares"
+        },
+        "min_bid_qty": {
+          "description": "Minimum number of shares that can be bid for.",
+          "examples": [
+            3200,
+            6400
+          ],
+          "title": "Minimum Bid Quantity",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "shares"
+        },
+        "price_band_lower_inr_text": {
+          "description": "Human-readable lower price band in INR.",
+          "examples": [
+            "₹73.00",
+            "₹91.00"
+          ],
+          "title": "Price Band Lower (INR text)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "INR"
+        },
+        "price_band_lower_paise": {
+          "description": "Lower end of the price band in paise.",
+          "examples": [
+            7300,
+            9100
+          ],
+          "title": "Price Band Lower (paise)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.CUR",
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "paise"
+        },
+        "price_band_upper_inr_text": {
+          "description": "Human-readable upper price band in INR.",
+          "examples": [
+            "₹77.00",
+            "₹96.00"
+          ],
+          "title": "Price Band Upper (INR text)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "INR"
+        },
+        "price_band_upper_paise": {
+          "description": "Upper end of the price band in paise.",
+          "examples": [
+            7700,
+            9600
+          ],
+          "title": "Price Band Upper (paise)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.CUR",
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "paise"
+        },
+        "tick_size_inr_text": {
+          "description": "Human-readable tick size in INR.",
+          "examples": [
+            "₹1.00"
+          ],
+          "title": "Tick Size (INR text)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "INR"
+        },
+        "tick_size_paise": {
+          "description": "Minimum price increment in paise.",
+          "examples": [
+            100
+          ],
+          "title": "Tick Size (paise)",
+          "type": "integer",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "paise"
+        }
+      },
+      "required": [],
+      "title": "Pricing",
+      "type": "object"
+    },
+    "schema_url_self": {
+      "description": "Stable URL where this document lives.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "description": "SemVer of that schema.",
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "sources": {
+      "description": "Every source that contributed to this record.",
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "subscription": {
+      "additionalProperties": false,
+      "description": "Subscription details for the issue, including category-wise and overall subscription multiples.",
+      "properties": {
+        "anchor": {
+          "additionalProperties": false,
+          "description": "Anchor investor allocation. Anchors are pre-IPO institutional allocations that fund up to 60% of the QIB portion (per SEBI). Reported separately so QIB totals don't double-count (see EDGE_CASES rule E.SUB.001).",
+          "properties": {
+            "allotment_inr_text": {
+              "description": "Display-formatted anchor allotment.",
+              "examples": [
+                "₹500.00 Cr",
+                "₹125.00 Cr"
+              ],
+              "title": "Anchor Allotment (display)",
+              "type": "string",
+              "x-ipo-watch-pii": false,
+              "x-ipo-watch-precedence": 1,
+              "x-ipo-watch-rule-ids": [],
+              "x-ipo-watch-source-tier": "primary",
+              "x-ipo-watch-units": "INR"
+            },
+            "allotment_paise": {
+              "description": "Total amount allotted to anchor investors in paise.",
+              "examples": [
+                50000000000,
+                12500000000
+              ],
+              "title": "Anchor Allotment (paise)",
+              "type": "integer",
+              "x-ipo-watch-pii": false,
+              "x-ipo-watch-precedence": 1,
+              "x-ipo-watch-rule-ids": [
+                "E.CUR.001",
+                "E.SUB.001"
+              ],
+              "x-ipo-watch-source-tier": "primary",
+              "x-ipo-watch-units": "paise"
+            },
+            "investors": {
+              "description": "List of named anchor investors and their allocations. Populated from RHP/RHP-Anchor disclosure documents.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "amount_paise": {
+                    "title": "Amount Allotted (paise)",
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "x-ipo-watch-units": "paise"
+                  },
+                  "category": {
+                    "examples": [
+                      "mutual_fund",
+                      "fii",
+                      "domestic_institution",
+                      "other"
+                    ],
+                    "title": "Investor Category",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "name": {
+                    "title": "Investor Name",
+                    "type": "string"
+                  },
+                  "shares_allotted": {
+                    "title": "Shares Allotted",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "name",
+                  "shares_allotted"
+                ],
+                "type": "object"
+              },
+              "title": "Anchor Investors",
+              "type": "array",
+              "x-ipo-watch-pii": false,
+              "x-ipo-watch-precedence": 3,
+              "x-ipo-watch-rule-ids": [
+                "E.SUB.001"
+              ],
+              "x-ipo-watch-source-tier": "enrichment"
+            },
+            "shares_allotted": {
+              "description": "Number of shares allotted to anchor investors.",
+              "examples": [
+                3300000,
+                1200000
+              ],
+              "title": "Anchor Shares Allotted",
+              "type": "integer",
+              "x-ipo-watch-pii": false,
+              "x-ipo-watch-precedence": 1,
+              "x-ipo-watch-rule-ids": [],
+              "x-ipo-watch-source-tier": "primary",
+              "x-ipo-watch-units": "shares"
+            }
+          },
+          "required": [],
+          "title": "Anchor Allocation",
+          "type": "object",
+          "x-ipo-watch-rule-ids": [
+            "E.SUB.001"
+          ],
+          "x-ipo-watch-source-tier": "primary"
+        },
+        "by_exchange": {
+          "description": "Final subscription book kept per exchange (NSE / BSE).",
+          "properties": {
+            "bse": {
+              "properties": {
+                "categories": {
+                  "description": "Final per-category subscription book.",
+                  "items": {
+                    "properties": {
+                      "category": {
+                        "type": "string"
+                      },
+                      "shares_bid": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ]
+                      },
+                      "shares_offered": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ]
+                      },
+                      "times_x": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "title": "BSE categories",
+                  "type": "array"
+                },
+                "total_times_x": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "nse": {
+              "properties": {
+                "categories": {
+                  "description": "Final per-category subscription book.",
+                  "items": {
+                    "properties": {
+                      "category": {
+                        "type": "string"
+                      },
+                      "shares_bid": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ]
+                      },
+                      "shares_offered": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ]
+                      },
+                      "times_x": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "title": "NSE categories",
+                  "type": "array"
+                },
+                "total_times_x": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "type": "object"
+            }
+          },
+          "title": "Per-exchange book",
+          "type": "object"
+        },
+        "categories": {
+          "description": "Array of subscription details per investor category.",
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "applications": {
+                "description": "Number of applications received for this category.",
+                "examples": [
+                  14,
+                  3439
+                ],
+                "title": "Applications",
+                "type": "integer",
+                "x-ipo-watch-pii": false,
+                "x-ipo-watch-precedence": 2,
+                "x-ipo-watch-rule-ids": [
+                  "E.NUM"
+                ],
+                "x-ipo-watch-source-tier": "secondary",
+                "x-ipo-watch-units": "applications"
+              },
+              "category": {
+                "description": "Name of the investor category.",
+                "examples": [
+                  "Qualified Institutional Buyers (QIBs)",
+                  "Non Institutional Investors",
+                  "Retail Individual Investors"
+                ],
+                "title": "Category Name",
+                "type": "string",
+                "x-ipo-watch-pii": false,
+                "x-ipo-watch-precedence": 1,
+                "x-ipo-watch-rule-ids": [
+                  "E.UPS"
+                ],
+                "x-ipo-watch-source-tier": "primary",
+                "x-ipo-watch-units": null
+              },
+              "shares_bid": {
+                "description": "Number of shares bid for this category.",
+                "examples": [
+                  14408000,
+                  36918400
+                ],
+                "title": "Shares Bid",
+                "type": "integer",
+                "x-ipo-watch-pii": false,
+                "x-ipo-watch-precedence": 1,
+                "x-ipo-watch-rule-ids": [
+                  "E.NUM"
+                ],
+                "x-ipo-watch-source-tier": "primary",
+                "x-ipo-watch-units": "shares"
+              },
+              "shares_offered": {
+                "description": "Number of shares offered/reserved for this category.",
+                "examples": [
+                  948800,
+                  961600
+                ],
+                "title": "Shares Offered",
+                "type": "integer",
+                "x-ipo-watch-pii": false,
+                "x-ipo-watch-precedence": 1,
+                "x-ipo-watch-rule-ids": [
+                  "E.NUM"
+                ],
+                "x-ipo-watch-source-tier": "primary",
+                "x-ipo-watch-units": "shares"
+              },
+              "subscription_times_x": {
+                "description": "Subscription multiple for this category as a decimal string.",
+                "examples": [
+                  "15.1855",
+                  "38.3927"
+                ],
+                "pattern": "^[0-9]+(\\.[0-9]+)?$",
+                "title": "Subscription Times",
+                "type": "string",
+                "x-ipo-watch-pii": false,
+                "x-ipo-watch-precedence": 1,
+                "x-ipo-watch-rule-ids": [
+                  "E.NUM"
+                ],
+                "x-ipo-watch-source-tier": "primary",
+                "x-ipo-watch-units": "x"
+              }
+            },
+            "required": [
+              "category",
+              "shares_offered",
+              "shares_bid",
+              "subscription_times_x"
+            ],
+            "type": "object"
+          },
+          "title": "Category-wise Subscription",
+          "type": "array",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        },
+        "consolidated": {
+          "description": "Combined final subscription across both exchanges.",
+          "properties": {
+            "categories": {
+              "description": "Final per-category subscription book.",
+              "items": {
+                "properties": {
+                  "category": {
+                    "type": "string"
+                  },
+                  "shares_bid": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "shares_offered": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "times_x": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "type": "object"
+              },
+              "title": "Consolidated categories",
+              "type": "array"
+            },
+            "total_times_x": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "title": "Consolidated book (NSE+BSE)",
+          "type": "object"
+        },
+        "hni_times_x": {
+          "description": "High Net Worth Individual (Non-Institutional) subscription multiple as a decimal string.",
+          "examples": [
+            "12.3",
+            "10.95"
+          ],
+          "pattern": "^[0-9]+(\\.[0-9]+)?$",
+          "title": "HNI Subscription (times)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "x"
+        },
+        "overall_times_x": {
+          "description": "Overall subscription multiple as a decimal string.",
+          "examples": [
+            "15.1855",
+            "38.3927"
+          ],
+          "pattern": "^[0-9]+(\\.[0-9]+)?$",
+          "title": "Overall Subscription (times)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": "x"
+        },
+        "qib_times_x": {
+          "description": "Qualified Institutional Buyers subscription multiple as a decimal string.",
+          "examples": [
+            "0.75",
+            "6.0"
+          ],
+          "pattern": "^[0-9]+(\\.[0-9]+)?$",
+          "title": "QIB Subscription (times)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "x"
+        },
+        "retail_times_x": {
+          "description": "Retail individual investor subscription multiple as a decimal string.",
+          "examples": [
+            "4.94",
+            "3.89"
+          ],
+          "pattern": "^[0-9]+(\\.[0-9]+)?$",
+          "title": "Retail Subscription (times)",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.NUM"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": "x"
+        }
+      },
+      "required": [],
+      "title": "Subscription",
+      "type": "object"
+    },
+    "time_zone": {
+      "description": "Date-only fields are in this zone (Asia/Kolkata).",
+      "type": "string"
+    },
+    "timeline": {
+      "additionalProperties": false,
+      "description": "Key dates for the issue.",
+      "properties": {
+        "allotment_date": {
+          "description": "Date when shares are allotted (UTC).",
+          "examples": [
+            "2026-05-28"
+          ],
+          "format": "date",
+          "title": "Allotment Date",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.DAT"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": null
+        },
+        "close_date": {
+          "description": "Date and time when the issue closes for bidding (UTC).",
+          "examples": [
+            "2026-05-22T00:00:00Z",
+            "2026-05-25T15:30:00Z"
+          ],
+          "format": "date-time",
+          "title": "Close Date",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.DAT"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        },
+        "drhp_filing_date": {
+          "description": "Date when the Draft Red Herring Prospectus was filed (UTC).",
+          "examples": [
+            "2026-04-23",
+            "2026-04-13"
+          ],
+          "format": "date",
+          "title": "DRHP Filing Date",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.DAT"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": null
+        },
+        "listing_date": {
+          "description": "Date when the issue is listed on the exchange (UTC).",
+          "examples": [
+            "2025-09-03",
+            "2025-01-07"
+          ],
+          "format": "date",
+          "title": "Listing Date",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.DAT"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        },
+        "open_date": {
+          "description": "Date and time when the issue opens for bidding (UTC).",
+          "examples": [
+            "2026-05-20T00:00:00Z",
+            "2026-05-22T09:15:00Z"
+          ],
+          "format": "date-time",
+          "title": "Open Date",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 1,
+          "x-ipo-watch-rule-ids": [
+            "E.DAT"
+          ],
+          "x-ipo-watch-source-tier": "primary",
+          "x-ipo-watch-units": null
+        },
+        "rhp_filing_date": {
+          "description": "Date when the Red Herring Prospectus was filed (UTC).",
+          "examples": [
+            "2026-05-15"
+          ],
+          "format": "date",
+          "title": "RHP Filing Date",
+          "type": "string",
+          "x-ipo-watch-pii": false,
+          "x-ipo-watch-precedence": 2,
+          "x-ipo-watch-rule-ids": [
+            "E.DAT"
+          ],
+          "x-ipo-watch-source-tier": "secondary",
+          "x-ipo-watch-units": null
+        }
+      },
+      "required": [],
+      "title": "Timeline",
+      "type": "object"
+    }
+  },
+  "required": [
+    "identity"
+  ],
+  "title": "Issue",
+  "type": "object",
+  "x-ipo-watch": {
+    "design_notes": [
+      "All monetary values stored as integer paise to avoid floating-point precision issues.",
+      "Subscription multiples stored as decimal strings to preserve precision.",
+      "Percentages stored as integer basis points (bps).",
+      "Dates stored as ISO 8601 strings with UTC offset.",
+      "Price band lower/upper stored as separate fields; issue_price_paise used for fixed price or cut-off.",
+      "Listing performance fields are optional as they may not be available for upcoming issues.",
+      "Documents section uses URLs; some sources may provide null values.",
+      "Category-wise subscription is an array to accommodate dynamic categories from NSE/BSE.",
+      "Locked at v2.0.0 on 2026-05-23. Future schema changes follow the deprecate-not-delete policy (FUTURE_PROOFING §1).",
+      "Added subscription.anchor block (E.SUB.001 mitigation).",
+      "Added subscription.categories[] enum-locked item shape.",
+      "Added record-level field_provenance for multi-source attribution.",
+      "Coverage patch 2026-05-23: added parties, book_building, subscription.consolidated + by_exchange.",
+      "Added classification (sector/industry) block 2026-05-23."
+    ],
+    "field_provenance": {
+      "documents.basis_allotment_url": {
+        "sources": [
+          "bse"
+        ],
+        "tier": "secondary"
+      },
+      "documents.drhp_url": {
+        "sources": [
+          "trendlyne",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "documents.prospectus_url": {
+        "sources": [
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "documents.rhp_url": {
+        "sources": [
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "identity.board_type": {
+        "sources": [
+          "nse"
+        ],
+        "tier": "secondary"
+      },
+      "identity.company_name": {
+        "sources": [
+          "bse",
+          "nse",
+          "trendlyne"
+        ],
+        "tier": "primary"
+      },
+      "identity.isin": {
+        "sources": [
+          "nse",
+          "trendlyne"
+        ],
+        "tier": "primary"
+      },
+      "identity.issue_type": {
+        "sources": [
+          "bse",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "identity.slug": {
+        "sources": [
+          "ipo-watch"
+        ],
+        "tier": "primary"
+      },
+      "identity.status": {
+        "sources": [
+          "bse",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "identity.symbol": {
+        "sources": [
+          "bse",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "listing_performance.current_gain_bps": {
+        "sources": [
+          "trendlyne"
+        ],
+        "tier": "secondary"
+      },
+      "listing_performance.current_price_paise": {
+        "sources": [
+          "trendlyne",
+          "bse"
+        ],
+        "tier": "secondary"
+      },
+      "listing_performance.listing_close_price_paise": {
+        "sources": [
+          "trendlyne"
+        ],
+        "tier": "secondary"
+      },
+      "listing_performance.listing_gain_bps": {
+        "sources": [
+          "moneycontrol",
+          "trendlyne"
+        ],
+        "tier": "secondary"
+      },
+      "listing_performance.listing_open_price_paise": {
+        "sources": [
+          "trendlyne"
+        ],
+        "tier": "secondary"
+      },
+      "pricing.face_value_paise": {
+        "sources": [
+          "bse",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "pricing.issue_price_paise": {
+        "sources": [
+          "bse",
+          "nse",
+          "trendlyne"
+        ],
+        "tier": "primary"
+      },
+      "pricing.issue_size_paise": {
+        "sources": [
+          "moneycontrol",
+          "trendlyne"
+        ],
+        "tier": "secondary"
+      },
+      "pricing.issue_size_shares": {
+        "sources": [
+          "bse",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "pricing.market_lot": {
+        "sources": [
+          "bse"
+        ],
+        "tier": "secondary"
+      },
+      "pricing.min_bid_qty": {
+        "sources": [
+          "bse"
+        ],
+        "tier": "secondary"
+      },
+      "pricing.price_band_lower_paise": {
+        "sources": [
+          "bse",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "pricing.price_band_upper_paise": {
+        "sources": [
+          "bse",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "pricing.tick_size_paise": {
+        "sources": [
+          "bse"
+        ],
+        "tier": "secondary"
+      },
+      "subscription.categories": {
+        "sources": [
+          "bse",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "subscription.hni_times_x": {
+        "sources": [
+          "trendlyne"
+        ],
+        "tier": "secondary"
+      },
+      "subscription.overall_times_x": {
+        "sources": [
+          "bse",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "subscription.qib_times_x": {
+        "sources": [
+          "trendlyne"
+        ],
+        "tier": "secondary"
+      },
+      "subscription.retail_times_x": {
+        "sources": [
+          "trendlyne"
+        ],
+        "tier": "secondary"
+      },
+      "timeline.allotment_date": {
+        "sources": [
+          "bse"
+        ],
+        "tier": "secondary"
+      },
+      "timeline.close_date": {
+        "sources": [
+          "bse",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "timeline.drhp_filing_date": {
+        "sources": [
+          "trendlyne",
+          "nse"
+        ],
+        "tier": "secondary"
+      },
+      "timeline.listing_date": {
+        "sources": [
+          "bse",
+          "nse",
+          "moneycontrol"
+        ],
+        "tier": "primary"
+      },
+      "timeline.open_date": {
+        "sources": [
+          "bse",
+          "nse"
+        ],
+        "tier": "primary"
+      },
+      "timeline.rhp_filing_date": {
+        "sources": [
+          "nse"
+        ],
+        "tier": "secondary"
+      }
+    },
+    "locked_at": "2026-05-23",
+    "version": "2.0.0"
+  }
+}

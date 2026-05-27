@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ipo-watch.local/schema/v2/prospectus.schema.json",
+  "title": "RHP prospectus extraction",
+  "description": "Page-cited, verbatim extraction from an issue's RHP/DRHP PDF, written to data/site_v2/issues/<slug>/prospectus.json by scripts/extract_rich_rhp.py. THE differentiator. Every scalar fact is a `provenance_leaf` carrying a source page citation. Section internals are intentionally permissive (additionalProperties:true) because the extraction schema evolves; the stable contract is the envelope, the section set, and the leaf shape.",
+  "type": "object",
+  "required": ["schema_version", "slug", "meta"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "slug": {
+      "type": "string",
+      "description": "Issue slug — matches issues/by-slug/<slug>.json and the containing directory."
+    },
+    "meta": {
+      "type": "object",
+      "description": "Extraction provenance for the whole document.",
+      "additionalProperties": true,
+      "required": ["rhp_pdf_url", "rhp_pdf_sha256", "extraction_method", "extracted_at_iso"],
+      "properties": {
+        "rhp_pdf_url": { "type": "string", "description": "Resolved direct PDF URL (NSE zips are unwrapped to the inner PDF)." },
+        "rhp_pdf_sha256": { "type": "string" },
+        "rhp_pdf_local_path": { "type": "string" },
+        "rhp_pdf_pages": { "type": "integer", "minimum": 1 },
+        "raw_text_chars": { "type": "integer", "minimum": 0 },
+        "extraction_method": { "type": "string", "description": "e.g. deepseek-multipass-v1" },
+        "extracted_at_iso": { "type": "string" },
+        "extraction_passes": {
+          "type": "array",
+          "description": "One entry per section pass: section, in/out tokens, cached, page_range.",
+          "items": { "type": "object" }
+        },
+        "total_cost_usd": { "type": "number", "minimum": 0 }
+      }
+    },
+
+    "hero": { "$ref": "#/$defs/section" },
+    "company_about": { "$ref": "#/$defs/section" },
+    "the_offer": { "$ref": "#/$defs/section" },
+    "industry_landscape": { "$ref": "#/$defs/section" },
+    "macros": { "$ref": "#/$defs/section" },
+    "business_model": { "$ref": "#/$defs/section" },
+    "financial_highlights": { "$ref": "#/$defs/section" },
+    "valuation": { "$ref": "#/$defs/section" },
+    "risks": { "$ref": "#/$defs/section" },
+    "promoter_and_shareholding_and_litigation": { "$ref": "#/$defs/section" }
+  },
+
+  "$defs": {
+    "section": {
+      "type": "object",
+      "description": "A top-level prospectus section. Internals vary by section and evolve with the extractor, so they are not constrained here — but every SCALAR fact within is a `provenance_leaf` (see below). A section may be absent if its extraction pass failed; render only sections that are present.",
+      "additionalProperties": true
+    },
+    "provenance_leaf": {
+      "type": "object",
+      "description": "The universal leaf shape for every extracted scalar fact. The frontend renders `value` and surfaces `raw_excerpt` + `source_page` as a citation (\"Source: RHP p.99\"). Treat value:null or confidence:\"low\" as not-available — never fabricate.",
+      "required": ["value"],
+      "properties": {
+        "value": {
+          "description": "The extracted value: string | number | boolean | null. Currency in integer paise, percentages in integer bps, multiples as decimal-string — mirroring the issue record's units.",
+          "type": ["string", "number", "boolean", "null"]
+        },
+        "raw_excerpt": {
+          "type": ["string", "null"],
+          "description": "Verbatim quote from the PDF supporting the value."
+        },
+        "source_page": {
+          "type": ["integer", "null"],
+          "description": "1-indexed PDF page the value was found on."
+        },
+        "source_section": {
+          "type": ["string", "null"],
+          "description": "The RHP section heading, e.g. \"SECTION II - RISK FACTORS\"."
+        },
+        "confidence": {
+          "enum": ["high", "medium", "low", null]
+        }
+      }
+    }
+  }
+}

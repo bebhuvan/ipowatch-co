@@ -1,0 +1,237 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/outline.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.outline.schema",
+  "dataset_version": "v2026.05.23-0804",
+  "estimated_cost_usd": 0.005819400000000001,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T08:04:12+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-3 outline produced by deepseek-reasoner.",
+  "outline": {
+    "dek_candidates": [
+      "One company, many routes – a single map that explains how a company raises equity from the public, from existing shareholders, or from big institutions, and what each acronym means.",
+      "The three questions that sort every primary-market acronym: is the company already listed? who gets to buy? and are new shares created?",
+      "IPO, FPO, OFS, QIP, rights issue – the five ways a company raises equity capital, mapped by who sells, who buys, and whether new money comes in."
+    ],
+    "design_notes": [
+      "The intro opening beat uses no source because the three-question framework is original synthesis, not a regulation.",
+      "Each route section opens with a plain-language explanation before citing the ICDR definition, following the explain-then-ground principle.",
+      "No buyback detail is included except a one-line note deferring to a separate article, as specified in the must_not_say.",
+      "No eligibility thresholds (e.g., profit track record) are discussed because the corpus does not provide them beyond mere mention of Chapter II.",
+      "The comparison section intentionally avoids a second table and uses a beat-style summary to keep the article from becoming too table-heavy."
+    ],
+    "gaps": [],
+    "kicker_candidates": [
+      "PRIMARY MARKET MECHANICS",
+      "FOUNDATIONS",
+      "CAPITAL RAISING",
+      "EQUITY ISSUES"
+    ],
+    "section_order": [
+      "intro",
+      "ipo",
+      "fpo",
+      "ofs",
+      "rights-issue",
+      "qip",
+      "comparison"
+    ],
+    "sections": {
+      "comparison": {
+        "beats": [
+          {
+            "beat": "Reiterate the three questions: Is the company listed? Who is it selling to? Are new shares created? Then place each route on that grid.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Table idea: unlisted companies can only do an IPO. Listed companies can do FPO, OFS, rights, and QIP. IPO, FPO (fresh part), and rights create new shares; OFS and QIP (if OFS variant) do not. Public issues (IPO, FPO) are open to everyone; rights issues are limited to existing shareholders; QIP is limited to QIBs.",
+            "kind": "example",
+            "source_ids": []
+          },
+          {
+            "beat": "Note that buybacks – the reverse operation where a company buys back its own shares – are covered in a separate article.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "How they compare: the three-question map",
+        "purpose": "Summarise the family using the three sorting questions, helping the reader hold the map in their head."
+      },
+      "fpo": {
+        "beats": [
+          {
+            "beat": "FPO stands for Further Public Offer: a public issue of shares by a company that is already listed. Unlike an IPO, the company already has a market price and a trading history.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "An FPO can be an issue of new shares (fresh capital), an offer for sale by existing shareholders (no new capital), or a combination of both.",
+            "kind": "example",
+            "source_ids": []
+          },
+          {
+            "beat": "Ground with the ICDR definition: 'further public offer' means an offer of specified securities by a listed issuer to the public for subscription and includes an offer for sale of specified securities to the public by any existing holders of such specified securities in a listed issuer.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-issue-types"
+            ]
+          }
+        ],
+        "heading": "FPO – a public issue by a company already listed",
+        "purpose": "Define FPO and explain that it can be fresh, OFS, or both, and that it is a public offer to anyone."
+      },
+      "intro": {
+        "beats": [
+          {
+            "beat": "Introduce the organising idea: every route a company takes to raise equity from the market is sorted by three yes/no questions – is it already listed? who does it sell to (public, existing shareholders, or big institutions)? and are new shares created or old ones transferred?",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Name the five routes: IPO (first public issue by an unlisted company), FPO (public issue by a listed company), OFS (sale of existing shares by selling shareholders, no new shares), rights issue (offer to existing shareholders only), and QIP (private placement to big institutions by a listed company).",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Ground the definitions with the ICDR regulation: the ICDR Regulations 2018 define these terms precisely – IPO is the heading of Chapter II (first public issue by unlisted issuer), FPO in clause (q), OFS via clause (bbb) on selling shareholders, QIP in clause (tt), rights issue in clause (xx).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-issue-types"
+            ]
+          }
+        ],
+        "heading": null,
+        "purpose": "Frame the entire family using three sorting questions, then define the core terms."
+      },
+      "ipo": {
+        "beats": [
+          {
+            "beat": "Explain that an IPO is the first time a company sells shares to the public; after the IPO, it is listed on an exchange.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Clarify that an IPO can include both fresh shares (new capital for the company) and an offer for sale (existing shares sold by early investors, company gets no money).",
+            "kind": "example",
+            "source_ids": []
+          },
+          {
+            "beat": "Ground with the ICDR: 'initial public offer' is the heading of Chapter II, governing the first public issue of specified securities by an issuer whose securities are not already listed. Functionally, an IPO is the first public issue by an unlisted company.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-issue-types"
+            ]
+          }
+        ],
+        "heading": "IPO – the first public issue",
+        "purpose": "Teach what an IPO is, who can do it, and the basic structure (fresh issue + OFS)."
+      },
+      "ofs": {
+        "beats": [
+          {
+            "beat": "In an OFS, existing shareholders – not the company itself – sell their shares to the public. No new shares are created, so the company gets nothing. The proceeds go entirely to the selling shareholders.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "An OFS can be part of an IPO or FPO (as a component) or a standalone transaction on the exchange (e.g., for meeting minimum public shareholding).",
+            "kind": "example",
+            "source_ids": []
+          },
+          {
+            "beat": "Ground with the ICDR definition of 'selling shareholder' and the note that an offer for sale is the sale of existing shares by such shareholders, in which no new shares are created and the company raises no money.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-issue-types"
+            ]
+          }
+        ],
+        "heading": "OFS – offer for sale: existing shares, no new capital",
+        "purpose": "Explain that in an OFS, selling shareholders (promoters, early investors) sell their existing shares; the company does not receive any proceeds."
+      },
+      "qip": {
+        "beats": [
+          {
+            "beat": "A Qualified Institutions Placement (QIP) is a private placement: a listed company issues shares only to Qualified Institutional Buyers (QIBs) – entities like mutual funds, insurance companies, pension funds, and foreign portfolio investors. It does not go through the public-offer process, so it can be completed in days.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "QIP is faster than a public issue because it bypasses the full document review and public bidding process. The company must pass a special resolution approving the placement, unless the placement is an OFS by promoters meeting minimum public shareholding requirements.",
+            "kind": "example",
+            "source_ids": []
+          },
+          {
+            "beat": "Ground with the ICDR: 'qualified institutions placement' means issue of eligible securities by a listed issuer to qualified institutional buyers on a private placement basis. Regulation 172(1) requires a special resolution, but provides an exemption when the placement is an OFS by promoters for compliance with minimum public shareholding.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-issue-types"
+            ]
+          }
+        ],
+        "heading": "QIP – a fast private placement to big institutions",
+        "purpose": "Explain that a QIP is a private placement by a listed company to only Qualified Institutional Buyers (QIBs), skipping the public-offer machinery, and usually requires a special resolution."
+      },
+      "rights-issue": {
+        "beats": [
+          {
+            "beat": "A rights issue gives existing shareholders the right – but not the obligation – to buy new shares in proportion to their current holding. It is not open to the general public.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "The company sets a record date; only shareholders on that date receive the rights entitlement. They can subscribe, sell the rights in the open market, or let them lapse.",
+            "kind": "example",
+            "source_ids": []
+          },
+          {
+            "beat": "Ground with the ICDR definition: 'rights issue' means an offer of specified securities by a listed issuer to the shareholders of the issuer as on the record date fixed for the said purpose.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-issue-types"
+            ]
+          }
+        ],
+        "heading": "Rights issue – offering shares to existing shareholders first",
+        "purpose": "Explain that a rights issue is open only to existing shareholders as on a record date, not the general public."
+      }
+    },
+    "title_candidates": [
+      "The primary-issue family: IPO, FPO, OFS, QIP, rights",
+      "Five ways a company raises money from the market",
+      "IPO to QIP: a map of the primary market",
+      "The shareholders' menu: every route a company can take"
+    ],
+    "visual_targets": [
+      {
+        "kind": "table",
+        "purpose": "Provide a quick-reference grid showing for each route: unlisted/listed, public/private, new shares or existing, and who the buyers are.",
+        "where": "comparison"
+      },
+      {
+        "kind": "table",
+        "purpose": "Show the five routes at a glance with one-line descriptions, so the reader sees the whole family immediately.",
+        "where": "intro"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "the-primary-issue-family",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 8390,
+  "tokens_out": 3231
+}

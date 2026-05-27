@@ -1,0 +1,78 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/visual_brief.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.visual_brief.schema",
+  "dataset_version": "v2026.05.23-0746",
+  "estimated_cost_usd": 0.0012973400000000001,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T07:46:20+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-7 visual brief produced by deepseek-chat.",
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "how-asba-upi-works",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 2882,
+  "tokens_out": 472,
+  "visual_brief": {
+    "design_notes": [
+      "Use a hairline rule to separate the pull quote from surrounding text.",
+      "Sidebar should be set in a smaller serif font, with a thin border on the left."
+    ],
+    "formulas": [],
+    "lead_image": null,
+    "pull_quotes": [
+      {
+        "after_paragraph": "ASBA is now mandatory for everyone",
+        "quote": "The old system, where the investor handed over a cheque and hoped the refund came on time, is gone.",
+        "rationale": "Highlights the key benefit of ASBA in a memorable, contrastive sentence."
+      }
+    ],
+    "sidebars": [
+      {
+        "after_section_slug": "your-bank-account-your-pan-your-upi-id",
+        "body_markdown": "Using a third-party bank account or UPI ID leads to automatic rejection. Even if the PAN is correct, the application is invalid. The registrar cross-checks the PAN in the demat account with the bank account PAN. A mismatch also results in rejection. Always apply from your own account, with your own PAN, using your own UPI ID.",
+        "rationale": "Reinforces the hard rule with concrete examples, reducing applicant errors.",
+        "title": "Common rejection scenarios"
+      }
+    ],
+    "tables": [
+      {
+        "after_paragraph": "ASBA is now mandatory for everyone",
+        "columns": [
+          "Entity",
+          "Role"
+        ],
+        "footnote": "Source: SEBI Master Circular on ASBA and UPI [^sebi-master-circular-asba-upi-timeline]",
+        "rationale": "Summarises the three invisible parties, making their distinct roles clear at a glance.",
+        "rows": [
+          [
+            "SCSB (Self-Certified Syndicate Bank)",
+            "Applicant's bank; blocks funds and later debits on allotment"
+          ],
+          [
+            "Sponsor Bank",
+            "Banker to the issue; sends mandate collect requests via UPI"
+          ],
+          [
+            "NPCI (National Payments Corporation of India)",
+            "Routes mandate requests and settles payments"
+          ]
+        ],
+        "title": "Key entities in the ASBA process"
+      }
+    ],
+    "timeline": null
+  }
+}

@@ -1,0 +1,68 @@
+# Auto-generated dedup rules proposal — review and edit before Phase 4.
+# Source: data/reports/pollution_audit.json (generated 2026-05-23T04:44:57+00:00).
+
+rules:
+  - id: E.ID.001
+    description: Normalize company suffix (Limited/Ltd/LTD) and trailing punctuation
+    trigger: company.name matches regex '\b(Limited|Ltd|LTD)\.?$'
+    action: replace suffix with 'Limited' and strip trailing period
+  - id: E.ID.002
+    description: Case-insensitive company name comparison
+    trigger: lower(company.name) matches another record
+    action: treat as duplicate if dates and source_record_id match
+  - id: E.ID.003
+    description: Strip 'Addendum' from company name
+    trigger: company.name contains 'Addendum'
+    action: remove 'Addendum' and compare with other records
+  - id: E.ID.004
+    description: Strip '-Special Withdrawal Option' from company name
+    trigger: company.name contains '-Special Withdrawal Option'
+    action: remove suffix and compare
+  - id: E.ID.005
+    description: Normalize bond issuer name (remove trailing period)
+    trigger: source == 'bse' and endpoint == 'bond_issue_documents'
+    action: strip trailing '.' from company.name
+  - id: E.SRC.001
+    description: Composite dedup key for source identifiers
+    trigger: same source_record_id but different open_date/close_date
+    action: treat as separate issues; do not flag as duplicate
+  - id: E.SRC.002
+    description: Merge OFS records from ofs_past and ofs_past_general
+    trigger: same source_record_id in both endpoints
+    action: merge fields, prefer non-null values
+  - id: E.SNP.001
+    description: Upsert logic for same endpoint and source_record_id
+    trigger: record exists with same (source, source_record_id, endpoint)
+    action: update existing record instead of inserting new
+  - id: E.SNP.002
+    description: Strict dedup for demand data
+    trigger: more than 2 identical records from same endpoint within 1 minute
+    action: keep only one record
+  - id: E.PAG.001
+    description: Dedup across paginated endpoints
+    trigger: same source_record_id from different page endpoints
+    action: keep first occurrence or merge
+  - id: E.DAT.001
+    description: Nullify future listing dates
+    trigger: listing_date > observed_at
+    action: set listing_date to null
+  - id: E.DAT.002
+    description: Validate timeline consistency
+    trigger: open_date > close_date or listing_date < open_date
+    action: flag for review
+  - id: E.NUM.001
+    description: Parse price band text
+    trigger: price_band.text not null and min/max null
+    action: extract numbers via regex, set min and max
+  - id: E.NUM.002
+    description: Parse issue size text
+    trigger: issue_size.text contains 'crore' or range
+    action: convert 'crore' to numeric, extract first number for shares_offered
+  - id: E.SUB.001
+    description: Compute subscription times
+    trigger: shares_bid not null and times null and shares_offered > 0
+    action: times = shares_bid / shares_offered
+  - id: E.HTM.001
+    description: Normalize special characters in company name
+    trigger: company.name contains '.', '&', or multiple spaces
+    action: remove periods, replace '&' with 'and', collapse spaces

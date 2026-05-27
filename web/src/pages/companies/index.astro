@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import { listCompaniesWithMultipleIssues } from '../../lib/insights';
+import { formatInt } from '../../lib/format';
+
+const companies = listCompaniesWithMultipleIssues();
+---
+
+<Base title="Companies">
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6">
+    <span class="label" style="color: inherit">Company timelines</span>
+  </div>
+  <h1 class="headline mb-7 max-w-[18ch]">Companies with repeat issues.</h1>
+  <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[62ch]">
+    Companies with more than one captured issue: IPOs followed by OFS windows, rights, QIPs, bonds, buybacks or tender offers.
+  </p>
+</section>
+
+<section class="page-tight pt-12 pb-24 border-t border-[color:var(--color-rule)]">
+  <header class="flex items-baseline justify-between mb-9">
+    <h2 class="section-title">Multi-issue companies</h2>
+    <span class="label">{formatInt(companies.length)} companies</span>
+  </header>
+  <ul class="list-none p-0 m-0">
+    {companies.slice(0, 500).map((company) => (
+      <li>
+        <a href={company.url_path} class="grid grid-cols-[minmax(0,1fr)_72px] sm:grid-cols-[minmax(0,1fr)_120px_140px] gap-4 sm:gap-6 items-baseline py-4 border-b border-[color:var(--color-rule)] group hover:pl-2 transition-all">
+          <span class="serif text-[20px] truncate group-hover:acc">{company.name}</span>
+          <span class="text-right num">{company.issue_count}</span>
+          <span class="text-right mute num hidden sm:block">{company.latest_issue_date ?? '—'}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  {companies.length > 500 && <p class="mt-6 text-[13px] mute">Showing 500 of {formatInt(companies.length)} companies with repeat issue history.</p>}
+</section>
+</Base>

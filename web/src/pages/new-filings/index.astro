@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import { listNewFilings, newFilingsUpdatedAt } from '../../lib/newFilings';
+import { formatDateShort, formatInt } from '../../lib/format';
+
+const filings = listNewFilings();
+const updatedAt = newFilingsUpdatedAt();
+const latest = filings.slice(0, 30);
+const updatedText = updatedAt
+  ? new Date(updatedAt).toLocaleString('en-IN', {
+      day: 'numeric', month: 'short', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kolkata',
+    })
+  : null;
+---
+
+<Base title="New filings" description="Fresh SEBI public issue filings converted into citation-backed filing notes.">
+  <section class="page-tight pt-16 pb-8">
+    <div class="text-[12.5px] mute mb-6">
+      <span class="label" style="color: inherit">SEBI filing desk</span>
+    </div>
+    <h1 class="headline mb-7 max-w-[18ch]">New filings.</h1>
+    <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[66ch]">
+      Fresh public-issue documents filed with SEBI, converted into source-backed notes before they enter the exchange IPO calendar.
+    </p>
+  </section>
+
+  <section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+        <p class="figure-2 num">{formatInt(filings.length)}</p>
+        <p class="label mt-3">Filing notes</p>
+      </div>
+      <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+        <p class="figure-2 num">{formatInt(filings.reduce((sum, item) => sum + (item.verified_fact_count ?? 0), 0))}</p>
+        <p class="label mt-3">Verified facts</p>
+      </div>
+      <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+        <p class="serif text-[28px] leading-[1.05] num">{updatedText ?? '—'}</p>
+        <p class="label mt-3">Last filing run</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-tight pt-12 pb-24 border-t border-[color:var(--color-rule)]">
+    <header class="flex items-baseline justify-between mb-9">
+      <h2 class="section-title">Latest SEBI notes</h2>
+      <span class="label">{formatInt(latest.length)} shown</span>
+    </header>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {latest.map((filing) => (
+        <article class="border border-[color:var(--color-rule-card)] bg-white p-[28px_32px_24px] transition-all duration-300 hover:border-[color:var(--color-accent)] hover:bg-[#fffaf7]">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mb-5">
+            <span class="issue-badge issue-badge-dark">{filing.document_type}</span>
+            <span class="label">{formatDateShort(filing.filing_date)}</span>
+            <span class="label">{formatInt(filing.verified_fact_count)} facts</span>
+          </div>
+          <a href={filing.url_path} class="serif font-medium text-[26px] leading-[1.12] hover:acc-deep">
+            {filing.headline}
+          </a>
+          <p class="mt-5 serif text-[17px] leading-[1.45] text-[color:var(--color-ink-soft)]">{filing.dek}</p>
+          <div class="mt-6 pt-4 border-t border-[color:var(--color-rule)] flex items-center justify-between gap-4">
+            <span class="text-[12px] mute">{filing.company_name}</span>
+            <a href={filing.document_url} target="_blank" rel="noreferrer" class="text-[12px] font-semibold hover:acc">SEBI PDF</a>
+          </div>
+        </article>
+      ))}
+    </div>
+    {latest.length === 0 && (
+      <p class="serif italic text-[20px] mute">No validated SEBI filing notes have been published yet.</p>
+    )}
+  </section>
+</Base>

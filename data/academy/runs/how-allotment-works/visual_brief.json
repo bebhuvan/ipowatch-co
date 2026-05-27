@@ -1,0 +1,115 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/visual_brief.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.visual_brief.schema",
+  "dataset_version": "v2026.05.23-0539",
+  "estimated_cost_usd": 0.00177431,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T05:39:10+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-7 visual brief produced by deepseek-chat.",
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "how-allotment-works",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 3573,
+  "tokens_out": 736,
+  "visual_brief": {
+    "design_notes": [
+      "Use serif type throughout. Hairline rules only. Accent colour for table headers and pull-quote rule.",
+      "Pull-quote should be set in a larger serif italic, with a hairline rule above and below.",
+      "Tables should have minimal borders: only a hairline above header row and below last row."
+    ],
+    "formulas": [],
+    "lead_image": null,
+    "pull_quotes": [
+      {
+        "after_paragraph": "When an IPO is oversubscribed, every retail applicant has the sam",
+        "quote": "Applying for more does not improve the odds.",
+        "rationale": "Central counterintuitive fact; reinforces the lottery mechanic."
+      }
+    ],
+    "sidebars": [
+      {
+        "after_section_slug": "when-the-bank-fails-compensation-for-asba-errors",
+        "body_markdown": "Compensation = (Listing price − Issue price) × (Shares that would have been allotted) × (Probability of allotment). The listing price is the highest opening price on listing day across all exchanges. No compensation if listing price is below issue price. For issues subscribed 90%–100%, the applicant is compensated for all shares they would have been allotted.",
+        "rationale": "Formula is too dense for prose; sidebar isolates it for quick reference.",
+        "title": "Compensation formula"
+      }
+    ],
+    "tables": [
+      {
+        "after_paragraph": "The percentages in Regulation 32(1) are floors and ceilings, not t",
+        "columns": [
+          "Category",
+          "Normal book-built (Reg 32(1))",
+          "Loss-issuer book-built (Reg 32(2))"
+        ],
+        "footnote": "Source: SEBI ICDR Regulations, Schedule XIII [^sebi-icdr-2018-2025-03-08]",
+        "rationale": "Core regulatory split that prose describes; table makes the two regimes comparable at a glance.",
+        "rows": [
+          [
+            "Retail individual investors",
+            "Not less than 35%",
+            "Not more than 10%"
+          ],
+          [
+            "Non-institutional investors",
+            "Not less than 15%",
+            "Not more than 15%"
+          ],
+          [
+            "Qualified institutional buyers",
+            "Not more than 50% (5% reserved for mutual funds)",
+            "Not less than 75% (5% reserved for mutual funds)"
+          ]
+        ],
+        "title": "Allocation buckets under ICDR"
+      },
+      {
+        "after_paragraph": "The number of anchor investors is capped by the total anchor size.",
+        "columns": [
+          "Total anchor allocation",
+          "Minimum investors",
+          "Maximum investors",
+          "Minimum per investor"
+        ],
+        "footnote": "Source: SEBI ICDR Regulations, Schedule XIII [^sebi-icdr-2018-2025-03-08]",
+        "rationale": "Complex tiered caps are clearer in a table than in prose.",
+        "rows": [
+          [
+            "Up to ₹10 crore",
+            "—",
+            "2",
+            "—"
+          ],
+          [
+            "Above ₹10 crore, up to ₹250 crore",
+            "2",
+            "15",
+            "₹5 crore"
+          ],
+          [
+            "Above ₹250 crore",
+            "5",
+            "15 for first ₹250 crore, plus 10 for every additional ₹250 crore or part thereof",
+            "₹5 crore"
+          ]
+        ],
+        "title": "Anchor investor limits"
+      }
+    ],
+    "timeline": null
+  }
+}

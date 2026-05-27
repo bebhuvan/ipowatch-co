@@ -1,0 +1,385 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "takeover_documents",
+    "estimated_cost_usd": 0.01015714,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 24912,
+    "tokens_out": 3119
+  },
+  "currency": "INR",
+  "data_kind": "document_index",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0410",
+  "endpoint": "takeover_documents",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company.code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "COMPANY_CODE may be reused or changed over time; '0' appears for a company without a code.",
+          "suggested_mitigation": "Treat as string; validate against master company list."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "0",
+        "14457",
+        "12668"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "COMPANY_CODE",
+      "nested_table": false,
+      "notes": "Value '0' may indicate missing code.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].COMPANY_CODE",
+      "semantic": "Internal BSE company code, appears to be a numeric identifier but stored as string.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company names may contain special characters or suffixes like '-$' indicating something.",
+          "suggested_mitigation": "Strip non-ASCII characters if needed; preserve suffix for matching."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Suven Pharmaceuticals Limited",
+        "Simandhar Impex Ltd"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Company_Name",
+      "nested_table": false,
+      "notes": "Some names end with '-$' (e.g., 'ACE Software Exports Ltd-$').",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Company_Name",
+      "semantic": "Full name of the company as registered with BSE.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "takeover.post.status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may be inconsistent (e.g., 'Revised' vs 'New') and may not follow a strict state machine.",
+          "suggested_mitigation": "Map to canonical statuses; treat empty as 'None'."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "New",
+        "Revised",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "POSTStatus",
+      "nested_table": false,
+      "notes": "Empty string when no post document exists.",
+      "null_meaning": "Empty string indicates no post-takeover document has been filed or status is not applicable.",
+      "nullable": true,
+      "path": "$[*].POSTStatus",
+      "semantic": "Status of the post-takeover document filing (e.g., 'New', 'Revised', or empty).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "takeover.post.document_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL path structure may change if BSE reorganizes file storage.",
+          "suggested_mitigation": "Construct full URL using base path; monitor for changes."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/TakeoverPostUploadDocument/TakeoverPost_544662_1152026162141.xml",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "PostDoc",
+      "nested_table": false,
+      "notes": "Relative path; prepend base URL to access.",
+      "null_meaning": "Empty string indicates no post-takeover document has been uploaded.",
+      "nullable": true,
+      "path": "$[*].PostDoc",
+      "semantic": "Relative URL path to the post-takeover document (XML file).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "takeover.post.end_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is MM/dd/yyyy with time; may be ambiguous for dd<13. Time is always midnight.",
+          "suggested_mitigation": "Parse using 'MM/dd/yyyy HH:mm:ss' and convert to ISO 8601."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "5/11/2026 00:00:00",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "PostendDate",
+      "nested_table": false,
+      "notes": "Time component is always 00:00:00.",
+      "null_meaning": "Empty string indicates no post-takeover end date is set.",
+      "nullable": true,
+      "path": "$[*].PostendDate",
+      "semantic": "End date for the post-takeover document submission period, in MM/dd/yyyy HH:mm:ss format.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "takeover.pre.status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may be inconsistent.",
+          "suggested_mitigation": "Map to canonical statuses; treat empty as 'None'."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "New",
+        "Revised",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "PreStatus",
+      "nested_table": false,
+      "notes": "Empty string when no pre document exists.",
+      "null_meaning": "Empty string indicates no pre-takeover document has been filed or status is not applicable.",
+      "nullable": true,
+      "path": "$[*].PreStatus",
+      "semantic": "Status of the pre-takeover document filing (e.g., 'New', 'Revised', or empty).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "takeover.pre.end_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is MM/dd/yyyy with time; may be ambiguous for dd<13. Time is always midnight.",
+          "suggested_mitigation": "Parse using 'MM/dd/yyyy HH:mm:ss' and convert to ISO 8601."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "10/13/2023 00:00:00",
+        "4/11/2026 00:00:00",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "PreendDate",
+      "nested_table": false,
+      "notes": "Time component is always 00:00:00.",
+      "null_meaning": "Empty string indicates no pre-takeover end date is set.",
+      "nullable": true,
+      "path": "$[*].PreendDate",
+      "semantic": "End date for the pre-takeover document submission period, in MM/dd/yyyy HH:mm:ss format.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "takeover.record_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Recordid may be reused or not unique across different endpoints.",
+          "suggested_mitigation": "Treat as string; combine with other keys for uniqueness."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1120",
+        "1073",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "Recordid",
+      "nested_table": false,
+      "notes": "Empty when no document is filed.",
+      "null_meaning": "Empty string indicates no record ID assigned (possibly when no document is filed).",
+      "nullable": true,
+      "path": "$[*].Recordid",
+      "semantic": "Unique identifier for the takeover record (appears to be a numeric string).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "takeover.pre.document_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL path structure may change.",
+          "suggested_mitigation": "Construct full URL using base path; monitor for changes."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/TakeoverPreUploadDocument/TakeoverPre_543064_13102023.xml",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "preDoc",
+      "nested_table": false,
+      "notes": "Relative path; prepend base URL to access.",
+      "null_meaning": "Empty string indicates no pre-takeover document has been uploaded.",
+      "nullable": true,
+      "path": "$[*].preDoc",
+      "semantic": "Relative URL path to the pre-takeover document (XML file).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "takeover.record_id_secondary",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "recordid1 may be reused or not unique.",
+          "suggested_mitigation": "Treat as string; combine with other keys for uniqueness."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1166",
+        "1110",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "recordid1",
+      "nested_table": false,
+      "notes": "Often populated even when Recordid is empty.",
+      "null_meaning": "Empty string indicates no secondary record ID.",
+      "nullable": true,
+      "path": "$[*].recordid1",
+      "semantic": "Secondary record identifier, possibly for the pre-takeover document or a related entity.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "security.scrip_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Scrip code may be reused or changed over time.",
+          "suggested_mitigation": "Treat as string; validate against master security list."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "544662",
+        "543462",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "scripcode",
+      "nested_table": false,
+      "notes": "Empty for some entries (e.g., COMPANY_CODE '0').",
+      "null_meaning": "Empty string indicates no scrip code (e.g., for unlisted companies).",
+      "nullable": true,
+      "path": "$[*].scripcode",
+      "semantic": "BSE scrip code (security identifier) for the company, stored as a numeric string.",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:10:28+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The preDoc and PostDoc fields contain relative paths to XML documents that likely contain detailed takeover information. These documents may need to be fetched separately.",
+      "follow_up_endpoint_pattern": "https://api.bseindia.com/{preDoc or PostDoc}",
+      "key_field": "preDoc, PostDoc"
+    },
+    {
+      "description": "The scripcode field can be used to join with other BSE endpoints that provide company or security details.",
+      "follow_up_endpoint_pattern": "BSE company info or security master endpoint",
+      "key_field": "scripcode"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 130,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/takeover_documents.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "takeover_documents",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/Mkt_Pubissues_FIS_Takeover_isd_ng/w"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a list of companies that have filed takeover-related documents (pre-takeover and post-takeover) with BSE. Each row includes company details, statuses, document links, and dates for both pre- and post-takeover filings.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The preDoc and PostDoc fields are relative URLs; the base URL must be prepended to access the actual documents.",
+    "Date fields use MM/dd/yyyy format which can be ambiguous for days <=12; ensure correct parsing.",
+    "Empty strings are used to indicate missing data; treat them as nulls.",
+    "The COMPANY_CODE '0' appears for a company without a proper code; may need special handling.",
+    "Some company names contain a '-$' suffix whose meaning is unclear."
+  ]
+}

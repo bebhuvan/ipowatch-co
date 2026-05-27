@@ -1,0 +1,203 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "demand_data_all_bmll",
+    "estimated_cost_usd": 0.00206151,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 1573,
+    "tokens_out": 1488
+  },
+  "currency": "INR",
+  "data_kind": "live_subscription",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0412",
+  "endpoint": "demand_data_all_<id>",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "issue.company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company name may contain non-ASCII characters or special characters.",
+          "suggested_mitigation": "Normalize to UTF-8, trim whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Bio Medica Laboratories Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company",
+      "nested_table": false,
+      "notes": "May include legal suffixes like 'Limited'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].company",
+      "semantic": "Full name of the company issuing the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.cumulative_quantity",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value may be a number formatted with Indian commas (e.g., '1,23,456') or a placeholder '-'. Could be a string representation of a number.",
+          "suggested_mitigation": "Parse as integer after stripping commas; treat '-' as null."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Units are shares, but magnitude may be in lakhs/crores; ensure consistent scaling.",
+          "suggested_mitigation": "Assume raw number of shares; do not scale."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumQty",
+      "nested_table": false,
+      "notes": "Placeholder '-' indicates data not available.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].cumQty",
+      "semantic": "Cumulative quantity of bids received, displayed as a string. Currently placeholder '-'.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "pricing.price_band.lower",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "May be a number formatted as string, possibly with Indian number format or currency symbol.",
+          "suggested_mitigation": "Parse as decimal after removing currency symbols and commas; treat '-' as null."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Value is in INR, but may be in paise or rupees; check for decimal places.",
+          "suggested_mitigation": "Assume INR with two decimal places; if no decimal, treat as whole rupees."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "price",
+      "nested_table": false,
+      "notes": "Placeholder '-' indicates data not available.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].price",
+      "semantic": "Price band or current price for the IPO, displayed as a string. Currently placeholder '-'.",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "security.symbol",
+      "collision_risk_with": [
+        "nse.quote_equity.symbol"
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused across different securities (e.g., same symbol for different series).",
+          "suggested_mitigation": "Combine with exchange and series for uniqueness."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "BMLL"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Used as key to join with other endpoints.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].symbol",
+      "semantic": "Ticker symbol of the company on the stock exchange.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "meta.timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "May be in 'dd-MMM-yyyy HH:mm' format or placeholder '-'. Timezone likely IST.",
+          "suggested_mitigation": "Parse with known format; treat '-' as null; assume IST and convert to UTC."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "timestamp",
+      "nested_table": false,
+      "notes": "Placeholder '-' indicates data not available.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].timestamp",
+      "semantic": "Timestamp of the data snapshot, displayed as a string. Currently placeholder '-'.",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:12:57+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 5,
+  "row_count_observed": 1,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/demand_data_all_<id>.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_bmll",
+      "snapshot_at": "2026-05-22T09:28:39+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/ipo-chart-demand?symbol=BMLL&exchange=ALL"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 0.5,
+  "summary": "Provides a summary of IPO demand data for a given symbol across exchanges. The snapshot shows a single row with placeholder values, indicating no live subscription data is available or the endpoint is not yet populated.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "All fields except 'company' and 'symbol' are placeholder '-', indicating no live data is available. This may be due to the IPO not being active or the endpoint returning empty data.",
+    "The endpoint may require a specific exchange parameter or the IPO may not have started subscription yet."
+  ]
+}

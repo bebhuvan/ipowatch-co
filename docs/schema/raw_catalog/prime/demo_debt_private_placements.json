@@ -1,0 +1,237 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "demo_debt_private_placements",
+    "estimated_cost_usd": 0.005607270000000001,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 12591,
+    "tokens_out": 2007
+  },
+  "currency": "INR",
+  "data_kind": "other",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0429",
+  "endpoint": "demo_debt_private_placements",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "debt_private_placement.year",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Year format includes text suffix for current year, e.g., '2026-27 (as on 21/05/26)'. Parsing must extract the financial year range and optionally the as-on date.",
+          "suggested_mitigation": "Extract financial year using regex; separate as-on date if present."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1995-96",
+        "2026-27 (as on 21/05/26)"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "year_long_tenor",
+      "nested_table": false,
+      "notes": "Financial year format 'YYYY-YY'. Current year row may include parenthetical as-on date.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[1].div[2].div[1].article.table[0].tbody.tr[*].td[0]",
+      "semantic": "Financial year label for long-tenor debt private placements (tenor >365 days).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "debt_private_placement.amount_crore",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers formatted with Indian comma system (e.g., '1,15,03,281'). Must strip commas and parse as integer.",
+          "suggested_mitigation": "Remove all commas and parse as integer."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Values are in Rs. crores. Ensure downstream schema uses consistent unit (e.g., convert to rupees or store as crores).",
+          "suggested_mitigation": "Store as integer representing crores, or convert to rupees by multiplying by 10^7."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "10,035",
+        "1,15,03,281"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "amount_long_tenor",
+      "nested_table": false,
+      "notes": "Indian number format with commas at thousand, lakh, crore positions.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[1].div[2].div[1].article.table[0].tbody.tr[*].td[1]",
+      "semantic": "Total amount raised in long-tenor debt private placements for the financial year, in Rs. crores.",
+      "type": "number",
+      "units": "INR crore"
+    },
+    {
+      "canonical_field_hint": "debt_private_placement.issue_count",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers may contain commas (e.g., '48,500'). Must strip commas and parse as integer.",
+          "suggested_mitigation": "Remove commas and parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "72",
+        "48,500"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issue_count_long_tenor",
+      "nested_table": false,
+      "notes": "Integer count, may include commas.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[1].div[2].div[1].article.table[0].tbody.tr[*].td[2]",
+      "semantic": "Number of long-tenor debt private placement issues in the financial year.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "debt_private_placement_short.year",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Same as long-tenor year field; current year may include as-on date.",
+          "suggested_mitigation": "Extract financial year and optional as-on date."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2000-01",
+        "2026-27 (as on 21/05/26)"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "year_short_tenor",
+      "nested_table": false,
+      "notes": "Same format as long-tenor year.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[1].div[2].div[1].article.table[1].tbody.tr[*].td[0]",
+      "semantic": "Financial year label for short-tenor debt private placements (tenor ≤365 days).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "debt_private_placement_short.amount_crore",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Indian comma formatting.",
+          "suggested_mitigation": "Strip commas and parse as integer."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Values in Rs. crores.",
+          "suggested_mitigation": "Store as integer crores or convert to rupees."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "9,468",
+        "7,14,823"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "amount_short_tenor",
+      "nested_table": false,
+      "notes": "Indian number format.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[1].div[2].div[1].article.table[1].tbody.tr[*].td[1]",
+      "semantic": "Total amount raised in short-tenor debt private placements for the financial year, in Rs. crores.",
+      "type": "number",
+      "units": "INR crore"
+    },
+    {
+      "canonical_field_hint": "debt_private_placement_short.issue_count",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Comma formatting.",
+          "suggested_mitigation": "Strip commas and parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "280",
+        "11,845"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issue_count_short_tenor",
+      "nested_table": false,
+      "notes": "Integer count with possible commas.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[1].div[2].div[1].article.table[1].tbody.tr[*].td[2]",
+      "semantic": "Number of short-tenor debt private placement issues in the financial year.",
+      "type": "integer",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:29:36+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": null,
+  "row_shape": "html_blob",
+  "schema_url_self": "docs/schema/raw_catalog/prime/demo_debt_private_placements.json",
+  "schema_version": "1.0.0",
+  "source": "prime",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "demo_debt_private_placements",
+      "snapshot_at": "2026-05-22T09:57:28+00:00",
+      "source": "prime",
+      "url": "https://primedatabase.com/debt_demo.asp"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint returns an HTML page describing the services provided under Debt Private Placements, including summary tables of yearly aggregate amounts and issue counts for both long-tenor (>365 days) and short-tenor (≤365 days) instruments, along with navigation and advertising content. It is a static informational page, not a structured data API.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The response is a full HTML page, not a structured JSON API. Data is embedded in HTML tables and must be extracted via HTML parsing.",
+    "The page contains multiple tables; the first table corresponds to long-tenor (>365 days) and the second to short-tenor (≤365 days) instruments.",
+    "The page includes navigation, advertising, and sponsorship content that is not relevant to the core data.",
+    "No pagination or dropdown dependencies observed; the page is static.",
+    "The data is aggregated yearly; individual issue details are not provided in this endpoint."
+  ]
+}

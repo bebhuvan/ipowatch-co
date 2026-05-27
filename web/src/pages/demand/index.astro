@@ -1,0 +1,121 @@
+---
+import Base from '../../layouts/Base.astro';
+import TrajectoryChart from '../../components/TrajectoryChart.astro';
+import { listDemandInsights } from '../../lib/insights';
+import { formatDateRange, formatDateShort, formatInt, formatRupee, formatTimes } from '../../lib/format';
+
+const demand = listDemandInsights();
+const lead = demand[0] ?? null;
+const maxBid = lead ? Math.max(...lead.bidRows.map((row) => row.quantity), 1) : 1;
+const fmtMaybeTimes = (value: number | null | undefined) => value == null ? '—' : formatTimes(value);
+---
+
+<Base title="Demand book">
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6">
+    <span class="label" style="color: inherit">Subscription dynamics</span>
+  </div>
+  <h1 class="headline mb-7 max-w-[18ch]">Subscription dynamics.</h1>
+  <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[66ch]">
+    The issues with captured hourly subscription snapshots and price-level bid books.
+    These records show how demand builds through the offer window.
+  </p>
+</section>
+
+{lead && (
+  <section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+    <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-14">
+      <div>
+        <div class="flex items-baseline justify-between gap-8 mb-4">
+          <div>
+            <p class="label mb-3">Detailed trajectory</p>
+            <h2 class="section-title">{lead.issue.company.name}</h2>
+          </div>
+          <p class="figure-2 num acc">{fmtMaybeTimes(lead.finalTimes)}</p>
+        </div>
+        <TrajectoryChart observations={lead.issue.subscription.trajectory} categories={['total', 'qib', 'nii', 'retail']} />
+      </div>
+      <aside class="border border-[color:var(--color-rule-card)] bg-white p-8">
+        <div class="grid grid-cols-2 gap-6 pb-7 border-b border-[color:var(--color-rule)]">
+          <div>
+            <p class="label mb-2">Issue period</p>
+            <p class="serif text-[20px] num">{formatDateRange(lead.issue.timeline.open_date, lead.issue.timeline.close_date)}</p>
+          </div>
+          <div>
+            <p class="label mb-2">Price band</p>
+            <p class="serif text-[20px] num">{formatRupee(lead.issue.pricing.price_band.min)} – {formatRupee(lead.issue.pricing.price_band.max)}</p>
+          </div>
+          <div>
+            <p class="label mb-2">QIB</p>
+            <p class="serif text-[24px] num">{fmtMaybeTimes(lead.qibTimes)}</p>
+          </div>
+          <div>
+            <p class="label mb-2">NII</p>
+            <p class="serif text-[24px] num">{fmtMaybeTimes(lead.niiTimes)}</p>
+          </div>
+          <div>
+            <p class="label mb-2">Retail</p>
+            <p class="serif text-[24px] num">{fmtMaybeTimes(lead.retailTimes)}</p>
+          </div>
+          <div>
+            <p class="label mb-2">Snapshots</p>
+            <p class="serif text-[24px] num">{formatInt(lead.issue.subscription.trajectory.length)}</p>
+          </div>
+        </div>
+        {lead.bidRows.length > 0 && (
+          <div class="pt-7">
+            <div class="flex items-baseline justify-between mb-5">
+              <p class="label">Bid book by price</p>
+              <span class="text-[12px] mute">{lead.bidRows[0]?.processAt}</span>
+            </div>
+            <div class="flex flex-col gap-3">
+              {lead.bidRows.map((row) => (
+                <div class="grid grid-cols-[64px_minmax(0,1fr)] sm:grid-cols-[72px_minmax(0,1fr)_108px] gap-3 sm:gap-4 items-center">
+                  <span class="serif text-[18px] num">{formatRupee(row.price)}</span>
+                  <span class="h-[8px] bg-[color:var(--color-paper-soft)] border border-[color:var(--color-rule)] relative">
+                    <span class="absolute inset-y-0 left-0 bg-[color:var(--color-ink)]" style={`width:${Math.max(2, (row.quantity / maxBid) * 100).toFixed(1)}%`}></span>
+                  </span>
+                  <span class="col-start-2 sm:col-start-auto text-right num text-[12.5px] mute">{formatInt(row.quantity)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+)}
+
+<section class="page-tight pt-12 pb-24 border-t border-[color:var(--color-rule)]">
+  <header class="flex items-baseline justify-between mb-9">
+    <h2 class="section-title">Captured demand books</h2>
+    <span class="label">{formatInt(demand.length)} issues</span>
+  </header>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    {demand.map((row) => (
+      <a href={row.issue.url_path} class="block border border-[color:var(--color-rule-card)] bg-white p-7 hover:border-[color:var(--color-accent)] hover:bg-[#fffaf7] transition-colors">
+        <p class="label mb-4">{row.issue.classification.exchange_platform} · {formatDateShort(row.issue.timeline.open_date)}</p>
+        <h3 class="serif font-medium text-[22px] leading-[1.18] mb-6">{row.issue.company.name}</h3>
+        <div class="grid grid-cols-2 gap-5 border-t border-[color:var(--color-rule)] pt-5">
+          <div>
+            <p class="label mb-1">Total</p>
+            <p class="serif text-[25px] num acc">{fmtMaybeTimes(row.finalTimes)}</p>
+          </div>
+          <div>
+            <p class="label mb-1">Bid levels</p>
+            <p class="serif text-[25px] num">{formatInt(row.bidRows.length)}</p>
+          </div>
+          <div>
+            <p class="label mb-1">QIB</p>
+            <p class="serif text-[19px] num">{fmtMaybeTimes(row.qibTimes)}</p>
+          </div>
+          <div>
+            <p class="label mb-1">Retail</p>
+            <p class="serif text-[19px] num">{fmtMaybeTimes(row.retailTimes)}</p>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+</Base>

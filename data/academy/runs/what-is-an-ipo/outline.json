@@ -1,0 +1,222 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/outline.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.outline.schema",
+  "dataset_version": "v2026.05.23-0646",
+  "estimated_cost_usd": 0.006651290000000001,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T06:46:58+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-3 outline produced by deepseek-reasoner.",
+  "outline": {
+    "dek_candidates": [
+      "The first time a company sells its shares to the public — and how India decides who is allowed to do it.",
+      "A plain-language walk through what an IPO is, why companies go public, and the two paths SEBI lays out.",
+      "From the plain idea to the regulatory gate: the complete beginner's guide to Indian IPOs."
+    ],
+    "design_notes": [
+      "The intro must not cite a source — it's common knowledge. The only citations in the article should be for specific ICDR regulations and thresholds.",
+      "The 'who-cannot-ipo' section could benefit from a short table listing the categories (debarred, wilful defaulter, fugitive economic offender, convertible securities).",
+      "The distinction between IPO/FPO/OFS uses the ICDR definitions of 'further public offer' and 'selling shareholder' — those are the grounding citations.",
+      "The article stops before post-allotment mechanics (listing-day, allotment process) as per brief. The visual timeline for Reg 4 reference date might be better placed in the eligibility section but is listed under 'who-cannot-ipo' because Reg 4 is the overarching reference date rule. Could be moved to 'two-routes-to-qualify' or a separate short section; left here as a design suggestion."
+    ],
+    "gaps": [],
+    "kicker_candidates": [
+      "PRIMARY MARKET BASICS",
+      "FOUNDATIONS",
+      "THE IPO ESSENTIALS"
+    ],
+    "section_order": [
+      "intro",
+      "why-companies-go-public",
+      "what-changes-after-listing",
+      "who-cannot-ipo",
+      "two-routes-to-qualify",
+      "ipo-vs-fpo-vs-ofs"
+    ],
+    "sections": {
+      "intro": {
+        "beats": [
+          {
+            "beat": "Plain definition: 'An IPO is the first time a company sells its shares to the general public. Until then, it's private; after the IPO, its shares trade on a stock exchange like the NSE or BSE and the company is called 'listed'.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Two ways to sell in an IPO: (1) the company issues brand-new shares and keeps the money (fresh issue), (2) existing shareholders (founders, early investors) sell some of their shares to the public (offer for sale). Most IPOs are a mix of both.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Tease the regulatory gate: Not every private company can just decide to IPO. SEBI lays out who is kept out and who qualifies — explained in the rest of the article.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": null,
+        "purpose": "Define IPO in plain words so the reader can explain it after one paragraph. Introduce fresh issue vs offer for sale and the fact that shares then trade on a stock exchange."
+      },
+      "ipo-vs-fpo-vs-ofs": {
+        "beats": [
+          {
+            "beat": "IPO is the first public sale by a company that is not yet listed. FPO (follow-on public offer) is a public sale by a company that is already listed — it can be a fresh issue of new shares, an offer for sale by existing shareholders, or both.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "OFS (offer for sale) is a specific type of public sale where existing shareholders — not the company — sell their shares. It can happen in an IPO (as part of the overall offering) or in an FPO. The key: no new shares are created, so the company does not raise money; the selling shareholders do.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "In short: IPO is the first listing; FPO is a subsequent public sale by a listed company; OFS is a sale of existing shares, not new ones. These concepts are often confused, but the distinction is straightforward once you ask: 'Has this stock ever traded publicly before? Are the shares coming from the company or from its shareholders?'",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "IPO vs. FPO vs. OFS: What's the Difference?",
+        "purpose": "Distinguish these three terms by the core question: is the company already listed? Is it issuing new shares or selling existing ones? Ground with regulatory definitions."
+      },
+      "two-routes-to-qualify": {
+        "beats": [
+          {
+            "beat": "Route one: the profitability route. The company must show net tangible assets of at least ₹3 crore, average operating profit of at least ₹15 crore over the preceding three years (with profit in each of those years), and net worth of at least ₹1 crore in each of those three years. If it changed its name in the last year, at least half of its revenue must come from the activity reflected in the new name.",
+            "kind": "number",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Route two: the compulsory-QIB route. If the company does not meet the profitability thresholds, it can still IPO — but only through the book-building process, and it must allot at least 75% of the net offer to qualified institutional buyers (mutual funds, insurance companies, pension funds, foreign portfolio investors, etc.). If it cannot achieve that allotment, it must refund the entire subscription amount.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "The choices are mutually exclusive: a company either qualifies under Route 1 (and can use any issue method) or must use Route 2. The stricter allocation rule for Route 2 protects retail investors by ensuring only sophisticated institutions underwrite the risk of a less-established issuer.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "The Two Ways to Qualify",
+        "purpose": "Explain the profitability route (Reg 6(1)) and the compulsory-QIB book-building route (Reg 6(2)). List thresholds with citations. Emphasise that a company that doesn't meet profit tests must sell at least 75% of the issue to institutions."
+      },
+      "what-changes-after-listing": {
+        "beats": [
+          {
+            "beat": "Shares now trade on the stock exchange daily — anyone with a brokerage account can buy or sell, and the price moves based on supply, demand, and news.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Ownership becomes dispersed among thousands of public shareholders; the company now has a 'public float' and must answer to minority investors.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "The company must now comply with strict ongoing disclosure requirements: quarterly results, annual reports, related-party transaction disclosures, and material event filings to stock exchanges.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "Life After the IPO",
+        "purpose": "Briefly describe the key changes: freely traded shares, dispersed ownership, disclosure and compliance obligations."
+      },
+      "who-cannot-ipo": {
+        "beats": [
+          {
+            "beat": "SEBI keeps out anyone currently debarred from the capital market — if the company, its promoters, directors, or selling shareholders are banned by SEBI, the IPO is off the table. The ban also extends if a promoter or director is linked to another debarred company.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Wilful defaulters and fraudulent borrowers — defined by RBI — are barred. So are fugitive economic offenders under the Fugitive Economic Offenders Act, 2012.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "An IPO cannot happen if the company has any outstanding convertible securities (like convertible bonds or warrants) that could later be turned into equity shares — unless those are employee stock options or stock appreciation rights, or unless they are fully converted before filing the prospectus.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Note: if a past debarment period has ended by the time the draft offer document is filed, the restriction no longer applies.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          }
+        ],
+        "heading": "Who Cannot Do an IPO",
+        "purpose": "Present the negative list under Regulation 5(1) ICDR: debarred entities, wilful defaulters, fugitive economic offenders, and the bar on outstanding convertible securities. Explain each in plain language first, then ground with the regulation."
+      },
+      "why-companies-go-public": {
+        "beats": [
+          {
+            "beat": "Raise money: the fresh-issue portion brings in capital that can pay off debt, build factories, fund R&D, or acquire other businesses.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Cash out for early investors: founders, angel investors, and private-equity backers sell part of their stake through the offer-for-sale portion, realising gains from years of growth.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Other benefits: a public company can use its shares as currency for acquisitions, attract better talent with stock options, and get cheaper financing from banks and bond markets because of the visibility and credibility of being listed.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "Why a Company Goes Public",
+        "purpose": "Explain the common-knowledge motivations: raising fresh capital, letting early owners cash out, and gaining a public market for shares."
+      }
+    },
+    "title_candidates": [
+      "What Is an IPO — and Who Gets to Do One in India",
+      "The Plain-Meaning Guide to Initial Public Offers",
+      "IPO Explained: What Happens, Why It Matters, and How SEBI Filters the Candidates",
+      "Your First IPO: The Idea, the Reasons, and the Rules"
+    ],
+    "visual_targets": [
+      {
+        "kind": "table",
+        "purpose": "Compare the profitability route and the compulsory-QIB route side by side, listing the thresholds and allocation rules.",
+        "where": "two-routes-to-qualify"
+      },
+      {
+        "kind": "timeline",
+        "purpose": "Show the reference date (filing of draft offer document) and the two tests (date of filing with SEBI and date of filing with RoC) from Reg 4.",
+        "where": "who-cannot-ipo"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "what-is-an-ipo",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 11907,
+  "tokens_out": 3124
+}

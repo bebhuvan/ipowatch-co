@@ -1,0 +1,250 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/outline.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.outline.schema",
+  "dataset_version": "v2026.05.23-0751",
+  "estimated_cost_usd": 0.00687538,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T07:51:41+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-3 outline produced by deepseek-reasoner.",
+  "outline": {
+    "dek_candidates": [
+      "What happens between the day an IPO closes and the day you can trade the shares? A step-by-step walk through the three working days.",
+      "The three-day window from IPO close to listing: a plain-timeline walk of allotment, money movement, and trading.",
+      "How SEBI's T+3 rule compresses the listing timeline — and what that means for your blocked funds and share credit."
+    ],
+    "design_notes": [
+      "The intro should start with the plain timeline statement, then mention the T+6 to T+3 reduction as context.",
+      "Each day section opens with a teaching beat (what the day's purpose is) before listing specific times.",
+      "Avoid re-explaining the allotment lottery; only mention that the basis is finalised on T+1.",
+      "Use concrete example dates (e.g., IPO closing Monday, listing Thursday) in the intro to ground the abstract timeline.",
+      "The unblocking section clarifies that both non-allottees and partial allottees see funds released by T+2, but compensation triggers from T+3 if delay."
+    ],
+    "gaps": [
+      {
+        "blocking": false,
+        "reason": "The source states compensation is computed from T+3 but does not specify the interest rate or penalty amount.",
+        "topic": "Compensation rate for delayed unblocking"
+      }
+    ],
+    "kicker_candidates": [
+      "PRIMARY MARKET MECHANICS",
+      "LISTING TIMELINE",
+      "IPO PROCESS"
+    ],
+    "section_order": [
+      "intro",
+      "day-tplus1",
+      "day-tplus2",
+      "day-tplus3",
+      "unblocking-compensation"
+    ],
+    "sections": {
+      "day-tplus1": {
+        "beats": [
+          {
+            "beat": "The registrar and exchange finalise the basis of allotment — deciding how many shares each successful applicant gets — before 6 pm on T+1.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "PAN third-party verification: The registrar matches the PAN on the application with the PAN on the bank account and demat account. This must be completed for UPI applications by 9:30 am T+1, and for non-UPI applications by 1 pm T+1.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "If PANs mismatch, the application is invalid for allotment — no shares will be allotted.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "The stock exchange approves the basis of allotment before 9 pm on T+1.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          }
+        ],
+        "heading": "Day T+1: Basis of allotment and PAN verification",
+        "purpose": "Explain the work done on the first working day after closing: finalizing who gets shares and checking PAN details."
+      },
+      "day-tplus2": {
+        "beats": [
+          {
+            "beat": "By 9:30 am T+2, the registrar initiates fund transfer instructions: debiting the full application amount from allottees and unblocking (releasing) funds for non-allottees.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Debiting of allottee accounts is completed by 2 pm T+2; unblocking of non-allottee funds is completed by 4 pm T+2.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Corporate action for crediting shares to demat accounts is initiated before 2 pm and completed before 6 pm T+2.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "The issuer files the listing application with stock exchanges and the exchanges issue a trading notice before 7:30 pm T+2. The allotment advertisement appears on websites before 9 pm T+2.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          }
+        ],
+        "heading": "Day T+2: Money moves and shares credit",
+        "purpose": "Describe the financial and demat actions on the second day: debit from allottees, unblock of non-allottees, credit to demat, and filing the listing application."
+      },
+      "day-tplus3": {
+        "beats": [
+          {
+            "beat": "Shares begin trading on the stock exchange on T+3 day. This is the first day investors can buy or sell the newly listed shares.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "The allotment advertisement is published in newspapers on T+3 (or at latest T+4).",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "By this point, allottees have shares in their demat accounts and the blocked amount has been debited; non-allottees have their funds unblocked (by T+2).",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "Day T+3: Trading begins",
+        "purpose": "Explain that on the third day, shares start trading on the exchange, and the allotment advertisement appears in newspapers."
+      },
+      "intro": {
+        "beats": [
+          {
+            "beat": "Define T+3: shares list within three working days of the issue closing; T is the closing date.",
+            "kind": "definition",
+            "source_ids": []
+          },
+          {
+            "beat": "This was reduced from T+6 in August 2023 via SEBI circular; the change is now standard.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Example: If an IPO closes on Monday, shares start trading on Thursday (assuming no market holidays).",
+            "kind": "example",
+            "source_ids": []
+          },
+          {
+            "beat": "The timeline must be disclosed in the offer document and issue advertisements.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "The article will walk through each day: T+1 (basis of allotment, PAN checks), T+2 (money moves, demat credit), T+3 (trade start), and the unblocking deadlines.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": null,
+        "purpose": "Introduce the T+3 timeline, its significance, and the reduction from T+6. Set the stage for the step-by-step walk."
+      },
+      "unblocking-compensation": {
+        "beats": [
+          {
+            "beat": "For applicants who receive no allotment, the blocked amount must be unblocked by T+2 (the second working day after closing).",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "For partial allotment, the excess amount (the portion not allotted) must be unblocked by the next working day after finalization of basis of allotment (T+1) — which is also T+2.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "If the bank or intermediary fails to unblock by these deadlines, compensation to the investor is computed from T+3 day onwards.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Note: The compensation rate is not specified in the source; the rule merely states that the counting starts from T+3. Investors should check the offer document for penalty terms.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "What if my funds are not unblocked on time?",
+        "purpose": "Detail the deadlines for unblocking funds for non-allottees and partial allottees, and the compensation rule for delays."
+      }
+    },
+    "title_candidates": [
+      "From close to listing: the T+3 timeline",
+      "Three days to listing: what happens after an IPO closes",
+      "The IPO's final countdown: how T+3 works"
+    ],
+    "visual_targets": [
+      {
+        "kind": "timeline",
+        "purpose": "Show the overall T+3 timeline from issue closure to listing, with T, T+1, T+2, T+3 markers and key events per day.",
+        "where": "intro"
+      },
+      {
+        "kind": "table",
+        "purpose": "List the specific cutoff times for PAN verification and basis of allotment on T+1, with source reference.",
+        "where": "day-tplus1"
+      },
+      {
+        "kind": "table",
+        "purpose": "Compare the unblocking deadlines for non-allotment vs partial allotment, and state compensation start date.",
+        "where": "unblocking-compensation"
+      },
+      {
+        "kind": "pull_quote",
+        "purpose": "Highlight the reduction from T+6 to T+3 as a key regulatory change, with source citation.",
+        "where": "intro"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "ipo-listing-timeline",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 9164,
+  "tokens_out": 4001
+}

@@ -1,0 +1,137 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getAvailableYears, getRecentHistorical, getYearStats, type IssueSummary } from '../../lib/issues';
+import { listYearReturnRows } from '../../lib/insights';
+import { formatDateShort, formatRupeeRange, formatInt, formatRupee } from '../../lib/format';
+
+export function getStaticPaths() {
+  return getAvailableYears().map((y) => ({ params: { year: String(y) } }));
+}
+
+const year = Number(Astro.params.year);
+const all = getRecentHistorical(0) as IssueSummary[];
+const inYear = all.filter((i) => (i.listing_date ?? i.close_date ?? '').startsWith(String(year)));
+const stats = getYearStats(year);
+const top = inYear.filter((i) => i.listing_day_gain != null).sort((a, b) => (b.listing_day_gain ?? 0) - (a.listing_day_gain ?? 0));
+const thenNow = listYearReturnRows(year, 10);
+
+const fmtGain = (g: number | null | undefined) => g == null ? '—' : `${g > 0 ? '+' : ''}${g.toFixed(1)}%`;
+
+const typeTag = (issue: { issue_type: string | null; exchange_platform: string | null }) => {
+  const t = issue.issue_type ?? '';
+  const ex = (issue.exchange_platform ?? '').replace(/\s+/g, ' ').trim();
+  return [t, ex].filter(Boolean).join('  ·  ');
+};
+---
+
+<Base title={`${year}`}>
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6">
+    <span class="label" style="color: inherit">Year in review</span>
+  </div>
+  <p class="figure num mb-10">{year}</p>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6">
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(stats.total)}</p>
+      <p class="label mt-3">Listings</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(stats.mainboard)}<span class="mute-2"> / </span>{formatInt(stats.sme)}</p>
+      <p class="label mt-3">Mainboard / SME</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{stats.with_gain >= 5 ? fmtGain(stats.median_gain) : '—'}</p>
+      <p class="label mt-3">Median day-one</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{stats.with_gain >= 5 && stats.positive_pct != null ? `${stats.positive_pct.toFixed(0)}%` : '—'}</p>
+      <p class="label mt-3">Above issue</p>
+    </div>
+  </div>
+</section>
+
+{top.length > 0 && (
+  <section class="page-tight pt-16 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="flex items-baseline justify-between mb-9">
+      <h2 class="section-title">Best listing days of {year}</h2>
+      <span class="label">Top five</span>
+    </header>
+    <ol class="list-none p-0 m-0">
+      {top.slice(0, 5).map((i, idx) => (
+        <li class="relative group">
+          <a href={i.url_path} class="grid grid-cols-[28px_minmax(0,1fr)_84px] sm:grid-cols-[36px_minmax(0,1fr)_140px_100px_100px] gap-4 sm:gap-6 items-baseline py-5 px-2 border-b border-[color:var(--color-rule)] transition-all duration-200 group-hover:pl-4">
+            <span class="absolute left-0 top-0 bottom-0 w-[2px] bg-[color:var(--color-accent)] scale-y-0 origin-center group-hover:scale-y-100 transition-transform"></span>
+            <span class="serif italic font-light text-[18px] text-[color:var(--color-mute-2)] num">{idx + 1}</span>
+            <div class="min-w-0">
+              <h3 class="serif font-medium text-[20px] leading-[1.2] truncate group-hover:text-[color:var(--color-accent)] transition-colors">{i.company_name}</h3>
+              <p class="text-[11.5px] mute mt-1">{typeTag(i)}</p>
+            </div>
+            <span class="text-[12.5px] mute num text-right hidden sm:block">{i.listing_date ? formatDateShort(i.listing_date) : '—'}</span>
+            <span class="text-[12.5px] mute num text-right hidden sm:block">{i.price_band?.min != null ? formatRupeeRange(i.price_band.min, i.price_band.max) : ''}</span>
+            <span class="serif text-[24px] num text-right acc">{fmtGain(i.listing_day_gain)}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+)}
+
+{thenNow.length > 0 && (
+  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="flex items-baseline justify-between mb-9">
+      <h2 class="section-title">Then and now</h2>
+      <a href="/performance/" class="label">All performance</a>
+    </header>
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse min-w-[840px]">
+        <thead>
+          <tr class="text-left label border-b border-[color:var(--color-ink)]">
+            <th class="py-3 pr-5">Company</th>
+            <th class="py-3 px-5 text-right">Issue price</th>
+            <th class="py-3 px-5 text-right">Listing close</th>
+            <th class="py-3 px-5 text-right">Current</th>
+            <th class="py-3 px-5 text-right">Day one</th>
+            <th class="py-3 pl-5 text-right">Since issue</th>
+          </tr>
+        </thead>
+        <tbody>
+          {thenNow.map((i) => (
+            <tr class="border-b border-[color:var(--color-rule)] group">
+              <td class="py-3 pr-5">
+                <a href={i.url_path} class="block truncate group-hover:acc">{i.company_name}</a>
+              </td>
+              <td class="py-3 px-5 text-right num">{formatRupee(i.issue_price)}</td>
+              <td class="py-3 px-5 text-right num">{formatRupee(i.listing_day_close)}</td>
+              <td class="py-3 px-5 text-right num">{formatRupee(i.current_price)}</td>
+              <td class={`py-3 px-5 text-right serif text-[18px] num ${i.day_one_return != null && i.day_one_return > 0 ? 'acc' : ''}`}>{fmtGain(i.day_one_return)}</td>
+              <td class={`py-3 pl-5 text-right serif text-[18px] num ${i.current_return != null && i.current_return > 0 ? 'acc' : ''}`}>{fmtGain(i.current_return)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+)}
+
+<section class="page-tight pt-12 pb-24 border-t border-[color:var(--color-rule)]">
+  <header class="flex items-baseline justify-between mb-9">
+    <h2 class="section-title">IPO and FPO listings, {year}</h2>
+    <span class="label num">{inYear.length} total</span>
+  </header>
+  <ul class="list-none p-0 m-0">
+    {inYear.slice(0, 200).map((i) => (
+      <li>
+        <a href={i.url_path} class="grid grid-cols-[minmax(0,1fr)_84px] sm:grid-cols-[minmax(0,1fr)_120px_120px] gap-4 sm:gap-6 items-baseline py-3 border-b border-[color:var(--color-rule)] group transition-all duration-200 hover:pl-2">
+          <div class="min-w-0 truncate">
+            <span class="text-[15px] group-hover:acc transition-colors">{i.company_name}</span>
+            <span class="text-[11.5px] mute ml-2">{typeTag(i)}</span>
+          </div>
+          <span class="text-[12px] mute num text-right hidden sm:block">{i.listing_date ? formatDateShort(i.listing_date) : '—'}</span>
+          <span class="serif text-[18px] num text-right">{fmtGain(i.listing_day_gain)}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  {inYear.length > 200 && <p class="mt-6 mute text-[13px]">Showing 200 of {inYear.length}.</p>}
+</section>
+</Base>

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/visual_brief.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.visual_brief.schema",
+  "dataset_version": "v2026.05.23-0759",
+  "estimated_cost_usd": 0.0012903200000000002,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T07:59:26+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-7 visual brief produced by deepseek-chat.",
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "ipo-listing-timeline",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 2856,
+  "tokens_out": 472,
+  "visual_brief": {
+    "design_notes": [
+      "Use hairline rules to separate the two tables; no borders inside cells.",
+      "Set table titles in small caps, sentence case, with a single accent colour (e.g., SEBI blue).",
+      "No stock charts or decorative elements; keep layout clean and newspaper-like."
+    ],
+    "formulas": [],
+    "lead_image": null,
+    "pull_quotes": [],
+    "sidebars": [],
+    "tables": [
+      {
+        "after_paragraph": "The first working day after the IPO closes is the day the regist",
+        "columns": [
+          "Activity on T+1",
+          "Deadline"
+        ],
+        "footnote": "Source: SEBI Master Circular for ICDR, Annexure XXIII[^sebi-master-circular-asba-upi-timeline]",
+        "rationale": "Consolidates the four deadlines on T+1 into a single reference, easier to scan than prose.",
+        "rows": [
+          [
+            "PAN third-party verification — UPI applications",
+            "9:30 am"
+          ],
+          [
+            "PAN third-party verification — non-UPI applications",
+            "1:00 pm"
+          ],
+          [
+            "Finalisation of basis of allotment",
+            "6:00 pm"
+          ],
+          [
+            "Stock exchange approval of basis",
+            "9:00 pm"
+          ]
+        ],
+        "title": "T+1 deadlines"
+      },
+      {
+        "after_paragraph": "The deadlines for unblocking are strict, and SEBI has built a",
+        "columns": [
+          "Scenario",
+          "Unblocking deadline",
+          "Compensation starts from"
+        ],
+        "footnote": "Source: SEBI Master Circular for ICDR, Chapter 11[^sebi-master-circular-asba-upi-timeline]",
+        "rationale": "Clarifies the two scenarios for unblocking and when compensation kicks in, avoiding confusion.",
+        "rows": [
+          [
+            "No allotment",
+            "T+2",
+            "T+3"
+          ],
+          [
+            "Partial allotment (excess amount)",
+            "T+2 (next working day after T+1 basis finalisation)",
+            "T+3"
+          ]
+        ],
+        "title": "Unblocking deadlines and compensation"
+      }
+    ],
+    "timeline": null
+  }
+}

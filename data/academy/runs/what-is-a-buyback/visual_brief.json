@@ -1,0 +1,82 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/visual_brief.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.visual_brief.schema",
+  "dataset_version": "v2026.05.23-0831",
+  "estimated_cost_usd": 0.0012393500000000002,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T08:31:26+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-7 visual brief produced by deepseek-chat.",
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "what-is-a-buyback",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 2655,
+  "tokens_out": 475,
+  "visual_brief": {
+    "design_notes": [
+      "Use a hairline rule above and below the comparison table.",
+      "Sidebar should be set in a box with a thin border and a small-cap title in the accent colour.",
+      "No stock charts or decorative elements; keep the layout clean and newspaper-like."
+    ],
+    "formulas": [],
+    "lead_image": null,
+    "pull_quotes": [],
+    "sidebars": [
+      {
+        "after_section_slug": "where-the-money-comes-from",
+        "body_markdown": "A company can fund a buyback only from free reserves, the securities premium account, or the proceeds of a fresh issue of shares. It cannot use the proceeds of an earlier issue of the same kind of shares. This prevents the company from effectively returning capital it just raised. The restriction ensures that buybacks are funded from genuine surplus, not recycled IPO or rights issue money.",
+        "rationale": "Sidebar consolidates the three allowed sources and the restriction, which are listed in the prose but benefit from a compact reference.",
+        "title": "Allowed sources for buyback funding"
+      }
+    ],
+    "tables": [
+      {
+        "after_paragraph": "The company cannot mix the two methods. The board or sharehol",
+        "columns": [
+          "Aspect",
+          "Tender offer",
+          "Open market"
+        ],
+        "footnote": "Source: SEBI (Buy-Back of Securities) Regulations, 2018",
+        "rationale": "Comparison table clarifies the two methods side by side, which prose alone cannot do as efficiently.",
+        "rows": [
+          [
+            "How it works",
+            "Company invites shareholders to sell at a fixed price, proportionately",
+            "Company buys shares on the stock exchange like any investor"
+          ],
+          [
+            "Pricing",
+            "Fixed price set in advance",
+            "Market price at time of purchase"
+          ],
+          [
+            "Fairness",
+            "Equal treatment — all shareholders can participate proportionately",
+            "Only shareholders who sell on the exchange participate"
+          ],
+          [
+            "Volume limit",
+            "Up to 25% of paid-up capital and free reserves",
+            "Subject to phased-down volume caps set by SEBI"
+          ]
+        ],
+        "title": "Tender offer vs open market buyback"
+      }
+    ],
+    "timeline": null
+  }
+}

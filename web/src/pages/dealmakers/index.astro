@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import { listPartyInsights } from '../../lib/insights';
+import { formatLakhCr, formatTimes } from '../../lib/format';
+
+const bankers = listPartyInsights('brlm');
+const registrars = listPartyInsights('registrar');
+const fmtPct = (value: number | null | undefined) => value == null ? '—' : `${value > 0 ? '+' : ''}${value.toFixed(1)}%`;
+const rowDate = (issue: any) => issue.timeline?.open_date ?? issue.timeline?.listing_date ?? issue.timeline?.close_date ?? '—';
+---
+
+<Base title="Dealmakers">
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6">
+    <span class="label" style="color: inherit">Lead managers and registrars</span>
+  </div>
+  <h1 class="headline mb-7 max-w-[18ch]">Lead managers and registrars.</h1>
+  <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[66ch]">
+    Leaderboards for book runners and registrars where NSE or BSE publishes the parties.
+    Historical coverage is still limited, so the page shows only records with captured names.
+  </p>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{bankers.length}</p>
+      <p class="label mt-3">Book runners captured</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{registrars.length}</p>
+      <p class="label mt-3">Registrars captured</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{bankers.reduce((sum, row) => sum + row.issueCount, 0)}</p>
+      <p class="label mt-3">Mandate observations</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <header class="flex items-baseline justify-between mb-9">
+    <h2 class="section-title">Book runners</h2>
+    <span class="label">Available coverage</span>
+  </header>
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse min-w-[860px]">
+      <thead>
+        <tr class="text-left label border-b border-[color:var(--color-ink)]">
+          <th class="py-3 pr-5">Name</th>
+          <th class="py-3 px-5 text-right">Issues</th>
+          <th class="py-3 px-5 text-right">Active</th>
+          <th class="py-3 px-5 text-right">Implied raise</th>
+          <th class="py-3 pl-5 text-right">Avg day one</th>
+        </tr>
+      </thead>
+      <tbody>
+        {bankers.map((row) => (
+          <tr class="border-b border-[color:var(--color-rule)]">
+            <td class="py-4 pr-5">
+              <span class="serif text-[19px]">{row.name}</span>
+              <span class="block text-[11.5px] mute mt-1">
+                {row.sampleIssues.map((issue) => `${issue.company.name} ${rowDate(issue).slice(0, 4)}`).join(' · ')}
+              </span>
+            </td>
+            <td class="py-4 px-5 text-right num">{row.issueCount}</td>
+            <td class="py-4 px-5 text-right num">{row.activeCount}</td>
+            <td class="py-4 px-5 text-right num">{formatLakhCr(row.impliedRaise || null)}</td>
+            <td class="py-4 pl-5 text-right serif text-[18px] num">{fmtPct(row.avgDayOneReturn)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-24 border-t border-[color:var(--color-rule)]">
+  <header class="flex items-baseline justify-between mb-9">
+    <h2 class="section-title">Registrars</h2>
+    <span class="label">Available coverage</span>
+  </header>
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse min-w-[760px]">
+      <thead>
+        <tr class="text-left label border-b border-[color:var(--color-ink)]">
+          <th class="py-3 pr-5">Name</th>
+          <th class="py-3 px-5 text-right">Issues</th>
+          <th class="py-3 px-5 text-right">Active</th>
+          <th class="py-3 pl-5 text-right">Median subscription</th>
+        </tr>
+      </thead>
+      <tbody>
+        {registrars.map((row) => (
+          <tr class="border-b border-[color:var(--color-rule)]">
+            <td class="py-4 pr-5">
+              <span class="serif text-[19px]">{row.name}</span>
+              <span class="block text-[11.5px] mute mt-1">
+                {row.sampleIssues.map((issue) => `${issue.company.name} ${rowDate(issue).slice(0, 4)}`).join(' · ')}
+              </span>
+            </td>
+            <td class="py-4 px-5 text-right num">{row.issueCount}</td>
+            <td class="py-4 px-5 text-right num">{row.activeCount}</td>
+            <td class="py-4 pl-5 text-right serif text-[18px] num">{row.medianSubscription == null ? '—' : formatTimes(row.medianSubscription)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+</Base>

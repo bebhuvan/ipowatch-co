@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import { companyEvents, getCompanyEntry, listCompaniesWithMultipleIssues } from '../../lib/insights';
+import { formatDateLong, formatInt, formatLakhCr, formatRupee, formatTimes } from '../../lib/format';
+
+export function getStaticPaths() {
+  return listCompaniesWithMultipleIssues().map((company) => ({ params: { slug: company.slug } }));
+}
+
+const slug = String(Astro.params.slug);
+const company = getCompanyEntry(slug);
+const events = companyEvents(slug);
+const fmtPct = (value: number | null | undefined) => value == null ? '—' : `${value > 0 ? '+' : ''}${value.toFixed(1)}%`;
+const eventLabel = (event: typeof events[number]) => [event.issue.classification.issue_type, event.issue.classification.security_type, event.issue.classification.exchange_platform].filter(Boolean).join(' · ');
+---
+
+<Base title={company?.name ?? 'Company'}>
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6">
+    <a href="/companies/" class="label" style="color: inherit">Company timeline</a>
+  </div>
+  <h1 class="headline mb-7 max-w-[18ch] break-words">{company?.name}</h1>
+  <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[62ch]">
+    {formatInt(events.length)} market events captured for this company, ordered by the earliest available issue, listing or close date.
+  </p>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(events.length)}</p>
+      <p class="label mt-3">Timeline events</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(new Set(events.map((event) => event.issue.classification.issue_type)).size)}</p>
+      <p class="label mt-3">Issue types</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(events.filter((event) => event.issue.documents.length > 0).length)}</p>
+      <p class="label mt-3">With documents</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-24 border-t border-[color:var(--color-rule)]">
+  <ol class="list-none p-0 m-0">
+    {events.map((event, idx) => (
+      <li class="grid grid-cols-1 sm:grid-cols-[92px_minmax(0,1fr)] gap-5 sm:gap-8 md:gap-12 border-b border-[color:var(--color-rule)] py-7">
+        <div>
+          <p class="serif text-[28px] num leading-none">{event.eventDate ? event.eventDate.slice(0, 4) : '—'}</p>
+          <p class="text-[12px] mute mt-2">{event.eventDate ? formatDateLong(event.eventDate) : 'Undated'}</p>
+        </div>
+        <div>
+          <div class="flex items-start justify-between gap-5 sm:gap-8">
+            <div>
+              <p class="label mb-2">{eventLabel(event) || `Event ${idx + 1}`}</p>
+              <a href={event.issue.url_path} class="serif text-[24px] leading-[1.2] hover:acc">{event.issue.title}</a>
+            </div>
+            <span class="serif italic text-[20px] mute-2 num">{idx + 1}</span>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-5 mt-6 pt-5 border-t border-[color:var(--color-rule)]">
+            <div>
+              <p class="label mb-1">Price</p>
+              <p class="serif text-[18px] num">{formatRupee(event.issue.pricing.issue_price ?? event.issue.pricing.price_band.max)}</p>
+            </div>
+            <div>
+              <p class="label mb-1">Size</p>
+              <p class="serif text-[18px] num">{event.amount ? formatLakhCr(event.amount) : event.issue.issue_size.text ?? '—'}</p>
+            </div>
+            <div>
+              <p class="label mb-1">Subscription</p>
+              <p class="serif text-[18px] num">{event.subscriptionTimes == null ? '—' : formatTimes(event.subscriptionTimes)}</p>
+            </div>
+            <div>
+              <p class="label mb-1">Day one</p>
+              <p class="serif text-[18px] num">{fmtPct(event.dayOneReturn)}</p>
+            </div>
+            <div>
+              <p class="label mb-1">Current</p>
+              <p class="serif text-[18px] num">{fmtPct(event.currentReturn)}</p>
+            </div>
+          </div>
+          {(event.brlms.length > 0 || event.registrars.length > 0 || event.issue.documents.length > 0) && (
+            <p class="mt-4 text-[12.5px] mute">
+              {event.brlms.length > 0 && <>BRLM · {event.brlms.join(', ')}. </>}
+              {event.registrars.length > 0 && <>Registrar · {event.registrars.join(', ')}. </>}
+              {event.issue.documents.length > 0 && <>{event.issue.documents.length} document{event.issue.documents.length === 1 ? '' : 's'}.</>}
+            </p>
+          )}
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+</Base>

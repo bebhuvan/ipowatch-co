@@ -1,0 +1,407 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": true,
+    "cached": false,
+    "endpoint_concrete": "ipo_public_past_issues",
+    "estimated_cost_usd": 0.01163658,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 29764,
+    "tokens_out": 3273
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0414",
+  "endpoint": "ipo_public_past_issues",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "issuer_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Field name may change or be absent in future versions.",
+          "suggested_mitigation": "Use companyName as canonical if both present."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Teamtech Formwork Solutions Limited",
+        "Bagmane Prime Office REIT"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company",
+      "nested_table": false,
+      "notes": "Sometimes includes suffixes like '-Issue Withdrawn' or '-Special Withdrawal Option'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].company",
+      "semantic": "Full name of the issuing company or entity.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Field may be absent for some security types.",
+          "suggested_mitigation": "Fall back to company field if companyName is missing."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Teamtech Formwork Solutions Limited",
+        "NFP Sampoorna Foods Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "companyName",
+      "nested_table": false,
+      "notes": "Seems redundant with company; may be used for display.",
+      "null_meaning": "Not present for some records (e.g., REITs, debt issues).",
+      "nullable": true,
+      "path": "$[*].companyName",
+      "semantic": "Full name of the issuing company or entity (appears to be duplicate of company).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue_close_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy with uppercase month abbreviations.",
+          "suggested_mitigation": "Parse using a custom formatter; handle timezone as IST."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "21-MAY-2026",
+        "20-MAY-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ipoEndDate",
+      "nested_table": false,
+      "notes": "Format: dd-MMM-yyyy, e.g., 21-MAY-2026.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ipoEndDate",
+      "semantic": "Closing date of the IPO subscription period.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue_open_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy with uppercase month abbreviations.",
+          "suggested_mitigation": "Parse using a custom formatter; handle timezone as IST."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "19-MAY-2026",
+        "18-MAY-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ipoStartDate",
+      "nested_table": false,
+      "notes": "Format: dd-MMM-yyyy.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ipoStartDate",
+      "semantic": "Opening date of the IPO subscription period.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue_price_paise",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings with leading spaces or '######' placeholders.",
+          "suggested_mitigation": "Trim whitespace; treat '######' as null; coerce to integer after cleaning."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Units are INR per share; for debt, may be face value (e.g., 1000).",
+          "suggested_mitigation": "Store as integer paise or float rupees; note securityType for context."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-",
+        "50",
+        "   100",
+        "######",
+        "10000"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issuePrice",
+      "nested_table": false,
+      "notes": "Hyphen '-' means not yet available or withdrawn. '######' appears for some debt/NCD issues.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issuePrice",
+      "semantic": "Final issue price per share (or face value for debt). May be '-' if not yet determined or withdrawn.",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "listing_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy; hyphen '-' indicates not yet listed or withdrawn.",
+          "suggested_mitigation": "Parse as date; treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-",
+        "19-MAY-2026",
+        "15-MAY-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "listingDate",
+      "nested_table": false,
+      "notes": "Hyphen '-' means not yet listed or issue withdrawn.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].listingDate",
+      "semantic": "Date the security was listed on the exchange.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "price_band_lower_upper",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Format varies: 'Rs.61 to Rs.63', 'Rs.1000', 'RS.41', 'Rs.130 Rs.140' (missing 'to').",
+          "suggested_mitigation": "Parse to extract lower and upper bounds; handle missing 'to' as fixed price."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Values are in INR; sometimes 'RS.' instead of 'Rs.'.",
+          "suggested_mitigation": "Normalize to lowercase 'rs.' and extract numeric values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Rs.61 to Rs.63",
+        "Rs.1000",
+        "RS.41",
+        "Rs.130 Rs.140"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "priceRange",
+      "nested_table": false,
+      "notes": "May be a single value for fixed price issues. Inconsistent spacing and 'to' usage.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].priceRange",
+      "semantic": "Price band or fixed price for the issue, as a display string.",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "security_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "New security types may be added over time.",
+          "suggested_mitigation": "Maintain a dynamic enum or accept any string."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "SME",
+        "EQ",
+        "BE",
+        "DEBT",
+        "IV",
+        "RR",
+        "N0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "securityType",
+      "nested_table": false,
+      "notes": "Common values: SME (SME IPO), EQ (Equity), BE (BSE SME?), DEBT (Debt), IV (InvIT), RR (REIT), N0 (NCD).",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].securityType",
+      "semantic": "Type of security being issued (e.g., SME, EQ, BE, DEBT, IV, RR, N0).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "ticker",
+      "collision_risk_with": [
+        "nse.ipo_current_issues.symbol",
+        "nse.equity_master.symbol"
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused for different issues (e.g., RSL appears twice for different dates).",
+          "suggested_mitigation": "Use combination of symbol and issue dates as unique key."
+        },
+        {
+          "category": "E.UPS",
+          "description": "Symbol format may change (e.g., numeric symbols for debt).",
+          "suggested_mitigation": "Treat as string; no normalization."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "TEAMTECH",
+        "BAGMANE",
+        "KISSHT",
+        "860IIFL27"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Unique per issue but may be reused for different tranches or withdrawal options.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].symbol",
+      "semantic": "Trading symbol of the security on NSE.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "html_symbol",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "May be used to construct URLs for detailed IPO pages.",
+          "suggested_mitigation": "Store as is; use for enrichment."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "bagmane",
+        "kissht",
+        "ompower"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "htmSym",
+      "nested_table": false,
+      "notes": "Seems to be a URL slug for the issue detail page on NSE.",
+      "null_meaning": "Not present for SME issues and some others.",
+      "nullable": true,
+      "path": "$[*].htmSym",
+      "semantic": "HTML symbol or internal identifier used for linking to detailed page.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "link_removal_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy.",
+          "suggested_mitigation": "Parse as date; treat missing as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "09-MAY-2026",
+        "06-MAY-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "linkRemovalDate",
+      "nested_table": false,
+      "notes": "Only present for non-SME issues; may indicate when the issue detail page is taken down.",
+      "null_meaning": "Not present for SME issues and some others.",
+      "nullable": true,
+      "path": "$[*].linkRemovalDate",
+      "semantic": "Date when the issue link was removed from the public list (internal housekeeping).",
+      "type": "date",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:14:36+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "Detailed IPO information page using htmSym as slug.",
+      "follow_up_endpoint_pattern": "https://www.nseindia.com/ipo/detail?symbol={htmSym}",
+      "key_field": "htmSym"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 200,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/ipo_public_past_issues.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_public_past_issues",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/public-past-issues"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 48,
+  "summary": "This endpoint provides a list of past public issues (IPOs, FPOs, debt, etc.) listed on NSE, including SME, EQ, BE, DEBT, IV, RR, N0, and other security types. Each record contains company name, symbol, issue dates, price range, final issue price, listing date, and security type. The data is used for historical reference and does not include live subscription details.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Body was truncated; only first 200 records observed. Full dataset may contain more records.",
+    "Field 'issuePrice' contains placeholder '######' for some debt/NCD issues; meaning unclear.",
+    "Field 'priceRange' has inconsistent formatting (e.g., 'Rs.130 Rs.140' missing 'to').",
+    "Field 'company' and 'companyName' are duplicates; may cause confusion.",
+    "Some records have 'linkRemovalDate' and 'htmSym' only for non-SME issues; SME issues lack these fields.",
+    "Symbol 'RSL' appears twice for different dates (withdrawal option and main issue); uniqueness requires composite key.",
+    "No pagination or dropdown dependencies observed in this snapshot, but the endpoint may support filters."
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "ofs_active_total_retail",
+    "estimated_cost_usd": 0.0018974500000000002,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 1605,
+    "tokens_out": 1331
+  },
+  "currency": "INR",
+  "data_kind": "live_subscription",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0421",
+  "endpoint": "ofs_active_total_retail",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company name may contain non-ASCII characters or special characters.",
+          "suggested_mitigation": "Normalize to UTF-8, trim whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Central Bank of India"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "companyName",
+      "nested_table": false,
+      "notes": "May contain extra spaces or special characters.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].companyName",
+      "semantic": "Name of the company conducting the OFS.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "symbol_retail",
+      "collision_risk_with": [
+        "nse.ofs_active_total_retail.symbolRG"
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused across different issues or categories.",
+          "suggested_mitigation": "Combine with issue identifier if available."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "CENTRALBKCUMU"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbolRG",
+      "nested_table": false,
+      "notes": "This symbol is specific to the retail category; may differ from the main symbol.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].symbolRG",
+      "semantic": "Trading symbol for the retail category of the OFS issue.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "total_issue_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value is a string; may contain commas or spaces.",
+          "suggested_mitigation": "Parse as integer after stripping non-numeric characters."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "325850445"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totalIssue",
+      "nested_table": false,
+      "notes": "Absolute number of shares, not in lakhs/crores.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].totalIssue",
+      "semantic": "Total number of shares offered in the OFS issue (in absolute number).",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "total_subscription_times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value is a string with leading spaces; may be formatted with commas.",
+          "suggested_mitigation": "Trim and parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "      1.46"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totalNOT",
+      "nested_table": false,
+      "notes": "Number of times subscribed; e.g., 1.46 means 1.46x.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].totalNOT",
+      "semantic": "Total number of times the issue was subscribed (times subscription).",
+      "type": "string",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "retail_subscription_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value is a string; may contain commas or spaces.",
+          "suggested_mitigation": "Parse as integer after stripping non-numeric characters."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "476894864"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totalRG",
+      "nested_table": false,
+      "notes": "Absolute number of shares subscribed by retail.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].totalRG",
+      "semantic": "Total number of shares subscribed by retail investors.",
+      "type": "string",
+      "units": "shares"
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:21:48+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 5,
+  "row_count_observed": 1,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/ofs_active_total_retail.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "ofs_active_total_retail",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/live-ofs-active-issues-ss?index=totalForRetail"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 0.5,
+  "summary": "Provides aggregated subscription data for active Offer for Sale (OFS) issues, specifically the total retail category. Contains company name, symbol, total issue size, total number of times subscribed (NOT), and total retail subscription (RG).",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The 'timestamp' field is a dash '-', indicating no timestamp is provided; may need to use snapshot time.",
+    "Only one row observed; may be incomplete or test data.",
+    "Values are strings; need numeric parsing."
+  ]
+}

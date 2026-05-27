@@ -1,0 +1,1181 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "tender_active",
+    "estimated_cost_usd": 0.01053399,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 2507,
+    "tokens_out": 8961
+  },
+  "currency": "INR",
+  "data_kind": "live_subscription",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0427",
+  "endpoint": "tender_active",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "subscription.bid_details.category",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Category names may change or be added/removed over time.",
+          "suggested_mitigation": "Map to canonical categories; log unknown categories for review."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Qualified Institutional Buyers(QIBs)",
+        "Non Institutional Investors",
+        "Total"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "category",
+      "nested_table": false,
+      "notes": "Category names include sub-categories like '1(a)' etc.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].bidDetails.data[*].category",
+      "semantic": "Investor category for bid details (e.g., QIB, Non Institutional, Individual, Total).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.bid_details.shares_offered",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "If populated, may be string with commas.",
+          "suggested_mitigation": "Parse as integer after removing commas."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfSharesOffered",
+      "nested_table": false,
+      "notes": "Always null in observed data; may be populated for other issues.",
+      "null_meaning": "Not disclosed or not applicable for this issue.",
+      "nullable": true,
+      "path": "$[*].bidDetails.data[*].noOfSharesOffered",
+      "semantic": "Number of shares offered for this category (always null in this snapshot).",
+      "type": "null",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.bid_details.subscription_times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "If populated, may be string with decimal.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfTime",
+      "nested_table": false,
+      "notes": "Always null in observed data.",
+      "null_meaning": "Not disclosed or not applicable.",
+      "nullable": true,
+      "path": "$[*].bidDetails.data[*].noOfTime",
+      "semantic": "Number of times subscribed (always null in this snapshot).",
+      "type": "null",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "subscription.bid_details.shares_bid",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers represented as strings; may contain commas in other issues.",
+          "suggested_mitigation": "Parse as integer after stripping commas."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "0",
+        "23654",
+        "224150",
+        "247804"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfsharesBid",
+      "nested_table": false,
+      "notes": "Total row has empty srNo and aggregated bid count.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].bidDetails.data[*].noOfsharesBid",
+      "semantic": "Number of shares bid for this category as a string.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.bid_details.sub_category_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Sub-category numbering scheme may change.",
+          "suggested_mitigation": "Treat as opaque identifier; do not parse hierarchy."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1",
+        "1(a)",
+        "2",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "srNo",
+      "nested_table": false,
+      "notes": "Empty string for total row.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].bidDetails.data[*].srNo",
+      "semantic": "Serial number or sub-category identifier (e.g., '1', '1(a)', '2', '' for total).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.bid_details.timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format dd-MMM-yyyy; timezone not specified but likely IST.",
+          "suggested_mitigation": "Parse with locale; assume IST; convert to UTC."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "22-May-2026 14:50:00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "timestamp",
+      "nested_table": false,
+      "notes": "May differ from top-level timeStamp.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].bidDetails.timestamp",
+      "semantic": "Timestamp of the bid details data in dd-MMM-yyyy HH:mm format (IST implied).",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "May contain non-ASCII characters or HTML entities.",
+          "suggested_mitigation": "Unescape HTML entities; normalize whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Sarla Performance Fibers Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].company",
+      "semantic": "Full company name of the issuer.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.cumulative_demat_quantity",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer; may contain commas.",
+          "suggested_mitigation": "Parse as integer after removing commas."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2088396"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumDmatQty",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].cumDmatQty",
+      "semantic": "Cumulative dematerialized quantity (shares held in demat form).",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "issue.cumulative_physical_quantity",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "May be '-' meaning zero; otherwise numeric string.",
+          "suggested_mitigation": "Treat '-' as 0; parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumPhyQty",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].cumPhyQty",
+      "semantic": "Cumulative physical quantity (shares held in physical form); '-' indicates zero or not applicable.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.confirmed_demat",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "247804"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "confQtyDemat",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].demand[*].confQtyDemat",
+      "semantic": "Confirmed quantity in demat form at this price level.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.confirmed_physical",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "confQtyPhysical",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].demand[*].confQtyPhysical",
+      "semantic": "Confirmed quantity in physical form at this price level.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.cumulative_confirmed_demat",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "247804"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumConfQtyDemat",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].demand[*].cumConfQtyDemat",
+      "semantic": "Cumulative confirmed demat quantity up to this price level.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.cumulative_confirmed_physical",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumConfQtyPhysical",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].demand[*].cumConfQtyPhysical",
+      "semantic": "Cumulative confirmed physical quantity up to this price level.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.cumulative_confirmed_total",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "247804"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumConfTot",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].demand[*].cumConfTot",
+      "semantic": "Cumulative total confirmed quantity (demat + physical) up to this price level.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.cumulative_grand_total",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "If populated, may be string.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumGrandTot",
+      "nested_table": false,
+      "notes": "Always null in observed data.",
+      "null_meaning": "Not available or not applicable.",
+      "nullable": true,
+      "path": "$[*].demand[*].cumGrandTot",
+      "semantic": "Cumulative grand total (confirmed + unconfirmed) up to this price level; null if not available.",
+      "type": "null",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.cumulative_unconfirmed_demat",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "If populated, may be string.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumUnconfQtyDemat",
+      "nested_table": false,
+      "notes": "Always null in observed data.",
+      "null_meaning": "Not available or not applicable.",
+      "nullable": true,
+      "path": "$[*].demand[*].cumUnconfQtyDemat",
+      "semantic": "Cumulative unconfirmed demat quantity up to this price level; null if not available.",
+      "type": "null",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.cumulative_unconfirmed_physical",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "If populated, may be string.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumUnconfQtyPhysical",
+      "nested_table": false,
+      "notes": "Always null in observed data.",
+      "null_meaning": "Not available or not applicable.",
+      "nullable": true,
+      "path": "$[*].demand[*].cumUnconfQtyPhysical",
+      "semantic": "Cumulative unconfirmed physical quantity up to this price level; null if not available.",
+      "type": "null",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.cumulative_unconfirmed_total",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "If populated, may be string.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumunconfTot",
+      "nested_table": false,
+      "notes": "Always null in observed data.",
+      "null_meaning": "Not available or not applicable.",
+      "nullable": true,
+      "path": "$[*].demand[*].cumunconfTot",
+      "semantic": "Cumulative unconfirmed total quantity up to this price level; null if not available.",
+      "type": "null",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format dd-MMM-yyyy; timezone 'IST' appended.",
+          "suggested_mitigation": "Parse with locale; strip 'IST' and assume IST; convert to UTC."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "22-May-2026 14:50:00 IST"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "dateTime",
+      "nested_table": false,
+      "notes": "Includes 'IST' suffix.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].demand[*].dateTime",
+      "semantic": "Timestamp of the demand data in dd-MMM-yyyy HH:mm:ss format with timezone 'IST'.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.demand.grand_total",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "If populated, may be string.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "grandTot",
+      "nested_table": false,
+      "notes": "Always null in observed data.",
+      "null_meaning": "Not available or not applicable.",
+      "nullable": true,
+      "path": "$[*].demand[*].grandTot",
+      "semantic": "Grand total (confirmed + unconfirmed) at this price level; null if not available.",
+      "type": "null",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.number_of_orders",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "440"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfOrders",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].demand[*].noOfOrders",
+      "semantic": "Number of orders at this price level.",
+      "type": "string",
+      "units": "orders"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.price_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer; may be decimal.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "110"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "price",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].demand[*].price",
+      "semantic": "Price level in rupees (as string).",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.series",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Series codes may change or new ones added.",
+          "suggested_mitigation": "Treat as enum; map to canonical series."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "BB"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "series",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].demand[*].series",
+      "semantic": "Series identifier (e.g., 'BB' for buyback).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.symbol",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused or changed over time.",
+          "suggested_mitigation": "Join with master symbol table using ISIN or other stable identifier."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "SARLAPOLY"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].demand[*].symbol",
+      "semantic": "Trading symbol of the scrip.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.demand.total_confirmed",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "247804"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totConf",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].demand[*].totConf",
+      "semantic": "Total confirmed quantity at this price level (demat + physical).",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.total_unconfirmed",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "If populated, may be string.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totUnconf",
+      "nested_table": false,
+      "notes": "Always null in observed data.",
+      "null_meaning": "Not available or not applicable.",
+      "nullable": true,
+      "path": "$[*].demand[*].totUnconf",
+      "semantic": "Total unconfirmed quantity at this price level; null if not available.",
+      "type": "null",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.unconfirmed_demat",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "If populated, may be string.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "unconfQtyDemat",
+      "nested_table": false,
+      "notes": "Always null in observed data.",
+      "null_meaning": "Not available or not applicable.",
+      "nullable": true,
+      "path": "$[*].demand[*].unconfQtyDemat",
+      "semantic": "Unconfirmed demat quantity at this price level; null if not available.",
+      "type": "null",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.demand.unconfirmed_physical",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "If populated, may be string.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "unconfqtyPhysical",
+      "nested_table": false,
+      "notes": "Always null in observed data.",
+      "null_meaning": "Not available or not applicable.",
+      "nullable": true,
+      "path": "$[*].demand[*].unconfqtyPhysical",
+      "semantic": "Unconfirmed physical quantity at this price level; null if not available.",
+      "type": "null",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "issue.floor_price_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer; may be decimal.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "110"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "floorPrice",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].floorPrice",
+      "semantic": "Floor price for the tender/buyback in rupees.",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.issue_size_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer; may contain commas.",
+          "suggested_mitigation": "Parse as integer after removing commas."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "4000000"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueSize",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issueSize",
+      "semantic": "Total issue size in number of shares.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "issue.issue_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Issue type values may change or new types added.",
+          "suggested_mitigation": "Map to canonical types; log unknown."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Fixed price"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueType",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issueType",
+      "semantic": "Type of issue (e.g., 'Fixed price').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.times_subscribed",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String with leading spaces and decimal; may be formatted with commas.",
+          "suggested_mitigation": "Trim whitespace; parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "       .52"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "numberOfTImes",
+      "nested_table": false,
+      "notes": "Note the capital 'T' in 'numberOfTImes'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].numberOfTImes",
+      "semantic": "Overall subscription times (as string with leading spaces).",
+      "type": "string",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "issue.offer_type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Offer type values may change.",
+          "suggested_mitigation": "Map to canonical types."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Buy back"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "offerType",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].offerType",
+      "semantic": "Type of offer (e.g., 'Buy back').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.series",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Series codes may change.",
+          "suggested_mitigation": "Treat as enum."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "BB"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "series",
+      "nested_table": false,
+      "notes": "Duplicate of demand[*].series but at top level.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].series",
+      "semantic": "Series identifier (e.g., 'BB' for buyback).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.serial_number",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer, but may be string in other responses.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        1
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "sr_no",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].sr_no",
+      "semantic": "Serial number of the issue in the list.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may include 'Active', 'Closed', 'Withdrawn', etc.",
+          "suggested_mitigation": "Map to canonical status enum."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Active"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "status",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].status",
+      "semantic": "Current status of the issue (e.g., 'Active').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.symbol",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused or changed.",
+          "suggested_mitigation": "Join with master symbol table."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "SARLAPOLY"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Duplicate of demand[*].symbol.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].symbol",
+      "semantic": "Trading symbol of the scrip.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format dd-MMM-yyyy; timezone not specified but likely IST.",
+          "suggested_mitigation": "Parse with locale; assume IST; convert to UTC."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "22-May-2026 14:30:00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "timeStamp",
+      "nested_table": false,
+      "notes": "Note capital 'S' in 'timeStamp'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].timeStamp",
+      "semantic": "Timestamp of the issue data in dd-MMM-yyyy HH:mm format (IST implied).",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.tender_end_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format dd-MMM-yyyy.",
+          "suggested_mitigation": "Parse with locale; convert to standard date."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "27-May-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "todEndDate",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].todEndDate",
+      "semantic": "Tender offer end date in dd-MMM-yyyy format.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.tender_start_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format dd-MMM-yyyy.",
+          "suggested_mitigation": "Parse with locale; convert to standard date."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "21-May-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "todStartDate",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].todStartDate",
+      "semantic": "Tender offer start date in dd-MMM-yyyy format.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.total_quantity",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of integer; may contain commas.",
+          "suggested_mitigation": "Parse as integer after removing commas."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2088396"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totQty",
+      "nested_table": false,
+      "notes": "",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].totQty",
+      "semantic": "Total quantity (cumulative demat + physical) as string.",
+      "type": "string",
+      "units": "shares"
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:27:35+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The symbol field can be used to join with master security data (e.g., NSE equity master) for ISIN, company details, etc.",
+      "follow_up_endpoint_pattern": "https://www.nseindia.com/api/equity-master?symbol={symbol}",
+      "key_field": "symbol"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 5,
+  "row_count_observed": 1,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/tender_active.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "tender_active",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/liveTenderActive-issues"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 0.5,
+  "summary": "This endpoint provides live subscription data for active tender/buyback issues on NSE, including bid details by investor category, demand at various price levels, and issue metadata.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The 'numberOfTImes' field has a typo (capital 'T') and contains leading spaces; parse carefully.",
+    "All numeric fields are represented as strings; may contain commas or leading/trailing whitespace.",
+    "Date fields use dd-MMM-yyyy format; ensure locale-appropriate parsing.",
+    "The 'bidDetails.data' array includes a 'Total' row with empty srNo; handle aggregation logic.",
+    "The 'demand' array may have multiple price levels; this snapshot only shows one.",
+    "No pagination observed; endpoint may return all active issues in one response."
+  ]
+}

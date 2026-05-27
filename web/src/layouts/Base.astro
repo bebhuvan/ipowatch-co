@@ -1,0 +1,132 @@
+---
+import '../styles/global.css';
+import { getManifest, getCurrent, getUpcoming } from '../lib/issues';
+import { daysFromNow } from '../lib/format';
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
+const {
+  title = 'IPO Watch',
+  description = 'Indian equity IPO and primary market data from NSE and BSE.',
+} = Astro.props;
+
+const siteName = 'IPO Watch';
+const siteDomain = 'ipowatch.co';
+
+const manifest = getManifest();
+const builtAtSource = manifest.generated_at ?? new Date().toISOString();
+const builtAt = new Date(builtAtSource).toLocaleString('en-IN', {
+  day: 'numeric', month: 'short', year: 'numeric',
+  hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kolkata',
+});
+
+const today = new Date();
+const open = getCurrent();
+const upcoming = getUpcoming();
+const closingToday = open.filter((i) => daysFromNow(i.close_date, today) === 0).length;
+
+const todayLong = today.toLocaleDateString('en-IN', {
+  weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+});
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>{title === siteName ? `${siteName} · ${siteDomain}` : `${title} · ${siteName}`}</title>
+  </head>
+  <body class="min-h-screen">
+    <header class="page site-header">
+      <div class="site-header-main">
+        <span class="site-kicker">
+          Indian public issues since 2001
+        </span>
+        <a href="/" class="site-brand" aria-label={`${siteName} home`}>
+          <img src="/logo.svg" alt="" width="32" height="32" class="w-8 h-8" />
+          <span class="serif font-normal text-[31px] leading-none tracking-[-0.004em]">IPO Watch</span>
+        </a>
+        <nav class="site-nav">
+          <a href="/live/">Open</a>
+          <a href="/upcoming/">Upcoming</a>
+          <a href="/new-filings/">New filings</a>
+          <a href="/performance/">Performance</a>
+          <a href="/demand/">Demand</a>
+          <a href="/archive/">Archive</a>
+          <a href="/academy/">Academy</a>
+        </nav>
+      </div>
+      <div class="site-status">
+        <span>
+          <span class="num">{todayLong}</span>
+        </span>
+        <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+          <span><span class="live-dot"></span><strong class="text-[color:var(--color-ink)] font-semibold num">{open.length}</strong> open</span>
+          {closingToday > 0 && (
+            <span><strong class="text-[color:var(--color-ink)] font-semibold num">{closingToday}</strong> close today</span>
+          )}
+          <span><strong class="text-[color:var(--color-ink)] font-semibold num">{upcoming.length}</strong> upcoming</span>
+          <span class="text-[11.5px] mute-2">Updated {builtAt} IST</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="page pt-12 pb-12 border-t border-[color:var(--color-rule)] mt-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div>
+          <div class="label mb-3">About</div>
+          <p class="serif text-[15px] leading-[1.55]" style="max-width:38ch">
+            IPO Watch tracks public issues on NSE and BSE. It focuses on dates,
+            prices, demand, documents and post-listing returns. No grey-market premium,
+            broker links or apply buttons.
+          </p>
+        </div>
+        <div>
+          <div class="label mb-3">Browse</div>
+          <ul class="flex flex-col gap-1.5 text-[13px] mute">
+            <li><a href="/live/">Open issues</a></li>
+            <li><a href="/upcoming/">Upcoming</a></li>
+            <li><a href="/new-filings/">New filings</a></li>
+            <li><a href="/performance/">Performance</a></li>
+            <li><a href="/demand/">Demand book</a></li>
+            <li><a href="/buybacks/">Buybacks</a> · <a href="/ofs/">OFS</a> · <a href="/rights/">Rights</a></li>
+            <li><a href="/archive/">Archive</a></li>
+            <li><a href="/academy/">Academy</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="label mb-3">The data</div>
+          <ul class="flex flex-col gap-1.5 text-[13px] mute">
+            <li><a href="/dealmakers/">Dealmakers</a> · <a href="/companies/">Companies</a></li>
+            <li><a href="/sectors/">Sectors</a> · <a href="/documents/">Documents</a></li>
+            <li>{manifest.counts.issues.toLocaleString('en-IN')} issues</li>
+            <li>{manifest.counts.companies.toLocaleString('en-IN')} companies</li>
+            <li>NSE, BSE, CapMkt, Trendlyne</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label mb-3">Numbers</div>
+          <p class="serif italic text-[14px] mute">
+            built {builtAt} IST
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

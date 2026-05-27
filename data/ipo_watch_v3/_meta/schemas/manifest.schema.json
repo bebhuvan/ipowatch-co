@@ -1,0 +1,27 @@
+{
+  "$id": "https://ipo-watch.local/schema/v3/manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "companies_total": {
+      "type": "integer"
+    },
+    "issues_published": {
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "3.0.0"
+    },
+    "site_contract": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "issues_published",
+    "companies_total",
+    "site_contract"
+  ],
+  "title": "IPO Watch V3 Manifest",
+  "type": "object"
+}

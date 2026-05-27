@@ -1,0 +1,28 @@
+{
+  "$id": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "identity": {
+      "type": "object"
+    },
+    "pricing": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "3.0.0"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "timeline": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "slug"
+  ],
+  "title": "IPO Watch V3 Issue Core",
+  "type": "object"
+}

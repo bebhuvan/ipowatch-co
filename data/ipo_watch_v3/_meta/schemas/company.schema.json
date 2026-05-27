@@ -1,0 +1,27 @@
+{
+  "$id": "https://ipo-watch.local/schema/v3/company.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "company_name": {
+      "type": "string"
+    },
+    "issue_count": {
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "3.0.0"
+    },
+    "slug": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "slug",
+    "company_name",
+    "issue_count"
+  ],
+  "title": "IPO Watch V3 Company",
+  "type": "object"
+}

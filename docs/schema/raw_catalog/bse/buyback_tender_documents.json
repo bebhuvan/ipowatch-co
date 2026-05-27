@@ -1,0 +1,290 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "buyback_tender_documents",
+    "estimated_cost_usd": 0.005403850000000001,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 10925,
+    "tokens_out": 2231
+  },
+  "currency": "INR",
+  "data_kind": "document_index",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0402",
+  "endpoint": "buyback_tender_documents",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company.id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company ID may be reused or changed over time; some IDs like '7777777' appear non-standard.",
+          "suggested_mitigation": "Validate against a master company list; treat as opaque string."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "8858",
+        "3483",
+        "7777777"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "Fld_CompanyId",
+      "nested_table": false,
+      "notes": "Some IDs are unusually long (e.g., 7777777) – may be test or placeholder.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Fld_CompanyId",
+      "semantic": "Unique identifier for the company on BSE.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company names may have inconsistent casing, abbreviations, or suffixes (e.g., 'Ltd' vs 'LIMITED').",
+          "suggested_mitigation": "Normalize to uppercase and standardize suffix."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "ZYDUS LIFESCIENCES LIMITED",
+        "Wipro Limited",
+        "Marathon Nextgen Realty Ltd"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Fld_NameOfCompany",
+      "nested_table": false,
+      "notes": "Names are in mixed case; some include 'LIMITED' in full caps.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Fld_NameOfCompany",
+      "semantic": "Full legal name of the company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.post_status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values are limited to 'New' and 'Revised'; may not capture all states (e.g., 'Withdrawn').",
+          "suggested_mitigation": "Map to enum; watch for new values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Revised",
+        "New"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "PostStatus",
+      "nested_table": false,
+      "notes": "When empty string, indicates no post-offer document.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].PostStatus",
+      "semantic": "Status of the post-offer document submission (e.g., 'New' or 'Revised').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.pre_status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Same as PostStatus; limited enum.",
+          "suggested_mitigation": "Map to enum."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Revised",
+        "New"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "PreStatus",
+      "nested_table": false,
+      "notes": "When empty string, indicates no pre-offer document.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].PreStatus",
+      "semantic": "Status of the pre-offer document submission (e.g., 'New' or 'Revised').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.post_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Path may contain special characters or encoding issues.",
+          "suggested_mitigation": "URL-decode and validate path."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/BTRUploadDocument/BTR_532321_272202414813.xml",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "postdoc",
+      "nested_table": false,
+      "notes": "Empty string indicates missing document.",
+      "null_meaning": "Empty string means no post-offer document has been uploaded.",
+      "nullable": false,
+      "path": "$[*].postdoc",
+      "semantic": "Relative URL path to the post-offer document (XBRL/XML file).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.post_timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is 'M/d/yyyy h:mm:ss tt' (US-style) with 12-hour clock; ambiguous for day/month.",
+          "suggested_mitigation": "Parse using 'M/d/yyyy h:mm:ss tt' culture; convert to ISO 8601."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2/27/2024 2:08:13 PM",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "postti",
+      "nested_table": false,
+      "notes": "Empty string when no post-offer document.",
+      "null_meaning": "Empty string means no post-offer document timestamp.",
+      "nullable": false,
+      "path": "$[*].postti",
+      "semantic": "Timestamp of the post-offer document upload.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.pre_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Path may contain special characters or encoding issues.",
+          "suggested_mitigation": "URL-decode and validate path."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/BTRUploadDocument/BTR_532321_272202414813.xml",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "predoc",
+      "nested_table": false,
+      "notes": "Empty string indicates missing document.",
+      "null_meaning": "Empty string means no pre-offer document has been uploaded.",
+      "nullable": false,
+      "path": "$[*].predoc",
+      "semantic": "Relative URL path to the pre-offer document (XBRL/XML file).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.pre_timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Same date format as postti; ambiguous.",
+          "suggested_mitigation": "Parse using 'M/d/yyyy h:mm:ss tt' culture; convert to ISO 8601."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2/27/2024 2:08:13 PM",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "preti",
+      "nested_table": false,
+      "notes": "Empty string when no pre-offer document.",
+      "null_meaning": "Empty string means no pre-offer document timestamp.",
+      "nullable": false,
+      "path": "$[*].preti",
+      "semantic": "Timestamp of the pre-offer document upload.",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:02:25+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The document URLs (predoc, postdoc) point to XBRL/XML files that likely contain detailed buyback tender offer data. These files may need to be fetched and parsed separately.",
+      "follow_up_endpoint_pattern": "https://api.bseindia.com/XBRLFILES/BTRUploadDocument/{filename}",
+      "key_field": "predoc, postdoc"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 68,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/buyback_tender_documents.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "buyback_tender_documents",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/Mkt_Pubissues_FIS_BuybackTenderoffer_isd_ng/w"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a list of companies that have submitted buyback tender offer documents to BSE, including pre-offer and post-offer document URLs and timestamps, along with the status of each document.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Document URLs are relative paths; need to prepend base URL to fetch actual files.",
+    "Timestamps use US-style date format (M/d/yyyy) which may be ambiguous for day/month values.",
+    "Empty strings in postdoc/postti/predoc/preti indicate missing documents; downstream parsers should handle missing fields gracefully.",
+    "Company ID '7777777' appears anomalous; may be a test or placeholder entry."
+  ]
+}

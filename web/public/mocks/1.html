@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01 · Almanac — IPO Watch mock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:  #faf9f5;
+    --ink:    #0a0a0a;
+    --mute:   #5f5f5b;
+    --mute-2: #9c9c97;
+    --rule:   #d8d6cf;
+    --accent: #3d4f44; /* forest sage, used very sparingly */
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); color: var(--ink); }
+  body {
+    margin: 0;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-feature-settings: "tnum", "lnum", "kern", "liga";
+    font-variant-numeric: tabular-nums lining-nums;
+    font-size: 15px;
+    line-height: 1.55;
+    letter-spacing: -0.003em;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover { opacity: 0.6; }
+  .page { max-width: 1120px; margin-inline: auto; padding: 0 64px; }
+  .rule { border: 0; border-top: 1px solid var(--rule); }
+  .mute { color: var(--mute); }
+  .m2 { color: var(--mute-2); }
+  .num { font-variant-numeric: tabular-nums lining-nums; }
+  .accent { color: var(--accent); }
+
+  /* Header */
+  header.top { padding: 40px 0 80px; }
+  header.top .row { display: flex; align-items: baseline; justify-content: space-between; }
+  .word { font-size: 18px; letter-spacing: -0.01em; }
+  nav a { font-size: 13px; color: var(--mute); margin-left: 28px; }
+
+  /* Date strip */
+  .strip { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 24px; border-bottom: 1px solid var(--rule); margin-bottom: 64px; }
+  .strip .date { font-size: 14px; color: var(--mute); }
+  .strip .stats { font-size: 14px; display: flex; gap: 28px; }
+
+  /* Section title */
+  .stitle { font-size: 24px; font-weight: 400; letter-spacing: -0.018em; line-height: 1.1; }
+  .section-header { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid var(--rule); margin-bottom: 32px; }
+  .section { margin-bottom: 96px; }
+
+  /* Lead — asymmetric */
+  .lead { display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; margin-bottom: 96px; align-items: start; }
+  .lead .kicker { font-size: 12px; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 16px; }
+  .lead h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-style: italic;
+    font-weight: 380;
+    font-size: clamp(56px, 7vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    margin: 0 0 28px;
+  }
+  .lead .standfirst { font-size: 18px; line-height: 1.45; color: var(--mute); max-width: 36ch; }
+  .lead .specs { border-top: 1px solid var(--ink); padding-top: 24px; }
+  .lead .specs .row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 14px 0; border-bottom: 1px solid var(--rule);
+  }
+  .lead .specs .label { font-size: 13px; color: var(--mute); }
+  .lead .specs .val { font-size: 22px; }
+
+  /* Big numerals */
+  .figure { font-size: clamp(48px, 7vw, 84px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.94; }
+  .figure-2 { font-size: clamp(34px, 4.5vw, 48px); font-weight: 350; letter-spacing: -0.025em; line-height: 0.98; }
+
+  /* List rows */
+  .open-list, .upcoming-list, .recent-list { margin: 0; padding: 0; list-style: none; }
+  .open-list li a, .upcoming-list li a, .recent-list li a {
+    display: grid; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline;
+  }
+  .open-list li a { grid-template-columns: 28px minmax(0,1fr) 140px 120px 100px; }
+  .upcoming-list li a { grid-template-columns: 28px minmax(0,1fr) 140px 130px; }
+  .recent-list li a { grid-template-columns: minmax(0,1fr) 80px 120px 80px; }
+  .idx { font-size: 13px; color: var(--mute-2); text-align: right; }
+  .co { font-size: 17px; }
+  .co-meta { font-size: 12px; color: var(--mute); margin-top: 2px; }
+  .right { text-align: right; white-space: nowrap; }
+
+  /* Numerical band — year overview */
+  .year-band {
+    display: grid; grid-template-columns: 1.2fr 2.8fr; gap: 80px; align-items: start;
+  }
+  .year-band .year-numeral {
+    font-style: italic;
+    font-weight: 380;
+    font-size: clamp(120px, 14vw, 200px);
+    line-height: 0.86;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+  }
+  .year-band .year-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 48px; }
+  .year-band .year-stats .stat .v { font-size: 40px; font-weight: 350; letter-spacing: -0.025em; line-height: 1; }
+  .year-band .year-stats .stat .l { font-size: 12px; color: var(--mute); margin-top: 8px; }
+
+  /* Distribution chart */
+  .dist-chart-wrap { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--rule); }
+  .dist-meta { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 28px; }
+  .dist-meta h3 { font-size: 16px; font-weight: 400; margin: 0; }
+  .dist-meta .n { font-size: 13px; color: var(--mute); }
+  .dist { display: flex; align-items: flex-end; gap: 3px; height: 160px; position: relative; }
+  .dist .bar { flex: 1; background: var(--ink); transition: opacity .2s; }
+  .dist .bar:hover { opacity: 0.65; }
+  .dist .zero { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--accent); opacity: 0.7; }
+  .dist-axis { display: grid; grid-template-columns: repeat(7, 1fr); margin-top: 8px; font-size: 11px; color: var(--mute); }
+  .dist-axis .center { text-align: center; }
+  .dist-axis .right { text-align: right; }
+
+  /* Recently listed — symmetric bar */
+  .gain-cell { position: relative; height: 6px; }
+  .gain-cell .center-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--rule); }
+  .gain-cell .bar { position: absolute; top: 0; bottom: 0; background: var(--ink); }
+  .gain-cell .bar.pos { left: 50%; }
+  .gain-cell .bar.neg { right: 50%; }
+
+  /* Archive */
+  .archive-chart { display: flex; align-items: flex-end; gap: 4px; height: 100px; }
+  .archive-chart a { flex: 1; display: flex; align-items: flex-end; min-width: 0; }
+  .archive-chart .bar { width: 100%; background: var(--ink); }
+  .archive-axis { display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: var(--mute); }
+
+  footer { padding: 64px 0 56px; border-top: 1px solid var(--rule); margin-top: 64px; }
+  footer .row { display: flex; justify-content: space-between; font-size: 12px; color: var(--mute); }
+
+  /* Selection */
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  ::-webkit-scrollbar { width: 0; }
+
+  /* Hide for narrow screens — these are desktop mocks */
+  @media (max-width: 900px) {
+    .lead { grid-template-columns: 1fr; gap: 32px; }
+    .year-band { grid-template-columns: 1fr; gap: 32px; }
+    .year-band .year-numeral { font-size: 100px; }
+    .page { padding: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top page">
+  <div class="row">
+    <a href="./" class="word">ipowatch.co</a>
+    <nav>
+      <a href="#open">open</a>
+      <a href="#upcoming">upcoming</a>
+      <a href="#archive">archive</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- Date strip -->
+  <div class="strip">
+    <span class="date">Friday, 22 May 2026</span>
+    <div class="stats">
+      <span><span class="num">10</span> <span class="mute">open</span></span>
+      <span><span class="num">3</span> <span class="mute">close today</span></span>
+      <span><span class="num">8</span> <span class="mute">upcoming</span></span>
+    </div>
+  </div>
+
+  <!-- Lead — asymmetric -->
+  <section class="lead">
+    <div>
+      <p class="kicker">TODAY'S BOOK</p>
+      <h1>Q-Line Biotech</h1>
+      <p class="standfirst">A small-cap biotech opens its SME issue on the National exchange. Subscription closes Monday. Raising ₹153.39 Cr at a band between ₹326 and ₹343 per share.</p>
+    </div>
+    <div class="specs">
+      <div class="row"><span class="label">Price band</span><span class="val num">₹326 — 343</span></div>
+      <div class="row"><span class="label">Shares per lot</span><span class="val num">400</span></div>
+      <div class="row"><span class="label">Retail minimum</span><span class="val num">₹1,37,200</span></div>
+      <div class="row"><span class="label">Issue size</span><span class="val num">₹153.39 Cr</span></div>
+      <div class="row"><span class="label">Closes</span><span class="val num">Mon 25 May</span></div>
+    </div>
+  </section>
+
+  <!-- Also open -->
+  <section class="section" id="open">
+    <div class="section-header">
+      <h2 class="stitle">Also open</h2>
+      <span class="num mute">9</span>
+    </div>
+    <ul class="open-list">
+      <li><a href="#">
+        <span class="idx num">02</span>
+        <div><div class="co"><em style="font-style:italic">EFC (I) Limited</em></div><div class="co-meta">Rights · NSE</div></div>
+        <span class="num right">—</span>
+        <span class="num right mute">awaiting bids</span>
+        <span class="num right">closes today</span>
+      </a></li>
+      <li><a href="#">
+        <span class="idx num">03</span>
+        <div><div class="co"><em style="font-style:italic">Harikanta Overseas</em></div><div class="co-meta">IPO · BSE SME · ₹25.63 Cr</div></div>
+        <span class="num right">₹91 — 96</span>
+        <span class="num right mute">awaiting bids</span>
+        <span class="num right">closes today</span>
+      </a></li>
+      <li><a href="#">
+        <span class="idx num">04</span>
+        <div><div class="co"><em style="font-style:italic">Vegorama Punjabi Angithi</em></div><div class="co-meta">IPO · BSE SME · ₹27.47 Cr</div></div>
+        <span class="num right">₹73 — 77</span>
+        <span class="num right">11.7×</span>
+        <span class="num right">closes today</span>
+      </a></li>
+      <li><a href="#">
+        <span class="idx num">05</span>
+        <div><div class="co"><em style="font-style:italic">Autofurnish</em></div><div class="co-meta">FPO · BSE · ₹14.60 Cr</div></div>
+        <span class="num right">₹41</span>
+        <span class="num right mute">awaiting bids</span>
+        <span class="num right">25 May</span>
+      </a></li>
+      <li><a href="#">
+        <span class="idx num">06</span>
+        <div><div class="co"><em style="font-style:italic">Bio Medica Laboratories</em></div><div class="co-meta">IPO · BSE SME · ₹52.43 Cr</div></div>
+        <span class="num right">₹132 — 139</span>
+        <span class="num right mute">awaiting bids</span>
+        <span class="num right">25 May</span>
+      </a></li>
+      <li><a href="#">
+        <span class="idx num">07</span>
+        <div><div class="co"><em style="font-style:italic">Central Bank of India</em></div><div class="co-meta">OFS · NSE</div></div>
+        <span class="num right">₹31</span>
+        <span class="num right mute">awaiting bids</span>
+        <span class="num right">25 May</span>
+      </a></li>
+      <li><a href="#">
+        <span class="idx num">08</span>
+        <div><div class="co"><em style="font-style:italic">M R Maniveni Foods</em></div><div class="co-meta">IPO · BSE SME · ₹27.04 Cr</div></div>
+        <span class="num right">₹51 — 52</span>
+        <span class="num right mute">awaiting bids</span>
+        <span class="num right">26 May</span>
+      </a></li>
+      <li><a href="#">
+        <span class="idx num">09</span>
+        <div><div class="co"><em style="font-style:italic">Sarla Performance Fibers</em></div><div class="co-meta">Buyback · NSE · ₹44.00 Cr</div></div>
+        <span class="num right">₹110</span>
+        <span class="num right mute">awaiting bids</span>
+        <span class="num right">27 May</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <!-- Upcoming, week-grouped -->
+  <section class="section" id="upcoming">
+    <div class="section-header">
+      <h2 class="stitle">Opening soon</h2>
+      <span class="num mute">8</span>
+    </div>
+
+    <p class="mute" style="font-size:12px;margin:0 0 8px;">this week</p>
+    <ul class="upcoming-list" style="margin-bottom:32px">
+      <li><a href="#">
+        <span class="idx num">·</span>
+        <div><div class="co"><em style="font-style:italic">Yaashvi Jewellers</em></div><div class="co-meta">FPO · BSE · ₹43.88 Cr</div></div>
+        <span class="num right">₹83</span>
+        <span class="num right">opens 25 May</span>
+      </a></li>
+      <li><a href="#">
+        <span class="idx num">·</span>
+        <div><div class="co"><em style="font-style:italic">Prabha Energy — Call Money</em></div><div class="co-meta">Rights · NSE</div></div>
+        <span class="num right">—</span>
+        <span class="num right">opens 26 May</span>
+      </a></li>
+      <li><a href="#">
+        <span class="idx num">·</span>
+        <div><div class="co"><em style="font-style:italic">SMR Jewels</em></div><div class="co-meta">IPO · BSE SME · ₹67.23 Cr</div></div>
+        <span class="num right">₹128 — 135</span>
+        <span class="num right">opens 26 May</span>
+      </a></li>
+    </ul>
+
+    <p class="mute" style="font-size:12px;margin:0 0 8px;">next week</p>
+    <ul class="upcoming-list">
+      <li><a href="#">
+        <span class="idx num">·</span>
+        <div><div class="co"><em style="font-style:italic">AVG Logistics</em></div><div class="co-meta">Rights · NSE</div></div>
+        <span class="num right">—</span>
+        <span class="num right">opens 1 Jun</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <!-- Year band — big italic numeral + stats grid -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="stitle">2026 so far</h2>
+      <a href="#" class="mute" style="font-size:13px">year in review →</a>
+    </div>
+    <div class="year-band">
+      <div class="year-numeral">2026</div>
+      <div class="year-stats">
+        <div class="stat"><div class="v num">383</div><div class="l">listings to date</div></div>
+        <div class="stat"><div class="v num">299 <span class="m2" style="font-size:24px">/</span> 84</div><div class="l">mainboard / SME</div></div>
+        <div class="stat"><div class="v num accent">+100.1%</div><div class="l">best listing day · Sedemac Mechatronics</div></div>
+        <div class="stat"><div class="v num mute">—</div><div class="l">median day-one · 2 of 383 tracked</div></div>
+      </div>
+    </div>
+
+    <div class="dist-chart-wrap">
+      <div class="dist-meta">
+        <h3>Distribution of day-one moves, last 24 months</h3>
+        <span class="n num">n=1,865 · median +6.4% · 72% positive</span>
+      </div>
+      <div class="dist">
+        <div class="zero" style="left: 42.85%"></div>
+        <div class="bar" style="height: 1%" title="-100% to -50%: 6"></div>
+        <div class="bar" style="height: 2%" title="-50% to -40%: 10"></div>
+        <div class="bar" style="height: 4%" title="-40% to -30%: 23"></div>
+        <div class="bar" style="height: 7%" title="-30% to -20%: 38"></div>
+        <div class="bar" style="height: 33%" title="-20% to -10%: 171"></div>
+        <div class="bar" style="height: 43%" title="-10% to 0%: 224"></div>
+        <div class="bar" style="height: 100%" title="0% to 10%: 523"></div>
+        <div class="bar" style="height: 40%" title="10% to 20%: 210"></div>
+        <div class="bar" style="height: 27%" title="20% to 30%: 143"></div>
+        <div class="bar" style="height: 19%" title="30% to 40%: 100"></div>
+        <div class="bar" style="height: 10%" title="40% to 50%: 50"></div>
+        <div class="bar" style="height: 18%" title="50% to 75%: 96"></div>
+        <div class="bar" style="height: 32%" title="75% to 100%: 167"></div>
+        <div class="bar" style="height: 17%" title="100%+: 87"></div>
+      </div>
+      <div class="dist-axis">
+        <span>−100%</span><span>−30%</span><span>−10%</span><span class="center">0</span><span class="right">+20%</span><span class="right">+50%</span><span class="right">+100%+</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recently listed -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="stitle">Recently listed</h2>
+      <a href="#" class="mute" style="font-size:13px">all listings →</a>
+    </div>
+    <ul class="recent-list">
+      <li><a href="#">
+        <div><div class="co"><em style="font-style:italic">Teamtech Formwork Solutions</em></div><div class="co-meta">IPO · NSE SME</div></div>
+        <span class="num right mute">19 May</span>
+        <div class="gain-cell"><div class="center-line"></div><div class="bar pos" style="width:18%"></div></div>
+        <span class="num right">+39%</span>
+      </a></li>
+      <li><a href="#">
+        <div><div class="co"><em style="font-style:italic">RFBL Flexi Pack</em></div><div class="co-meta">IPO · NSE SME</div></div>
+        <span class="num right mute">19 May</span>
+        <div class="gain-cell"><div class="center-line"></div><div class="bar pos" style="width:3%"></div></div>
+        <span class="num right">+5%</span>
+      </a></li>
+      <li><a href="#">
+        <div><div class="co"><em style="font-style:italic">Goldline Pharmaceutical</em></div><div class="co-meta">IPO · BSE SME</div></div>
+        <span class="num right mute">19 May</span>
+        <div class="gain-cell"><div class="center-line"></div><div class="bar pos" style="width:6%"></div></div>
+        <span class="num right">+13.8%</span>
+      </a></li>
+      <li><a href="#">
+        <div><div class="co"><em style="font-style:italic">Simca Advertising</em></div><div class="co-meta">IPO · NSE SME</div></div>
+        <span class="num right mute">15 May</span>
+        <div class="gain-cell"><div class="center-line"></div><div class="bar neg" style="width:7%"></div></div>
+        <span class="num right">−14.8%</span>
+      </a></li>
+      <li><a href="#">
+        <div><div class="co"><em style="font-style:italic">Sedemac Mechatronics</em></div><div class="co-meta">IPO · NSE</div></div>
+        <span class="num right mute">5 May</span>
+        <div class="gain-cell"><div class="center-line"></div><div class="bar pos" style="width:50%"></div></div>
+        <span class="num right accent">+100.1%</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <!-- Archive -->
+  <section class="section" id="archive">
+    <div class="section-header">
+      <h2 class="stitle">Archive</h2>
+      <a href="#" class="mute" style="font-size:13px">all years →</a>
+    </div>
+    <div class="archive-chart">
+      <a href="#"><div class="bar" style="height:1%" title="2001: 17"></div></a>
+      <a href="#"><div class="bar" style="height:0.5%" title="2002: 7"></div></a>
+      <a href="#"><div class="bar" style="height:1%" title="2003: 9"></div></a>
+      <a href="#"><div class="bar" style="height:2%" title="2004: 31"></div></a>
+      <a href="#"><div class="bar" style="height:4%" title="2005: 64"></div></a>
+      <a href="#"><div class="bar" style="height:8%" title="2006: 120"></div></a>
+      <a href="#"><div class="bar" style="height:7%" title="2007: 110"></div></a>
+      <a href="#"><div class="bar" style="height:5%" title="2008: 80"></div></a>
+      <a href="#"><div class="bar" style="height:6%" title="2009: 95"></div></a>
+      <a href="#"><div class="bar" style="height:11%" title="2010: 165"></div></a>
+      <a href="#"><div class="bar" style="height:8%" title="2011: 120"></div></a>
+      <a href="#"><div class="bar" style="height:5%" title="2012: 75"></div></a>
+      <a href="#"><div class="bar" style="height:4%" title="2013: 60"></div></a>
+      <a href="#"><div class="bar" style="height:7%" title="2014: 105"></div></a>
+      <a href="#"><div class="bar" style="height:14%" title="2015: 215"></div></a>
+      <a href="#"><div class="bar" style="height:13%" title="2016: 200"></div></a>
+      <a href="#"><div class="bar" style="height:30%" title="2017: 460"></div></a>
+      <a href="#"><div class="bar" style="height:50%" title="2018: 770"></div></a>
+      <a href="#"><div class="bar" style="height:48%" title="2019: 720"></div></a>
+      <a href="#"><div class="bar" style="height:51%" title="2020: 790"></div></a>
+      <a href="#"><div class="bar" style="height:68%" title="2021: 1040"></div></a>
+      <a href="#"><div class="bar" style="height:62%" title="2022: 950"></div></a>
+      <a href="#"><div class="bar" style="height:70%" title="2023: 1080"></div></a>
+      <a href="#"><div class="bar" style="height:93%" title="2024: 1403"></div></a>
+      <a href="#"><div class="bar" style="height:100%" title="2025: 1516"></div></a>
+      <a href="#"><div class="bar" style="height:25%" title="2026: 383"></div></a>
+    </div>
+    <div class="archive-axis">
+      <span>2001</span>
+      <span>2010</span>
+      <span>2020</span>
+      <span>2026</span>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page">
+  <div class="row">
+    <span>11,662 issues · 8,285 companies</span>
+    <span>NSE, BSE, Capital Market, Trendlyne</span>
+    <span>built 22 May 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/factcheck.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.factcheck.schema",
+  "dataset_version": "v2026.05.23-0757",
+  "estimated_cost_usd": 0.012310250000000002,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T07:57:49+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-5 fact-check produced by deepseek-reasoner.",
+  "report": {
+    "blocking_count": 4,
+    "checks": [
+      {
+        "note": "Excerpt confirms reduction from T+6 to T+3 and circular dated August 2023.",
+        "sentence": "SEBI shortened from six working days to three in August 2023.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "it was decided to reduce the time taken for listing... to 3 working days (T+3 days) as against the present requirement of 6 working days (T+6 days) ... Source circular: SEBI/HO/CFD/TPD1/CIR/P/2023/140 dated August 09, 2023.",
+        "tag_index": 1,
+        "verdict": "supported"
+      },
+      {
+        "note": "Directly from source.",
+        "sentence": "The T+3 timeline must be disclosed in the offer document.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "The T+3 timeline for listing shall be appropriately disclosed in the Offer Documents of public issues.",
+        "tag_index": 2,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact deadlines from source.",
+        "sentence": "For UPI applications, the registrar must complete this third-party verification — matching the PAN on the application with the PAN linked to the bank account and the PAN linked to the demat account — by 9:30 am on T+1. For non-UPI applications, the deadline is 1 pm on T+1.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "Third-party check (PAN): UPI applications completed before 9:30 AM on T+1 day; non-UPI applications before 1 pm on T+1 day.",
+        "tag_index": 3,
+        "verdict": "supported"
+      },
+      {
+        "note": "Source confirms invalid application; 'no matter how many lots' is logical inference but supported.",
+        "sentence": "If the PANs do not match, the application is treated as invalid. No shares will be allotted, no matter how many lots you bid for.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "In instances of mismatch, such applications shall continue to be considered as invalid applications for finalising the basis of allotment.",
+        "tag_index": 4,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact deadline from source.",
+        "sentence": "The basis of allotment must be finalised before 6 pm on T+1.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "Finalization of rejections and completion of basis of allotment: before 6 pm on T+1 day.",
+        "tag_index": 5,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact deadline from source.",
+        "sentence": "That approval must come before 9 pm on T+1.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "Approval of basis by Stock Exchange: before 9 pm on T+1 day.",
+        "tag_index": 6,
+        "verdict": "supported"
+      },
+      {
+        "note": "Attribution only, no factual claim.",
+        "sentence": "Source: SEBI Master Circular for ICDR, Annexure XXIII",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": null,
+        "tag_index": 7,
+        "verdict": "no-claim"
+      },
+      {
+        "note": "Exact deadlines from source.",
+        "sentence": "By 9:30 am on T+2, the registrar initiates fund transfer instructions. ... The debiting of allottee accounts must be completed by 2 pm on T+2. The unblocking of non-allottee funds must be completed by 4 pm on T+2.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "Fund transfer instructions (debit and unblock): initiation not later than 09:30 am on T+2 day; completion before 2 pm on T+2 day for fund transfer (debit); completion before 4 pm on T+2 day for unblocking.",
+        "tag_index": 8,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact deadlines from source.",
+        "sentence": "The corporate action for crediting shares to the demat accounts of allottees is initiated before 2 pm on T+2 and must be completed before 6 pm on T+2.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "Corporate action for credit of shares to demat accounts: initiation before 2 pm on T+2 day; completion before 6 pm on T+2 day.",
+        "tag_index": 9,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact deadlines from source.",
+        "sentence": "The exchanges issue a trading notice — the formal announcement that the shares will begin trading — before 7:30 pm on T+2. And the allotment advertisement, which lists the basis of allotment and the number of applicants in each category, appears on the websites of the issuer, the registrar, and the exchanges before 9 pm on T+2.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "Filing of listing application with Stock Exchanges and issuance of trading notice: before 7:30 pm on T+2 day. ... Allotment advertisement: on websites before 9 pm on T+2 day.",
+        "tag_index": 10,
+        "verdict": "supported"
+      },
+      {
+        "note": "Directly from source.",
+        "sentence": "Trading starts on T+3.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "Trading starts: T+3 day.",
+        "tag_index": 11,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact deadline from source.",
+        "sentence": "The allotment advertisement, which was published on websites on T+2, appears in newspapers on T+3, or at the latest on T+4.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "Allotment advertisement: ... in newspapers on T+3 day but not later than T+4 day.",
+        "tag_index": 12,
+        "verdict": "supported"
+      },
+      {
+        "note": "Source confirms unblock deadlines; T+2 for partial is derived from T+1 finalisation.",
+        "sentence": "For an applicant who receives no allotment at all, the blocked amount must be unblocked by T+2 — the second working day after the issue closes. For an applicant who receives a partial allotment — say you bid for three lots but got only one — the excess amount (the portion not allotted) must be unblocked by the next working day after the basis of allotment is finalised. Since the basis is finalised on T+1, that next working day is T+2.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "failure to unblock funds in cases of non-allotment by T+2; failure to unblock in cases of partial allotment by the next working day from the finalization of basis of allotment (T+1).",
+        "tag_index": 13,
+        "verdict": "supported"
+      },
+      {
+        "note": "Source confirms compensation from T+3.",
+        "sentence": "If the bank or the intermediary — the self-certified syndicate bank (SCSB) or the sponsor bank in the UPI flow — fails to unblock by these deadlines, compensation to the investor is computed from T+3 day onwards.",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": "The compensation to investors for delay in unblocking of ASBA application monies (if any) shall be computed from T+3 day.",
+        "tag_index": 14,
+        "verdict": "supported"
+      },
+      {
+        "note": "Attribution only, no factual claim.",
+        "sentence": "Source: SEBI Master Circular for ICDR, Chapter 11",
+        "source_id": "sebi-master-circular-asba-upi-timeline",
+        "supporting_excerpt_quote": null,
+        "tag_index": 15,
+        "verdict": "no-claim"
+      }
+    ],
+    "summary": "All tagged claims are fully supported by the source. However, there are four untagged factual claims (definitions, dates, and a rule) that should either be sourced or justified as common knowledge. The blocking count is raised from these untagged claims.",
+    "untagged_claims": [
+      {
+        "kind": "date",
+        "sentence": "The rule is called T+3. T is the issue closing date — the last day you could bid. T+1 is the first working day after that, T+2 the second, T+3 the third.",
+        "suggestion": "needs source"
+      },
+      {
+        "kind": "date",
+        "sentence": "If an IPO closes on a Monday, and there are no market holidays in between, the shares start trading on Thursday.",
+        "suggestion": "common-knowledge exempt"
+      },
+      {
+        "kind": "date",
+        "sentence": "The issuer also files the listing application with the stock exchanges on T+2.",
+        "suggestion": "needs source"
+      },
+      {
+        "kind": "rule",
+        "sentence": "The compensation rate is not specified in the SEBI circular that sets the T+3 timeline; the rule states only that the counting starts from T+3.",
+        "suggestion": "needs source"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "ipo-listing-timeline",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 4095,
+  "tokens_out": 10186
+}

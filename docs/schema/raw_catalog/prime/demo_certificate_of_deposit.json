@@ -1,0 +1,237 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "demo_certificate_of_deposit",
+    "estimated_cost_usd": 0.00390567,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 7401,
+    "tokens_out": 1734
+  },
+  "currency": "INR",
+  "data_kind": "other",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0429",
+  "endpoint": "demo_certificate_of_deposit",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "page_heading",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "SERVICES PROVIDED UNDER CERTIFICATE OF DEPOSIT"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "h1",
+      "nested_table": false,
+      "notes": "Static text, no parsing needed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[3].div.article.h1",
+      "semantic": "Page heading describing the service provided under Certificate of Deposit.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "coverage_period",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "DATABASE COVERAGE: 2011-12 to 2026-27 (16 years)"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "coverage_heading",
+      "nested_table": false,
+      "notes": "Contains years, but as static text.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[3].div.article.h3[0]",
+      "semantic": "Subheading indicating the database coverage period.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "financial_year",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Financial year format may vary (e.g., '2011-12' vs '2011-2012').",
+          "suggested_mitigation": "Parse as start year and end year, normalize to YYYY-YY."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2011-12",
+        "2026-27"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "year",
+      "nested_table": false,
+      "notes": "Text, not a date object.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[3].div.article.table.tbody.tr[*].td[0]",
+      "semantic": "Financial year label for the CD issue count.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue_count",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers may contain commas (Indian numbering) and are stored as strings.",
+          "suggested_mitigation": "Strip commas and parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "16",
+        "1,093",
+        "9,549"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issue_count",
+      "nested_table": false,
+      "notes": "Total row also present; may need to filter out.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[3].div.article.table.tbody.tr[*].td[1]",
+      "semantic": "Number of CD issues in the given financial year, as a string with possible comma formatting.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "section_heading",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "DATA"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "data_heading",
+      "nested_table": false,
+      "notes": "Static text.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[3].div.article.h3[1]",
+      "semantic": "Subheading 'DATA' indicating the start of search parameters description.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "search_parameter",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "ISIN",
+        "Period",
+        "Issuer",
+        "Issuer Type",
+        "Industry",
+        "Maturity Date",
+        "Weighted Average Yield (%)",
+        "Weighted Average Price",
+        "Amount"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "search_parameter_primary",
+      "nested_table": false,
+      "notes": "Static text, not data.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[3].div.article.ol[0].li[*]",
+      "semantic": "List of searchable parameters for the primary CD database.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "search_parameter_secondary",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "ISIN",
+        "Period",
+        "Issuer",
+        "Issuer Type",
+        "Industry",
+        "Maturity Date",
+        "Weighted Average Yield (%)",
+        "Weighted Average Price",
+        "Traded Amount",
+        "Market Type"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "search_parameter_secondary",
+      "nested_table": false,
+      "notes": "Static text.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.html.body.div[3].div.article.ol[1].li[*]",
+      "semantic": "List of searchable parameters for the secondary CD database (w.e.f. 1.4.2020).",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:29:10+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": null,
+  "row_shape": "html_blob",
+  "schema_url_self": "docs/schema/raw_catalog/prime/demo_certificate_of_deposit.json",
+  "schema_version": "1.0.0",
+  "source": "prime",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "demo_certificate_of_deposit",
+      "snapshot_at": "2026-05-22T09:57:28+00:00",
+      "source": "prime",
+      "url": "https://primedatabase.com/cd_demo.asp"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint returns an HTML page describing the Certificate of Deposit (CD) database coverage from 2011-12 to 2026-27, including a summary table of issue counts per financial year and a list of searchable parameters. It is a static informational page, not a data API.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The response is a full HTML page, not a structured data API. No machine-readable data fields are present beyond the summary table.",
+    "The page describes searchable parameters but does not expose the actual CD data; a separate endpoint or form submission is required to query the database.",
+    "The table of issue counts is static and may not reflect real-time data; it is likely updated annually.",
+    "No pagination or dropdown dependencies observed, but the page is purely informational."
+  ]
+}

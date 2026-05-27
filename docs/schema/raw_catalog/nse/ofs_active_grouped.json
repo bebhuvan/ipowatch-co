@@ -1,0 +1,648 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "ofs_active_grouped",
+    "estimated_cost_usd": 0.00571983,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 1849,
+    "tokens_out": 4746
+  },
+  "currency": "INR",
+  "data_kind": "live_subscription",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0421",
+  "endpoint": "ofs_active_grouped",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company name may have variations across endpoints (e.g., abbreviations)",
+          "suggested_mitigation": "Normalize to a canonical company identifier (e.g., symbol)"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Central Bank of India"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "company",
+      "nested_table": false,
+      "notes": "Appears at group level, not per series",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].company",
+      "semantic": "Name of the company conducting the OFS",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.symbol",
+      "collision_risk_with": [
+        {
+          "source.endpoint.field": "nse.equity_symbol_list.symbol"
+        }
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused or changed over time",
+          "suggested_mitigation": "Use as join key but verify against master list"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "CENTRALBK"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Group-level identifier",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].symbol",
+      "semantic": "Ticker symbol of the company on NSE",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pricing.cut_off_price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value is a string with special characters like '-#' indicating not available",
+          "suggested_mitigation": "Parse as numeric or null; treat '-#' as null"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-#"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cutOffPrice",
+      "nested_table": false,
+      "notes": "Often '-#' meaning not applicable or not yet set",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].data[*].cutOffPrice",
+      "semantic": "Cut-off price for the OFS (if applicable), often placeholder",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "pricing.floor_price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number represented as string",
+          "suggested_mitigation": "Coerce to number after stripping whitespace"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "31"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "floorPrice",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].data[*].floorPrice",
+      "semantic": "Floor price for the OFS in INR",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.size_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string; '-' indicates not available",
+          "suggested_mitigation": "Parse as integer or null; treat '-' as null"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-",
+        "325850445"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueSize",
+      "nested_table": false,
+      "notes": "May be in absolute shares, not in lakhs/crores",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].data[*].issueSize",
+      "semantic": "Total issue size in number of shares (or placeholder)",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "market.ltp",
+      "collision_risk_with": [
+        {
+          "source.endpoint.field": "nse.quote.ltp"
+        }
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Coerce to float"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "31.39"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ltp",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].data[*].ltp",
+      "semantic": "Last traded price of the stock in INR",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "subscription.times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string with leading spaces; '-' indicates not available",
+          "suggested_mitigation": "Trim whitespace, parse as float; treat '-' as null"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-",
+        "      1.46"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfTimes",
+      "nested_table": false,
+      "notes": "Subscription multiple, e.g., 1.46 means 1.46 times subscribed",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].data[*].noOfTimes",
+      "semantic": "Number of times the issue was subscribed (subscription multiple)",
+      "type": "string",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "issue.offer_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy, may be ambiguous for day/month",
+          "suggested_mitigation": "Parse using locale-aware parser (e.g., 'dd-MMM-yyyy')"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "25-May-2026",
+        "22-May-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "offerDate",
+      "nested_table": false,
+      "notes": "Format: dd-MMM-yyyy",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].data[*].offerDate",
+      "semantic": "Date of the OFS offer",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.series",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Series may have different meanings across endpoints",
+          "suggested_mitigation": "Map to standard categories (e.g., IS=Institutional, RS=Retail)"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "IS",
+        "RS"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "series",
+      "nested_table": false,
+      "notes": "IS = Institutional Segment, RS = Retail Segment",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].data[*].series",
+      "semantic": "Series of the OFS (IS = Institutional, RS = Retail)",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may change (e.g., Active, Closed, Withdrawn)",
+          "suggested_mitigation": "Enumerate possible statuses and handle unknown values"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Active"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "status",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].data[*].status",
+      "semantic": "Current status of the OFS issue",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.total_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string; null indicates missing",
+          "suggested_mitigation": "Parse as integer; treat null as missing"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null,
+        "476894864"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totalSubscription",
+      "nested_table": false,
+      "notes": "Absolute number of shares, not multiple",
+      "null_meaning": "Subscription data not yet available or not applicable",
+      "nullable": true,
+      "path": "$.data[*].data[*].totalSubscription",
+      "semantic": "Total number of shares subscribed (absolute count)",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "pricing.cut_off_price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Value is a string with special characters like '-#' indicating not available",
+          "suggested_mitigation": "Parse as numeric or null; treat '-#' as null"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-#"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cutOffPrice",
+      "nested_table": false,
+      "notes": "Same field as in 'data' array, but under 'rows' key",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].rows[*].cutOffPrice",
+      "semantic": "Cut-off price for the OFS (if applicable), often placeholder",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "pricing.floor_price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number represented as string",
+          "suggested_mitigation": "Coerce to number after stripping whitespace"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "31"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "floorPrice",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].rows[*].floorPrice",
+      "semantic": "Floor price for the OFS in INR",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.size_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "325850445"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueSize",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].rows[*].issueSize",
+      "semantic": "Total issue size in number of shares",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "market.ltp",
+      "collision_risk_with": [
+        {
+          "source.endpoint.field": "nse.quote.ltp"
+        }
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Coerce to float"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "31.39"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ltp",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].rows[*].ltp",
+      "semantic": "Last traded price of the stock in INR",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "subscription.times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string with leading spaces",
+          "suggested_mitigation": "Trim whitespace, parse as float"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "      1.46"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfTimes",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].rows[*].noOfTimes",
+      "semantic": "Number of times the issue was subscribed (subscription multiple)",
+      "type": "string",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "issue.offer_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy",
+          "suggested_mitigation": "Parse using 'dd-MMM-yyyy'"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "22-May-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "offerDate",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].rows[*].offerDate",
+      "semantic": "Date of the OFS offer",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.series",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Series may have different meanings across endpoints",
+          "suggested_mitigation": "Map to standard categories"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "IS"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "series",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].rows[*].series",
+      "semantic": "Series of the OFS (IS = Institutional, RS = Retail)",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may change",
+          "suggested_mitigation": "Enumerate possible statuses"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Active"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "status",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].rows[*].status",
+      "semantic": "Current status of the OFS issue",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.total_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "476894864"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "totalSubscription",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data[*].rows[*].totalSubscription",
+      "semantic": "Total number of shares subscribed (absolute count)",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "meta.timestamp",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Timestamp format is 'dd-MMM-yyyy HH:mm:ss', no timezone",
+          "suggested_mitigation": "Parse as IST (Indian Standard Time) and convert to UTC"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "22-May-2026 14:55:00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "timestamp",
+      "nested_table": false,
+      "notes": "No timezone specified; assume IST",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.timestamp",
+      "semantic": "Timestamp of the data snapshot",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:21:30+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The symbol field can be used to join with equity quote endpoints for more detailed market data",
+      "follow_up_endpoint_pattern": "nse.equity_quote?symbol={symbol}",
+      "key_field": "symbol"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 5,
+  "row_count_observed": 3,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/ofs_active_grouped.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "ofs_active_grouped",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/live-ofs-active-issues"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 0.5,
+  "summary": "Provides active Offer for Sale (OFS) issues grouped by company, with details for each series (IS/RS) including floor price, LTP, issue size, subscription, and status. The response contains two groups for the same company (Central Bank of India) with different structures: one with a 'data' array and one with a 'rows' array, likely representing different data sources or states.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The response contains two different structures for the same company: one with a 'data' array and one with a 'rows' array. This may indicate a change in API structure or different data sources. The normalizer should handle both shapes.",
+    "Fields like cutOffPrice and issueSize may contain placeholder values ('-#', '-') that should be treated as null/missing.",
+    "The timestamp field lacks timezone information; assume IST.",
+    "The response appears to be a snapshot; no pagination or dropdown dependencies observed."
+  ]
+}

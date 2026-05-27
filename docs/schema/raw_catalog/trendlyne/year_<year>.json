@@ -1,0 +1,1990 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": true,
+    "cached": false,
+    "endpoint_concrete": "year_2025",
+    "estimated_cost_usd": 0.023074740000000003,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 23202,
+    "tokens_out": 15282
+  },
+  "currency": "INR",
+  "data_kind": "performance_history",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0436",
+  "endpoint": "year_<year>",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "performance.avg_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings representing percentages; may include negative sign and decimal.",
+          "suggested_mitigation": "Parse as float after stripping whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "82.5",
+        "1.5",
+        "-9.9"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "avg_gain",
+      "nested_table": false,
+      "notes": "String representation of a float percentage.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.cur_res.avg_gain",
+      "semantic": "Average percentage gain of IPOs listed in that month/segment from listing date to current date.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.insight_color",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Enum values may change; new colors could be added.",
+          "suggested_mitigation": "Map to a canonical set; log unknown values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "POSITIVE",
+        "NEGATIVE"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "color",
+      "nested_table": false,
+      "notes": "Only present when insights.st is non-null.",
+      "null_meaning": "No insight available (e.g., when total is 0).",
+      "nullable": true,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.cur_res.insights.color",
+      "semantic": "Sentiment indicator for the insight text: POSITIVE, NEGATIVE, or null.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.insight_long_term",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "lt",
+      "nested_table": false,
+      "notes": "Always null; may be used in future.",
+      "null_meaning": "Not provided.",
+      "nullable": true,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.cur_res.insights.lt",
+      "semantic": "Long-term insight text (always null in observed data).",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.insight_short_term",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Text may contain HTML entities or special characters.",
+          "suggested_mitigation": "Strip HTML tags if any; decode entities."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Out of all IPOs that listed in April 2025, 6 stocks are in profit and 2 in loss till date, reflecting an overall average gain of 82.54%."
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "st",
+      "nested_table": false,
+      "notes": "Human-readable summary.",
+      "null_meaning": "No insight when total is 0.",
+      "nullable": true,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.cur_res.insights.st",
+      "semantic": "Short-term insight text summarizing the performance of IPOs in that month/segment.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.insight_value",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "value",
+      "nested_table": false,
+      "notes": "Always null; may be used in future.",
+      "null_meaning": "Not provided.",
+      "nullable": true,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.cur_res.insights.value",
+      "semantic": "Numeric value associated with insight (always null).",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.loss_count",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer value; no issues observed.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        2,
+        31,
+        0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "loss",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.cur_res.loss",
+      "semantic": "Number of IPOs in that month/segment that are currently trading at a loss relative to issue price.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.max_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float; may be negative.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "363.6",
+        "257.9",
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "max_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.cur_res.max_gain",
+      "semantic": "Maximum percentage gain among IPOs in that month/segment from listing to current date.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.min_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float; may be negative.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-75.1",
+        "-81.1",
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "min_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.cur_res.min_gain",
+      "semantic": "Minimum percentage gain among IPOs in that month/segment from listing to current date.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.profit_count",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer value.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        6,
+        15,
+        0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "profit",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.cur_res.profit",
+      "semantic": "Number of IPOs in that month/segment that are currently trading at a profit relative to issue price.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.total_count",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer value.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        8,
+        46,
+        0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "total",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.cur_res.total",
+      "semantic": "Total number of IPOs listed in that month/segment.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.eod_listing_avg_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "5.4",
+        "10.8",
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "avg_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.eod_listing_res.avg_gain",
+      "semantic": "Average percentage gain at end of listing day for IPOs in that month/segment.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.eod_listing_insight",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        {
+          "color": "POSITIVE",
+          "lt": null,
+          "st": "...",
+          "value": null
+        }
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "insights",
+      "nested_table": false,
+      "notes": "Same subfields as cur_res.insights.",
+      "null_meaning": "No insight when total is 0.",
+      "nullable": true,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.eod_listing_res.insights",
+      "semantic": "Insight object for EOD listing performance (same structure as cur_res.insights).",
+      "type": "object",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.eod_listing_loss_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        2,
+        14,
+        0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "loss",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.eod_listing_res.loss",
+      "semantic": "Number of IPOs that closed at a loss on listing day.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.eod_listing_max_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "31.2",
+        "99.5",
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "max_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.eod_listing_res.max_gain",
+      "semantic": "Maximum percentage gain at EOD listing day.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.eod_listing_min_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-24.0",
+        "-24.0",
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "min_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.eod_listing_res.min_gain",
+      "semantic": "Minimum percentage gain at EOD listing day.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.eod_listing_profit_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        6,
+        32,
+        0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "profit",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.eod_listing_res.profit",
+      "semantic": "Number of IPOs that closed at a profit on listing day.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.eod_listing_total_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        8,
+        46,
+        0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "total",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.eod_listing_res.total",
+      "semantic": "Total number of IPOs listed in that month/segment (EOD).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.listing_open_avg_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "3.2",
+        "10.4",
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "avg_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.listing_res.avg_gain",
+      "semantic": "Average percentage gain at listing day open for IPOs in that month/segment.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.listing_open_insight",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        {
+          "color": "POSITIVE",
+          "lt": null,
+          "st": "...",
+          "value": null
+        }
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "insights",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": "No insight when total is 0.",
+      "nullable": true,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.listing_res.insights",
+      "semantic": "Insight object for listing day open performance.",
+      "type": "object",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.listing_open_loss_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        2,
+        14,
+        0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "loss",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.listing_res.loss",
+      "semantic": "Number of IPOs that opened at a loss on listing day.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.listing_open_max_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "25.0",
+        "90.0",
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "max_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.listing_res.max_gain",
+      "semantic": "Maximum percentage gain at listing day open.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.listing_open_min_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-20.0",
+        "-20.0",
+        "0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "min_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.listing_res.min_gain",
+      "semantic": "Minimum percentage gain at listing day open.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.listing_open_profit_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        6,
+        32,
+        0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "profit",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.listing_res.profit",
+      "semantic": "Number of IPOs that opened at a profit on listing day.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.listing_open_total_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        8,
+        46,
+        0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "total",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.monthly.<month>.<segment>.listing_res.total",
+      "semantic": "Total number of IPOs listed in that month/segment (listing open).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_avg_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "11.3",
+        "8.5",
+        "12.4"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "avg_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.cur_res.avg_gain",
+      "semantic": "Average percentage gain for the entire year for that segment.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.yearly_insight",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        {
+          "color": "POSITIVE",
+          "lt": null,
+          "st": "...",
+          "value": null
+        }
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "insights",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.cur_res.insights",
+      "semantic": "Insight object for yearly current performance.",
+      "type": "object",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_loss_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        212,
+        61,
+        151
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "loss",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.cur_res.loss",
+      "semantic": "Number of IPOs in the year that are currently at a loss.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_max_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "660.7",
+        "257.9",
+        "660.7"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "max_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.cur_res.max_gain",
+      "semantic": "Maximum percentage gain for the year.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.yearly_min_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-84.7",
+        "-84.7",
+        "-83.2"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "min_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.cur_res.min_gain",
+      "semantic": "Minimum percentage gain for the year.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.yearly_profit_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        164,
+        46,
+        118
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "profit",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.cur_res.profit",
+      "semantic": "Number of IPOs in the year that are currently at a profit.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_total_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        376,
+        107,
+        269
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "total",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.cur_res.total",
+      "semantic": "Total number of IPOs listed in the year.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_eod_listing_avg_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "11.4",
+        "9.4",
+        "12.1"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "avg_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.eod_listing_res.avg_gain",
+      "semantic": "Average EOD listing gain for the year.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.yearly_eod_listing_insight",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        {
+          "color": "POSITIVE",
+          "lt": null,
+          "st": "...",
+          "value": null
+        }
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "insights",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.eod_listing_res.insights",
+      "semantic": "Insight object for yearly EOD listing performance.",
+      "type": "object",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_eod_listing_loss_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        134,
+        35,
+        99
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "loss",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.eod_listing_res.loss",
+      "semantic": "Number of IPOs that closed at a loss on listing day for the year.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_eod_listing_max_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "99.5",
+        "72.5",
+        "99.5"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "max_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.eod_listing_res.max_gain",
+      "semantic": "Maximum EOD listing gain for the year.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.yearly_eod_listing_min_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-45.5",
+        "-36.6",
+        "-45.5"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "min_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.eod_listing_res.min_gain",
+      "semantic": "Minimum EOD listing gain for the year.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.yearly_eod_listing_profit_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        242,
+        72,
+        170
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "profit",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.eod_listing_res.profit",
+      "semantic": "Number of IPOs that closed at a profit on listing day for the year.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_eod_listing_total_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        376,
+        107,
+        269
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "total",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.eod_listing_res.total",
+      "semantic": "Total number of IPOs listed in the year (EOD).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_listing_open_avg_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "10.6",
+        "9.0",
+        "11.2"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "avg_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.listing_res.avg_gain",
+      "semantic": "Average listing day open gain for the year.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.yearly_listing_open_insight",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        {
+          "color": "POSITIVE",
+          "lt": null,
+          "st": "...",
+          "value": null
+        }
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "insights",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.listing_res.insights",
+      "semantic": "Insight object for yearly listing day open performance.",
+      "type": "object",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_listing_open_loss_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        108,
+        22,
+        86
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "loss",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.listing_res.loss",
+      "semantic": "Number of IPOs that opened at a loss on listing day for the year.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_listing_open_max_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "90.0",
+        "64.3",
+        "90.0"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "max_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.listing_res.max_gain",
+      "semantic": "Maximum listing day open gain for the year.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.yearly_listing_open_min_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "String representation of a float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-48.1",
+        "-39.6",
+        "-48.1"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "min_gain",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.listing_res.min_gain",
+      "semantic": "Minimum listing day open gain for the year.",
+      "type": "string",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "performance.yearly_listing_open_profit_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        268,
+        85,
+        183
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "profit",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.listing_res.profit",
+      "semantic": "Number of IPOs that opened at a profit on listing day for the year.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.yearly_listing_open_total_count",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        376,
+        107,
+        269
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "total",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.ipo_stats.yearly.<year>.<segment>.listing_res.total",
+      "semantic": "Total number of IPOs listed in the year (listing open).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pagination.has_next",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.PAG",
+          "description": "If true, additional pages need to be fetched; pagination mechanism unknown.",
+          "suggested_mitigation": "Check for next page token or URL parameter."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        false
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "isNextPage",
+      "nested_table": false,
+      "notes": "When true, more data is available; need to determine how to fetch next page.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.isNextPage",
+      "semantic": "Indicates whether there are more rows of IPO data available (pagination flag).",
+      "type": "boolean",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "exchange.bse_script_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "May be null for NSE-only listings; could collide with other endpoints using same symbol.",
+          "suggested_mitigation": "Use as identifier only when non-null; prefer stock_code as canonical."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "ADMACH",
+        "NANTA",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "BSEScriptCode",
+      "nested_table": false,
+      "notes": "Null when exchange_flags does not include BSE.",
+      "null_meaning": "IPO not listed on BSE.",
+      "nullable": true,
+      "path": "$.body.table.row_data[*].BSEScriptCode",
+      "semantic": "BSE script code (ticker symbol) for the IPO on BSE.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "exchange.bse_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Numeric code; may be reused across years? Unlikely but possible.",
+          "suggested_mitigation": "Treat as unique identifier for BSE listing."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "544669",
+        "544668",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "BSEcode",
+      "nested_table": false,
+      "notes": "Null when not listed on BSE.",
+      "null_meaning": "IPO not listed on BSE.",
+      "nullable": true,
+      "path": "$.body.table.row_data[*].BSEcode",
+      "semantic": "BSE numeric code for the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "exchange.nse_number",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Numeric string; may be reused.",
+          "suggested_mitigation": "Treat as unique identifier for NSE listing."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "760489",
+        "761197",
+        null
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "NSENumber",
+      "nested_table": false,
+      "notes": "Null when not listed on NSE.",
+      "null_meaning": "IPO not listed on NSE.",
+      "nullable": true,
+      "path": "$.body.table.row_data[*].NSENumber",
+      "semantic": "NSE numeric identifier for the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "exchange.nse_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "May be numeric or alphanumeric; could collide with other endpoints.",
+          "suggested_mitigation": "Use as identifier; note that format varies."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "13510410",
+        "DHARARAIL",
+        "GKSL"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "NSEcode",
+      "nested_table": false,
+      "notes": "Can be numeric string or ticker symbol.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].NSEcode",
+      "semantic": "NSE ticker symbol for the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "May contain special characters or abbreviations.",
+          "suggested_mitigation": "Trim whitespace; decode HTML entities if any."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Admach Systems",
+        "Nanta Tech",
+        "ICICI Prudential Asset"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company_name",
+      "nested_table": false,
+      "notes": "May be truncated or abbreviated.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].company_name",
+      "semantic": "Name of the company issuing the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.slug",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Used in URLs; may change if company renames.",
+          "suggested_mitigation": "Use as secondary identifier; prefer stock_code."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "admach-systems-ltd",
+        "nanta-tech-ltd",
+        "icici-prudential-asset-management-company-ltd"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company_slug_name",
+      "nested_table": false,
+      "notes": "Lowercase hyphenated.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].company_slug_name",
+      "semantic": "URL-friendly slug of the company name.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.current_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Float; may be negative.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        9.21,
+        55.45,
+        -28.84
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "current_gainP",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].current_gainP",
+      "semantic": "Current percentage gain from issue price to current market price.",
+      "type": "number",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "pricing.current_price_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.CUR",
+          "description": "Price in INR; may be in paise? Observed as decimal rupees.",
+          "suggested_mitigation": "Treat as INR; no conversion needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        261.0,
+        342.0,
+        92.51
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "current_price",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].current_price",
+      "semantic": "Current market price of the stock.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "exchange.listing_exchanges",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Format may change; e.g., 'NSE and BSE' vs 'BSE,NSE'.",
+          "suggested_mitigation": "Parse as set of exchange codes."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "BSE",
+        "NSE",
+        "NSE and BSE"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "exchange_flags",
+      "nested_table": false,
+      "notes": "Possible values: 'BSE', 'NSE', 'NSE and BSE'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].exchange_flags",
+      "semantic": "Indicates on which exchanges the stock is listed (BSE, NSE, or both).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.hni_times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Float; may be very large.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        12.3,
+        10.95,
+        130.69
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "hni",
+      "nested_table": false,
+      "notes": "Times subscribed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].hni",
+      "semantic": "Subscription multiple for High Net Worth Individuals (HNI) category.",
+      "type": "number",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "meta.ipo_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Internal ID; stable across endpoints.",
+          "suggested_mitigation": "Use as primary key for Trendlyne IPO data."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        2306,
+        2309,
+        2310
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "ipo_id",
+      "nested_table": false,
+      "notes": "Likely unique across all IPOs.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].ipo_id",
+      "semantic": "Unique identifier for the IPO on Trendlyne.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "meta.is_sme",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        true,
+        false
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "is_sme",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].is_sme",
+      "semantic": "Indicates whether the IPO is an SME (Small and Medium Enterprise) listing.",
+      "type": "boolean",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "security.isin",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Globally unique identifier; stable.",
+          "suggested_mitigation": "Use as canonical security identifier."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "INE0XLO01010",
+        "INE0YJA01011",
+        "INE0X4A01013"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "isin",
+      "nested_table": false,
+      "notes": "12-character alphanumeric.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].isin",
+      "semantic": "International Securities Identification Number (ISIN) for the stock.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pricing.issue_price_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.CUR",
+          "description": "INR; may be in paise? Observed as decimal rupees.",
+          "suggested_mitigation": "Treat as INR."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        239.0,
+        220.0,
+        130.0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issue_price",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].issue_price",
+      "semantic": "Price at which the IPO was issued to investors.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "pricing.issue_size_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.CUR",
+          "description": "Large numbers; may be in lakhs/crores? Observed as raw rupees.",
+          "suggested_mitigation": "Treat as INR; no conversion needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        426000000.0,
+        318100000.0,
+        479600000.0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issue_size",
+      "nested_table": false,
+      "notes": "Value in rupees (not lakhs/crores).",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].issue_size",
+      "semantic": "Total size of the IPO issue in rupees.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "pricing.listing_close_price_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.CUR",
+          "description": "INR.",
+          "suggested_mitigation": "Treat as INR."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        200.75,
+        245.7,
+        151.95
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "listing_close_price",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].listing_close_price",
+      "semantic": "Closing price of the stock on its listing day.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "listing.date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Format: 'dd MMM yy' (e.g., '31 Dec 25'). Two-digit year may cause ambiguity.",
+          "suggested_mitigation": "Parse with format 'dd MMM yy' assuming 2000s; convert to ISO date."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "31 Dec 25",
+        "30 Dec 25",
+        "24 Dec 25"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "listing_date",
+      "nested_table": false,
+      "notes": "Two-digit year; assume 20xx.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].listing_date",
+      "semantic": "Date on which the stock was listed on the exchange.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "performance.listing_gain_pct",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Float; may be negative.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        -20.0,
+        6.36,
+        11.54
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "listing_gainP",
+      "nested_table": false,
+      "notes": "Based on listing open price.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].listing_gainP",
+      "semantic": "Percentage gain from issue price to listing day open price.",
+      "type": "number",
+      "units": "%"
+    },
+    {
+      "canonical_field_hint": "pricing.listing_open_price_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.CUR",
+          "description": "INR.",
+          "suggested_mitigation": "Treat as INR."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        191.2,
+        234.0,
+        145.0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "listing_open_price",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].listing_open_price",
+      "semantic": "Opening price of the stock on its listing day.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "market_cap.inr_crore",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.CUR",
+          "description": "Likely in crores; verify against issue_size scale.",
+          "suggested_mitigation": "Assume crores; document unit."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        176.77008,
+        175.45284,
+        126.636939
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "mcap_q",
+      "nested_table": false,
+      "notes": "Probably in crores; suffix 'q' may indicate quarterly? Unclear.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].mcap_q",
+      "semantic": "Market capitalization of the company in crores? (Observed values suggest crores).",
+      "type": "number",
+      "units": "INR crore"
+    },
+    {
+      "canonical_field_hint": "subscription.qib_times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Float; may be null.",
+          "suggested_mitigation": "Parse as float; handle null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        0.75,
+        6.0,
+        13.4
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "qib",
+      "nested_table": false,
+      "notes": "Times subscribed.",
+      "null_meaning": "No QIB subscription data available (e.g., for some SME IPOs).",
+      "nullable": true,
+      "path": "$.body.table.row_data[*].qib",
+      "semantic": "Subscription multiple for Qualified Institutional Buyers (QIB) category.",
+      "type": "number",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "subscription.retail_times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        4.94,
+        3.89,
+        59.57
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "retail",
+      "nested_table": false,
+      "notes": "Times subscribed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].retail",
+      "semantic": "Subscription multiple for Retail Individual Investors (RII) category.",
+      "type": "number",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "security.ticker",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "May be reused across different securities over time.",
+          "suggested_mitigation": "Use ISIN as canonical identifier; stock_code as display symbol."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "ADMACH",
+        "NANTA",
+        "GKSL"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "stock_code",
+      "nested_table": false,
+      "notes": "Likely the most commonly used symbol.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].stock_code",
+      "semantic": "Primary ticker symbol for the stock (may be same as BSEScriptCode or NSEcode).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "meta.stock_page_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL structure may change.",
+          "suggested_mitigation": "Treat as opaque; do not parse."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://trendlyne.com/equity/3366461/13510410/admach-systems-ltd/"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "stock_page_url",
+      "nested_table": false,
+      "notes": "Full URL.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].stock_page_url",
+      "semantic": "URL to the Trendlyne stock page for this security.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.total_times",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Float.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        3.95,
+        6.0,
+        47.15
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "total_subscription",
+      "nested_table": false,
+      "notes": "Times subscribed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.body.table.row_data[*].total_subscription",
+      "semantic": "Overall subscription multiple for the IPO across all categories.",
+      "type": "number",
+      "units": "x"
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:36:32+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "Each row has a stock_page_url that links to a detailed equity page on Trendlyne. The URL contains identifiers (e.g., equity ID and NSE code) that could be used to fetch more data.",
+      "follow_up_endpoint_pattern": "https://trendlyne.com/equity/{equity_id}/{nse_code}/{slug}/",
+      "key_field": "stock_code"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": null,
+  "row_shape": "dict",
+  "schema_url_self": "docs/schema/raw_catalog/trendlyne/year_<year>.json",
+  "schema_version": "1.0.0",
+  "source": "trendlyne",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "year_2025",
+      "snapshot_at": "2026-05-22T10:27:57+00:00",
+      "source": "trendlyne",
+      "url": "https://trendlyne.com/ipo/api/screener-v2/year/2025/"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 48,
+  "summary": "This endpoint provides aggregated IPO performance statistics for a given year, broken down by month and exchange segment (BOTH, MAIN_LINE, SME), including average gains, number of profitable/loss-making IPOs, and subscription details. It also includes a table of individual IPO listings with pricing, subscription, and current performance data.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The body was truncated; the table row_data array is incomplete. Pagination may be required to fetch all rows.",
+    "The isNextPage flag is false in the truncated snapshot, but the data is truncated; this may be inconsistent.",
+    "The listing_date format uses two-digit year (e.g., '31 Dec 25') which could cause Y2K-like ambiguity; assume 2000s.",
+    "The mcap_q field unit is unclear; likely in crores but should be verified.",
+    "The insights.lt field is always null; may be placeholder for future use.",
+    "The endpoint returns aggregated stats and a table; the table may require pagination if isNextPage is true."
+  ]
+}

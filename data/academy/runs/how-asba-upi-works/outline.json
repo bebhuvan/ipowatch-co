@@ -1,0 +1,231 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/outline.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.outline.schema",
+  "dataset_version": "v2026.05.23-0742",
+  "estimated_cost_usd": 0.005619000000000001,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T07:42:36+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-3 outline produced by deepseek-reasoner.",
+  "outline": {
+    "dek_candidates": [
+      "Your application money sits in your own bank account, not the company's — here's how ASBA and UPI make that work.",
+      "The money you pay for an IPO isn't really paid until you get shares. Here's the system that holds it safely.",
+      "ASBA lets you apply for an IPO without handing over your money upfront. UPI makes it instant."
+    ],
+    "design_notes": [
+      "The intro beat uses a concrete ₹15,000 example to ground the abstraction immediately.",
+      "The 'mandatory-asba' section is kept short; it sets context but does not repeat the intro.",
+      "The 'hidden-parties' section is separated from 'upi-mechanism' to avoid overloading the reader. Each has a clear teaching purpose.",
+      "The 'after-allotment' section deliberately avoids T+3 deadlines; per brief, those go in a separate listing-timeline article.",
+      "No source_id is needed for common-knowledge narrative beats like 'if you get shares, money is debited'."
+    ],
+    "gaps": [],
+    "kicker_candidates": [
+      "PRIMARY MARKET MECHANICS",
+      "APPLICATION MECHANICS",
+      "PAYMENT PROCESS EXPLAINED"
+    ],
+    "section_order": [
+      "intro",
+      "mandatory-asba",
+      "upi-mechanism",
+      "hidden-parties",
+      "own-account-pan",
+      "after-allotment"
+    ],
+    "sections": {
+      "after-allotment": {
+        "beats": [
+          {
+            "beat": "If you get shares: the SCSB debits the blocked amount and the money moves to the issue account. You see the deduction in your statement.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "If you don't get shares: the block is released automatically. The money stays in your account; it was never actually paid.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Ground with a brief mention that SEBI has set timelines for unblocking and compensation for delays, but do not detail the T+3 mechanics — those belong in a separate article.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          }
+        ],
+        "heading": "What Happens After Allotment",
+        "purpose": "Explain the two outcomes: debit on allotment, release on non-allotment. Avoid detailed timelines."
+      },
+      "hidden-parties": {
+        "beats": [
+          {
+            "beat": "Define SCSB (Self-Certified Syndicate Bank) — the bank where the investor's account is held. It blocks the amount and later debits it on allotment.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Define Sponsor Bank — a SEBI-registered banker to the issue, appointed by the issuer as a conduit between stock exchanges and NPCI. It pushes the mandate requests to UPI.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Define NPCI — the umbrella organization that runs UPI. It routes the mandate and settles payment instructions between sponsor bank and SCSB.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Summarize the flow: investor approves mandate → sponsor bank sends collect request via NPCI → SCSB blocks funds in investor's account.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "Who Are the Invisible Parties?",
+        "purpose": "Explain roles of SCSB, sponsor bank, and NPCI in the UPI-ASBA flow."
+      },
+      "intro": {
+        "beats": [
+          {
+            "beat": "Open with the concrete experience: you apply for ₹15,000 worth of shares. That amount is blocked in your bank account, not paid away. It stays yours until allotment is decided.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "State the plain definition: ASBA = Application Supported by Blocked Amount. You authorize your bank to block the application money in your own account, not transfer it to the company.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Ground: quote the Master Circular definition verbatim from ICDR Reg 2(1)(d).",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          }
+        ],
+        "heading": null,
+        "purpose": "Define ASBA in plain terms and set the core idea: money is blocked, not debited."
+      },
+      "mandatory-asba": {
+        "beats": [
+          {
+            "beat": "State that ASBA is mandatory for all categories of investors in both public and rights issues. Quote Master Circular 'All investors shall use ASBA facility'.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Briefly describe what the old system looked like: investors used to give cheques or transfer funds to the issue account, money was held by the registrar. ASBA eliminates that risk.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "ASBA Is Now Mandatory for Everyone",
+        "purpose": "Explain that all investors—retail, HNI, institutional—must use ASBA. Contrast with old system where payment was upfront."
+      },
+      "own-account-pan": {
+        "beats": [
+          {
+            "beat": "State the own-account rule: you must use only your own bank account and only your own linked UPI ID. Third-party accounts lead to rejection. Ground with Chapter 10 para 8.x.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Add the PAN requirement: SCSB must ensure PAN on the application matches PAN linked to the bank account. Mismatch makes the application invalid.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Give a concrete consequence: if you apply using your father's bank account or UPI ID, the application will be rejected, even if the PAN is correct.",
+            "kind": "example",
+            "source_ids": []
+          }
+        ],
+        "heading": "Your Bank Account, Your PAN, Your UPI ID",
+        "purpose": "Explain the own-account rule and PAN matching requirement."
+      },
+      "upi-mechanism": {
+        "beats": [
+          {
+            "beat": "Explain that retail investors applying through an intermediary (syndicate member, stock broker, registrar, depository participant) can use UPI to block funds. Investor enters UPI ID and approves a mandate on phone.",
+            "kind": "example",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Describe the mandate: a collect request is sent to the investor's UPI app; upon approval, the amount is blocked by the SCSB, not debited.",
+            "kind": "narrative",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          },
+          {
+            "beat": "Ground: quote Master Circular Chapter 10 para 3.1 on UPI allowing facility to block funds at time of application.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-asba-upi-timeline"
+            ]
+          }
+        ],
+        "heading": "UPI: Blocking Funds With a Single Tap",
+        "purpose": "Introduce UPI as a payment mechanism for retail investors, explain the mandate flow, and define sponsor bank role."
+      }
+    },
+    "title_candidates": [
+      "ASBA and UPI: How Your IPO Money Stays Yours Until Allotment",
+      "Blocked, Not Debited: What Happens to Your Money When You Apply for an IPO",
+      "The Invisible Mechanics of Your IPO Application",
+      "Your IPO Money, Still in Your Account: How ASBA and UPI Work"
+    ],
+    "visual_targets": [
+      {
+        "kind": "flow_diagram",
+        "purpose": "Show the UPI mandate flow from applicant to SCSB, via sponsor bank and NPCI.",
+        "where": "upi-mechanism"
+      },
+      {
+        "kind": "table",
+        "purpose": "List the three parties (SCSB, sponsor bank, NPCI) with their roles in one glance.",
+        "where": "hidden-parties"
+      },
+      {
+        "kind": "sidebar",
+        "purpose": "Compare old method (cheque/transfer to issue account) vs ASBA (blocked in own account) to highlight the improvement.",
+        "where": "intro"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "how-asba-upi-works",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 8870,
+  "tokens_out": 2931
+}

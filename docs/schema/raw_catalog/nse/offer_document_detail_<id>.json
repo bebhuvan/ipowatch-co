@@ -1,0 +1,662 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "offer_document_detail_aafcp9672b",
+    "estimated_cost_usd": 0.00640258,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 1974,
+    "tokens_out": 5336
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0418",
+  "endpoint": "offer_document_detail_<id>",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company.cin",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "CIN may be reused or have typos; format may vary.",
+          "suggested_mitigation": "Validate against CIN regex pattern."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "U74120UP2010PLC042528"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "corporate_Identity_Number",
+      "nested_table": false,
+      "notes": "Standard 21-character CIN format.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].corporate_Identity_Number",
+      "semantic": "Corporate Identification Number (CIN) of the company, a unique identifier assigned by ROC.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.address.corporate_office",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Address may contain non-ASCII characters or special characters.",
+          "suggested_mitigation": "Normalize whitespace and encode as UTF-8."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "298-281, Transport Nagar, Kanpur Road Adjacent Transport Nagar Metro Station, Lucknow, Uttar Pradesh, India, 226012"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "corporate_Office_Address",
+      "nested_table": false,
+      "notes": "Free text; may contain commas and line breaks.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].corporate_Office_Address",
+      "semantic": "Full address of the corporate office.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.region.corporate_office",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Region names may change or be added.",
+          "suggested_mitigation": "Use enum mapping."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Northern"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "corporate_Office_Region",
+      "nested_table": false,
+      "notes": "Likely one of: Northern, Southern, Eastern, Western.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].corporate_Office_Region",
+      "semantic": "Region of the corporate office (e.g., Northern, Southern).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "document.submission_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy; may have leading zeros or different month abbreviations.",
+          "suggested_mitigation": "Parse using dd-MMM-yyyy pattern; handle case-insensitive months."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "01-Oct-2025"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "date_Of_Submission",
+      "nested_table": false,
+      "notes": "Format: dd-MMM-yyyy (e.g., 01-Oct-2025).",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].date_Of_Submission",
+      "semantic": "Date when the offer document was submitted to NSE.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.eligibility_regulation",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Regulation numbers may change or be updated.",
+          "suggested_mitigation": "Treat as free text; no strict validation."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Regulation 229(2)"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "eligibility_Of_The_Issue",
+      "nested_table": false,
+      "notes": "Free text; may contain multiple regulations.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].eligibility_Of_The_Issue",
+      "semantic": "Regulatory regulation under which the issue is eligible (e.g., Regulation 229(2)).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.estimated_amount_cr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.CUR",
+          "description": "If present, may be in crores or lakhs; may be a string with commas.",
+          "suggested_mitigation": "Parse as number; assume crores if not specified."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "estimated_Total_Issue_Amount",
+      "nested_table": false,
+      "notes": "Currently null in snapshot; may be populated in other records.",
+      "null_meaning": "Not disclosed or not applicable at this stage.",
+      "nullable": true,
+      "path": "$.data.InPrincipal[*].estimated_Total_Issue_Amount",
+      "semantic": "Estimated total issue amount in INR (crores?). Currently null.",
+      "type": "null",
+      "units": "INR (likely crores)"
+    },
+    {
+      "canonical_field_hint": "pricing.face_value_paise",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Face value is a string; may contain decimals or commas.",
+          "suggested_mitigation": "Coerce to integer after stripping non-numeric characters."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "10"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "face_Value",
+      "nested_table": false,
+      "notes": "Typically 10 or 1; stored as string.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].face_Value",
+      "semantic": "Face value per share in INR (as string).",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "company.industry",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Industry names may change or be updated.",
+          "suggested_mitigation": "Treat as free text; may map to standard classification."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Healthcare Equipment & Supplies"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "industry",
+      "nested_table": false,
+      "notes": "Free text; may contain ampersands and special characters.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].industry",
+      "semantic": "Industry classification of the company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "security.isin",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "ISIN may be reused or have typos; format should be 12 characters.",
+          "suggested_mitigation": "Validate against ISIN regex."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "INE1G2W01011"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "isin",
+      "nested_table": false,
+      "notes": "Standard 12-character ISIN.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].isin",
+      "semantic": "International Securities Identification Number (ISIN) for the company's equity.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.listing_exchange",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Exchange names may be abbreviated differently.",
+          "suggested_mitigation": "Map to standard exchange codes."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "NSE"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "listing_Sought_At",
+      "nested_table": false,
+      "notes": "Typically 'NSE' or 'BSE'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].listing_Sought_At",
+      "semantic": "Stock exchange where listing is sought (e.g., NSE, BSE).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.mode",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Mode names may vary.",
+          "suggested_mitigation": "Use enum mapping."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Book-Building"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "mode_Of_Issue",
+      "nested_table": false,
+      "notes": "Common values: Book-Building, Fixed Price, etc.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].mode_Of_Issue",
+      "semantic": "Mode of the issue (e.g., Book-Building, Fixed Price).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "contact.company_secretary",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.LEG",
+          "description": "Contains personal name; may be considered PII.",
+          "suggested_mitigation": "Mask or hash if required by policy."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Akhand Pratap Singh"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": true,
+      "name": "name_Of_Company_Secretary_And_Compliance_Officer",
+      "nested_table": false,
+      "notes": "Free text; may include middle names.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].name_Of_Company_Secretary_And_Compliance_Officer",
+      "semantic": "Name of the company secretary and compliance officer.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.lead_managers",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Multiple names separated by commas; may contain special characters.",
+          "suggested_mitigation": "Split by comma and trim whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Hem Securities Limited,Share India Capital Services Private Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "name_Of_LM_BRLM",
+      "nested_table": false,
+      "notes": "Comma-separated list of names.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].name_Of_LM_BRLM",
+      "semantic": "Name(s) of the Lead Manager(s) / Book Running Lead Manager(s).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.market_maker",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "name_Of_Market_Maker",
+      "nested_table": false,
+      "notes": "Optional field.",
+      "null_meaning": "No market maker appointed or not applicable.",
+      "nullable": true,
+      "path": "$.data.InPrincipal[*].name_Of_Market_Maker",
+      "semantic": "Name of the market maker (if any). Currently null.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.other_lead_managers",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "name_Of_Other_LM_BRLM",
+      "nested_table": false,
+      "notes": "Optional field.",
+      "null_meaning": "No other lead managers.",
+      "nullable": true,
+      "path": "$.data.InPrincipal[*].name_Of_Other_LM_BRLM",
+      "semantic": "Name of other lead managers (if any). Currently null.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.other_market_makers",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "name_Of_Other_Market_Maker",
+      "nested_table": false,
+      "notes": "Optional field.",
+      "null_meaning": "No other market makers.",
+      "nullable": true,
+      "path": "$.data.InPrincipal[*].name_Of_Other_Market_Maker",
+      "semantic": "Name of other market makers (if any). Currently null.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.other_rta",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        null
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "name_Of_Other_RTA",
+      "nested_table": false,
+      "notes": "Optional field.",
+      "null_meaning": "No other RTA.",
+      "nullable": true,
+      "path": "$.data.InPrincipal[*].name_Of_Other_RTA",
+      "semantic": "Name of other Registrar and Transfer Agents (if any). Currently null.",
+      "type": "null",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.promoters",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.LEG",
+          "description": "Contains personal names; may be considered PII.",
+          "suggested_mitigation": "Mask or hash if required."
+        },
+        {
+          "category": "E.HTM",
+          "description": "Multiple names separated by commas; may contain special characters.",
+          "suggested_mitigation": "Split by comma and trim."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Saurabh Garg,Amita Garg,Ayush Garg,Ajay Kumar Mahanty,Abhay Agrawa"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": true,
+      "name": "name_Of_Promoter",
+      "nested_table": false,
+      "notes": "Comma-separated list of names.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].name_Of_Promoter",
+      "semantic": "Name(s) of the promoters of the company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.rta",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "May contain special characters.",
+          "suggested_mitigation": "Trim and encode."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Purva Sharegistry India Pvt Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "name_Of_RTA",
+      "nested_table": false,
+      "notes": "Free text.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].name_Of_RTA",
+      "semantic": "Name of the Registrar and Transfer Agent.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.address.registered_office",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Address may contain non-ASCII characters.",
+          "suggested_mitigation": "Normalize whitespace and encode as UTF-8."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "298-281, Transport Nagar, Kanpur Road Adjacent Transport Nagar Metro Station, Lucknow, Uttar Pradesh, India, 226012"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "registered_Office_Address",
+      "nested_table": false,
+      "notes": "Free text; may contain commas and line breaks.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].registered_Office_Address",
+      "semantic": "Full registered office address of the company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.region.registered_office",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Region names may change.",
+          "suggested_mitigation": "Use enum mapping."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Northern"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "registered_Office_Region",
+      "nested_table": false,
+      "notes": "Likely one of: Northern, Southern, Eastern, Western.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].registered_Office_Region",
+      "semantic": "Region of the registered office (e.g., Northern).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.tentative_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number is a string; may contain commas.",
+          "suggested_mitigation": "Coerce to integer after stripping commas."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "7053200"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "tentative_No_of_Shares",
+      "nested_table": false,
+      "notes": "Stored as string; may be large.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].tentative_No_of_Shares",
+      "semantic": "Tentative number of shares offered in the issue (as string).",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "company.website",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "URL may be missing protocol; may contain special characters.",
+          "suggested_mitigation": "Prepend 'http://' if missing; validate URL format."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "www.qlinebiotech.com"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "website",
+      "nested_table": false,
+      "notes": "May not include 'http://' prefix.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.data.InPrincipal[*].website",
+      "semantic": "Company's website URL.",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:18:45+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [
+    "$.data.InPrincipal[*].name_Of_Company_Secretary_And_Compliance_Officer",
+    "$.data.InPrincipal[*].name_Of_Promoter"
+  ],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 1,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/offer_document_detail_<id>.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "offer_document_detail_aafcp9672b",
+      "snapshot_at": "2026-05-22T09:28:39+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/offer-documents?pan_no=AAFCP9672B"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 48,
+  "summary": "Provides details of a specific company's IPO offer document, including corporate information, issue details, and contact persons, as submitted to NSE. The response contains two arrays: InPrincipal (main data) and Inlisting (empty in this snapshot).",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The Inlisting array is empty in this snapshot; may contain data for other PANs.",
+    "Some fields (estimated_Total_Issue_Amount, name_Of_Market_Maker, etc.) are null; may be populated in other records.",
+    "No pagination or dropdown dependencies observed; endpoint appears to return all data for a given PAN."
+  ]
+}

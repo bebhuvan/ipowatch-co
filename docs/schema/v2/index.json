@@ -1,0 +1,52 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/v2/design_summary.schema.json",
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.design_summary.schema",
+  "dataset_version": "v2026.05.23-0443",
+  "design_notes_global": [
+    "All schemas follow JSON Schema draft 2020-12 with strict additionalProperties=false.",
+    "Monetary values stored as integer paise with display sibling _inr_text.",
+    "Subscription multiples stored as decimal strings with suffix _x.",
+    "Percentages stored as integer basis points with suffix _bps.",
+    "Dates stored as ISO 8601 strings with UTC offset.",
+    "Vendor extensions x-ipo-watch-* used for units, precedence, source tier, PII, and rule IDs.",
+    "Field provenance documented at schema level to track source contributions.",
+    "Enums use explicit enumDescriptions for clarity.",
+    "Identifiers: ISIN preferred, stable slug generated, aliases for renames.",
+    "Contamination risks mitigated by using integer types, patterns, and explicit units.",
+    "Schemas are modular with nested objects for related fields."
+  ],
+  "estimated_cost_usd": 0.02690616,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T04:43:28+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "grouped_hint_count": 694,
+  "hint_count": 880,
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Index of canonical v2 schemas produced by DeepSeek from the Phase 1 catalog. Review this file before locking the schemas.",
+  "schema_url": "https://ipo-watch.local/schema/v2/v2/index.schema.json",
+  "schema_url_self": "docs/schema/v2/index.json",
+  "schema_version": "1.0.0",
+  "schemas_written": [
+    "/home/bhuvanesh.r/Documents/Bhuvan projects/IPO/docs/schema/v2/issue.schema.json",
+    "/home/bhuvanesh.r/Documents/Bhuvan projects/IPO/docs/schema/v2/company.schema.json",
+    "/home/bhuvanesh.r/Documents/Bhuvan projects/IPO/docs/schema/v2/trajectory.schema.json"
+  ],
+  "sources": [],
+  "targets": [
+    "issue",
+    "company",
+    "trajectory"
+  ],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 38138,
+  "tokens_out": 15099
+}

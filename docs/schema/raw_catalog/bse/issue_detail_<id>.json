@@ -1,0 +1,1761 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "issue_detail_7726",
+    "estimated_cost_usd": 0.01647364,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 3842,
+    "tokens_out": 14033
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0407",
+  "endpoint": "issue_detail_<id>",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "issue.addendum",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Addendum",
+      "nested_table": false,
+      "notes": "Usually empty string",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Addendum",
+      "semantic": "Addendum text or link, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.anchor_details",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Anchor_Details",
+      "nested_table": false,
+      "notes": "Usually empty string",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Anchor_Details",
+      "semantic": "Anchor investor details, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "forms.bank_asba_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL pattern may change",
+          "suggested_mitigation": "Validate URL format"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://ibbseforms.bseindia.com/ASBAFORMS/BlankForms_New.aspx?ipo=4583"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Bank_ASBA_Form",
+      "nested_table": false,
+      "notes": "URL to external form",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Bank_ASBA_Form",
+      "semantic": "URL to blank ASBA form for banks",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.book_running_lead_manager",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Contains pipe-separated fields with address, email, contact person",
+          "suggested_mitigation": "Parse pipe-separated structure; extract email and name"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Corporate Makers Capital Limited^611, 6th Floor, Pragati Tower, Rajendra Place, New Delhi- 110008||||||||info@corporatemakers.in|Mr. Rohit Pareek"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": true,
+      "name": "Book_Running_Lead_Manager",
+      "nested_table": false,
+      "notes": "Pipe-separated: name^address|||...|email|contact person",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Book_Running_Lead_Manager",
+      "semantic": "Book running lead manager details, pipe-separated fields",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "forms.scsb_branches_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL may change",
+          "suggested_mitigation": "Validate URL"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "http://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=34"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Branches_of_SCSBs",
+      "nested_table": false,
+      "notes": "External SEBI URL",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Branches_of_SCSBs",
+      "semantic": "URL to list of SCSB branches",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.co_book_running_lead_manager",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Co_Book_Running_Lead_Manager",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Co_Book_Running_Lead_Manager",
+      "semantic": "Co-book running lead manager, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.corrigendum_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL pattern may change",
+          "suggested_mitigation": "Validate URL"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://www.bseindia.com/downloads/ipo/Corrigendum_Punjabi_Angathi-corrgendum_190520261838.pdf"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Corrigendum",
+      "nested_table": false,
+      "notes": "PDF link",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Corrigendum",
+      "semantic": "URL to corrigendum PDF",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.upi_cutoff_time",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Cut_off_time_for_UPI_Mandate_Confirmation",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Cut_off_time_for_UPI_Mandate_Confirmation",
+      "semantic": "Cut-off time for UPI mandate confirmation, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.last_updated_datetime",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "US date format MM/dd/yyyy, ambiguous for dd<13",
+          "suggested_mitigation": "Parse as MM/dd/yyyy h:mm:ss tt"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "5/22/2026 2:56:22 PM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DT_TM",
+      "nested_table": false,
+      "notes": "Format: MM/dd/yyyy h:mm:ss tt",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].DT_TM",
+      "semantic": "Last updated timestamp in MM/dd/yyyy h:mm:ss tt format",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.last_updated_display",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Redundant with DT_TM, extra spaces",
+          "suggested_mitigation": "Ignore or parse with flexible format"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Friday, May 22 ,  2026  2:56:22 PM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DT_TMC",
+      "nested_table": false,
+      "notes": "Redundant, may have extra spaces",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].DT_TMC",
+      "semantic": "Human-readable date/time string",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.day1",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DY1",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].DY1",
+      "semantic": "Day 1 subscription data, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.day2",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DY2",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].DY2",
+      "semantic": "Day 2 subscription data, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.day3",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DY3",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].DY3",
+      "semantic": "Day 3 subscription data, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.day4",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DY4",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].DY4",
+      "semantic": "Day 4 subscription data, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.day5",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DY5",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].DY5",
+      "semantic": "Day 5 subscription data, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription.day6",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DY6",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].DY6",
+      "semantic": "Day 6 subscription data, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.eligible_banks",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Eligible_Banks",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Eligible_Banks",
+      "semantic": "Eligible banks list, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pricing.face_value",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string with two decimals",
+          "suggested_mitigation": "Parse as float"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "10.00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Face_Value",
+      "nested_table": false,
+      "notes": "String representation of number",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Face_Value",
+      "semantic": "Face value per share in INR",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.market_timings",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IPO_Market_Timings",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].IPO_Market_Timings",
+      "semantic": "IPO market timings, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.ipo_no",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier reused across endpoints",
+          "suggested_mitigation": "Use as foreign key"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "7726"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "IPO_NO",
+      "nested_table": false,
+      "notes": "Primary key for this endpoint",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].IPO_NO",
+      "semantic": "Unique IPO number assigned by BSE",
+      "type": "identifier",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.isbid_detail",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "1"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ISBID_Detail",
+      "nested_table": false,
+      "notes": "Seems to be a flag",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].ISBID_Detail",
+      "semantic": "ISBID detail flag, typically '1'",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.issue_period",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date range in dd MMM yyyy format",
+          "suggested_mitigation": "Parse start and end dates"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "20 May 2026 to 22 May 2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Issue_Period",
+      "nested_table": false,
+      "notes": "Format: 'dd MMM yyyy to dd MMM yyyy'",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Issue_Period",
+      "semantic": "Issue period as a date range string",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.issue_size_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "3568000"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Issue_Size_No_of_shares",
+      "nested_table": false,
+      "notes": "String representation of integer",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Issue_Size_No_of_shares",
+      "semantic": "Total number of shares offered in the issue",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "forms.scsb_list_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL may change",
+          "suggested_mitigation": "Validate URL"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "http://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=35"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "List_of_SCSBs",
+      "nested_table": false,
+      "notes": "External SEBI URL",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].List_of_SCSBs",
+      "semantic": "URL to list of SCSBs",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pricing.market_lot",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1600"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Market_Lot",
+      "nested_table": false,
+      "notes": "String representation of integer",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Market_Lot",
+      "semantic": "Number of shares per market lot",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.max_bid_qty_qib",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "3316800"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Maximum_Bid_Quantity_For_Qualified_Institutional_Investors",
+      "nested_table": false,
+      "notes": "String representation of integer",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Maximum_Bid_Quantity_For_Qualified_Institutional_Investors",
+      "semantic": "Maximum bid quantity for QIBs",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "subscription.max_bid_qty_nii",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2368000"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Maximum_Bid_Quantity_For_Qualified_Non_Institutional_Investors",
+      "nested_table": false,
+      "notes": "String representation of integer",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Maximum_Bid_Quantity_For_Qualified_Non_Institutional_Investors",
+      "semantic": "Maximum bid quantity for NIIs",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "pricing.min_bid_qty",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "3200"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Minimum_Bid_Quantity",
+      "nested_table": false,
+      "notes": "String representation of integer",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Minimum_Bid_Quantity",
+      "semantic": "Minimum bid quantity in shares",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "issue.notes",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Notes",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Notes",
+      "semantic": "Additional notes, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "forms.online_asba_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL pattern may change",
+          "suggested_mitigation": "Validate URL"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://ibbseforms.bseindia.com/ASBAFORMS/BidEntryQuick_New.aspx?ipo=4583"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Online_ASBA_Form",
+      "nested_table": false,
+      "notes": "External form URL",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Online_ASBA_Form",
+      "semantic": "URL to online ASBA form",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.post_issue_modification",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Post_Issue_Modification",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Post_Issue_Modification",
+      "semantic": "Post issue modification details, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pricing.price_band",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Range as string with two decimals",
+          "suggested_mitigation": "Parse lower and upper bounds as floats"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "73.00-77.00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Price_Band",
+      "nested_table": false,
+      "notes": "Format: 'lower-upper'",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Price_Band",
+      "semantic": "Price band as a range string in INR",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "documents.price_band_advertisement_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL pattern may change",
+          "suggested_mitigation": "Validate URL"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://www.bseindia.com/downloads/ipo/Pre Issue Advertisement_20260518134509_190520261838.zip"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Price_Band_Advertisement",
+      "nested_table": false,
+      "notes": "ZIP file link",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Price_Band_Advertisement",
+      "semantic": "URL to price band advertisement ZIP file",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "documents.prospectus_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL pattern may change",
+          "suggested_mitigation": "Validate URL"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://www.bseindia.com/downloads/ipo/RHP_190520261856.zip"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Prospectus_GID",
+      "nested_table": false,
+      "notes": "ZIP file link",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Prospectus_GID",
+      "semantic": "URL to prospectus/GID ZIP file",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.public_notices",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Public_Notices",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Public_Notices",
+      "semantic": "Public notices, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.rating",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Rating",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Rating",
+      "semantic": "Rating, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.registrar",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Contains pipe-separated fields with address, email",
+          "suggested_mitigation": "Parse pipe-separated structure; extract email"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Bigshare Services Private Limited^S6-2, 6th Floor, Pinnacle Business Park, Next to Ahura Centre, Mahakali Caves Road, Andheri (East), Mumbai, Maharashtra–400 093||||||||ipo@bigshareonline.com"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": true,
+      "name": "Registrar",
+      "nested_table": false,
+      "notes": "Pipe-separated: name^address|||...|email",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Registrar",
+      "semantic": "Registrar details, pipe-separated fields",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "forms.registrar_depository_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL may change",
+          "suggested_mitigation": "Validate URL"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://www.bseindia.com/Static/PublicIssues/RtaDp.aspx "
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Registrar_issue_share_Transfer_Agents_Depository",
+      "nested_table": false,
+      "notes": "External BSE URL",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Registrar_issue_share_Transfer_Agents_Depository",
+      "semantic": "URL to registrar/transfer agents depository page",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.remarks",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Remarks",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Remarks",
+      "semantic": "Remarks, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "forms.revised_asba_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL pattern may change",
+          "suggested_mitigation": "Validate URL"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://ibbseforms.bseindia.com/ASBAFORMS/SrchBid.aspx?ipo=4583"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Revised_Online_ASBA_Form",
+      "nested_table": false,
+      "notes": "External form URL",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Revised_Online_ASBA_Form",
+      "semantic": "URL to revised online ASBA form",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.scrip_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused across endpoints",
+          "suggested_mitigation": "Use as foreign key"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "4583"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "ScripCode",
+      "nested_table": false,
+      "notes": "Numeric code",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].ScripCode",
+      "semantic": "BSE scrip code for the IPO",
+      "type": "identifier",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "May contain non-ASCII characters",
+          "suggested_mitigation": "Ensure UTF-8 encoding"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Vegorama Punjabi Angithi Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ScripName",
+      "nested_table": false,
+      "notes": "Company legal name",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].ScripName",
+      "semantic": "Full name of the company issuing the IPO",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.security_type",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "Equity"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Security_Type",
+      "nested_table": false,
+      "notes": "Typically 'Equity'",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Security_Type",
+      "semantic": "Type of security being issued",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "forms.scsb_eligible_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL may change",
+          "suggested_mitigation": "Validate URL"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=40"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Self_Certified_Syndicate_Banks_Eligible",
+      "nested_table": false,
+      "notes": "External SEBI URL",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Self_Certified_Syndicate_Banks_Eligible",
+      "semantic": "URL to list of self-certified syndicate banks",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.sponsor_bank",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Contains pipe-separated fields with address, emails, contact person",
+          "suggested_mitigation": "Parse pipe-separated structure; extract emails and names"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "HDFC BANK^FIG-OPS Department –Lodha, I Think Techno Campus O-3 Level, Next to Kanjurmarg, Railway Station, Kanjurmarg (East) Mumbai - 400042||||||||Ajay.Shrivastava@hdfcbank.com,prasanna.uchil@hdfcbank.com,siddharth.jadhav@hdfcbank.com,vincent.dsou|Siddharth Jadhav"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": true,
+      "name": "Sponsor_Bank",
+      "nested_table": false,
+      "notes": "Pipe-separated: name^address|||...|emails|contact person",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Sponsor_Bank",
+      "semantic": "Sponsor bank details, pipe-separated fields",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.symbol",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused or changed",
+          "suggested_mitigation": "Use as identifier with caution"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "VPAL"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "Symbol",
+      "nested_table": false,
+      "notes": "Short ticker",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Symbol",
+      "semantic": "Trading symbol for the IPO",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "forms.syndicate_member_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL pattern may change",
+          "suggested_mitigation": "Validate URL"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://listing.bseindia.com/Download/E:\\inetpub\\LISTING\\RTA\\DocumentsSMEiPO\\268615\\Syndicate_Member_14._Synndicate_Members.xlsx"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Syndicate_Member",
+      "nested_table": false,
+      "notes": "Excel file link",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Syndicate_Member",
+      "semantic": "URL to syndicate member list (Excel file)",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pricing.tick_size",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string with two decimals",
+          "suggested_mitigation": "Parse as float"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1.00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Tick_Size",
+      "nested_table": false,
+      "notes": "String representation of number",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_0[*].Tick_Size",
+      "semantic": "Tick size in INR",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "dynamic_columns.column_name",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DYN_COLNAME",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_1[*].DYN_COLNAME",
+      "semantic": "Dynamic column name, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "dynamic_columns.column_value",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DYN_COLValue",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_1[*].DYN_COLValue",
+      "semantic": "Dynamic column value, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "dynamic_columns.order",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "DYN_ORDER",
+      "nested_table": false,
+      "notes": "String representation of integer",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_1[*].DYN_ORDER",
+      "semantic": "Order of the dynamic column",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "dynamic_columns.insert_datetime",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "US date format MM/dd/yyyy, ambiguous for dd<13",
+          "suggested_mitigation": "Parse as MM/dd/yyyy h:mm:ss tt"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "5/19/2026 8:06:56 PM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "INSERT_DTTM",
+      "nested_table": false,
+      "notes": "Format: MM/dd/yyyy h:mm:ss tt",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_1[*].INSERT_DTTM",
+      "semantic": "Insert timestamp in MM/dd/yyyy h:mm:ss tt format",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.ipo_no",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier reused across endpoints",
+          "suggested_mitigation": "Use as foreign key"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "7726"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "IPO_NO",
+      "nested_table": false,
+      "notes": "Same as IPONO_0.IPO_NO",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_1[*].IPO_NO",
+      "semantic": "Unique IPO number, same as in IPONO_0",
+      "type": "identifier",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "dynamic_columns.new_id",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "a248334d-f719-4e4f-98a6-7ce94609efc2"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "NEW_ID",
+      "nested_table": false,
+      "notes": "UUID",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_1[*].NEW_ID",
+      "semantic": "Unique identifier for the dynamic column row (UUID)",
+      "type": "identifier",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string with two decimals",
+          "suggested_mitigation": "Parse as float"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "73.00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Price",
+      "nested_table": false,
+      "notes": "String representation of number",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_2[*].Price",
+      "semantic": "Price point in INR (with two decimals)",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "demand.price_integer",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "73"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Price1",
+      "nested_table": false,
+      "notes": "Redundant with Price",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_2[*].Price1",
+      "semantic": "Price point as integer (without decimals)",
+      "type": "integer",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "demand.quantity",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "84328000"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Quantity",
+      "nested_table": false,
+      "notes": "String representation of integer",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_2[*].Quantity",
+      "semantic": "Total bid quantity at this price point (in shares)",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "demand.process_datetime",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "US date format MM/dd/yyyy, ambiguous for dd<13",
+          "suggested_mitigation": "Parse as MM/dd/yyyy h:mm:ss tt"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "5/22/2026 2:56:22 PM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "process_dttm",
+      "nested_table": false,
+      "notes": "Format: MM/dd/yyyy h:mm:ss tt",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_2[*].process_dttm",
+      "semantic": "Timestamp when this demand snapshot was processed",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand.price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string with two decimals",
+          "suggested_mitigation": "Parse as float"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "73.00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Price",
+      "nested_table": false,
+      "notes": "Same as IPONO_2.Price but different timestamp",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_3[*].Price",
+      "semantic": "Price point in INR (with two decimals) - second snapshot",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "demand.price_integer",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "73"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Price1",
+      "nested_table": false,
+      "notes": "Redundant with Price",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_3[*].Price1",
+      "semantic": "Price point as integer - second snapshot",
+      "type": "integer",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "demand.quantity",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Number as string",
+          "suggested_mitigation": "Parse as integer"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "84328000"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Quantity",
+      "nested_table": false,
+      "notes": "String representation of integer",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_3[*].Quantity",
+      "semantic": "Total bid quantity at this price point - second snapshot",
+      "type": "integer",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "demand.process_datetime",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "US date format MM/dd/yyyy, ambiguous for dd<13",
+          "suggested_mitigation": "Parse as MM/dd/yyyy h:mm:ss tt"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "5/22/2026 2:57:00 PM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "process_dttm",
+      "nested_table": false,
+      "notes": "Format: MM/dd/yyyy h:mm:ss tt",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_3[*].process_dttm",
+      "semantic": "Timestamp for second demand snapshot",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "notices.filename_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL pattern may change",
+          "suggested_mitigation": "Validate URL"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://www.bseindia.com/downloads/UploadDocs/Notices/20260519-20/20260519-20.pdf"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "FILENAME",
+      "nested_table": false,
+      "notes": "PDF link",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_4[*].FILENAME",
+      "semantic": "URL to a notice PDF",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "notices.notice_datetime",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "US date format MM/dd/yyyy, ambiguous for dd<13",
+          "suggested_mitigation": "Parse as MM/dd/yyyy h:mm:ss tt"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "5/19/2026 6:17:56 PM"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "NOTICE_DATE",
+      "nested_table": false,
+      "notes": "Format: MM/dd/yyyy h:mm:ss tt",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_4[*].NOTICE_DATE",
+      "semantic": "Date/time of the notice",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "notices.notice_id",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "NOTICE_ID",
+      "nested_table": false,
+      "notes": "Usually empty",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_4[*].NOTICE_ID",
+      "semantic": "Notice ID, typically empty",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "notices.notice_no",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "20260519-20"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "NOTICE_NO",
+      "nested_table": false,
+      "notes": "Unique notice identifier",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_4[*].NOTICE_NO",
+      "semantic": "Notice number",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "notices.subject",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "Public Issue of VEGORAMA PUNJABI ANGITHI LIMITED- Allocation to Anchor Investors "
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "SUBJECT",
+      "nested_table": false,
+      "notes": "Notice title",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.IPONO_4[*].SUBJECT",
+      "semantic": "Subject of the notice",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "response.status",
+      "collision_risk_with": [],
+      "contamination_risks": [],
+      "dropdown_dependent": false,
+      "examples": [
+        "success"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "status",
+      "nested_table": false,
+      "notes": "Always 'success' in this snapshot",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.status",
+      "semantic": "API response status indicator",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:07:44+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "IPO number used as key in other endpoints (e.g., subscription data, price band details)",
+      "follow_up_endpoint_pattern": "issue_detail_<IPO_NO>",
+      "key_field": "IPO_NO"
+    },
+    {
+      "description": "ScripCode may be used to fetch additional company details",
+      "follow_up_endpoint_pattern": "company_info_<ScripCode>",
+      "key_field": "ScripCode"
+    },
+    {
+      "description": "Symbol may be used to fetch trading data",
+      "follow_up_endpoint_pattern": "stock_quote_<Symbol>",
+      "key_field": "Symbol"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [
+    "$.IPONO_0[*].Book_Running_Lead_Manager",
+    "$.IPONO_0[*].Registrar",
+    "$.IPONO_0[*].Sponsor_Bank"
+  ],
+  "refresh_cadence_minutes_suggested": 5,
+  "row_count_observed": null,
+  "row_shape": "dict",
+  "schema_url_self": "docs/schema/raw_catalog/bse/issue_detail_<id>.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "issue_detail_7726",
+      "snapshot_at": "2026-05-22T09:28:39+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/GetMkt_ISSUE_BBS_IPO/w?IPO_NO=7726"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 0.5,
+  "summary": "This endpoint returns detailed metadata and live subscription data for a specific IPO identified by IPO_NO. It includes issue details (price band, lot size, dates), a list of dynamic columns (mostly empty), price-demand data (bid quantity at each price point) from two timestamps, and a notice document. The response is a dictionary with keys IPONO_0 through IPONO_4 and a status field.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "IPONO_1 contains dynamic columns that are mostly empty; may be placeholder for future data.",
+    "IPONO_2 and IPONO_3 are identical in structure but have different timestamps; they represent two snapshots of demand data. The endpoint may return multiple snapshots.",
+    "All numeric fields are represented as strings; need type coercion.",
+    "Date fields use US format MM/dd/yyyy which can be ambiguous for days <=12.",
+    "Several fields contain pipe-separated data (Book_Running_Lead_Manager, Registrar, Sponsor_Bank) that may require parsing.",
+    "URLs may change over time; should be validated.",
+    "The endpoint returns a dictionary with keys IPONO_0 through IPONO_4; the structure is not a simple list but a set of named arrays."
+  ]
+}

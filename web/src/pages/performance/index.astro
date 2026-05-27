@@ -1,0 +1,677 @@
+---
+import Base from '../../layouts/Base.astro';
+import { performanceIndex, performancePage, performanceSummary, type PerfRow } from '../../lib/performance';
+import { formatDateShort, formatInt, formatRupee } from '../../lib/format';
+
+const meta = performanceSummary() as any;
+const initialRows = performancePage(1).rows as PerfRow[];
+const allRows = performanceIndex().rows as PerfRow[];
+const recentYears = (meta.years ?? []).filter((row: any) => /^\d{4}$/.test(row.year)).slice(0, 12);
+const allYears = (meta.years ?? []).filter((row: any) => /^\d{4}$/.test(row.year)).map((row: any) => row.year);
+const maxBucket = Math.max(1, ...(meta.return_buckets ?? []).map((row: any) => row.count));
+const sourceMix = meta.source_mix ?? {};
+
+const fmtPct = (value: number | null | undefined) => value == null ? '—' : `${value > 0 ? '+' : ''}${value.toFixed(1)}%`;
+const median = (values: number[]) => {
+  const sorted = values.filter((v) => Number.isFinite(v)).sort((a, b) => a - b);
+  if (!sorted.length) return null;
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+};
+const mean = (values: number[]) => values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : null;
+const marketSegment = (row: PerfRow) => {
+  const text = `${row.exchange_platform ?? ''} ${row.symbol ?? ''}`.toUpperCase();
+  return text.includes('SME') || /-(SM|ST|BZ|SZ)\b/.test(text) ? 'SME' : 'Mainboard';
+};
+const statsFor = (rows: PerfRow[]) => {
+  const current = rows.map((row) => row.current_return).filter((value): value is number => value != null);
+  const dayOne = rows.map((row) => row.listing_close_return).filter((value): value is number => value != null);
+  return {
+    count: rows.length,
+    withCurrent: current.length,
+    medianCurrent: median(current),
+    medianDayOne: median(dayOne),
+    averageCurrent: mean(current),
+    positiveCurrentPct: current.length ? (current.filter((value) => value > 0).length / current.length) * 100 : null,
+    positiveDayOnePct: dayOne.length ? (dayOne.filter((value) => value > 0).length / dayOne.length) * 100 : null,
+  };
+};
+const segmentRows = [
+  { key: 'all', label: 'All IPOs', rows: allRows },
+  { key: 'mainboard', label: 'Mainboard', rows: allRows.filter((row) => marketSegment(row) === 'Mainboard') },
+  { key: 'sme', label: 'SME', rows: allRows.filter((row) => marketSegment(row) === 'SME') },
+].map((segment) => ({ ...segment, stats: statsFor(segment.rows) }));
+const outcomeRows = [
+  { label: 'Multibaggers', hint: 'Current return >= 100%', rows: allRows.filter((row) => (row.current_return ?? -Infinity) >= 100) },
+  { label: 'Positive', hint: 'Current return 0-100%', rows: allRows.filter((row) => (row.current_return ?? -Infinity) >= 0 && (row.current_return ?? Infinity) < 100) },
+  { label: 'Below issue', hint: 'Current return < 0%', rows: allRows.filter((row) => (row.current_return ?? Infinity) < 0) },
+  { label: 'Down 50%+', hint: 'Current return <= -50%', rows: allRows.filter((row) => (row.current_return ?? Infinity) <= -50) },
+];
+const benchmarkRows = meta.benchmarks ?? [];
+const landscapeRows = allRows
+  .filter((row) => row.listing_close_return != null && row.current_return != null)
+  .sort((a, b) => String(b.listing_date ?? b.close_date ?? '').localeCompare(String(a.listing_date ?? a.close_date ?? '')))
+  .slice(0, 1200);
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+const xMin = -60;
+const xMax = 160;
+const yMin = -100;
+const yMax = 800;
+const plotLeft = 66;
+const plotRight = 726;
+const plotTop = 44;
+const plotBottom = 376;
+const xScale = (value: number) => plotLeft + ((clamp(value, xMin, xMax) - xMin) / (xMax - xMin)) * (plotRight - plotLeft);
+const yScale = (value: number) => plotBottom - ((clamp(value, yMin, yMax) - yMin) / (yMax - yMin)) * (plotBottom - plotTop);
+type CohortRow = {
+  year: string;
+  mainboard: ReturnType<typeof statsFor>;
+  sme: ReturnType<typeof statsFor>;
+};
+const cohortRows: CohortRow[] = recentYears.slice(0, 10).map((year: any) => {
+  const rows = allRows.filter((row) => (row.listing_date ?? row.close_date ?? '').startsWith(year.year));
+  const mainboard = statsFor(rows.filter((row) => marketSegment(row) === 'Mainboard'));
+  const sme = statsFor(rows.filter((row) => marketSegment(row) === 'SME'));
+  return { year: year.year, mainboard, sme };
+});
+const allStats = segmentRows[0].stats;
+const mainboardStats = segmentRows[1].stats;
+const smeStats = segmentRows[2].stats;
+const commentaryBoxes = [
+  {
+    kicker: 'Plain English',
+    title: 'Most IPOs are not the big winners.',
+    body: `The median IPO in this dataset is ${fmtPct(allStats.medianCurrent)} since issue. The extremes are useful, but the median shows the typical outcome.`,
+  },
+  {
+    kicker: 'Board split',
+    title: 'Read SME and mainboard separately.',
+    body: `Mainboard median current return is ${fmtPct(mainboardStats.medianCurrent)}; SME median current return is ${fmtPct(smeStats.medianCurrent)}. SME IPOs often list on one exchange, so they are kept separate.`,
+  },
+  {
+    kicker: 'Benchmark',
+    title: benchmarkRows[0] ? `${fmtPct(benchmarkRows[0].beat_pct)} beat ${benchmarkRows[0].label}.` : 'Benchmark data is loading.',
+    body: benchmarkRows[0]
+      ? `Against ${benchmarkRows[0].label}, the median excess return is ${fmtPct(benchmarkRows[0].median_excess)} across ${formatInt(benchmarkRows[0].with_comparison)} comparable IPOs.`
+      : 'Run the Kite benchmark refresh to compare IPO returns with market indexes.',
+  },
+];
+const sourceLabel = (row: Pick<PerfRow, 'listing_price_source' | 'current_price_source'>) => {
+  if (row.listing_price_source === 'yahoo' && row.current_price_source === 'yahoo') return 'Yahoo';
+  if (row.current_price_source === 'yahoo') return 'Yahoo current';
+  if (row.listing_price_source === 'yahoo') return 'Yahoo listing';
+  if (row.listing_price_source === 'kite' && row.current_price_source === 'kite') return 'Kite';
+  if (row.current_price_source === 'kite') return 'Kite current';
+  if (row.listing_price_source === 'kite') return 'Kite listing';
+  return 'Source';
+};
+const typeTag = (row: PerfRow) => [row.exchange_platform, row.symbol].filter(Boolean).join(' · ');
+const segmentTag = (row: PerfRow) => marketSegment(row);
+---
+
+<Base title="IPO performance">
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6">
+    <span class="label" style="color: inherit">Historical IPOs</span>
+  </div>
+  <h1 class="headline mb-7 max-w-[16ch]">Historical IPO performance.</h1>
+  <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[68ch]">
+    Returns for <span class="num">{formatInt(meta.total_rows)}</span> IPO records, split by mainboard and SME.
+    Where available, Kite prices are used for listing-day and current return calculations:
+    <span class="num">{formatInt(meta.with_kite_listing)}</span> listing candles and
+    <span class="num">{formatInt(meta.with_kite_current)}</span> current prices are covered.
+  </p>
+</section>
+
+<section class="page-tight pt-12 pb-14 border-t border-[color:var(--color-rule)]">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(meta.total_rows)}</p>
+      <p class="label mt-3">IPO records</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(segmentRows[1].stats.count)}</p>
+      <p class="label mt-3">Mainboard</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(segmentRows[2].stats.count)}</p>
+      <p class="label mt-3">SME</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(meta.with_current)}</p>
+      <p class="label mt-3">With current price</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-tight pt-10 pb-16 border-t border-[color:var(--color-rule)]">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {commentaryBoxes.map((box) => (
+      <aside class="bg-white border border-[color:var(--color-rule)] p-6">
+        <p class="label mb-4" style="color:var(--color-accent)">{box.kicker}</p>
+        <h2 class="serif text-[25px] leading-[1.12] max-w-[16ch]">{box.title}</h2>
+        <p class="mt-5 text-[13.5px] leading-[1.65] text-[color:var(--color-ink-soft)]">{box.body}</p>
+      </aside>
+    ))}
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <header class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+    <div>
+      <h2 class="section-title">Mainboard vs SME</h2>
+      <p class="mute mt-2">The two markets are separated before returns are compared.</p>
+    </div>
+    <span class="label">Median returns</span>
+  </header>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {segmentRows.map((segment) => (
+      <div class="border-t border-[color:var(--color-ink)] pt-5">
+        <div class="flex items-baseline justify-between gap-4">
+          <h3 class="serif text-[28px] leading-tight">{segment.label}</h3>
+          <span class="label num">{formatInt(segment.stats.count)}</span>
+        </div>
+        <div class="mt-8 grid grid-cols-2 gap-5">
+          <div>
+            <p class={`serif text-[34px] leading-none num ${segment.stats.medianDayOne != null && segment.stats.medianDayOne > 0 ? 'acc' : ''}`}>{fmtPct(segment.stats.medianDayOne)}</p>
+            <p class="label mt-3">Day one</p>
+          </div>
+          <div>
+            <p class={`serif text-[34px] leading-none num ${segment.stats.medianCurrent != null && segment.stats.medianCurrent > 0 ? 'acc' : ''}`}>{fmtPct(segment.stats.medianCurrent)}</p>
+            <p class="label mt-3">Since issue</p>
+          </div>
+        </div>
+        <div class="mt-7 space-y-3">
+          <div class="grid grid-cols-[104px_minmax(0,1fr)_52px] gap-3 items-center">
+            <span class="label">Positive</span>
+            <span class="h-[10px] bg-[color:var(--color-paper-soft)] border border-[color:var(--color-rule)]">
+              <span class="block h-full bg-[color:var(--color-ink)]" style={`width:${Math.max(2, segment.stats.positiveCurrentPct ?? 0)}%`}></span>
+            </span>
+            <span class="text-right num mute">{fmtPct(segment.stats.positiveCurrentPct)}</span>
+          </div>
+          <div class="grid grid-cols-[104px_minmax(0,1fr)_52px] gap-3 items-center">
+            <span class="label">Covered</span>
+            <span class="h-[10px] bg-[color:var(--color-paper-soft)] border border-[color:var(--color-rule)]">
+              <span class="block h-full bg-[color:var(--color-accent)]" style={`width:${Math.max(2, (segment.stats.withCurrent / Math.max(1, segment.stats.count)) * 100)}%`}></span>
+            </span>
+            <span class="text-right num mute">{formatInt(segment.stats.withCurrent)}</span>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <header class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+    <div>
+      <h2 class="section-title">Benchmark comparison</h2>
+      <p class="mute mt-2">Each IPO is compared with the index return from its listing date to the latest Kite benchmark close.</p>
+    </div>
+    <span class="label">Kite index candles</span>
+  </header>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    {benchmarkRows.map((benchmark: any) => (
+      <div class="border-t border-[color:var(--color-ink)] pt-5">
+        <div class="flex items-start justify-between gap-6">
+          <div>
+            <h3 class="serif text-[30px] leading-tight">{benchmark.label}</h3>
+            <p class="mute mt-2">Comparable IPOs: <span class="num">{formatInt(benchmark.with_comparison)}</span></p>
+          </div>
+          <p class={`serif text-[38px] leading-none num ${benchmark.beat_pct > 50 ? 'acc' : ''}`}>{fmtPct(benchmark.beat_pct)}</p>
+        </div>
+        <div class="mt-8 space-y-4">
+          <div>
+            <div class="flex items-center justify-between gap-5 mb-2">
+              <span class="label">Beat benchmark</span>
+              <span class="num mute">{formatInt(benchmark.beat_count)} IPOs</span>
+            </div>
+            <div class="h-[16px] bg-[color:var(--color-paper-soft)] border border-[color:var(--color-rule)]">
+              <div class="h-full bg-[color:var(--color-accent)]" style={`width:${Math.max(2, benchmark.beat_pct ?? 0)}%`}></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between gap-5 mb-2">
+              <span class="label">Median excess return</span>
+              <span class={`serif text-[22px] num ${benchmark.median_excess > 0 ? 'acc' : ''}`}>{fmtPct(benchmark.median_excess)}</span>
+            </div>
+            <div class="h-[16px] bg-[color:var(--color-paper-soft)] border border-[color:var(--color-rule)]">
+              <div
+                class="h-full bg-[color:var(--color-ink)]"
+                style={`width:${Math.max(2, Math.min(100, Math.abs(benchmark.median_excess ?? 0)))}%`}
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <a href={benchmark.best_excess?.url_path ?? '#'} class="group border-t border-[color:var(--color-rule)] pt-4">
+            <p class="label mb-3">Best excess</p>
+            <p class="truncate group-hover:acc">{benchmark.best_excess?.company_name ?? '—'}</p>
+            <p class="serif text-[24px] num acc mt-2">{fmtPct(benchmark.best_excess?.excess_return)}</p>
+          </a>
+          <a href={benchmark.worst_excess?.url_path ?? '#'} class="group border-t border-[color:var(--color-rule)] pt-4">
+            <p class="label mb-3">Worst excess</p>
+            <p class="truncate group-hover:acc">{benchmark.worst_excess?.company_name ?? '—'}</p>
+            <p class="serif text-[24px] num mt-2">{fmtPct(benchmark.worst_excess?.excess_return)}</p>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] gap-14">
+    <div>
+      <header class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+        <div>
+          <h2 class="section-title">Return map</h2>
+          <p class="mute mt-2">Each dot is an IPO. Left to right shows the listing-day move; up and down shows return since issue.</p>
+        </div>
+        <span class="label">Recent 1,200 IPOs · clipped only at chart edges</span>
+      </header>
+      <div class="overflow-x-auto border-t border-[color:var(--color-ink)] pt-6">
+        <svg class="min-w-[820px] w-full h-auto" viewBox="0 0 790 430" role="img" aria-label="IPO day-one return versus current return scatter plot">
+          <rect x={plotLeft} y={plotTop} width={plotRight - plotLeft} height={plotBottom - plotTop} fill="var(--color-paper-soft)" opacity="0.34" />
+          <line x1={plotLeft} y1={plotBottom} x2={plotRight} y2={plotBottom} stroke="var(--color-ink)" stroke-width="1" />
+          <line x1={plotLeft} y1={plotTop} x2={plotLeft} y2={plotBottom} stroke="var(--color-ink)" stroke-width="1" />
+          <line x1={xScale(0)} y1={plotTop} x2={xScale(0)} y2={plotBottom} stroke="var(--color-rule)" stroke-width="1" stroke-dasharray="4 6" />
+          <line x1={plotLeft} y1={yScale(0)} x2={plotRight} y2={yScale(0)} stroke="var(--color-rule)" stroke-width="1" stroke-dasharray="4 6" />
+          {[-50, 0, 50, 100, 150].map((tick) => (
+            <>
+              <line x1={xScale(tick)} y1={plotBottom} x2={xScale(tick)} y2={plotBottom + 6} stroke="var(--color-ink-soft)" stroke-width="1" />
+              <text x={xScale(tick)} y={plotBottom + 25} text-anchor="middle" class="num" style="font-size:12px;fill:var(--color-ink-soft)">{tick}%</text>
+            </>
+          ))}
+          {[-100, 0, 200, 400, 600, 800].map((tick) => (
+            <>
+              <line x1={plotLeft - 6} y1={yScale(tick)} x2={plotLeft} y2={yScale(tick)} stroke="var(--color-ink-soft)" stroke-width="1" />
+              <text x={plotLeft - 14} y={yScale(tick) + 4} text-anchor="end" class="num" style="font-size:12px;fill:var(--color-ink-soft)">{tick}%</text>
+            </>
+          ))}
+          {landscapeRows.map((row) => (
+            <a href={row.url_path}>
+              <circle
+                cx={xScale(row.listing_close_return ?? 0)}
+                cy={yScale(row.current_return ?? 0)}
+                r={marketSegment(row) === 'SME' ? 2.4 : 2}
+                fill={row.current_return != null && row.current_return >= 0 ? 'var(--color-accent)' : 'var(--color-ink)'}
+                opacity={marketSegment(row) === 'SME' ? '0.58' : '0.38'}
+              >
+                <title>{row.company_name} · {segmentTag(row)} · day one {fmtPct(row.listing_close_return)} · since issue {fmtPct(row.current_return)}</title>
+              </circle>
+            </a>
+          ))}
+          <text x={(plotLeft + plotRight) / 2} y="420" text-anchor="middle" class="label" style="font-size:11px;fill:var(--color-ink-soft)">Day-one return</text>
+          <text x={plotLeft} y="24" class="label" style="font-size:11px;fill:var(--color-ink-soft)">Return since issue</text>
+          <g transform={`translate(${plotRight - 160} ${plotTop + 18})`}>
+            <circle cx="0" cy="0" r="3" fill="var(--color-accent)" opacity="0.62" />
+            <text x="12" y="4" class="label" style="font-size:10px;fill:var(--color-ink-soft)">Positive now</text>
+            <circle cx="88" cy="0" r="3" fill="var(--color-ink)" opacity="0.5" />
+            <text x="100" y="4" class="label" style="font-size:10px;fill:var(--color-ink-soft)">Below issue</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div>
+      <header class="mb-8">
+        <h2 class="section-title">Outcome mix</h2>
+        <p class="mute mt-2">Equal-weighted IPO counts by current return bucket, using the best available current price.</p>
+      </header>
+      <div class="space-y-5">
+        {outcomeRows.map((outcome) => (
+          <div class="border-t border-[color:var(--color-rule)] pt-4">
+            <div class="flex items-baseline justify-between gap-5">
+              <div>
+                <p class="serif text-[25px] leading-tight">{outcome.label}</p>
+                <p class="mute mt-1 text-[12.5px]">{outcome.hint}</p>
+              </div>
+              <p class="serif text-[34px] leading-none num">{formatInt(outcome.rows.length)}</p>
+            </div>
+            <div class="mt-4 h-[12px] bg-[color:var(--color-paper-soft)] border border-[color:var(--color-rule)]">
+              <div class="h-full bg-[color:var(--color-ink)]" style={`width:${Math.max(2, (outcome.rows.length / Math.max(1, meta.with_current)) * 100)}%`}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <header class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+    <div>
+      <h2 class="section-title">Cohort heatmap</h2>
+      <p class="mute mt-2">Recent listing years split by mainboard and SME. Values are median current return.</p>
+    </div>
+    <span class="label">Last 10 listing years</span>
+  </header>
+  <div class="overflow-x-auto">
+    <table class="w-full min-w-[780px] border-collapse">
+      <thead>
+        <tr class="text-left label border-b border-[color:var(--color-ink)]">
+          <th class="py-3 pr-5 font-semibold">Year</th>
+          <th class="py-3 px-5 font-semibold text-right">Mainboard issues</th>
+          <th class="py-3 px-5 font-semibold text-right">Mainboard median</th>
+          <th class="py-3 px-5 font-semibold text-right">SME issues</th>
+          <th class="py-3 pl-5 font-semibold text-right">SME median</th>
+        </tr>
+      </thead>
+      <tbody>
+        {cohortRows.map((row) => (
+          <tr class="border-b border-[color:var(--color-rule)]">
+            <td class="py-3 pr-5 serif text-[20px] num">{row.year}</td>
+            <td class="py-3 px-5 text-right num">{formatInt(row.mainboard.count)}</td>
+            <td class={`py-3 px-5 text-right serif text-[20px] num ${row.mainboard.medianCurrent != null && row.mainboard.medianCurrent > 0 ? 'acc' : ''}`}>
+              <span class="inline-block min-w-[92px] px-3 py-1 border border-[color:var(--color-rule)]" style={`background:rgba(232,118,90,${row.mainboard.medianCurrent != null && row.mainboard.medianCurrent > 0 ? Math.min(0.22, row.mainboard.medianCurrent / 260) : 0})`}>{fmtPct(row.mainboard.medianCurrent)}</span>
+            </td>
+            <td class="py-3 px-5 text-right num">{formatInt(row.sme.count)}</td>
+            <td class={`py-3 pl-5 text-right serif text-[20px] num ${row.sme.medianCurrent != null && row.sme.medianCurrent > 0 ? 'acc' : ''}`}>
+              <span class="inline-block min-w-[92px] px-3 py-1 border border-[color:var(--color-rule)]" style={`background:rgba(232,118,90,${row.sme.medianCurrent != null && row.sme.medianCurrent > 0 ? Math.min(0.22, row.sme.medianCurrent / 260) : 0})`}>{fmtPct(row.sme.medianCurrent)}</span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.3fr)_minmax(320px,0.7fr)] gap-14">
+    <div>
+      <header class="flex items-end justify-between gap-6 mb-8">
+        <div>
+          <h2 class="section-title">Return since issue</h2>
+      <p class="mute mt-2">Current price compared with issue price, bucketed across the full ledger.</p>
+        </div>
+        <span class="label">Current return</span>
+      </header>
+      <div class="space-y-3">
+        {(meta.return_buckets ?? []).map((bucket: any) => (
+          <div class="grid grid-cols-[86px_minmax(0,1fr)_64px] gap-4 items-center">
+            <div class="label" style="letter-spacing:0.08em">{bucket.label}%</div>
+            <div class="h-[14px] bg-[color:var(--color-paper-soft)] border border-[color:var(--color-rule)]">
+              <div class="h-full bg-[color:var(--color-ink)]" style={`width:${Math.max(2, (bucket.count / maxBucket) * 100)}%`}></div>
+            </div>
+            <div class="text-right num mute">{formatInt(bucket.count)}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div>
+      <header class="mb-8">
+        <h2 class="section-title">Price source</h2>
+        <p class="mute mt-2">Kite prices are used where available; exchange/source prices remain available for comparison.</p>
+      </header>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="border-t border-[color:var(--color-ink)] pt-4">
+          <p class="serif text-[42px] leading-none num">{formatInt(sourceMix.kite ?? 0)}</p>
+          <p class="label mt-3">Kite listing</p>
+        </div>
+        <div class="border-t border-[color:var(--color-ink)] pt-4">
+          <p class="serif text-[42px] leading-none num">{formatInt(sourceMix.source ?? 0)}</p>
+          <p class="label mt-3">Source listing</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-14">
+    <div>
+      <header class="flex items-baseline justify-between mb-6">
+        <h2 class="section-title">Best since issue</h2>
+        <span class="label">Current price</span>
+      </header>
+      <ol class="list-none p-0 m-0">
+        {(meta.best_since_issue ?? []).map((issue: any, idx: number) => (
+          <li>
+            <a href={issue.url_path} class="grid grid-cols-[32px_minmax(0,1fr)_100px] gap-5 py-4 border-b border-[color:var(--color-rule)] group hover:pl-2 transition-all">
+              <span class="serif italic text-[17px] mute-2 num">{idx + 1}</span>
+              <span class="truncate group-hover:acc">{issue.company_name}</span>
+              <span class="serif text-[21px] text-right num acc">{fmtPct(issue.current_return)}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <div>
+      <header class="flex items-baseline justify-between mb-6">
+        <h2 class="section-title">Worst since issue</h2>
+        <span class="label">Current price</span>
+      </header>
+      <ol class="list-none p-0 m-0">
+        {(meta.worst_since_issue ?? []).map((issue: any, idx: number) => (
+          <li>
+            <a href={issue.url_path} class="grid grid-cols-[32px_minmax(0,1fr)_100px] gap-5 py-4 border-b border-[color:var(--color-rule)] group hover:pl-2 transition-all">
+              <span class="serif italic text-[17px] mute-2 num">{idx + 1}</span>
+              <span class="truncate group-hover:acc">{issue.company_name}</span>
+              <span class="serif text-[21px] text-right num">{fmtPct(issue.current_return)}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-24 border-t border-[color:var(--color-rule)]">
+  <header class="mb-8">
+    <h2 class="section-title">Full ledger</h2>
+    <p class="mute mt-2 max-w-[58ch]">Search, filter and sort the IPO return ledger. The full dataset loads only when needed.</p>
+  </header>
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-[220px_140px_130px_150px_130px_160px] gap-3 w-full mb-7">
+      <input id="perf-search" class="h-10 px-3 border border-[color:var(--color-rule)] bg-white outline-none focus:border-[color:var(--color-ink)]" type="search" placeholder="Search company" />
+      <select id="perf-market" class="h-10 px-3 border border-[color:var(--color-rule)] bg-white outline-none focus:border-[color:var(--color-ink)]">
+        <option value="all">All boards</option>
+        <option value="mainboard">Mainboard</option>
+        <option value="sme">SME</option>
+      </select>
+      <select id="perf-year" class="h-10 px-3 border border-[color:var(--color-rule)] bg-white outline-none focus:border-[color:var(--color-ink)]">
+        <option value="all">All years</option>
+        {allYears.map((year: string) => <option value={year}>{year}</option>)}
+      </select>
+      <select id="perf-source" class="h-10 px-3 border border-[color:var(--color-rule)] bg-white outline-none focus:border-[color:var(--color-ink)]">
+        <option value="all">All sources</option>
+        <option value="kite-current">Kite current</option>
+        <option value="kite-listing">Kite listing</option>
+        <option value="source">Source listing</option>
+      </select>
+      <select id="perf-outcome" class="h-10 px-3 border border-[color:var(--color-rule)] bg-white outline-none focus:border-[color:var(--color-ink)]">
+        <option value="all">All outcomes</option>
+        <option value="positive">Positive</option>
+        <option value="negative">Below issue</option>
+        <option value="multibagger">Multibagger</option>
+        <option value="deep-loss">Down 50%+</option>
+      </select>
+      <select id="perf-sort" class="h-10 px-3 border border-[color:var(--color-rule)] bg-white outline-none focus:border-[color:var(--color-ink)]">
+        <option value="recent">Newest first</option>
+        <option value="current-desc">Best current</option>
+        <option value="current-asc">Worst current</option>
+        <option value="day-desc">Best day one</option>
+        <option value="day-asc">Worst day one</option>
+      </select>
+  </div>
+
+  <div class="overflow-x-auto border-t border-[color:var(--color-ink)]">
+    <table class="w-full border-collapse min-w-[1220px]">
+      <thead>
+        <tr class="text-left label border-b border-[color:var(--color-rule)]">
+          <th class="py-3 pr-5 font-semibold">Issue</th>
+          <th class="py-3 px-5 font-semibold">Board</th>
+          <th class="py-3 px-5 font-semibold text-right">Listing</th>
+          <th class="py-3 px-5 font-semibold text-right">Issue price</th>
+          <th class="py-3 px-5 font-semibold text-right">Listing open</th>
+          <th class="py-3 px-5 font-semibold text-right">Listing close</th>
+          <th class="py-3 px-5 font-semibold text-right">Day one</th>
+          <th class="py-3 px-5 font-semibold text-right">Current</th>
+          <th class="py-3 px-5 font-semibold text-right">Since issue</th>
+          <th class="py-3 pl-5 font-semibold text-right">Source</th>
+        </tr>
+      </thead>
+      <tbody id="perf-rows">
+        {initialRows.map((row) => (
+          <tr class="border-b border-[color:var(--color-rule)] group">
+            <td class="py-3 pr-5 min-w-0">
+              <a href={row.url_path} class="block">
+                <span class="block truncate text-[14px] group-hover:acc">{row.company_name}</span>
+                <span class="block text-[11.5px] mute mt-0.5">{typeTag(row)}</span>
+              </a>
+            </td>
+            <td class="py-3 px-5 label">{segmentTag(row)}</td>
+            <td class="py-3 px-5 text-right mute num">{formatDateShort(row.listing_date)}</td>
+            <td class="py-3 px-5 text-right num">{formatRupee(row.issue_price)}</td>
+            <td class="py-3 px-5 text-right num">{formatRupee(row.listing_open)}</td>
+            <td class="py-3 px-5 text-right num">{formatRupee(row.listing_close)}</td>
+            <td class={`py-3 px-5 text-right serif text-[18px] num ${row.listing_close_return != null && row.listing_close_return > 0 ? 'acc' : ''}`}>{fmtPct(row.listing_close_return)}</td>
+            <td class="py-3 px-5 text-right num">{formatRupee(row.current_price)}</td>
+            <td class={`py-3 px-5 text-right serif text-[18px] num ${row.current_return != null && row.current_return > 0 ? 'acc' : ''}`}>{fmtPct(row.current_return)}</td>
+            <td class="py-3 pl-5 text-right label" style="letter-spacing:0.08em">{sourceLabel(row)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex items-center justify-between gap-4 mt-6">
+    <p id="perf-page-label" class="label">Page 1 of {formatInt(meta.page_count)}</p>
+    <div class="flex items-center gap-2">
+      <button id="perf-prev" class="h-9 px-4 border border-[color:var(--color-rule)] disabled:opacity-30" disabled>Prev</button>
+      <button id="perf-next" class="h-9 px-4 border border-[color:var(--color-rule)]" disabled={meta.page_count <= 1}>Next</button>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ initialRows, pageCount: meta.page_count }}>
+  const state = {
+    page: 1,
+    rows: initialRows,
+    allRows: null,
+    search: '',
+    market: 'all',
+    year: 'all',
+    source: 'all',
+    outcome: 'all',
+    sort: 'recent',
+  };
+
+  const tbody = document.getElementById('perf-rows');
+  const pageLabel = document.getElementById('perf-page-label');
+  const prev = document.getElementById('perf-prev');
+  const next = document.getElementById('perf-next');
+  const search = document.getElementById('perf-search');
+  const market = document.getElementById('perf-market');
+  const year = document.getElementById('perf-year');
+  const source = document.getElementById('perf-source');
+  const outcome = document.getElementById('perf-outcome');
+  const sort = document.getElementById('perf-sort');
+
+  const rupee = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 });
+  const pct = (value) => value == null ? '—' : `${value > 0 ? '+' : ''}${value.toFixed(1)}%`;
+  const money = (value) => value == null ? '—' : `₹${rupee.format(value)}`;
+  const shortDate = (iso) => {
+    if (!iso) return '—';
+    const d = new Date(`${iso.slice(0, 10)}T00:00:00`);
+    return Number.isNaN(d.getTime()) ? '—' : new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short' }).format(d);
+  };
+  const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const typeTagClient = (row) => [row.exchange_platform, row.symbol].filter(Boolean).join(' · ');
+  const marketSegmentClient = (row) => {
+    const text = `${row.exchange_platform ?? ''} ${row.symbol ?? ''}`.toUpperCase();
+    return text.includes('SME') || /-(SM|ST|BZ|SZ)\b/.test(text) ? 'SME' : 'Mainboard';
+  };
+  const yearForRow = (row) => String(row.listing_date ?? row.close_date ?? row.open_date ?? '').slice(0, 4);
+  const sourceLabelClient = (row) => {
+    if (row.listing_price_source === 'kite' && row.current_price_source === 'kite') return 'Kite';
+    if (row.current_price_source === 'kite') return 'Kite current';
+    if (row.listing_price_source === 'kite') return 'Kite listing';
+    return 'Source';
+  };
+
+  const rowHtml = (row) => `
+    <tr class="border-b border-[color:var(--color-rule)] group">
+      <td class="py-3 pr-5 min-w-0">
+        <a href="${esc(row.url_path)}" class="block">
+          <span class="block truncate text-[14px] group-hover:acc">${esc(row.company_name)}</span>
+          <span class="block text-[11.5px] mute mt-0.5">${esc(typeTagClient(row))}</span>
+        </a>
+      </td>
+      <td class="py-3 px-5 label">${marketSegmentClient(row)}</td>
+      <td class="py-3 px-5 text-right mute num">${shortDate(row.listing_date)}</td>
+      <td class="py-3 px-5 text-right num">${money(row.issue_price)}</td>
+      <td class="py-3 px-5 text-right num">${money(row.listing_open)}</td>
+      <td class="py-3 px-5 text-right num">${money(row.listing_close)}</td>
+      <td class="py-3 px-5 text-right serif text-[18px] num ${row.listing_close_return != null && row.listing_close_return > 0 ? 'acc' : ''}">${pct(row.listing_close_return)}</td>
+      <td class="py-3 px-5 text-right num">${money(row.current_price)}</td>
+      <td class="py-3 px-5 text-right serif text-[18px] num ${row.current_return != null && row.current_return > 0 ? 'acc' : ''}">${pct(row.current_return)}</td>
+      <td class="py-3 pl-5 text-right label" style="letter-spacing:0.08em">${sourceLabelClient(row)}</td>
+    </tr>`;
+
+  const render = (rows, label) => {
+    tbody.innerHTML = rows.length ? rows.map(rowHtml).join('') : '<tr><td colspan="10" class="py-8 mute">No matching IPO records.</td></tr>';
+    pageLabel.textContent = label;
+  };
+
+  const loadPage = async (page) => {
+    if (page === 1) {
+      state.rows = initialRows;
+    } else {
+      const res = await fetch(`/performance/data/page-${page}.json/`);
+      state.rows = (await res.json()).rows;
+    }
+    state.page = page;
+    prev.disabled = page <= 1;
+    next.disabled = page >= pageCount;
+    render(state.rows, `Page ${page} of ${pageCount.toLocaleString('en-IN')}`);
+  };
+
+  const loadAll = async () => {
+    if (state.allRows) return state.allRows;
+    const res = await fetch('/performance/data/all.json');
+    state.allRows = (await res.json()).rows;
+    return state.allRows;
+  };
+
+  const applyTransform = async () => {
+    const needsAll = state.search || state.market !== 'all' || state.year !== 'all' || state.source !== 'all' || state.outcome !== 'all' || state.sort !== 'recent';
+    if (!needsAll) {
+      await loadPage(1);
+      return;
+    }
+    let rows = (await loadAll()).slice();
+    const query = state.search.trim().toLowerCase();
+    if (query) rows = rows.filter((row) => `${row.company_name} ${row.symbol ?? ''}`.toLowerCase().includes(query));
+    if (state.market === 'mainboard') rows = rows.filter((row) => marketSegmentClient(row) === 'Mainboard');
+    if (state.market === 'sme') rows = rows.filter((row) => marketSegmentClient(row) === 'SME');
+    if (state.year !== 'all') rows = rows.filter((row) => yearForRow(row) === state.year);
+    if (state.source === 'kite-current') rows = rows.filter((row) => row.current_price_source === 'kite');
+    if (state.source === 'kite-listing') rows = rows.filter((row) => row.listing_price_source === 'kite');
+    if (state.source === 'source') rows = rows.filter((row) => row.listing_price_source === 'source');
+    if (state.outcome === 'positive') rows = rows.filter((row) => row.current_return != null && row.current_return >= 0);
+    if (state.outcome === 'negative') rows = rows.filter((row) => row.current_return != null && row.current_return < 0);
+    if (state.outcome === 'multibagger') rows = rows.filter((row) => row.current_return != null && row.current_return >= 100);
+    if (state.outcome === 'deep-loss') rows = rows.filter((row) => row.current_return != null && row.current_return <= -50);
+    const sorters = {
+      'current-desc': (a, b) => (b.current_return ?? -Infinity) - (a.current_return ?? -Infinity),
+      'current-asc': (a, b) => (a.current_return ?? Infinity) - (b.current_return ?? Infinity),
+      'day-desc': (a, b) => (b.listing_close_return ?? -Infinity) - (a.listing_close_return ?? -Infinity),
+      'day-asc': (a, b) => (a.listing_close_return ?? Infinity) - (b.listing_close_return ?? Infinity),
+      recent: (a, b) => String(b.listing_date ?? b.close_date ?? '').localeCompare(String(a.listing_date ?? a.close_date ?? '')),
+    };
+    rows.sort(sorters[state.sort] ?? sorters.recent);
+    prev.disabled = true;
+    next.disabled = true;
+    render(rows.slice(0, 150), `${rows.length.toLocaleString('en-IN')} matching records · showing first 150`);
+  };
+
+  prev?.addEventListener('click', () => loadPage(Math.max(1, state.page - 1)));
+  next?.addEventListener('click', () => loadPage(Math.min(pageCount, state.page + 1)));
+  search?.addEventListener('input', (event) => { state.search = event.target.value; applyTransform(); });
+  market?.addEventListener('change', (event) => { state.market = event.target.value; applyTransform(); });
+  year?.addEventListener('change', (event) => { state.year = event.target.value; applyTransform(); });
+  source?.addEventListener('change', (event) => { state.source = event.target.value; applyTransform(); });
+  outcome?.addEventListener('change', (event) => { state.outcome = event.target.value; applyTransform(); });
+  sort?.addEventListener('change', (event) => { state.sort = event.target.value; applyTransform(); });
+</script>
+</Base>

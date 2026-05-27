@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import {
+  getIssuesBySection,
+  issueSectionLabel,
+  nonEquityIssueSections,
+  type IssueSectionKey,
+} from '../../lib/issues';
+import { formatDateShort, formatInt, formatRupeeRange } from '../../lib/format';
+
+export function getStaticPaths() {
+  return nonEquityIssueSections.map((section) => ({ params: { section }, props: { section } }));
+}
+
+const { section } = Astro.props as { section: IssueSectionKey };
+const issues = getIssuesBySection(section);
+const label = issueSectionLabel(section);
+const active = issues.filter((issue) => issue.status === 'current' || issue.status === 'upcoming');
+const historical = issues.filter((issue) => issue.status === 'past').slice(0, 120);
+
+const typeTag = (issue: { issue_type: string | null; exchange_platform: string | null }) => {
+  const t = issue.issue_type ?? '';
+  const ex = (issue.exchange_platform ?? '').replace(/\s+/g, ' ').trim();
+  return [t, ex].filter(Boolean).join('  ·  ');
+};
+
+const dateText = (issue: typeof issues[number]) =>
+  issue.status === 'current'
+    ? `Closes ${formatDateShort(issue.close_date)}`
+    : issue.status === 'upcoming'
+      ? `Opens ${formatDateShort(issue.open_date)}`
+      : formatDateShort(issue.listing_date ?? issue.close_date ?? issue.open_date);
+---
+
+<Base title={label}>
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6">
+    <span class="label" style="color: inherit">{label}</span>
+  </div>
+  <h1 class="headline mb-7 max-w-[18ch]">{label}.</h1>
+  <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[58ch]">
+    Tracked separately from the equity IPO calendar so IPO and FPO pages stay focused on new equity listings.
+  </p>
+</section>
+
+{active.length > 0 && (
+  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="flex items-baseline justify-between mb-9">
+      <h2 class="section-title">Active</h2>
+      <span class="label num">{formatInt(active.length)}</span>
+    </header>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {active.map((issue) => (
+        <a href={issue.url_path} class="group block bg-white border border-[color:var(--color-rule-card)] p-[28px_32px_24px] transition-all duration-300 hover:border-[color:var(--color-accent)] hover:bg-[#fffaf7]">
+          <div class="flex items-center gap-[10px] text-[10px] tracking-[0.18em] uppercase font-semibold mute mb-4">
+            {issue.status === 'current' && <span class="issue-badge issue-badge-live">Live</span>}
+            {issue.status === 'upcoming' && <span class="issue-badge issue-badge-dark">Upcoming</span>}
+            <span>{typeTag(issue)}</span>
+          </div>
+          <h3 class="serif font-medium text-[22px] leading-[1.18] mb-4 group-hover:text-[color:var(--color-accent-deep)] transition-colors">{issue.company_name}</h3>
+          <div class="flex items-baseline justify-between gap-6 pt-4 border-t border-[color:var(--color-rule)]">
+            <span class="text-[12.5px] mute num">{dateText(issue)}</span>
+            <span class="serif text-[18px] num">{formatRupeeRange(issue.price_band.min, issue.price_band.max)}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+)}
+
+<section class="page-tight pt-12 pb-24 border-t border-[color:var(--color-rule)]">
+  <header class="flex items-baseline justify-between mb-9">
+    <h2 class="section-title">Archive</h2>
+    <span class="label num">{formatInt(issues.length)} total</span>
+  </header>
+  <ul class="list-none p-0 m-0">
+    {historical.map((issue) => (
+      <li>
+        <a href={issue.url_path} class="grid grid-cols-[minmax(0,1fr)_88px] sm:grid-cols-[minmax(0,1fr)_130px_120px] gap-4 sm:gap-6 items-baseline py-3 border-b border-[color:var(--color-rule)] group transition-all duration-200 hover:pl-2">
+          <div class="min-w-0 truncate">
+            <span class="text-[15px] group-hover:acc transition-colors">{issue.company_name}</span>
+            <span class="text-[11.5px] mute ml-2">{typeTag(issue)}</span>
+          </div>
+          <span class="text-[12px] mute num text-right hidden sm:block">{dateText(issue)}</span>
+          <span class="serif text-[18px] num text-right">{formatRupeeRange(issue.price_band.min, issue.price_band.max)}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  {historical.length === 0 && <p class="serif italic text-[20px] mute">No archived records in this section yet.</p>}
+  {issues.length > historical.length + active.length && <p class="mt-6 mute text-[13px]">Showing latest {formatInt(historical.length)} archived records.</p>}
+</section>
+</Base>

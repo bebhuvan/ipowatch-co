@@ -1,0 +1,336 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "offer_abridged_general_aaccp0383j",
+    "estimated_cost_usd": 0.00337497,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 1671,
+    "tokens_out": 2658
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0418",
+  "endpoint": "offer_abridged_<id>",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "issuer.address.corporate_office",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Address may contain HTML entities or line breaks.",
+          "suggested_mitigation": "Strip HTML and normalize whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "addressOfCorporateOffice",
+      "nested_table": false,
+      "notes": "Observed as null; may be populated for other PANs.",
+      "null_meaning": "Data not provided or not applicable.",
+      "nullable": true,
+      "path": "$[*].addressOfCorporateOffice",
+      "semantic": "Address of the corporate office of the issuer company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.address.registered_office",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Address may contain HTML entities or line breaks.",
+          "suggested_mitigation": "Strip HTML and normalize whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "addressOfRegisteredOffice",
+      "nested_table": false,
+      "notes": "Observed as null; may be populated for other PANs.",
+      "null_meaning": "Data not provided or not applicable.",
+      "nullable": true,
+      "path": "$[*].addressOfRegisteredOffice",
+      "semantic": "Address of the registered office of the issuer company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.cin",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "CIN may be missing or malformed.",
+          "suggested_mitigation": "Validate format (L[0-9]{5}[A-Z]{2}[0-9]{4}[A-Z]{3}[0-9]{6})."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "cinofTheIssuerCompany",
+      "nested_table": false,
+      "notes": "Observed as null; may be populated for other PANs.",
+      "null_meaning": "Data not provided or not applicable.",
+      "nullable": true,
+      "path": "$[*].cinofTheIssuerCompany",
+      "semantic": "Corporate Identification Number (CIN) of the issuer company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.date_of_incorporation",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format may vary (e.g., dd-MMM-yyyy).",
+          "suggested_mitigation": "Parse using multiple known formats."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "dateOfIncorporation",
+      "nested_table": false,
+      "notes": "Observed as null; may be populated for other PANs.",
+      "null_meaning": "Data not provided or not applicable.",
+      "nullable": true,
+      "path": "$[*].dateOfIncorporation",
+      "semantic": "Date of incorporation of the issuer company.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.email",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.LEG",
+          "description": "Email is PII; may require redaction.",
+          "suggested_mitigation": "Hash or mask if storing."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": true,
+      "name": "emailOfTheCompany",
+      "nested_table": false,
+      "notes": "Observed as null; may be populated for other PANs.",
+      "null_meaning": "Data not provided or not applicable.",
+      "nullable": true,
+      "path": "$[*].emailOfTheCompany",
+      "semantic": "Email address of the issuer company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.contact_person_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.LEG",
+          "description": "Name is PII; may require redaction.",
+          "suggested_mitigation": "Hash or mask if storing."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": true,
+      "name": "nameOfContactPerson",
+      "nested_table": false,
+      "notes": "Observed as null; may be populated for other PANs.",
+      "null_meaning": "Data not provided or not applicable.",
+      "nullable": true,
+      "path": "$[*].nameOfContactPerson",
+      "semantic": "Name of the contact person for the issuer company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.promoter_names",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.LEG",
+          "description": "Promoter names are PII; may require redaction.",
+          "suggested_mitigation": "Hash or mask if storing."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": true,
+      "name": "nameOfPromoterOrPromotersOfTheCompany",
+      "nested_table": false,
+      "notes": "Observed as null; may be populated for other PANs.",
+      "null_meaning": "Data not provided or not applicable.",
+      "nullable": true,
+      "path": "$[*].nameOfPromoterOrPromotersOfTheCompany",
+      "semantic": "Name(s) of the promoter(s) of the issuer company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company name may have variations (e.g., Ltd vs Limited).",
+          "suggested_mitigation": "Normalize using a standard entity resolution."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "nameOfTheIssuerCompany",
+      "nested_table": false,
+      "notes": "Observed as null; may be populated for other PANs.",
+      "null_meaning": "Data not provided or not applicable.",
+      "nullable": true,
+      "path": "$[*].nameOfTheIssuerCompany",
+      "semantic": "Name of the issuer company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.telephone",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.LEG",
+          "description": "Phone number is PII; may require redaction.",
+          "suggested_mitigation": "Hash or mask if storing."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": true,
+      "name": "telephoneOfTheCompany",
+      "nested_table": false,
+      "notes": "Observed as null; may be populated for other PANs.",
+      "null_meaning": "Data not provided or not applicable.",
+      "nullable": true,
+      "path": "$[*].telephoneOfTheCompany",
+      "semantic": "Telephone number of the issuer company.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.rhp_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL may change or become stale.",
+          "suggested_mitigation": "Validate URL on fetch."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "urlofRHP",
+      "nested_table": false,
+      "notes": "Observed as null; may be populated for other PANs.",
+      "null_meaning": "Data not provided or not applicable.",
+      "nullable": true,
+      "path": "$[*].urlofRHP",
+      "semantic": "URL to the Red Herring Prospectus (RHP) document.",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issuer.website",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL may change or become stale.",
+          "suggested_mitigation": "Validate URL on fetch."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "websiteOfTheCompany",
+      "nested_table": false,
+      "notes": "Observed as null; may be populated for other PANs.",
+      "null_meaning": "Data not provided or not applicable.",
+      "nullable": true,
+      "path": "$[*].websiteOfTheCompany",
+      "semantic": "Website URL of the issuer company.",
+      "type": "url",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:18:06+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [
+    "$[*].emailOfTheCompany",
+    "$[*].nameOfContactPerson",
+    "$[*].nameOfPromoterOrPromotersOfTheCompany",
+    "$[*].telephoneOfTheCompany"
+  ],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 1,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/offer_abridged_<id>.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "offer_abridged_general_aaccp0383j",
+      "snapshot_at": "2026-05-22T09:28:39+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/offer-documents-abridged-prospectus?pan_no=AACCP0383J&type=GENERAL"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint returns a single record with general information about the issuer company for an abridged prospectus, identified by PAN. All fields are null in the observed snapshot, indicating either missing data or a placeholder response.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "All fields are null in the observed snapshot; this may indicate a placeholder or missing data for the given PAN. The endpoint may return populated data for other PANs.",
+    "The endpoint name includes a PAN parameter; ensure proper handling of PII in logs and storage."
+  ]
+}

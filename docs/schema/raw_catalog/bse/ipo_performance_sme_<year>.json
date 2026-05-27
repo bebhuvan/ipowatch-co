@@ -1,0 +1,318 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "ipo_performance_sme_2025",
+    "estimated_cost_usd": 0.00885538,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 23134,
+    "tokens_out": 2372
+  },
+  "currency": "INR",
+  "data_kind": "performance_history",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0404",
+  "endpoint": "ipo_performance_sme_<year>",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company names may have inconsistent casing or abbreviations across endpoints.",
+          "suggested_mitigation": "Normalize to uppercase and trim whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "TECHNICHEM ORGANICS LIMITED",
+        "Retaggio Industries Limited"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "CompanyName",
+      "nested_table": false,
+      "notes": "Names are in uppercase or mixed case; may contain extra spaces.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].CompanyName",
+      "semantic": "Full name of the company that issued the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "current_price_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers are represented as floats; may have precision issues.",
+          "suggested_mitigation": "Parse as float and round to 2 decimal places."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        45.6,
+        68.0,
+        17.05
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "CurrentPrice",
+      "nested_table": false,
+      "notes": "Price in INR, may be zero or negative? Not observed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].CurrentPrice",
+      "semantic": "Current market price of the stock in Indian Rupees.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "gain_loss_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "May be computed from other fields; could be inconsistent if rounding differs.",
+          "suggested_mitigation": "Recompute from CurrentPrice and IssuePrice to ensure consistency."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        -9.4,
+        43.0,
+        -76.95
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "GainLoss",
+      "nested_table": false,
+      "notes": "Can be negative.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].GainLoss",
+      "semantic": "Difference between current price and issue price (CurrentPrice - IssuePrice). Negative indicates loss.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "bse_stock_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "URL contains a security ID (e.g., 544327) that may be used as an identifier.",
+          "suggested_mitigation": "Extract security ID from URL for joining."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://www.bseindia.com/stock-share-price/technichem-organics-ltd/technichem/544327/"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IMAGE",
+      "nested_table": false,
+      "notes": "URL pattern includes company name and security code.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].IMAGE",
+      "semantic": "URL to the BSE stock price page for the company.",
+      "type": "url",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue_price_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "May be represented as integer or float; ensure consistent parsing.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        55.0,
+        25.0,
+        94.0
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IssuePrice",
+      "nested_table": false,
+      "notes": "Typically an integer or half-rupee value.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].IssuePrice",
+      "semantic": "The price at which the IPO was issued to investors.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "listing_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date is in ISO 8601 format with time set to midnight; timezone is not specified but likely IST.",
+          "suggested_mitigation": "Parse as date only, ignore time component."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2025-01-07T00:00:00",
+        "2025-04-07T00:00:00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ListedOn",
+      "nested_table": false,
+      "notes": "Time component is always 00:00:00.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ListedOn",
+      "semantic": "The date on which the stock was listed on the exchange.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "listing_day_close_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Float value; may have rounding differences.",
+          "suggested_mitigation": "Parse as float."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        60.11,
+        25.2,
+        46.2
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ListingDayClose",
+      "nested_table": false,
+      "notes": null,
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ListingDayClose",
+      "semantic": "Closing price of the stock on its first day of trading.",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "listing_day_gain_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "May be computed; could be inconsistent if rounding differs.",
+          "suggested_mitigation": "Recompute from ListingDayClose and IssuePrice."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        5.11,
+        0.2,
+        -8.8
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "ListingDayGain",
+      "nested_table": false,
+      "notes": "Can be negative.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].ListingDayGain",
+      "semantic": "Difference between listing day close and issue price (ListingDayClose - IssuePrice).",
+      "type": "number",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "snapshot_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "All rows have same timestamp; likely the snapshot date.",
+          "suggested_mitigation": "Use as snapshot timestamp; ignore time component."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2025-12-31T00:00:00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Time",
+      "nested_table": false,
+      "notes": "All rows in this snapshot have the same value '2025-12-31T00:00:00'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].Time",
+      "semantic": "Timestamp indicating when the data was last updated or the snapshot date.",
+      "type": "datetime",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:04:56+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The IMAGE field contains a URL with a security ID (e.g., 544327) that can be used to fetch detailed stock data from BSE.",
+      "follow_up_endpoint_pattern": "https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w?scrip_cd={security_id}",
+      "key_field": "IMAGE (extracted security ID)"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 120,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/ipo_performance_sme_<year>.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_performance_sme_2025",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2025&company=&flag=2&type=2"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a list of SME IPOs listed on BSE in a given year, with current price, gain/loss from issue price, issue price, listing date, listing day close, and listing day gain. It is used to track post-listing performance of SME IPOs.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "All rows have the same Time value, suggesting this is a static snapshot; may not reflect real-time data.",
+    "The IMAGE field is a URL, not an actual image; it links to the BSE stock page.",
+    "No pagination or dropdown dependencies observed; the endpoint returns all data in one response."
+  ]
+}

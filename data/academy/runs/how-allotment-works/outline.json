@@ -1,0 +1,347 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/outline.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.outline.schema",
+  "dataset_version": "v2026.05.23-0526",
+  "estimated_cost_usd": 0.006595760000000001,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T05:26:28+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-3 outline produced by deepseek-reasoner.",
+  "outline": {
+    "dek_candidates": [
+      "In an oversubscribed Indian IPO, every retail applicant has the same shot—whether they bid for one lot or fourteen. Here is how the allotment is engineered."
+    ],
+    "design_notes": [
+      "Intro should open with a short, concrete example (one-lot vs fourteen-lot) to immediately convey the lottery principle.",
+      "Retail allotment section must present the worked example verbatim (with proper attribution) to establish authority.",
+      "The NII sub-split section is short; can be merged with 'Allocation categories' if tighter structure preferred, but kept separate for clarity of the 2022 change.",
+      "SCSB compensation is a brief sidebar; consider placing it as a standalone section after retail allotment or as a highlighted box.",
+      "No bulletpoint thicket: use tables for comparisons; write prose for narratives.",
+      "Every claim is sourced; no phantom numbers."
+    ],
+    "gaps": [
+      {
+        "blocking": false,
+        "reason": "Source corpus does not contain historical context. May need secondary source.",
+        "topic": "Exact date of SEBI's introduction of the retail lottery (2012) — not in corpus; we can only say 'SEBI introduced the lottery method' without year unless added."
+      },
+      {
+        "blocking": false,
+        "reason": "No secondary sources in corpus; optional.",
+        "topic": "Practical market examples of specific IPOs (e.g., subscription numbers, oversubscription multiples) — not needed for regulatory mechanics but could enrich narrative."
+      }
+    ],
+    "kicker_candidates": [
+      "PRIMARY MARKET MECHANICS",
+      "ALLOTMENT EXPLAINED",
+      "THE LOTTERY SYSTEM"
+    ],
+    "section_order": [
+      "intro",
+      "allocation-categories",
+      "anchor-investors",
+      "nii-split",
+      "retail-allotment",
+      "employee-shareholder-reservations",
+      "scsb-compensation"
+    ],
+    "sections": {
+      "allocation-categories": {
+        "beats": [
+          {
+            "beat": "Detail Reg 32(1) percentages: not less than 35% retail, not less than 15% NII, not more than 50% QIB; mutual fund reservation of 5% within QIB.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Explain that under-subscription in retail or NII can spill over to other categories (provided provisos).",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Note the special case for loss-making issuers (Reg 32(2)): retail capped at 10%, NII at 15%, QIB at 75%.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          }
+        ],
+        "heading": "The three buckets: QIB, NII, retail",
+        "purpose": "Walk through the base allocation rules and how the net offer is carved among investor categories."
+      },
+      "anchor-investors": {
+        "beats": [
+          {
+            "beat": "Define anchor investor: QIB with minimum application of ₹10 crore (mainboard book-built).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Up to 60% of QIB portion can go to anchor investors (Reg 32(3)).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Anchor investor allocation is discretionary; limits on number of investors based on total anchor size (Schedule XIII, Sec 10(c)).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "One-third of anchor portion reserved for domestic mutual funds (Schedule XIII, Sec 10(d)).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Lock-in: 50% for 90 days, 50% for 30 days (from April 2022 amendment; footnote 725).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Anchor bidding opens one day before issue; price discovery and payment mechanics (Schedule XIII, Sec 10(e)-(h)).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          }
+        ],
+        "heading": "Anchor investors: carving out the QIB portion",
+        "purpose": "Explain how anchor investors (up to 60% of QIB portion) are allocated, their minimum ticket, mutual fund reservation, and lock-in."
+      },
+      "employee-shareholder-reservations": {
+        "beats": [
+          {
+            "beat": "Employee reservation: aggregate not exceeding 5% of post-issue capital; value per employee not exceeding ₹2 lakh (may go to ₹5 lakh if under-subscription in employee portion and proportionate allocation).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Shareholder reservation: not exceeding 10% of issue size; only for shareholders of listed subsidiaries or listed promoter companies (not promoter group).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Unsubscribed portions in reserved categories may be adjusted inter se and then added to net offer.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "No further application in net offer can be made by those who apply under reservation (except employees and retail individual shareholders).",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          }
+        ],
+        "heading": "Reservation portions: employees and shareholders",
+        "purpose": "Describe the caps and conditions for employee reservation (up to 5% of post-issue capital, value cap ₹2L per employee, with roll-up provision) and shareholder reservation (up to 10% of issue size)."
+      },
+      "intro": {
+        "beats": [
+          {
+            "beat": "Open mid-action with the lottery mechanic: in an oversubscribed retail category, applying for more lots does not improve odds.",
+            "kind": "narrative",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "State the headline allocation percentages (Reg 32(1)) for a normal book-built IPO: retail at least 35%, NII at least 15%, QIB at most 50% (with 5% reserved for mutual funds).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Mention the alternative compulsory-QIB book for loss-making issuers (Reg 32(2)): only 10% retail, 15% NII, 75% QIB.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          }
+        ],
+        "heading": null,
+        "purpose": "Set up the core insight: Indian retail allotment is a lottery, not a market, and explain why that matters."
+      },
+      "nii-split": {
+        "beats": [
+          {
+            "beat": "Reg 32(3A): one-third of NII portion reserved for applicants with application size >₹2L up to ₹10L (sHNI); two-thirds for >₹10L (bHNI).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Effective date: April 1, 2022 for issues opening on or after that date (footnote 83); for issues ≥₹10,000 crore, effective July 1, 2022.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Unsubscribed portion in one sub-category may spill to the other.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "In case of oversubscription within either sub-category, allotment follows the same lottery principle as retail (though the corpus does not explicitly spell out a worked example for NII, the regulation implies proportionate/lottery based on scheme of allotment; we note this is inferred from the general principle).",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          }
+        ],
+        "heading": "The NII sub-split: sHNI and bHNI",
+        "purpose": "Explain the split of the NII bucket into two sub-categories (sHNI ₹2–10L, bHNI >₹10L), effective April 2022, and how draw of lots works if oversubscribed."
+      },
+      "retail-allotment": {
+        "beats": [
+          {
+            "beat": "Definition of retail individual investor: bid value not more than ₹2 lakh (Reg 2(vv)).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Undersubscribed case: every applicant gets at least the minimum bid lot; remaining shares distributed proportionally (Example A paraphrased).",
+            "kind": "example",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "Oversubscribed case (Example B from Schedule XIII): 35 lakh shares on offer, 2 lakh applicants, minimum lot 20 shares. The maximum number of allottees is 1,75,000 (35,00,000 / 20). Allotment is by lottery, with each successful applicant receiving exactly the minimum lot. The remaining 25,000 get nothing.",
+            "kind": "example",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "The lottery is applied proportionally across all bid-lot tiers: the same 87.5% success rate for 1-lot bidders and for 16-lot bidders. No advantage for larger bids.",
+            "kind": "number",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          },
+          {
+            "beat": "The principle: fairness by design — size does not increase probability.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-icdr-2018-2025-03-08"
+            ]
+          }
+        ],
+        "heading": "Retail allotment: undersubscribed vs. oversubscribed",
+        "purpose": "Describe the two cases with the verbatim SEBI worked examples from Schedule XIII; show that oversubscription triggers a lottery where each successful applicant gets exactly one minimum lot."
+      },
+      "scsb-compensation": {
+        "beats": [
+          {
+            "beat": "SEBI recognized opportunity loss scenarios: SCSB failure to bid, failure to process, or other errors leading to rejection (Master Circular Ch.5, para 1).",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-icdr-2024-11-11"
+            ]
+          },
+          {
+            "beat": "Compensation formula: (Listing price - Issue price) × shares that would have been allotted × probability of allotment (para 3).",
+            "kind": "formula",
+            "source_ids": [
+              "sebi-master-circular-icdr-2024-11-11"
+            ]
+          },
+          {
+            "beat": "For issues subscribed 90-100%, compensation equals full allotment loss (para 4). No compensation if listing price below issue price (para 5).",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-master-circular-icdr-2024-11-11"
+            ]
+          },
+          {
+            "beat": "Applicant must seek redress with SCSB within 3 months of listing; SCSB must resolve within 15 days or pay 15% p.a. interest (para 7-8).",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-master-circular-icdr-2024-11-11"
+            ]
+          }
+        ],
+        "heading": "When the bank fails: compensation for ASBA errors",
+        "purpose": "Explain the SEBI-mandated compensation formula for retail investors whose applications are rejected due to SCSB failure."
+      }
+    },
+    "title_candidates": [
+      "How IPO allotment actually works",
+      "The Indian IPO lottery: a mechanic, not a market",
+      "What happens when your IPO bid is oversubscribed",
+      "Inside the SEBI retail lottery"
+    ],
+    "visual_targets": [
+      {
+        "kind": "table",
+        "purpose": "Show the allocation percentages for normal book-built (Reg 32(1)) and loss-issuer book-built (Reg 32(2)) side by side.",
+        "where": "allocation-categories"
+      },
+      {
+        "kind": "pull_quote",
+        "purpose": "Highlight the key takeaway: 'Applying for more does not help you, once the retail category is oversubscribed.'",
+        "where": "intro"
+      },
+      {
+        "kind": "table",
+        "purpose": "Show anchor investor count limits based on total anchor size (from Schedule XIII Sec 10(c)).",
+        "where": "anchor-investors"
+      },
+      {
+        "kind": "formula",
+        "purpose": "Display the compensation formula clearly.",
+        "where": "scsb-compensation"
+      },
+      {
+        "kind": "timeline",
+        "purpose": "Show the order of spillover: reserved categories → inter se adjustments → net offer.",
+        "where": "employee-shareholder-reservations"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "how-allotment-works",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 10088,
+  "tokens_out": 3520
+}

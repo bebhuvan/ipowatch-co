@@ -1,0 +1,236 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "demo_index",
+    "estimated_cost_usd": 0.0027215100000000003,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 2893,
+    "tokens_out": 1764
+  },
+  "currency": "INR",
+  "data_kind": "dropdown_index",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0430",
+  "endpoint": "demo_index",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "endpoint_category",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Category values may be renamed or added as new endpoints are introduced.",
+          "suggested_mitigation": "Treat as enum; log unknown values for review."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "primary_equity",
+        "primary_debt",
+        "secondary_corporate_action",
+        "secondary_market"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "category",
+      "nested_table": false,
+      "notes": "Used for grouping endpoints in the UI.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].category",
+      "semantic": "Broad category of the endpoint (e.g., primary_equity, primary_debt, secondary_corporate_action, secondary_market).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "endpoint_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Endpoint names may change or be reused across different categories.",
+          "suggested_mitigation": "Use as a stable key only if combined with category."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "public_issues",
+        "sme_issues",
+        "rights_issues"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "endpoint",
+      "nested_table": false,
+      "notes": "This is the key to use when constructing URLs or referencing data.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].endpoint",
+      "semantic": "Unique identifier for the endpoint within the Prime database system (e.g., public_issues, sme_issues).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "endpoint_label",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Label may contain special characters or non-ASCII text.",
+          "suggested_mitigation": "Ensure UTF-8 encoding; strip HTML if any."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Public Issues (IPOs, FPOs & OFS (SE))",
+        "SME Issues (IPOs & FPOs)",
+        "Rights Issues"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "label",
+      "nested_table": false,
+      "notes": "Used for display purposes only.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].label",
+      "semantic": "Human-readable display name for the endpoint (e.g., 'Public Issues (IPOs, FPOs & OFS (SE))').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "endpoint_path",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Path may change if the website is restructured.",
+          "suggested_mitigation": "Use as a relative reference; combine with base URL."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "pub_demo.asp",
+        "sme_ipo_demo.asp",
+        "rig_demo.asp"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "path",
+      "nested_table": false,
+      "notes": "Append to base URL to access the endpoint.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].path",
+      "semantic": "Relative URL path to the endpoint page (e.g., 'pub_demo.asp').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "endpoint_relevance",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Relevance classification may change over time.",
+          "suggested_mitigation": "Treat as a hint; do not rely on it for critical logic."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "core",
+        "adjacent"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "relevance",
+      "nested_table": false,
+      "notes": "Used for filtering in the UI.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].relevance",
+      "semantic": "Indicates whether the endpoint is core or adjacent to the primary IPO data focus.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "endpoint_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL may change if the domain or path structure changes.",
+          "suggested_mitigation": "Construct URL from base and path rather than relying on this field."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://primedatabase.com/pub_demo.asp",
+        "https://primedatabase.com/sme_ipo_demo.asp"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "url",
+      "nested_table": false,
+      "notes": "Direct link to the endpoint.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].url",
+      "semantic": "Full URL to the endpoint page (e.g., 'https://primedatabase.com/pub_demo.asp').",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:30:11+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "Each page entry references a separate endpoint that can be fetched for detailed data. The 'path' and 'url' fields provide the means to access those endpoints.",
+      "follow_up_endpoint_pattern": "https://primedatabase.com/{path}",
+      "key_field": "endpoint"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 19,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/prime/demo_index.json",
+  "schema_version": "1.0.0",
+  "source": "prime",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "demo_index",
+      "snapshot_at": "2026-05-22T09:57:28+00:00",
+      "source": "prime",
+      "url": "https://primedatabase.com/default.asp"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint returns a navigation index of all available demo endpoints on the Prime Database website, categorized by type (primary equity, primary debt, secondary corporate action, secondary market). Each entry provides a label, path, relevance, and URL for the corresponding data page.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "This is a navigation index, not a data endpoint. It lists available endpoints but contains no actual IPO data.",
+    "The 'path' and 'url' fields may change if the website is restructured; consider constructing URLs from a base URL and the path.",
+    "The 'relevance' field is subjective and may change; do not rely on it for critical decisions."
+  ]
+}

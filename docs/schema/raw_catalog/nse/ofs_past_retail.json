@@ -1,0 +1,614 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": true,
+    "cached": false,
+    "endpoint_concrete": "ofs_past_retail",
+    "estimated_cost_usd": 0.012870079999999999,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 27924,
+    "tokens_out": 4846
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0423",
+  "endpoint": "ofs_past_retail",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "allocation_price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be strings with leading/trailing spaces or contain multiple decimal points (e.g., '103.51.00').",
+          "suggested_mitigation": "Parse as string, then clean and convert to number; reject malformed values."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Values are in INR but may be missing decimal places or have inconsistent formatting.",
+          "suggested_mitigation": "Assume INR; strip any currency symbols."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "63",
+        "1900",
+        "53.50",
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "allocatePrice",
+      "nested_table": false,
+      "notes": "Sometimes contains '-' indicating no allocation or data not available.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].allocatePrice",
+      "semantic": "The final allocation price per share for the OFS, possibly for the retail category or overall.",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "allocation_price_general",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be strings with leading/trailing spaces or contain multiple decimal points.",
+          "suggested_mitigation": "Parse as string, then clean and convert to number; reject malformed values."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Values are in INR but may be missing decimal places or have inconsistent formatting.",
+          "suggested_mitigation": "Assume INR; strip any currency symbols."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-",
+        "256.7",
+        "161.00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "allocatePriceGeneral",
+      "nested_table": false,
+      "notes": "Often '-' meaning no general category allocation or data not available.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].allocatePriceGeneral",
+      "semantic": "The allocation price for the general category (non-retail) investors.",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "allocation_price_retail",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be strings with leading/trailing spaces or contain multiple decimal points.",
+          "suggested_mitigation": "Parse as string, then clean and convert to number; reject malformed values."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Values are in INR but may be missing decimal places or have inconsistent formatting.",
+          "suggested_mitigation": "Assume INR; strip any currency symbols."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "63",
+        "1900",
+        "53.50",
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "allocatePriceRetail",
+      "nested_table": false,
+      "notes": "Sometimes '-' indicating no retail allocation or data not available.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].allocatePriceRetail",
+      "semantic": "The allocation price specifically for retail investors.",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "allocated_quantity",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be strings with leading/trailing spaces or contain commas; sometimes '-' indicates no data.",
+          "suggested_mitigation": "Strip whitespace, remove commas, convert to integer; treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "99397",
+        "8240",
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "allocatedQty",
+      "nested_table": false,
+      "notes": "May represent total allocated quantity across categories.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].allocatedQty",
+      "semantic": "The total quantity of shares allocated in the OFS, possibly for retail or overall.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "allocated_quantity_retail_bid",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be strings with leading/trailing spaces or contain commas; sometimes '-' indicates no data.",
+          "suggested_mitigation": "Strip whitespace, remove commas, convert to integer; treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "99397",
+        "8240",
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "allocatedQtyRetailsBid",
+      "nested_table": false,
+      "notes": "May be same as allocatedQty for retail-only issues.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].allocatedQtyRetailsBid",
+      "semantic": "The quantity of shares allocated to retail investors based on their bids.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "allocated_quantity_rollover_bid",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be strings with leading/trailing spaces or contain commas; null or '-' indicates no data.",
+          "suggested_mitigation": "Strip whitespace, remove commas, convert to integer; treat null or '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1007835",
+        "5495792",
+        null,
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "allocatedQtyRolloverBid",
+      "nested_table": false,
+      "notes": "Often null or '-' when no rollover.",
+      "null_meaning": "No rollover bids or data not available.",
+      "nullable": true,
+      "path": "$[*].allocatedQtyRolloverBid",
+      "semantic": "The quantity of shares allocated from rollover bids (bids carried over from previous tranches).",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "investor_category",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Category is always 'RETAIL' in this endpoint; may differ in other endpoints.",
+          "suggested_mitigation": "Validate against expected values; treat as enum."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "RETAIL"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "category",
+      "nested_table": false,
+      "notes": "Constant 'RETAIL' for this endpoint.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].category",
+      "semantic": "The investor category for which the data is reported (e.g., RETAIL).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company names may contain non-ASCII characters or special characters.",
+          "suggested_mitigation": "Normalize Unicode; trim whitespace."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Eastern Silk Industries Limited",
+        "Swan Defence and Heavy Industries Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "companyName",
+      "nested_table": false,
+      "notes": "May have slight variations across endpoints.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].companyName",
+      "semantic": "The full name of the company whose shares are being offered.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "cumulative_quantity",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be strings with leading/trailing spaces or contain commas; sometimes '-' indicates no data.",
+          "suggested_mitigation": "Strip whitespace, remove commas, convert to integer; treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "99397",
+        "37952",
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumlativeQty",
+      "nested_table": false,
+      "notes": "Misspelled 'cumlative' in source.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].cumlativeQty",
+      "semantic": "The cumulative quantity of shares bid or allocated up to the current date for the OFS.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "cumulative_quantity_retail_bid",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be strings with leading/trailing spaces or contain commas; sometimes '-' indicates no data.",
+          "suggested_mitigation": "Strip whitespace, remove commas, convert to integer; treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "99397",
+        "37952",
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumlativeQtyRetailsBid",
+      "nested_table": false,
+      "notes": "Misspelled 'cumlative' in source.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].cumlativeQtyRetailsBid",
+      "semantic": "The cumulative quantity of shares bid by retail investors.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "cumulative_quantity_rollover_bid",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be strings with leading/trailing spaces or contain commas; null or '-' indicates no data.",
+          "suggested_mitigation": "Strip whitespace, remove commas, convert to integer; treat null or '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "6699535",
+        "11273998",
+        null,
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "cumlativeQtyRolloverBid",
+      "nested_table": false,
+      "notes": "Misspelled 'cumlative' in source.",
+      "null_meaning": "No rollover bids or data not available.",
+      "nullable": true,
+      "path": "$[*].cumlativeQtyRolloverBid",
+      "semantic": "The cumulative quantity of shares from rollover bids.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "floor_price",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be strings with leading/trailing spaces, contain 'Rs.' prefix, or have multiple decimal points.",
+          "suggested_mitigation": "Strip 'Rs.' and whitespace, then parse as number; reject malformed values."
+        },
+        {
+          "category": "E.CUR",
+          "description": "Values are in INR but may have inconsistent formatting.",
+          "suggested_mitigation": "Assume INR; strip any currency symbols."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "63",
+        "1900",
+        "Rs.72",
+        "Rs.265"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "floorPrice",
+      "nested_table": false,
+      "notes": "Sometimes includes 'Rs.' prefix.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].floorPrice",
+      "semantic": "The floor price (minimum price) for the OFS.",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "pricing_methodology",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "May be '-' when data not available.",
+          "suggested_mitigation": "Treat '-' as null or unknown."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Multiple",
+        "Single",
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "methodology",
+      "nested_table": false,
+      "notes": "Values: 'Multiple', 'Single', or '-'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].methodology",
+      "semantic": "The pricing methodology used for the OFS (e.g., 'Multiple' for multiple price, 'Single' for single price).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "subscription_multiple",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings with leading spaces and may have leading zeros; decimal numbers.",
+          "suggested_mitigation": "Trim whitespace, parse as float; treat as number."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "       .47",
+        "       .14",
+        "      1.34",
+        "   1413.07"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfTimes",
+      "nested_table": false,
+      "notes": "Leading spaces are present; values like '.47' represent 0.47x.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].noOfTimes",
+      "semantic": "The number of times the OFS was subscribed (oversubscription multiple).",
+      "type": "string",
+      "units": "x"
+    },
+    {
+      "canonical_field_hint": "shares_offered",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values may be strings with leading/trailing spaces or contain commas.",
+          "suggested_mitigation": "Strip whitespace, remove commas, convert to integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "210737",
+        "263875",
+        "667685"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "noOfshareOffered",
+      "nested_table": false,
+      "notes": "Large numbers may be in plain format without commas.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].noOfshareOffered",
+      "semantic": "The total number of shares offered in the OFS.",
+      "type": "string",
+      "units": "shares"
+    },
+    {
+      "canonical_field_hint": "offer_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is 'dd-MMM-yyyy' (e.g., 19-Mar-2026). Month abbreviations may vary.",
+          "suggested_mitigation": "Parse using a date format like 'dd-MMM-yyyy' with locale handling."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "19-Mar-2026",
+        "18-Mar-2026",
+        "26-Feb-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "offerDate",
+      "nested_table": false,
+      "notes": "Format: dd-MMM-yyyy.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].offerDate",
+      "semantic": "The date on which the OFS was offered.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "serial_number",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Serial number is not a stable identifier; it may change with different queries.",
+          "suggested_mitigation": "Do not use as primary key; use symbol and offerDate instead."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        1,
+        2,
+        3
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "sr_no",
+      "nested_table": false,
+      "notes": "Local row number, not a global identifier.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].sr_no",
+      "semantic": "Serial number of the record in the list.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "ticker_symbol",
+      "collision_risk_with": [
+        "nse.ipo_listing.symbol",
+        "nse.equity_quote.symbol"
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused for different OFS issues of the same company; suffix 'CUMU' may vary.",
+          "suggested_mitigation": "Combine symbol with offerDate for unique identification."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "EASTSILKCUMU",
+        "SWANDEFCUMU",
+        "ACLCUMU"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Suffix 'CUMU' indicates cumulative OFS; may differ from regular trading symbol.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].symbol",
+      "semantic": "The trading symbol of the company, often with a suffix like 'CUMU' indicating cumulative OFS.",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:23:36+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The symbol field can be used to fetch detailed company information or current trading data from equity quote endpoints.",
+      "follow_up_endpoint_pattern": "nse.equity_quote?symbol={symbol}",
+      "key_field": "symbol"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 124,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/ofs_past_retail.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "ofs_past_retail",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/live-ofs-past-issues?index=RETAIL"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a list of past Offer for Sale (OFS) issues for the retail category, including allocation prices, quantities, subscription details, and offer dates for various companies.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Body was truncated; only first 124 records observed. Full dataset may contain more records.",
+    "Some fields contain '-' as placeholder for missing data; treat as null.",
+    "Floor price sometimes includes 'Rs.' prefix; need to strip before parsing.",
+    "AllocatePrice fields may have malformed values like '103.51.00' or '10.00.00'; these are likely data entry errors.",
+    "No pagination or dropdown dependencies observed in this snapshot.",
+    "Data is historical; refresh cadence suggested as daily (1440 minutes)."
+  ]
+}

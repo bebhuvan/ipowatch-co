@@ -1,0 +1,973 @@
+---
+import Base from '../layouts/Base.astro';
+import {
+  getCurrent,
+  getUpcoming,
+  getRecentHistorical,
+  getDetailBySlug,
+  getYearStats,
+  getAvailableYears,
+  extractIngredient,
+  getRecentByType,
+  getCountByType,
+  getTopGainersAllTime,
+  getGainDistribution,
+  dedupByCompany,
+  normCompany,
+  getDatahub,
+  sumMonthly,
+  type IssueSummary,
+} from '../lib/issues';
+import {
+  formatRupee,
+  formatRupeeRange,
+  formatLakhCr,
+  formatDateShort,
+  formatInt,
+  formatTimes,
+  daysFromNow,
+  displayName,
+} from '../lib/format';
+
+const today = new Date();
+const todayYear = today.getFullYear();
+
+type Enriched = IssueSummary & {
+  lotSize: number | null;
+  raisingText: string | null;
+  raisingValue: number | null;
+  subscriptionTimes: number | null;
+  brlmName: string | null;
+};
+
+const enrich = (issue: IssueSummary): Enriched => {
+  const detail = getDetailBySlug(issue.slug);
+  const ing = detail ? extractIngredient(detail) : null;
+  const traj = detail?.subscription?.trajectory ?? [];
+  const last = traj.length ? traj[traj.length - 1] : null;
+  const subscriptionTimes = last?.total?.times ?? detail?.subscription?.times ?? null;
+  return {
+    ...issue,
+    price_band: {
+      min: issue.price_band?.min ?? ing?.priceMin ?? null,
+      max: issue.price_band?.max ?? ing?.priceMax ?? null,
+      text: issue.price_band?.text ?? null,
+    },
+    lotSize: ing?.lotSize ?? null,
+    raisingText: ing?.impliedSize ? formatLakhCr(ing.impliedSize) : detail?.issue_size?.text ?? null,
+    raisingValue: ing?.impliedSize ?? null,
+    subscriptionTimes,
+    brlmName: ing?.brlmName ?? null,
+  };
+};
+
+const open: Enriched[] = getCurrent().map(enrich).sort((a, b) => {
+  const da = daysFromNow(a.close_date, today) ?? 999;
+  const db = daysFromNow(b.close_date, today) ?? 999;
+  if (da !== db) return da - db;
+  return (b.raisingValue ?? 0) - (a.raisingValue ?? 0);
+});
+
+const openNames = new Set(open.map((i) => normCompany(i.company_name)));
+
+const upcoming: Enriched[] = getUpcoming()
+  .filter((i) => !openNames.has(normCompany(i.company_name)))
+  .map(enrich)
+  .sort((a, b) => {
+    const da = daysFromNow(a.open_date, today) ?? 999;
+    const db = daysFromNow(b.open_date, today) ?? 999;
+    return da - db;
+  });
+
+// Lead — largest open by implied raise; fallback to soonest-closing
+const lead = (() => {
+  const withSize = open.filter((i) => i.raisingValue != null);
+  if (withSize.length > 0) return withSize.slice().sort((a, b) => (b.raisingValue ?? 0) - (a.raisingValue ?? 0))[0];
+  return open[0] ?? null;
+})();
+const otherOpen = lead ? open.filter((i) => i.slug !== lead.slug).slice(0, 6) : open.slice(0, 6);
+
+const stats = getYearStats(todayYear);
+
+// Recently listed — dedup by company, only with listing date
+const recentRaw = getRecentHistorical(80);
+const recentSeen = new Set<string>();
+const recent: IssueSummary[] = [];
+for (const i of recentRaw) {
+  const k = normCompany(i.company_name);
+  if (recentSeen.has(k) || !i.listing_date) continue;
+  recentSeen.add(k);
+  recent.push(i);
+  if (recent.length >= 8) break;
+}
+const recentGains = recent.map((r) => r.listing_day_gain).filter((g): g is number => g != null);
+const recentGainMax = recentGains.length ? Math.max(...recentGains.map(Math.abs)) : 0;
+
+// Distribution + monthly trend
+const dist = getGainDistribution(24);
+const distMax = Math.max(...dist.bins.map((b) => b.count), 1);
+const distZeroIdx = dist.bins.findIndex((b) => b.from === 0);
+const distZeroPct = distZeroIdx >= 0 ? (distZeroIdx / dist.bins.length) * 100 : 50;
+
+// Other public issue types — recent buybacks, OFS, rights
+const recentBuybacks = dedupByCompany(getRecentByType('Buyback', 12)).slice(0, 5);
+const recentOFS = dedupByCompany(getRecentByType('OFS', 12)).slice(0, 5);
+const recentRights = dedupByCompany(getRecentByType('Rights', 12)).slice(0, 5);
+const countBuyback = getCountByType('Buyback');
+const countOFS = getCountByType('OFS');
+const countRights = getCountByType('Rights');
+const countInvIT = getCountByType('InvIT');
+const countREIT = getCountByType('REIT');
+const countTender = getCountByType('Tender');
+const countIPO = getCountByType('IPO');
+
+// All-time leaderboards
+const topGainersAllTime = getTopGainersAllTime(5, { mainboardOnly: false });
+
+// Archive year chart
+const years = getAvailableYears();
+const yearStatsAll = years.map((y) => getYearStats(y));
+const yearMax = Math.max(...yearStatsAll.map((s) => s.total), 1);
+const peakYear = yearStatsAll.slice().sort((a, b) => b.total - a.total)[0];
+
+// Roman numerals for ornament
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+
+const typeTag = (issue: { issue_type: string | null; exchange_platform: string | null }) => {
+  const t = issue.issue_type ?? '';
+  const ex = (issue.exchange_platform ?? '').replace(/\s+/g, ' ').trim();
+  return [t, ex].filter(Boolean).join('  ·  ');
+};
+
+const closeTiming = (iso: string | null) => {
+  const d = daysFromNow(iso, today);
+  if (d == null) return '—';
+  if (d === 0) return 'Closes today';
+  if (d === 1) return 'Closes tomorrow';
+  if (d > 0) return 'Closes ' + formatDateShort(iso);
+  return 'Closed';
+};
+
+const fmtGain = (g: number | null | undefined) => g == null ? '—' : `${g > 0 ? '+' : ''}${g.toFixed(1)}%`;
+
+/* ── SEBI / IndiaDataHub capital raising ── */
+const datahub = getDatahub();
+const dhAnnual = datahub?.annual ?? {};
+const dhYears = Object.keys(dhAnnual).sort();
+
+// Find the latest month with data in this year
+const totalSeries = datahub?.indicators.total_raised_cr?.monthly ?? [];
+const ipoSeries = datahub?.indicators.ipo_raised_cr?.monthly ?? [];
+const thisYearObs = totalSeries.filter((o) => o.date?.startsWith(String(todayYear)));
+const latestObsDate = thisYearObs.length ? thisYearObs[thisYearObs.length - 1].date : '';
+const latestMonthIdx = latestObsDate ? Number(latestObsDate.slice(5, 7)) : 0;
+const ytdFromIso = `${todayYear}-01-01`;
+const ytdToIso = latestObsDate || `${todayYear}-12-31`;
+const lastYearYtdFromIso = `${todayYear - 1}-01-01`;
+const lastYearYtdToIso = latestMonthIdx
+  ? `${todayYear - 1}-${String(latestMonthIdx).padStart(2,'0')}-31`
+  : `${todayYear - 1}-12-31`;
+
+const ytdTotalRaised = sumMonthly(totalSeries, ytdFromIso, ytdToIso);
+const ytdIpoRaised = sumMonthly(ipoSeries, ytdFromIso, ytdToIso);
+const lastYearYtdTotal = sumMonthly(totalSeries, lastYearYtdFromIso, lastYearYtdToIso);
+const yoyTotal = lastYearYtdTotal > 0 ? ((ytdTotalRaised - lastYearYtdTotal) / lastYearYtdTotal) * 100 : null;
+
+// YTD counts per type
+const sumCountMonthly = (key: string): number => sumMonthly(datahub?.indicators[key]?.monthly, ytdFromIso, ytdToIso);
+const ytdMainboardCount = sumCountMonthly('ipo_mainboard_count');
+const ytdSmeCount = sumCountMonthly('ipo_sme_count');
+const ytdFpoCount = sumCountMonthly('fpo_count');
+const ytdRightsCount = sumCountMonthly('rights_count');
+const ytdQipCount = sumCountMonthly('qip_count');
+const ytdPrefCount = sumCountMonthly('preferential_count');
+
+// YTD raised per type
+const sumRaisedMonthly = (key: string): number => sumMonthly(datahub?.indicators[key]?.monthly, ytdFromIso, ytdToIso);
+const ytdMainboardRaised = sumRaisedMonthly('ipo_mainboard_raised_cr');
+const ytdSmeRaised = sumRaisedMonthly('ipo_sme_raised_cr');
+const ytdFpoRaised = sumRaisedMonthly('fpo_raised_cr');
+const ytdRightsRaised = sumRaisedMonthly('rights_raised_cr');
+const ytdQipRaised = sumRaisedMonthly('qip_raised_cr');
+const ytdPrefRaised = sumRaisedMonthly('preferential_raised_cr');
+const ytdIpoCount = ytdMainboardCount + ytdSmeCount;
+const ytdAllIssueCount = ytdIpoCount + ytdFpoCount + ytdRightsCount + ytdQipCount + ytdPrefCount;
+const ytdIpoShare = ytdTotalRaised > 0 ? (ytdIpoRaised / ytdTotalRaised) * 100 : null;
+const ytdInstrumentRows = [
+  { label: 'Mainboard IPO', short: 'Mainboard', count: ytdMainboardCount, raised: ytdMainboardRaised, tone: 'ink' },
+  { label: 'SME IPO', short: 'SME', count: ytdSmeCount, raised: ytdSmeRaised, tone: 'accent' },
+  { label: 'FPO', short: 'FPO', count: ytdFpoCount, raised: ytdFpoRaised, tone: 'mute' },
+  { label: 'Rights', short: 'Rights', count: ytdRightsCount, raised: ytdRightsRaised, tone: 'gold' },
+  { label: 'QIP', short: 'QIP', count: ytdQipCount, raised: ytdQipRaised, tone: 'stone' },
+  { label: 'Preferential', short: 'Pref.', count: ytdPrefCount, raised: ytdPrefRaised, tone: 'sand' },
+];
+const ytdInstrumentMaxRaised = Math.max(...ytdInstrumentRows.map((t) => t.raised), 1);
+const ytdTopInstrument = ytdInstrumentRows.slice().sort((a, b) => b.raised - a.raised)[0] ?? null;
+const ytdPositivePct = Math.round((dist.positive / Math.max(1, dist.total)) * 100);
+
+// Annual chart data: capital raised by type, stacked, per year (₹ Cr)
+type AnnualStack = { year: string; total: number; mainboard: number; sme: number; fpo: number; rights: number; qip: number; pref: number };
+const annualStack: AnnualStack[] = dhYears.map((y) => {
+  const r = dhAnnual[y] ?? {};
+  return {
+    year: y,
+    mainboard: r.ipo_mainboard_raised_cr ?? 0,
+    sme: r.ipo_sme_raised_cr ?? 0,
+    fpo: r.fpo_raised_cr ?? 0,
+    rights: r.rights_raised_cr ?? 0,
+    qip: r.qip_raised_cr ?? 0,
+    pref: r.preferential_raised_cr ?? 0,
+    total: r.total_raised_cr ?? 0,
+  };
+});
+const annualStackMax = Math.max(...annualStack.map((a) => a.total), 1);
+
+// IPO count per year (mainboard + SME stacked)
+const annualIpoCounts = dhYears.map((y) => ({
+  year: y,
+  mainboard: dhAnnual[y]?.ipo_mainboard_count ?? 0,
+  sme: dhAnnual[y]?.ipo_sme_count ?? 0,
+}));
+const annualIpoMax = Math.max(...annualIpoCounts.map((a) => a.mainboard + a.sme), 1);
+
+// Formatters
+const fmtCr = (cr: number): string => {
+  if (cr >= 1_00_000) return `₹${(cr / 1_00_000).toFixed(2)} L Cr`;
+  return `₹${Math.round(cr).toLocaleString('en-IN')} Cr`;
+};
+const latestMonthLabel = latestObsDate
+  ? new Date(latestObsDate).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })
+  : '';
+
+const closingToday = open.filter((i) => daysFromNow(i.close_date, today) === 0).length;
+const hottest = open.filter((i) => i.subscriptionTimes != null).sort((a, b) => (b.subscriptionTimes ?? 0) - (a.subscriptionTimes ?? 0))[0] ?? null;
+
+const toLocalISODate = (d: Date) => {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+};
+
+// Build a 7-day pipeline (today + 6 days ahead)
+type PipeEvent = { name: string; verb: 'Closes' | 'Opens'; tag: string; url: string };
+type PipeRow = {
+  date: Date;
+  dow: string;
+  dnum: string;
+  month: string;
+  fullDate: string;
+  isWeekend: boolean;
+  isToday: boolean;
+  events: PipeEvent[];
+};
+const pipeline: PipeRow[] = [];
+for (let i = 0; i < 7; i++) {
+  const d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
+  const dow = d.toLocaleDateString('en-IN', { weekday: 'short' });
+  const dnum = String(d.getDate());
+  const month = d.toLocaleDateString('en-IN', { month: 'short' });
+  const fullDate = d.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' });
+  const isWeekend = d.getDay() === 0 || d.getDay() === 6;
+  const iso = toLocalISODate(d);
+  const events: PipeRow['events'] = [];
+  for (const issue of open) {
+    if (issue.close_date === iso) {
+      events.push({ name: issue.company_name, verb: 'Closes', tag: typeTag(issue), url: issue.url_path });
+    }
+  }
+  for (const issue of upcoming) {
+    if (issue.open_date === iso) {
+      events.push({ name: issue.company_name, verb: 'Opens', tag: typeTag(issue), url: issue.url_path });
+    }
+    if (issue.close_date === iso) {
+      events.push({ name: issue.company_name, verb: 'Closes', tag: typeTag(issue), url: issue.url_path });
+    }
+  }
+  events.sort((a, b) => {
+    if (a.verb !== b.verb) return a.verb === 'Closes' ? -1 : 1;
+    return a.name.localeCompare(b.name);
+  });
+  pipeline.push({ date: d, dow, dnum, month, fullDate, isWeekend, isToday: i === 0, events });
+}
+const pipelineEvents = pipeline.flatMap((row) => row.events);
+const pipelineOpenCount = pipelineEvents.filter((event) => event.verb === 'Opens').length;
+const pipelineCloseCount = pipelineEvents.filter((event) => event.verb === 'Closes').length;
+const busiestPipelineDay = pipeline
+  .filter((row) => row.events.length > 0)
+  .sort((a, b) => b.events.length - a.events.length || a.date.getTime() - b.date.getTime())[0] ?? null;
+
+// Subscription window progress for the lead
+let leadProgressPct = 0;
+let leadOpenedText = '';
+let leadClosesText = '';
+if (lead && lead.open_date && lead.close_date) {
+  const oISO = lead.open_date;
+  const cISO = lead.close_date;
+  const o = new Date(oISO + 'T10:00:00');
+  const c = new Date(cISO + 'T17:00:00');
+  const elapsed = Math.max(0, today.getTime() - o.getTime());
+  const total = Math.max(1, c.getTime() - o.getTime());
+  leadProgressPct = Math.max(0, Math.min(100, (elapsed / total) * 100));
+  leadOpenedText = `Opened ${new Date(oISO).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' })}`;
+  leadClosesText = `Closes ${new Date(cISO).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' })}, 17:00`;
+}
+
+const leadContext = (() => {
+  if (!lead) return '';
+  // Narrative hook only — the price band, lot, retail minimum and issue
+  // size all live in the adjacent table, so the prose must not echo them.
+  const parts: string[] = [];
+  if (lead.raisingText) parts.push(`Raising ${lead.raisingText}`);
+  return parts.join(' ');
+})();
+
+// Total raised this year (best effort — sum from detail when available)
+// Skipped for now; we'll show what's robust.
+---
+
+<Base title="IPO Watch">
+
+<!-- ════════════  LEAD  ════════════ -->
+{lead && (
+  <section class="page-tight pt-24 pb-24 border-b border-[color:var(--color-rule)]">
+    <a href={lead.url_path} class="block">
+      <div class="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-y-10 md:gap-x-8">
+        <div>
+          <div class="mb-7 inline-flex items-center gap-2 text-[10.5px] tracking-[0.18em] uppercase font-semibold text-[color:var(--color-accent)]">
+            <span class="live-dot"></span> Today's book
+          </div>
+          <h1 class="headline mb-7 max-w-[18ch] break-words">{displayName(lead.company_name, { dropSuffix: true })}</h1>
+          <p class="lede max-w-[34ch] mb-7">
+            {leadContext ? <>{leadContext}. </> : ''}
+            {lead.subscriptionTimes != null
+              ? <>Subscribed <em class="italic acc font-medium">{formatTimes(lead.subscriptionTimes)}</em> so far. </>
+              : (!leadContext ? <>Open for subscription. </> : '')}
+            {lead.close_date ? `Closes ${new Date(lead.close_date).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'short' })}.` : ''}
+          </p>
+          <div class="flex flex-wrap gap-x-[14px] gap-y-1 text-[12.5px] mute">
+            <span class="pr-[14px] border-r border-[color:var(--color-rule)]">{lead.issue_type ?? 'IPO'}</span>
+            <span class="pr-[14px] border-r border-[color:var(--color-rule)]">{lead.exchange_platform}</span>
+            {lead.brlmName && <span class="pr-[14px] border-r border-[color:var(--color-rule)]">BRLM · {lead.brlmName}</span>}
+          </div>
+          {lead.open_date && lead.close_date && (
+            <div class="mt-9 max-w-[36ch]">
+              <div class="flex justify-between items-baseline text-[11px] tracking-[0.08em] uppercase mute font-semibold mb-2">
+                <span>Subscription window</span>
+                <span class="num">{Math.round(leadProgressPct)}%</span>
+              </div>
+              <div class="h-[3px] bg-[color:var(--color-rule)] relative overflow-hidden">
+                <div class="absolute inset-y-0 left-0 bg-[color:var(--color-accent)]" style={`width: ${leadProgressPct}%`}></div>
+              </div>
+              <div class="flex justify-between text-[11.5px] mute mt-2">
+                <span>{leadOpenedText}</span>
+                <span class="text-[color:var(--color-ink)] num">{leadClosesText}</span>
+              </div>
+            </div>
+          )}
+        </div>
+        <aside class="md:border-l md:border-[color:var(--color-rule)] md:pl-8">
+          <div class="label text-[color:var(--color-ink)] mb-7">The deal, in numbers</div>
+          <div class="border-t border-[color:var(--color-ink)]">
+            <div class="flex justify-between items-baseline py-[14px] border-b border-[color:var(--color-rule)]">
+              <span class="label">Price band</span>
+              <span class="t-value num">{formatRupeeRange(lead.price_band.min, lead.price_band.max)}</span>
+            </div>
+            <div class="flex justify-between items-baseline py-[14px] border-b border-[color:var(--color-rule)]">
+              <span class="label">Shares per lot</span>
+              <span class="t-value num">{lead.lotSize ? formatInt(lead.lotSize) : '—'}</span>
+            </div>
+            <div class="flex justify-between items-baseline py-[14px] border-b border-[color:var(--color-rule)]">
+              <span class="label">Retail minimum</span>
+              <span class="t-value num">{lead.lotSize && lead.price_band.max ? formatRupee(lead.lotSize * lead.price_band.max) : '—'}</span>
+            </div>
+            <div class="flex justify-between items-baseline py-[14px] border-b border-[color:var(--color-rule)]">
+              <span class="label">Issue size</span>
+              <span class="t-value num">{lead.raisingText ?? '—'}</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </a>
+  </section>
+)}
+
+<!-- ════════════  BANNER  ════════════ -->
+{(closingToday > 0 || hottest) && (
+  <section class="page-tight py-12 border-b border-[color:var(--color-rule)]">
+    <p class="mx-auto max-w-[72ch] border-y border-[color:var(--color-rule)] py-6 text-center serif text-[24px] leading-[1.4] text-[color:var(--color-ink-soft)]">
+      {closingToday > 0 && (
+        <><span class="num text-[color:var(--color-ink)]">{closingToday}</span> of <span class="num text-[color:var(--color-ink)]">{open.length}</span> open issues close today.</>
+      )}
+      {hottest && hottest.subscriptionTimes && (
+        <> <span class="text-[color:var(--color-ink)]">{displayName(hottest.company_name)}</span> is the most subscribed at <span class="text-[color:var(--color-accent)] num">{formatTimes(hottest.subscriptionTimes)}</span>.</>
+      )}
+    </p>
+  </section>
+)}
+
+<!-- ════════════  CURRENTLY OPEN  ════════════ -->
+{otherOpen.length > 0 && (
+  <section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+    <header class="flex items-baseline justify-between mb-10">
+      <h2 class="section-title">Currently open for subscription</h2>
+      <a href="/live/" class="label hover:text-[color:var(--color-accent)]">All {open.length} open →</a>
+    </header>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {otherOpen.map((issue, idx) => {
+        const subPct = issue.subscriptionTimes != null ? Math.min(100, (Math.min(issue.subscriptionTimes, 10) / 10) * 100) : 0;
+        return (
+          <a href={issue.url_path} class="open-card group block bg-white border border-[color:var(--color-rule-card)] p-[28px_32px_24px] relative overflow-hidden transition-all duration-300 hover:border-[color:var(--color-accent)] hover:bg-[color:var(--color-paper-warm)]">
+            <span class="absolute top-[20px] right-[26px] serif italic font-light text-[22px] leading-none text-[color:var(--color-mute-2)] group-hover:text-[color:var(--color-accent)] transition-colors">{ROMAN[idx] ?? idx + 1}</span>
+            <div class="flex items-center gap-[10px] text-[10px] tracking-[0.18em] uppercase font-semibold mute mb-4 pr-[40px]">
+              <span class="issue-badge issue-badge-live">Live</span>
+              <span>{typeTag(issue)}{issue.brlmName ? ` · ${issue.brlmName}` : ''}</span>
+            </div>
+            <h3 class="t-title mb-2 group-hover:text-[color:var(--color-accent-deep)] transition-colors">{displayName(issue.company_name)}</h3>
+            <p class="text-[12.5px] mute mb-7 max-w-[38ch]">
+              {issue.subscriptionTimes != null
+                ? <>Demand running ahead of issue — bids of <em class="serif italic font-medium text-[color:var(--color-accent)] text-[14px]">{formatTimes(issue.subscriptionTimes)} the offer</em>.</>
+                : closeTiming(issue.close_date) === 'Closes today'
+                  ? 'Final day of subscription. Bid book opens 10:00, closes 17:00 IST.'
+                  : 'Open for subscription. Bid book accepting orders.'}
+            </p>
+            <div class="grid grid-cols-2 gap-[14px_24px] pt-4 border-t border-[color:var(--color-rule)]">
+              <div>
+                <div class="label mb-1">Price band</div>
+                <div class="serif text-[19px] num leading-tight">{formatRupeeRange(issue.price_band.min, issue.price_band.max)}</div>
+              </div>
+              <div>
+                <div class="label mb-1">Shares per lot</div>
+                <div class="serif text-[19px] num leading-tight">{issue.lotSize ? formatInt(issue.lotSize) : '—'}</div>
+              </div>
+              <div>
+                <div class="label mb-1">Retail minimum</div>
+                <div class="serif text-[19px] num leading-tight">{issue.lotSize && issue.price_band.max ? formatRupee(issue.lotSize * issue.price_band.max) : '—'}</div>
+              </div>
+              <div>
+                <div class="label mb-1">Issue size</div>
+                <div class="serif text-[19px] num leading-tight">{issue.raisingText ?? '—'}</div>
+              </div>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 mt-4 pt-[14px] border-t border-[color:var(--color-rule)]">
+              <div class="flex items-center gap-3 flex-1 min-w-0">
+                <span class="flex-none w-[90px] h-[3px] bg-[color:var(--color-rule)] relative overflow-hidden">
+                  {issue.subscriptionTimes != null && (
+                    <span class="absolute inset-y-0 left-0 bg-[color:var(--color-accent)]" style={`width: ${subPct}%`}></span>
+                  )}
+                </span>
+                <span class={`serif font-medium text-[15px] ${issue.subscriptionTimes != null ? '' : 'mute font-normal'}`}>
+                  {issue.subscriptionTimes != null ? `${formatTimes(issue.subscriptionTimes)} subscribed` : 'Awaiting first bids'}
+                </span>
+              </div>
+              <span class={`text-[11px] tracking-[0.12em] uppercase font-semibold whitespace-nowrap ${daysFromNow(issue.close_date, today) === 0 ? 'text-[color:var(--color-accent)]' : 'mute'}`}>
+                {closeTiming(issue.close_date)}
+              </span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+)}
+
+<!-- ════════════  PIPELINE  ════════════ -->
+<section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+  <header class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-7 md:gap-12 items-end mb-10">
+    <div>
+      <h2 class="section-title mb-3">The week ahead</h2>
+      <p class="t-sub max-w-[42ch]">
+        Opening and closing dates for the next seven days.
+      </p>
+    </div>
+    <div class="grid grid-cols-3 border-y border-[color:var(--color-rule)] md:min-w-[360px]">
+      <div class="py-3 pr-5 border-r border-[color:var(--color-rule)]">
+        <p class="t-stat num">{formatInt(pipelineEvents.length)}</p>
+        <p class="label mt-2">Events</p>
+      </div>
+      <div class="py-3 px-5 border-r border-[color:var(--color-rule)]">
+        <p class="t-stat num">{formatInt(pipelineOpenCount)}</p>
+        <p class="label mt-2">Open</p>
+      </div>
+      <div class="py-3 pl-5">
+        <p class="t-stat text-[color:var(--color-accent)] num">{formatInt(pipelineCloseCount)}</p>
+        <p class="label mt-2">Close</p>
+      </div>
+    </div>
+  </header>
+  <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-10 items-start">
+    <div class="border-t border-[color:var(--color-ink)]">
+      {pipeline.map((row) => (
+        <article class={`grid grid-cols-1 sm:grid-cols-[116px_minmax(0,1fr)] gap-4 sm:gap-9 py-5 sm:py-6 border-b border-[color:var(--color-rule)] ${row.isToday ? 'bg-[color:var(--color-paper-warm)] px-4 sm:px-5 -mx-4 sm:-mx-5 border-l-2 border-l-[color:var(--color-accent)]' : ''}`}>
+          <div class="flex sm:block items-baseline justify-between gap-4">
+            <div class="flex sm:block items-baseline gap-3">
+              <span class="text-[10.5px] tracking-[0.14em] uppercase mute font-semibold">{row.dow}</span>
+              <div class="sm:mt-2">
+                <span class={`serif font-normal text-[36px] sm:text-[42px] leading-none ${row.isToday ? 'text-[color:var(--color-accent)]' : ''} ${row.isWeekend ? 'text-[color:var(--color-mute-2)]' : ''} num`}>{row.dnum}</span>
+                <span class="ml-2 sm:ml-0 sm:block text-[10.5px] tracking-[0.14em] uppercase mute font-semibold">{row.month}</span>
+              </div>
+            </div>
+            {row.isToday && <span class="label text-[color:var(--color-accent)]">Today</span>}
+          </div>
+
+          <div class="min-w-0">
+            <div class="flex items-center justify-between gap-4 mb-3">
+              <p class="serif text-[18px] leading-tight text-[color:var(--color-ink-soft)]">{row.fullDate}</p>
+              <span class="label num whitespace-nowrap">{row.events.length ? `${formatInt(row.events.length)} ${row.events.length === 1 ? 'event' : 'events'}` : 'Quiet'}</span>
+            </div>
+            {row.events.length === 0 ? (
+              <div class="border border-[color:var(--color-rule-card)] bg-white px-4 py-3">
+                <span class="serif italic text-[14px] text-[color:var(--color-mute)]">{row.isWeekend ? 'Markets closed' : 'No IPO window scheduled'}</span>
+              </div>
+            ) : (
+              <div class="space-y-2">
+                {row.events.map((e) => (
+                  <a href={e.url} class="group grid grid-cols-1 sm:grid-cols-[76px_minmax(0,1fr)_auto] gap-1 sm:gap-4 items-baseline border border-[color:var(--color-rule-card)] bg-white px-4 py-3 transition-colors hover:border-[color:var(--color-accent)] hover:bg-[color:var(--color-paper-warm)]">
+                    <span class={`text-[10.5px] tracking-[0.14em] uppercase font-semibold ${e.verb === 'Closes' ? 'text-[color:var(--color-accent)]' : 'text-[color:var(--color-ink)]'}`}>{e.verb}</span>
+                    <span class="serif font-medium text-[18px] leading-[1.22] group-hover:text-[color:var(--color-accent-deep)] transition-colors">{displayName(e.name)}</span>
+                    <span class="text-[11px] mute tracking-[0.02em] sm:text-right">{e.tag}</span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <aside class="lg:sticky lg:top-8 border-t border-[color:var(--color-ink)] pt-5">
+      <p class="label mb-4">At a glance</p>
+      <p class="serif text-[22px] leading-[1.35] text-[color:var(--color-ink-soft)]">
+        {pipelineEvents.length > 0
+          ? <>The next seven days have <span class="text-[color:var(--color-ink)] num">{formatInt(pipelineEvents.length)}</span> tracked IPO calendar events: <span class="text-[color:var(--color-ink)] num">{formatInt(pipelineOpenCount)}</span> openings and <span class="text-[color:var(--color-accent)] num">{formatInt(pipelineCloseCount)}</span> closings.</>
+          : <>The next seven days are quiet in the captured IPO calendar.</>}
+      </p>
+      <div class="mt-6 border-t border-[color:var(--color-rule)]">
+        <div class="flex justify-between items-baseline gap-6 py-4 border-b border-[color:var(--color-rule)]">
+          <span class="label">Busiest day</span>
+          <span class="serif text-[18px] text-right">{busiestPipelineDay ? busiestPipelineDay.fullDate : 'None scheduled'}</span>
+        </div>
+        <div class="flex justify-between items-baseline gap-6 py-4 border-b border-[color:var(--color-rule)]">
+          <span class="label">Today</span>
+          <span class="serif text-[18px] text-right">{pipeline[0]?.events.length ? `${formatInt(pipeline[0].events.length)} ${pipeline[0].events.length === 1 ? 'event' : 'events'}` : (pipeline[0]?.isWeekend ? 'Market weekend' : 'No event')}</span>
+        </div>
+      </div>
+      <a href="/upcoming/" class="mt-6 inline-flex label hover:text-[color:var(--color-accent)]">Full calendar →</a>
+    </aside>
+  </div>
+</section>
+
+<!-- ════════════  YEAR IN CAPITAL MARKETS  ════════════ -->
+<section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+  <header class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-7 md:gap-12 items-end mb-12">
+    <div>
+      <h2 class="section-title mb-3">Primary market in {todayYear}</h2>
+      <p class="t-sub max-w-[46ch]">
+        Capital raised through IPOs, rights issues, QIPs, FPOs and preferential allotments.
+      </p>
+    </div>
+    <span class="label md:text-right">Data: SEBI{latestMonthLabel ? ` · through ${latestMonthLabel}` : ''}</span>
+  </header>
+
+  <div class="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 mb-14">
+    <div class="border-t border-[color:var(--color-ink)] pt-6">
+      <p class="label mb-4">Year-to-date primary capital</p>
+      <p class="serif font-light text-[clamp(40px,6vw,64px)] leading-[0.98] tracking-[-0.014em] num">{fmtCr(ytdTotalRaised)}</p>
+      <p class="lede mt-6 max-w-[38ch]">
+        IPOs account for <em class="italic acc">{ytdIpoShare == null ? '—' : `${ytdIpoShare.toFixed(0)}%`}</em> of primary capital captured so far, with <em class="italic acc">{formatInt(ytdIpoCount)}</em> IPOs across mainboard and SME.
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-0 mt-8 border-y border-[color:var(--color-rule)]">
+        <div class="py-4 pr-4 border-r border-[color:var(--color-rule)]">
+          <p class="t-stat num">{formatInt(ytdAllIssueCount)}</p>
+          <p class="label mt-2">Issue count</p>
+        </div>
+        <div class="py-4 px-4 border-r border-[color:var(--color-rule)]">
+          <p class="t-stat num">{formatInt(ytdIpoCount)}</p>
+          <p class="label mt-2">IPOs</p>
+        </div>
+        <div class="py-4 px-4 border-r border-[color:var(--color-rule)]">
+          <p class={`t-stat num ${yoyTotal != null && yoyTotal >= 0 ? 'acc' : ''}`}>{yoyTotal == null ? '—' : `${yoyTotal >= 0 ? '+' : ''}${yoyTotal.toFixed(0)}%`}</p>
+          <p class="label mt-2">YoY capital</p>
+        </div>
+        <div class="py-4 pl-4">
+          <p class="t-stat acc num">{stats.top_gainer ? fmtGain(stats.top_gainer.listing_day_gain) : '—'}</p>
+          <p class="label mt-2">Best day one</p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="border-t border-[color:var(--color-ink)] pt-6">
+      <p class="label mb-4">What this means</p>
+      <div class="space-y-4">
+        <p class="serif text-[22px] leading-[1.35] text-[color:var(--color-ink-soft)]">
+          {ytdTopInstrument
+            ? <>The largest bucket is <span class="text-[color:var(--color-ink)]">{ytdTopInstrument.label}</span>, at <span class="text-[color:var(--color-ink)] num">{fmtCr(ytdTopInstrument.raised)}</span>.</>
+            : <>Capital buckets are still loading.</>}
+        </p>
+        <p class="text-[13px] leading-[1.65] mute">
+          {dist.median != null
+            ? <>Across the last twenty-four months of IPO Watch-tracked listings, the median first-day move is <span class="num text-[color:var(--color-ink)]">{fmtGain(dist.median)}</span>; <span class="num text-[color:var(--color-ink)]">{ytdPositivePct}%</span> of issues opened above their offer price.</>
+            : <>Listing-day distribution will appear once enough recent listings have price coverage.</>}
+        </p>
+        {stats.top_gainer && (
+          <a href={stats.top_gainer.url_path} class="block border border-[color:var(--color-rule-card)] bg-white px-5 py-4 hover:border-[color:var(--color-accent)] hover:bg-[color:var(--color-paper-warm)] transition-colors">
+            <p class="label mb-2">Best listing day</p>
+            <p class="t-value">{displayName(stats.top_gainer.company_name)}</p>
+            <p class="mt-2 text-[12px] mute num">{fmtGain(stats.top_gainer.listing_day_gain)} on listing</p>
+          </a>
+        )}
+      </div>
+    </aside>
+  </div>
+
+  <div class="mb-16">
+    <div class="flex flex-wrap items-baseline justify-between gap-4 mb-5">
+      <h3 class="serif font-medium text-[18px]">By instrument, year to date</h3>
+      <span class="label">Counts and capital raised</span>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      {ytdInstrumentRows.map((t) => {
+        const pct = Math.max(2, (t.raised / ytdInstrumentMaxRaised) * 100);
+        const barColor = t.tone === 'accent'
+          ? 'var(--color-accent)'
+          : t.tone === 'gold'
+            ? 'var(--color-mute)'
+            : t.tone === 'mute'
+              ? 'var(--color-ink-2)'
+              : t.tone === 'stone'
+                ? 'var(--color-ink-4)'
+                : t.tone === 'sand'
+                  ? 'var(--color-ink-5)'
+                  : 'var(--color-ink)';
+        return (
+          <div class="border border-[color:var(--color-rule-card)] bg-white px-5 py-5">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="label">{t.label}</p>
+                <p class="t-stat mt-3 num">{formatInt(t.count)}</p>
+              </div>
+              <p class="serif text-[19px] leading-tight text-right num">{t.raised > 0 ? fmtCr(t.raised) : '—'}</p>
+            </div>
+            <div class="mt-5 h-[3px] bg-[color:var(--color-rule)] overflow-hidden">
+              <div class="h-full" style={`width: ${pct.toFixed(1)}%; background: ${barColor}`}></div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  {annualStack.length > 0 && (
+    <div class="border-t border-[color:var(--color-rule)] pt-10 mb-16">
+      <header class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-3 md:gap-8 items-end mb-6">
+        <div>
+          <h3 class="serif font-medium text-[18px]">Capital raised per year</h3>
+          <p class="text-[12.5px] mute mt-1">Stacked by instrument; scaled to the largest year in the series.</p>
+        </div>
+        <span class="label md:text-right">₹ Cr · {annualStack[0]?.year}-{annualStack[annualStack.length - 1]?.year}</span>
+      </header>
+      <div class="border border-[color:var(--color-rule-card)] bg-white p-4 sm:p-6">
+        <div class="flex flex-wrap gap-x-4 gap-y-2 text-[11.5px] mute mb-6">
+          <span class="inline-flex items-center gap-1.5"><span class="inline-block w-3 h-3 bg-[color:var(--color-ink)]"></span>Mainboard IPO</span>
+          <span class="inline-flex items-center gap-1.5"><span class="inline-block w-3 h-3 bg-[color:var(--color-accent)]"></span>SME IPO</span>
+          <span class="inline-flex items-center gap-1.5"><span class="inline-block w-3 h-3 bg-[color:var(--color-ink-2)]"></span>FPO</span>
+          <span class="inline-flex items-center gap-1.5"><span class="inline-block w-3 h-3 bg-[color:var(--color-mute)]"></span>Rights</span>
+          <span class="inline-flex items-center gap-1.5"><span class="inline-block w-3 h-3 bg-[color:var(--color-ink-4)]"></span>QIP</span>
+          <span class="inline-flex items-center gap-1.5"><span class="inline-block w-3 h-3 bg-[color:var(--color-ink-5)]"></span>Preferential</span>
+        </div>
+        <div class="min-w-0 overflow-x-auto">
+          <div class="flex gap-1 h-[240px] min-w-[720px]">
+            {annualStack.map((a) => {
+              const hTotal = (a.total / annualStackMax) * 100;
+              const seg = (v: number) => a.total > 0 ? (v / a.total) * hTotal : 0;
+              return (
+                <div class="flex-1 h-full flex flex-col justify-end min-w-0 group relative" title={`${a.year}: ₹${a.total.toLocaleString('en-IN')} Cr`}>
+                  <div style={`height: ${seg(a.pref)}%; min-height: ${a.pref > 0 ? '1px' : '0'};`} class="bg-[color:var(--color-ink-5)]"></div>
+                  <div style={`height: ${seg(a.qip)}%; min-height: ${a.qip > 0 ? '1px' : '0'};`} class="bg-[color:var(--color-ink-4)]"></div>
+                  <div style={`height: ${seg(a.rights)}%; min-height: ${a.rights > 0 ? '1px' : '0'};`} class="bg-[color:var(--color-mute)]"></div>
+                  <div style={`height: ${seg(a.fpo)}%; min-height: ${a.fpo > 0 ? '1px' : '0'};`} class="bg-[color:var(--color-ink-2)]"></div>
+                  <div style={`height: ${seg(a.sme)}%; min-height: ${a.sme > 0 ? '1px' : '0'};`} class="bg-[color:var(--color-accent)]"></div>
+                  <div style={`height: ${seg(a.mainboard)}%; min-height: ${a.mainboard > 0 ? '1px' : '0'};`} class="bg-[color:var(--color-ink)]"></div>
+                </div>
+              );
+            })}
+          </div>
+          <div class="flex justify-between mt-3 text-[11px] mute num min-w-[720px]">
+            <span>{annualStack[0]?.year}</span>
+            <span>{annualStack[Math.floor(annualStack.length / 3)]?.year}</span>
+            <span>{annualStack[Math.floor((annualStack.length * 2) / 3)]?.year}</span>
+            <span class="acc font-semibold">{annualStack[annualStack.length - 1]?.year}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-10 border-t border-[color:var(--color-rule)]">
+    {annualIpoCounts.length > 0 && (
+      <div class="border border-[color:var(--color-rule-card)] bg-white p-5 sm:p-6">
+        <div class="flex items-baseline justify-between gap-4 mb-5">
+          <h3 class="serif font-medium text-[18px]">IPOs per year</h3>
+          <span class="label">Mainboard + SME</span>
+        </div>
+        <div class="flex gap-1 h-[175px]">
+          {annualIpoCounts.map((a) => {
+            const sumv = a.mainboard + a.sme;
+            const h = (sumv / annualIpoMax) * 100;
+            const mbPart = sumv > 0 ? (a.mainboard / sumv) * h : 0;
+            const smePart = sumv > 0 ? (a.sme / sumv) * h : 0;
+            return (
+              <div class="flex-1 h-full flex flex-col justify-end min-w-0" title={`${a.year}: ${a.mainboard} mainboard + ${a.sme} SME`}>
+                <div style={`height: ${smePart}%; min-height: ${a.sme > 0 ? '1px' : '0'};`} class="bg-[color:var(--color-accent)]"></div>
+                <div style={`height: ${mbPart}%; min-height: ${a.mainboard > 0 ? '1px' : '0'};`} class="bg-[color:var(--color-ink)]"></div>
+              </div>
+            );
+          })}
+        </div>
+        <div class="flex justify-between mt-3 text-[11px] mute num">
+          <span>{annualIpoCounts[0]?.year}</span>
+          <span>{annualIpoCounts[Math.floor(annualIpoCounts.length / 2)]?.year}</span>
+          <span class="acc font-semibold">{annualIpoCounts[annualIpoCounts.length - 1]?.year}</span>
+        </div>
+      </div>
+    )}
+
+    <div class="border border-[color:var(--color-rule-card)] bg-white p-5 sm:p-6">
+      <div class="flex items-baseline justify-between gap-4 mb-5">
+        <h3 class="serif font-medium text-[18px]">Day-one moves</h3>
+        <span class="label">Last 24 months</span>
+      </div>
+      <p class="text-[12.5px] mute mb-5">n=<span class="num">{dist.total.toLocaleString('en-IN')}</span> · median <span class="num acc">{fmtGain(dist.median)}</span> · <span class="num">{ytdPositivePct}%</span> positive</p>
+      <div class="flex items-end gap-[3px] h-[175px] relative">
+        <div class="absolute top-0 bottom-0 w-px bg-[color:var(--color-accent)] opacity-70" style={`left: ${distZeroPct.toFixed(2)}%`}></div>
+        {dist.bins.map((b) => {
+          const h = (b.count / distMax) * 100;
+          return (
+            <div class={`flex-1 ${b.from < 0 ? 'bg-[color:var(--color-mute)]' : 'bg-[color:var(--color-ink)]'}`} style={`height: ${h.toFixed(1)}%; min-height: ${b.count > 0 ? '2px' : '0'};`} title={`${b.from}% to ${b.to}%: ${b.count}`}></div>
+          );
+        })}
+      </div>
+      <div class="relative mt-3 h-4 text-[11px] mute num">
+        <span class="absolute left-0">−100%</span>
+        <span class="absolute -translate-x-1/2" style={`left: ${distZeroPct.toFixed(2)}%`}>0%</span>
+        <span class="absolute right-0">+100%+</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-[11px] mute mt-10 pt-5 border-t border-[color:var(--color-rule)] max-w-[80ch]">
+    Capital-raising counts and rupee aggregates compiled by SEBI; obtained via the IndiaDataHub Economic Monitor.
+    Day-one move distribution uses IPO Watch listings from the last 24 months.
+  </p>
+</section>
+
+<!-- ════════════  RECENTLY LISTED  ════════════ -->
+{recent.length > 0 && (
+  <section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+    <header class="flex items-baseline justify-between mb-10">
+      <h2 class="section-title">Recently listed</h2>
+      <a href="/archive/" class="label hover:text-[color:var(--color-accent)]">All listings →</a>
+    </header>
+    <ol class="list-none p-0 m-0">
+      {recent.map((i, idx) => {
+        const g = i.listing_day_gain;
+        const pct = g != null && recentGainMax > 0 ? Math.min(100, (Math.abs(g) / recentGainMax) * 100) : 0;
+        const isNeg = g != null && g < 0;
+        return (
+          <li class="relative group">
+            <a href={i.url_path} class="grid grid-cols-[28px_minmax(0,1fr)_84px] sm:grid-cols-[32px_minmax(0,1fr)_140px_90px_100px] gap-4 sm:gap-5 items-center py-[18px] px-2 border-b border-[color:var(--color-rule)] transition-all duration-200 group-hover:pl-4">
+              <span class="absolute left-0 top-0 bottom-0 w-[2px] bg-[color:var(--color-accent)] scale-y-0 origin-center group-hover:scale-y-100 transition-transform"></span>
+              <span class="serif italic font-light text-[16px] text-[color:var(--color-mute-2)] num">{String(idx + 1).padStart(2, '0')}</span>
+              <div class="min-w-0">
+                <h3 class="t-title truncate group-hover:text-[color:var(--color-accent)] transition-colors">{displayName(i.company_name)}</h3>
+                <p class="text-[11.5px] mute mt-[3px]">{typeTag(i)}</p>
+              </div>
+              <div class="relative h-[5px] hidden sm:block">
+                <span class="absolute top-0 bottom-0 left-1/2 w-px bg-[color:var(--color-rule)]"></span>
+                {g != null && (
+                  <span
+                    class={`absolute top-0 bottom-0 ${idx === 0 ? 'bg-[color:var(--color-accent)]' : 'bg-[color:var(--color-ink)]'}`}
+                    style={isNeg
+                      ? `right: 50%; width: ${(pct/2).toFixed(1)}%;`
+                      : `left: 50%; width: ${(pct/2).toFixed(1)}%;`}
+                  ></span>
+                )}
+              </div>
+              <span class="text-[11.5px] mute num text-right hidden sm:block">{i.listing_date ? formatDateShort(i.listing_date) : '—'}</span>
+              <span class={`serif text-[22px] num text-right ${idx === 0 ? 'acc' : ''} ${isNeg ? 'italic mute' : ''}`}>{fmtGain(g)}</span>
+            </a>
+          </li>
+        );
+      })}
+    </ol>
+  </section>
+)}
+
+<!-- ════════════  OTHER PUBLIC ISSUES (Buybacks · OFS · Rights)  ════════════ -->
+<section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+  <header class="flex items-baseline justify-between mb-10">
+    <h2 class="section-title">Other public issues</h2>
+    <span class="label">{formatInt(countBuyback + countOFS + countRights + countTender)} since 2001</span>
+  </header>
+  <p class="lede mb-12 max-w-[60ch]">
+    A primary market is not only about new listings. Companies <em class="italic">tender</em> to buy back their shares, promoters <em class="italic">offer</em> stakes for sale, and existing shareholders are issued <em class="italic">rights</em>. These flows often run alongside an IPO calendar — and historically dwarf it.
+  </p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+    <!-- Buybacks -->
+    <div>
+      <div class="flex items-baseline justify-between mb-5 pb-3 border-b border-[color:var(--color-ink)]">
+        <h3 class="serif font-medium text-[20px]"><a href="/buybacks/" class="hover:text-[color:var(--color-accent)]">Buybacks</a></h3>
+        <span class="label num">{formatInt(countBuyback)}</span>
+      </div>
+      <ul class="list-none p-0 m-0">
+        {recentBuybacks.map((i) => (
+          <li>
+            <a href={i.url_path} class="block py-[10px] border-b border-[color:var(--color-rule)] group">
+              <div class="serif font-medium text-[15px] leading-[1.25] truncate group-hover:text-[color:var(--color-accent)]">{displayName(i.company_name)}</div>
+              <div class="flex justify-between text-[11.5px] mute mt-1 num">
+                <span>{i.exchange_platform}</span>
+                <span>{i.listing_date ? formatDateShort(i.listing_date) : (i.close_date ? formatDateShort(i.close_date) : '—')}</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <!-- OFS -->
+    <div>
+      <div class="flex items-baseline justify-between mb-5 pb-3 border-b border-[color:var(--color-ink)]">
+        <h3 class="serif font-medium text-[20px]"><a href="/ofs/" class="hover:text-[color:var(--color-accent)]">Offers for sale</a></h3>
+        <span class="label num">{formatInt(countOFS)}</span>
+      </div>
+      <ul class="list-none p-0 m-0">
+        {recentOFS.map((i) => (
+          <li>
+            <a href={i.url_path} class="block py-[10px] border-b border-[color:var(--color-rule)] group">
+              <div class="serif font-medium text-[15px] leading-[1.25] truncate group-hover:text-[color:var(--color-accent)]">{displayName(i.company_name)}</div>
+              <div class="flex justify-between text-[11.5px] mute mt-1 num">
+                <span>{i.exchange_platform}</span>
+                <span>{i.listing_date ? formatDateShort(i.listing_date) : (i.close_date ? formatDateShort(i.close_date) : '—')}</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <!-- Rights -->
+    <div>
+      <div class="flex items-baseline justify-between mb-5 pb-3 border-b border-[color:var(--color-ink)]">
+        <h3 class="serif font-medium text-[20px]"><a href="/rights/" class="hover:text-[color:var(--color-accent)]">Rights issues</a></h3>
+        <span class="label num">{formatInt(countRights)}</span>
+      </div>
+      <ul class="list-none p-0 m-0">
+        {recentRights.map((i) => (
+          <li>
+            <a href={i.url_path} class="block py-[10px] border-b border-[color:var(--color-rule)] group">
+              <div class="serif font-medium text-[15px] leading-[1.25] truncate group-hover:text-[color:var(--color-accent)]">{displayName(i.company_name)}</div>
+              <div class="flex justify-between text-[11.5px] mute mt-1 num">
+                <span>{i.exchange_platform}</span>
+                <span>{i.listing_date ? formatDateShort(i.listing_date) : (i.close_date ? formatDateShort(i.close_date) : '—')}</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Type-count band -->
+  <div class="mt-14 pt-8 border-t border-[color:var(--color-rule)] grid grid-cols-2 md:grid-cols-6 gap-y-6 gap-x-6">
+    {[
+      { label: 'IPO', count: countIPO },
+      { label: 'Rights', count: countRights },
+      { label: 'OFS', count: countOFS },
+      { label: 'Tender', count: countTender },
+      { label: 'Buyback', count: countBuyback },
+      { label: 'REIT · InvIT', count: countREIT + countInvIT },
+    ].map((t) => (
+      <div>
+        <p class="serif font-light num text-[36px] leading-none">{formatInt(t.count)}</p>
+        <p class="label mt-2">{t.label}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ════════════  ALL-TIME BEST LISTING DAYS  ════════════ -->
+{topGainersAllTime.length > 0 && (
+  <section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+    <header class="flex items-baseline justify-between mb-10">
+      <h2 class="section-title">Best listing days, all-time</h2>
+      <span class="label">Top {topGainersAllTime.length} by day-one gain</span>
+    </header>
+    <ol class="list-none p-0 m-0">
+      {topGainersAllTime.map((i, idx) => (
+        <li class="relative group">
+          <a href={i.url_path} class="grid grid-cols-[28px_minmax(0,1fr)_84px] sm:grid-cols-[36px_minmax(0,1fr)_140px_100px_100px] gap-4 sm:gap-6 items-baseline py-[20px] px-2 border-b border-[color:var(--color-rule)] transition-all duration-200 group-hover:pl-4">
+            <span class="absolute left-0 top-0 bottom-0 w-[2px] bg-[color:var(--color-accent)] scale-y-0 origin-center group-hover:scale-y-100 transition-transform"></span>
+            <span class="serif italic font-light text-[20px] text-[color:var(--color-mute-2)] num">{idx + 1}</span>
+            <div class="min-w-0">
+              <h3 class="t-title truncate group-hover:text-[color:var(--color-accent)] transition-colors">{displayName(i.company_name)}</h3>
+              <p class="text-[11.5px] mute mt-1">{typeTag(i)}</p>
+            </div>
+            <span class="text-[12.5px] mute num text-right hidden sm:block">{i.listing_date ? formatDateShort(i.listing_date) : '—'}</span>
+            <span class="text-[12.5px] mute num text-right hidden sm:block">{i.price_band?.min != null ? formatRupeeRange(i.price_band.min, i.price_band.max) : ''}</span>
+            <span class="serif text-[26px] num text-right acc">{fmtGain(i.listing_day_gain)}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+)}
+
+<!-- ════════════  ARCHIVE  ════════════ -->
+<section class="page-tight py-24 pb-12">
+  <header class="flex items-baseline justify-between mb-10">
+    <h2 class="section-title">Public issue archive</h2>
+    <a href="/archive/" class="label hover:text-[color:var(--color-accent)]">All years →</a>
+  </header>
+  <div class="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-14 items-end">
+    <div>
+      <p class="t-sub mb-4 max-w-[40ch]">
+        The Indian primary market has grown sevenfold since 2017, with
+        {peakYear && (<> <strong class="italic acc font-medium">{peakYear.year}</strong> setting the all-time record at <span class="num">{peakYear.total.toLocaleString('en-IN')}</span> listings.</>)}
+        A single year now produces more public issues than the decade from 2001 to 2010.
+      </p>
+      {peakYear && (
+        <div class="serif italic font-light text-[36px] leading-[1.1] tracking-[-0.008em] mt-[18px]">
+          <span class="acc">{peakYear.year}</span> · <span class="num">{peakYear.total.toLocaleString('en-IN')}</span> listings, all-time peak
+        </div>
+      )}
+    </div>
+    <div>
+      <div class="flex gap-1 h-[130px]">
+        {yearStatsAll.slice().reverse().map((s) => {
+          const h = (s.total / yearMax) * 100;
+          const isCurr = s.year === todayYear;
+          return (
+            <a href={`/archive/${s.year}/`} class="flex-1 h-full flex flex-col justify-end min-w-0 group" title={`${s.year}: ${s.total} issues`}>
+              <span
+                class={`w-full transition-opacity ${isCurr ? 'bg-[color:var(--color-accent)]' : 'bg-[color:var(--color-ink)]'} group-hover:opacity-55`}
+                style={`height: ${h.toFixed(1)}%; min-height: 2px;`}
+              ></span>
+            </a>
+          );
+        })}
+      </div>
+      <div class="flex justify-between mt-2 text-[11px] mute num">
+        <span>{yearStatsAll[yearStatsAll.length - 1]?.year}</span>
+        <span>2010</span>
+        <span>2015</span>
+        <span>2020</span>
+        <span class="acc font-semibold">{yearStatsAll[0]?.year}</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-wrap gap-1 mt-10 pt-[22px] border-t border-[color:var(--color-rule)]">
+    {years.slice(0, 17).map((y) => (
+      <a href={`/archive/${y}/`} class={`px-[11px] py-[6px] text-[12.5px] border num transition-colors ${y === todayYear ? 'bg-[color:var(--color-accent)] border-[color:var(--color-accent)] text-white' : 'border-[color:var(--color-rule)] text-[color:var(--color-ink-soft)] hover:bg-[color:var(--color-ink)] hover:text-white hover:border-[color:var(--color-ink)]'}`}>{y}</a>
+    ))}
+  </div>
+</section>
+
+</Base>

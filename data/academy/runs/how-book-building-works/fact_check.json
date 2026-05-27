@@ -1,0 +1,147 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/factcheck.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.factcheck.schema",
+  "dataset_version": "v2026.05.23-0737",
+  "estimated_cost_usd": 0.005946160000000001,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T07:37:30+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-5 fact-check produced by deepseek-reasoner.",
+  "report": {
+    "blocking_count": 0,
+    "checks": [
+      {
+        "note": "Reg 29(1) supports filing final price after bidding.",
+        "sentence": "That price is filed in the prospectus with the Registrar of Companies after the bidding closes.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "the prospectus filed with the Registrar of Companies shall contain only one price...",
+        "tag_index": 1,
+        "verdict": "supported"
+      },
+      {
+        "note": "Reg 29(2) directly supports all specifics.",
+        "sentence": "The cap cannot exceed 120% of the floor. If the floor is ₹100, the cap cannot go above ₹120. At the same time, the cap must be at least 105% of the floor — a band of ₹105 to ₹100 is the narrowest allowed.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "The cap on the price band... shall be less than or equal to one hundred and twenty per cent. of the floor price. Provided that the cap of the price band shall be at least one hundred and five percent of the floor price.",
+        "tag_index": 2,
+        "verdict": "supported"
+      },
+      {
+        "note": "Reg 29(3) verbatim.",
+        "sentence": "The floor price — and the final price — cannot be less than the face value of the share, the nominal value a company assigns each share when it is created. A company cannot price its IPO below that number.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "The floor price or the final price shall not be less than the face value of the specified securities.",
+        "tag_index": 3,
+        "verdict": "supported"
+      },
+      {
+        "note": "Reg 29(4) supports.",
+        "sentence": "The company must announce the floor price or the price band at least two working days before the issue opens. The announcement is made through pre-issue and price band advertisements in the same newspapers where the public announcement of the issue was published.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "The issuer shall announce the floor price or the price band at least two working days before the opening of the issue in the pre-issue and price band advertisement... in the same newspapers in which the public announcement under sub-regulation (2) of Regulation 26 was published.",
+        "tag_index": 4,
+        "verdict": "supported"
+      },
+      {
+        "note": "Reg 29(5) supports.",
+        "sentence": "Those advertisements must include the relevant financial ratios — price-to-earnings, return on net worth, and so on — calculated for both ends of the band. They must also direct investors to the \"basis of issue price\" section of the offer document, where the company explains how it arrived at the range.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "The announcement... shall contain relevant financial ratios computed for both upper and lower end of the price band and also a statement drawing attention of the investors to the section titled 'basis of issue price' of the offer document.",
+        "tag_index": 5,
+        "verdict": "supported"
+      },
+      {
+        "note": "Reg 46(1) verbatim.",
+        "sentence": "An IPO must be open for at least three working days and no more than ten working days.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "an initial public offer shall be kept open for at least three working days and not more than ten working days.",
+        "tag_index": 6,
+        "verdict": "supported"
+      },
+      {
+        "note": "Reg 46(2) and sub-regulation (1) support extension and 10-day max.",
+        "sentence": "If the price band is revised during the issue — the company decides the range was too low or too high — the bidding period is extended by a minimum of three working days. The total window still cannot exceed ten working days.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "In case of a revision in the price band, the issuer shall extend the bidding (issue) period... for a minimum period of three working days, subject to the provisions of sub-regulation (1).",
+        "tag_index": 7,
+        "verdict": "supported"
+      },
+      {
+        "note": "Reg 46(3) supports; 'market crash' is a similar unforeseen circumstance.",
+        "sentence": "Force majeure events — a banking strike, a natural disaster, a market crash that shuts the exchanges — can also extend the period. The issuer may add at least one working day, but must record the reasons in writing.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "In case of force majeure, banking strike or similar unforeseen circumstances, the issuer may, for reasons to be recorded in writing, extend the bidding (issue) period... for a minimum period of one working day...",
+        "tag_index": 8,
+        "verdict": "supported"
+      },
+      {
+        "note": "Reg 47(2) and (3).",
+        "sentence": "That minimum must fall between ₹10,000 and ₹15,000, and applications come in multiples of that lot.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "the minimum application value of ten thousand rupees to fifteen thousand rupees... The issuer shall invite applications in multiples of the minimum application value.",
+        "tag_index": 9,
+        "verdict": "supported"
+      },
+      {
+        "note": "Reg 47(4).",
+        "sentence": "For a fresh issue — where the company is issuing new shares and keeping the proceeds — you must pay at least 25% of the issue price per share at the time of application. For an offer for sale — where existing shareholders are selling their shares and the company gets nothing — you must pay the full issue price upfront.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "The minimum sum payable on application per specified security shall be at least twenty five per cent. of the issue price: Provided that in case of an offer for sale, the full issue price for each specified security shall be payable at the time of application.",
+        "tag_index": 10,
+        "verdict": "supported"
+      },
+      {
+        "note": "Schedule XIII, Part A (1).",
+        "sentence": "Their names appear in the draft offer document and the final offer document.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "The issuer shall appoint one or more merchant banker(s) as lead manager(s), whose name(s) shall be disclosed in the draft offer document and the offer document(s).",
+        "tag_index": 11,
+        "verdict": "supported"
+      },
+      {
+        "note": "Schedule XIII, Part A (3).",
+        "sentence": "The lead manager must also underwrite the issue. ... The syndicate members — other banks and brokers who help sell the issue — sub-underwrite with the lead manager, but the lead manager is ultimately on the hook.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "Underwriting: The lead manager(s) shall compulsorily underwrite the issue and the syndicate member(s) shall sub-underwrite with the lead manager(s). In case of an under-subscription in an issue, the shortfall shall be made good by the lead manager(s).",
+        "tag_index": 12,
+        "verdict": "supported"
+      },
+      {
+        "note": "Reg 49(1).",
+        "sentence": "An IPO cannot proceed to allotment if fewer than 1,000 investors end up with shares. The rule is absolute: the issuer shall not make an allotment if the number of prospective allottees is less than one thousand.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "The issuer shall not make an allotment pursuant to a public issue if the number of prospective allottees is less than one thousand.",
+        "tag_index": 13,
+        "verdict": "supported"
+      },
+      {
+        "note": "Reg 49(3) supports proportionate basis; the examples of QIBs and employees are consistent and the numerical example is illustrative.",
+        "sentence": "For categories other than retail individual investors, non-institutional investors, and anchor investors — that is, for qualified institutional buyers (mutual funds, insurers, pension funds, foreign portfolio investors) and employees — allotment is done on a proportionate basis within the category: if QIBs bid for three times the shares reserved for them, each gets roughly one-third of what they applied for.",
+        "source_id": "sebi-icdr-2018-bookbuilding",
+        "supporting_excerpt_quote": "The allotment of specified securities to applicants other than to the retail individual investors, non-institutional investors and anchor investors shall be on a proportionate basis within the respective investor categories.",
+        "tag_index": 14,
+        "verdict": "supported"
+      }
+    ],
+    "summary": "All 14 tagged claims are supported by the single cited source (SEBI ICDR regulations). The draft is well-sourced; no untagged factual claims requiring citation were identified. The article is ready for the anti-slop edit pass.",
+    "untagged_claims": []
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "how-book-building-works",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 3938,
+  "tokens_out": 4439
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "ipowatch-co",
+  "compatibility_date": "2026-05-26",
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "env": {
+    "production": {
+      "workers_dev": false,
+      "routes": [
+        {
+          "pattern": "ipowatch.co",
+          "custom_domain": true
+        },
+        {
+          "pattern": "www.ipowatch.co",
+          "custom_domain": true
+        }
+      ]
+    }
+  }
+}

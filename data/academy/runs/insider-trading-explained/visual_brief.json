@@ -1,0 +1,91 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/visual_brief.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.visual_brief.schema",
+  "dataset_version": "v2026.05.23-0829",
+  "estimated_cost_usd": 0.0014135500000000002,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T08:29:23+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-7 visual brief produced by deepseek-chat.",
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "insider-trading-explained",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 2905,
+  "tokens_out": 572,
+  "visual_brief": {
+    "design_notes": [
+      "Use a hairline rule to separate the pull quote from surrounding text.",
+      "Table should use minimal borders: only a hairline above header and below last row.",
+      "Sidebar should be set in a slightly smaller serif font, with a hairline left border in accent colour."
+    ],
+    "formulas": [],
+    "lead_image": null,
+    "pull_quotes": [
+      {
+        "after_paragraph": "The popular idea of insider trading is almost right, but the law is narrower and stranger.",
+        "quote": "Insider trading is not about who you are: it is about what you know.",
+        "rationale": "Encapsulates the article's core insight in a memorable, quotable line."
+      }
+    ],
+    "sidebars": [
+      {
+        "after_section_slug": "how-to-trade-while-being-an-insider",
+        "body_markdown": "An insider who is permanently in possession of UPSI (e.g., a CFO) can still trade legally by adopting a pre-approved trading plan. The plan must be formulated in advance, disclosed to the stock exchanges, and executed automatically. Because the plan was set before the insider knew the UPSI, trades under it are not considered motivated by inside knowledge. This allows insiders to sell shares for legitimate reasons like tax planning without violating the law.",
+        "rationale": "Explains a key exception that readers might otherwise miss; sidebar keeps the main text focused.",
+        "title": "The trading plan safe harbour"
+      }
+    ],
+    "tables": [
+      {
+        "after_paragraph": "The regulations give a non-exhaustive list of six categories that ordinarily qualify as UPSI",
+        "columns": [
+          "Category",
+          "Example"
+        ],
+        "footnote": "Source: SEBI (Prohibition of Insider Trading) Regulations, 2015, Schedule III.",
+        "rationale": "Concrete examples ground the abstract concept of UPSI; a table is more scannable than a list in prose.",
+        "rows": [
+          [
+            "Financial results",
+            "Quarterly profit or loss figures before the exchange filing"
+          ],
+          [
+            "Dividends",
+            "A surprise dividend announcement or a dividend cut"
+          ],
+          [
+            "Change in capital structure",
+            "A bonus issue, stock split, or buyback"
+          ],
+          [
+            "Mergers, acquisitions, major contracts",
+            "A takeover bid or a large order win outside normal business"
+          ],
+          [
+            "Changes in key managerial personnel",
+            "The CFO resigning or being replaced"
+          ],
+          [
+            "Changes in credit ratings",
+            "A rating upgrade or downgrade by a credit agency"
+          ]
+        ],
+        "title": "Categories of unpublished price-sensitive information"
+      }
+    ],
+    "timeline": null
+  }
+}

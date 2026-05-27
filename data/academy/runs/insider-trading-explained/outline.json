@@ -1,0 +1,239 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/outline.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.outline.schema",
+  "dataset_version": "v2026.05.23-0825",
+  "estimated_cost_usd": 0.00509452,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T08:25:58+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-3 outline produced by deepseek-reasoner.",
+  "outline": {
+    "dek_candidates": [
+      "The popular idea of insider trading is almost right, but the law is narrower and stranger. It is about information asymmetry, not job title.",
+      "Why buying your own company's stock is not insider trading—but telling someone about unpublished financial results is.",
+      "SEBI's insider trading rules ban two distinct acts: communicating secrets and trading on them. Here is how they work."
+    ],
+    "design_notes": [
+      "Structure follows explain-then-ground: each section opens with a plain idea before citing the regulation.",
+      "The intro tackles the misconception head-on to engage readers who think they already know what insider trading means.",
+      "Sections are kept to seven total (including intro) to maintain depth without overwhelming length.",
+      "Visual targets are minimal—only a table for UPSI categories and a pull quote to reinforce the angle."
+    ],
+    "gaps": [],
+    "kicker_candidates": [
+      "SEBI REGULATIONS",
+      "INSIDER TRADING EXPLAINED",
+      "MARKET REGULATION"
+    ],
+    "section_order": [
+      "intro",
+      "the-two-misconceptions",
+      "who-is-an-insider",
+      "what-is-upsi",
+      "the-two-prohibitions",
+      "the-presumption-and-defences",
+      "the-trading-plan-safe-harbour"
+    ],
+    "sections": {
+      "intro": {
+        "beats": [
+          {
+            "beat": "Open with the popular misconception: most people think insider trading is simply employees buying or selling their company's stock. That is not what the law bans.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Correct it: the law targets the use or leak of information that the public does not have. The prohibitions apply to anyone—not just employees—who possesses that information and acts on it or shares it improperly.",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Define insider trading in one plain sentence: insider trading is either (a) trading in a company's securities while in possession of important non-public information, or (b) communicating that information to someone else except as part of a legitimate purpose.",
+            "kind": "definition",
+            "source_ids": []
+          }
+        ],
+        "heading": null,
+        "purpose": "Correct the common misconception and define insider trading in plain language."
+      },
+      "the-presumption-and-defences": {
+        "beats": [
+          {
+            "beat": "The regulations create a legal presumption: if a person traded while in possession of UPSI, the trade is presumed to have been motivated by that information. The burden shifts to the insider to prove innocence. This makes enforcement practical because SEBI does not need to prove intent.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          },
+          {
+            "beat": "Specific defences are allowed. For example, an off-market inter-se transfer between insiders who both possessed the same UPSI, or a transaction executed through the block-deal window, or a trade carried out under a pre-approved trading plan. The insider must demonstrate one of these circumstances or another valid reason.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          }
+        ],
+        "heading": "The presumption that makes the rule bite",
+        "purpose": "Explain the burden-shifting presumption and the available defences."
+      },
+      "the-trading-plan-safe-harbour": {
+        "beats": [
+          {
+            "beat": "An insider who may be permanently in possession of UPSI (such as a CFO or a director) can set up a trading plan. The plan is presented to the company's compliance officer, approved, and publicly disclosed. Once disclosed, the insider can trade automatically according to the plan without violating Regulation 4.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          },
+          {
+            "beat": "The plan must be formulated in advance and cannot be changed once in effect. It covers trades over a specified period. Because the plan was created before the insider knew about upcoming UPSI, any trades are not considered motivated by inside knowledge.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          },
+          {
+            "beat": "This safe harbour is crucial for company insiders who need to sell shares for legitimate reasons like diversification or tax planning, without fear of enforcement.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "How to trade while being an insider",
+        "purpose": "Explain the trading plan route (Regulation 5) for those perpetually in possession of UPSI, e.g., company executives."
+      },
+      "the-two-misconceptions": {
+        "beats": [
+          {
+            "beat": "Employees can own shares. There is no rule that says an employee cannot buy or hold their company's stock. The ban is on trading while in possession of unpublished price-sensitive information (UPSI).",
+            "kind": "narrative",
+            "source_ids": []
+          },
+          {
+            "beat": "Similarly, a person with a pre-arranged trading plan that complies with SEBI's rules can trade even if they are an insider. The plan is disclosed in advance, so trading is not considered motivated by inside knowledge.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          }
+        ],
+        "heading": "What insider trading is not",
+        "purpose": "Clarify what the law does not ban: employees owning shares, or trading plans done properly."
+      },
+      "the-two-prohibitions": {
+        "beats": [
+          {
+            "beat": "Regulation 3 bans an insider from communicating, providing, or allowing access to UPSI to any person, including other insiders, unless it is for a legitimate purpose, performance of duties, or discharge of legal obligations. Leaking or even casually mentioning a secret to a friend violates this rule.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          },
+          {
+            "beat": "Regulation 4 bans an insider from trading in securities of the company when in possession of UPSI. Trading includes buying, selling, pledging, or any other transaction. Simply holding a WhatsApp message with upcoming financial results and then selling shares can trigger this prohibition.",
+            "kind": "claim",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          },
+          {
+            "beat": "The two prohibitions are independent. Even if you never trade, leaking UPSI is illegal. Conversely, even if you did not leak, trading while in possession of UPSI is illegal—the knowledge itself taints the trade.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "The two things an insider cannot do",
+        "purpose": "Explain Regulation 3 (communication) and Regulation 4 (trading), with examples."
+      },
+      "what-is-upsi": {
+        "beats": [
+          {
+            "beat": "UPSI is information that is not generally available (i.e., not accessible to the public on a non-discriminatory basis) and that, if made public, would likely materially affect the share price. It can be good or bad for the stock.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          },
+          {
+            "beat": "The regulations give a non-exhaustive list of six categories that ordinarily qualify as UPSI: financial results; dividends; changes in capital structure; mergers, demergers, acquisitions, delistings, disposals, and major contracts; changes in key managerial personnel; and changes in credit ratings.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          },
+          {
+            "beat": "What does not count is common market news or publicly available analysis. The key test is whether the information has been released to the stock exchanges or published broadly. If it has, it is 'generally available' and no longer UPSI.",
+            "kind": "narrative",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          }
+        ],
+        "heading": "What counts as unpublished price-sensitive information",
+        "purpose": "Define UPSI and list the statutory categories."
+      },
+      "who-is-an-insider": {
+        "beats": [
+          {
+            "beat": "Explain the two-part definition: an insider is either a 'connected person' or simply anyone who is in possession of or has access to UPSI. You do not have to work for the company.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          },
+          {
+            "beat": "A connected person includes anyone who has been associated with the company in the prior six months in a way that gives access to UPSI—directors, employees, advisers, contractual partners, even people who communicate frequently with officers.",
+            "kind": "definition",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          },
+          {
+            "beat": "The broader category covers any person who simply has UPSI, whether they are connected or not. If a stranger accidentally overhears a confidential board meeting and trades on it, they are an insider under the regulations.",
+            "kind": "example",
+            "source_ids": [
+              "sebi-pit-2015"
+            ]
+          }
+        ],
+        "heading": "Who counts as an insider",
+        "purpose": "Define the two categories: connected persons and anyone in possession of UPSI."
+      }
+    },
+    "title_candidates": [
+      "What Insider Trading Actually Means",
+      "Insider Trading: The Law's Real Targets",
+      "Inside the Insider Trading Rules",
+      "The Two Things Insider Trading Law Forbids"
+    ],
+    "visual_targets": [
+      {
+        "kind": "table",
+        "purpose": "List the six statutory categories of UPSI with a one-line example for each.",
+        "where": "what-is-upsi"
+      },
+      {
+        "kind": "pull_quote",
+        "purpose": "Highlight the core correction: 'Insider trading is not about who you are—it is about what you know.'",
+        "where": "intro"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "insider-trading-explained",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 8606,
+  "tokens_out": 2519
+}

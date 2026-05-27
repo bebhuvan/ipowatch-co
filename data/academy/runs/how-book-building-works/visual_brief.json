@@ -1,0 +1,103 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/visual_brief.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.visual_brief.schema",
+  "dataset_version": "v2026.05.23-0738",
+  "estimated_cost_usd": 0.0014911000000000002,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T07:38:19+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-7 visual brief produced by deepseek-chat.",
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "how-book-building-works",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 2630,
+  "tokens_out": 710,
+  "visual_brief": {
+    "design_notes": [
+      "Use serif body text, hairline rules, single accent color (e.g., IPO Watch blue).",
+      "Tables should have minimal borders, only horizontal rules under header and last row.",
+      "Pull quote should be set in larger serif italic, with a hairline rule above and below."
+    ],
+    "formulas": [],
+    "lead_image": null,
+    "pull_quotes": [
+      {
+        "after_paragraph": "The alternative is a fixed-price issue, where the company names a single price upfront and investors either take it or leave it.",
+        "quote": "Book-building is the opposite: the price is discovered from demand over a few days of bidding.",
+        "rationale": "Captures the core concept of price discovery in one sentence."
+      }
+    ],
+    "sidebars": [
+      {
+        "after_section_slug": "the-minimum-you-can-apply-for",
+        "body_markdown": "In IPO bidding, you cannot apply for an arbitrary number of shares. Instead, you apply in 'lots' — a fixed number of shares determined by the company and its bankers. The lot size is set so that the minimum application value (the smallest amount you must commit) falls between ₹10,000 and ₹15,000. For example, if the price band is ₹200–₹240, the lot might be 60 shares, giving a minimum application of ₹12,000 (60 × ₹200). You can apply for one lot, two lots, three lots, and so on. The exact lot size is disclosed in the offer document and the price band advertisement.",
+        "rationale": "Explains the practical concept of lot size, which is not covered in the main text.",
+        "title": "What is a lot size?"
+      }
+    ],
+    "tables": [
+      {
+        "after_paragraph": "SEBI puts hard limits on how wide that band can be. The cap cannot exceed 120% of the floor.",
+        "columns": [
+          "Constraint",
+          "Rule"
+        ],
+        "footnote": "Source: SEBI (ICDR) Regulations, 2018",
+        "rationale": "Consolidates four separate constraints into a single reference table for quick lookup.",
+        "rows": [
+          [
+            "Cap relative to floor",
+            "≤ 120% of floor, ≥ 105% of floor"
+          ],
+          [
+            "Floor relative to face value",
+            "Floor and final price ≥ face value"
+          ],
+          [
+            "Advertisement timing",
+            "At least 2 working days before issue opens"
+          ],
+          [
+            "Advertisement content",
+            "Financial ratios for both ends, reference to 'basis of issue price' section"
+          ]
+        ],
+        "title": "Price band constraints"
+      },
+      {
+        "after_paragraph": "The amount paid at the time of application depends on the issue type.",
+        "columns": [
+          "Issue type",
+          "Payment at application"
+        ],
+        "footnote": "Source: SEBI (ICDR) Regulations, 2018",
+        "rationale": "Clarifies a key practical difference between fresh issue and OFS that is easy to confuse.",
+        "rows": [
+          [
+            "Fresh issue",
+            "At least 25% of issue price"
+          ],
+          [
+            "Offer for sale",
+            "100% of issue price"
+          ]
+        ],
+        "title": "Payment at application by issue type"
+      }
+    ],
+    "timeline": null
+  }
+}

@@ -1,0 +1,61 @@
+---
+import Base from '../../layouts/Base.astro';
+import { listDocumentTrails } from '../../lib/insights';
+import { formatInt } from '../../lib/format';
+
+const trails = listDocumentTrails(90);
+---
+
+<Base title="Documents">
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6">
+    <span class="label" style="color: inherit">Offer trail</span>
+  </div>
+  <h1 class="headline mb-7 max-w-[18ch]">Issue document trails.</h1>
+  <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[64ch]">
+    DRHPs, RHPs, prospectuses, exchange notices and anchor-allocation documents collected from NSE and BSE records.
+  </p>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(trails.length)}</p>
+      <p class="label mt-3">Issue trails shown</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(trails.reduce((sum, trail) => sum + trail.entries.length, 0))}</p>
+      <p class="label mt-3">Documents and notices</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(trails.filter((trail) => trail.entries.some((entry) => entry.label.toLowerCase().includes('anchor'))).length)}</p>
+      <p class="label mt-3">With anchor trail</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-24 border-t border-[color:var(--color-rule)]">
+  <header class="flex items-baseline justify-between mb-9">
+    <h2 class="section-title">Recent document trails</h2>
+    <span class="label">First 90</span>
+  </header>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {trails.map((trail) => (
+      <article class="border border-[color:var(--color-rule-card)] bg-white p-7">
+        <p class="label mb-4">{trail.issue.classification.issue_type} · {trail.issue.classification.exchange_platform}</p>
+        <a href={trail.issue.url_path} class="serif text-[24px] leading-[1.16] hover:acc">{trail.issue.company.name}</a>
+        <ol class="list-none p-0 m-0 mt-6 border-t border-[color:var(--color-rule)]">
+          {trail.entries.slice(0, 7).map((entry, idx) => (
+            <li class="grid grid-cols-[30px_minmax(0,1fr)] sm:grid-cols-[34px_minmax(0,1fr)_86px] gap-3 sm:gap-4 py-3 border-b border-[color:var(--color-rule)] items-baseline">
+              <span class="serif italic text-[15px] mute-2 num">{idx + 1}</span>
+              <a href={entry.url} class="truncate text-[13px] hover:acc" target="_blank" rel="noreferrer">{entry.label}</a>
+              <span class="text-right text-[11px] mute hidden sm:block">{entry.date ?? entry.source}</span>
+            </li>
+          ))}
+        </ol>
+        {trail.entries.length > 7 && <p class="mt-4 text-[12px] mute">{formatInt(trail.entries.length - 7)} more documents on the issue page.</p>}
+      </article>
+    ))}
+  </div>
+</section>
+</Base>

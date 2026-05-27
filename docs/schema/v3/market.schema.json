@@ -1,0 +1,31 @@
+{
+  "$id": "https://ipo-watch.local/schema/v3/market.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "issue_price_paise": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "listing_close_return_bps": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": "3.0.0"
+    },
+    "slug": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "slug"
+  ],
+  "title": "IPO Watch V3 Market",
+  "type": "object"
+}

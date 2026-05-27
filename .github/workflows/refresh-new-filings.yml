@@ -1,0 +1,97 @@
+name: Refresh SEBI new filings
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Evening India run. GitHub cron is UTC; 13:30 UTC = 19:00 IST.
+    - cron: "30 13 * * 1-5"
+
+concurrency:
+  group: ipo-watch-new-filings
+  cancel-in-progress: false
+
+jobs:
+  refresh-new-filings:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Poppler
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
+      - name: Refresh new SEBI filing articles
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python -m ipo_portal.orchestrator refresh-new-filings
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install web dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Build Astro site
+        working-directory: web
+        run: npm run build
+
+      - name: Wrangler dry run
+        working-directory: web
+        run: npm run cf:preview
+
+      - name: Deploy production Worker
+        working-directory: web
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npm run cf:deploy:production
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipo-watch-new-filings-${{ github.run_id }}
+          path: |
+            data/raw/sebi
+            data/reports/new_filings_refresh.json
+            data/ipo_watch_v3/new_filings
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Commit refreshed filing articles
+        if: success()
+        env:
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+        run: |
+          git add data/ipo_watch_v3/new_filings
+          git add -f data/reports/new_filings_refresh.json
+          if git diff --cached --quiet; then
+            echo "No new filing article changes; skipping commit."
+            exit 0
+          fi
+          stamp="$(date -u +'%Y-%m-%dT%H:%MZ')"
+          git commit -m "chore(data): refresh SEBI new filings at ${stamp}"
+          git push

@@ -1,0 +1,253 @@
+@import "tailwindcss";
+
+/* Newsreader — display + body serif by Production Type, designed for digital
+   news/finance reading with optical-size axis.
+   Inter — body, labels, UI. Loaded via Google Fonts in Base.astro. */
+
+@theme {
+  --font-serif:    'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-sans:     'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --color-paper:        #ffffff;
+  --color-paper-soft:   #fafaf7;
+  --color-ink:          #0f0e0c;
+  --color-ink-soft:     #2a2825;
+  --color-mute:         #6f6d66;
+  --color-mute-2:       #b3b1a8;
+  --color-rule:         #ebe7da;
+  --color-rule-card:    #ebe7d9;
+  --color-rule-strong:  #0f0e0c;
+  --color-accent:       #e8765a;   /* soft coral — the single accent */
+  --color-accent-deep:  #d05a3f;
+  --color-accent-soft:  #fce5dd;
+  --color-gold:         #b07a35;
+  --color-pos:          #2f6a3e;
+
+  /* Warm-white hover (was hardcoded #fffaf7 across pages) */
+  --color-paper-warm:   #fffaf7;
+
+  /* Ink tint ramp — for charts/series, so colour stays single-accent.
+     ink → ink-2 → mute → ink-4 → ink-5, darkest to lightest. */
+  --color-ink-2:        #3a3833;
+  --color-ink-4:        #9b988f;
+  --color-ink-5:        #c9c6bc;
+}
+
+@layer base {
+  :root { color-scheme: light; }
+
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "tnum", "kern";
+    font-variant-numeric: tabular-nums lining-nums;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 14.5px;
+    line-height: 1.55;
+    letter-spacing: -0.004em;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--color-ink); color: var(--color-paper); }
+
+  a { color: inherit; text-decoration: none; transition: color .2s ease, opacity .2s ease; }
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    outline: 1.5px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  .serif {
+    font-family: var(--font-serif);
+    font-feature-settings: "lnum","tnum";
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  .num   { font-variant-numeric: tabular-nums lining-nums; }
+  .mute  { color: var(--color-mute); }
+  .mute-2 { color: var(--color-mute-2); }
+  .acc   { color: var(--color-accent); }
+  .acc-deep { color: var(--color-accent-deep); }
+
+  /* Page frames */
+  .page { max-width: 1320px; margin-inline: auto; padding-inline: 24px; }
+  .page-tight { max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+  @media (min-width: 768px) {
+    .page { padding-inline: 56px; }
+    .page-tight { padding-inline: 56px; }
+  }
+
+  /* Hairline */
+  .rule { border: 0; border-top: 1px solid var(--color-rule); }
+
+  /* Display hierarchy — Roman by default. Italic is reserved for accents. */
+  .headline {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(42px, 10.5vw, 84px);
+    line-height: 1.04; letter-spacing: -0.014em;
+  }
+  .section-title {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 28px; letter-spacing: -0.008em;
+    line-height: 1.15;
+  }
+  .lede {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 21px; line-height: 1.5;
+    color: var(--color-ink-soft);
+  }
+  .figure {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(54px, 7vw, 84px);
+    letter-spacing: -0.025em; line-height: 0.96;
+  }
+  .figure-2 {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 52px; letter-spacing: -0.012em; line-height: 0.98;
+  }
+
+  /* Serif body ladder — replaces ad-hoc text-[Npx] on the home so sizes
+     step on one scale. Each carries family + leading + tracking. */
+  .t-sub {                 /* sub-leads, descriptive serif paragraphs */
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 19px; line-height: 1.45; color: var(--color-ink-soft);
+  }
+  .t-title {               /* card + list-row headings */
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 20px; line-height: 1.2; letter-spacing: -0.006em;
+  }
+  .t-value {               /* secondary figures in stat tables */
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 22px; line-height: 1.05; letter-spacing: -0.01em;
+  }
+  .t-stat {                /* stat-band numbers */
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 30px; line-height: 1; letter-spacing: -0.012em;
+  }
+
+  .label {
+    font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--color-mute); font-weight: 600;
+  }
+  .label-acc { color: var(--color-accent); }
+
+  /* Live pulse */
+  .live-dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--color-accent); margin-right: 7px;
+    animation: live-pulse 2.4s ease-in-out infinite;
+    vertical-align: 1px;
+  }
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.35; transform: scale(0.8); }
+  }
+
+  .site-header {
+    padding-top: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .site-header-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 28px;
+  }
+
+  .site-kicker {
+    font-size: 10.5px;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    font-weight: 600;
+  }
+
+  .site-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    text-align: center;
+  }
+
+  .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px 18px;
+    font-size: 13px;
+    color: var(--color-mute);
+    font-weight: 600;
+  }
+
+  .site-nav a:hover { color: var(--color-ink); }
+
+  .site-status {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    padding-top: 13px;
+    margin-top: 15px;
+    border-top: 1px solid var(--color-rule);
+    font-size: 12.5px;
+    color: var(--color-mute);
+  }
+
+  .issue-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 21px;
+    border: 1px solid currentColor;
+    padding: 2px 8px;
+    font-size: 9.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .issue-badge-live { color: var(--color-accent); background: #fffaf7; }
+  .issue-badge-dark { color: var(--color-ink); background: var(--color-paper); }
+
+  @media (max-width: 767px) {
+    .site-header { padding-top: 24px; padding-bottom: 18px; }
+    .site-header-main {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 15px;
+    }
+    .site-kicker { text-align: center; font-size: 10px; }
+    .site-brand img { width: 30px; height: 30px; }
+    .site-brand .serif { font-size: 29px; }
+    .site-nav {
+      justify-content: center;
+      gap: 6px 10px;
+      max-width: 360px;
+      font-size: 12.5px;
+    }
+    .site-status {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 16px;
+    }
+  }
+}

@@ -1,0 +1,908 @@
+---
+import Base from '../layouts/Base.astro';
+import TrajectoryChart from './TrajectoryChart.astro';
+import {
+  formatDateLong,
+  formatDateShort,
+  formatInt,
+  formatRupee,
+  formatRupeeRange,
+  formatTimes,
+  formatLakhCr,
+  daysFromNow,
+} from '../lib/format';
+import {
+  extractIngredient,
+  type IssueDetail,
+} from '../lib/issues';
+
+const { issue } = Astro.props as { issue: IssueDetail };
+const today = new Date();
+
+const status = issue.classification.status;
+const company = issue.company.name ?? '';
+const exchange = issue.classification.exchange_platform ?? '—';
+const issueType = issue.classification.issue_type ?? 'IPO';
+
+const exch = (issue.exchange_details ?? {}) as any;
+const bseDetail = exch.bse?.issue_detail?.data?.IPONO_0?.[0] ?? null;
+const nseIssueInfo = (exch.nse?.issue_detail?.data?.issueInfo?.dataList ?? []) as any[];
+const nseOfferRows = (exch.nse?.offer_document_detail?.data?.data?.InPrincipal ?? []) as any[];
+
+const splitParty = (raw: string | null | undefined): { name: string | null; meta: string | null } => {
+  if (!raw) return { name: null, meta: null };
+  const [first, ...rest] = String(raw).split('^');
+  const meta = rest.join('^').split('|')[0]?.replace(/\s+/g, ' ').trim() || null;
+  return { name: first?.trim() || null, meta };
+};
+const brlm = splitParty(bseDetail?.Book_Running_Lead_Manager);
+const registrar = splitParty(bseDetail?.Registrar);
+const sponsor = splitParty(bseDetail?.Sponsor_Bank);
+const leadManagerNames = issue.parties?.lead_managers ?? [];
+const brlmName = brlm.name ?? (leadManagerNames.length ? leadManagerNames.join(', ') : null);
+const registrarName = registrar.name ?? issue.parties?.registrar ?? null;
+const sponsorName = sponsor.name ?? issue.parties?.sponsor_bank ?? null;
+
+const ing = extractIngredient(issue);
+const priceMin = ing.priceMin;
+const priceMax = ing.priceMax;
+const lotSize = ing.lotSize;
+const sharesOffered = ing.sharesOffered;
+const faceValue = ing.faceValue;
+
+const minInvestment = lotSize != null && priceMax != null ? lotSize * priceMax : null;
+const subscribed = issue.subscription.trajectory.length
+  ? issue.subscription.trajectory[issue.subscription.trajectory.length - 1].total?.times ?? issue.subscription.times
+  : issue.subscription.times;
+const lastTrajectory = issue.subscription.trajectory.length
+  ? issue.subscription.trajectory[issue.subscription.trajectory.length - 1]
+  : null;
+
+const parseNum = (value: unknown): number | null => {
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  if (typeof value !== 'string') return null;
+  const cleaned = value.replace(/,/g, '').trim();
+  if (!cleaned || cleaned === '-') return null;
+  const n = Number(cleaned);
+  return Number.isFinite(n) ? n : null;
+};
+
+const cleanCell = (value: unknown): string | null => {
+  if (value == null) return null;
+  const text = String(value).replace(/^"+|"+$/g, '').replace(/\s+/g, ' ').trim();
+  return text && text !== '-' ? text : null;
+};
+
+const hrefFromValue = (value: unknown): string | null => {
+  if (typeof value !== 'string') return null;
+  const html = value.match(/href=([^ >]+)/i)?.[1]?.replace(/^["']|["']$/g, '');
+  if (html) return html;
+  return value.startsWith('http') ? value : null;
+};
+
+const labelize = (key: string) => key
+  .replace(/_/g, ' ')
+  .replace(/([a-z])([A-Z])/g, '$1 $2')
+  .replace(/\s+/g, ' ')
+  .trim()
+  .replace(/\b\w/g, (c) => c.toUpperCase());
+
+// Bid book / demand by price. BSE exposes exact quantity; NSE exposes cumulative demand.
+type BidBookRow = { price: number; quantity: number; timestamp: string | null; source: string };
+const isBidBookRow = (row: { price: number | null; quantity: number | null; timestamp: string | null; source: string }): row is BidBookRow =>
+  row.price != null && row.quantity != null;
+const bseBidRows: BidBookRow[] = (((exch.bse?.issue_detail?.data?.IPONO_2 ?? []) as any[])
+  .map((r: any) => ({ price: parseNum(r.Price), quantity: parseNum(r.Quantity), timestamp: cleanCell(r.process_dttm), source: 'BSE' }))
+  .filter(isBidBookRow));
+const nseDemandRows: BidBookRow[] = (((exch.nse?.demand_data?.nse?.rows ?? exch.nse?.issue_detail?.data?.demandDataNSE ?? []) as any[])
+  .map((r: any) => ({ price: parseNum(r.price), quantity: parseNum(r.cumQty), timestamp: cleanCell(r.timestamp), source: 'NSE' }))
+  .filter(isBidBookRow));
+const latestDemandCurve = (issue.subscription.demand_curves ?? [])
+  .slice()
+  .sort((a, b) => (b.observed_at ?? '').localeCompare(a.observed_at ?? ''))[0] ?? null;
+const v3DemandRows: BidBookRow[] = latestDemandCurve
+  ? latestDemandCurve.points.map((point) => ({
+    price: point.price,
+    quantity: point.cumulative_quantity,
+    timestamp: latestDemandCurve.source_updated_at,
+    source: latestDemandCurve.scope === 'all' ? 'NSE all-exchange' : 'NSE',
+  }))
+  : [];
+const bidBook = bseBidRows.length ? bseBidRows : nseDemandRows.length ? nseDemandRows : v3DemandRows;
+const bidBookMaxQty = bidBook.length ? Math.max(...bidBook.map((r) => r.quantity)) : 0;
+const bidBookSource = bidBook[0]?.source ?? null;
+const demandGraph = exch.nse?.issue_detail?.data?.demandGraph ?? null;
+
+const sizeText = sharesOffered && priceMax != null
+  ? formatLakhCr(sharesOffered * priceMax)
+  : issue.issue_size?.text ?? null;
+
+const statusLabel = status === 'current' ? 'open' : status === 'upcoming' ? 'upcoming' : status === 'past' ? 'listed' : 'filed';
+const tagLine = [issueType, exchange].filter(Boolean).join('  ·  ');
+
+const dateLine = (() => {
+  if (status === 'current') {
+    const d = daysFromNow(issue.timeline.close_date, today);
+    if (d === 0) return 'closes today';
+    if (d === 1) return 'closes tomorrow';
+    if (d != null && d > 0) return `closes ${formatDateShort(issue.timeline.close_date)}`;
+    return 'closed';
+  }
+  if (status === 'upcoming') return `opens ${formatDateLong(issue.timeline.open_date)}`;
+  if (status === 'past') return issue.timeline.listing_date ? `listed ${formatDateLong(issue.timeline.listing_date)}` : '';
+  return '';
+})();
+
+const standfirst = (() => {
+  const parts: string[] = [];
+  if (status === 'current') {
+    if (sizeText) parts.push(`Raising ${sizeText}`);
+    if (priceMin != null && priceMax != null) parts.push(`at ${formatRupeeRange(priceMin, priceMax)} per share`);
+  } else if (status === 'upcoming') {
+    if (sizeText) parts.push(`Will raise ${sizeText}`);
+    if (priceMin != null && priceMax != null) parts.push(`at ${formatRupeeRange(priceMin, priceMax)} per share`);
+  } else if (status === 'past' && issue.timeline.listing_date) {
+    if (sizeText) parts.push(`Raised ${sizeText}`);
+    const ip = issue.pricing.issue_price ?? priceMax;
+    if (ip != null) parts.push(`at ${formatRupee(ip)} per share`);
+  }
+  return parts.join(' ');
+})();
+
+const heroFigure = (() => {
+  if (status === 'current') {
+    if (subscribed != null) return { value: formatTimes(subscribed), label: 'total subscription so far' };
+    if (priceMin != null && priceMax != null) return { value: formatRupeeRange(priceMin, priceMax), label: 'price band per share' };
+    return null;
+  }
+  if (status === 'upcoming') {
+    if (priceMin != null && priceMax != null) return { value: formatRupeeRange(priceMin, priceMax), label: 'price band per share' };
+    if (issue.pricing.issue_price != null) return { value: formatRupee(issue.pricing.issue_price), label: 'issue price' };
+    return null;
+  }
+  if (status === 'past') {
+    const g = issue.listing_performance.listing_day_gain;
+    if (g != null) return { value: `${g > 0 ? '+' : ''}${g.toFixed(1)}%`, label: 'listing-day move', isGain: true, gain: g };
+    return null;
+  }
+  return null;
+})();
+
+const documentOrder = ['DRHP', 'RHP', 'Prospectus', 'Final prospectus', 'Price Band Advertisement', 'Public issue advertisement'];
+const documents = (issue.documents ?? []).slice().sort((a: any, b: any) => {
+  const ai = documentOrder.indexOf(a.type);
+  const bi = documentOrder.indexOf(b.type);
+  return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+});
+
+const fmtGain = (g: number | null | undefined) => g == null ? '—' : `${g > 0 ? '+' : ''}${g.toFixed(2)}%`;
+
+type SplitRow = { key: string; label: string; times: number; offered: number | null; bid: number | null };
+const splitRows: SplitRow[] = (() => {
+  if (!lastTrajectory) return [];
+  const order = [
+    { key: 'qib', label: 'QIB' },
+    { key: 'nii', label: 'NII' },
+    { key: 'retail', label: 'Retail' },
+    { key: 'employee', label: 'Employee' },
+    { key: 'shareholder', label: 'Shareholder' },
+  ];
+  return order.map(({ key, label }) => {
+    const c = lastTrajectory.categories[key];
+    if (!c || c.times == null) return null;
+    return { key, label, times: c.times, offered: c.shares_offered, bid: c.shares_bid };
+  }).filter((x): x is SplitRow => x != null);
+})();
+
+type SubscriptionRow = {
+  sr: string | null;
+  category: string;
+  offered: number | null;
+  bid: number | null;
+  applications: number | null;
+  times: number | null;
+};
+
+const subscriptionRows: SubscriptionRow[] = (() => {
+  if (issue.subscription.consolidated?.categories.length) {
+    return [
+      ...(issue.subscription.consolidated.total_times != null ? [{
+        sr: null,
+        category: 'Total',
+        offered: null,
+        bid: null,
+        times: issue.subscription.consolidated.total_times,
+        applications: null,
+      }] : []),
+      ...issue.subscription.consolidated.categories.map((row, idx) => ({
+        sr: String(idx + 1),
+        category: labelize(row.category),
+        offered: row.shares_offered,
+        bid: row.shares_bid,
+        times: row.times,
+        applications: row.applications ?? null,
+      })),
+    ];
+  }
+
+  const bseRows = ((exch.bse?.consolidated_bid_details?.rows ?? exch.bse?.bid_details?.rows ?? []) as any[]);
+  if (bseRows.length) {
+    return bseRows.map((r) => ({
+      sr: cleanCell(r.SRNo),
+      category: cleanCell(r.col2) ?? '',
+      offered: parseNum(r.col3),
+      bid: parseNum(r.col4),
+      times: parseNum(r.col5),
+      applications: parseNum(r.col8),
+    })).filter((r) => r.category && r.category.toLowerCase() !== 'category');
+  }
+
+  const nseRows = ((exch.nse?.bid_details?.rows ?? exch.nse?.issue_detail?.data?.bidDetails ?? []) as any[]);
+  if (nseRows.length) {
+    return nseRows.map((r) => ({
+      sr: cleanCell(r.srNo),
+      category: cleanCell(r.category) ?? '',
+      offered: null,
+      bid: parseNum(r.noOfshareBid ?? r.noOfSharesBid),
+      times: null,
+      applications: parseNum(r.noofapplication),
+    })).filter((r) => r.category && r.category.toLowerCase() !== 'category');
+  }
+
+  const exchangeBook = issue.subscription.by_exchange.nse ?? issue.subscription.by_exchange.bse ?? null;
+  if (exchangeBook?.categories?.length) {
+    return exchangeBook.categories.map((row, idx) => ({
+      sr: String(idx + 1),
+      category: labelize(row.category),
+      offered: row.shares_offered,
+      bid: row.shares_bid,
+      times: row.times,
+      applications: row.applications ?? null,
+    }));
+  }
+
+  return splitRows.map((r) => ({
+    sr: null,
+    category: r.label,
+    offered: r.offered,
+    bid: r.bid,
+    times: r.times,
+    applications: null,
+  }));
+})();
+const subscriptionMax = subscriptionRows.length
+  ? Math.max(...subscriptionRows.map((r) => r.times ?? (r.bid ?? 0)), 1)
+  : 0;
+const isMajorSubscriptionCategory = (category: string) => {
+  const text = category.toLowerCase();
+  return text === 'total' ||
+    text.includes('qualified institutional buyers') ||
+    text === 'non institutional investors' ||
+    text.includes('retail individual') ||
+    text.includes('individual investors (ind category bidding for 2 lots') ||
+    text === 'employee' ||
+    text === 'shareholder';
+};
+const subscriptionTotalRow = subscriptionRows.find((row) => row.category.toLowerCase() === 'total') ?? null;
+const subscriptionVisualRows = subscriptionRows
+  .filter((row) => row.category.toLowerCase() !== 'total')
+  .map((row) => ({
+    ...row,
+    metric: row.times ?? row.bid ?? 0,
+    isChild: !isMajorSubscriptionCategory(row.category),
+  }));
+const subscriptionLeaderMetric = subscriptionVisualRows.length
+  ? Math.max(...subscriptionVisualRows.map((row) => row.metric))
+  : 0;
+const subscriptionSourceObservedAt = issue.sources
+  .filter((source) => source.source.toLowerCase() === 'bse' && source.endpoint.includes('bid_details'))
+  .map((source) => source.observed_at)
+  .filter(Boolean)
+  .sort()
+  .at(-1) ?? null;
+const formatObservedAt = (value: string | null): string | null => {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return `${date.toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kolkata' })} IST`;
+};
+const subscriptionUpdatedAt =
+  cleanCell(exch.bse?.consolidated_bid_details?.rows?.[1]?.Maxdt) ??
+  cleanCell(exch.bse?.bid_details?.rows?.[1]?.Maxdt) ??
+  cleanCell(exch.nse?.demand_data?.nse?.rows?.[0]?.timestamp) ??
+  cleanCell(exch.nse?.issue_detail?.data?.demandGraph?.timestamp) ??
+  formatObservedAt(lastTrajectory?.observed_at ?? null) ??
+  formatObservedAt(subscriptionSourceObservedAt);
+const subscriptionAllZero = subscriptionRows.length > 0 && subscriptionRows.every((row) =>
+  (row.bid == null || row.bid === 0) &&
+  (row.times == null || row.times === 0) &&
+  (row.applications == null || row.applications === 0)
+);
+
+const issueInfoRows = nseIssueInfo
+  .map((row) => ({
+    title: cleanCell(row.title) ?? 'Exchange note',
+    value: cleanCell(row.value),
+    href: hrefFromValue(row.value),
+  }))
+  .filter((row) => row.value || row.href);
+const canonicalIssueInfoRows = issue.exchange_issue_info ?? [];
+const visibleIssueInfoRows = issueInfoRows.length ? issueInfoRows : canonicalIssueInfoRows;
+
+const offerMetadataRows = nseOfferRows.flatMap((row) => {
+  const wanted = [
+    'industry',
+    'mode_Of_Issue',
+    'eligibility_Of_The_Issue',
+    'tentative_No_of_Shares',
+    'estimated_Total_Issue_Amount',
+    'name_Of_LM_BRLM',
+    'name_Of_RTA',
+    'name_Of_Promoter',
+    'name_Of_Market_Maker',
+    'name_Of_Company_Secretary_And_Compliance_Officer',
+    'website',
+    'registered_Office_Region',
+    'registered_Office_Address',
+    'corporate_Office_Address',
+    'isin',
+    'corporate_Identity_Number',
+  ];
+  return wanted.map((key) => ({ title: labelize(key), value: cleanCell(row[key]), href: hrefFromValue(row[key]) })).filter((r) => r.value || r.href);
+});
+
+type FactLeaf = {
+  value?: unknown;
+  raw_excerpt?: string | null;
+  source_page?: number | null;
+  source_section?: string | null;
+  confidence?: string | null;
+};
+type FactItem = { label: string; value: string; page: number | null; section: string | null; confidence: string | null };
+
+const isFactLeaf = (value: unknown): value is FactLeaf =>
+  Boolean(value && typeof value === 'object' && 'value' in (value as Record<string, unknown>));
+
+const factText = (value: unknown): string | null => {
+  if (value == null || value === '') return null;
+  if (typeof value === 'number') return value.toLocaleString('en-IN');
+  if (typeof value === 'string') return value.trim() || null;
+  return null;
+};
+
+const factItem = (label: string, leaf: unknown): FactItem | null => {
+  if (!isFactLeaf(leaf)) return null;
+  const value = factText(leaf.value);
+  if (!value) return null;
+  return {
+    label,
+    value,
+    page: typeof leaf.source_page === 'number' ? leaf.source_page : null,
+    section: leaf.source_section ?? null,
+    confidence: leaf.confidence ?? null,
+  };
+};
+
+const factList = (label: string, values: unknown, limit = 6): FactItem[] =>
+  Array.isArray(values)
+    ? values.map((leaf) => factItem(label, leaf)).filter((leaf): leaf is FactItem => leaf != null).slice(0, limit)
+    : [];
+
+const prospectus = issue.prospectus_facts;
+const prospectusQuality = prospectus?.quality ?? null;
+const facts = prospectus?.facts ?? {};
+const businessFacts = facts.business?.business ?? {};
+const industryFacts = facts.industry?.industry ?? {};
+const financialFacts = facts.financials?.financials ?? {};
+const riskFacts = facts.risks?.risks ?? {};
+const offerFacts = facts.offer?.offer ?? {};
+const valuationFacts = facts.valuation_and_peers?.valuation_and_peers ?? {};
+const governanceFacts = facts.governance?.governance ?? {};
+const hasVerifiedProspectus = Boolean(prospectus?.deepseek?.used && prospectusQuality?.state !== 'fail');
+
+const businessSnapshot = [
+  ...factList('Product/service', businessFacts.products_services, 6),
+  ...factList('Competitive strength', businessFacts.competitive_strengths, 4),
+  ...factList('Key dependency', businessFacts.key_dependencies, 3),
+  ...factList('Geography', businessFacts.geographies, 2),
+];
+const industrySnapshot = [
+  factItem('Industry', industryFacts.industry_name),
+  ...factList('Market size', industryFacts.market_size, 4),
+  ...factList('Growth driver', industryFacts.drivers, 4),
+  ...factList('Regulatory context', industryFacts.regulatory_context, 4),
+].filter((leaf): leaf is FactItem => leaf != null);
+const financialRows = [
+  ...factList('Revenue', financialFacts.revenue, 4),
+  ...factList('Profit after tax', financialFacts.pat, 4),
+  ...factList('Operating cash flow', financialFacts.cash_flow, 4),
+];
+const riskRows = [
+  ...factList('Top risk', riskFacts.top_risks, 5),
+  ...factList('Customer/supplier risk', riskFacts.customer_supplier_risks, 4),
+  ...factList('Financial risk', riskFacts.financial_risks, 4),
+  ...factList('Regulatory risk', riskFacts.regulatory_risks, 4),
+  ...factList('Red flag', riskFacts.red_flags, 5),
+].slice(0, 14);
+const advisorRows = [
+  ...factList('Lead manager', offerFacts.lead_managers, 4),
+  factItem('Registrar', offerFacts.registrar),
+  ...factList('Object of issue', offerFacts.objects_of_issue, 4),
+].filter((leaf): leaf is FactItem => leaf != null);
+const valuationRows = [
+  ...factList('Valuation metric', valuationFacts.valuation_metrics, 4),
+  ...factList('EPS / NAV / RoNW', valuationFacts.eps_nav_ronw, 4),
+  ...factList('Peer comparison', valuationFacts.peer_comparison, 4),
+].slice(0, 10);
+const governanceRows = [
+  ...factList('Promoter', governanceFacts.promoters, 4),
+  ...factList('Director', governanceFacts.directors, 4),
+  ...factList('KMP', governanceFacts.kmp, 4),
+  ...factList('Litigation', governanceFacts.litigation, 4),
+  ...factList('Related-party transaction', governanceFacts.related_party_transactions, 4),
+].slice(0, 12);
+
+// Subscription window progress (current issues)
+let progressPct = 0;
+if (status === 'current' && issue.timeline.open_date && issue.timeline.close_date) {
+  const o = new Date(issue.timeline.open_date + 'T10:00:00').getTime();
+  const c = new Date(issue.timeline.close_date + 'T17:00:00').getTime();
+  const e = Math.max(0, today.getTime() - o);
+  const t = Math.max(1, c - o);
+  progressPct = Math.max(0, Math.min(100, (e / t) * 100));
+}
+---
+
+<Base title={company}>
+
+<!-- STATUS LINE -->
+<div class="page-tight pt-16 pb-3 flex flex-wrap items-baseline gap-x-3 text-[12.5px] mute">
+  <span class="inline-flex items-center gap-2">
+    {status === 'current' && <span class="live-dot"></span>}
+    <span class="label" style="color: inherit">{statusLabel}</span>
+  </span>
+  <span class="mute-2">·</span>
+  <span>{tagLine}</span>
+  {dateLine && (<>
+    <span class="mute-2">·</span>
+    <span>{dateLine}</span>
+  </>)}
+</div>
+
+<!-- HEADLINE + STANDFIRST -->
+<section class="page-tight pb-12">
+  <h1 class="headline mb-7 max-w-[16ch] break-words hyphens-auto">{company}</h1>
+  {standfirst && <p class="serif text-[22px] leading-[1.46] text-[color:var(--color-ink-soft)] max-w-[60ch]">{standfirst}.</p>}
+</section>
+
+<!-- HERO FIGURE -->
+{heroFigure && (
+  <section class="page-tight pt-10 pb-20 border-t border-[color:var(--color-rule)]">
+    <p class={`figure num ${heroFigure.isGain && heroFigure.gain != null && heroFigure.gain > 50 ? 'acc' : ''}`}>{heroFigure.value}</p>
+    <p class="label mt-5">{heroFigure.label}</p>
+    {status === 'current' && progressPct > 0 && (
+      <div class="mt-9 max-w-[36ch]">
+        <div class="flex justify-between items-baseline text-[11px] tracking-[0.08em] uppercase mute font-semibold mb-2">
+          <span>Subscription window</span>
+          <span class="num">{Math.round(progressPct)}%</span>
+        </div>
+        <div class="h-[3px] bg-[color:var(--color-rule)] relative overflow-hidden">
+          <div class="absolute inset-y-0 left-0 bg-[color:var(--color-accent)]" style={`width: ${progressPct}%`}></div>
+        </div>
+      </div>
+    )}
+  </section>
+)}
+
+<!-- SPECS CARDS -->
+<section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    {priceMin != null && priceMax != null && (
+      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+        <div class="label mb-2">Price band</div>
+        <div class="serif text-[26px] num leading-tight">{formatRupeeRange(priceMin, priceMax)}</div>
+      </div>
+    )}
+    {issue.pricing.issue_price != null && status === 'past' && (
+      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+        <div class="label mb-2">Issue price</div>
+        <div class="serif text-[26px] num leading-tight">{formatRupee(issue.pricing.issue_price)}</div>
+      </div>
+    )}
+    {lotSize != null && (
+      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+        <div class="label mb-2">Shares per lot</div>
+        <div class="serif text-[26px] num leading-tight">{formatInt(lotSize)}</div>
+      </div>
+    )}
+    {minInvestment != null && (
+      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+        <div class="label mb-2">Retail minimum</div>
+        <div class="serif text-[26px] num leading-tight">{formatRupee(minInvestment)}</div>
+      </div>
+    )}
+    {sizeText && (
+      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+        <div class="label mb-2">Issue size</div>
+        <div class="serif text-[26px] num leading-tight">{sizeText}</div>
+      </div>
+    )}
+    {faceValue != null && (
+      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+        <div class="label mb-2">Face value</div>
+        <div class="serif text-[26px] num leading-tight">{formatRupee(faceValue)}</div>
+      </div>
+    )}
+    {status === 'past' && issue.listing_performance.listing_day_close != null && (
+      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+        <div class="label mb-2">Listing-day close</div>
+        <div class="serif text-[26px] num leading-tight">{formatRupee(issue.listing_performance.listing_day_close)}</div>
+      </div>
+    )}
+    {status === 'past' && issue.listing_performance.current_price != null && (
+      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+        <div class="label mb-2">Current price</div>
+        <div class="serif text-[26px] num leading-tight">{formatRupee(issue.listing_performance.current_price)}</div>
+      </div>
+    )}
+    {status === 'past' && issue.listing_performance.gain_loss != null && (
+      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+        <div class="label mb-2">Return since listing</div>
+        <div class={`serif text-[26px] num leading-tight ${issue.listing_performance.gain_loss > 50 ? 'acc' : ''}`}>{fmtGain(issue.listing_performance.gain_loss)}</div>
+      </div>
+    )}
+  </div>
+</section>
+
+<!-- SUBSCRIPTION BY CATEGORY -->
+{subscriptionRows.length > 0 && (
+  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="flex items-baseline justify-between mb-9">
+      <h2 class="section-title">Subscription by investor category</h2>
+      {subscriptionUpdatedAt && <span class="text-[12px] mute num">as of {subscriptionUpdatedAt}</span>}
+    </header>
+    {subscriptionTotalRow && (
+      <div class="mb-7 border-y border-[color:var(--color-ink)] py-5">
+        <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-4 md:items-end">
+          <div>
+            <p class="label mb-2">Total demand</p>
+            <p class="serif text-[26px] md:text-[32px] leading-tight num">
+              {formatInt(subscriptionTotalRow.bid)} shares bid
+              {subscriptionTotalRow.offered != null && <> against {formatInt(subscriptionTotalRow.offered)} offered</>}
+            </p>
+          </div>
+          <div class="md:text-right">
+            <p class="serif text-[42px] leading-none num acc">{subscriptionTotalRow.times == null ? '—' : formatTimes(subscriptionTotalRow.times)}</p>
+            {subscriptionTotalRow.applications != null && <p class="mt-2 text-[12.5px] mute num">{formatInt(subscriptionTotalRow.applications)} applications</p>}
+          </div>
+        </div>
+      </div>
+    )}
+    {subscriptionAllZero && (
+      <p class="mb-7 text-[13px] mute leading-relaxed max-w-[72ch]">
+        BSE is publishing the category book for this issue, but the latest feed currently reports zero bids and no subscription multiple.
+      </p>
+    )}
+    <div class="space-y-4">
+      {subscriptionVisualRows.map((row) => {
+        const width = subscriptionMax > 0 ? Math.min(100, (row.metric / subscriptionMax) * 100) : 0;
+        const isLeader = row.metric > 0 && row.metric === subscriptionLeaderMetric;
+        const hasTimes = row.times != null;
+        return (
+          <article class={`border-b border-[color:var(--color-rule)] pb-4 ${row.isChild ? 'ml-0 md:ml-12' : ''}`}>
+            <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_116px] gap-3 md:items-baseline">
+              <div>
+                <div class="flex items-baseline gap-3">
+                  <span class="text-[12px] mute num w-8 shrink-0">{row.sr ?? ''}</span>
+                  <h3 class={`${row.isChild ? 'text-[13px] text-[color:var(--color-mute)]' : 'serif text-[22px] text-[color:var(--color-ink)]'} leading-snug`}>
+                    {row.category}
+                  </h3>
+                </div>
+                <p class="mt-2 ml-11 text-[12.5px] mute leading-relaxed">
+                  {row.bid != null && <>Shares bid <span class="num text-[color:var(--color-ink)]">{formatInt(row.bid)}</span></>}
+                  {row.offered != null && <> <span class="mute-2">·</span> Offered <span class="num text-[color:var(--color-ink)]">{formatInt(row.offered)}</span></>}
+                  {row.applications != null && <> <span class="mute-2">·</span> Applications <span class="num text-[color:var(--color-ink)]">{formatInt(row.applications)}</span></>}
+                </p>
+              </div>
+              <div class="md:text-right ml-11 md:ml-0">
+                <span class={`serif num leading-none ${hasTimes ? 'text-[30px]' : 'text-[22px]'} ${isLeader || (hasTimes && row.times! >= 5) ? 'acc' : 'text-[color:var(--color-ink)]'}`}>
+                  {hasTimes ? formatTimes(row.times) : formatInt(row.bid)}
+                </span>
+                {!hasTimes && <span class="ml-2 text-[11px] mute uppercase tracking-[0.08em]">shares</span>}
+              </div>
+            </div>
+            <div class={`mt-3 ${row.isChild ? 'ml-11' : 'ml-11'} h-[10px] bg-[color:var(--color-rule)] relative`}>
+              <span
+                class={`absolute inset-y-0 left-0 ${isLeader ? 'bg-[color:var(--color-accent)]' : row.isChild ? 'bg-[color:var(--color-mute-2)]' : 'bg-[color:var(--color-ink)]'}`}
+                style={`width: ${Math.max(width, row.metric > 0 ? 1.5 : 0).toFixed(1)}%; opacity: ${row.isChild ? 0.75 : 1};`}
+              ></span>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+    {issue.subscription.shares_bid != null && (
+      <p class="mt-5 text-[12.5px] mute">
+        Total shares bid: <span class="num text-[color:var(--color-ink)]">{formatInt(issue.subscription.shares_bid)}</span>{issue.subscription.times != null && <> · total subscription <span class="num text-[color:var(--color-ink)]">{formatTimes(issue.subscription.times)}</span></>}.
+      </p>
+    )}
+  </section>
+)}
+
+<!-- TRAJECTORY -->
+{issue.subscription.trajectory.length > 1 && (
+  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="mb-9">
+      <h2 class="section-title">Subscription over time</h2>
+    </header>
+    <div class="max-w-[1080px]">
+      <TrajectoryChart observations={issue.subscription.trajectory} />
+    </div>
+  </section>
+)}
+
+<!-- BID BOOK -->
+{bidBook.length > 0 && (
+  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="flex items-baseline justify-between mb-9">
+      <h2 class="section-title">Bid book by price</h2>
+      <span class="text-[12px] mute">{bidBookSource === 'NSE' ? 'cumulative NSE demand' : 'where the demand sits'}</span>
+    </header>
+    <div class="space-y-3 max-w-[980px]">
+      {bidBook.slice().sort((a, b) => b.price - a.price).map((row) => {
+        const pct = bidBookMaxQty > 0 ? (row.quantity / bidBookMaxQty) * 100 : 0;
+        const isCutoff = priceMax != null && row.price === priceMax;
+        return (
+          <div class="grid grid-cols-[86px_minmax(0,1fr)] sm:grid-cols-[108px_minmax(0,1fr)_170px] items-center gap-3 sm:gap-5 num py-1">
+            <span class={`text-left sm:text-right serif text-[23px] ${isCutoff ? 'acc' : ''}`}>{formatRupee(row.price)}</span>
+            <span class="relative h-[28px] bg-[color:var(--color-paper-soft)] border border-[color:var(--color-rule)]">
+              <span
+                class={`absolute inset-y-0 left-0 ${isCutoff ? 'bg-[color:var(--color-accent)]' : 'bg-[color:var(--color-ink)]'}`}
+                style={`width: ${pct.toFixed(1)}%; opacity: ${isCutoff ? 1 : 0.3 + (pct / 100) * 0.6};`}
+              ></span>
+            </span>
+            <span class="col-start-2 sm:col-start-auto text-right serif text-[21px] num">{formatInt(row.quantity)}</span>
+          </div>
+        );
+      })}
+    </div>
+    {(bidBook[0]?.timestamp || demandGraph?.note) && (
+      <p class="mt-5 text-[12.5px] mute max-w-[78ch]">
+        {bidBook[0]?.timestamp && <>Updated <span class="num">{bidBook[0].timestamp}</span>. </>}
+        {demandGraph?.note && <>{demandGraph.note}</>}
+      </p>
+    )}
+  </section>
+)}
+
+<!-- EXCHANGE ISSUE DETAILS -->
+{(visibleIssueInfoRows.length > 0 || offerMetadataRows.length > 0) && (
+  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="flex items-baseline justify-between mb-9">
+      <h2 class="section-title">Exchange filings</h2>
+      <span class="text-[12px] mute">Fields captured from NSE and BSE</span>
+    </header>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      {visibleIssueInfoRows.length > 0 && (
+        <div>
+          <div class="label mb-4">Issue information</div>
+          <dl class="border-t border-[color:var(--color-ink)]">
+            {visibleIssueInfoRows.map((row) => (
+              <div class="grid grid-cols-1 sm:grid-cols-[180px_minmax(0,1fr)] gap-1 sm:gap-5 py-3 border-b border-[color:var(--color-rule)]">
+                <dt class="text-[12px] mute leading-snug">{row.title}</dt>
+                <dd class="text-[13px] leading-snug min-w-0">
+                  {row.href ? (
+                    <a href={row.href} target="_blank" rel="noopener" class="hover:acc break-words">{row.value && row.value.startsWith('http') ? row.value : row.title}</a>
+                  ) : (
+                    <span class="break-words">{row.value}</span>
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      )}
+      {offerMetadataRows.length > 0 && (
+        <div>
+          <div class="label mb-4">Company and offer metadata</div>
+          <dl class="border-t border-[color:var(--color-ink)]">
+            {offerMetadataRows.map((row) => (
+              <div class="grid grid-cols-1 sm:grid-cols-[180px_minmax(0,1fr)] gap-1 sm:gap-5 py-3 border-b border-[color:var(--color-rule)]">
+                <dt class="text-[12px] mute leading-snug">{row.title}</dt>
+                <dd class="text-[13px] leading-snug min-w-0">
+                  {row.href ? (
+                    <a href={row.href} target="_blank" rel="noopener" class="hover:acc break-words">{row.value}</a>
+                  ) : (
+                    <span class="break-words">{row.value}</span>
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      )}
+    </div>
+  </section>
+)}
+
+<!-- PARTIES -->
+{(brlmName || registrarName || sponsorName) && (
+  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="mb-9">
+      <h2 class="section-title">Parties to the issue</h2>
+    </header>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {brlmName && (
+        <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+          <div class="label mb-3">Book-running lead manager</div>
+          <div class="serif font-medium text-[20px] leading-snug">{brlmName}</div>
+          {brlm.meta && <p class="text-[12px] mute mt-2">{brlm.meta}</p>}
+        </div>
+      )}
+      {registrarName && (
+        <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+          <div class="label mb-3">Registrar</div>
+          <div class="serif font-medium text-[20px] leading-snug">{registrarName}</div>
+          {registrar.meta && <p class="text-[12px] mute mt-2">{registrar.meta}</p>}
+        </div>
+      )}
+      {sponsorName && (
+        <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+          <div class="label mb-3">Sponsor bank</div>
+          <div class="serif font-medium text-[20px] leading-snug">{sponsorName}</div>
+        </div>
+      )}
+    </div>
+  </section>
+)}
+
+<!-- VERIFIED PROSPECTUS FACTS -->
+{hasVerifiedProspectus && (
+  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="mb-9">
+      <div class="flex flex-wrap items-baseline justify-between gap-4">
+        <h2 class="section-title">Prospectus intelligence</h2>
+        <span class="text-[12px] mute">
+          {prospectusQuality?.state === 'review' ? 'review extraction' : 'verified extraction'}
+          {prospectusQuality?.verified_fact_count != null && <> · <span class="num">{prospectusQuality.verified_fact_count}</span> verified facts</>}
+        </span>
+      </div>
+    </header>
+
+    {businessSnapshot.length > 0 && (
+      <div class="mb-12">
+        <div class="label mb-4">Business snapshot</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
+          {businessSnapshot.map((fact) => (
+            <article class="border-b border-[color:var(--color-rule)] pb-3">
+              <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
+              <p class="mt-1 serif text-[18px] leading-snug">{fact.value}</p>
+              {fact.page && <p class="mt-2 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span>{fact.section && <> · {fact.section}</>}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {industrySnapshot.length > 0 && (
+      <div class="mb-12">
+        <div class="label mb-4">Industry and macro context</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
+          {industrySnapshot.map((fact) => (
+            <article class="border-b border-[color:var(--color-rule)] pb-3">
+              <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
+              <p class="mt-1 text-[14px] leading-relaxed">{fact.value}</p>
+              {fact.page && <p class="mt-2 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span></p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {financialRows.length > 0 && (
+      <div class="mb-12">
+        <div class="label mb-4">Financial highlights</div>
+        <div class="border-t border-[color:var(--color-ink)]">
+          {financialRows.map((fact) => (
+            <div class="grid grid-cols-1 sm:grid-cols-[180px_minmax(0,1fr)_92px] gap-2 sm:gap-5 py-3 border-b border-[color:var(--color-rule)]">
+              <div class="text-[12px] mute">{fact.label}</div>
+              <div class="serif text-[19px] num">{fact.value}</div>
+              <div class="text-[11px] mute sm:text-right">{fact.page ? <>p.<span class="num">{fact.page}</span></> : ''}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {riskRows.length > 0 && (
+      <div class="mb-12">
+        <div class="label mb-4">Risks and red flags</div>
+        <div class="space-y-3">
+          {riskRows.map((fact) => (
+            <article class="border-b border-[color:var(--color-rule)] pb-3">
+              <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
+              <p class="mt-1 text-[14px] leading-relaxed">{fact.value}</p>
+              {fact.page && <p class="mt-2 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span></p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {(advisorRows.length > 0 || valuationRows.length > 0 || governanceRows.length > 0) && (
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        {advisorRows.length > 0 && (
+          <div>
+            <div class="label mb-4">Offer and advisors</div>
+            {advisorRows.map((fact) => (
+              <p class="py-3 border-b border-[color:var(--color-rule)] text-[13px] leading-relaxed">
+                <span class="block mute text-[11px] uppercase tracking-[0.08em]">{fact.label}</span>
+                {fact.value}
+                {fact.page && <span class="block mt-1 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span></span>}
+              </p>
+            ))}
+          </div>
+        )}
+        {valuationRows.length > 0 && (
+          <div>
+            <div class="label mb-4">Valuation and peers</div>
+            {valuationRows.map((fact) => (
+              <p class="py-3 border-b border-[color:var(--color-rule)] text-[13px] leading-relaxed">
+                <span class="block mute text-[11px] uppercase tracking-[0.08em]">{fact.label}</span>
+                {fact.value}
+                {fact.page && <span class="block mt-1 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span></span>}
+              </p>
+            ))}
+          </div>
+        )}
+        {governanceRows.length > 0 && (
+          <div>
+            <div class="label mb-4">Governance</div>
+            {governanceRows.map((fact) => (
+              <p class="py-3 border-b border-[color:var(--color-rule)] text-[13px] leading-relaxed">
+                <span class="block mute text-[11px] uppercase tracking-[0.08em]">{fact.label}</span>
+                {fact.value}
+                {fact.page && <span class="block mt-1 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span></span>}
+              </p>
+            ))}
+          </div>
+        )}
+      </div>
+    )}
+  </section>
+)}
+
+<!-- DOCUMENTS -->
+{documents.length > 0 && (
+  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="mb-9">
+      <h2 class="section-title">Documents</h2>
+    </header>
+    <ul class="list-none p-0 m-0">
+      {documents.map((doc: any) => (
+        <li>
+          <a href={doc.url} target="_blank" rel="noopener" class="flex items-baseline justify-between gap-6 py-4 border-b border-[color:var(--color-rule)] group">
+            <span class="serif font-medium text-[16px] group-hover:acc transition-colors">{doc.type}</span>
+            <span class="text-[12px] mute num">{doc.source_date ?? doc.date ?? ''}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<!-- PROVENANCE -->
+<section class="page-tight pt-8 pb-16 border-t border-[color:var(--color-rule)]">
+  <p class="text-[11.5px] mute leading-[1.6] max-w-[70ch]">
+    Data sources:
+    {(issue.sources ?? []).map((s: any, i: number) => (
+      <>
+        {i > 0 ? ', ' : ' '}
+        <span>{String(s.source ?? '').toUpperCase()}</span>
+      </>
+    ))}.
+    Data quality <span class="num">{issue.data_quality?.state ?? 'unknown'}</span>{issue.data_quality?.warning_count ? <>, {issue.data_quality.warning_count} warning{issue.data_quality.warning_count === 1 ? '' : 's'}</> : null}.
+  </p>
+</section>
+
+</Base>

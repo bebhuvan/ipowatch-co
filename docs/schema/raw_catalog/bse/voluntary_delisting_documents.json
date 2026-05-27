@@ -1,0 +1,370 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "voluntary_delisting_documents",
+    "estimated_cost_usd": 0.004024740000000001,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 3332,
+    "tokens_out": 2841
+  },
+  "currency": "INR",
+  "data_kind": "document_index",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0410",
+  "endpoint": "voluntary_delisting_documents",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company.code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused or reassigned over time.",
+          "suggested_mitigation": "Treat as opaque string; do not assume stability across snapshots."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "10923",
+        "9436"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "COMPANY_CODE",
+      "nested_table": false,
+      "notes": "Appears to be a BSE internal code, not the same as scripcode.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].COMPANY_CODE",
+      "semantic": "Internal BSE company identifier, likely numeric but stored as string.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company names may contain special characters like '$' (e.g., 'Faze Three Autofab Ltd-$').",
+          "suggested_mitigation": "Strip or escape non-ASCII characters if needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Chamak Holdings Ltd",
+        "Inspirisys Solutions Ltd"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Company_Name",
+      "nested_table": false,
+      "notes": "Some names end with '-$' which may indicate a specific status; verify meaning.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].Company_Name",
+      "semantic": "Full name of the company as registered on BSE.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "delisting.post_status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may be limited to a known set; unknown values could appear.",
+          "suggested_mitigation": "Map to canonical statuses; log unrecognized values."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "New"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "POSTStatus",
+      "nested_table": false,
+      "notes": "Only 'New' observed; may include other values like 'Approved' or 'Rejected'.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].POSTStatus",
+      "semantic": "Status of the post-delisting document submission (e.g., 'New' indicates recently uploaded).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "delisting.post_document_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL path structure may change if BSE reorganizes file storage.",
+          "suggested_mitigation": "Construct full URL by prepending base URL; monitor for path changes."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/VDPostUploadDocument/VDPost_539600_311202312588.xml",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "PostDoc",
+      "nested_table": false,
+      "notes": "Empty string when not available; not null.",
+      "null_meaning": "Empty string indicates no post-delisting document has been uploaded yet.",
+      "nullable": true,
+      "path": "$.table[*].PostDoc",
+      "semantic": "Relative URL path to the post-delisting document (XBRL XML file).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "delisting.post_end_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is 'M/d/yyyy HH:mm:ss' with 12-hour? Actually 00:00:00 suggests midnight. Ambiguous month/day order.",
+          "suggested_mitigation": "Parse using 'M/d/yyyy HH:mm:ss' assuming US format; validate with known dates."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "11/3/2023 00:00:00",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "PostendDate",
+      "nested_table": false,
+      "notes": "Empty string when not available; not null.",
+      "null_meaning": "Empty string indicates no post-delisting date set.",
+      "nullable": true,
+      "path": "$.table[*].PostendDate",
+      "semantic": "End date for the post-delisting document submission period.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "delisting.pre_status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Same as POSTStatus; status values may be limited.",
+          "suggested_mitigation": "Map to canonical statuses."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "New"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "PreStatus",
+      "nested_table": false,
+      "notes": "Only 'New' observed.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].PreStatus",
+      "semantic": "Status of the pre-delisting document submission (e.g., 'New').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "delisting.pre_end_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Same date format as PostendDate; ambiguous month/day.",
+          "suggested_mitigation": "Parse using 'M/d/yyyy HH:mm:ss'."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "8/3/2023 00:00:00",
+        "4/9/2024 00:00:00"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "PreendDate",
+      "nested_table": false,
+      "notes": "Always present in observed data.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].PreendDate",
+      "semantic": "End date for the pre-delisting document submission period.",
+      "type": "datetime",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "delisting.post_record_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "May be unique per document; could be reused across different companies?",
+          "suggested_mitigation": "Treat as opaque identifier; combine with scripcode for uniqueness."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1006",
+        "1011",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "Recordid",
+      "nested_table": false,
+      "notes": "Empty string when no post document; not null.",
+      "null_meaning": "Empty string indicates no post-delisting record exists.",
+      "nullable": true,
+      "path": "$.table[*].Recordid",
+      "semantic": "Identifier for the post-delisting document record (appears when PostDoc is present).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "delisting.pre_document_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL path structure may change.",
+          "suggested_mitigation": "Construct full URL; monitor for changes."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "/XBRLFILES/VDPreUploadDocument/VDPre_539600_382023175549.xml"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "preDoc",
+      "nested_table": false,
+      "notes": "Always present in observed data.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].preDoc",
+      "semantic": "Relative URL path to the pre-delisting document (XBRL XML file).",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "delisting.pre_record_id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "May be unique per pre-document; could collide with Recordid values.",
+          "suggested_mitigation": "Treat as separate identifier; combine with scripcode."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1013",
+        "1021"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "recordid1",
+      "nested_table": false,
+      "notes": "Always present.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].recordid1",
+      "semantic": "Identifier for the pre-delisting document record.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "company.scrip_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Scrip codes are stable but may be reused after delisting? Typically not.",
+          "suggested_mitigation": "Use as primary key for company."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "539600",
+        "532774"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "scripcode",
+      "nested_table": false,
+      "notes": "Numeric string; can be used to join with other BSE endpoints.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].scripcode",
+      "semantic": "BSE scrip code (security identifier) for the company.",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:10:50+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "The scripcode can be used to fetch company details or other BSE data.",
+      "follow_up_endpoint_pattern": "BSE API endpoints that accept scripcode as parameter",
+      "key_field": "scripcode"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 12,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/voluntary_delisting_documents.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "voluntary_delisting_documents",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/Pubissues_FIS_VoluntaryDelisting_isd_ng/w"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint provides a list of companies that have submitted documents for voluntary delisting from BSE, including pre- and post-delisting document status, document URLs, and relevant dates.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Date format is ambiguous (M/d/yyyy) and includes time component; ensure correct parsing.",
+    "Empty strings used instead of null for missing values; treat empty as null.",
+    "Document URLs are relative; need to prepend base URL to access files.",
+    "Only 12 rows observed; may be paginated but no pagination tokens seen."
+  ]
+}

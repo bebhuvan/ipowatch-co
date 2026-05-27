@@ -1,0 +1,30 @@
+{
+  "$id": "https://ipo-watch.local/schema/v3/prospectus-facts.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "deepseek": {
+      "type": "object"
+    },
+    "extraction_status": {
+      "type": "string"
+    },
+    "facts": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "3.0.0"
+    },
+    "slug": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "slug",
+    "extraction_status",
+    "facts"
+  ],
+  "title": "IPO Watch V3 Prospectus Facts",
+  "type": "object"
+}

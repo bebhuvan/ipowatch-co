@@ -1,0 +1,93 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/visual_brief.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.visual_brief.schema",
+  "dataset_version": "v2026.05.23-0809",
+  "estimated_cost_usd": 0.0014152000000000001,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T08:09:42+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-7 visual brief produced by deepseek-chat.",
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "the-primary-issue-family",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 3180,
+  "tokens_out": 506,
+  "visual_brief": {
+    "design_notes": [
+      "Use a single accent colour (e.g., IPO Watch blue) for the table header row and sidebar border.",
+      "Table should be set in a serif font with hairline rules, matching the newspaper aesthetic.",
+      "Sidebar should be placed alongside the QIP section, with a thin rule separating it from the main text."
+    ],
+    "formulas": [],
+    "lead_image": null,
+    "pull_quotes": [],
+    "sidebars": [
+      {
+        "after_section_slug": "qip",
+        "body_markdown": "A Qualified Institutional Buyer (QIB) is an institution that SEBI considers sophisticated enough to invest without the protections of a public offer. The list includes mutual funds, insurance companies, pension funds, foreign portfolio investors, banks, public financial institutions, venture capital funds, and alternative investment funds. Retail investors and high-net-worth individuals are not QIBs. The rationale: QIBs can negotiate terms and assess risk themselves, so the regulator lets companies raise money from them faster, without a full public prospectus.",
+        "rationale": "Defines a key term (QIB) that is central to understanding QIPs, without cluttering the main text.",
+        "title": "What is a QIB?"
+      }
+    ],
+    "tables": [
+      {
+        "after_paragraph": "The three questions that sort every route:",
+        "columns": [
+          "Route",
+          "Company status",
+          "Buyers",
+          "New shares?"
+        ],
+        "footnote": "Source: SEBI ICDR Regulations, 2018.",
+        "rationale": "Summarises the three-question map in a single glance, grounding the prose explanation.",
+        "rows": [
+          [
+            "IPO",
+            "Unlisted",
+            "Public",
+            "Yes (fresh portion) or no (OFS portion)"
+          ],
+          [
+            "FPO",
+            "Listed",
+            "Public",
+            "Yes (fresh portion) or no (OFS portion)"
+          ],
+          [
+            "OFS",
+            "Listed",
+            "Public (exchange)",
+            "No"
+          ],
+          [
+            "Rights issue",
+            "Listed",
+            "Existing shareholders only",
+            "Yes"
+          ],
+          [
+            "QIP",
+            "Listed",
+            "QIBs only",
+            "Yes (fresh) or no (OFS variant)"
+          ]
+        ],
+        "title": "The five routes compared"
+      }
+    ],
+    "timeline": null
+  }
+}

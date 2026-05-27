@@ -1,0 +1,160 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": true,
+    "cached": false,
+    "endpoint_concrete": "offer_documents_equity_companylist",
+    "estimated_cost_usd": 0.008510150000000001,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 26125,
+    "tokens_out": 1324
+  },
+  "currency": "INR",
+  "data_kind": "document_index",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0419",
+  "endpoint": "offer_documents_equity_companylist",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "company_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company names appear in inconsistent formats (e.g., all caps, mixed case, abbreviations, suffixes like Ltd/Limited). Duplicate entries with slight name variations exist.",
+          "suggested_mitigation": "Normalize to uppercase, strip extra spaces, and map to a canonical company name using a lookup table or fuzzy matching."
+        },
+        {
+          "category": "E.HTM",
+          "description": "Some company names may contain non-ASCII characters (e.g., 'Rainbow Children�s Medicare Limited' with a replacement character).",
+          "suggested_mitigation": "Decode HTML entities and replace non-ASCII characters with ASCII equivalents."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "A One Steels India Limited",
+        "ACB (India) Limited",
+        "ACME SOLAR HOLDINGS LTD"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "company",
+      "nested_table": false,
+      "notes": "The list contains many duplicates and variations (e.g., 'ACME SOLAR HOLDINGS LTD' vs 'ACME Solar Holdings Limited'). Some entries include 'Addendum' or 'Corrigendum' in the name.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].company",
+      "semantic": "Name of the company as per the offer document filing.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "isin",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "ISIN may be missing (dash) for companies that have not yet been assigned one. Some entries have valid ISINs, others do not.",
+          "suggested_mitigation": "Treat dash as null. Validate ISIN format (2 letters + 9 alphanumeric + 1 check digit)."
+        },
+        {
+          "category": "E.UPS",
+          "description": "ISIN may be added or updated later as the IPO progresses.",
+          "suggested_mitigation": "Allow updates to ISIN field; do not treat as immutable."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-",
+        "INE583L01014",
+        "INE540L01014"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "isin",
+      "nested_table": false,
+      "notes": "Many entries have '-' as placeholder. Valid ISINs are 12-character alphanumeric codes.",
+      "null_meaning": "A dash '-' indicates that the ISIN is not yet assigned or not available.",
+      "nullable": false,
+      "path": "$[*].isin",
+      "semantic": "International Securities Identification Number for the company's equity shares.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "ticker_symbol",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol is almost always empty in this endpoint. It may be populated in other endpoints.",
+          "suggested_mitigation": "Treat empty string as null. If needed, join with other endpoints to get symbol."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "This field is consistently empty in the observed snapshot. It may be populated for listed companies.",
+      "null_meaning": "Empty string indicates that the symbol is not yet assigned or not applicable.",
+      "nullable": false,
+      "path": "$[*].symbol",
+      "semantic": "Trading symbol of the company on NSE (usually empty in this list).",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:19:48+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "To get detailed offer document information (e.g., DRHP, RHP) for a specific company, use the company name or ISIN to query the offer documents detail endpoint.",
+      "follow_up_endpoint_pattern": "https://www.nseindia.com/api/corporates/offerdocs/equity?company=<company_name>",
+      "key_field": "company"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": null,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/offer_documents_equity_companylist.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_equity_companylist",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/corporates/offerdocs/equity/companylist"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint returns a list of companies that have filed offer documents (DRHP, RHP, etc.) with NSE for equity IPOs. Each entry contains the company name, ISIN, and symbol (which is often empty). The list appears to be a master index of all companies that have ever filed such documents, including duplicates and variations in naming.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "The body was truncated (83193 bytes). The full list may contain more entries.",
+    "Company names have duplicates and inconsistencies (case, abbreviations, suffixes).",
+    "ISIN field often contains '-' placeholder; symbol field is always empty.",
+    "Some company names contain non-ASCII characters (e.g., replacement character).",
+    "This endpoint appears to be a static index; refresh cadence can be daily."
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "listed_ipos_index",
+    "estimated_cost_usd": 0.004740380000000001,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 8154,
+    "tokens_out": 2308
+  },
+  "currency": "INR",
+  "data_kind": "calendar",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0411",
+  "endpoint": "listed_ipos_index",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "pagination.limit",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Limit value may change if API updates pagination size.",
+          "suggested_mitigation": "Do not hardcode; read from response."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        20
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "limit",
+      "nested_table": false,
+      "notes": "Constant across all pages in this snapshot.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.limit",
+      "semantic": "Maximum number of rows per page in the paginated response.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pagination.page_endpoint",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Endpoint names may change if API renames pages.",
+          "suggested_mitigation": "Treat as opaque identifier; do not parse meaning."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "listed_ipos_page_000000"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "endpoint",
+      "nested_table": false,
+      "notes": "Format: listed_ipos_page_<start_index>.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].endpoint",
+      "semantic": "Unique identifier for the page, used as a key to fetch detailed IPO data for that page.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pagination.first_listing_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is ISO 8601 (YYYY-MM-DD) but may change.",
+          "suggested_mitigation": "Parse as date; validate format."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2026-05-19"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "first_listing_date",
+      "nested_table": false,
+      "notes": "Indicates the start of the date range for the page.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].first_listing_date",
+      "semantic": "The earliest listing date of IPOs included in this page.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pagination.last_listing_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is ISO 8601 (YYYY-MM-DD) but may change.",
+          "suggested_mitigation": "Parse as date; validate format."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "2026-04-02"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "last_listing_date",
+      "nested_table": false,
+      "notes": "Indicates the end of the date range for the page.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].last_listing_date",
+      "semantic": "The latest listing date of IPOs included in this page.",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pagination.limit",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "May differ from top-level limit if API changes.",
+          "suggested_mitigation": "Use per-page limit for consistency."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        20
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "limit",
+      "nested_table": false,
+      "notes": "Redundant with top-level limit.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].limit",
+      "semantic": "Maximum number of rows per page (same as top-level limit).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pagination.page_number",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Page numbering may change if API switches to 0-indexed.",
+          "suggested_mitigation": "Treat as ordinal; do not assume 1-indexed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        1
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "page",
+      "nested_table": false,
+      "notes": "Sequential from 1 to 60 in this snapshot.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].page",
+      "semantic": "Page number (1-indexed) within the paginated result set.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pagination.row_count",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer but may be string in future.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        20,
+        4
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "row_count",
+      "nested_table": false,
+      "notes": "Last page has 4 rows; all others have 20.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].row_count",
+      "semantic": "Number of IPO entries on this page (may be less than limit for last page).",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pagination.start_offset",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Integer but may be string in future.",
+          "suggested_mitigation": "Parse as integer."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        0,
+        20,
+        1180
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "start",
+      "nested_table": false,
+      "notes": "Increments by 20 per page.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].start",
+      "semantic": "Zero-based offset index for the first row on this page.",
+      "type": "integer",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pagination.page_url",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "URL structure may change (e.g., query parameter names).",
+          "suggested_mitigation": "Use endpoint field to construct URLs if needed."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "https://api.moneycontrol.com/mcapi/v1/ipo/get-listed-ipo?start=0&limit=20"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "url",
+      "nested_table": false,
+      "notes": "Can be used to fetch the actual IPO rows.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.pages[*].url",
+      "semantic": "Full API URL to fetch the detailed IPO data for this page.",
+      "type": "url",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:11:41+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "Each page's url field points to a detailed endpoint that returns the actual IPO rows for that page. The endpoint field is a unique identifier for the page.",
+      "follow_up_endpoint_pattern": "https://api.moneycontrol.com/mcapi/v1/ipo/get-listed-ipo?start={start}&limit={limit}",
+      "key_field": "endpoint"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 60,
+  "row_shape": "dict",
+  "schema_url_self": "docs/schema/raw_catalog/moneycontrol/listed_ipos_index.json",
+  "schema_version": "1.0.0",
+  "source": "moneycontrol",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_index",
+      "snapshot_at": "2026-05-22T10:40:04+00:00",
+      "source": "moneycontrol",
+      "url": "https://api.moneycontrol.com/mcapi/v1/ipo/get-listed-ipo"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 48,
+  "summary": "This endpoint returns a paginated index of listed IPOs on Moneycontrol, providing metadata about each page such as date range, page number, and row count. It does not contain individual IPO details; it is a navigation structure to access full IPO data via page-specific endpoints.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "This endpoint only returns pagination metadata; actual IPO data must be fetched from each page's url.",
+    "The last page has only 4 rows (row_count=4) indicating the end of the dataset.",
+    "No individual IPO fields are present; all fields are pagination-related."
+  ]
+}

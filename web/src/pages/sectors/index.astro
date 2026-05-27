@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import { listSectorInsights } from '../../lib/insights';
+import { formatInt } from '../../lib/format';
+
+const { rows, coveredIssues, totalIssues } = listSectorInsights();
+const fmtPct = (value: number | null | undefined) => value == null ? '—' : `${value > 0 ? '+' : ''}${value.toFixed(1)}%`;
+---
+
+<Base title="Sectors">
+<section class="page-tight pt-16 pb-8">
+  <div class="text-[12.5px] mute mb-6">
+    <span class="label" style="color: inherit">Sector coverage</span>
+  </div>
+  <h1 class="headline mb-7 max-w-[18ch]">Sector coverage is limited.</h1>
+  <p class="serif text-[20px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[68ch]">
+    Only <span class="num">{formatInt(coveredIssues)}</span> of <span class="num">{formatInt(totalIssues)}</span>
+    IPO detail records currently include a usable industry tag, so this page shows coverage rather than ranking sectors.
+  </p>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(coveredIssues)}</p>
+      <p class="label mt-3">Tagged issue records</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{formatInt(rows.length)}</p>
+      <p class="label mt-3">Industries seen</p>
+    </div>
+    <div class="pt-[14px] border-t border-[color:var(--color-ink)]">
+      <p class="figure-2 num">{coveredIssues && totalIssues ? `${((coveredIssues / totalIssues) * 100).toFixed(1)}%` : '—'}</p>
+      <p class="label mt-3">IPO detail coverage</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-16 border-t border-[color:var(--color-rule)]">
+  <header class="flex items-baseline justify-between mb-9">
+    <h2 class="section-title">Captured industries</h2>
+    <span class="label">NSE offer-document detail</span>
+  </header>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {rows.map((row) => (
+      <article class="border border-[color:var(--color-rule-card)] bg-white p-7">
+        <p class="label mb-4">{formatInt(row.issueCount)} records</p>
+        <h3 class="serif text-[25px] leading-[1.15] mb-5">{row.industry}</h3>
+        <div class="grid grid-cols-2 gap-5 pt-5 border-t border-[color:var(--color-rule)]">
+          <div>
+            <p class="label mb-1">Avg day one</p>
+            <p class="serif text-[22px] num">{fmtPct(row.avgDayOneReturn)}</p>
+          </div>
+          <div>
+            <p class="label mb-1">Avg current</p>
+            <p class="serif text-[22px] num">{fmtPct(row.avgCurrentReturn)}</p>
+          </div>
+        </div>
+        <ul class="list-none p-0 m-0 mt-5">
+          {row.sampleIssues.slice(0, 4).map((issue) => (
+            <li class="py-2 border-t border-[color:var(--color-rule)]">
+              <a href={issue.url_path} class="text-[13px] hover:acc">{issue.company.name}</a>
+            </li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="page-tight pt-12 pb-24 border-t border-[color:var(--color-rule)]">
+  <h2 class="section-title mb-5">Coverage plan</h2>
+  <p class="serif text-[19px] leading-[1.55] text-[color:var(--color-ink-soft)] max-w-[68ch]">
+    The next data pass should normalize `industry` from NSE offer-document detail pages wherever a PAN-backed offer-document record exists,
+    then fall back to Capital Market IPO synopsis pages or PRIME company pages for older listings. Until that lands, any sector leaderboard would overstate the data.
+  </p>
+</section>
+</Base>

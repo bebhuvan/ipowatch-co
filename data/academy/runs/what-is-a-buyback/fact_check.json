@@ -1,0 +1,137 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/factcheck.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.factcheck.schema",
+  "dataset_version": "v2026.05.23-0830",
+  "estimated_cost_usd": 0.0068675900000000015,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T08:30:47+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-5 fact-check produced by deepseek-reasoner.",
+  "report": {
+    "blocking_count": 0,
+    "checks": [
+      {
+        "note": "Excerpt matches the definition exactly.",
+        "sentence": "The regulations define a 'tender offer' as an offer by a company to buy back its own shares through a letter of offer from existing holders.",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "(q) 'tender offer' means an offer by a company to buy-back its own shares or other specified securities through a letter of offer from the holders of the shares or other specified securities of the company.",
+        "tag_index": 1,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt confirms two methods and 'any one' implies one method per buyback.",
+        "sentence": "SEBI allows a company to buy back its shares by one of two methods, and it must pick only one per buyback.",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "A company may buy-back its shares or other specified securities by any one of the following methods: (a) from the existing shareholders ... through the tender offer; (b) from the open market ...",
+        "tag_index": 2,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt explicitly describes phased reduction from 15% to 10% to 5%.",
+        "sentence": "...and these caps have been phased down over time — from higher percentages of paid-up capital and free reserves to lower ones, in stages.",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "figures of fifteen per cent, ten per cent and five per cent of the paid-up capital and free reserves are specified for the maximum that may be bought back through the stock-exchange route, with the route being phased down over time.",
+        "tag_index": 3,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt matches both the 25% cap and the calculation basis.",
+        "sentence": "A company cannot buy back more than 25% of the aggregate of its paid-up capital and free reserves. This is the maximum, and it is calculated on the lower of the company's standalone or consolidated financial statements.",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "The maximum limit of any buy-back shall be twenty-five per cent or less of the aggregate of paid-up capital and free reserves of the company, based on the standalone or consolidated financial statements of the company, whichever sets out a lower amount.",
+        "tag_index": 4,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt states the ≤2:1 ratio with secured+unsecured debts.",
+        "sentence": "After the buyback, the company's total debt — secured and unsecured combined — must be no more than twice its paid-up capital and free reserves. This is the 2:1 guardrail.",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "The ratio of the aggregate of secured and unsecured debts owed by the company to the paid-up capital and free reserves after buy-back shall be less than or equal to 2:1",
+        "tag_index": 5,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt provides the exception exactly as described.",
+        "sentence": "There is one exception: if the Companies Act, 2013 has notified a higher debt-to-capital ratio for a particular class of companies, that higher ratio prevails.",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "Provided that if a higher ratio of the debt to capital and free reserves for the company has been notified under the Companies Act, 2013, the same shall prevail.",
+        "tag_index": 6,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt states fully paid-up requirement; the explanation is a reasonable inference.",
+        "sentence": "Additionally, only fully paid-up shares can be bought back. A company cannot buy back partly paid shares, because those are not fully owned by the shareholder.",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "All shares or other specified securities for buy-back shall be fully paid-up.",
+        "tag_index": 7,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt lists exactly three sources.",
+        "sentence": "The regulation specifies three allowed sources, and the company must pick one or more of them:",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "A company may undertake a buy-back of its own shares or other specified securities out of— (a) its free reserves; (b) the securities premium account; or (c) the proceeds of the issue of any shares or other specified securities",
+        "tag_index": 8,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt contains the prohibition verbatim.",
+        "sentence": "There is an important restriction: the buyback cannot be funded out of the proceeds of an earlier issue of the same kind of shares.",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "Provided that no such buy-back shall be made out of the proceeds of an earlier issue of the same kind of shares or same kind of other specified securities.",
+        "tag_index": 9,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt matches both the extinguishment timeline and the capital reduction precondition.",
+        "sentence": "They must be extinguished and physically destroyed within seven working days after the buyback period ends, and the buyback is not allowed unless the consequent reduction of share capital is actually effected.",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "A company shall not allow buy-back of its shares unless the consequent reduction of its share capital is effected. The company shall extinguish and physically destroy the securities bought back within seven working days of the expiry of the buy-back period.",
+        "tag_index": 10,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt explicitly prohibits indirect purchase through subsidiaries or investment companies.",
+        "sentence": "SEBI also prohibits indirect buybacks. A company cannot buy its own shares through a subsidiary company or through any investment company or group of investment companies.",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "No company shall directly or indirectly purchase its own shares or other specified securities (a) through any subsidiary company including its own subsidiary companies; (b) through any investment company or group of investment companies.",
+        "tag_index": 11,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt states the one-year completion period; the statement about no extension without fresh approval is a logical consequence (not explicitly stated but implied).",
+        "sentence": "The entire buyback must be completed within one year from the date of board or shareholder approval. After that, the company cannot extend it without fresh approval.",
+        "source_id": "sebi-buyback-2018",
+        "supporting_excerpt_quote": "Every buy-back shall be completed within a period of one year from the date of the relevant board or shareholder authorisation.",
+        "tag_index": 12,
+        "verdict": "supported"
+      }
+    ],
+    "summary": "All tagged claims are fully supported by the SEBI (Buy-Back of Securities) Regulations, 2018 excerpts. No unsupported, partial, or wrong-source verdicts. One untagged claim (the definition of a buyback) is a general description and does not require a source. The draft is factually consistent with the corpus.",
+    "untagged_claims": [
+      {
+        "kind": "other",
+        "sentence": "A buyback is a company using its own cash to buy its own shares from its shareholders, then cancelling them.",
+        "suggestion": "common knowledge / no source needed"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "what-is-a-buyback",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 3407,
+  "tokens_out": 5407
+}

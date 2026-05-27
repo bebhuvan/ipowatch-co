@@ -1,0 +1,204 @@
+---
+import { formatTimes } from '../lib/format';
+import type { TrajectoryObservation } from '../lib/issues';
+
+type Props = {
+  observations: TrajectoryObservation[];
+  categories?: ('total' | 'qib' | 'nii' | 'retail' | 'nii_gt_10l' | 'nii_lte_10l' | 'employee')[];
+};
+
+const categories = Astro.props.categories ?? ['total', 'qib', 'nii', 'retail'];
+const observations = (Astro.props.observations ?? []).slice().sort((a, b) => (a.observed_at < b.observed_at ? -1 : 1));
+
+const W = 960;
+const H = 430;
+const PAD_L = 78;
+const PAD_R = 160;
+const PAD_T = 38;
+const PAD_B = 72;
+
+const tNums = observations.map((o) => new Date(o.observed_at).getTime());
+const tMin = tNums.length ? Math.min(...tNums) : 0;
+const tMax = tNums.length ? Math.max(...tNums) : 1;
+const tSpan = Math.max(tMax - tMin, 1);
+
+const vals: number[] = [];
+for (const o of observations) {
+  for (const cat of categories) {
+    const v = cat === 'total' ? o.total.times : o.categories[cat]?.times;
+    if (v != null && Number.isFinite(v)) vals.push(v);
+  }
+}
+const dataMax = vals.length ? Math.max(...vals) : 1;
+const yMax = Math.max(1, Math.ceil(dataMax * 1.18 * 10) / 10);
+
+const xFor = (t: number) => PAD_L + ((t - tMin) / tSpan) * (W - PAD_L - PAD_R);
+const yFor = (v: number) => H - PAD_B - (v / yMax) * (H - PAD_T - PAD_B);
+
+const seriesLabel: Record<string, string> = {
+  total: 'Total', qib: 'QIB', nii: 'NII', nii_gt_10l: 'NII >10L', nii_lte_10l: 'NII ≤10L', retail: 'Retail', employee: 'Employee',
+};
+
+const seriesStyle: Record<string, { color: string; width: number; dasharray?: string; opacity?: number }> = {
+  total:       { color: 'var(--color-accent)', width: 3 },
+  qib:         { color: 'var(--color-ink-soft)', width: 1.45 },
+  nii:         { color: 'var(--color-gold)', width: 1.65, dasharray: '5 4', opacity: 0.95 },
+  nii_gt_10l:  { color: 'var(--color-gold)', width: 1.25, dasharray: '2 3', opacity: 0.75 },
+  nii_lte_10l: { color: 'var(--color-gold)', width: 1.25, dasharray: '7 4', opacity: 0.7 },
+  retail:      { color: 'var(--color-pos)', width: 1.55, dasharray: '1 3', opacity: 0.9 },
+  employee:    { color: 'var(--color-mute)', width: 1.0, dasharray: '8 4', opacity: 0.65 },
+};
+
+const fallbackStyle = { color: 'var(--color-ink)', width: 1.25 };
+const series = categories.map((cat) => {
+  const pts = observations
+    .map((o) => {
+      const v = cat === 'total' ? o.total.times : o.categories[cat]?.times;
+      if (v == null) return null;
+      return { x: xFor(new Date(o.observed_at).getTime()), y: yFor(v), v };
+    })
+    .filter((p): p is { x: number; y: number; v: number } => p !== null);
+  return { key: cat, label: seriesLabel[cat] ?? cat, style: seriesStyle[cat] ?? fallbackStyle, points: pts };
+});
+
+const yTicks: number[] = [];
+const step = yMax <= 2 ? 0.5 : yMax <= 5 ? 1 : yMax <= 10 ? 2 : Math.ceil(yMax / 5);
+for (let v = 0; v <= yMax + 0.001; v += step) yTicks.push(Number(v.toFixed(2)));
+
+const xTickGap = 150;
+const xTickCandidates = observations.length
+  ? [
+      observations[0].observed_at,
+      observations[Math.floor(observations.length / 2)].observed_at,
+      observations[observations.length - 1].observed_at,
+    ]
+  : [];
+const firstTick = xTickCandidates[0];
+const middleTick = xTickCandidates[1];
+const lastTick = xTickCandidates[2];
+const xTicks: string[] = [];
+if (firstTick) xTicks.push(firstTick);
+if (
+  middleTick &&
+  middleTick !== firstTick &&
+  middleTick !== lastTick &&
+  Math.abs(xFor(new Date(middleTick).getTime()) - xFor(new Date(firstTick).getTime())) >= xTickGap &&
+  Math.abs(xFor(new Date(lastTick).getTime()) - xFor(new Date(middleTick).getTime())) >= xTickGap
+) {
+  xTicks.push(middleTick);
+}
+if (lastTick && lastTick !== firstTick) xTicks.push(lastTick);
+const chartTimeZone = 'Asia/Kolkata';
+const dayLabelFor = (iso: string) => new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', timeZone: chartTimeZone });
+const timeLabelFor = (iso: string) => new Intl.DateTimeFormat('en-IN', {
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+  timeZone: chartTimeZone,
+}).format(new Date(iso));
+const allTicksSameDay = xTicks.length > 1 && xTicks.every((iso) => dayLabelFor(iso) === dayLabelFor(xTicks[0]));
+
+const empty = observations.length === 0;
+const labelMinGap = 20;
+const labelX = W - PAD_R + 16;
+const labelTop = PAD_T + 8;
+const labelBottom = H - PAD_B - 8;
+const finalLabels = series
+  .map((s) => {
+    const point = s.points[s.points.length - 1];
+    return point ? { ...s, point, y: point.y } : null;
+  })
+  .filter((s): s is typeof series[number] & { point: { x: number; y: number; v: number }; y: number } => s !== null)
+  .sort((a, b) => a.y - b.y);
+
+for (let i = 0; i < finalLabels.length; i++) {
+  const minY = i === 0 ? labelTop : finalLabels[i - 1].y + labelMinGap;
+  finalLabels[i].y = Math.max(finalLabels[i].y, minY);
+}
+for (let i = finalLabels.length - 1; i >= 0; i--) {
+  const maxY = i === finalLabels.length - 1 ? labelBottom : finalLabels[i + 1].y - labelMinGap;
+  finalLabels[i].y = Math.min(finalLabels[i].y, maxY);
+}
+---
+
+<figure class="overflow-x-auto pb-2">
+  <figcaption class="flex flex-wrap items-baseline justify-start sm:justify-end gap-x-6 gap-y-2 mb-5 text-[13px] mute min-w-[680px] sm:min-w-0">
+    {series.map((s) => (
+      <span class="inline-flex items-center gap-2">
+        <svg width="22" height="8" aria-hidden="true">
+          <line x1="0" y1="4" x2="22" y2="4" stroke={s.style.color} stroke-width={s.style.width} stroke-dasharray={s.style.dasharray ?? '0'} opacity={s.style.opacity ?? 1} />
+        </svg>
+        {s.label}
+      </span>
+    ))}
+  </figcaption>
+
+  {empty ? (
+    <p class="py-10 text-center mute">No subscription data captured yet.</p>
+  ) : (
+    <svg viewBox={`0 0 ${W} ${H}`} class="w-full min-w-[680px] sm:min-w-0 h-auto" role="img" aria-label="Subscription trajectory">
+      <line x1={PAD_L} y1={PAD_T} x2={PAD_L} y2={H - PAD_B} stroke="var(--color-ink)" stroke-width="1" />
+      <line x1={PAD_L} y1={H - PAD_B} x2={W - PAD_R} y2={H - PAD_B} stroke="var(--color-ink)" stroke-width="1" />
+
+      {yMax >= 1 && (
+        <line x1={PAD_L} y1={yFor(1)} x2={W - PAD_R} y2={yFor(1)} stroke="var(--color-rule)" stroke-width="1" stroke-dasharray="2 4" />
+      )}
+
+      {yTicks.map((v) => (
+        <g>
+          <line x1={PAD_L - 4} y1={yFor(v)} x2={PAD_L} y2={yFor(v)} stroke="var(--color-rule)" stroke-width="1" />
+          <text x={PAD_L - 10} y={yFor(v) + 4} text-anchor="end" font-family="var(--font-serif)" font-size="13" fill="var(--color-mute)">{v}×</text>
+        </g>
+      ))}
+
+      {xTicks.map((iso, i) => {
+        const x = xFor(new Date(iso).getTime());
+        const anchor = i === 0 ? 'start' : i === xTicks.length - 1 ? 'end' : 'middle';
+        const day = dayLabelFor(iso);
+        const showDay = !allTicksSameDay || i === 0;
+        return (
+          <g>
+            <line x1={x} y1={H - PAD_B} x2={x} y2={H - PAD_B + 4} stroke="var(--color-rule)" />
+            {showDay && <text x={x} y={H - PAD_B + 22} text-anchor={anchor} font-family="var(--font-serif)" font-size="13" fill="var(--color-mute)">{day}</text>}
+            <text x={x} y={H - PAD_B + (showDay ? 39 : 22)} text-anchor={anchor} font-family="var(--font-serif)" font-size="11" fill="var(--color-mute-2)">{`${timeLabelFor(iso)} IST`}</text>
+          </g>
+        );
+      })}
+
+      {series.map((s) => (
+        <g opacity={s.style.opacity ?? 1}>
+          {s.points.length > 1 && (
+            <polyline fill="none" points={s.points.map((p) => `${p.x},${p.y}`).join(' ')} stroke={s.style.color} stroke-width={s.style.width} stroke-dasharray={s.style.dasharray ?? '0'} stroke-linejoin="round" stroke-linecap="round" />
+          )}
+          {s.points.map((p) => (
+            <circle cx={p.x} cy={p.y} r={s.key === 'total' ? 3.1 : 2.2} fill="var(--color-paper)" stroke={s.style.color} stroke-width="1.2" />
+          ))}
+        </g>
+      ))}
+
+      {finalLabels.map((s) => (
+        <g opacity={s.style.opacity ?? 1}>
+          <line
+            x1={s.point.x + 5}
+            y1={s.point.y}
+            x2={labelX - 6}
+            y2={s.y}
+            stroke={s.style.color}
+            stroke-width={s.key === 'total' ? 1 : 0.8}
+            stroke-dasharray={s.style.dasharray ?? '0'}
+          />
+          <text
+            x={labelX}
+            y={s.y + 5}
+            font-family="var(--font-serif)"
+            font-size={s.key === 'total' ? 18 : 15}
+            fill={s.style.color}
+          >
+            <tspan font-family="var(--font-sans)" font-size={s.key === 'total' ? 11 : 10} fill="var(--color-mute)">{s.label} </tspan>
+            {formatTimes(s.point.v)}
+          </text>
+        </g>
+      ))}
+    </svg>
+  )}
+</figure>

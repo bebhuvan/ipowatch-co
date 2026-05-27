@@ -1,0 +1,213 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "demand_schedule_7726",
+    "estimated_cost_usd": 0.00235367,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 2211,
+    "tokens_out": 1597
+  },
+  "currency": "INR",
+  "data_kind": "live_subscription",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0403",
+  "endpoint": "demand_schedule_<id>",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "demand_schedule.max_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Field is empty string; if populated, date format unknown.",
+          "suggested_mitigation": "Parse as date if non-empty; treat empty as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Maxdt",
+      "nested_table": false,
+      "notes": "Always empty in observed data; may be a placeholder.",
+      "null_meaning": "Empty string indicates no date provided.",
+      "nullable": true,
+      "path": "$.table1[*].Maxdt",
+      "semantic": "Maximum date or timestamp for the demand schedule; appears empty in this snapshot, possibly unused or legacy field.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand_schedule.category_code",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Serial numbers are not unique identifiers; they are category codes that may overlap across different IPOs.",
+          "suggested_mitigation": "Combine with IPO identifier to form unique key."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "1",
+        "1(a)",
+        "2",
+        "3(a)",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "SRNo",
+      "nested_table": false,
+      "notes": "Empty string for total row; sub-categories use alphanumeric codes.",
+      "null_meaning": "Empty string indicates the total row.",
+      "nullable": true,
+      "path": "$.table1[*].SRNo",
+      "semantic": "Serial number or category code for the investor category row. Includes sub-category codes like '1(a)' and an empty string for the total row.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.company_name",
+      "collision_risk_with": [
+        "bse.issue_metadata.Scripname"
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Company name may have variations across endpoints (e.g., abbreviations).",
+          "suggested_mitigation": "Use Scripcode or IPO_NO as canonical identifier."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Vegorama Punjabi Angithi Limited"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Scripname",
+      "nested_table": false,
+      "notes": "Repeated in every row; redundant.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table1[*].Scripname",
+      "semantic": "Name of the IPO (scrip) for which the demand schedule is shown. Repeated in every row.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand_schedule.category_name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "Category names may change or be added by BSE.",
+          "suggested_mitigation": "Map to standardized category codes."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Qualified Institutional Buyers (QIBs)",
+        "Foreign Institutional Investors (FIIs)",
+        "Total"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "col2",
+      "nested_table": false,
+      "notes": "Contains full category names; may include abbreviations.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table1[*].col2",
+      "semantic": "Investor category description (e.g., 'Qualified Institutional Buyers (QIBs)', 'Total').",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "demand_schedule.bid_shares",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Numbers are represented as strings; may contain commas or other formatting.",
+          "suggested_mitigation": "Parse as integer after stripping non-numeric characters."
+        },
+        {
+          "category": "E.SUB",
+          "description": "Sub-category rows have empty strings; total row may aggregate or not.",
+          "suggested_mitigation": "Treat empty as 0 or null based on context."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "0",
+        ""
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "col4",
+      "nested_table": false,
+      "notes": "Empty for sub-categories; only main categories and total have values.",
+      "null_meaning": "Empty string indicates no bids reported for that sub-category.",
+      "nullable": true,
+      "path": "$.table1[*].col4",
+      "semantic": "Number of shares bid for the given investor category. Appears as a string, possibly empty for sub-categories.",
+      "type": "string",
+      "units": "shares"
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:03:11+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "IPO details endpoint using Scripcode and IPO_NO to get issue metadata.",
+      "follow_up_endpoint_pattern": "issue_metadata?Scripcode={Scripcode}&IPO_NO={IPO_NO}",
+      "key_field": "Scripname"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 5,
+  "row_count_observed": 12,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/demand_schedule_<id>.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "demand_schedule_7726",
+      "snapshot_at": "2026-05-22T09:28:39+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/Pubissues_BSEDemandSchedule_otb_ng/w?Scripcode=4583&IPO_NO=7726"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 0.5,
+  "summary": "This endpoint provides the demand schedule (bid details by investor category) for a specific IPO, showing the number of shares bid for each category. The data is presented as a table with rows for each investor category and a total row.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "Field names are generic (col2, col4) and may change without notice.",
+    "Empty strings used for missing data; not null.",
+    "Sub-category rows have empty col4; only main categories and total have bid counts.",
+    "Maxdt field always empty; may be legacy."
+  ]
+}

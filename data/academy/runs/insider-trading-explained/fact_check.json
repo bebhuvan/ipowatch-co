@@ -1,0 +1,131 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/academy/factcheck.schema.json",
+  "cached": false,
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.factcheck.schema",
+  "dataset_version": "v2026.05.23-0828",
+  "estimated_cost_usd": 0.0062111200000000005,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-23T08:28:13+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-5 fact-check produced by deepseek-reasoner.",
+  "report": {
+    "blocking_count": 0,
+    "checks": [
+      {
+        "note": "Excerpt directly supports that a pre-disclosed trading plan allows compliant trading.",
+        "sentence": "The plan is disclosed in advance, so the trade is not considered motivated by inside knowledge.",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "An insider shall be entitled to formulate a trading plan and present it to the compliance officer for approval and public disclosure... enables persons who may be perpetually in possession of UPSI to trade in a compliant manner, since the plan is set up in advance and disclosed.",
+        "tag_index": 1,
+        "verdict": "supported"
+      },
+      {
+        "note": "Excerpt verbatim captures the wide definition.",
+        "sentence": "The definition is deliberately wide: it covers anyone who holds a position, including a professional or business relationship, that allows access to sensitive information or is reasonably expected to allow such access.",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "any person who is or has been, during the six months prior to the concerned act, associated with a company, in any capacity... holds any position including a professional or business relationship... that allows such person, directly or indirectly, access to unpublished price sensitive information or is reasonably expected to allow such access.",
+        "tag_index": 2,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact match.",
+        "sentence": "The second category is anyone who simply possesses or has access to unpublished price-sensitive information, whether they are connected or not.",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "\"insider\" means any person who is: i) a connected person; or ii) in possession of or having access to unpublished price sensitive information.",
+        "tag_index": 3,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact match.",
+        "sentence": "it is not generally available—meaning it is not accessible to the public on a non-discriminatory basis.",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "\"generally available information\" means information that is accessible to the public on a non-discriminatory basis.",
+        "tag_index": 4,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact match.",
+        "sentence": "if it became generally available, it would likely materially affect the share price.",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "\"unpublished price sensitive information\" means any information... that is not generally available which upon becoming generally available, is likely to materially affect the price of the securities.",
+        "tag_index": 5,
+        "verdict": "supported"
+      },
+      {
+        "note": "All six categories listed match the regulation.",
+        "sentence": "The regulations give a non-exhaustive list of six categories that ordinarily qualify as UPSI: [table]",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "ordinarily including but not restricted to, information relating to the following: (i) financial results; (ii) dividends; (iii) change in capital structure; (iv) mergers, de-mergers, acquisitions... (v) changes in key managerial personnel; (vi) change in rating(s).",
+        "tag_index": 6,
+        "verdict": "supported"
+      },
+      {
+        "note": "Implicitly supported; if information is released to exchanges it becomes generally available.",
+        "sentence": "If it has, it is 'generally available' and no longer UPSI.",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "\"generally available information\" means information that is accessible to the public on a non-discriminatory basis.",
+        "tag_index": 7,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact match.",
+        "sentence": "Regulation 3 bans communicating UPSI.",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "No insider shall communicate, provide, or allow access to any unpublished price sensitive information... except... in furtherance of legitimate purposes...",
+        "tag_index": 8,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact match.",
+        "sentence": "Regulation 4 bans trading while in possession of UPSI.",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "No insider shall trade in securities... when in possession of unpublished price sensitive information.",
+        "tag_index": 9,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact match.",
+        "sentence": "The regulations create a legal presumption that shifts the burden of proof.",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "When a person who has traded in securities has been in possession of unpublished price sensitive information, his trades would be presumed to have been motivated by the knowledge and awareness of such information in his possession.",
+        "tag_index": 10,
+        "verdict": "supported"
+      },
+      {
+        "note": "All three examples appear in the excerpt.",
+        "sentence": "Specific defences are allowed. For example, an off-market inter-se transfer between insiders who both possessed the same UPSI, or a transaction executed through the block-deal window, or a trade carried out under a pre-approved trading plan.",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "Provided that the insider may prove his innocence by demonstrating the circumstances (the regulation then lists defences, e.g. an off-market inter-se transfer... a transaction carried out through the block-deal window, a trade pursuant to a trading plan...).",
+        "tag_index": 11,
+        "verdict": "supported"
+      },
+      {
+        "note": "Explicitly allows trading pursuant to the plan without violating Reg 4.",
+        "sentence": "Once disclosed, the insider can trade automatically according to the plan without violating Regulation 4.",
+        "source_id": "sebi-pit-2015",
+        "supporting_excerpt_quote": "An insider shall be entitled to formulate a trading plan and present it to the compliance officer for approval and public disclosure pursuant to which trades may be carried out on his behalf in accordance with such plan.",
+        "tag_index": 12,
+        "verdict": "supported"
+      }
+    ],
+    "summary": "All 12 cited claims are fully supported by the SEBI PIT Regulations 2015 source. No unsupported, partial, or wrong-source verdicts. No untagged checkable factual claims were identified. The draft is well-sourced and factually accurate.",
+    "untagged_claims": []
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "insider-trading-explained",
+  "sources": [],
+  "time_zone": "Asia/Kolkata",
+  "tokens_in": 3526,
+  "tokens_out": 4781
+}

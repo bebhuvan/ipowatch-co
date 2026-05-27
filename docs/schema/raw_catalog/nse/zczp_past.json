@@ -1,0 +1,290 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "zczp_past",
+    "estimated_cost_usd": 0.0029363500000000003,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 2165,
+    "tokens_out": 2138
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0428",
+  "endpoint": "zczp_past",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "issuer.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "Company names may contain non-ASCII characters or special characters",
+          "suggested_mitigation": "Ensure UTF-8 encoding; strip any HTML entities if present"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Friends Union for Energising Lives",
+        "SGBS Unnati Foundation"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "companyName",
+      "nested_table": false,
+      "notes": "Some names include ' - ZCZP' suffix, others do not; inconsistent formatting",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].companyName",
+      "semantic": "Name of the issuing entity (trust, foundation, etc.)",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.end_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy (e.g., 23-Mar-2026); may be ambiguous for day/month",
+          "suggested_mitigation": "Parse using a locale-aware date parser with explicit format 'dd-MMM-yyyy'"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "23-Mar-2026",
+        "09-Mar-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueEndDate",
+      "nested_table": false,
+      "notes": "Format: dd-MMM-yyyy",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issueEndDate",
+      "semantic": "Closing date of the issue period",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.size_inr",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.NUM",
+          "description": "Values are strings representing integers; no commas or decimals observed",
+          "suggested_mitigation": "Parse as integer after stripping any whitespace"
+        },
+        {
+          "category": "E.CUR",
+          "description": "Units are in rupees; ensure no lakh/crore scaling is applied",
+          "suggested_mitigation": "Treat as raw rupee amount; do not scale"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "10000000",
+        "5000000"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueSize",
+      "nested_table": false,
+      "notes": "Value is in rupees, not lakhs or crores",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issueSize",
+      "semantic": "Total issue size in rupees (face value, not number of securities)",
+      "type": "integer",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.start_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format is dd-MMM-yyyy; same parsing risk as issueEndDate",
+          "suggested_mitigation": "Parse using 'dd-MMM-yyyy' format"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "11-Mar-2026",
+        "26-Feb-2026"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "issueStartDate",
+      "nested_table": false,
+      "notes": "Format: dd-MMM-yyyy",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].issueStartDate",
+      "semantic": "Opening date of the issue period",
+      "type": "date",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "security.type",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "If new security types appear, schema may need update",
+          "suggested_mitigation": "Validate against known enum; log unknown values"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "ZCZP"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "securityType",
+      "nested_table": false,
+      "notes": "Constant 'ZCZP' in this dataset",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].securityType",
+      "semantic": "Type of security, always 'ZCZP' for this endpoint",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "security.series",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.UPS",
+          "description": "If new series appear, schema may need update",
+          "suggested_mitigation": "Validate against known enum; log unknown values"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "DEBT"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "series",
+      "nested_table": false,
+      "notes": "Constant 'DEBT' in this dataset",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].series",
+      "semantic": "Series of the debt instrument, always 'DEBT' for this endpoint",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status is always 'Past'; other endpoints may have different statuses",
+          "suggested_mitigation": "Treat as enum; map to canonical status"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "Past"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "status",
+      "nested_table": false,
+      "notes": "Constant 'Past' in this dataset",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].status",
+      "semantic": "Status of the issue, always 'Past' for this endpoint",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "security.symbol",
+      "collision_risk_with": [
+        "nse.equity_symbol.symbol"
+      ],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused across different issues over time? Unlikely but possible",
+          "suggested_mitigation": "Treat as unique identifier within this endpoint; join with other endpoints using symbol"
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "FUZCZP",
+        "UNZCZP"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "symbol",
+      "nested_table": false,
+      "notes": "Symbol is the key to join with other NSE endpoints (e.g., price data)",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$[*].symbol",
+      "semantic": "Unique trading symbol for the issue on NSE",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:28:37+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [
+    {
+      "description": "Symbol can be used to fetch detailed information or price data from other NSE endpoints (e.g., /api/quote-details or /api/security-info)",
+      "follow_up_endpoint_pattern": "/api/quote-details?symbol={symbol}",
+      "key_field": "symbol"
+    }
+  ],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 7,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/nse/zczp_past.json",
+  "schema_version": "1.0.0",
+  "source": "nse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "zczp_past",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "nse",
+      "url": "https://www.nseindia.com/api/zczp-past-issue"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "Provides a list of past Zero Coupon Zero Principal (ZCZP) debt issues listed on NSE, including company name, issue dates, issue size, security type, series, status, and symbol.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "All fields are present and non-null in observed data; no pagination or dropdown dependencies detected.",
+    "Data is historical and static; refresh cadence can be low (daily)."
+  ]
+}

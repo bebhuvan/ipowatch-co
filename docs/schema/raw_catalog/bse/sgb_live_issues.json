@@ -1,0 +1,245 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/raw_catalog/endpoint.schema.json",
+  "catalog_metadata": {
+    "body_truncated": false,
+    "cached": false,
+    "endpoint_concrete": "sgb_live_issues",
+    "estimated_cost_usd": 0.0023888800000000003,
+    "model": "deepseek-v4-flash",
+    "pipeline": "ipo_portal.orchestrator/0.1.0",
+    "tokens_in": 1604,
+    "tokens_out": 1778
+  },
+  "currency": "INR",
+  "data_kind": "issue_metadata",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.endpoint.schema",
+  "dataset_version": "v2026.05.23-0410",
+  "endpoint": "sgb_live_issues",
+  "field_provenance": {},
+  "fields": [
+    {
+      "canonical_field_hint": "issue.close_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format may be dd-MMM-yyyy or similar; placeholder '-' indicates no data.",
+          "suggested_mitigation": "Parse as date; treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IM_CLOSE_DATE",
+      "nested_table": false,
+      "notes": "Observed as '-' placeholder; actual format unknown.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].IM_CLOSE_DATE",
+      "semantic": "Closing date of the IPO subscription period.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "pricing.floor_price_paise",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.CUR",
+          "description": "May be reported in rupees or paise; placeholder '-' indicates no data.",
+          "suggested_mitigation": "Parse as numeric; treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IM_FLOOR_PRICE",
+      "nested_table": false,
+      "notes": "Observed as '-' placeholder; actual format unknown.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].IM_FLOOR_PRICE",
+      "semantic": "Floor price of the IPO (minimum price per share).",
+      "type": "string",
+      "units": "INR"
+    },
+    {
+      "canonical_field_hint": "issue.id",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Identifier may be reused across different endpoints; placeholder '-' indicates no data.",
+          "suggested_mitigation": "Treat '-' as null; ensure uniqueness."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "IM_ID",
+      "nested_table": false,
+      "notes": "Observed as '-' placeholder; actual format unknown.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].IM_ID",
+      "semantic": "Unique identifier for the IPO issue.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.name",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.HTM",
+          "description": "May contain HTML entities or non-ASCII characters; placeholder '-' indicates no data.",
+          "suggested_mitigation": "Strip HTML; treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IM_IPO_NAME",
+      "nested_table": false,
+      "notes": "Observed as '-' placeholder; actual format unknown.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].IM_IPO_NAME",
+      "semantic": "Name of the IPO issue.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.symbol",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.ID",
+          "description": "Symbol may be reused across different series; placeholder '-' indicates no data.",
+          "suggested_mitigation": "Treat '-' as null; validate against known symbols."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": true,
+      "is_pii": false,
+      "name": "IM_IPO_SYMBOL",
+      "nested_table": false,
+      "notes": "Observed as '-' placeholder; actual format unknown.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].IM_IPO_SYMBOL",
+      "semantic": "Trading symbol for the IPO.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.open_date",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.DAT",
+          "description": "Date format may be dd-MMM-yyyy; placeholder '-' indicates no data.",
+          "suggested_mitigation": "Parse as date; treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "IM_OPEN_DATE",
+      "nested_table": false,
+      "notes": "Observed as '-' placeholder; actual format unknown.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].IM_OPEN_DATE",
+      "semantic": "Opening date of the IPO subscription period.",
+      "type": "string",
+      "units": null
+    },
+    {
+      "canonical_field_hint": "issue.status",
+      "collision_risk_with": [],
+      "contamination_risks": [
+        {
+          "category": "E.STA",
+          "description": "Status values may be inconsistent across endpoints; placeholder '-' indicates no data.",
+          "suggested_mitigation": "Map to canonical statuses; treat '-' as null."
+        }
+      ],
+      "dropdown_dependent": false,
+      "examples": [
+        "-"
+      ],
+      "html_content": false,
+      "is_identifier": false,
+      "is_pii": false,
+      "name": "Status",
+      "nested_table": false,
+      "notes": "Observed as '-' placeholder; actual values unknown.",
+      "null_meaning": null,
+      "nullable": false,
+      "path": "$.table[*].Status",
+      "semantic": "Current status of the IPO (e.g., Open, Closed, Upcoming).",
+      "type": "string",
+      "units": null
+    }
+  ],
+  "freshness": {},
+  "generated_at": "2026-05-23T04:10:03+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "nested_endpoints_referenced": [],
+  "notes": "Auto-generated by DeepSeek from a representative raw snapshot. This document describes the shape of upstream data, not the canonical v2 schema.",
+  "pii_fields": [],
+  "refresh_cadence_minutes_suggested": 1440,
+  "row_count_observed": 1,
+  "row_shape": "list_of_objects",
+  "schema_url_self": "docs/schema/raw_catalog/bse/sgb_live_issues.json",
+  "schema_version": "1.0.0",
+  "source": "bse",
+  "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "sgb_live_issues",
+      "snapshot_at": "2026-05-22T09:28:24+00:00",
+      "source": "bse",
+      "url": "https://api.bseindia.com/BseIndiaAPI/api/Pubissues_SGBIssues_Live_ng/w"
+    }
+  ],
+  "staleness_tolerance_hours_suggested": 24,
+  "summary": "This endpoint returns a list of live SGB (Sovereign Gold Bond) issues with metadata such as IPO name, symbol, open/close dates, floor price, and status. The observed snapshot contains placeholder dashes, indicating no live issues are currently available or the data is a stub.",
+  "time_zone": "Asia/Kolkata",
+  "warnings": [
+    "All observed field values are '-' placeholders, indicating no live SGB issues are currently available or the endpoint returns stub data when empty. Actual data may appear when issues are live.",
+    "The endpoint may require additional parameters (e.g., date range) to return meaningful data; the observed snapshot may be a default empty response."
+  ]
+}

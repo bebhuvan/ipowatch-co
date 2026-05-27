@@ -660,6 +660,15 @@ Priority 3: analytics and source coverage.
 - Finish unsupported/parser-failed endpoint triage in `source_coverage.json`.
 - Re-run V2 comparison after filing intelligence expansion.
 
+Priority 4: local repository hygiene.
+
+- The last documentation push succeeded, but local git auto-GC reported:
+  `There are too many unreachable loose objects; run 'git prune' to remove them.`
+- New Codex instance should inspect `.git/gc.log`, then run a non-destructive
+  cleanup such as `git gc --prune=now` after confirming no git operation is in
+  progress and the working tree is clean enough for maintenance.
+- Do not use destructive history commands such as `git reset --hard` for this.
+
 ## Do Not Forget
 
 - Never print `.env` or secrets.

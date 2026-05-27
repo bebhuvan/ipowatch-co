@@ -35,6 +35,10 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from ..http import HttpClient
+from ..sources import bse_nested_endpoints, nse_nested_endpoints
+from ..storage import save_raw_snapshot
+
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 REFRESH_LOG = PROJECT_ROOT / "data" / "reports" / "refresh_runs.jsonl"
@@ -85,6 +89,7 @@ def run_refresh(
     skip_fetch: bool = False,
     skip_sebi: bool = False,
     skip_kite: bool = False,
+    skip_yahoo: bool = False,
     skip_tijori: bool = False,
     skip_enrich: bool = False,
     hot: bool = False,
@@ -182,7 +187,7 @@ def run_refresh(
             "errors": errors,
         }
 
-    results.append(_run_step("yahoo_prices", _yahoo, enabled=not skip_fetch))
+    results.append(_run_step("yahoo_prices", _yahoo, enabled=not skip_yahoo))
 
     # 2d. Tijori Kite screener feed — public company/sector/peer enrichment.
     #     Normalization reads data/derived/sector_map.json, so this must run
@@ -339,12 +344,8 @@ def run_subscription_refresh(
     results: list[StepResult] = []
 
     def _fetch() -> dict[str, Any]:
-        from ..cli import run_fetch
-
-        rc = run_fetch(data_root, "all", date.today(), allow_validation_errors=True)
-        if rc != 0:
-            raise RuntimeError(f"NSE/BSE fetch completed with source failures (rc={rc}); subscription public files were not updated")
-        return {"v1_fetch_rc": rc}
+        snapshots = _fetch_active_subscription_snapshots(data_root)
+        return {"snapshots": len(snapshots)}
 
     results.append(_run_step("nse_bse_fetch", _fetch, enabled=not skip_fetch))
 
@@ -378,12 +379,184 @@ def run_subscription_refresh(
     return summary
 
 
+def run_yahoo_market_refresh(
+    *,
+    site_root: Path | None = None,
+    data_root: Path | None = None,
+    limit: int | None = None,
+    sleep_seconds: float = 0.15,
+    cache_max_age_hours: float = 18.0,
+) -> dict[str, Any]:
+    """Fetch Yahoo market data as an independent raw snapshot.
+
+    This job intentionally does not rebuild/publish V3. It writes fresh
+    ``data/raw/yahoo`` for the next primary reconciliation run and keeps slow
+    market calls out of high-frequency subscription refreshes.
+    """
+    data_root = data_root or (PROJECT_ROOT / "data")
+    site_root = site_root or (data_root / "ipo_watch_v3")
+    results: list[StepResult] = []
+
+    def _yahoo() -> dict[str, Any]:
+        from ..yahoo_v2 import export_snapshot
+
+        snap = export_snapshot(
+            site_root=site_root,
+            data_root=data_root,
+            limit=limit,
+            sleep_seconds=sleep_seconds,
+            cache_dir=data_root / "cache" / "yahoo",
+            cache_max_age_hours=cache_max_age_hours,
+        )
+        body = json.loads(snap.read_text(encoding="utf-8")).get("body") or []
+        ok = sum(1 for row in body if isinstance(row, dict) and row.get("status") == "ok")
+        no_prices = sum(1 for row in body if isinstance(row, dict) and row.get("status") == "no_prices")
+        errors = sum(1 for row in body if isinstance(row, dict) and row.get("status") == "error")
+        if errors and not ok:
+            raise RuntimeError(f"Yahoo fallback produced no usable market rows and {errors} errors")
+        return {"snapshot": str(snap), "rows": len(body), "ok": ok, "no_prices": no_prices, "errors": errors}
+
+    results.append(_run_step("yahoo_prices", _yahoo))
+    summary = {
+        "started_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "mode": "yahoo_market",
+        "steps": [r.to_dict() for r in results],
+        "ok": all(r.status != "failed" for r in results),
+    }
+    _append_log(summary)
+    report_dir = data_root / "reports"
+    report_dir.mkdir(parents=True, exist_ok=True)
+    (report_dir / "latest_yahoo_market_refresh.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return summary
+
+
+def run_tijori_enrichment_refresh(
+    *,
+    data_root: Path | None = None,
+) -> dict[str, Any]:
+    """Fetch Tijori IPO screener enrichment independently of the daily build."""
+    data_root = data_root or (PROJECT_ROOT / "data")
+    results: list[StepResult] = []
+    results.append(_run_step("tijori_ipo_feed", lambda: _fetch_tijori_enrichment(data_root)))
+    summary = {
+        "started_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "mode": "tijori_enrichment",
+        "steps": [r.to_dict() for r in results],
+        "ok": all(r.status != "failed" for r in results),
+    }
+    _append_log(summary)
+    report_dir = data_root / "reports"
+    report_dir.mkdir(parents=True, exist_ok=True)
+    (report_dir / "latest_tijori_refresh.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return summary
+
+
 def _append_log(summary: dict[str, Any]) -> None:
     REFRESH_LOG.parent.mkdir(parents=True, exist_ok=True)
     with REFRESH_LOG.open("a", encoding="utf-8") as fh:
         fh.write(json.dumps(summary, ensure_ascii=False) + "\n")
     latest = REFRESH_LOG.parent / "latest_refresh_summary.json"
     latest.write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def _fetch_active_subscription_snapshots(data_root: Path) -> list[dict[str, Any]]:
+    """Fetch only seed + nested endpoints needed for active subscriptions."""
+    client = HttpClient()
+    snapshots: list[dict[str, Any]] = []
+    failures: list[dict[str, str]] = []
+    from ..sources import BSE_REFERER, NSE_REFERER, Endpoint
+
+    base_nse = "https://www.nseindia.com"
+    base_bse = "https://api.bseindia.com/BseIndiaAPI/api"
+    seeds = [
+        Endpoint("nse", "ipo_current_issue", f"{base_nse}/api/ipo-current-issue", NSE_REFERER),
+        Endpoint("bse", "public_issue_details", f"{base_bse}/GetPublicIssue_par/w", BSE_REFERER),
+    ]
+    for endpoint, result in _fetch_with_stale_if_fail(client, seeds, data_root, failures):
+        snapshots.append(_save_snapshot(data_root, endpoint, result))
+
+    nested = [*nse_nested_endpoints(snapshots), *bse_nested_endpoints(snapshots)]
+    if nested:
+        print(f"fetching {len(nested)} active subscription resources")
+    for endpoint, result in _fetch_with_stale_if_fail(client, nested, data_root, failures):
+        snapshots.append(_save_snapshot(data_root, endpoint, result))
+    if failures:
+        raise RuntimeError(f"active subscription fetch completed with source failures ({len(failures)})")
+    return snapshots
+
+
+def _fetch_with_stale_if_fail(client: HttpClient, endpoints: list[Any], data_root: Path, failures: list[dict[str, str]]):
+    from ..storage import append_source_event
+
+    warmed_nse = False
+    for endpoint in endpoints:
+        try:
+            if endpoint.source == "nse" and not warmed_nse:
+                client.warm_nse()
+                warmed_nse = True
+            result = client.get(endpoint.url, referer=endpoint.referer, expect_json=endpoint.expect_json)
+            yield endpoint, result
+        except Exception as exc:  # noqa: BLE001 - stale raw snapshot remains the fallback.
+            event = {
+                "source": endpoint.source,
+                "endpoint": endpoint.name,
+                "url": endpoint.url,
+                "status": "failed",
+                "error": f"{type(exc).__name__}: {exc}",
+                "stale_if_fail": True,
+            }
+            failures.append(event)
+            append_source_event(data_root, event)
+            print(f"failed {endpoint.source}/{endpoint.name}; preserving previous raw snapshot: {event['error']}")
+
+
+def _save_snapshot(data_root: Path, endpoint: Any, result: Any) -> dict[str, Any]:
+    path = save_raw_snapshot(
+        data_root,
+        endpoint.source,
+        endpoint.name,
+        result.url,
+        result.body,
+        status_code=result.status_code,
+        elapsed_ms=result.elapsed_ms,
+    )
+    print(f"saved {endpoint.source}/{endpoint.name} -> {path}")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _fetch_tijori_enrichment(data_root: Path) -> dict[str, Any]:
+    from ..tijori import (
+        TIJORI_IPO_URL,
+        fetch_tijori_ipo_feed,
+        write_sector_map_from_tijori,
+        write_tijori_enrichment,
+    )
+
+    rows = fetch_tijori_ipo_feed()
+    snapshot = save_raw_snapshot(
+        data_root,
+        "tijori",
+        "ipo_feed",
+        TIJORI_IPO_URL,
+        rows,
+        status_code=200,
+    )
+    enrichment = write_tijori_enrichment(rows, data_root / "derived" / "tijori_ipo_enrichment.json")
+    sector_map = write_sector_map_from_tijori(enrichment, data_root / "derived" / "sector_map.json")
+    stats = enrichment.get("stats") or {}
+    return {
+        "snapshot": str(snapshot),
+        "rows": stats.get("rows"),
+        "with_isin": stats.get("with_isin"),
+        "with_financials": stats.get("with_financials"),
+        "sector_map_entries": len(sector_map),
+    }
 
 
 def _snapshot_last_good(site_v3: Path, backup_root: Path) -> bool:

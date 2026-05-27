@@ -71,7 +71,12 @@ def _read_issues(site_root: Path) -> list[dict[str, Any]]:
 
 
 def candidates(site_root: Path = DEFAULT_SITE_ROOT) -> list[Candidate]:
-    """Return IPOs that can be queried on Yahoo from current canonical data."""
+    """Return IPOs that can be queried on Yahoo from current canonical data.
+
+    ``site_root`` may point at either the normalized V2 tree or the public V3
+    tree. The market refresh workflow intentionally reads committed V3 so it
+    can run independently of a fresh primary-source normalize pass.
+    """
     rows: list[Candidate] = []
     for issue in _read_issues(site_root):
         identity = issue.get("identity") or {}
@@ -79,15 +84,15 @@ def candidates(site_root: Path = DEFAULT_SITE_ROOT) -> list[Candidate]:
         timeline = issue.get("timeline") or {}
         if identity.get("issue_type") != "IPO":
             continue
-        symbol = identity.get("symbol")
         listing_date = timeline.get("listing_date")
         issue_price_paise = pricing.get("issue_price_paise")
-        if not symbol or not listing_date or not isinstance(issue_price_paise, int):
-            continue
-        symbol_text = str(symbol).strip().upper()
-        if not symbol_text:
+        if not listing_date or not isinstance(issue_price_paise, int):
             continue
         bse_code = _bse_code(identity.get("aliases") or [])
+        symbol = identity.get("symbol")
+        symbol_text = str(symbol or bse_code or "").strip().upper()
+        if not symbol_text:
+            continue
         if identity.get("board_type") == "SME Board" and bse_code:
             yahoo_symbol = f"{bse_code}.BO"
         else:

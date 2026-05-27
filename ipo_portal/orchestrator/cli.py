@@ -310,6 +310,7 @@ def build_parser() -> argparse.ArgumentParser:
     refresh_p.add_argument("--skip-fetch", action="store_true", help="Skip the NSE/BSE v1 fetch.")
     refresh_p.add_argument("--skip-sebi", action="store_true", help="Skip the SEBI scrape.")
     refresh_p.add_argument("--skip-kite", action="store_true", help="Skip Kite market data and rely on Yahoo fallback.")
+    refresh_p.add_argument("--skip-yahoo", action="store_true", help="Skip Yahoo market data.")
     refresh_p.add_argument("--skip-tijori", action="store_true", help="Skip Tijori IPO screener enrichment.")
     refresh_p.add_argument("--skip-enrich", action="store_true", help="Skip RHP enrichment.")
     refresh_p.add_argument("--hot", action="store_true", help="Fast subset for frequent runs.")
@@ -327,6 +328,7 @@ def build_parser() -> argparse.ArgumentParser:
     refresh_daily_p.add_argument("--skip-fetch", action="store_true", help="Skip NSE/BSE fetch.")
     refresh_daily_p.add_argument("--skip-sebi", action="store_true", help="Skip SEBI scrape.")
     refresh_daily_p.add_argument("--skip-kite", action="store_true", help="Skip Kite market data and rely on Yahoo fallback.")
+    refresh_daily_p.add_argument("--skip-yahoo", action="store_true", help="Skip Yahoo market data; use the latest committed Yahoo raw snapshot.")
     refresh_daily_p.add_argument("--skip-tijori", action="store_true", help="Skip Tijori IPO screener enrichment.")
     refresh_daily_p.add_argument("--skip-enrich", action="store_true", help="Skip legacy RHP enrichment.")
     refresh_daily_p.add_argument("--enrich-limit", type=int, default=25, help="Cap legacy RHP extractions per run.")
@@ -358,6 +360,32 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     refresh_subs_p.add_argument("--skip-fetch", action="store_true", help="Use existing raw snapshots; do not fetch NSE/BSE.")
+
+    refresh_yahoo_p = sub.add_parser(
+        "refresh-yahoo-market",
+        help="Standalone Yahoo market-data refresh.",
+        description=(
+            "Reads committed V3 issue records, fetches Yahoo listing/current "
+            "prices, and writes data/raw/yahoo plus a refresh report. The "
+            "public V3 rebuild remains the daily reconciliation job."
+        ),
+    )
+    refresh_yahoo_p.add_argument("--site-root", type=Path, default=PROJECT_ROOT / "data" / "ipo_watch_v3")
+    refresh_yahoo_p.add_argument("--data-root", type=Path, default=PROJECT_ROOT / "data")
+    refresh_yahoo_p.add_argument("--limit", type=int, default=None)
+    refresh_yahoo_p.add_argument("--sleep-seconds", type=float, default=0.15)
+    refresh_yahoo_p.add_argument("--cache-max-age-hours", type=float, default=18.0)
+
+    refresh_tijori_p = sub.add_parser(
+        "refresh-tijori-enrichment",
+        help="Standalone Tijori IPO screener enrichment refresh.",
+        description=(
+            "Fetches the Tijori IPO screener feed, stores the raw snapshot, "
+            "and refreshes data/derived/tijori_ipo_enrichment.json plus the "
+            "sector map for the next V3 daily build."
+        ),
+    )
+    refresh_tijori_p.add_argument("--data-root", type=Path, default=PROJECT_ROOT / "data")
 
     source_audit_p = sub.add_parser(
         "audit-source-structure",
@@ -536,6 +564,10 @@ def main(argv: list[str] | None = None) -> int:
         return _run_refresh_new_filings(args)
     if args.command == "refresh-subscriptions":
         return _run_refresh_subscriptions(args)
+    if args.command == "refresh-yahoo-market":
+        return _run_refresh_yahoo_market(args)
+    if args.command == "refresh-tijori-enrichment":
+        return _run_refresh_tijori_enrichment(args)
     if args.command == "audit-source-structure":
         return _run_audit_source_structure(args)
     if args.command == "yahoo-performance":
@@ -667,6 +699,7 @@ def _run_refresh(args: argparse.Namespace) -> int:
         skip_fetch=args.skip_fetch,
         skip_sebi=args.skip_sebi,
         skip_kite=args.skip_kite,
+        skip_yahoo=args.skip_yahoo,
         skip_tijori=args.skip_tijori,
         skip_enrich=args.skip_enrich,
         hot=args.hot,
@@ -685,6 +718,7 @@ def _run_refresh_daily(args: argparse.Namespace) -> int:
         skip_fetch=args.skip_fetch,
         skip_sebi=args.skip_sebi,
         skip_kite=args.skip_kite,
+        skip_yahoo=args.skip_yahoo,
         skip_tijori=args.skip_tijori,
         skip_enrich=args.skip_enrich,
         hot=False,
@@ -701,6 +735,32 @@ def _run_refresh_subscriptions(args: argparse.Namespace) -> int:
 
     summary = run_subscription_refresh(skip_fetch=args.skip_fetch)
     print(f"[refresh-subscriptions] cycle complete — ok={summary['ok']}")
+    for step in summary["steps"]:
+        print(f"  {step['name']:22s} {step['status']:8s} {step['elapsed_ms']:>7} ms")
+    return 0 if summary["ok"] else 1
+
+
+def _run_refresh_yahoo_market(args: argparse.Namespace) -> int:
+    from .refresh import run_yahoo_market_refresh
+
+    summary = run_yahoo_market_refresh(
+        site_root=args.site_root,
+        data_root=args.data_root,
+        limit=args.limit,
+        sleep_seconds=args.sleep_seconds,
+        cache_max_age_hours=args.cache_max_age_hours,
+    )
+    print(f"[refresh-yahoo-market] cycle complete — ok={summary['ok']}")
+    for step in summary["steps"]:
+        print(f"  {step['name']:22s} {step['status']:8s} {step['elapsed_ms']:>7} ms")
+    return 0 if summary["ok"] else 1
+
+
+def _run_refresh_tijori_enrichment(args: argparse.Namespace) -> int:
+    from .refresh import run_tijori_enrichment_refresh
+
+    summary = run_tijori_enrichment_refresh(data_root=args.data_root)
+    print(f"[refresh-tijori-enrichment] cycle complete — ok={summary['ok']}")
     for step in summary["steps"]:
         print(f"  {step['name']:22s} {step['status']:8s} {step['elapsed_ms']:>7} ms")
     return 0 if summary["ok"] else 1

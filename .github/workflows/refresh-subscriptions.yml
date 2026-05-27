@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   schedule:
     # Market-day intraday cadence in India. GitHub cron is UTC.
-    - cron: "0,30 4-11 * * 1-5"
+    - cron: "*/15 4-11 * * 1-5"
 
 concurrency:
-  group: ipo-watch-v3-refresh
+  group: ipo-watch-v3-subscriptions
   cancel-in-progress: false
 
 jobs:
@@ -70,6 +70,7 @@ jobs:
           fi
           stamp="$(date -u +'%Y-%m-%dT%H:%MZ')"
           git commit -m "chore(data): refresh IPO subscriptions at ${stamp}"
+          git pull --rebase origin main
           git push
 
       - name: Check Cloudflare secrets

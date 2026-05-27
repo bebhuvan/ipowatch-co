@@ -70,6 +70,7 @@ jobs:
           fi
           stamp="$(date -u +'%Y-%m-%dT%H:%MZ')"
           git commit -m "chore(data): refresh SEBI new filings at ${stamp}"
+          git pull --rebase origin main
           git push
 
       - name: Check Cloudflare secrets

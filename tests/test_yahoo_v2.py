@@ -10,7 +10,7 @@ from ipo_portal.normalize_v2.parsers.registry import ParserContext
 from ipo_portal.orchestrator.cli import build_parser
 from ipo_portal.orchestrator.refresh import run_refresh
 from ipo_portal.normalize_v2.parsers.yahoo_performance import parse as parse_yahoo
-from ipo_portal.yahoo_v2 import parse_chart
+from ipo_portal.yahoo_v2 import candidates, parse_chart
 
 
 class YahooV2Tests(unittest.TestCase):
@@ -69,9 +69,40 @@ class YahooV2Tests(unittest.TestCase):
         self.assertEqual(contribution.fields["identity.aliases"], ["yahoo:EXAMPLE.NS"])
 
     def test_refresh_daily_accepts_skip_kite_flag(self) -> None:
-        args = build_parser().parse_args(["refresh-daily", "--skip-kite", "--skip-enrich"])
+        args = build_parser().parse_args(["refresh-daily", "--skip-kite", "--skip-yahoo", "--skip-enrich"])
         self.assertTrue(args.skip_kite)
+        self.assertTrue(args.skip_yahoo)
         self.assertTrue(args.skip_enrich)
+
+    def test_yahoo_candidates_can_read_committed_v3_tree(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            issue_dir = root / "issues" / "by-slug"
+            issue_dir.mkdir(parents=True)
+            (issue_dir / "example.json").write_text(
+                """
+                {
+                  "slug": "example",
+                  "identity": {
+                    "aliases": [
+                      "bse:stock_page:https://www.bseindia.com/stock-share-price/example-ltd/example/544412/"
+                    ],
+                    "board_type": "SME Board",
+                    "company_name": "Example Limited",
+                    "issue_type": "IPO",
+                    "status": "Listed"
+                  },
+                  "pricing": {"issue_price_paise": 10000},
+                  "timeline": {"listing_date": "2025-01-01"}
+                }
+                """,
+                encoding="utf-8",
+            )
+
+            [candidate] = candidates(root)
+
+        self.assertEqual(candidate.symbol, "544412")
+        self.assertEqual(candidate.yahoo_symbol, "544412.BO")
 
     def test_refresh_bootstraps_site_v2_before_yahoo_on_clean_checkout(self) -> None:
         with TemporaryDirectory() as tmp:

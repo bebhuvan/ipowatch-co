@@ -42,7 +42,7 @@ jobs:
           GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
         run: |
           git add data/derived/tijori_ipo_enrichment.json data/derived/sector_map.json
-          git add -f data/raw/tijori data/reports/latest_tijori_refresh.json data/reports/latest_refresh_summary.json
+          git add -f data/raw/tijori data/reports/latest_tijori_refresh.json
           if git diff --cached --quiet; then
             echo "No Tijori enrichment changes; skipping commit."
             exit 0

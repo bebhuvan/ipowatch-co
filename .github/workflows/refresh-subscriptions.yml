@@ -62,6 +62,7 @@ jobs:
           GIT_COMMITTER_NAME: github-actions[bot]
           GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
         run: |
+          git restore data/reports/latest_refresh_summary.json data/reports/refresh_runs.jsonl || true
           git add data/ipo_watch_v3 data/site_v3
           if git diff --cached --quiet; then
             echo "No subscription changes; skipping commit."

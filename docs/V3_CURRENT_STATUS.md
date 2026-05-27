@@ -17,7 +17,8 @@ Repository facts verified locally with `gh`:
 - Owner/repo: `bebhuvan/ipowatch-co`
 - Visibility: private
 - Default branch: `main`
-- Current pushed baseline: `fb67d9a1 Initialize IPO Watch site pipelines`
+- Initial pushed baseline: `fb67d9a1 Initialize IPO Watch site pipelines`
+- Latest verified `main` after split-pipeline Actions: `c8e86281`
 - Local branch tracks: `origin/main`
 - Actions default workflow token permission: `write`
 
@@ -47,23 +48,34 @@ Active workflows:
 | Workflow | File | Purpose | Trigger |
 |---|---|---|---|
 | Deploy IPOWatch Worker | `.github/workflows/deploy-worker.yml` | Manual Cloudflare Worker build/deploy from the committed V3 dataset | `workflow_dispatch` |
-| Refresh IPOWatch V3 daily | `.github/workflows/refresh-daily.yml` | NSE/BSE fetch, Kite/Yahoo market data, Tijori enrichment, normalize, export V3, gates, build, deploy, commit refreshed dataset | Daily `01:30 UTC` / `07:00 IST`, manual |
+| Refresh IPOWatch V3 daily | `.github/workflows/refresh-daily.yml` | NSE/BSE/SEBI/source reconciliation, normalize, export V3, gates, build, deploy, commit refreshed dataset. Uses committed Yahoo/Tijori snapshots instead of refetching them. | Daily `01:30 UTC` / `07:00 IST`, manual |
 | Refresh SEBI new filings | `.github/workflows/refresh-new-filings.yml` | Fetch SEBI filing PDFs, extract/generate article, build, deploy, commit new filing article data | Weekdays `13:30 UTC` / `19:00 IST`, manual |
-| Refresh IPOWatch V3 subscriptions | `.github/workflows/refresh-subscriptions.yml` | Active subscription refresh, V3 subscription modules/trajectories, build, deploy, commit subscription deltas | Weekdays every 30 minutes from `04:00-11:30 UTC`, manual |
+| Refresh IPOWatch V3 subscriptions | `.github/workflows/refresh-subscriptions.yml` | Active NSE/BSE subscription refresh, V3 subscription modules/trajectories, build, deploy, commit subscription deltas | Weekdays every 15 minutes from `04:00-11:59 UTC`, manual |
+| Refresh Tijori enrichment | `.github/workflows/refresh-tijori-enrichment.yml` | Fetch Tijori IPO screener feed, store raw snapshot, derive IPO enrichment and sector map | Weekdays `00:45 UTC` / `06:15 IST`, manual |
+| Refresh Yahoo market data | `.github/workflows/refresh-yahoo-market.yml` | Fetch Yahoo Finance fallback market prices from committed V3 issue universe, store raw snapshot/report | Weekdays `12:30 UTC` / `18:00 IST`, manual |
 
-The daily workflow now includes Tijori:
+The source-specific split is now intentional:
 
-- `ipo_portal.orchestrator.refresh.run_refresh(..., skip_tijori=False)` fetches
-  `https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/` before
-  normalization.
-- It writes `data/derived/tijori_ipo_enrichment.json`.
-- It writes `data/derived/sector_map.json`.
-- `refresh` and `refresh-daily` expose `--skip-tijori` for emergency bypass.
-- `.github/workflows/refresh-daily.yml` commits `data/derived` with the V3
-  dataset and uploads it as diagnostics.
+- Yahoo and Tijori run independently and commit raw/derived snapshots.
+- Daily refresh runs with `--skip-kite --skip-yahoo --skip-tijori --skip-enrich`.
+  It owns primary-source reconciliation, V3 export, gates, build, deploy, and
+  the main dataset commit.
+- Subscription refresh fetches only active NSE/BSE subscription endpoints and is
+  the high-frequency deploy lane.
+- Split/narrow workflows discard shared transient refresh logs before rebase so
+  concurrent jobs do not fight over `latest_refresh_summary.json` or
+  `refresh_runs.jsonl`.
+- `refresh` and `refresh-daily` expose `--skip-yahoo` and `--skip-tijori` for
+  emergency bypass. The Yahoo snapshot is the interim market-price path while
+  unattended Kite login is not configured.
+- Tijori writes `data/derived/tijori_ipo_enrichment.json` and
+  `data/derived/sector_map.json` from
+  `https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/`.
 
 Secrets currently present in GitHub Actions:
 
+- `CLOUDFLARE_ACCOUNT_ID`
+- `CLOUDFLARE_API_TOKEN`
 - `DEEPSEEK_API_KEY`
 - `GEMINI_API_KEY`
 - `INDIA_DATAHUB_API_KEY`
@@ -73,19 +85,16 @@ Secrets currently present in GitHub Actions:
 
 Secrets still missing when last checked with `gh secret list` on 2026-05-27:
 
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
 - `KITE_USER_ID`
 - `KITE_PASSWORD`
 - `KITE_TOTP_SECRET`
 
 Effect of missing secrets:
 
-- Cloudflare deploy steps will fail until both Cloudflare secrets exist.
 - Kite API key/secret are present, but unattended Kite auto-login cannot work
   until Kite user ID, password, and TOTP seed exist.
-- The daily refresh is coded to skip Kite gracefully if a valid session cannot
-  be created, and to use Yahoo fallback market data where available.
+- The workflows currently use Yahoo Finance as the market-data source and skip
+  Kite in daily automation.
 
 If the missing secrets were added after this check, re-run:
 
@@ -130,6 +139,8 @@ contract and operating model:
 - Astro V3 loader: [web/src/lib/ipodata.ts](../web/src/lib/ipodata.ts)
 - Daily GitHub workflow: [../.github/workflows/refresh-daily.yml](../.github/workflows/refresh-daily.yml)
 - Subscription GitHub workflow: [../.github/workflows/refresh-subscriptions.yml](../.github/workflows/refresh-subscriptions.yml)
+- Yahoo market workflow: [../.github/workflows/refresh-yahoo-market.yml](../.github/workflows/refresh-yahoo-market.yml)
+- Tijori enrichment workflow: [../.github/workflows/refresh-tijori-enrichment.yml](../.github/workflows/refresh-tijori-enrichment.yml)
 - New filings GitHub workflow: [../.github/workflows/refresh-new-filings.yml](../.github/workflows/refresh-new-filings.yml)
 - Manual deploy workflow: [../.github/workflows/deploy-worker.yml](../.github/workflows/deploy-worker.yml)
 
@@ -150,19 +161,23 @@ under `/ipos/`; non-equity and secondary/other instruments route to their own
 sections such as `/ofs/`, `/buybacks/`, `/rights/`, `/debt/`, `/reits/`,
 `/invits/`, `/call-money/`, and `/public-issues/`.
 
-The next session should verify the live automation path, not just inspect code:
+Latest live automation verification on 2026-05-27:
 
-1. Confirm the newly added GitHub secrets actually appear in
-   `gh secret list --repo bebhuvan/ipowatch-co`.
-2. Trigger `Deploy IPOWatch Worker` for production only after Cloudflare secrets
-   are present.
-3. Trigger `Refresh SEBI new filings` once manually to confirm Gemini PDF/article
+- `Refresh Tijori enrichment`: passed, run `26519576544`.
+- `Refresh Yahoo market data`: passed, run `26521090944`.
+- `Refresh IPOWatch V3 daily`: passed, run `26521542214`, committed
+  `288679d7`, deployed Worker version `6acc317f-1252-4ac3-9bba-c6c55446081e`.
+- `Refresh IPOWatch V3 subscriptions`: passed, run `26521999465`, committed
+  `c8e86281`, deployed Worker version `49ea8dcb-a678-4038-85ac-5c1629a1b763`.
+
+The next session should continue hardening from this GitHub-backed state:
+
+1. Trigger `Refresh SEBI new filings` once manually to confirm Gemini PDF/article
    generation works inside Actions.
-4. Trigger `Refresh IPOWatch V3 daily` once manually to confirm NSE/BSE, Tijori,
-   Yahoo/Kite behavior, quality gates, Astro build, Cloudflare deploy, and data
-   commit all work in Actions.
-5. Trigger `Refresh IPOWatch V3 subscriptions` during a market/public-issue
-   window to confirm subscription delta generation and commit behavior.
+2. Add a publish-diff/slug-churn guard before deploy and commit.
+3. Improve Yahoo fetch throughput and symbol-match confidence reporting.
+4. Add a small retry loop around workflow `git pull --rebase` / `git push` if
+   future concurrent source jobs race.
 
 Failure policy: wrong public data is worse than missing data. If a fetch,
 normalization, audit, build, or deploy step fails, the workflow should not commit
@@ -172,30 +187,30 @@ visible in `manifest.json`, run summaries, and public UI where appropriate.
 
 ## Dataset Snapshot
 
-From `data/ipo_watch_v3/manifest.json` after the latest committed local export:
+From `data/ipo_watch_v3/manifest.json` after the latest committed Action export:
 
 | Metric | Count |
 |---|---:|
-| Public issues | 5,200 |
-| Companies | 4,355 |
+| Public issues | 3,255 |
+| Companies | 3,053 |
 | Subscription trajectories | 223 |
-| Performance rows | 2,488 |
-| Quarantined / removed from public indexes | 1,891 |
-| Review-tier public issues | 2,010 |
-| Dataset version | `v3.2026.05.26-0936` |
+| Performance rows | 1,744 |
+| Quarantined / removed from public indexes | 0 |
+| Review-tier public issues | 766 |
+| Dataset version | `v3.2026.05.27-1543` |
 | Schema version | `3.0.0` |
-| Manifest degraded flag | `true` |
+| Manifest degraded flag | `false` |
 
 The manifest was updated to identify `data/ipo_watch_v3` as the root and `data/site_v3` as a compatibility alias.
 
-Current source freshness in the manifest is mixed:
+Current source freshness in the manifest:
 
-- Fresh: `capitalmarket`, `moneycontrol`, `prime`, `trendlyne`
-- Stale: `bse`, `nse`, `sebi`, `yahoo`, `kite`
-- Synthetic stale/missing source: `market_data`
+- Fresh: `bse`, `capitalmarket`, `moneycontrol`, `nse`, `prime`, `sebi`,
+  `tijori`, `trendlyne`, `yahoo`
+- Missing by design until unattended credentials exist: `kite`
 
-This degraded flag is expected until the scheduled Action runs successfully with
-fresh source snapshots and deploy credentials.
+The manifest is not degraded because Yahoo is the configured market-data path
+for now and Kite is optional.
 
 New filing article dataset:
 
@@ -232,28 +247,26 @@ Strict prospectus gate intentionally fails because one real extraction is `revie
 
 ## Current Launch Caveats
 
-The private repo baseline exists and Actions are active, but the live system is
-not fully proven until the missing secrets are visible and at least one manual
-run of each workflow succeeds.
+The private repo baseline exists, core Actions are active, and Cloudflare deploys
+have succeeded from GitHub Actions. The source split has been proven for Tijori,
+Yahoo, daily V3, and subscription refreshes.
 
 Known caveats:
 
-- Cloudflare deploy cannot succeed until `CLOUDFLARE_API_TOKEN` and
-  `CLOUDFLARE_ACCOUNT_ID` are present in GitHub Actions secrets.
 - Kite unattended login cannot succeed until `KITE_USER_ID`, `KITE_PASSWORD`,
-  and `KITE_TOTP_SECRET` are present. Until then, the daily pipeline should skip
-  Kite and use Yahoo fallback where possible.
-- The committed manifest is currently `degraded: true` because several source
-  snapshots are stale relative to the freshness thresholds.
+  and `KITE_TOTP_SECRET` are present. Until then, automation deliberately skips
+  Kite and uses committed Yahoo Finance snapshots.
+- The latest committed manifest is `degraded: false`; keep this strict. Wrong
+  public data is worse than missing data.
 - The latest local Wrangler dry run was not re-run successfully because local
   Node is `20.20.2`, while Wrangler requires Node `>=22`. GitHub Actions uses
   Node 22, so this is a local workstation limitation, not an Actions design
   issue.
-- The Actions have not yet been manually triggered after the private repo push.
-  Do not assume Cloudflare deploy or scheduled data commits work until a real
-  Action run proves it.
+- GitHub Actions now warns that Node.js 20-based actions will be forced to
+  Node.js 24 starting 2026-06-02. The workflows use current `actions/*`
+  versions, but add an explicit Node 24 compatibility pass before that date.
 - Review `data/reports/upstream_drift.jsonl` and source coverage diagnostics
-  after the first successful Action refresh before declaring the data pipeline
+  after each successful Action refresh before declaring the data pipeline fully
   autonomous.
 
 ## V3 Exporter And Contract
@@ -441,22 +454,38 @@ Docs:
 
 ## Refresh Commands
 
-Daily full refresh:
+Daily full refresh / deploy lane:
 
 ```bash
-.venv/bin/python -m ipo_portal.orchestrator refresh-daily
+.venv/bin/python -m ipo_portal.orchestrator refresh-daily --skip-kite --skip-yahoo --skip-tijori --skip-enrich
 .venv/bin/python scripts/audit_v3_quality.py --site-root data/ipo_watch_v3 --gate
 .venv/bin/python scripts/audit_prospectus_facts.py --site-root data/ipo_watch_v3 --gate
 .venv/bin/python -m ipo_portal.orchestrator audit-source-structure --gate
 ```
 
-For scheduled/public-data refreshes, use `refresh-daily --skip-enrich` and run
-filing intelligence separately with `process-filings`. This keeps model/API
-costs and long PDF extraction batches out of the deterministic daily data build.
-Daily refresh now writes a Yahoo Finance performance snapshot before
-normalization, so V3 current-price and gain calculations continue to populate
-while Kite credentials are unavailable. If Kite is configured, Kite remains the
-higher-precedence source for `listing_performance.current_price_paise`.
+For scheduled/public-data refreshes, keep filing intelligence separate with
+`process-filings`. This keeps model/API costs and long PDF extraction batches
+out of the deterministic daily data build.
+
+Yahoo fallback market refresh:
+
+```bash
+.venv/bin/python -m ipo_portal.orchestrator refresh-yahoo-market
+```
+
+The Yahoo command reads the committed V3 issue universe, writes a raw Yahoo
+performance snapshot, and updates `data/reports/latest_yahoo_market_refresh.json`.
+If Kite is configured later, Kite should remain the higher-precedence source for
+`listing_performance.current_price_paise`.
+
+Tijori enrichment refresh:
+
+```bash
+.venv/bin/python -m ipo_portal.orchestrator refresh-tijori-enrichment
+```
+
+The Tijori command writes the raw IPO screener snapshot plus
+`data/derived/tijori_ipo_enrichment.json` and `data/derived/sector_map.json`.
 
 High-frequency subscription refresh:
 
@@ -488,8 +517,12 @@ source.
 Scheduled Git refresh:
 
 - `.github/workflows/refresh-daily.yml`: once daily at 01:30 UTC / 07:00 IST.
-- `.github/workflows/refresh-subscriptions.yml`: every 30 minutes during the
+- `.github/workflows/refresh-subscriptions.yml`: every 15 minutes during the
   Indian market/public-issue window on weekdays.
+- `.github/workflows/refresh-yahoo-market.yml`: weekdays at 12:30 UTC / 18:00
+  IST for Yahoo fallback market snapshots.
+- `.github/workflows/refresh-tijori-enrichment.yml`: weekdays at 00:45 UTC /
+  06:15 IST for Tijori IPO screener enrichment.
 - `.github/workflows/refresh-new-filings.yml`: weekdays at 13:30 UTC / 19:00
   IST for SEBI new filing PDF/article generation.
 - `.github/workflows/deploy-worker.yml`: manual deploy for preview or
@@ -630,6 +663,36 @@ Results from the 2026-05-27 setup pass:
 - Local Wrangler dry run: not validated locally because local Node is 20.20.2;
   workflows use Node 22.
 
+Split-pipeline verification rerun on 2026-05-27:
+
+```bash
+python3 -m compileall -q \
+  ipo_portal/orchestrator/refresh.py \
+  ipo_portal/orchestrator/cli.py \
+  ipo_portal/yahoo_v2.py
+
+python3 -m pytest -q \
+  tests/test_yahoo_v2.py \
+  tests/test_site_v3_export.py \
+  tests/test_drift.py
+```
+
+Results:
+
+- Python compile checks: passed.
+- Focused tests: `16 passed`.
+- `refresh-tijori-enrichment` in Actions: passed with 548 rows, 548 ISINs, 544
+  financial profiles, and 548 sector-map entries.
+- `refresh-yahoo-market` in Actions: passed with 1,782 candidate rows, 1,191
+  successful prices, 1 no-price row, and 590 fetch/symbol errors. This needs
+  symbol-confidence cleanup, but it is safe as a fallback because missing prices
+  do not block issue pages.
+- `refresh-daily --skip-kite --skip-yahoo --skip-tijori --skip-enrich` in
+  Actions: passed, exported 3,255 issues and 3,053 companies, then built,
+  committed, and deployed.
+- `refresh-subscriptions` in Actions: passed, fetched 65 active subscription
+  snapshots, updated 50 V3 files, built, committed, and deployed.
+
 Additional demand-data verification:
 
 - `export-v3` now writes 223 trajectory files in the current committed dataset.
@@ -660,13 +723,23 @@ Priority 3: analytics and source coverage.
 - Finish unsupported/parser-failed endpoint triage in `source_coverage.json`.
 - Re-run V2 comparison after filing intelligence expansion.
 
-Priority 4: local repository hygiene.
+Priority 4: automation hardening.
 
-- The last documentation push succeeded, but local git auto-GC reported:
-  `There are too many unreachable loose objects; run 'git prune' to remove them.`
-- New Codex instance should inspect `.git/gc.log`, then run a non-destructive
-  cleanup such as `git gc --prune=now` after confirming no git operation is in
-  progress and the working tree is clean enough for maintenance.
+- Add publish-diff guardrails for slug churn, issue-count drops, product-type
+  recategorization, and market/subscription deltas before deploy.
+- Parallelize or batch Yahoo fetching with bounded concurrency and clearer
+  symbol-match confidence.
+- Add retry/backoff around workflow rebase/push for rare concurrent split-job
+  races.
+- Add Node 24 compatibility verification for GitHub-hosted JavaScript actions
+  before GitHub's 2026-06-02 default switch.
+
+Priority 5: local repository hygiene.
+
+- Stale `.git/gc.log` files were removed on 2026-05-27 and
+  `git maintenance run --auto` completed.
+- The local main worktree still contains many generated data changes and is
+  behind origin. Do not reset or overwrite it without explicit owner approval.
 - Do not use destructive history commands such as `git reset --hard` for this.
 
 ## Do Not Forget

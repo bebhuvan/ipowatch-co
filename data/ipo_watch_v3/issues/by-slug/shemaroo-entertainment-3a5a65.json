@@ -1,204 +1,28 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {
-    "demand_schedule": [
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15500,
-        "quantity": 29070935
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15600,
-        "quantity": 28904675
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15700,
-        "quantity": 28900425
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15800,
-        "quantity": 28898810
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15900,
-        "quantity": 28898470
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16000,
-        "quantity": 28898130
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16100,
-        "quantity": 28664210
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16200,
-        "quantity": 28663700
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16300,
-        "quantity": 28663105
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16400,
-        "quantity": 28662850
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16500,
-        "quantity": 28662255
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16600,
-        "quantity": 28653670
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16700,
-        "quantity": 28653330
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16800,
-        "quantity": 28652055
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16900,
-        "quantity": 28650525
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17000,
-        "quantity": 28650100
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 16363180
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15500,
-        "quantity": 42284865
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15600,
-        "quantity": 42079420
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15700,
-        "quantity": 42073215
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15800,
-        "quantity": 42069815
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15900,
-        "quantity": 42069220
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16000,
-        "quantity": 42068285
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16100,
-        "quantity": 41807420
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16200,
-        "quantity": 41805975
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16300,
-        "quantity": 41804870
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16400,
-        "quantity": 41804020
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16500,
-        "quantity": 41803170
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16600,
-        "quantity": 41783960
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16700,
-        "quantity": 41783450
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16800,
-        "quantity": 41782005
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 16900,
-        "quantity": 41779965
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17000,
-        "quantity": 41779540
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 21799015
-      }
-    ]
-  },
+  "book_building": {},
   "core_path": "issues/shemaroo-entertainment-3a5a65/core.json",
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "clean",
-    "warnings": []
+    "state": "review",
+    "warnings": [
+      {
+        "class": "thin.no_pricing",
+        "message": "No pricing"
+      }
+    ]
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/shemaroo.zip"
   },
   "exchange_details": {},
   "field_provenance": {
-    "book_building.demand_schedule": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
-    },
-    "identity.aliases": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -223,125 +47,23 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
-    },
-    "listing_performance.current_gain_bps": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.current_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_close_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_gain_bps": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_open_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "parties.lead_managers": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.registrar": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.syndicate_members": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.face_value_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.issue_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_upper_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.overall_times_x": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "timeline.listing_date": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
     }
   },
   "filings_path": "issues/shemaroo-entertainment-3a5a65/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "bse:ipo_no:925",
-      "bse:scrip_code:854"
-    ],
     "board_type": "Main Board",
     "company_name": "Shemaroo Entertainment Limited",
     "isin": "INE363M01019",
     "issue_type": "IPO",
     "slug": "shemaroo-entertainment-3a5a65",
-    "status": "Listed"
+    "status": "Filed"
   },
-  "listing_performance": {
-    "current_gain_bps": -3938,
-    "current_price_paise": 10305,
-    "listing_close_price_paise": 17100,
-    "listing_gain_bps": 59,
-    "listing_open_price_paise": 18000
-  },
+  "listing_performance": {},
   "market_path": "issues/shemaroo-entertainment-3a5a65/market.json",
-  "parties": {
-    "lead_managers": [
-      "YES BANK LIMITED"
-    ],
-    "registrar": "LINK INTIME INDIA PRIVATE LIMITED",
-    "syndicate_members": [
-      "http://www.bseindia.com/downloads/ipo/Syndicate Members_130920141206.xlsx"
-    ]
-  },
-  "pricing": {
-    "face_value_paise": 1000,
-    "issue_price_paise": 17000,
-    "market_lot": 85,
-    "min_bid_qty": 85,
-    "price_band_lower_paise": 15500,
-    "price_band_upper_paise": 17000,
-    "tick_size_paise": 100
-  },
+  "parties": {},
+  "pricing": {},
   "prospectus_available": true,
   "prospectus_facts_path": "issues/shemaroo-entertainment-3a5a65/prospectus_facts.json",
   "provenance_path": "issues/shemaroo-entertainment-3a5a65/provenance.json",
@@ -349,194 +71,18 @@
   "public_slug": "shemaroo-entertainment",
   "schema_version": "3.0.0",
   "slug": "shemaroo-entertainment-3a5a65",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_925",
-      "snapshot_at": "2026-05-23T12:48:57+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_925",
-      "snapshot_at": "2026-05-23T12:48:57+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_925",
-      "snapshot_at": "2026-05-23T12:48:56+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-23T10:24:33+00:00",
-      "source": "kite",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-05-26T09:32:24+00:00",
+      "snapshot_at": "2026-05-27T14:34:55+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 2840700,
-            "shares_offered": 1548360,
-            "times_x": "1.8347"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": 2306985,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": 5865,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": 527850,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": 1161270,
-            "times_x": "0.0000"
-          },
-          {
-            "category": "nii_gt_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii_lte_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "retail",
-            "shares_bid": 15529500,
-            "shares_offered": 3010700,
-            "times_x": "5.1581"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "3.2114"
-      }
-    },
-    "consolidated": {
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 2840700,
-          "shares_offered": 1548360,
-          "times_x": "1.8347"
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": 2306985,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": 5865,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": 527850,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": 1161270,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "retail",
-          "shares_bid": 15529500,
-          "shares_offered": 3010700,
-          "times_x": "5.1581"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": "3.2114"
-    },
-    "overall_times_x": "3.2114"
-  },
+  "subscription": {},
   "subscription_path": "issues/shemaroo-entertainment-3a5a65/subscription.json",
-  "timeline": {
-    "listing_date": "2014-10-01"
-  },
+  "timeline": {},
   "url_path": "/ipos/shemaroo-entertainment/"
 }

@@ -5,11 +5,16 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "clean",
-    "warnings": []
+    "state": "review",
+    "warnings": [
+      {
+        "class": "thin.no_pricing",
+        "message": "No pricing"
+      }
+    ]
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/Thejo_Engg_Ltd_DRHP.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/Thejo_prosp_0912.pdf",
@@ -28,10 +33,6 @@
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
-    },
-    "identity.aliases": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -61,30 +62,6 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
-    "listing_performance.current_gain_bps": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.current_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "yahoo"
-    },
-    "listing_performance.listing_close_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "yahoo"
-    },
-    "listing_performance.listing_gain_bps": {
-      "rule_id": "E.SRC.002",
-      "source": "yahoo"
-    },
-    "listing_performance.listing_open_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "yahoo"
-    },
-    "pricing.issue_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -99,12 +76,9 @@
     }
   },
   "filings_path": "issues/thejo-engineering-9cd837/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "kite:nse:THEJO"
-    ],
     "board_type": "SME Board",
     "company_name": "Thejo Engineering Limited",
     "isin": "INE121N01019",
@@ -113,18 +87,10 @@
     "status": "Listed",
     "symbol": "THEJO"
   },
-  "listing_performance": {
-    "current_gain_bps": 30381,
-    "current_price_paise": 162330,
-    "listing_close_price_paise": 6333,
-    "listing_gain_bps": -8425,
-    "listing_open_price_paise": 6333
-  },
+  "listing_performance": {},
   "market_path": "issues/thejo-engineering-9cd837/market.json",
   "parties": {},
-  "pricing": {
-    "issue_price_paise": 40200
-  },
+  "pricing": {},
   "prospectus_available": true,
   "prospectus_facts_path": "issues/thejo-engineering-9cd837/prospectus_facts.json",
   "provenance_path": "issues/thejo-engineering-9cd837/provenance.json",
@@ -132,33 +98,19 @@
   "public_slug": "thejo-engineering",
   "schema_version": "3.0.0",
   "slug": "thejo-engineering-9cd837",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-23T10:24:33+00:00",
-      "source": "kite",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-05-26T09:32:18+00:00",
+      "snapshot_at": "2026-05-27T14:34:47+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-26T04:55:35+00:00",
-      "source": "yahoo",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-05-26T09:32:24+00:00",
+      "snapshot_at": "2026-05-27T14:34:56+00:00",
       "source": "nse",
       "url": null
     }

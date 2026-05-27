@@ -1,158 +1,20 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {
-    "demand_schedule": [
-      {
-        "cumulative_quantity": null,
-        "price_paise": 31600,
-        "quantity": 15699285
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 31700,
-        "quantity": 15657480
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 31800,
-        "quantity": 15654915
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 31900,
-        "quantity": 15652665
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32000,
-        "quantity": 15651945
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32100,
-        "quantity": 15638175
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32200,
-        "quantity": 15637005
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32300,
-        "quantity": 15634125
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32400,
-        "quantity": 15633540
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32500,
-        "quantity": 15632460
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32600,
-        "quantity": 15625980
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32700,
-        "quantity": 15623280
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32800,
-        "quantity": 15622200
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 5557410
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 31600,
-        "quantity": 47075805
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 31700,
-        "quantity": 46902420
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 31800,
-        "quantity": 46892700
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 31900,
-        "quantity": 46878345
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32000,
-        "quantity": 46876500
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32100,
-        "quantity": 46827810
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32200,
-        "quantity": 46823445
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32300,
-        "quantity": 46668600
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32400,
-        "quantity": 46667025
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32500,
-        "quantity": 46660815
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32600,
-        "quantity": 46633950
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32700,
-        "quantity": 46628640
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 32800,
-        "quantity": 46620180
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 10569285
-      }
-    ]
-  },
+  "book_building": {},
   "core_path": "issues/coffee-day-enterprises-831ba6/core.json",
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "clean",
-    "warnings": []
+    "state": "review",
+    "warnings": [
+      {
+        "class": "thin.no_pricing",
+        "message": "No pricing"
+      }
+    ]
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/d_Coffee.zip",
     "prospectus_url": "https://www.bseindia.com/downloads/ipo/PRO_CCD.pdf",
@@ -160,10 +22,6 @@
   },
   "exchange_details": {},
   "field_provenance": {
-    "book_building.demand_schedule": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -173,10 +31,6 @@
       "source": "bse"
     },
     "documents.rhp_url": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
@@ -203,130 +57,23 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
-    },
-    "listing_performance.current_gain_bps": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.current_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_close_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_gain_bps": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_open_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "parties.lead_managers": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.registrar": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.syndicate_members": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.face_value_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.issue_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "pricing.issue_size_shares": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_upper_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.overall_times_x": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "timeline.listing_date": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
     }
   },
   "filings_path": "issues/coffee-day-enterprises-831ba6/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "bse:ipo_no:1077",
-      "bse:scrip_code:1007"
-    ],
     "board_type": "Main Board",
     "company_name": "Coffee Day Enterprises Limited",
     "isin": "INE335K01011",
     "issue_type": "IPO",
     "slug": "coffee-day-enterprises-831ba6",
-    "status": "Listed"
+    "status": "Filed"
   },
-  "listing_performance": {
-    "current_gain_bps": -9256,
-    "current_price_paise": 2440,
-    "listing_close_price_paise": 27014,
-    "listing_gain_bps": -1764,
-    "listing_open_price_paise": 31300
-  },
+  "listing_performance": {},
   "market_path": "issues/coffee-day-enterprises-831ba6/market.json",
-  "parties": {
-    "lead_managers": [
-      "Kotak Mahindra Capital Company Limited"
-    ],
-    "registrar": "LINK INTIME INDIA PRIVATE LIMITED",
-    "syndicate_members": [
-      "http://www.bseindia.com/downloads/ipo/SM_CCD_121020151528.xlsx"
-    ]
-  },
-  "pricing": {
-    "face_value_paise": 1000,
-    "issue_price_paise": 32800,
-    "issue_size_shares": 25814198,
-    "market_lot": 45,
-    "min_bid_qty": 45,
-    "price_band_lower_paise": 31600,
-    "price_band_upper_paise": 32800,
-    "tick_size_paise": 100
-  },
+  "parties": {},
+  "pricing": {},
   "prospectus_available": true,
   "prospectus_facts_path": "issues/coffee-day-enterprises-831ba6/prospectus_facts.json",
   "provenance_path": "issues/coffee-day-enterprises-831ba6/provenance.json",
@@ -334,201 +81,25 @@
   "public_slug": "coffee-day-enterprises",
   "schema_version": "3.0.0",
   "slug": "coffee-day-enterprises-831ba6",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_1077",
-      "snapshot_at": "2026-05-23T12:54:00+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_1077",
-      "snapshot_at": "2026-05-23T12:54:00+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_1077",
-      "snapshot_at": "2026-05-23T12:53:59+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-05-26T09:32:32+00:00",
+      "snapshot_at": "2026-05-27T14:34:59+00:00",
       "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-23T10:24:33+00:00",
-      "source": "kite",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-05-26T09:32:24+00:00",
+      "snapshot_at": "2026-05-27T14:34:55+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 9218160,
-            "shares_offered": 7380654,
-            "times_x": "1.2490"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": 4228425,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": 1982250,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": 2541375,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": 466110,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": 5387658,
-            "times_x": "0.0000"
-          },
-          {
-            "category": "nii_gt_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii_lte_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "retail",
-            "shares_bid": 5728455,
-            "shares_offered": 12571203,
-            "times_x": "0.4557"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 3375,
-            "shares_offered": 474683,
-            "times_x": "0.0071"
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "0.5791"
-      }
-    },
-    "consolidated": {
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 9218160,
-          "shares_offered": 7380654,
-          "times_x": "1.2490"
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": 4228425,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": 1982250,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": 2541375,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": 466110,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": 5387658,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "retail",
-          "shares_bid": 5728455,
-          "shares_offered": 12571203,
-          "times_x": "0.4557"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 3375,
-          "shares_offered": 474683,
-          "times_x": "0.0071"
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": "0.5791"
-    },
-    "overall_times_x": "0.5791"
-  },
+  "subscription": {},
   "subscription_path": "issues/coffee-day-enterprises-831ba6/subscription.json",
-  "timeline": {
-    "listing_date": "2015-11-02"
-  },
+  "timeline": {},
   "url_path": "/ipos/coffee-day-enterprises/"
 }

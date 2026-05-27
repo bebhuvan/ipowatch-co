@@ -9,10 +9,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_5155_26032025194536.zip",
-    "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_RHP.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
@@ -21,6 +22,10 @@
       "source": "nse"
     },
     "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -58,19 +63,11 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_close_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
+      "source": "moneycontrol"
     },
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
-    },
-    "listing_performance.listing_open_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -106,7 +103,7 @@
     }
   },
   "filings_path": "issues/sacheerome-f9c7b2/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -121,11 +118,9 @@
     "symbol": "SACHEEROME"
   },
   "listing_performance": {
-    "current_gain_bps": 22848,
-    "current_price_paise": 33505,
-    "listing_close_price_paise": 16055,
-    "listing_gain_bps": 5740,
-    "listing_open_price_paise": 15300
+    "current_gain_bps": 23113,
+    "current_price_paise": 33775,
+    "listing_gain_bps": 5000
   },
   "market_path": "issues/sacheerome-f9c7b2/market.json",
   "parties": {},
@@ -140,35 +135,176 @@
   "provenance_path": "issues/sacheerome-f9c7b2/provenance.json",
   "public_contract": "ipo-watch.site_v3",
   "public_slug": "sacheerome",
+  "research": {
+    "tijori": {
+      "business_description": "Sacheerome is a creative house specializing in designing and manufacturing fragrances and flavors that meet global standards set by IFRA, EU, FSSAI, and FEMA.",
+      "company_name": "Sacheerome Ltd.",
+      "financials": {
+        "unit": "INR crore",
+        "yearly_results": [
+          {
+            "debt_cr": 0.0,
+            "net_sales_cr": 70.4919,
+            "pat_cr": 5.9941,
+            "period": "Mar 2023"
+          },
+          {
+            "debt_cr": 1.425,
+            "net_sales_cr": 85.0953,
+            "pat_cr": 10.673,
+            "period": "Mar 2024"
+          },
+          {
+            "debt_cr": 3.4652,
+            "net_sales_cr": 107.5359,
+            "pat_cr": 15.98,
+            "period": "Mar 2025"
+          }
+        ]
+      },
+      "isin": "INE1ARD01016",
+      "matched_on": "normalized_company_name",
+      "normalized_name": "sacheerome",
+      "offer_split": {
+        "fresh_issue_percent": "100%",
+        "fresh_issue_value": "61 Cr",
+        "ofs_percent": "0%",
+        "ofs_value": "0 Cr"
+      },
+      "peers": [
+        {
+          "company_name": "SACHEEROME",
+          "market_cap": "733",
+          "net_sales_cr": 107,
+          "pat_cr": 15.98,
+          "pb": null,
+          "pe": 25.76
+        },
+        {
+          "company_name": "SHK",
+          "market_cap": "1,860",
+          "net_sales_cr": 2123,
+          "pat_cr": 73.24,
+          "pb": 1.37,
+          "pe": 26.85
+        },
+        {
+          "company_name": "OAL",
+          "market_cap": "1,092",
+          "net_sales_cr": 928,
+          "pat_cr": 34.33,
+          "pb": 1.64,
+          "pe": 330.03
+        }
+      ],
+      "revenue_mix": {
+        "historical": [
+          {
+            "points": [
+              {
+                "percent": 96.7,
+                "timestamp_ms": 1725148800000.0
+              },
+              {
+                "percent": 92.05,
+                "timestamp_ms": 1709251200000.0
+              },
+              {
+                "percent": 91.23,
+                "timestamp_ms": 1677628800000.0
+              },
+              {
+                "percent": 93.46,
+                "timestamp_ms": 1646092800000.0
+              }
+            ],
+            "segment": "Fragrance"
+          },
+          {
+            "points": [
+              {
+                "percent": 3.12,
+                "timestamp_ms": 1725148800000.0
+              },
+              {
+                "percent": 7.75,
+                "timestamp_ms": 1709251200000.0
+              },
+              {
+                "percent": 8.56,
+                "timestamp_ms": 1677628800000.0
+              },
+              {
+                "percent": 6.36,
+                "timestamp_ms": 1646092800000.0
+              }
+            ],
+            "segment": "Flavour"
+          }
+        ],
+        "latest": [
+          {
+            "percent": 96.7,
+            "segment": "Fragrance"
+          },
+          {
+            "percent": 3.12,
+            "segment": "Flavour"
+          },
+          {
+            "percent": 0.18,
+            "segment": "Others"
+          }
+        ]
+      },
+      "sector": "Chemicals",
+      "shareholding": {
+        "promoter": {
+          "post_ipo": "72",
+          "pre_ipo": "98"
+        },
+        "public": {
+          "post_ipo": "28",
+          "pre_ipo": "2"
+        }
+      },
+      "source": "tijori",
+      "source_quality": "third_party_enrichment_not_primary_filing",
+      "source_url": "https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/",
+      "symbol": "SACHEEROME",
+      "valuation": {
+        "ipo_size": "61 Cr",
+        "market_cap": "₹228",
+        "pb": 3.68,
+        "pe": 14.28,
+        "sector_pb": 1.79,
+        "sector_pe": 26.94
+      }
+    }
+  },
+  "research_path": "issues/sacheerome-f9c7b2/research.json",
   "schema_version": "3.0.0",
   "slug": "sacheerome-f9c7b2",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-23T10:24:33+00:00",
-      "source": "kite",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "listed_ipos_page_000360",
-      "snapshot_at": "2026-05-26T09:35:16+00:00",
+      "snapshot_at": "2026-05-27T14:38:00+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-05-26T09:32:18+00:00",
+      "snapshot_at": "2026-05-27T14:34:47+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-05-26T09:32:24+00:00",
+      "snapshot_at": "2026-05-27T14:34:56+00:00",
       "source": "nse",
       "url": null
     }

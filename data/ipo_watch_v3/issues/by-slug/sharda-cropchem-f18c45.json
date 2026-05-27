@@ -1,148 +1,20 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {
-    "demand_schedule": [
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14500,
-        "quantity": 602177400
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14600,
-        "quantity": 602145000
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14700,
-        "quantity": 602140680
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14800,
-        "quantity": 602135280
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14900,
-        "quantity": 602131590
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15000,
-        "quantity": 602130240
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15100,
-        "quantity": 602110350
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15200,
-        "quantity": 602106030
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15300,
-        "quantity": 602103870
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15400,
-        "quantity": 602101710
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15500,
-        "quantity": 602100000
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15600,
-        "quantity": 602096490
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 35757270
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14500,
-        "quantity": 1149663510
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14600,
-        "quantity": 1149608430
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14700,
-        "quantity": 1149601590
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14800,
-        "quantity": 1149593850
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14900,
-        "quantity": 1149580980
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15000,
-        "quantity": 1149578640
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15100,
-        "quantity": 1149550020
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15200,
-        "quantity": 1149544710
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15300,
-        "quantity": 1149541380
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15400,
-        "quantity": 1149538050
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15500,
-        "quantity": 1149534630
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 15600,
-        "quantity": 1149526350
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 43184520
-      }
-    ]
-  },
+  "book_building": {},
   "core_path": "issues/sharda-cropchem-f18c45/core.json",
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "clean",
-    "warnings": []
+    "state": "review",
+    "warnings": [
+      {
+        "class": "thin.no_pricing",
+        "message": "No pricing"
+      }
+    ]
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {
     "drhp_url": "https://www.bseindia.com/downloads/ipo/DRHP_SHARDA.pdf",
     "prospectus_url": "https://www.bseindia.com/downloads/ipo/PRO_SHARDA.pdf",
@@ -150,10 +22,6 @@
   },
   "exchange_details": {},
   "field_provenance": {
-    "book_building.demand_schedule": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -163,10 +31,6 @@
       "source": "bse"
     },
     "documents.rhp_url": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
@@ -185,121 +49,21 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
-    },
-    "listing_performance.current_gain_bps": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.current_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_close_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_gain_bps": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_open_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "parties.lead_managers": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.registrar": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.face_value_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.issue_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "pricing.issue_size_shares": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_upper_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.overall_times_x": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "timeline.listing_date": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
     }
   },
   "filings_path": "issues/sharda-cropchem-f18c45/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "bse:ipo_no:921",
-      "bse:scrip_code:850"
-    ],
-    "company_name": "SHARDA CROPCHEM LIMITED",
+    "company_name": "Sharda Cropchem Limited",
     "issue_type": "IPO",
     "slug": "sharda-cropchem-f18c45",
-    "status": "Listed"
+    "status": "Filed"
   },
-  "listing_performance": {
-    "current_gain_bps": 47250,
-    "current_price_paise": 89310,
-    "listing_close_price_paise": 23095,
-    "listing_gain_bps": 4804,
-    "listing_open_price_paise": 26000
-  },
+  "listing_performance": {},
   "market_path": "issues/sharda-cropchem-f18c45/market.json",
-  "parties": {
-    "lead_managers": [
-      "Edelweiss Financial Services Limited"
-    ],
-    "registrar": "Karvy Computershare Private Limited"
-  },
-  "pricing": {
-    "face_value_paise": 1000,
-    "issue_price_paise": 15600,
-    "issue_size_shares": 19172024,
-    "market_lot": 90,
-    "min_bid_qty": 90,
-    "price_band_lower_paise": 14500,
-    "price_band_upper_paise": 15600,
-    "tick_size_paise": 100
-  },
+  "parties": {},
+  "pricing": {},
   "prospectus_available": true,
   "prospectus_facts_path": "issues/sharda-cropchem-f18c45/prospectus_facts.json",
   "provenance_path": "issues/sharda-cropchem-f18c45/provenance.json",
@@ -307,194 +71,18 @@
   "public_slug": "sharda-cropchem",
   "schema_version": "3.0.0",
   "slug": "sharda-cropchem-f18c45",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_921",
-      "snapshot_at": "2026-05-23T12:48:48+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_921",
-      "snapshot_at": "2026-05-23T12:48:49+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_921",
-      "snapshot_at": "2026-05-23T12:48:48+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-05-26T09:32:32+00:00",
+      "snapshot_at": "2026-05-27T14:34:59+00:00",
       "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-23T10:24:33+00:00",
-      "source": "kite",
       "url": null
     }
   ],
-  "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 98013150,
-            "shares_offered": 7894461,
-            "times_x": "12.4154"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": 37074960,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": 41422230,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": 19085220,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": 430740,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": 3383269,
-            "times_x": "0.0000"
-          },
-          {
-            "category": "nii_gt_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii_lte_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "retail",
-            "shares_bid": 34458210,
-            "shares_offered": 7894294,
-            "times_x": "4.3650"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "6.9096"
-      }
-    },
-    "consolidated": {
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 98013150,
-          "shares_offered": 7894461,
-          "times_x": "12.4154"
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": 37074960,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": 41422230,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": 19085220,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": 430740,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": 3383269,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "retail",
-          "shares_bid": 34458210,
-          "shares_offered": 7894294,
-          "times_x": "4.3650"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": "6.9096"
-    },
-    "overall_times_x": "6.9096"
-  },
+  "subscription": {},
   "subscription_path": "issues/sharda-cropchem-f18c45/subscription.json",
-  "timeline": {
-    "listing_date": "2014-09-23"
-  },
+  "timeline": {},
   "url_path": "/ipos/sharda-cropchem/"
 }

@@ -1,103 +1,20 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {
-    "demand_schedule": [
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17000,
-        "quantity": 2948160
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17100,
-        "quantity": 2944720
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17200,
-        "quantity": 2944560
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17300,
-        "quantity": 2944160
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17400,
-        "quantity": 2944000
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17500,
-        "quantity": 2942720
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17800,
-        "quantity": 2941840
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 718560
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17000,
-        "quantity": 7246720
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17100,
-        "quantity": 7241120
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17200,
-        "quantity": 7240960
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17300,
-        "quantity": 7240000
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17400,
-        "quantity": 7239840
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17500,
-        "quantity": 7238400
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17700,
-        "quantity": 7236880
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 17800,
-        "quantity": 7236240
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 1168960
-      }
-    ]
-  },
+  "book_building": {},
   "core_path": "issues/pennar-engineered-building-systems-700e66/core.json",
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "clean",
-    "warnings": []
+    "state": "review",
+    "warnings": [
+      {
+        "class": "thin.no_pricing",
+        "message": "No pricing"
+      }
+    ]
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/d_Pennar.zip",
     "prospectus_url": "https://www.bseindia.com/downloads/ipo/PRO_PEBSL.pdf",
@@ -105,10 +22,6 @@
   },
   "exchange_details": {},
   "field_provenance": {
-    "book_building.demand_schedule": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -118,10 +31,6 @@
       "source": "bse"
     },
     "documents.rhp_url": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
@@ -148,64 +57,12 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
-    },
-    "parties.registrar": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.syndicate_members": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.face_value_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.issue_size_shares": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_upper_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.overall_times_x": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
     }
   },
   "filings_path": "issues/pennar-engineered-building-systems-700e66/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "bse:ipo_no:1048",
-      "bse:scrip_code:977"
-    ],
     "board_type": "Main Board",
     "company_name": "Pennar Engineered Building Systems Limited",
     "isin": "INE455O01019",
@@ -215,21 +72,8 @@
   },
   "listing_performance": {},
   "market_path": "issues/pennar-engineered-building-systems-700e66/market.json",
-  "parties": {
-    "registrar": "Karvy Computershare Private Limited",
-    "syndicate_members": [
-      "http://www.bseindia.com/downloads/ipo/Syndicate MembersPennar_200820151648.xlsx"
-    ]
-  },
-  "pricing": {
-    "face_value_paise": 1000,
-    "issue_size_shares": 6295536,
-    "market_lot": 80,
-    "min_bid_qty": 80,
-    "price_band_lower_paise": 17000,
-    "price_band_upper_paise": 17800,
-    "tick_size_paise": 100
-  },
+  "parties": {},
+  "pricing": {},
   "prospectus_available": true,
   "prospectus_facts_path": "issues/pennar-engineered-building-systems-700e66/prospectus_facts.json",
   "provenance_path": "issues/pennar-engineered-building-systems-700e66/provenance.json",
@@ -237,191 +81,24 @@
   "public_slug": "pennar-engineered-building-systems",
   "schema_version": "3.0.0",
   "slug": "pennar-engineered-building-systems-700e66",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_1048",
-      "snapshot_at": "2026-05-23T12:53:02+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_1048",
-      "snapshot_at": "2026-05-23T12:53:02+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_1048",
-      "snapshot_at": "2026-05-23T12:53:01+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-05-26T09:32:32+00:00",
+      "snapshot_at": "2026-05-27T14:34:59+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-05-26T09:32:24+00:00",
+      "snapshot_at": "2026-05-27T14:34:55+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 1258880,
-            "shares_offered": 1831583,
-            "times_x": "0.6873"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": 135360,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": 842640,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": 280880,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": 1339186,
-            "times_x": "0.0000"
-          },
-          {
-            "category": "nii_gt_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii_lte_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "retail",
-            "shares_bid": 722080,
-            "shares_offered": 3124767,
-            "times_x": "0.2311"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "0.3147"
-      }
-    },
-    "consolidated": {
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 1258880,
-          "shares_offered": 1831583,
-          "times_x": "0.6873"
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": 135360,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": 842640,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": 280880,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": 1339186,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "retail",
-          "shares_bid": 722080,
-          "shares_offered": 3124767,
-          "times_x": "0.2311"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": "0.3147"
-    },
-    "overall_times_x": "0.3147"
-  },
+  "subscription": {},
   "subscription_path": "issues/pennar-engineered-building-systems-700e66/subscription.json",
   "timeline": {},
   "url_path": "/ipos/pennar-engineered-building-systems/"

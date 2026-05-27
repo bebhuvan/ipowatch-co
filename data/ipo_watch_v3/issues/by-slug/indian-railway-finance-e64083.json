@@ -1,39 +1,6 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {
-    "demand_schedule": [
-      {
-        "cumulative_quantity": null,
-        "price_paise": 2500,
-        "quantity": 2902494775
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 2600,
-        "quantity": 2893043500
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 1030333875
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 2500,
-        "quantity": 4353261750
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 2600,
-        "quantity": 4332052300
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 1740924625
-      }
-    ]
-  },
+  "book_building": {},
   "core_path": "issues/indian-railway-finance-e64083/core.json",
   "data_quality": {
     "errors": [],
@@ -42,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE053F01010_28JAN2021.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/d_IRFC.zip",
@@ -51,10 +18,6 @@
   },
   "exchange_details": {},
   "field_provenance": {
-    "book_building.demand_schedule": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "documents.basis_allotment_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -121,57 +84,9 @@
     },
     "listing_performance.listing_open_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "parties.lead_managers": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.registrar": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.sponsor_bank": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.face_value_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_upper_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.overall_times_x": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
@@ -181,7 +96,7 @@
     }
   },
   "filings_path": "issues/indian-railway-finance-e64083/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -196,28 +111,16 @@
     "symbol": "IRFC"
   },
   "listing_performance": {
-    "current_gain_bps": 28635,
-    "current_price_paise": 10045,
+    "current_gain_bps": 28150,
+    "current_price_paise": 9919,
     "listing_close_price_paise": 2485,
     "listing_gain_bps": -442,
     "listing_open_price_paise": 2490
   },
   "market_path": "issues/indian-railway-finance-e64083/market.json",
-  "parties": {
-    "lead_managers": [
-      "DAM Capital Advisors Limited"
-    ],
-    "registrar": "KFin Technologies Private Limited (formerly known as Karvy Fintech Private Limited)",
-    "sponsor_bank": "ICICI Bank Limited"
-  },
+  "parties": {},
   "pricing": {
-    "face_value_paise": 1000,
-    "issue_price_paise": 2600,
-    "market_lot": 575,
-    "min_bid_qty": 575,
-    "price_band_lower_paise": 2500,
-    "price_band_upper_paise": 2600,
-    "tick_size_paise": 100
+    "issue_price_paise": 2600
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/indian-railway-finance-e64083/prospectus_facts.json",
@@ -226,212 +129,38 @@
   "public_slug": "indian-railway-finance",
   "schema_version": "3.0.0",
   "slug": "indian-railway-finance-e64083",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_5318",
-      "snapshot_at": "2026-05-23T15:18:23+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_5318",
-      "snapshot_at": "2026-05-23T15:18:23+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_5318",
-      "snapshot_at": "2026-05-23T15:18:22+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-05-26T09:32:32+00:00",
+      "snapshot_at": "2026-05-27T14:34:59+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2021",
-      "snapshot_at": "2026-05-26T09:32:39+00:00",
+      "snapshot_at": "2026-05-27T14:35:07+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "performance",
-      "snapshot_at": "2026-05-23T10:24:33+00:00",
-      "source": "kite",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-26T04:55:35+00:00",
+      "snapshot_at": "2026-05-27T14:45:47+00:00",
       "source": "yahoo",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-05-26T09:32:24+00:00",
+      "snapshot_at": "2026-05-27T14:34:55+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 1030151600,
-            "shares_offered": 356375339,
-            "times_x": "2.8906"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": 372953050,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": 597644075,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": 38928650,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": 20625825,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": 267281504,
-            "times_x": "0.0000"
-          },
-          {
-            "category": "nii_gt_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii_lte_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "retail",
-            "shares_bid": 1287342200,
-            "shares_offered": 623656843,
-            "times_x": "2.0642"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 7749850,
-            "shares_offered": 192307,
-            "times_x": "40.2994"
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "1.8639"
-      }
-    },
-    "consolidated": {
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 1030151600,
-          "shares_offered": 356375339,
-          "times_x": "2.8906"
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": 372953050,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": 597644075,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": 38928650,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": 20625825,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": 267281504,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "retail",
-          "shares_bid": 1287342200,
-          "shares_offered": 623656843,
-          "times_x": "2.0642"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 7749850,
-          "shares_offered": 192307,
-          "times_x": "40.2994"
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": "1.8639"
-    },
-    "overall_times_x": "1.8639"
-  },
+  "subscription": {},
   "subscription_path": "issues/indian-railway-finance-e64083/subscription.json",
   "timeline": {
     "listing_date": "2021-01-28"

@@ -1,138 +1,20 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {
-    "demand_schedule": [
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54000,
-        "quantity": 54019500
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54100,
-        "quantity": 54004740
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54200,
-        "quantity": 54004640
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54300,
-        "quantity": 54004020
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54400,
-        "quantity": 54003980
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54500,
-        "quantity": 54003780
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54600,
-        "quantity": 54002300
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54700,
-        "quantity": 54002200
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54800,
-        "quantity": 54002020
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54900,
-        "quantity": 54001920
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 55000,
-        "quantity": 54001920
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 10317400
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54000,
-        "quantity": 271287040
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54100,
-        "quantity": 271239600
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54200,
-        "quantity": 271238500
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54300,
-        "quantity": 271237020
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54400,
-        "quantity": 271235780
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54500,
-        "quantity": 271235500
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54600,
-        "quantity": 271218420
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54700,
-        "quantity": 271218080
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54800,
-        "quantity": 271217300
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 54900,
-        "quantity": 271216960
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 55000,
-        "quantity": 271206780
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 15787900
-      }
-    ]
-  },
+  "book_building": {},
   "core_path": "issues/dr-lal-pathlabs-90b2a7/core.json",
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "clean",
-    "warnings": []
+    "state": "review",
+    "warnings": [
+      {
+        "class": "thin.no_pricing",
+        "message": "No pricing"
+      }
+    ]
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/d_DrLalPathLabs.zip",
     "prospectus_url": "https://www.bseindia.com/downloads/ipo/PRO_LAL.pdf",
@@ -140,10 +22,6 @@
   },
   "exchange_details": {},
   "field_provenance": {
-    "book_building.demand_schedule": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -153,10 +31,6 @@
       "source": "bse"
     },
     "documents.rhp_url": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
@@ -183,118 +57,23 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
-    },
-    "listing_performance.current_gain_bps": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.current_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_close_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_gain_bps": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.listing_open_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "parties.registrar": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.syndicate_members": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.face_value_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.issue_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "pricing.issue_size_shares": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.overall_times_x": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "timeline.listing_date": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
     }
   },
   "filings_path": "issues/dr-lal-pathlabs-90b2a7/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "bse:ipo_no:1090",
-      "bse:scrip_code:1020"
-    ],
     "board_type": "Main Board",
     "company_name": "Dr Lal PathLabs Limited",
     "isin": "INE600L01024",
     "issue_type": "IPO",
     "slug": "dr-lal-pathlabs-90b2a7",
-    "status": "Listed"
+    "status": "Filed"
   },
-  "listing_performance": {
-    "current_gain_bps": 19478,
-    "current_price_paise": 162130,
-    "listing_close_price_paise": 41210,
-    "listing_gain_bps": -2507,
-    "listing_open_price_paise": 35850
-  },
+  "listing_performance": {},
   "market_path": "issues/dr-lal-pathlabs-90b2a7/market.json",
-  "parties": {
-    "registrar": "LINK INTIME INDIA PRIVATE LIMITED",
-    "syndicate_members": [
-      "http://www.bseindia.com/downloads/ipo/SM_DLPL_041220151050.xlsx"
-    ]
-  },
-  "pricing": {
-    "face_value_paise": 1000,
-    "issue_price_paise": 55000,
-    "issue_size_shares": 8120000,
-    "market_lot": 20,
-    "min_bid_qty": 20,
-    "price_band_lower_paise": 54000,
-    "tick_size_paise": 100
-  },
+  "parties": {},
+  "pricing": {},
   "prospectus_available": true,
   "prospectus_facts_path": "issues/dr-lal-pathlabs-90b2a7/prospectus_facts.json",
   "provenance_path": "issues/dr-lal-pathlabs-90b2a7/provenance.json",
@@ -302,201 +81,25 @@
   "public_slug": "dr-lal-pathlabs",
   "schema_version": "3.0.0",
   "slug": "dr-lal-pathlabs-90b2a7",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_1090",
-      "snapshot_at": "2026-05-23T12:54:26+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_1090",
-      "snapshot_at": "2026-05-23T12:54:27+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_1090",
-      "snapshot_at": "2026-05-23T12:54:26+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-05-26T09:32:32+00:00",
+      "snapshot_at": "2026-05-27T14:34:59+00:00",
       "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-23T10:24:33+00:00",
-      "source": "kite",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-05-26T09:32:24+00:00",
+      "snapshot_at": "2026-05-27T14:34:55+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 15206080,
-            "shares_offered": 2320000,
-            "times_x": "6.5543"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": 4638700,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": 10054520,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": 512860,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": 1740000,
-            "times_x": "0.0000"
-          },
-          {
-            "category": "nii_gt_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii_lte_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "retail",
-            "shares_bid": 9266660,
-            "shares_offered": 4060000,
-            "times_x": "2.2824"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "3.0139"
-      }
-    },
-    "consolidated": {
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 15206080,
-          "shares_offered": 2320000,
-          "times_x": "6.5543"
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": 4638700,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": 10054520,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": 512860,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": 1740000,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "retail",
-          "shares_bid": 9266660,
-          "shares_offered": 4060000,
-          "times_x": "2.2824"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": "3.0139"
-    },
-    "overall_times_x": "3.0139"
-  },
+  "subscription": {},
   "subscription_path": "issues/dr-lal-pathlabs-90b2a7/subscription.json",
-  "timeline": {
-    "listing_date": "2015-12-23"
-  },
+  "timeline": {},
   "url_path": "/ipos/dr-lal-pathlabs/"
 }

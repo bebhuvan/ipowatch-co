@@ -9,10 +9,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/RMD_DRHP.pdf",
-    "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/RMD_PROSP.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/RMD_PROSP.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/RMD_RHP.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
@@ -24,9 +25,9 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
-    "identity.aliases": {
+    "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
+      "source": "nse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -56,14 +57,6 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
-    "listing_performance.current_gain_bps": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "listing_performance.current_price_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -86,12 +79,9 @@
     }
   },
   "filings_path": "issues/r-m-drip-sprinklers-systems-cc785e/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "kite:nse:RMDRIP"
-    ],
     "board_type": "SME Board",
     "company_name": "R M Drip and Sprinklers Systems Limited",
     "isin": "INE219Y01018",
@@ -100,9 +90,7 @@
     "status": "Listed",
     "symbol": "RMDRIP"
   },
-  "listing_performance": {
-    "current_price_paise": 1883
-  },
+  "listing_performance": {},
   "market_path": "issues/r-m-drip-sprinklers-systems-cc785e/market.json",
   "parties": {},
   "pricing": {
@@ -116,26 +104,19 @@
   "public_slug": "r-m-drip-sprinklers-systems",
   "schema_version": "3.0.0",
   "slug": "r-m-drip-sprinklers-systems-cc785e",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-23T10:24:33+00:00",
-      "source": "kite",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-05-26T09:32:18+00:00",
+      "snapshot_at": "2026-05-27T14:34:47+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-05-26T09:32:24+00:00",
+      "snapshot_at": "2026-05-27T14:34:56+00:00",
       "source": "nse",
       "url": null
     }

@@ -9,19 +9,34 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
-  "documents": {},
+  "dataset_version": "v3.2026.05.27-1445",
+  "documents": {
+    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AVON_DP.pdf",
+    "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AVON_PROSP.pdf"
+  },
   "exchange_details": {},
   "field_provenance": {
+    "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
+      "source": "yahoo"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -43,7 +58,7 @@
     },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
+      "source": "yahoo"
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
@@ -51,15 +66,15 @@
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
+      "source": "yahoo"
     },
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
+      "source": "yahoo"
     },
     "listing_performance.listing_open_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -79,14 +94,15 @@
     }
   },
   "filings_path": "issues/avsl-5f7ebb/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "kite:nse:AVSL-ST"
+      "yahoo:AVSL.NS"
     ],
     "board_type": "SME Board",
     "company_name": "AVSL Industries Limited",
+    "isin": "INE522V01011",
     "issue_type": "IPO",
     "slug": "avsl-5f7ebb",
     "status": "Listed",
@@ -95,9 +111,9 @@
   "listing_performance": {
     "current_gain_bps": 46347,
     "current_price_paise": 20285,
-    "listing_close_price_paise": 3600,
-    "listing_gain_bps": 0,
-    "listing_open_price_paise": 3800
+    "listing_close_price_paise": 3400,
+    "listing_gain_bps": -556,
+    "listing_open_price_paise": 3400
   },
   "market_path": "issues/avsl-5f7ebb/market.json",
   "parties": {},
@@ -111,27 +127,34 @@
   "public_slug": "avsl",
   "schema_version": "3.0.0",
   "slug": "avsl-5f7ebb",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-23T10:24:33+00:00",
-      "source": "kite",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-05-26T09:32:18+00:00",
+      "snapshot_at": "2026-05-27T14:34:47+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "performance",
-      "snapshot_at": "2026-05-26T04:55:35+00:00",
+      "snapshot_at": "2026-05-27T14:45:47+00:00",
       "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_sme",
+      "snapshot_at": "2026-05-27T14:34:56+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_sme",
+      "snapshot_at": "2026-05-27T14:34:56+00:00",
+      "source": "nse",
       "url": null
     }
   ],

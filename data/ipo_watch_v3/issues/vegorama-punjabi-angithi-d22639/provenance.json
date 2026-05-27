@@ -1,12 +1,12 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/provenance.schema.json",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "field_provenance": {
-    "book_building.demand_schedule": {
+    "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "identity.aliases": {
+    "identity.board_type": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
@@ -26,59 +26,39 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
-    "parties.lead_managers": {
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "parties.registrar": {
+    "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "parties.sponsor_bank": {
+    "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "parties.syndicate_members": {
+    "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "pricing.face_value_paise": {
+    "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "pricing.issue_size_shares": {
+    "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_upper_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "moneycontrol"
     },
     "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     }
@@ -86,48 +66,29 @@
   "findings": {
     "blocking": [],
     "info": [],
-    "review": [
-      {
-        "class": "thin.no_dates_or_documents",
-        "message": "No dates or documents"
-      }
-    ]
+    "review": []
   },
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "vegorama-punjabi-angithi-d22639",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_7726",
-      "snapshot_at": "2026-05-22T09:28:39+00:00",
+      "endpoint": "ipo_performance_sme_2026",
+      "snapshot_at": "2026-05-27T14:35:11+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "consolidated_bid_details_7726",
-      "snapshot_at": "2026-05-22T09:28:39+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_new_7726",
-      "snapshot_at": "2026-05-22T09:28:39+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_7726",
-      "snapshot_at": "2026-05-22T09:28:39+00:00",
-      "source": "bse",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-05-27T14:38:00+00:00",
+      "source": "moneycontrol",
       "url": null
     }
   ],
-  "validation_state": "review"
+  "validation_state": "clean"
 }

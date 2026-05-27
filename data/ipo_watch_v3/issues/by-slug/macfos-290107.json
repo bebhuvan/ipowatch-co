@@ -1,49 +1,6 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {
-    "demand_schedule": [
-      {
-        "cumulative_quantity": null,
-        "price_paise": 9600,
-        "quantity": 451328400
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 9700,
-        "quantity": 451142400
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 9800,
-        "quantity": 451132800
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 9900,
-        "quantity": 451123200
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 10000,
-        "quantity": 451113600
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 10100,
-        "quantity": 451078800
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 10200,
-        "quantity": 450543600
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 130380000
-      }
-    ]
-  },
+  "book_building": {},
   "core_path": "issues/macfos-290107/core.json",
   "data_quality": {
     "errors": [],
@@ -52,14 +9,10 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
-    "book_building.demand_schedule": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -106,23 +59,7 @@
     },
     "listing_performance.listing_open_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "parties.lead_managers": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.registrar": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.sponsor_bank": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.face_value_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -132,41 +69,9 @@
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
     },
-    "pricing.issue_size_shares": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_upper_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "subscription.overall_times_x": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "moneycontrol"
     },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
@@ -174,7 +79,7 @@
     }
   },
   "filings_path": "issues/macfos-290107/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -192,26 +97,13 @@
     "current_price_paise": 67140,
     "listing_close_price_paise": 17480,
     "listing_gain_bps": 7137,
-    "listing_open_price_paise": 16725
+    "listing_open_price_paise": 16727
   },
   "market_path": "issues/macfos-290107/market.json",
-  "parties": {
-    "lead_managers": [
-      "HEM SECURITIES LIMITED"
-    ],
-    "registrar": "Bigshare Services Private Limited",
-    "sponsor_bank": "Axis Bank Limited"
-  },
+  "parties": {},
   "pricing": {
-    "face_value_paise": 1000,
     "issue_price_paise": 10200,
-    "issue_size_paise": 47491200000,
-    "issue_size_shares": 1668000,
-    "market_lot": 1200,
-    "min_bid_qty": 1200,
-    "price_band_lower_paise": 9600,
-    "price_band_upper_paise": 10200,
-    "tick_size_paise": 100
+    "issue_size_paise": 47491200000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/macfos-290107/prospectus_facts.json",
@@ -220,205 +112,32 @@
   "public_slug": "macfos",
   "schema_version": "3.0.0",
   "slug": "macfos-290107",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_6048",
-      "snapshot_at": "2026-05-23T15:42:55+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_6048",
-      "snapshot_at": "2026-05-23T15:42:56+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_new_6048",
-      "snapshot_at": "2026-05-23T15:42:56+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_6048",
-      "snapshot_at": "2026-05-23T15:42:55+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "ipo_performance_sme_2023",
-      "snapshot_at": "2026-05-26T09:32:40+00:00",
+      "snapshot_at": "2026-05-27T14:35:09+00:00",
       "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-23T10:24:33+00:00",
-      "source": "kite",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_001000",
-      "snapshot_at": "2026-05-26T09:35:16+00:00",
+      "snapshot_at": "2026-05-27T14:38:00+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "performance",
-      "snapshot_at": "2026-05-26T04:55:35+00:00",
+      "snapshot_at": "2026-05-27T14:45:47+00:00",
       "source": "yahoo",
       "url": null
     }
   ],
   "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 23844000,
-            "shares_offered": 444000,
-            "times_x": "53.7027"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": 10604400,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": 13239600,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 219380400,
-            "shares_offered": 448800,
-            "times_x": "488.8155"
-          },
-          {
-            "category": "retail",
-            "shares_bid": 208104000,
-            "shares_offered": 775200,
-            "times_x": "268.4520"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "270.5806"
-      }
-    },
-    "consolidated": {
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 0,
-          "shares_offered": 444000,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": 448800,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": 775200,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "policyholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": "0.0000"
-    },
-    "overall_times_x": "0.0000"
+    "overall_times_x": "270.5800"
   },
   "subscription_path": "issues/macfos-290107/subscription.json",
   "timeline": {

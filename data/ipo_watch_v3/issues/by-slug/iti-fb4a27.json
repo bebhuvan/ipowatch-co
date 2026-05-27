@@ -1,112 +1,26 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {
-    "demand_schedule": [
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7100,
-        "quantity": 59597100
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7200,
-        "quantity": 59316900
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7300,
-        "quantity": 44936850
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7400,
-        "quantity": 44835450
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7500,
-        "quantity": 44791500
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7600,
-        "quantity": 31368600
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7700,
-        "quantity": 31347450
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 11303850
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7100,
-        "quantity": 105040050
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7200,
-        "quantity": 97508100
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7300,
-        "quantity": 50741850
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7400,
-        "quantity": 50571750
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7500,
-        "quantity": 50483850
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7600,
-        "quantity": 36979350
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 7700,
-        "quantity": 36931200
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 15384150
-      }
-    ]
-  },
+  "book_building": {},
   "core_path": "issues/iti-fb4a27/core.json",
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "clean",
-    "warnings": []
+    "state": "review",
+    "warnings": [
+      {
+        "class": "thin.no_pricing",
+        "message": "No pricing"
+      }
+    ]
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {
     "drhp_url": "https://www.bseindia.com/downloads/ipo/DRHP_ITI.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
-    "book_building.demand_schedule": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "documents.drhp_url": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
@@ -125,86 +39,21 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
-    },
-    "parties.lead_managers": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.registrar": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.sponsor_bank": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.face_value_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_upper_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.overall_times_x": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
     }
   },
   "filings_path": "issues/iti-fb4a27/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "bse:ipo_no:5118",
-      "bse:scrip_code:2034"
-    ],
-    "company_name": "ITI LTD",
+    "company_name": "ITI Limited",
     "issue_type": "IPO",
     "slug": "iti-fb4a27",
     "status": "Filed"
   },
   "listing_performance": {},
   "market_path": "issues/iti-fb4a27/market.json",
-  "parties": {
-    "lead_managers": [
-      "BOB Capital Markets Limited"
-    ],
-    "registrar": "KFin Technologies Private Limited (formerly known as Karvy Fintech Private Limited)",
-    "sponsor_bank": "ICICI Bank Limited"
-  },
-  "pricing": {
-    "face_value_paise": 1000,
-    "market_lot": 150,
-    "min_bid_qty": 150,
-    "price_band_lower_paise": 7100,
-    "price_band_upper_paise": 7700,
-    "tick_size_paise": 100
-  },
+  "parties": {},
+  "pricing": {},
   "prospectus_available": true,
   "prospectus_facts_path": "issues/iti-fb4a27/prospectus_facts.json",
   "provenance_path": "issues/iti-fb4a27/provenance.json",
@@ -212,184 +61,17 @@
   "public_slug": "iti",
   "schema_version": "3.0.0",
   "slug": "iti-fb4a27",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_5118",
-      "snapshot_at": "2026-05-23T15:11:32+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_5118",
-      "snapshot_at": "2026-05-23T15:11:33+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_5118",
-      "snapshot_at": "2026-05-23T15:11:31+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-05-26T09:32:32+00:00",
+      "snapshot_at": "2026-05-27T14:34:59+00:00",
       "source": "bse",
       "url": null
     }
   ],
-  "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 40858350,
-            "shares_offered": 135000000,
-            "times_x": "0.3027"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": 40858350,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": 27000000,
-            "times_x": "0.0000"
-          },
-          {
-            "category": "nii_gt_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii_lte_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "retail",
-            "shares_bid": 13196700,
-            "shares_offered": 18000000,
-            "times_x": "0.7332"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 1543800,
-            "shares_offered": 1800000,
-            "times_x": "0.8577"
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "0.3058"
-      }
-    },
-    "consolidated": {
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 40858350,
-          "shares_offered": 135000000,
-          "times_x": "0.3027"
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": 40858350,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": 27000000,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "retail",
-          "shares_bid": 13196700,
-          "shares_offered": 18000000,
-          "times_x": "0.7332"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 1543800,
-          "shares_offered": 1800000,
-          "times_x": "0.8577"
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": "0.3058"
-    },
-    "overall_times_x": "0.3058"
-  },
+  "subscription": {},
   "subscription_path": "issues/iti-fb4a27/subscription.json",
   "timeline": {},
   "url_path": "/ipos/iti/"

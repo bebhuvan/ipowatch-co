@@ -1,69 +1,6 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {
-    "demand_schedule": [
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14500,
-        "quantity": 2682081800
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14600,
-        "quantity": 2681646400
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14700,
-        "quantity": 2681568800
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14800,
-        "quantity": 2681434300
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14900,
-        "quantity": 2681310200
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 174207200
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14500,
-        "quantity": 4224517200
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14600,
-        "quantity": 4223857500
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14700,
-        "quantity": 4223739100
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14800,
-        "quantity": 4223527100
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14900,
-        "quantity": 4223342000
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": null,
-        "quantity": 240873600
-      }
-    ]
-  },
+  "book_building": {},
   "core_path": "issues/central-depository-services-india-89ed01/core.json",
   "data_quality": {
     "errors": [],
@@ -72,23 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.26-0936",
+  "dataset_version": "v3.2026.05.27-1445",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/d_CDSL.zip"
   },
   "exchange_details": {},
   "field_provenance": {
-    "book_building.demand_schedule": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -120,7 +53,7 @@
     },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
+      "source": "yahoo"
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
@@ -128,47 +61,19 @@
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
+      "source": "yahoo"
     },
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
+      "source": "yahoo"
     },
     "listing_performance.listing_open_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "kite"
-    },
-    "parties.lead_managers": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.registrar": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.syndicate_members": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.face_value_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
-    },
-    "pricing.issue_size_shares": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
     },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
@@ -177,22 +82,6 @@
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.overall_times_x": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -208,12 +97,11 @@
     }
   },
   "filings_path": "issues/central-depository-services-india-89ed01/filings.json",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:ipo_no:3432",
-      "bse:scrip_code:1358"
+      "yahoo:CDSL.NS"
     ],
     "board_type": "Main Board",
     "company_name": "Central Depository Services (India) Limited",
@@ -224,31 +112,18 @@
     "symbol": "CDSL"
   },
   "listing_performance": {
-    "current_gain_bps": 71705,
-    "current_price_paise": 121740,
-    "listing_close_price_paise": 13080,
-    "listing_gain_bps": -1221,
-    "listing_open_price_paise": 12500
+    "current_gain_bps": 73477,
+    "current_price_paise": 124380,
+    "listing_close_price_paise": 26175,
+    "listing_gain_bps": 7567,
+    "listing_open_price_paise": 25000
   },
   "market_path": "issues/central-depository-services-india-89ed01/market.json",
-  "parties": {
-    "lead_managers": [
-      "AXIS CAPITAL LIMITED"
-    ],
-    "registrar": "LINK INTIME INDIA PRIVATE LIMITED",
-    "syndicate_members": [
-      "http://www.bseindia.com/downloads/ipo/Syndicate_Member_CDSL_140620171802.xlsx"
-    ]
-  },
+  "parties": {},
   "pricing": {
-    "face_value_paise": 1000,
     "issue_price_paise": 14900,
-    "issue_size_shares": 24827046,
-    "market_lot": 100,
-    "min_bid_qty": 100,
     "price_band_lower_paise": 14500,
-    "price_band_upper_paise": 14900,
-    "tick_size_paise": 100
+    "price_band_upper_paise": 14900
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/central-depository-services-india-89ed01/prospectus_facts.json",
@@ -257,205 +132,31 @@
   "public_slug": "central-depository-services-india",
   "schema_version": "3.0.0",
   "slug": "central-depository-services-india-89ed01",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_3432",
-      "snapshot_at": "2026-05-23T14:13:01+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_3432",
-      "snapshot_at": "2026-05-23T14:13:02+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_3432",
-      "snapshot_at": "2026-05-23T14:13:00+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "performance",
-      "snapshot_at": "2026-05-23T10:24:33+00:00",
-      "source": "kite",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-05-26T09:32:18+00:00",
+      "snapshot_at": "2026-05-27T14:34:47+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "performance",
-      "snapshot_at": "2026-05-26T04:55:35+00:00",
+      "snapshot_at": "2026-05-27T14:45:47+00:00",
       "source": "yahoo",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-05-26T09:32:24+00:00",
+      "snapshot_at": "2026-05-27T14:34:55+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 474663000,
-            "shares_offered": 6893442,
-            "times_x": "68.8572"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": 76493600,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": 123862600,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": 42288500,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": 232018300,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": 5170081,
-            "times_x": "0.0000"
-          },
-          {
-            "category": "nii_gt_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii_lte_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "retail",
-            "shares_bid": 177236600,
-            "shares_offered": 12063523,
-            "times_x": "14.6919"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 796000,
-            "shares_offered": 700000,
-            "times_x": "1.1371"
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "26.2897"
-      }
-    },
-    "consolidated": {
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 474663000,
-          "shares_offered": 6893442,
-          "times_x": "68.8572"
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": 76493600,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": 123862600,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": 42288500,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": 232018300,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": 5170081,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "retail",
-          "shares_bid": 177236600,
-          "shares_offered": 12063523,
-          "times_x": "14.6919"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 796000,
-          "shares_offered": 700000,
-          "times_x": "1.1371"
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": "26.2897"
-    },
-    "overall_times_x": "26.2897"
-  },
+  "subscription": {},
   "subscription_path": "issues/central-depository-services-india-89ed01/subscription.json",
   "timeline": {
     "close_date": "2017-06-21",

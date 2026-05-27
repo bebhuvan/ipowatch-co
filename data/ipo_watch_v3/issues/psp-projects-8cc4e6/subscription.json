@@ -1,157 +1,44 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/subscription.schema.json",
-  "dataset_version": "v3.2026.05.26-0936",
-  "generated_at": "2026-05-26T09:36:14+00:00",
+  "dataset_version": "v3.2026.05.27-1445",
+  "generated_at": "2026-05-27T14:45:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "psp-projects-8cc4e6",
-  "source_dataset_version": "v2026.05.26-0936",
+  "source_dataset_version": "v2026.05.27-1445",
   "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 8504580,
-            "shares_offered": 3024000,
-            "times_x": "2.8124"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": 3599960,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": 2618980,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": 2285640,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": 1512000,
-            "times_x": "0.0000"
-          },
-          {
-            "category": "nii_gt_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii_lte_10l",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "retail",
-            "shares_bid": 4171230,
-            "shares_offered": 1008000,
-            "times_x": "4.1381"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "2.2864"
-      }
-    },
-    "consolidated": {
-      "categories": [
+    "data_availability": {
+      "expected_product_feed": "bse.buyback_tender_detail",
+      "reason": "BSE classifies this row as OTB/buyback. IPO/FPO bid-book category endpoints are not applicable; buyback tender acceptance/demand needs a separate product-specific parser.",
+      "source_refs": [
         {
-          "category": "qib",
-          "shares_bid": 8504580,
-          "shares_offered": 3024000,
-          "times_x": "2.8124"
+          "endpoint": "ipo_documents",
+          "snapshot_at": "2026-05-27T14:34:59+00:00",
+          "source": "bse"
         },
         {
-          "category": "qib_fii",
-          "shares_bid": 3599960,
-          "shares_offered": null,
-          "times_x": null
+          "endpoint": "ipo_performance_mainboard_2017",
+          "snapshot_at": "2026-05-27T14:35:04+00:00",
+          "source": "bse"
         },
         {
-          "category": "qib_dfi",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
+          "endpoint": "ipo_public_past_issues",
+          "snapshot_at": "2026-05-27T14:34:47+00:00",
+          "source": "nse"
         },
         {
-          "category": "qib_mf",
-          "shares_bid": 2618980,
-          "shares_offered": null,
-          "times_x": null
+          "endpoint": "offer_documents_equity",
+          "snapshot_at": "2026-05-27T14:34:55+00:00",
+          "source": "nse"
         },
         {
-          "category": "qib_other",
-          "shares_bid": 2285640,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": 1512000,
-          "times_x": "0.0000"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "retail",
-          "shares_bid": 4171230,
-          "shares_offered": 1008000,
-          "times_x": "4.1381"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "endpoint": "tender_past",
+          "snapshot_at": "2026-05-27T14:34:52+00:00",
+          "source": "nse"
         }
       ],
-      "total_times_x": "2.2864"
-    },
-    "overall_times_x": "2.2864"
+      "state": "not_applicable_to_ipo_subscription_book"
+    }
   }
 }

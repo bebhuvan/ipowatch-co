@@ -1,19 +1,93 @@
 {
-  "mode": "tijori_enrichment",
+  "last_good_build": {
+    "available": true,
+    "backup_path": "/home/runner/work/ipowatch-co/ipowatch-co/data/.last_good/ipo_watch_v3",
+    "restored": false
+  },
+  "mode": "full",
   "ok": true,
-  "started_at": "2026-05-27T15:03:28+00:00",
+  "started_at": "2026-05-27T15:44:12+00:00",
   "steps": [
     {
       "detail": {
-        "rows": 548,
-        "sector_map_entries": 548,
-        "snapshot": "/home/runner/work/ipowatch-co/ipowatch-co/data/raw/tijori/ipo_feed/20260527T150328Z.json",
-        "with_financials": 544,
-        "with_isin": 548
+        "filings": 25,
+        "snapshot": "/home/runner/work/ipowatch-co/ipowatch-co/data/raw/sebi/public_issue_filings/20260527T153856Z.json"
       },
-      "elapsed_ms": 2299,
+      "elapsed_ms": 23491,
+      "error": null,
+      "name": "sebi_scrape",
+      "status": "ok"
+    },
+    {
+      "detail": {
+        "v1_fetch_rc": 0
+      },
+      "elapsed_ms": 299306,
+      "error": null,
+      "name": "nse_bse_fetch",
+      "status": "ok"
+    },
+    {
+      "detail": {},
+      "elapsed_ms": 0,
+      "error": null,
+      "name": "kite_prices",
+      "status": "skipped"
+    },
+    {
+      "detail": {},
+      "elapsed_ms": 0,
+      "error": null,
+      "name": "yahoo_prices",
+      "status": "skipped"
+    },
+    {
+      "detail": {},
+      "elapsed_ms": 0,
       "error": null,
       "name": "tijori_ipo_feed",
+      "status": "skipped"
+    },
+    {
+      "detail": {
+        "companies": 3053,
+        "issues_published": 3255,
+        "quarantined": 0
+      },
+      "elapsed_ms": 4503,
+      "error": null,
+      "name": "normalize",
+      "status": "ok"
+    },
+    {
+      "detail": {},
+      "elapsed_ms": 0,
+      "error": null,
+      "name": "enrich_rhp",
+      "status": "skipped"
+    },
+    {
+      "detail": {
+        "companies": 3053,
+        "dataset_version": "v3.2026.05.27-1543",
+        "issues": 3255,
+        "prospectuses": 3255,
+        "trajectories": 9
+      },
+      "elapsed_ms": 12000,
+      "error": null,
+      "name": "export_v3",
+      "status": "ok"
+    },
+    {
+      "detail": {
+        "blocking": 312,
+        "events": 1795,
+        "inspected": 88
+      },
+      "elapsed_ms": 729,
+      "error": null,
+      "name": "drift",
       "status": "ok"
     }
   ]

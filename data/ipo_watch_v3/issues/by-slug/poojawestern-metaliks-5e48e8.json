@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.27-1445",
+  "dataset_version": "v3.2026.05.27-1543",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -37,13 +37,17 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
@@ -52,6 +56,10 @@
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -63,7 +71,7 @@
     }
   },
   "filings_path": "issues/poojawestern-metaliks-5e48e8/filings.json",
-  "generated_at": "2026-05-27T14:45:49+00:00",
+  "generated_at": "2026-05-27T15:43:32+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -73,13 +81,15 @@
     "company_name": "Poojawestern Metaliks Limited",
     "issue_type": "IPO",
     "slug": "poojawestern-metaliks-5e48e8",
-    "status": "Listed"
+    "status": "Listed",
+    "symbol": "540727"
   },
   "listing_performance": {
-    "current_gain_bps": -4561,
-    "current_price_paise": 1958,
+    "current_gain_bps": 2131,
+    "current_price_paise": 4367,
     "listing_close_price_paise": 3620,
-    "listing_gain_bps": 56
+    "listing_gain_bps": 56,
+    "listing_open_price_paise": 1850
   },
   "market_path": "issues/poojawestern-metaliks-5e48e8/market.json",
   "parties": {},
@@ -93,13 +103,20 @@
   "public_slug": "poojawestern-metaliks",
   "schema_version": "3.0.0",
   "slug": "poojawestern-metaliks-5e48e8",
-  "source_dataset_version": "v2026.05.27-1445",
+  "source_dataset_version": "v2026.05.27-1543",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_sme_2017",
-      "snapshot_at": "2026-05-27T14:35:05+00:00",
+      "snapshot_at": "2026-05-27T15:39:13+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-05-27T15:37:14+00:00",
+      "source": "yahoo",
       "url": null
     }
   ],

@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.27-1445",
+  "dataset_version": "v3.2026.05.27-1543",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -37,13 +37,17 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
@@ -52,6 +56,10 @@
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -63,7 +71,7 @@
     }
   },
   "filings_path": "issues/akm-lace-embrotex-42e885/filings.json",
-  "generated_at": "2026-05-27T14:45:49+00:00",
+  "generated_at": "2026-05-27T15:43:32+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -73,13 +81,15 @@
     "company_name": "AKM Lace and Embrotex Limited",
     "issue_type": "IPO",
     "slug": "akm-lace-embrotex-42e885",
-    "status": "Listed"
+    "status": "Listed",
+    "symbol": "540718"
   },
   "listing_performance": {
-    "current_gain_bps": 457720,
-    "current_price_paise": 116930,
+    "current_gain_bps": 40760,
+    "current_price_paise": 12690,
     "listing_close_price_paise": 2490,
-    "listing_gain_bps": -40
+    "listing_gain_bps": -40,
+    "listing_open_price_paise": 2550
   },
   "market_path": "issues/akm-lace-embrotex-42e885/market.json",
   "parties": {},
@@ -93,13 +103,20 @@
   "public_slug": "akm-lace-embrotex",
   "schema_version": "3.0.0",
   "slug": "akm-lace-embrotex-42e885",
-  "source_dataset_version": "v2026.05.27-1445",
+  "source_dataset_version": "v2026.05.27-1543",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_sme_2017",
-      "snapshot_at": "2026-05-27T14:35:05+00:00",
+      "snapshot_at": "2026-05-27T15:39:13+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-05-27T15:37:14+00:00",
+      "source": "yahoo",
       "url": null
     }
   ],

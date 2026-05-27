@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.27-1445",
+  "dataset_version": "v3.2026.05.27-1543",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -37,13 +37,17 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
@@ -52,6 +56,10 @@
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -63,7 +71,7 @@
     }
   },
   "filings_path": "issues/dr-lalchandani-labs-9d5356/filings.json",
-  "generated_at": "2026-05-27T14:45:49+00:00",
+  "generated_at": "2026-05-27T15:43:32+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -73,13 +81,15 @@
     "company_name": "DR LALCHANDANI LABS LIMITED",
     "issue_type": "IPO",
     "slug": "dr-lalchandani-labs-9d5356",
-    "status": "Listed"
+    "status": "Listed",
+    "symbol": "541299"
   },
   "listing_performance": {
-    "current_gain_bps": -6767,
-    "current_price_paise": 970,
+    "current_gain_bps": -800,
+    "current_price_paise": 2760,
     "listing_close_price_paise": 2850,
-    "listing_gain_bps": -500
+    "listing_gain_bps": -500,
+    "listing_open_price_paise": 2995
   },
   "market_path": "issues/dr-lalchandani-labs-9d5356/market.json",
   "parties": {},
@@ -93,13 +103,20 @@
   "public_slug": "dr-lalchandani-labs",
   "schema_version": "3.0.0",
   "slug": "dr-lalchandani-labs-9d5356",
-  "source_dataset_version": "v2026.05.27-1445",
+  "source_dataset_version": "v2026.05.27-1543",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_sme_2018",
-      "snapshot_at": "2026-05-27T14:35:05+00:00",
+      "snapshot_at": "2026-05-27T15:39:14+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-05-27T15:37:14+00:00",
+      "source": "yahoo",
       "url": null
     }
   ],

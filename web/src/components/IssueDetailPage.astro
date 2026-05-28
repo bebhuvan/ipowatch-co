@@ -363,10 +363,53 @@ type FactItem = { label: string; value: string; rawValue: unknown; page: number 
 const isFactLeaf = (value: unknown): value is FactLeaf =>
   Boolean(value && typeof value === 'object' && 'value' in (value as Record<string, unknown>));
 
+const readableFactText = (text: string): string => {
+  const companyName = company || 'the company';
+  return text
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\bOur Corporate Promoter\b/g, 'the corporate promoter')
+    .replace(/\bour Corporate Promoter\b/g, 'the corporate promoter')
+    .replace(/\bOur Holding Company\b/g, 'the holding company')
+    .replace(/\bour Holding Company\b/g, 'the holding company')
+    .replace(/\bOur Promoters\b/g, 'the promoters')
+    .replace(/\bour Promoters\b/g, 'the promoters')
+    .replace(/\bOur Directors\b/g, 'the directors')
+    .replace(/\bour Directors\b/g, 'the directors')
+    .replace(/\bOur Group Company\b/g, 'the group company')
+    .replace(/\bour Group Company\b/g, 'the group company')
+    .replace(/\bOur Company\b/g, companyName)
+    .replace(/\bour Company\b/g, companyName)
+    .replace(/\bWe have\b/g, `${companyName} has`)
+    .replace(/\bwe have\b/g, `${companyName} has`)
+    .replace(/\bWe are\b/g, `${companyName} is`)
+    .replace(/\bwe are\b/g, `${companyName} is`)
+    .replace(/\bWe derive\b/g, `${companyName} derives`)
+    .replace(/\bwe derive\b/g, `${companyName} derives`)
+    .replace(/\bWe operate\b/g, `${companyName} operates`)
+    .replace(/\bwe operate\b/g, `${companyName} operates`)
+    .replace(/\bWe cannot assure\b/g, `${companyName} cannot assure`)
+    .replace(/\bwe cannot assure\b/g, `${companyName} cannot assure`)
+    .replace(/\bwe sell\b/g, 'it sells')
+    .replace(/\bwe will not\b/g, 'it will not')
+    .replace(/^Derive\b/g, `${companyName} derives`)
+    .replace(/\bour products\b/g, 'its products')
+    .replace(/\bour customers\b/g, 'its customers')
+    .replace(/\bour raw material suppliers\b/g, 'its raw material suppliers')
+    .replace(/\bour business\b/g, 'its business')
+    .replace(/\bour operations\b/g, 'its operations')
+    .replace(/\bour results\b/g, 'its results')
+    .replace(/\bour cash flows\b/g, 'its cash flows')
+    .replace(/\bour financial condition\b/g, 'its financial condition')
+    .replace(/\bour manufacturing facility\b/g, 'its manufacturing facility')
+    .replace(/\bour visibility and brand\b/g, 'its visibility and brand')
+    .replace(/\bour logo\b/g, 'its logo');
+};
+
 const factText = (value: unknown): string | null => {
   if (value == null || value === '') return null;
   if (typeof value === 'number') return value.toLocaleString('en-IN');
-  if (typeof value === 'string') return value.trim() || null;
+  if (typeof value === 'string') return readableFactText(value) || null;
   return null;
 };
 
@@ -418,7 +461,10 @@ const sentenceJoin = (items: string[]) => {
 };
 
 const stripTerminalPeriod = (value: string) => value.replace(/[.;]\s*$/g, '');
-const lowerFirst = (value: string) => value ? value.charAt(0).toLowerCase() + value.slice(1) : value;
+const lowerFirst = (value: string) => {
+  if (!value || /^[A-Z]{2,}\b/.test(value)) return value;
+  return value.charAt(0).toLowerCase() + value.slice(1);
+};
 const sentence = (value: string | null | undefined) => {
   if (!value) return null;
   const trimmed = value.trim();

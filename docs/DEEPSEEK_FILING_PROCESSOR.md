@@ -1,10 +1,15 @@
 # DeepSeek Filing Processor
 
-Goal: extract SEO-grade, citation-verified facts from primary filing PDFs without publishing hallucinated claims.
+Goal: extract a broad, citation-verified fact store from primary filing PDFs without publishing hallucinated claims.
 
 ## Why This Exists
 
-Most IPO pages only mirror dates, prices, GMP-style snippets, or shallow summaries. Primary filings contain richer information: business model, industry overview, macro story, revenue mix, risk factors, financial trends, peer comparison, litigation, related-party transactions, offer objects, debt terms, and red flags. V3 stores those facts in `data/ipo_watch_v3/issues/<slug>/prospectus_facts.json`.
+Most IPO pages only mirror dates, prices, GMP-style snippets, or shallow summaries. Primary filings contain richer information: business model, incorporation history, promoters, industry overview, macro story, revenue mix, customers, suppliers, facilities, capacity utilization, risk factors, financial trends, peer comparison, litigation, related-party transactions, offer objects, timetable, reservation, debt terms, and red flags. V3 stores those facts in `data/ipo_watch_v3/issues/<slug>/prospectus_facts.json`.
+
+The extraction policy is deliberately broad: store more verified material than
+the first page render needs. The article layer should later select, group, and
+rewrite from this fact store into a fluent narrative with tables/charts. The
+extractor should not try to be the article writer.
 
 ## DeepSeek API Contract
 
@@ -24,7 +29,9 @@ The harness uses DeepSeek's OpenAI-compatible chat endpoint at `https://api.deep
 - Gemini Flash remains the primary multimodal/PDF fallback for broad PDF
   understanding. MiMo is experimental and should be used as a JPEG-only visual
   fallback for table-heavy pages where local text extraction mangles rows.
-- The document is sliced by primary sections: business, industry, financials, risks, offer, valuation/peers, governance.
+- The document is sliced by primary sections: business, history/corporate
+  structure, industry, financials, MD&A, risks, offer, issue terms,
+  intermediaries, valuation/peers, governance.
 - DeepSeek must emit strict JSON.
 - Every scalar fact must carry `value`, `raw_excerpt`, `source_page`, `source_section`, and `confidence`.
 - `raw_excerpt` must be exact contiguous text from the filing.
@@ -181,5 +188,8 @@ non-null citation-backed facts.
   should render it as narrative sections, compact tables, charts, and quiet
   source notes. Do not expose one fact row per citation as the final article
   experience.
+- The broad extraction schema increases model calls and token use. That is
+  intentional for high-value filings, but batch runs should keep `--limit`
+  modest and inspect usage logs.
 - Large PDFs can still be expensive. Start with `--limit 1` and inspect cost logs.
 - Parser gaps in source coverage are separate from filing extraction and should be closed independently.

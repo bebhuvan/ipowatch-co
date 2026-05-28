@@ -358,7 +358,7 @@ type FactLeaf = {
   source_section?: string | null;
   confidence?: string | null;
 };
-type FactItem = { label: string; value: string; page: number | null; section: string | null; confidence: string | null };
+type FactItem = { label: string; value: string; rawValue: unknown; page: number | null; section: string | null; confidence: string | null };
 
 const isFactLeaf = (value: unknown): value is FactLeaf =>
   Boolean(value && typeof value === 'object' && 'value' in (value as Record<string, unknown>));
@@ -377,6 +377,7 @@ const factItem = (label: string, leaf: unknown): FactItem | null => {
   return {
     label,
     value,
+    rawValue: leaf.value,
     page: typeof leaf.source_page === 'number' ? leaf.source_page : null,
     section: leaf.source_section ?? null,
     confidence: leaf.confidence ?? null,
@@ -414,6 +415,68 @@ const sentenceJoin = (items: string[]) => {
   const cleaned = items.map((item) => item.trim()).filter(Boolean);
   if (!cleaned.length) return null;
   return cleaned.map((item) => item.endsWith(".") ? item : item + ".").join(" ");
+};
+
+const stripTerminalPeriod = (value: string) => value.replace(/[.;]\s*$/g, '');
+const lowerFirst = (value: string) => value ? value.charAt(0).toLowerCase() + value.slice(1) : value;
+const sentence = (value: string | null | undefined) => {
+  if (!value) return null;
+  const trimmed = value.trim();
+  return trimmed.endsWith('.') ? trimmed : `${trimmed}.`;
+};
+
+type ChartPoint = { label: string; value: number; source: FactItem };
+const numericFactSeries = (label: string, values: unknown, periodValues: unknown, limit = 8): ChartPoint[] => {
+  if (!Array.isArray(values)) return [];
+  const periods = Array.isArray(periodValues)
+    ? periodValues.map((leaf) => isFactLeaf(leaf) ? factText(leaf.value) : factText(leaf))
+    : [];
+  return values
+    .map((leaf, idx) => {
+      const fact = factItem(label, leaf);
+      if (!fact) return null;
+      const n = typeof fact.rawValue === 'number' ? fact.rawValue : parseNum(fact.value);
+      if (n == null) return null;
+      return {
+        label: periods[idx] ?? `P${idx + 1}`,
+        value: n,
+        source: fact,
+      };
+    })
+    .filter((row): row is ChartPoint => row != null)
+    .slice(0, limit);
+};
+
+const chartGeometry = (rows: ChartPoint[], width = 620, height = 220, pad = 28) => {
+  if (!rows.length) return { width, height, zeroY: height - pad, points: '', bars: [] as { x: number; y: number; h: number; w: number; row: ChartPoint }[] };
+  const values = rows.map((row) => row.value);
+  const min = Math.min(0, ...values);
+  const max = Math.max(0, ...values);
+  const spread = max - min || 1;
+  const xStep = rows.length > 1 ? (width - pad * 2) / (rows.length - 1) : 0;
+  const yFor = (value: number) => height - pad - ((value - min) / spread) * (height - pad * 2);
+  const zeroY = yFor(0);
+  const barSlot = (width - pad * 2) / Math.max(rows.length, 1);
+  const barW = Math.max(12, Math.min(42, barSlot * 0.56));
+  return {
+    width,
+    height,
+    zeroY,
+    points: rows.map((row, idx) => `${pad + idx * xStep},${yFor(row.value)}`).join(' '),
+    bars: rows.map((row, idx) => {
+      const x = pad + idx * barSlot + (barSlot - barW) / 2;
+      const y = Math.min(yFor(row.value), zeroY);
+      const h = Math.max(2, Math.abs(zeroY - yFor(row.value)));
+      return { x, y, h, w: barW, row };
+    }),
+  };
+};
+
+const pctFromText = (text: string): number | null => {
+  const match = text.match(/(\d+(?:\.\d+)?)\s*%/);
+  if (!match) return null;
+  const pct = Number(match[1]);
+  return Number.isFinite(pct) ? pct : null;
 };
 
 const prospectus = issue.prospectus_facts;
@@ -535,6 +598,125 @@ const hasProspectusNarrative = Boolean(
   riskNarrativeRows.length ||
   valuationRows.length ||
   governanceNarrativeRows.length
+);
+
+const articleCompanyDescription = companyDescriptionFact?.value ?? null;
+const articleBusinessModel = businessModelFact?.value ?? null;
+const articleIndustryName = industryNameFact?.value ?? offerMetadataRows.find((row) => row.title === 'Industry')?.value ?? null;
+const articleProducts = uniqueFacts(factList('Product line', businessFacts.products_services, 8), 8);
+const articleStrengths = uniqueFacts(factList('Strength', businessFacts.competitive_strengths, 8), 8);
+const articleCustomers = uniqueFacts(factList('Customer concentration', businessFacts.customers, 4), 4);
+const articleDependencies = uniqueFacts(factList('Dependency', businessFacts.key_dependencies, 4), 4);
+const articleGeographies = uniqueFacts(factList('Geography', businessFacts.geographies, 4), 4);
+const articleMarketSizes = uniqueFacts(factList('Market size', industryFacts.market_size, 8), 8);
+const articleGrowthRates = uniqueFacts(factList('Growth rate', industryFacts.growth_rates, 8), 8);
+const articleDrivers = uniqueFacts(factList('Driver', industryFacts.drivers, 8), 8);
+const articleCompetition = uniqueFacts(factList('Competition', industryFacts.competition, 6), 6);
+const articleHeadwinds = uniqueFacts(factList('Headwind', industryFacts.headwinds, 6), 6);
+const articleRegulation = uniqueFacts(factList('Regulation', industryFacts.regulatory_context, 8), 8);
+const articleObjects = uniqueFacts(factList('Object', offerFacts.objects_of_issue, 8), 8);
+const articlePromoters = uniqueFacts(factList('Promoter', governanceFacts.promoters, 8), 8);
+const articleShareholding = uniqueFacts(factList('Shareholding', governanceFacts.shareholding, 8), 8);
+const articleLitigation = uniqueFacts(factList('Litigation', governanceFacts.litigation, 5), 5);
+const articleRelatedParty = uniqueFacts(factList('Related party', governanceFacts.related_party_transactions, 4), 4);
+const articleCapital = uniqueFacts(factList('Capital structure', governanceFacts.capital_structure, 5), 5);
+const articlePAT = numericFactSeries('Profit after tax', financialFacts.pat, financialFacts.periods, 8);
+const articleCashFlow = numericFactSeries('Operating cash flow', financialFacts.cash_flow, financialFacts.periods, 8);
+const articleAssets = numericFactSeries('Assets', financialFacts.assets, financialFacts.periods, 8);
+const articleRatios = numericFactSeries('Return / ratio', financialFacts.ratios, financialFacts.periods, 8);
+const primaryFinancialSeries = articlePAT.length >= 2 ? articlePAT : articleCashFlow.length >= 2 ? articleCashFlow : articleAssets;
+const secondaryFinancialSeries = articleCashFlow.length >= 2 && primaryFinancialSeries !== articleCashFlow ? articleCashFlow : articleAssets.length >= 2 ? articleAssets : [];
+const primaryChart = chartGeometry(primaryFinancialSeries);
+const financialSourceFacts = [...primaryFinancialSeries.map((row) => row.source), ...secondaryFinancialSeries.map((row) => row.source)];
+const financialTrendFacts = uniqueFacts([
+  ...factList('Financial trend', financialFacts.notable_trends, 4),
+  ...financialNarrativeRows,
+], 8);
+
+const shareholdingRows = articleShareholding
+  .map((fact) => ({ ...fact, pct: pctFromText(fact.value) }))
+  .filter((fact) => fact.pct != null)
+  .slice(0, 4) as (FactItem & { pct: number })[];
+const shareholdingSourceFacts = uniqueFacts([...articleShareholding, ...articlePromoters, ...articleCapital], 10);
+
+const articleLeadParagraphs = [
+  sentence(articleCompanyDescription),
+  articleBusinessModel
+    ? sentence(`The commercial hook is that ${lowerFirst(stripTerminalPeriod(articleBusinessModel))}`)
+    : null,
+  articleIndustryName
+    ? sentence(`The DRHP places the company in ${articleIndustryName}, so the issue needs to be read as a sector-specific manufacturing and distribution story rather than only as an SME listing`)
+    : null,
+].filter((line): line is string => Boolean(line));
+
+const businessParagraphs = [
+  articleProducts.length
+    ? sentence(`The operating mix covers ${articleProducts.map((fact) => stripTerminalPeriod(fact.value)).join(', ')}`)
+    : null,
+  articleStrengths.length
+    ? sentence(`Management's own case rests on ${articleStrengths.slice(0, 5).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join(', ')}`)
+    : null,
+  articleCustomers.length
+    ? sentence(`The same filing also shows concentration risk: ${lowerFirst(stripTerminalPeriod(articleCustomers[0].value))}`)
+    : null,
+  articleDependencies.length
+    ? sentence(`A key dependency is explicit in the DRHP: ${lowerFirst(stripTerminalPeriod(articleDependencies[0].value))}`)
+    : null,
+  articleGeographies.length
+    ? sentence(`Geographically, the disclosed footprint includes ${articleGeographies.map((fact) => stripTerminalPeriod(fact.value)).join(', ')}`)
+    : null,
+].filter((line): line is string => Boolean(line));
+
+const industryParagraphs = [
+  articleIndustryName ? sentence(`This is a ${articleIndustryName} issue`) : null,
+  articleMarketSizes.length || articleGrowthRates.length
+    ? sentence(`The industry section gives a scale-and-growth frame: ${[...articleMarketSizes.slice(0, 3), ...articleGrowthRates.slice(0, 3)].map((fact) => stripTerminalPeriod(fact.value)).join('; ')}`)
+    : null,
+  articleDrivers.length
+    ? sentence(`Demand drivers cited in the DRHP include ${articleDrivers.slice(0, 6).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join(', ')}`)
+    : null,
+  articleCompetition.length || articleHeadwinds.length
+    ? sentence(`The counterweight is competitive intensity: ${[...articleCompetition.slice(0, 3), ...articleHeadwinds.slice(0, 3)].map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
+    : null,
+].filter((line): line is string => Boolean(line));
+
+const objectParagraph = articleObjects.length
+  ? sentence(`The proceeds are not just a balance-sheet event: the named objects are ${articleObjects.map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
+  : null;
+
+const controlParagraph = shareholdingRows.length
+  ? sentence(`Control is concentrated before the issue, with ${shareholdingRows.map((fact) => `${stripTerminalPeriod(fact.value)}`).join('; ')}`)
+  : articlePromoters.length
+    ? sentence(`The promoters identified in the DRHP include ${articlePromoters.slice(0, 5).map((fact) => stripTerminalPeriod(fact.value)).join(', ')}`)
+    : null;
+
+const riskThesisFacts = uniqueFacts([
+  ...factList('Risk', riskFacts.top_risks, 6),
+  ...factList('Customer/supplier risk', riskFacts.customer_supplier_risks, 4),
+  ...factList('Financial risk', riskFacts.financial_risks, 5),
+  ...factList('Regulatory risk', riskFacts.regulatory_risks, 5),
+  ...factList('Red flag', riskFacts.red_flags, 5),
+], 14);
+const riskParagraphs = [
+  riskCountFact ? sentence(`The DRHP lists ${riskCountFact.value} risk factors`) : null,
+  riskThesisFacts[0] ? sentence(`The first layer is execution/legal risk: ${lowerFirst(stripTerminalPeriod(riskThesisFacts[0].value))}`) : null,
+  articleCustomers.length ? sentence(`Customer concentration matters because ${lowerFirst(stripTerminalPeriod(articleCustomers[0].value))}`) : null,
+  riskThesisFacts.find((fact) => fact.label === 'Financial risk')
+    ? sentence(`Financial risk is also visible: ${lowerFirst(stripTerminalPeriod(riskThesisFacts.find((fact) => fact.label === 'Financial risk')!.value))}`)
+    : null,
+  riskThesisFacts.find((fact) => fact.label === 'Regulatory risk')
+    ? sentence(`Regulatory risk is material because ${lowerFirst(stripTerminalPeriod(riskThesisFacts.find((fact) => fact.label === 'Regulatory risk')!.value))}`)
+    : null,
+].filter((line): line is string => Boolean(line));
+
+const hasResearchArticle = Boolean(
+  articleLeadParagraphs.length ||
+  businessParagraphs.length ||
+  industryParagraphs.length ||
+  articleObjects.length ||
+  primaryFinancialSeries.length ||
+  shareholdingSourceFacts.length ||
+  riskParagraphs.length
 );
 
 const tijori = issue.research?.tijori ?? null;
@@ -1035,11 +1217,11 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
 )}
 
 <!-- VERIFIED PROSPECTUS FACTS -->
-{hasVerifiedProspectus && hasProspectusNarrative && (
+{hasVerifiedProspectus && hasResearchArticle && (
   <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
     <header class="mb-9">
       <div class="flex flex-wrap items-baseline justify-between gap-4">
-        <h2 class="section-title">What the prospectus says</h2>
+        <h2 class="section-title">Prospectus research note</h2>
         <span class="text-[12px] mute">
           {prospectusQuality?.state === 'review' ? 'review extraction' : 'verified extraction'}
           {prospectusQuality?.verified_fact_count != null && <> · <span class="num">{prospectusQuality.verified_fact_count}</span> verified facts</>}
@@ -1047,125 +1229,253 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
       </div>
     </header>
 
-    {prospectusLead && (
-      <div class="mb-12 max-w-[72ch]">
-        <p class="serif text-[24px] leading-[1.45] text-[color:var(--color-ink-soft)]">{prospectusLead}</p>
-        {sourcePages([companyDescriptionFact, businessModelFact, industryNameFact, issueStructureFact]) && (
-          <p class="mt-4 text-[11px] mute">{sourcePages([companyDescriptionFact, businessModelFact, industryNameFact, issueStructureFact])}</p>
+    {articleLeadParagraphs.length > 0 && (
+      <div class="mb-14 max-w-[78ch]">
+        {articleLeadParagraphs.map((line, idx) => (
+          <p class={`${idx === 0 ? 'serif text-[25px] leading-[1.45] text-[color:var(--color-ink-soft)]' : 'mt-5 text-[16px] leading-[1.8] text-[color:var(--color-ink)]'}`}>
+            {line}
+          </p>
+        ))}
+        {sourcePages([companyDescriptionFact, businessModelFact, industryNameFact]) && (
+          <p class="mt-5 text-[11px] mute">{sourcePages([companyDescriptionFact, businessModelFact, industryNameFact])}</p>
         )}
       </div>
     )}
 
-    {(businessNarrativeFacts.length > 0 || industrySnapshot.length > 0) && (
-      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] gap-12 mb-14">
-        {businessNarrativeFacts.length > 0 && (
-          <article>
-            <div class="label mb-4">Business and market</div>
-            <div class="space-y-4">
-              {businessNarrativeFacts.slice(0, 5).map((fact) => (
-                <p class="text-[15px] leading-[1.7]">
-                  <span class="font-semibold">{fact.label}.</span> {fact.value}
-                </p>
-              ))}
-            </div>
-            {sourcePages(businessNarrativeFacts) && <p class="mt-5 text-[11px] mute">{sourcePages(businessNarrativeFacts)}</p>}
-          </article>
-        )}
-        {industrySnapshot.length > 0 && (
-          <aside class="border-l-0 lg:border-l border-[color:var(--color-rule)] lg:pl-8">
-            <div class="label mb-4">Industry signals</div>
-            <dl class="divide-y divide-[color:var(--color-rule)]">
-              {industrySnapshot.slice(0, 5).map((fact) => (
-                <div class="py-3">
+    {(businessParagraphs.length > 0 || articleStrengths.length > 0 || articleCustomers.length > 0) && (
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-12 mb-16">
+        <article>
+          <div class="label mb-4">Business model</div>
+          <div class="space-y-5">
+            {businessParagraphs.map((line) => (
+              <p class="text-[16px] leading-[1.82] max-w-[76ch]">{line}</p>
+            ))}
+          </div>
+          {sourcePages([...articleProducts, ...articleStrengths, ...articleCustomers, ...articleDependencies, ...articleGeographies]) && (
+            <p class="mt-5 text-[11px] mute">{sourcePages([...articleProducts, ...articleStrengths, ...articleCustomers, ...articleDependencies, ...articleGeographies])}</p>
+          )}
+        </article>
+        {(articleStrengths.length > 0 || articleCustomers.length > 0 || articleDependencies.length > 0) && (
+          <aside>
+            <div class="label mb-4">Operating read-through</div>
+            <dl class="border-t border-[color:var(--color-ink)]">
+              {[...articleStrengths.slice(0, 3), ...articleCustomers.slice(0, 1), ...articleDependencies.slice(0, 1)].map((fact) => (
+                <div class="py-4 border-b border-[color:var(--color-rule)]">
                   <dt class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</dt>
-                  <dd class="mt-1 text-[14px] leading-relaxed">{fact.value}</dd>
+                  <dd class="mt-2 text-[14px] leading-relaxed">{fact.value}</dd>
                 </div>
               ))}
             </dl>
-            {sourcePages(industrySnapshot) && <p class="mt-4 text-[11px] mute">{sourcePages(industrySnapshot)}</p>}
           </aside>
         )}
       </div>
     )}
 
-    {(offerNarrativeFacts.length > 0 || issueTermRows.length > 0) && (
-      <div class="mb-14">
-        <div class="label mb-4">Offer structure</div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3 border-t border-[color:var(--color-ink)]">
-          {offerNarrativeFacts.slice(0, 10).map((fact) => (
-            <div class="py-3 border-b border-[color:var(--color-rule)]">
-              <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
-              <div class="mt-1 text-[14px] leading-relaxed">{fact.value}</div>
+    {(industryParagraphs.length > 0 || articleMarketSizes.length > 0 || articleDrivers.length > 0 || articleRegulation.length > 0) && (
+      <div class="mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-12">
+          <article>
+            <div class="label mb-4">Sector and industry</div>
+            <div class="space-y-5">
+              {industryParagraphs.map((line) => (
+                <p class="text-[16px] leading-[1.82] max-w-[76ch]">{line}</p>
+              ))}
             </div>
+            {sourcePages([...articleMarketSizes, ...articleGrowthRates, ...articleDrivers, ...articleCompetition, ...articleHeadwinds]) && (
+              <p class="mt-5 text-[11px] mute">{sourcePages([...articleMarketSizes, ...articleGrowthRates, ...articleDrivers, ...articleCompetition, ...articleHeadwinds])}</p>
+            )}
+          </article>
+          <div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[color:var(--color-rule)] border border-[color:var(--color-rule)]">
+              {[...articleMarketSizes.slice(0, 4), ...articleGrowthRates.slice(0, 4)].slice(0, 8).map((fact) => (
+                <div class="bg-white p-5 min-w-0">
+                  <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
+                  <div class="mt-3 serif text-[22px] leading-tight num break-words">{fact.value}</div>
+                </div>
+              ))}
+            </div>
+            {articleRegulation.length > 0 && (
+              <div class="mt-6 border-t border-[color:var(--color-ink)]">
+                {articleRegulation.slice(0, 4).map((fact) => (
+                  <p class="py-3 border-b border-[color:var(--color-rule)] text-[13px] leading-relaxed">
+                    <span class="font-semibold">Regulatory context.</span> {fact.value}
+                  </p>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    )}
+
+    {(articleObjects.length > 0 || offerNarrativeFacts.length > 0) && (
+      <div class="mb-16">
+        <div class="label mb-4">Objects of the issue</div>
+        {objectParagraph && <p class="text-[16px] leading-[1.82] max-w-[78ch] mb-6">{objectParagraph}</p>}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {articleObjects.slice(0, 6).map((fact, idx) => (
+            <article class="border border-[color:var(--color-rule-card)] bg-white p-5">
+              <div class="serif text-[30px] leading-none num text-[color:var(--color-ink-soft)]">{idx + 1}</div>
+              <p class="mt-4 text-[14px] leading-relaxed">{fact.value}</p>
+            </article>
           ))}
         </div>
-        {sourcePages(offerNarrativeFacts) && <p class="mt-4 text-[11px] mute">{sourcePages(offerNarrativeFacts)}</p>}
+        {sourcePages(articleObjects) && <p class="mt-4 text-[11px] mute">{sourcePages(articleObjects)}</p>}
       </div>
     )}
 
-    {financialNarrativeRows.length > 0 && (
-      <div class="mb-14">
-        <div class="label mb-4">Financial highlights</div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[color:var(--color-rule)] border border-[color:var(--color-rule)]">
-          {financialNarrativeRows.slice(0, 6).map((fact) => (
-            <div class="bg-white p-5 min-w-0">
-              <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
-              <div class="mt-3 serif text-[22px] leading-tight num break-words">{fact.value}</div>
+    {(primaryFinancialSeries.length > 0 || financialTrendFacts.length > 0) && (
+      <div class="mb-16">
+        <div class="label mb-4">Financial story</div>
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] gap-12">
+          {primaryFinancialSeries.length > 0 && (
+            <div>
+              <div class="border-y border-[color:var(--color-ink)] py-5">
+                <div class="flex flex-wrap items-baseline justify-between gap-4 mb-4">
+                  <h3 class="serif text-[24px] leading-tight">{primaryFinancialSeries[0].source.label}</h3>
+                  <span class="text-[11px] mute uppercase tracking-[0.08em]">reported sequence</span>
+                </div>
+                <svg viewBox={`0 0 ${primaryChart.width} ${primaryChart.height}`} class="w-full h-auto block" role="img" aria-label={`${primaryFinancialSeries[0].source.label} chart`}>
+                  <line x1="28" x2={primaryChart.width - 28} y1={primaryChart.zeroY} y2={primaryChart.zeroY} stroke="var(--color-rule)" stroke-width="1" />
+                  {primaryChart.bars.map((bar) => (
+                    <rect x={bar.x} y={bar.y} width={bar.w} height={bar.h} fill={bar.row.value < 0 ? 'var(--color-mute-2)' : 'var(--color-ink)'} opacity={bar.row.value < 0 ? '0.55' : '0.88'} />
+                  ))}
+                  {primaryChart.points && <polyline points={primaryChart.points} fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />}
+                </svg>
+                <div class="grid gap-2 mt-4" style={`grid-template-columns: repeat(${Math.min(primaryFinancialSeries.length, 8)}, minmax(0, 1fr));`}>
+                  {primaryFinancialSeries.map((row) => (
+                    <div class="min-w-0 text-center">
+                      <div class="serif text-[16px] leading-tight num break-words">{row.value.toLocaleString('en-IN')}</div>
+                      <div class="mt-1 text-[10px] mute num">{row.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {secondaryFinancialSeries.length > 0 && (
+                <div class="mt-6">
+                  <div class="flex items-baseline justify-between gap-4 mb-2">
+                    <h4 class="text-[12px] mute uppercase tracking-[0.08em]">{secondaryFinancialSeries[0].source.label}</h4>
+                  </div>
+                  <div class="space-y-2">
+                    {secondaryFinancialSeries.map((row) => {
+                      const maxAbs = Math.max(...secondaryFinancialSeries.map((r) => Math.abs(r.value)), 1);
+                      const w = Math.max(2, (Math.abs(row.value) / maxAbs) * 100);
+                      return (
+                        <div class="grid grid-cols-[48px_minmax(0,1fr)_90px] items-center gap-3 text-[12px]">
+                          <span class="mute num">{row.label}</span>
+                          <span class="h-[8px] bg-[color:var(--color-rule)] relative">
+                            <span class={`absolute inset-y-0 ${row.value < 0 ? 'right-1/2 bg-[color:var(--color-mute-2)]' : 'left-1/2 bg-[color:var(--color-ink)]'}`} style={`width: ${Math.min(50, w / 2).toFixed(1)}%;`}></span>
+                          </span>
+                          <span class="text-right num serif text-[15px]">{row.value.toLocaleString('en-IN')}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
-          ))}
+          )}
+          <div>
+            <div class="space-y-4">
+              {financialTrendFacts.slice(0, 5).map((fact) => (
+                <p class="text-[15px] leading-[1.75]">
+                  <span class="font-semibold">{fact.label}.</span> {fact.value}
+                </p>
+              ))}
+            </div>
+            {articleRatios.length > 0 && (
+              <div class="mt-7 grid grid-cols-2 sm:grid-cols-3 gap-px bg-[color:var(--color-rule)] border border-[color:var(--color-rule)]">
+                {articleRatios.slice(0, 6).map((row) => (
+                  <div class="bg-white p-4">
+                    <div class="text-[10px] mute uppercase tracking-[0.08em]">{row.label}</div>
+                    <div class="mt-2 serif text-[20px] num">{row.value.toLocaleString('en-IN')}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-        {sourcePages(financialNarrativeRows) && <p class="mt-4 text-[11px] mute">{sourcePages(financialNarrativeRows)}</p>}
+        {sourcePages(financialSourceFacts.length ? financialSourceFacts : financialTrendFacts) && (
+          <p class="mt-4 text-[11px] mute">{sourcePages(financialSourceFacts.length ? financialSourceFacts : financialTrendFacts)}</p>
+        )}
       </div>
     )}
 
-    {riskNarrativeRows.length > 0 && (
-      <div class="mb-14">
-        <div class="label mb-4">Risk picture</div>
-        <div class="grid grid-cols-1 lg:grid-cols-[220px_minmax(0,1fr)] gap-8">
-          <div>
-            <p class="serif text-[28px] leading-tight">
-              {riskCountFact?.value ?? riskNarrativeRows.length}
-            </p>
-            <p class="mt-2 text-[12px] mute leading-relaxed">{riskCountFact ? 'risk factors disclosed in the filing' : 'notable risk items extracted from the filing'}</p>
-          </div>
-          <div class="columns-1 md:columns-2 gap-10">
-            {riskNarrativeRows.filter((fact) => fact !== riskCountFact).slice(0, 8).map((fact) => (
-              <p class="break-inside-avoid mb-4 text-[14px] leading-relaxed">
-                <span class="font-semibold">{fact.label}.</span> {fact.value}
+    {(shareholdingSourceFacts.length > 0 || controlParagraph) && (
+      <div class="mb-16">
+        <div class="label mb-4">Shareholding and control</div>
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-12">
+          <article>
+            {controlParagraph && <p class="text-[16px] leading-[1.82] max-w-[74ch]">{controlParagraph}</p>}
+            {articleRelatedParty.length > 0 && (
+              <p class="mt-5 text-[15px] leading-[1.75]">
+                <span class="font-semibold">Related-party angle.</span> {articleRelatedParty[0].value}
               </p>
-            ))}
+            )}
+            {articleLitigation.length > 0 && (
+              <p class="mt-5 text-[15px] leading-[1.75]">
+                <span class="font-semibold">Legal overhang.</span> {articleLitigation[0].value}
+              </p>
+            )}
+          </article>
+          <div>
+            {shareholdingRows.length > 0 ? (
+              <div class="space-y-5">
+                {shareholdingRows.map((row) => (
+                  <div>
+                    <div class="flex items-baseline justify-between gap-4">
+                      <span class="text-[13px] leading-snug">{row.value}</span>
+                      <span class="serif text-[22px] num">{row.pct.toFixed(row.pct % 1 === 0 ? 0 : 2)}%</span>
+                    </div>
+                    <div class="mt-2 h-[12px] bg-[color:var(--color-rule)] relative">
+                      <span class="absolute inset-y-0 left-0 bg-[color:var(--color-ink)]" style={`width: ${Math.max(0, Math.min(100, row.pct)).toFixed(2)}%;`}></span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <dl class="border-t border-[color:var(--color-ink)]">
+                {shareholdingSourceFacts.slice(0, 6).map((fact) => (
+                  <div class="py-3 border-b border-[color:var(--color-rule)]">
+                    <dt class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</dt>
+                    <dd class="mt-1 text-[14px] leading-relaxed">{fact.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
           </div>
         </div>
-        {sourcePages(riskNarrativeRows) && <p class="mt-4 text-[11px] mute">{sourcePages(riskNarrativeRows)}</p>}
+        {sourcePages(shareholdingSourceFacts) && <p class="mt-4 text-[11px] mute">{sourcePages(shareholdingSourceFacts)}</p>}
       </div>
     )}
 
-    {(valuationRows.length > 0 || governanceNarrativeRows.length > 0) && (
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {valuationRows.length > 0 && (
+    {riskParagraphs.length > 0 && (
+      <div>
+        <div class="label mb-4">Risk thesis</div>
+        <div class="grid grid-cols-1 lg:grid-cols-[220px_minmax(0,1fr)] gap-10">
           <div>
-            <div class="label mb-4">Valuation and peers</div>
-            {valuationRows.slice(0, 6).map((fact) => (
-              <p class="py-3 border-b border-[color:var(--color-rule)] text-[14px] leading-relaxed">
-                <span class="block mute text-[11px] uppercase tracking-[0.08em]">{fact.label}</span>
-                {fact.value}
-              </p>
-            ))}
-            {sourcePages(valuationRows) && <p class="mt-4 text-[11px] mute">{sourcePages(valuationRows)}</p>}
+            <p class="serif text-[42px] leading-none num">{riskCountFact?.value ?? riskThesisFacts.length}</p>
+            <p class="mt-3 text-[12px] mute leading-relaxed">{riskCountFact ? 'risk factors disclosed in the filing' : 'risk items extracted from the filing'}</p>
           </div>
-        )}
-        {governanceNarrativeRows.length > 0 && (
-          <div>
-            <div class="label mb-4">Governance and legal</div>
-            {governanceNarrativeRows.slice(0, 6).map((fact) => (
-              <p class="py-3 border-b border-[color:var(--color-rule)] text-[14px] leading-relaxed">
-                <span class="block mute text-[11px] uppercase tracking-[0.08em]">{fact.label}</span>
-                {fact.value}
-              </p>
-            ))}
-            {sourcePages(governanceNarrativeRows) && <p class="mt-4 text-[11px] mute">{sourcePages(governanceNarrativeRows)}</p>}
-          </div>
-        )}
+          <article>
+            <div class="space-y-5">
+              {riskParagraphs.map((line) => (
+                <p class="text-[15px] leading-[1.78] max-w-[82ch]">{line}</p>
+              ))}
+            </div>
+            {riskThesisFacts.length > 0 && (
+              <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-10 border-t border-[color:var(--color-ink)]">
+                {riskThesisFacts.slice(0, 8).map((fact) => (
+                  <p class="py-3 border-b border-[color:var(--color-rule)] text-[13px] leading-relaxed">
+                    <span class="block text-[10px] mute uppercase tracking-[0.08em]">{fact.label}</span>
+                    {fact.value}
+                  </p>
+                ))}
+              </div>
+            )}
+          </article>
+        </div>
+        {sourcePages([riskCountFact, ...riskThesisFacts]) && <p class="mt-4 text-[11px] mute">{sourcePages([riskCountFact, ...riskThesisFacts])}</p>}
       </div>
     )}
   </section>

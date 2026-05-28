@@ -403,7 +403,8 @@ const readableFactText = (text: string): string => {
     .replace(/\bour financial condition\b/g, 'its financial condition')
     .replace(/\bour manufacturing facility\b/g, 'its manufacturing facility')
     .replace(/\bour visibility and brand\b/g, 'its visibility and brand')
-    .replace(/\bour logo\b/g, 'its logo');
+    .replace(/\bour logo\b/g, 'its logo')
+    .replace(/\bGeneral Corporate Purposes\b/g, 'general corporate purposes');
 };
 
 const factText = (value: unknown): string | null => {
@@ -462,7 +463,7 @@ const sentenceJoin = (items: string[]) => {
 
 const stripTerminalPeriod = (value: string) => value.replace(/[.;]\s*$/g, '');
 const lowerFirst = (value: string) => {
-  if (!value || /^[A-Z]{2,}\b/.test(value)) return value;
+  if (!value || /^[A-Z]{2,}\b/.test(value) || /^Rs\.?\b/.test(value) || /^₹/.test(value) || /^INR\b/.test(value)) return value;
   return value.charAt(0).toLowerCase() + value.slice(1);
 };
 const sentence = (value: string | null | undefined) => {
@@ -537,6 +538,7 @@ const issueTermFacts = facts.issue_terms?.issue_terms ?? {};
 const intermediaryFacts = facts.intermediaries?.intermediaries ?? {};
 const valuationFacts = facts.valuation_and_peers?.valuation_and_peers ?? {};
 const governanceFacts = facts.governance?.governance ?? {};
+const managementFacts = facts.management_discussion?.management_discussion ?? {};
 const hasVerifiedProspectus = Boolean(prospectus?.deepseek?.used && prospectusQuality?.state !== 'fail');
 
 const companyDescriptionFact = factItem('Company', businessFacts.company_description);
@@ -653,14 +655,27 @@ const articleProducts = uniqueFacts(factList('Product line', businessFacts.produ
 const articleStrengths = uniqueFacts(factList('Strength', businessFacts.competitive_strengths, 8), 8);
 const articleCustomers = uniqueFacts(factList('Customer concentration', businessFacts.customers, 4), 4);
 const articleDependencies = uniqueFacts(factList('Dependency', businessFacts.key_dependencies, 4), 4);
+const articleEndIndustries = uniqueFacts(factList('End-user industry', businessFacts.end_user_industries, 6), 6);
+const articleDistribution = uniqueFacts(factList('Distribution', businessFacts.distribution_network, 4), 4);
+const articleRnD = uniqueFacts(factList('R&D / technology', businessFacts.r_and_d, 4), 4);
 const articleGeographies = uniqueFacts(factList('Geography', businessFacts.geographies, 4), 4);
 const articleMarketSizes = uniqueFacts(factList('Market size', industryFacts.market_size, 8), 8);
+const articleAddressableMarket = uniqueFacts(factList('Addressable market', industryFacts.addressable_market, 6), 6);
 const articleGrowthRates = uniqueFacts(factList('Growth rate', industryFacts.growth_rates, 8), 8);
 const articleDrivers = uniqueFacts(factList('Driver', industryFacts.drivers, 8), 8);
+const articleDemandCatalysts = uniqueFacts(factList('Demand catalyst', industryFacts.demand_catalysts, 6), 6);
+const articlePolicyTailwinds = uniqueFacts(factList('Policy tailwind', industryFacts.policy_tailwinds, 5), 5);
+const articleOpportunitySet = uniqueFacts(factList('Opportunity', industryFacts.opportunity_set, 8), 8);
+const articleImportSubstitution = uniqueFacts(factList('Import substitution', industryFacts.import_substitution, 5), 5);
+const articleCustomerIndustryTrends = uniqueFacts(factList('Customer-industry trend', industryFacts.customer_industry_trends, 5), 5);
 const articleCompetition = uniqueFacts(factList('Competition', industryFacts.competition, 6), 6);
 const articleHeadwinds = uniqueFacts(factList('Headwind', industryFacts.headwinds, 6), 6);
 const articleRegulation = uniqueFacts(factList('Regulation', industryFacts.regulatory_context, 8), 8);
 const articleObjects = uniqueFacts(factList('Object', offerFacts.objects_of_issue, 8), 8);
+const articleUseOfProceeds = uniqueFacts(factList('Use of proceeds', offerFacts.use_of_proceeds, 8), 8);
+const articleIssueRationale = uniqueFacts(factList('Issue rationale', offerFacts.strategic_rationale_for_issue, 6), 6);
+const articleCapexDetail = uniqueFacts(factList('Capex detail', offerFacts.capex_detail, 6), 6);
+const articleWorkingCapitalNeed = uniqueFacts(factList('Working-capital need', offerFacts.working_capital_need, 6), 6);
 const articlePromoters = uniqueFacts(factList('Promoter', governanceFacts.promoters, 8), 8);
 const articleShareholding = uniqueFacts(factList('Shareholding', governanceFacts.shareholding, 8), 8);
 const articleLitigation = uniqueFacts(factList('Litigation', governanceFacts.litigation, 5), 5);
@@ -670,14 +685,51 @@ const articlePAT = numericFactSeries('Profit after tax', financialFacts.pat, fin
 const articleCashFlow = numericFactSeries('Operating cash flow', financialFacts.cash_flow, financialFacts.periods, 8);
 const articleAssets = numericFactSeries('Assets', financialFacts.assets, financialFacts.periods, 8);
 const articleRatios = numericFactSeries('Return / ratio', financialFacts.ratios, financialFacts.periods, 8);
+const articleRevenueBreakdown = uniqueFacts(factList('Revenue breakdown', financialFacts.revenue_breakdown, 6), 6);
+const articleMarginBridge = uniqueFacts(factList('Margin bridge', financialFacts.margin_bridge, 6), 6);
+const articleCashConversion = uniqueFacts(factList('Cash conversion', financialFacts.cash_conversion, 6), 6);
 const primaryFinancialSeries = articlePAT.length >= 2 ? articlePAT : articleCashFlow.length >= 2 ? articleCashFlow : articleAssets;
 const secondaryFinancialSeries = articleCashFlow.length >= 2 && primaryFinancialSeries !== articleCashFlow ? articleCashFlow : articleAssets.length >= 2 ? articleAssets : [];
 const primaryChart = chartGeometry(primaryFinancialSeries);
 const financialSourceFacts = [...primaryFinancialSeries.map((row) => row.source), ...secondaryFinancialSeries.map((row) => row.source)];
 const financialTrendFacts = uniqueFacts([
   ...factList('Financial trend', financialFacts.notable_trends, 4),
+  ...articleRevenueBreakdown,
+  ...articleMarginBridge,
+  ...articleCashConversion,
   ...financialNarrativeRows,
 ], 8);
+const hasNarrativeContext = (fact: FactItem) => (fact.value.match(/[A-Za-z]/g) ?? []).length >= 12;
+
+const articleOpportunityFacts = uniqueFacts([
+  ...factList('Company opportunity', businessFacts.market_opportunity, 6),
+  ...factList('Company opportunity', businessFacts.opportunity_summary, 6),
+  ...articleOpportunitySet,
+  ...articleDemandCatalysts,
+  ...articleDrivers,
+  ...articlePolicyTailwinds,
+  ...articleImportSubstitution,
+  ...articleCustomerIndustryTrends,
+  ...factList('Management opportunity', managementFacts.opportunity_commentary, 6),
+  ...factList('Future outlook', managementFacts.future_outlook_from_filing, 5),
+  ...articleAddressableMarket,
+  ...articleMarketSizes,
+  ...articleGrowthRates,
+], 16);
+const articleOpportunityNarrativeFacts = articleOpportunityFacts.filter(hasNarrativeContext);
+
+const articleExecutionFacts = uniqueFacts([
+  ...factList('Growth strategy', businessFacts.growth_strategy, 8),
+  ...factList('Execution plan', businessFacts.strategy_and_execution_plan, 8),
+  ...factList('Capacity expansion', businessFacts.capacity_expansion_plan, 6),
+  ...articleIssueRationale,
+  ...articleObjects,
+  ...articleUseOfProceeds,
+  ...articleCapexDetail,
+  ...articleWorkingCapitalNeed,
+  ...factList('Strategy progress', managementFacts.strategy_progress, 5),
+  ...factList('Capacity / working capital need', managementFacts.capacity_or_working_capital_needs, 5),
+], 16);
 
 const shareholdingRows = articleShareholding
   .map((fact) => ({ ...fact, pct: pctFromText(fact.value) }))
@@ -699,8 +751,17 @@ const businessParagraphs = [
   articleProducts.length
     ? sentence(`The operating mix covers ${articleProducts.map((fact) => stripTerminalPeriod(fact.value)).join(', ')}`)
     : null,
+  articleEndIndustries.length
+    ? sentence(`Demand is linked to end-user industries such as ${articleEndIndustries.map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join(', ')}`)
+    : null,
+  articleDistribution.length
+    ? sentence(`The route to market matters here: ${lowerFirst(stripTerminalPeriod(articleDistribution[0].value))}`)
+    : null,
   articleStrengths.length
     ? sentence(`Management's own case rests on ${articleStrengths.slice(0, 5).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join(', ')}`)
+    : null,
+  articleRnD.length
+    ? sentence(`The DRHP also points to process or product-development depth: ${lowerFirst(stripTerminalPeriod(articleRnD[0].value))}`)
     : null,
   articleCustomers.length
     ? sentence(`The same filing also shows concentration risk: ${lowerFirst(stripTerminalPeriod(articleCustomers[0].value))}`)
@@ -715,11 +776,14 @@ const businessParagraphs = [
 
 const industryParagraphs = [
   articleIndustryName ? sentence(`This is a ${articleIndustryName} issue`) : null,
-  articleMarketSizes.length || articleGrowthRates.length
-    ? sentence(`The industry section gives a scale-and-growth frame: ${[...articleMarketSizes.slice(0, 3), ...articleGrowthRates.slice(0, 3)].map((fact) => stripTerminalPeriod(fact.value)).join('; ')}`)
+  articleOpportunityNarrativeFacts.length
+    ? sentence(`The opportunity case in the filing is built around ${articleOpportunityNarrativeFacts.slice(0, 4).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
     : null,
-  articleDrivers.length
-    ? sentence(`Demand drivers cited in the DRHP include ${articleDrivers.slice(0, 6).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join(', ')}`)
+  articleMarketSizes.length || articleAddressableMarket.length || articleGrowthRates.length
+    ? sentence(`The industry section gives a scale-and-growth frame: ${[...articleAddressableMarket.slice(0, 2), ...articleMarketSizes.slice(0, 3), ...articleGrowthRates.slice(0, 3)].map((fact) => stripTerminalPeriod(fact.value)).join('; ')}`)
+    : null,
+  articleDrivers.length || articleDemandCatalysts.length || articlePolicyTailwinds.length
+    ? sentence(`Demand drivers cited in the DRHP include ${[...articleDemandCatalysts.slice(0, 3), ...articleDrivers.slice(0, 4), ...articlePolicyTailwinds.slice(0, 2)].map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join(', ')}`)
     : null,
   articleCompetition.length || articleHeadwinds.length
     ? sentence(`The counterweight is competitive intensity: ${[...articleCompetition.slice(0, 3), ...articleHeadwinds.slice(0, 3)].map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
@@ -727,8 +791,20 @@ const industryParagraphs = [
 ].filter((line): line is string => Boolean(line));
 
 const objectParagraph = articleObjects.length
-  ? sentence(`The proceeds are not just a balance-sheet event: the named objects are ${articleObjects.map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
+  ? sentence(`The proceeds are not just a balance-sheet event: the named objects are ${[...articleObjects, ...articleUseOfProceeds, ...articleIssueRationale].slice(0, 8).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
   : null;
+
+const opportunityParagraphs = [
+  articleOpportunityNarrativeFacts.length
+    ? sentence(`The core opportunity is ${articleOpportunityNarrativeFacts.slice(0, 5).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
+    : null,
+  articleExecutionFacts.length
+    ? sentence(`The execution path disclosed in the filing is ${articleExecutionFacts.slice(0, 6).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
+    : null,
+  articleCapexDetail.length || articleWorkingCapitalNeed.length
+    ? sentence(`Capital allocation is therefore a key part of the story: ${[...articleCapexDetail.slice(0, 3), ...articleWorkingCapitalNeed.slice(0, 3)].map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
+    : null,
+].filter((line): line is string => Boolean(line));
 
 const controlParagraph = shareholdingRows.length
   ? sentence(`Control is concentrated before the issue, with ${shareholdingRows.map((fact) => `${stripTerminalPeriod(fact.value)}`).join('; ')}`)
@@ -741,6 +817,7 @@ const riskThesisFacts = uniqueFacts([
   ...factList('Customer/supplier risk', riskFacts.customer_supplier_risks, 4),
   ...factList('Financial risk', riskFacts.financial_risks, 5),
   ...factList('Regulatory risk', riskFacts.regulatory_risks, 5),
+  ...factList('Execution risk', riskFacts.opportunity_execution_risks, 5),
   ...factList('Red flag', riskFacts.red_flags, 5),
 ], 14);
 const riskParagraphs = [
@@ -759,6 +836,7 @@ const hasResearchArticle = Boolean(
   articleLeadParagraphs.length ||
   businessParagraphs.length ||
   industryParagraphs.length ||
+  opportunityParagraphs.length ||
   articleObjects.length ||
   primaryFinancialSeries.length ||
   shareholdingSourceFacts.length ||
@@ -1297,8 +1375,8 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
               <p class="text-[16px] leading-[1.82] max-w-[76ch]">{line}</p>
             ))}
           </div>
-          {sourcePages([...articleProducts, ...articleStrengths, ...articleCustomers, ...articleDependencies, ...articleGeographies]) && (
-            <p class="mt-5 text-[11px] mute">{sourcePages([...articleProducts, ...articleStrengths, ...articleCustomers, ...articleDependencies, ...articleGeographies])}</p>
+          {sourcePages([...articleProducts, ...articleEndIndustries, ...articleDistribution, ...articleRnD, ...articleStrengths, ...articleCustomers, ...articleDependencies, ...articleGeographies]) && (
+            <p class="mt-5 text-[11px] mute">{sourcePages([...articleProducts, ...articleEndIndustries, ...articleDistribution, ...articleRnD, ...articleStrengths, ...articleCustomers, ...articleDependencies, ...articleGeographies])}</p>
           )}
         </article>
         {(articleStrengths.length > 0 || articleCustomers.length > 0 || articleDependencies.length > 0) && (
@@ -1327,13 +1405,13 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
                 <p class="text-[16px] leading-[1.82] max-w-[76ch]">{line}</p>
               ))}
             </div>
-            {sourcePages([...articleMarketSizes, ...articleGrowthRates, ...articleDrivers, ...articleCompetition, ...articleHeadwinds]) && (
-              <p class="mt-5 text-[11px] mute">{sourcePages([...articleMarketSizes, ...articleGrowthRates, ...articleDrivers, ...articleCompetition, ...articleHeadwinds])}</p>
+            {sourcePages([...articleOpportunityFacts, ...articleMarketSizes, ...articleAddressableMarket, ...articleGrowthRates, ...articleDrivers, ...articleDemandCatalysts, ...articlePolicyTailwinds, ...articleCompetition, ...articleHeadwinds]) && (
+              <p class="mt-5 text-[11px] mute">{sourcePages([...articleOpportunityFacts, ...articleMarketSizes, ...articleAddressableMarket, ...articleGrowthRates, ...articleDrivers, ...articleDemandCatalysts, ...articlePolicyTailwinds, ...articleCompetition, ...articleHeadwinds])}</p>
             )}
           </article>
           <div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[color:var(--color-rule)] border border-[color:var(--color-rule)]">
-              {[...articleMarketSizes.slice(0, 4), ...articleGrowthRates.slice(0, 4)].slice(0, 8).map((fact) => (
+              {[...articleAddressableMarket.slice(0, 2), ...articleMarketSizes.slice(0, 4), ...articleGrowthRates.slice(0, 4)].slice(0, 8).map((fact) => (
                 <div class="bg-white p-5 min-w-0">
                   <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
                   <div class="mt-3 serif text-[22px] leading-tight num break-words">{fact.value}</div>
@@ -1350,6 +1428,37 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
               </div>
             )}
           </div>
+        </div>
+      </div>
+    )}
+
+    {(opportunityParagraphs.length > 0 || articleOpportunityFacts.length > 0 || articleExecutionFacts.length > 0) && (
+      <div class="mb-16">
+        <div class="label mb-4">Opportunity and execution path</div>
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] gap-12">
+          <article>
+            <div class="space-y-5">
+              {opportunityParagraphs.map((line) => (
+                <p class="text-[16px] leading-[1.82] max-w-[78ch]">{line}</p>
+              ))}
+            </div>
+            {sourcePages([...articleOpportunityFacts, ...articleExecutionFacts]) && (
+              <p class="mt-5 text-[11px] mute">{sourcePages([...articleOpportunityFacts, ...articleExecutionFacts])}</p>
+            )}
+          </article>
+          <aside>
+            <div class="border-t border-[color:var(--color-ink)]">
+              {[...articleExecutionFacts.slice(0, 5), ...articleOpportunityFacts.slice(0, 3)].slice(0, 8).map((fact, idx) => (
+                <div class="grid grid-cols-[34px_minmax(0,1fr)] gap-4 py-4 border-b border-[color:var(--color-rule)]">
+                  <span class="serif text-[22px] leading-none num text-[color:var(--color-ink-soft)]">{idx + 1}</span>
+                  <div>
+                    <div class="text-[10px] mute uppercase tracking-[0.08em]">{fact.label}</div>
+                    <p class="mt-2 text-[14px] leading-relaxed">{fact.value}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </aside>
         </div>
       </div>
     )}

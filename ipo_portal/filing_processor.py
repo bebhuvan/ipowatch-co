@@ -63,7 +63,7 @@ Hard rules:
 8. Prefer short raw_excerpt values from one page. Do not quote across page boundaries. Never use "..." inside raw_excerpt.
 9. For table-derived values, quote one exact printed row or compact contiguous table fragment from one page; otherwise return null.
 10. Money is integer paise, percent is integer basis points, dates are ISO 8601, ratios/multiples are decimal strings.
-11. Prefer concise, high-signal facts that help a reader understand the company, issue terms, timetable, intermediaries, risks, industry, financials, valuation, and red flags.
+11. Prefer concise, high-signal facts that help a reader understand the company, issue terms, timetable, intermediaries, risks, industry, financials, valuation, opportunity, strategy, and red flags.
 12. For issue terms, distinguish facts from the filing from live exchange state. Do not infer live subscription, allotment status, GMP, or listing estimate from a DRHP/RHP unless the filing explicitly states it.
 13. Be complete rather than sparse. Extract every material fact in the requested schema that is visible in the slice, even when it feels repetitive. The downstream verifier and article writer will filter later.
 14. Use arrays generously for article drafting: capture notable products, segments, locations, customers, suppliers, capacities, utilization, KPIs, period comparisons, use-of-proceeds rows, reservation rows, dates, litigations, proceedings, dependencies, and red flags.
@@ -77,10 +77,11 @@ Extraction checklist:
 - Company identity: business description, incorporation/history, promoters/group, headquarters/registered office, subsidiaries, facilities, branches, employees.
 - Products and revenue: product families, services, brands, revenue mix, export/domestic mix, customer industries, major customers, customer concentration.
 - Operations: manufacturing process, capacity, capacity utilization, raw materials, suppliers, supply concentration, logistics, quality certifications, licenses, technology/IP.
-- Strategy: expansion plans, capex, new facilities, geographic expansion, product expansion, acquisition plans, competitive strengths, dependencies.
-- Industry: market size, growth rates, demand drivers, headwinds, regulatory backdrop, peer/competition context, import/export dynamics, commodity/input trends.
+- Strategy and opportunity: the opportunity management says it sees, why the timing matters, expansion plans, capex, new facilities, geographic expansion, product expansion, acquisition plans, R&D, import substitution, customer-industry demand, competitive strengths, dependencies, and execution constraints.
+- Industry: market size, growth rates, addressable market, demand drivers, policy tailwinds, headwinds, regulatory backdrop, peer/competition context, import/export dynamics, commodity/input trends.
 - Issue economics: fresh issue, OFS, total issue size, shares, face value, price band, lot size, minimum investment, reservation, market maker, listing exchanges/platform.
 - Use of proceeds: each object, amount, timeline, funding requirement, means of finance, deployment already made, monitoring agency.
+- IPO rationale: how the stated objects of issue connect to the business opportunity, capacity build-out, working-capital cycle, balance sheet, visibility/brand, or public-market access.
 - Timetable: bid/open/close, anchor, basis/allotment, refund/unblocking, credit of shares, listing, any T+ timeline described in the filing.
 - Financials: revenue, EBITDA, PAT, margins, EPS, NAV, RoNW, ROCE, net worth, assets, borrowings, cash flows, working capital, receivables, payables, inventory, contingent liabilities, auditor qualifications, notable year-on-year changes.
 - Risks and red flags: customer/supplier concentration, related-party dependence, promoter/group dependence, litigation, regulatory actions, tax proceedings, defaults/dues, indebtedness, working capital stress, negative cash flow, capacity/quality issues, raw-material volatility, FX exposure, geography concentration, competition.
@@ -116,9 +117,17 @@ SECTION_SPECS: list[dict[str, Any]] = [
             "licenses_certifications": [],
             "employees": [],
             "technology_or_ip": [],
+            "r_and_d": [],
+            "end_user_industries": [],
+            "distribution_network": [],
+            "market_opportunity": [],
+            "opportunity_summary": [],
             "growth_strategy": [],
+            "strategy_and_execution_plan": [],
+            "capacity_expansion_plan": [],
             "competitive_strengths": [],
             "key_dependencies": [],
+            "execution_constraints": [],
         },
     },
     {
@@ -153,16 +162,22 @@ SECTION_SPECS: list[dict[str, Any]] = [
             "industry_name": None,
             "industry_segments": [],
             "market_size": [],
+            "addressable_market": [],
             "growth_rates": [],
             "drivers": [],
+            "demand_catalysts": [],
+            "policy_tailwinds": [],
             "headwinds": [],
             "competition": [],
             "peer_landscape": [],
+            "opportunity_set": [],
             "macro_story": [],
             "regulatory_context": [],
             "commodity_or_input_trends": [],
             "demand_supply_dynamics": [],
             "export_import_trends": [],
+            "import_substitution": [],
+            "customer_industry_trends": [],
         },
     },
     {
@@ -179,6 +194,7 @@ SECTION_SPECS: list[dict[str, Any]] = [
             "debt": [],
             "cash_flow": [],
             "ratios": [],
+            "revenue_breakdown": [],
             "segment_financials": [],
             "balance_sheet": [],
             "profit_and_loss": [],
@@ -191,6 +207,8 @@ SECTION_SPECS: list[dict[str, Any]] = [
             "eps_nav_ronw": [],
             "roe_roce": [],
             "margins": [],
+            "margin_bridge": [],
+            "cash_conversion": [],
             "borrowings": [],
             "contingent_liabilities": [],
             "auditor_qualifications": [],
@@ -222,6 +240,9 @@ SECTION_SPECS: list[dict[str, Any]] = [
             "known_trends_or_uncertainties": [],
             "seasonality": [],
             "future_outlook_from_filing": [],
+            "opportunity_commentary": [],
+            "strategy_progress": [],
+            "capacity_or_working_capital_needs": [],
         },
     },
     {
@@ -243,6 +264,7 @@ SECTION_SPECS: list[dict[str, Any]] = [
             "indebtedness_risks": [],
             "cash_flow_risks": [],
             "related_party_risks": [],
+            "opportunity_execution_risks": [],
             "litigation_risks": [],
             "tax_risks": [],
             "raw_material_risks": [],
@@ -269,6 +291,9 @@ SECTION_SPECS: list[dict[str, Any]] = [
             "market_maker_portion": None,
             "use_of_proceeds": [],
             "objects_of_issue": [],
+            "strategic_rationale_for_issue": [],
+            "capex_detail": [],
+            "working_capital_need": [],
             "funding_requirements": [],
             "means_of_finance": [],
             "deployment_schedule": [],

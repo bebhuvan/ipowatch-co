@@ -9,29 +9,21 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.27-1543",
+  "dataset_version": "v3.2026.05.28-0548",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
-    "identity.aliases": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "identity.board_type": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -39,49 +31,53 @@
     },
     "identity.symbol": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
-    "pricing.face_value_paise": {
+    "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
     },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "timeline.open_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     }
   },
   "filings_path": "issues/sarla-performance-fibers-647817/filings.json",
-  "generated_at": "2026-05-27T15:43:32+00:00",
+  "generated_at": "2026-05-28T05:48:40+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "bse:ipo_no:7728",
-      "bse:scrip_code:526885"
-    ],
-    "board_type": "Main Board",
-    "company_name": "Sarla Performance Fibers Ltd-$",
+    "company_name": "Sarla Performance Fibers Limited",
     "issue_type": "Buyback",
     "slug": "sarla-performance-fibers-647817",
-    "status": "Open",
-    "symbol": "SARLA PER F"
+    "status": "Closed",
+    "symbol": "sarlapoly"
   },
   "listing_performance": {},
   "market_path": "issues/sarla-performance-fibers-647817/market.json",
   "parties": {},
   "pricing": {
-    "face_value_paise": 100,
+    "issue_price_paise": 11000,
+    "issue_size_shares": 4000000,
     "price_band_lower_paise": 11000,
     "price_band_upper_paise": 11000
   },
@@ -92,36 +88,18 @@
   "public_slug": "sarla-performance-fibers",
   "schema_version": "3.0.0",
   "slug": "sarla-performance-fibers-647817",
-  "source_dataset_version": "v2026.05.27-1543",
+  "source_dataset_version": "v2026.05.28-0548",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "public_issue",
-      "snapshot_at": "2026-05-27T15:39:07+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue_details",
-      "snapshot_at": "2026-05-27T15:39:07+00:00",
-      "source": "bse",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-05-28T05:43:54+00:00",
+      "source": "nse",
       "url": null
     }
   ],
   "subscription": {
-    "data_availability": {
-      "expected_product_feed": "bse.buyback_tender_detail",
-      "reason": "BSE classifies this row as OTB/buyback. IPO/FPO bid-book category endpoints are not applicable; buyback tender acceptance/demand needs a separate product-specific parser.",
-      "source_refs": [
-        {
-          "endpoint": "public_issue_details",
-          "snapshot_at": "2026-05-27T15:46:23+00:00",
-          "source": "bse"
-        }
-      ],
-      "state": "not_applicable_to_ipo_subscription_book"
-    }
+    "overall_times_x": "2.3000"
   },
   "subscription_path": "issues/sarla-performance-fibers-647817/subscription.json",
   "timeline": {

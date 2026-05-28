@@ -66,12 +66,14 @@ Hard rules:
 11. Prefer concise, high-signal facts that help a reader understand the company, issue terms, timetable, intermediaries, risks, industry, financials, valuation, opportunity, strategy, and red flags.
 12. For issue terms, distinguish facts from the filing from live exchange state. Do not infer live subscription, allotment status, GMP, or listing estimate from a DRHP/RHP unless the filing explicitly states it.
 13. Be complete rather than sparse. Extract every material fact in the requested schema that is visible in the slice, even when it feels repetitive. The downstream verifier and article writer will filter later.
-14. Use arrays generously for article drafting: capture notable products, segments, locations, customers, suppliers, capacities, utilization, KPIs, period comparisons, use-of-proceeds rows, reservation rows, dates, litigations, proceedings, dependencies, and red flags.
+14. Use arrays generously for article drafting and fact-base rendering: capture notable products, segments, locations, customers, suppliers, capacities, utilization, KPIs, period comparisons, use-of-proceeds rows, reservation rows, dates, litigations, proceedings, dependencies, and red flags.
 15. Preserve context in the value. A fact like "Rs 1,443 billion" is weak unless the value says what it measures and for which market/period.
 16. For narrative facts, prefer one complete sentence or short table row. Avoid keyword-only values unless the filing itself is only a keyword/table cell.
 17. Citation-safe mode: raw_excerpt must be a short exact contiguous fragment, ideally under 220 characters. Never truncate raw_excerpt mid-word.
 18. For tables, do not reconstruct rows, move row labels across columns, or combine header text with values unless that exact normalized sequence appears in the supplied slice. If the table is hard to quote, use a smaller exact cell/row fragment and put the surrounding meaning in value.
 19. Prefer fewer citation-safe table facts over many reconstructed facts that will fail verification.
+20. Think in materiality buckets. A strong extraction should support categorized display sections for business model, opportunity and strategy, operations, issue economics, financials and KPIs, valuation and peers, governance and ownership, and risks/red flags.
+21. Extract both narrative facts and datapoints. A datapoint should name the measure, unit, period, geography/segment, and direction where available; a narrative fact should explain why the datapoint matters without adding outside interpretation.
 
 Extraction checklist:
 - Company identity: business description, incorporation/history, promoters/group, headquarters/registered office, subsidiaries, facilities, branches, employees.

@@ -359,6 +359,8 @@ type FactLeaf = {
   confidence?: string | null;
 };
 type FactItem = { label: string; value: string; rawValue: unknown; page: number | null; section: string | null; confidence: string | null };
+type DossierFact = FactItem & { path: string };
+type DossierGroup = { title: string; deck: string; facts: DossierFact[] };
 
 const isFactLeaf = (value: unknown): value is FactLeaf =>
   Boolean(value && typeof value === 'object' && 'value' in (value as Record<string, unknown>));
@@ -433,6 +435,31 @@ const factList = (label: string, values: unknown, limit = 6): FactItem[] =>
     ? values.map((leaf) => factItem(label, leaf)).filter((leaf): leaf is FactItem => leaf != null).slice(0, limit)
     : [];
 
+const factLabelFromPath = (path: string): string => {
+  const parts = path
+    .replace(/\[\d+\]/g, '')
+    .split('.')
+    .filter(Boolean);
+  const leaf = parts.at(-1) ?? path;
+  return labelize(leaf);
+};
+
+const collectDossierFacts = (value: unknown, path = ''): DossierFact[] => {
+  if (isFactLeaf(value)) {
+    const item = factItem(factLabelFromPath(path), value);
+    return item && item.page != null ? [{ ...item, path }] : [];
+  }
+  if (Array.isArray(value)) {
+    return value.flatMap((child, idx) => collectDossierFacts(child, `${path}[${idx}]`));
+  }
+  if (value && typeof value === 'object') {
+    return Object.entries(value as Record<string, unknown>).flatMap(([key, child]) =>
+      collectDossierFacts(child, path ? `${path}.${key}` : key)
+    );
+  }
+  return [];
+};
+
 const uniqueFacts = (items: FactItem[], limit = items.length): FactItem[] => {
   const seen = new Set<string>();
   const out: FactItem[] = [];
@@ -445,6 +472,8 @@ const uniqueFacts = (items: FactItem[], limit = items.length): FactItem[] => {
   }
   return out;
 };
+
+const uniqueDossierFacts = (items: DossierFact[]): DossierFact[] => uniqueFacts(items) as DossierFact[];
 
 const sourcePages = (items: (FactItem | null | undefined)[], limit = 6): string | null => {
   const pages = Array.from(new Set(items
@@ -831,6 +860,121 @@ const riskParagraphs = [
     ? sentence(`Regulatory risk is material because ${lowerFirst(stripTerminalPeriod(riskThesisFacts.find((fact) => fact.label === 'Regulatory risk')!.value))}`)
     : null,
 ].filter((line): line is string => Boolean(line));
+
+const allDossierFacts = uniqueDossierFacts(collectDossierFacts(facts));
+const dossierBucket = (title: string, deck: string, matcher: (fact: DossierFact) => boolean): DossierGroup => ({
+  title,
+  deck,
+  facts: allDossierFacts.filter(matcher),
+});
+const pathHas = (fact: DossierFact, parts: string[]) => parts.some((part) => fact.path.includes(part));
+const rawDossierGroups = [
+  dossierBucket(
+    'Business model',
+    'What the company does, where demand comes from, and how revenue is exposed.',
+    (fact) => fact.path.startsWith('business.') && pathHas(fact, [
+      'company_description',
+      'business_model',
+      'products_services',
+      'brands',
+      'customers',
+      'customer_concentration',
+      'end_user_industries',
+      'geographies',
+      'revenue_mix',
+      'export_domestic_mix',
+    ])
+  ),
+  dossierBucket(
+    'Opportunity and strategy',
+    'Market opportunity, demand catalysts, policy tailwinds, expansion plans, and execution route.',
+    (fact) =>
+      pathHas(fact, [
+        'market_opportunity',
+        'opportunity_summary',
+        'growth_strategy',
+        'strategy_and_execution_plan',
+        'capacity_expansion_plan',
+        'competitive_strengths',
+        'execution_constraints',
+        'industry.market_size',
+        'addressable_market',
+        'growth_rates',
+        'drivers',
+        'demand_catalysts',
+        'policy_tailwinds',
+        'opportunity_set',
+        'macro_story',
+        'import_substitution',
+        'customer_industry_trends',
+        'opportunity_commentary',
+        'future_outlook_from_filing',
+        'strategy_progress',
+      ])
+  ),
+  dossierBucket(
+    'Operations',
+    'Facilities, capacity, suppliers, manufacturing process, raw materials, quality systems, and people.',
+    (fact) => fact.path.startsWith('business.') && pathHas(fact, [
+      'suppliers',
+      'supplier_concentration',
+      'facilities',
+      'capacity_and_utilization',
+      'manufacturing_process',
+      'raw_materials',
+      'licenses_certifications',
+      'employees',
+      'technology_or_ip',
+      'r_and_d',
+      'distribution_network',
+      'key_dependencies',
+    ])
+  ),
+  dossierBucket(
+    'Issue economics',
+    'Offer structure, use of proceeds, price, lot size, reservation, timetable, and listing mechanics.',
+    (fact) => fact.path.startsWith('offer.') || fact.path.startsWith('issue_terms.')
+  ),
+  dossierBucket(
+    'Financials and KPIs',
+    'Reported financial sequence, margins, cash conversion, working capital, borrowings, and auditor context.',
+    (fact) => fact.path.startsWith('financials.') || fact.path.startsWith('management_discussion.')
+  ),
+  dossierBucket(
+    'Valuation and peers',
+    'Basis-for-price metrics, peer tables, return metrics, NAV, EPS, RoNW, and valuation rationale.',
+    (fact) => fact.path.startsWith('valuation_and_peers.')
+  ),
+  dossierBucket(
+    'Governance and ownership',
+    'Promoters, directors, KMP, shareholding, capital structure, litigation, related parties, and intermediaries.',
+    (fact) => fact.path.startsWith('governance.') || fact.path.startsWith('intermediaries.') || fact.path.startsWith('history_and_structure.')
+  ),
+  dossierBucket(
+    'Risks and red flags',
+    'Risk-factor themes, dependencies, legal/regulatory issues, concentration, cash-flow risk, and red flags.',
+    (fact) => fact.path.startsWith('risks.')
+  ),
+];
+const assignedDossierPaths = new Set<string>();
+const dossierGroups = rawDossierGroups.map((group) => ({
+  ...group,
+  facts: uniqueDossierFacts(group.facts).filter((fact) => {
+    if (assignedDossierPaths.has(fact.path)) return false;
+    assignedDossierPaths.add(fact.path);
+    return true;
+  }),
+})).filter((group) => group.facts.length > 0);
+const categorizedDossierPaths = new Set(dossierGroups.flatMap((group) => group.facts.map((fact) => fact.path)));
+const uncategorizedDossierFacts = allDossierFacts.filter((fact) => !categorizedDossierPaths.has(fact.path));
+if (uncategorizedDossierFacts.length) {
+  dossierGroups.push({
+    title: 'Other extracted facts',
+    deck: 'Additional citation-verified facts that did not fit the main research buckets.',
+    facts: uncategorizedDossierFacts,
+  });
+}
+const materialFactCount = dossierGroups.reduce((sum, group) => sum + group.facts.length, 0);
 
 const hasResearchArticle = Boolean(
   articleLeadParagraphs.length ||
@@ -1633,6 +1777,52 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
         {sourcePages([riskCountFact, ...riskThesisFacts]) && <p class="mt-4 text-[11px] mute">{sourcePages([riskCountFact, ...riskThesisFacts])}</p>}
       </div>
     )}
+  </section>
+)}
+
+<!-- PROSPECTUS FACT BASE -->
+{hasVerifiedProspectus && materialFactCount > 0 && (
+  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
+    <header class="mb-9">
+      <div class="flex flex-wrap items-baseline justify-between gap-4">
+        <h2 class="section-title">Prospectus fact base</h2>
+        <span class="text-[12px] mute">
+          <span class="num">{materialFactCount}</span> citation-verified facts
+        </span>
+      </div>
+      <p class="mt-4 text-[14px] leading-relaxed mute max-w-[78ch]">
+        Material facts extracted from the filing, grouped so the article can be checked against the underlying data instead of becoming the only source of truth.
+      </p>
+    </header>
+    <div class="space-y-4">
+      {dossierGroups.map((group, groupIdx) => (
+        <details class="border-y border-[color:var(--color-rule)] py-4" open={groupIdx < 4}>
+          <summary class="cursor-pointer list-none">
+            <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_96px] gap-3 md:items-baseline">
+              <div>
+                <h3 class="serif text-[24px] leading-tight">{group.title}</h3>
+                <p class="mt-2 text-[12.5px] mute leading-relaxed max-w-[78ch]">{group.deck}</p>
+              </div>
+              <span class="md:text-right text-[12px] mute num">{group.facts.length} facts</span>
+            </div>
+          </summary>
+          <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-x-10 border-t border-[color:var(--color-ink)]">
+            {group.facts.map((fact) => (
+              <article class="py-4 border-b border-[color:var(--color-rule)]">
+                <div class="flex flex-wrap items-baseline justify-between gap-3">
+                  <h4 class="text-[10px] mute uppercase tracking-[0.08em]">{fact.label}</h4>
+                  <span class="text-[10px] mute num">
+                    DRHP p.{fact.page}{fact.confidence ? ` · ${fact.confidence}` : ''}
+                  </span>
+                </div>
+                <p class="mt-2 text-[13.5px] leading-relaxed">{fact.value}</p>
+                {fact.section && <p class="mt-2 text-[11px] mute">{fact.section}</p>}
+              </article>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
   </section>
 )}
 

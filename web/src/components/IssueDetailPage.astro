@@ -388,6 +388,34 @@ const factList = (label: string, values: unknown, limit = 6): FactItem[] =>
     ? values.map((leaf) => factItem(label, leaf)).filter((leaf): leaf is FactItem => leaf != null).slice(0, limit)
     : [];
 
+const uniqueFacts = (items: FactItem[], limit = items.length): FactItem[] => {
+  const seen = new Set<string>();
+  const out: FactItem[] = [];
+  for (const item of items) {
+    const key = (item.label + ":" + item.value).toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+    if (out.length >= limit) break;
+  }
+  return out;
+};
+
+const sourcePages = (items: (FactItem | null | undefined)[], limit = 6): string | null => {
+  const pages = Array.from(new Set(items
+    .map((item) => item?.page)
+    .filter((page): page is number => typeof page === "number")))
+    .sort((a, b) => a - b)
+    .slice(0, limit);
+  return pages.length ? "Source: DRHP p." + pages.join(", p.") : null;
+};
+
+const sentenceJoin = (items: string[]) => {
+  const cleaned = items.map((item) => item.trim()).filter(Boolean);
+  if (!cleaned.length) return null;
+  return cleaned.map((item) => item.endsWith(".") ? item : item + ".").join(" ");
+};
+
 const prospectus = issue.prospectus_facts;
 const prospectusQuality = prospectus?.quality ?? null;
 const facts = prospectus?.facts ?? {};
@@ -396,9 +424,19 @@ const industryFacts = facts.industry?.industry ?? {};
 const financialFacts = facts.financials?.financials ?? {};
 const riskFacts = facts.risks?.risks ?? {};
 const offerFacts = facts.offer?.offer ?? {};
+const issueTermFacts = facts.issue_terms?.issue_terms ?? {};
+const intermediaryFacts = facts.intermediaries?.intermediaries ?? {};
 const valuationFacts = facts.valuation_and_peers?.valuation_and_peers ?? {};
 const governanceFacts = facts.governance?.governance ?? {};
 const hasVerifiedProspectus = Boolean(prospectus?.deepseek?.used && prospectusQuality?.state !== 'fail');
+
+const companyDescriptionFact = factItem('Company', businessFacts.company_description);
+const businessModelFact = factItem('Business model', businessFacts.business_model);
+const industryNameFact = factItem('Industry', industryFacts.industry_name);
+const riskCountFact = factItem('Risk-factor count', riskFacts.risk_factor_count);
+const issueStructureFact = factItem('Issue structure', offerFacts.issue_structure);
+const freshIssueFact = factItem('Fresh issue', offerFacts.fresh_issue);
+const ofsFact = factItem('Offer for sale', offerFacts.offer_for_sale);
 
 const businessSnapshot = [
   ...factList('Product/service', businessFacts.products_services, 6),
@@ -422,13 +460,33 @@ const riskRows = [
   ...factList('Customer/supplier risk', riskFacts.customer_supplier_risks, 4),
   ...factList('Financial risk', riskFacts.financial_risks, 4),
   ...factList('Regulatory risk', riskFacts.regulatory_risks, 4),
+  ...factList('Promoter/legal risk', riskFacts.promoter_legal_risks, 3),
+  ...factList('Issue-specific risk', riskFacts.issue_specific_risks, 3),
   ...factList('Red flag', riskFacts.red_flags, 5),
 ].slice(0, 14);
 const advisorRows = [
   ...factList('Lead manager', offerFacts.lead_managers, 4),
+  ...factList('Lead manager', intermediaryFacts.lead_managers, 4),
   factItem('Registrar', offerFacts.registrar),
+  factItem('Registrar', intermediaryFacts.registrar),
+  ...factList('Listing exchange', issueTermFacts.listing_exchanges, 3),
+  ...factList('Listing exchange', intermediaryFacts.listing_exchanges, 3),
   ...factList('Object of issue', offerFacts.objects_of_issue, 4),
 ].filter((leaf): leaf is FactItem => leaf != null);
+const issueTermRows = uniqueFacts([
+  factItem('Exchange/platform', issueTermFacts.exchange_platform),
+  factItem('Price band lower', issueTermFacts.price_band_lower),
+  factItem('Price band upper', issueTermFacts.price_band_upper),
+  factItem('Issue price', issueTermFacts.issue_price),
+  factItem('Lot size', issueTermFacts.lot_size),
+  factItem('Minimum application', issueTermFacts.minimum_application_amount),
+  ...factList('Category reservation', issueTermFacts.category_reservation, 5),
+  ...factList('Issue timetable', issueTermFacts.issue_timetable, 5),
+  factItem('Basis of allotment', issueTermFacts.basis_of_allotment),
+  factItem('Refund/unblocking', issueTermFacts.refund_or_unblocking),
+  factItem('Credit of shares', issueTermFacts.credit_of_shares),
+  factItem('Listing date', issueTermFacts.listing_date),
+].filter((leaf): leaf is FactItem => leaf != null), 12);
 const valuationRows = [
   ...factList('Valuation metric', valuationFacts.valuation_metrics, 4),
   ...factList('EPS / NAV / RoNW', valuationFacts.eps_nav_ronw, 4),
@@ -439,8 +497,45 @@ const governanceRows = [
   ...factList('Director', governanceFacts.directors, 4),
   ...factList('KMP', governanceFacts.kmp, 4),
   ...factList('Litigation', governanceFacts.litigation, 4),
+  ...factList('Regulatory action', governanceFacts.regulatory_actions, 3),
+  ...factList('Default/dues', governanceFacts.defaults_or_dues, 3),
+  ...factList('Promoter legal flag', governanceFacts.promoter_legal_flags, 3),
   ...factList('Related-party transaction', governanceFacts.related_party_transactions, 4),
 ].slice(0, 12);
+const prospectusLead = sentenceJoin([
+  companyDescriptionFact?.value ?? '',
+  businessModelFact?.value ?? '',
+  industryNameFact ? `The filing places the company in ${industryNameFact.value}` : '',
+  issueStructureFact ? `The offer is described as ${issueStructureFact.value}` : '',
+]);
+const businessNarrativeFacts = uniqueFacts([
+  companyDescriptionFact,
+  businessModelFact,
+  industryNameFact,
+  ...businessSnapshot,
+].filter((leaf): leaf is FactItem => leaf != null), 8);
+const offerNarrativeFacts = uniqueFacts([
+  issueStructureFact,
+  freshIssueFact,
+  ofsFact,
+  ...advisorRows,
+  ...issueTermRows,
+].filter((leaf): leaf is FactItem => leaf != null), 12);
+const financialNarrativeRows = uniqueFacts(financialRows, 8);
+const riskNarrativeRows = uniqueFacts([
+  riskCountFact,
+  ...riskRows,
+].filter((leaf): leaf is FactItem => leaf != null), 10);
+const governanceNarrativeRows = uniqueFacts(governanceRows, 10);
+const hasProspectusNarrative = Boolean(
+  prospectusLead ||
+  businessNarrativeFacts.length ||
+  offerNarrativeFacts.length ||
+  financialNarrativeRows.length ||
+  riskNarrativeRows.length ||
+  valuationRows.length ||
+  governanceNarrativeRows.length
+);
 
 const tijori = issue.research?.tijori ?? null;
 const tijoriValuationRows = tijori ? [
@@ -487,6 +582,7 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
   const t = Math.max(1, c - o);
   progressPct = Math.max(0, Math.min(100, (e / t) * 100));
 }
+
 ---
 
 <Base title={company}>
@@ -939,11 +1035,11 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
 )}
 
 <!-- VERIFIED PROSPECTUS FACTS -->
-{hasVerifiedProspectus && (
+{hasVerifiedProspectus && hasProspectusNarrative && (
   <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
     <header class="mb-9">
       <div class="flex flex-wrap items-baseline justify-between gap-4">
-        <h2 class="section-title">Prospectus intelligence</h2>
+        <h2 class="section-title">What the prospectus says</h2>
         <span class="text-[12px] mute">
           {prospectusQuality?.state === 'review' ? 'review extraction' : 'verified extraction'}
           {prospectusQuality?.verified_fact_count != null && <> · <span class="num">{prospectusQuality.verified_fact_count}</span> verified facts</>}
@@ -951,102 +1047,123 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
       </div>
     </header>
 
-    {businessSnapshot.length > 0 && (
-      <div class="mb-12">
-        <div class="label mb-4">Business snapshot</div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
-          {businessSnapshot.map((fact) => (
-            <article class="border-b border-[color:var(--color-rule)] pb-3">
-              <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
-              <p class="mt-1 serif text-[18px] leading-snug">{fact.value}</p>
-              {fact.page && <p class="mt-2 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span>{fact.section && <> · {fact.section}</>}</p>}
-            </article>
-          ))}
-        </div>
+    {prospectusLead && (
+      <div class="mb-12 max-w-[72ch]">
+        <p class="serif text-[24px] leading-[1.45] text-[color:var(--color-ink-soft)]">{prospectusLead}</p>
+        {sourcePages([companyDescriptionFact, businessModelFact, industryNameFact, issueStructureFact]) && (
+          <p class="mt-4 text-[11px] mute">{sourcePages([companyDescriptionFact, businessModelFact, industryNameFact, issueStructureFact])}</p>
+        )}
       </div>
     )}
 
-    {industrySnapshot.length > 0 && (
-      <div class="mb-12">
-        <div class="label mb-4">Industry and macro context</div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
-          {industrySnapshot.map((fact) => (
-            <article class="border-b border-[color:var(--color-rule)] pb-3">
-              <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
-              <p class="mt-1 text-[14px] leading-relaxed">{fact.value}</p>
-              {fact.page && <p class="mt-2 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span></p>}
-            </article>
-          ))}
-        </div>
+    {(businessNarrativeFacts.length > 0 || industrySnapshot.length > 0) && (
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] gap-12 mb-14">
+        {businessNarrativeFacts.length > 0 && (
+          <article>
+            <div class="label mb-4">Business and market</div>
+            <div class="space-y-4">
+              {businessNarrativeFacts.slice(0, 5).map((fact) => (
+                <p class="text-[15px] leading-[1.7]">
+                  <span class="font-semibold">{fact.label}.</span> {fact.value}
+                </p>
+              ))}
+            </div>
+            {sourcePages(businessNarrativeFacts) && <p class="mt-5 text-[11px] mute">{sourcePages(businessNarrativeFacts)}</p>}
+          </article>
+        )}
+        {industrySnapshot.length > 0 && (
+          <aside class="border-l-0 lg:border-l border-[color:var(--color-rule)] lg:pl-8">
+            <div class="label mb-4">Industry signals</div>
+            <dl class="divide-y divide-[color:var(--color-rule)]">
+              {industrySnapshot.slice(0, 5).map((fact) => (
+                <div class="py-3">
+                  <dt class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</dt>
+                  <dd class="mt-1 text-[14px] leading-relaxed">{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+            {sourcePages(industrySnapshot) && <p class="mt-4 text-[11px] mute">{sourcePages(industrySnapshot)}</p>}
+          </aside>
+        )}
       </div>
     )}
 
-    {financialRows.length > 0 && (
-      <div class="mb-12">
-        <div class="label mb-4">Financial highlights</div>
-        <div class="border-t border-[color:var(--color-ink)]">
-          {financialRows.map((fact) => (
-            <div class="grid grid-cols-1 sm:grid-cols-[180px_minmax(0,1fr)_92px] gap-2 sm:gap-5 py-3 border-b border-[color:var(--color-rule)]">
-              <div class="text-[12px] mute">{fact.label}</div>
-              <div class="serif text-[19px] num">{fact.value}</div>
-              <div class="text-[11px] mute sm:text-right">{fact.page ? <>p.<span class="num">{fact.page}</span></> : ''}</div>
+    {(offerNarrativeFacts.length > 0 || issueTermRows.length > 0) && (
+      <div class="mb-14">
+        <div class="label mb-4">Offer structure</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3 border-t border-[color:var(--color-ink)]">
+          {offerNarrativeFacts.slice(0, 10).map((fact) => (
+            <div class="py-3 border-b border-[color:var(--color-rule)]">
+              <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
+              <div class="mt-1 text-[14px] leading-relaxed">{fact.value}</div>
             </div>
           ))}
         </div>
+        {sourcePages(offerNarrativeFacts) && <p class="mt-4 text-[11px] mute">{sourcePages(offerNarrativeFacts)}</p>}
       </div>
     )}
 
-    {riskRows.length > 0 && (
-      <div class="mb-12">
-        <div class="label mb-4">Risks and red flags</div>
-        <div class="space-y-3">
-          {riskRows.map((fact) => (
-            <article class="border-b border-[color:var(--color-rule)] pb-3">
+    {financialNarrativeRows.length > 0 && (
+      <div class="mb-14">
+        <div class="label mb-4">Financial highlights</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[color:var(--color-rule)] border border-[color:var(--color-rule)]">
+          {financialNarrativeRows.slice(0, 6).map((fact) => (
+            <div class="bg-white p-5 min-w-0">
               <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
-              <p class="mt-1 text-[14px] leading-relaxed">{fact.value}</p>
-              {fact.page && <p class="mt-2 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span></p>}
-            </article>
+              <div class="mt-3 serif text-[22px] leading-tight num break-words">{fact.value}</div>
+            </div>
           ))}
         </div>
+        {sourcePages(financialNarrativeRows) && <p class="mt-4 text-[11px] mute">{sourcePages(financialNarrativeRows)}</p>}
       </div>
     )}
 
-    {(advisorRows.length > 0 || valuationRows.length > 0 || governanceRows.length > 0) && (
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        {advisorRows.length > 0 && (
+    {riskNarrativeRows.length > 0 && (
+      <div class="mb-14">
+        <div class="label mb-4">Risk picture</div>
+        <div class="grid grid-cols-1 lg:grid-cols-[220px_minmax(0,1fr)] gap-8">
           <div>
-            <div class="label mb-4">Offer and advisors</div>
-            {advisorRows.map((fact) => (
-              <p class="py-3 border-b border-[color:var(--color-rule)] text-[13px] leading-relaxed">
-                <span class="block mute text-[11px] uppercase tracking-[0.08em]">{fact.label}</span>
-                {fact.value}
-                {fact.page && <span class="block mt-1 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span></span>}
+            <p class="serif text-[28px] leading-tight">
+              {riskCountFact?.value ?? riskNarrativeRows.length}
+            </p>
+            <p class="mt-2 text-[12px] mute leading-relaxed">{riskCountFact ? 'risk factors disclosed in the filing' : 'notable risk items extracted from the filing'}</p>
+          </div>
+          <div class="columns-1 md:columns-2 gap-10">
+            {riskNarrativeRows.filter((fact) => fact !== riskCountFact).slice(0, 8).map((fact) => (
+              <p class="break-inside-avoid mb-4 text-[14px] leading-relaxed">
+                <span class="font-semibold">{fact.label}.</span> {fact.value}
               </p>
             ))}
           </div>
-        )}
+        </div>
+        {sourcePages(riskNarrativeRows) && <p class="mt-4 text-[11px] mute">{sourcePages(riskNarrativeRows)}</p>}
+      </div>
+    )}
+
+    {(valuationRows.length > 0 || governanceNarrativeRows.length > 0) && (
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {valuationRows.length > 0 && (
           <div>
             <div class="label mb-4">Valuation and peers</div>
-            {valuationRows.map((fact) => (
-              <p class="py-3 border-b border-[color:var(--color-rule)] text-[13px] leading-relaxed">
+            {valuationRows.slice(0, 6).map((fact) => (
+              <p class="py-3 border-b border-[color:var(--color-rule)] text-[14px] leading-relaxed">
                 <span class="block mute text-[11px] uppercase tracking-[0.08em]">{fact.label}</span>
                 {fact.value}
-                {fact.page && <span class="block mt-1 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span></span>}
               </p>
             ))}
+            {sourcePages(valuationRows) && <p class="mt-4 text-[11px] mute">{sourcePages(valuationRows)}</p>}
           </div>
         )}
-        {governanceRows.length > 0 && (
+        {governanceNarrativeRows.length > 0 && (
           <div>
-            <div class="label mb-4">Governance</div>
-            {governanceRows.map((fact) => (
-              <p class="py-3 border-b border-[color:var(--color-rule)] text-[13px] leading-relaxed">
+            <div class="label mb-4">Governance and legal</div>
+            {governanceNarrativeRows.slice(0, 6).map((fact) => (
+              <p class="py-3 border-b border-[color:var(--color-rule)] text-[14px] leading-relaxed">
                 <span class="block mute text-[11px] uppercase tracking-[0.08em]">{fact.label}</span>
                 {fact.value}
-                {fact.page && <span class="block mt-1 text-[11px] mute">DRHP p.<span class="num">{fact.page}</span></span>}
               </p>
             ))}
+            {sourcePages(governanceNarrativeRows) && <p class="mt-4 text-[11px] mute">{sourcePages(governanceNarrativeRows)}</p>}
           </div>
         )}
       </div>

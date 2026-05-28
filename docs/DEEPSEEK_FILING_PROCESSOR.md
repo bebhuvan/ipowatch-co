@@ -21,6 +21,9 @@ The harness uses DeepSeek's OpenAI-compatible chat endpoint at `https://api.deep
   - `--input-mode text` uses `pdftotext -layout` slices. This is the cheap fallback and remains useful for deterministic regression tests.
 - `--text-extractor pdftotext|liteparse` controls the local text layer used for text-mode prompts and citation verification. `pdftotext` remains the default. `liteparse` is optional, page-aware, cached under `data/cache/pdf_text/liteparse/`, and can be installed with `requirements-extractors.txt`.
 - For OpenRouter PDF input, `--pdf-engine native` is the default. `cloudflare-ai`, `mistral-ocr`, and `none` are available for experiments.
+- Gemini Flash remains the primary multimodal/PDF fallback for broad PDF
+  understanding. MiMo is experimental and should be used as a JPEG-only visual
+  fallback for table-heavy pages where local text extraction mangles rows.
 - The document is sliced by primary sections: business, industry, financials, risks, offer, valuation/peers, governance.
 - DeepSeek must emit strict JSON.
 - Every scalar fact must carry `value`, `raw_excerpt`, `source_page`, `source_section`, and `confidence`.
@@ -81,6 +84,23 @@ Benchmark PDF-capable models without writing public facts:
   --benchmark-section business \
   --benchmark-models qwen/qwen3-vl-8b-instruct,qwen/qwen3-vl-30b-a3b-instruct,google/gemini-2.5-flash
 ```
+
+Benchmark MiMo JPEG extraction without writing public facts:
+
+```bash
+python3 scripts/test_mimo_drhp_images.py \
+  --slug a-g-universal-c13e20 \
+  --section financials \
+  --pages 1 \
+  --dpi 180 \
+  --max-tokens 8192
+```
+
+The MiMo harness renders selected PDF pages with `pdftoppm -jpeg`, sends only
+JPEG data URLs to Xiaomi MiMo, and writes a diagnostic report at
+`data/reports/mimo_drhp_image_test.json`. Keep this as a benchmark/fallback path
+until visual extraction has independent verification comparable to the text
+citation verifier.
 
 Compare local PDF extraction backends before choosing the verifier input:
 
@@ -157,5 +177,9 @@ non-null citation-backed facts.
 ## Caveats
 
 - The harness is conservative; it will omit or redact useful claims if exact citation verification fails.
+- `prospectus_facts.json` is a verified fact layer, not article copy. The site
+  should render it as narrative sections, compact tables, charts, and quiet
+  source notes. Do not expose one fact row per citation as the final article
+  experience.
 - Large PDFs can still be expensive. Start with `--limit 1` and inspect cost logs.
 - Parser gaps in source coverage are separate from filing extraction and should be closed independently.

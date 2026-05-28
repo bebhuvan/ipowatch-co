@@ -1048,21 +1048,21 @@ def _unwrap_pdf(data: bytes, url: str) -> bytes:
 
 
 def _find_keyword_page(pdf: PDFText, keyword: str, *, min_page: int = 1) -> int | None:
-    needle = keyword.casefold()
+    needle = _norm_heading(keyword)
     for idx, page in enumerate(pdf.pages, start=1):
         if idx < max(3, min_page):
             continue
         if not _looks_like_section_heading_page(page, keyword):
             continue
-        if needle in page.casefold():
+        if needle in _norm_heading(page):
             return idx
     return None
 
 
 def _looks_like_section_heading_page(page: str, keyword: str) -> bool:
-    upper = page.upper()
+    upper = _norm_heading(page).upper()
     head = upper[:2500]
-    needle = keyword.upper()
+    needle = _norm_heading(keyword).upper()
     if "TABLE OF CONTENTS" in head:
         return False
     heading_like = False
@@ -1131,6 +1131,18 @@ def _redact(leaf: dict[str, Any]) -> None:
 
 def _norm(text: str) -> str:
     return " ".join(str(text).replace("\u00a0", " ").split()).casefold()
+
+
+def _norm_heading(text: str) -> str:
+    return (
+        str(text)
+        .replace("\u00a0", " ")
+        .replace("\u2018", "'")
+        .replace("\u2019", "'")
+        .replace("\u201c", '"')
+        .replace("\u201d", '"')
+        .casefold()
+    )
 
 
 def _read_json(path: Path) -> Any:

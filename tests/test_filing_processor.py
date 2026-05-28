@@ -92,6 +92,33 @@ def test_slice_with_page_markers_preserves_source_page_numbers() -> None:
     assert "C" in text
 
 
+def test_slice_for_spec_matches_curly_apostrophe_headings() -> None:
+    from ipo_portal.filing_processor import slice_for_spec
+
+    pdf = PDFText(
+        text="",
+        pages=[
+            "Front matter",
+            "Table of contents",
+            "MANAGEMENT’s DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATION\nUseful text",
+            "Next page",
+        ],
+    )
+    spec = {
+        "name": "management_discussion",
+        "keywords": ["MANAGEMENT'S DISCUSSION AND ANALYSIS"],
+        "min_page": 1,
+        "pages_after": 1,
+    }
+
+    text, start, end, method = slice_for_spec(pdf, spec)
+
+    assert method == "keyword"
+    assert start == 3
+    assert end == 4
+    assert "Useful text" in text
+
+
 def test_assess_extraction_quality_fails_missing_required_section() -> None:
     doc = {
         "facts": {},

@@ -35,6 +35,31 @@ def test_validate_and_redact_repairs_wrong_page() -> None:
     assert doc["facts"]["business"]["company_description"]["source_page"] == 1
 
 
+def test_validate_and_redact_accepts_equivalent_curly_punctuation() -> None:
+    doc = {
+        "facts": {
+            "business": {
+                "company_description": {
+                    "value": "Company's Delhi office uses leased space",
+                    "raw_excerpt": "Company's Delhi office - leased space",
+                    "source_page": 1,
+                    "source_section": "Business",
+                    "confidence": "high",
+                }
+            }
+        }
+    }
+    pdf = PDFText(
+        text="Company’s Delhi office – leased space",
+        pages=["Company’s Delhi office – leased space"],
+    )
+
+    report = validate_and_redact_citations(doc, pdf)
+
+    assert report["state"] == "clean"
+    assert report["redacted_count"] == 0
+
+
 def test_validate_and_redact_redacts_unverified_fact() -> None:
     doc = {
         "facts": {

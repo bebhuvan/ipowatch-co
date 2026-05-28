@@ -75,6 +75,7 @@ Hard rules:
 20. Think in materiality buckets. A strong extraction should support categorized display sections for business model, opportunity and strategy, operations, issue economics, financials and KPIs, valuation and peers, governance and ownership, and risks/red flags.
 21. Extract both narrative facts and datapoints. A datapoint should name the measure, unit, period, geography/segment, and direction where available; a narrative fact should explain why the datapoint matters without adding outside interpretation.
 22. Financial period labels are mandatory whenever extracting a financial time series. Populate financials.periods with cited labels in the same order as revenue, PAT, cash flow, assets, ratios, and other numeric arrays. Never leave periods as null when the table header contains dates or financial years.
+23. For financials, extract enough detail to support a standalone financials page: restated profit-and-loss rows, balance-sheet rows, cash-flow rows, working-capital rows, borrowings, contingent liabilities, EPS/NAV/RoNW/ROE/ROCE, margin rows, and auditor/accounting notes when the filing contains them.
 
 Extraction checklist:
 - Company identity: business description, incorporation/history, promoters/group, headquarters/registered office, subsidiaries, facilities, branches, employees.
@@ -86,7 +87,7 @@ Extraction checklist:
 - Use of proceeds: each object, amount, timeline, funding requirement, means of finance, deployment already made, monitoring agency.
 - IPO rationale: how the stated objects of issue connect to the business opportunity, capacity build-out, working-capital cycle, balance sheet, visibility/brand, or public-market access.
 - Timetable: bid/open/close, anchor, basis/allotment, refund/unblocking, credit of shares, listing, any T+ timeline described in the filing.
-- Financials: period labels, revenue, EBITDA, PAT, margins, EPS, NAV, RoNW, ROCE, net worth, assets, borrowings, cash flows, working capital, receivables, payables, inventory, contingent liabilities, auditor qualifications, notable year-on-year changes.
+- Financials: period labels, full restated P&L rows, balance-sheet rows, cash-flow rows, revenue, EBITDA, PAT, margins, EPS, NAV, RoNW, ROE, ROCE, net worth, assets, borrowings, cash flows, working capital, receivables, payables, inventory, contingent liabilities, auditor qualifications, accounting-policy notes, notable year-on-year changes.
 - Risks and red flags: customer/supplier concentration, related-party dependence, promoter/group dependence, litigation, regulatory actions, tax proceedings, defaults/dues, indebtedness, working capital stress, negative cash flow, capacity/quality issues, raw-material volatility, FX exposure, geography concentration, competition.
 - Governance/intermediaries: directors, KMP, promoters, shareholding pre/post issue, lead managers, registrar, auditors, legal counsel, bankers, market makers, sponsor bank, monitoring agency.
 """

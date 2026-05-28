@@ -358,7 +358,7 @@ type FactLeaf = {
   source_section?: string | null;
   confidence?: string | null;
 };
-type FactItem = { label: string; value: string; rawValue: unknown; page: number | null; section: string | null; confidence: string | null };
+type FactItem = { label: string; value: string; rawValue: unknown; rawExcerpt: string | null; page: number | null; section: string | null; confidence: string | null };
 type DossierFact = FactItem & { path: string };
 type DossierGroup = { title: string; deck: string; facts: DossierFact[] };
 
@@ -424,6 +424,7 @@ const factItem = (label: string, leaf: unknown): FactItem | null => {
     label,
     value,
     rawValue: leaf.value,
+    rawExcerpt: leaf.raw_excerpt ?? null,
     page: typeof leaf.source_page === 'number' ? leaf.source_page : null,
     section: leaf.source_section ?? null,
     confidence: leaf.confidence ?? null,
@@ -502,6 +503,20 @@ const sentence = (value: string | null | undefined) => {
 };
 
 type ChartPoint = { label: string; value: number; source: FactItem };
+const displayFinancialValue = (label: string, value: number, fact: FactItem): number => {
+  const metric = label.toLowerCase();
+  if (metric.includes('ratio') || metric.includes('return') || metric.includes('eps') || metric.includes('ronw') || metric.includes('roce')) {
+    return value;
+  }
+  if (
+    Number.isInteger(value) &&
+    Math.abs(value) >= 100 &&
+    /\d[\d,]*\.\d{2}/.test(fact.rawExcerpt ?? '')
+  ) {
+    return value / 100;
+  }
+  return value;
+};
 const numericFactSeries = (label: string, values: unknown, periodValues: unknown, limit = 8): ChartPoint[] => {
   if (!Array.isArray(values)) return [];
   const periods = Array.isArray(periodValues)
@@ -515,7 +530,7 @@ const numericFactSeries = (label: string, values: unknown, periodValues: unknown
       if (n == null) return null;
       return {
         label: periods[idx] ?? `P${idx + 1}`,
-        value: n,
+        value: displayFinancialValue(label, n, fact),
         source: fact,
       };
     })
@@ -726,8 +741,30 @@ const financialTrendFacts = uniqueFacts([
   ...articleRevenueBreakdown,
   ...articleMarginBridge,
   ...articleCashConversion,
-  ...financialNarrativeRows,
 ], 8);
+const hasFinancialPeriodLabels = Array.isArray(financialFacts.periods) && financialFacts.periods.some((period: any) =>
+  period?.value != null && String(period.value).trim() !== ''
+);
+const hasFinancialSubpageFacts = [
+  'revenue',
+  'ebitda',
+  'pat',
+  'assets',
+  'debt',
+  'cash_flow',
+  'ratios',
+  'profit_and_loss',
+  'balance_sheet',
+  'working_capital',
+  'borrowings',
+  'contingent_liabilities',
+  'notable_trends',
+].some((key) =>
+  Array.isArray(financialFacts[key]) && financialFacts[key].some((row: any) => row?.value != null && String(row.value).trim() !== '')
+);
+const financialsUrl = issue.url_path.startsWith('/ipos/') && hasFinancialPeriodLabels && hasFinancialSubpageFacts
+  ? `${issue.url_path}financials/`
+  : null;
 const hasNarrativeContext = (fact: FactItem) => (fact.value.match(/[A-Za-z]/g) ?? []).length >= 12;
 
 const articleOpportunityFacts = uniqueFacts([
@@ -1625,7 +1662,14 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
 
     {(primaryFinancialSeries.length > 0 || financialTrendFacts.length > 0) && (
       <div class="mb-16">
-        <div class="label mb-4">Financial story</div>
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div class="label">Financial story</div>
+          {financialsUrl && (
+            <a href={financialsUrl} class="text-[12px] font-semibold border-b border-[color:var(--color-ink)]">
+              View full financials
+            </a>
+          )}
+        </div>
         <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] gap-12">
           {primaryFinancialSeries.length > 0 && (
             <div>

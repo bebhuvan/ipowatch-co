@@ -1,0 +1,51 @@
+---
+import IssueFinancialsPage from '../../../components/IssueFinancialsPage.astro';
+import {
+  getDetailBySlug,
+  isEquityIPOType,
+  listExtractedProspectusSlugs,
+  publicIssueSlug,
+  type IssueDetail,
+} from '../../../lib/issues';
+
+export function getStaticPaths() {
+  const hasFinancialsData = (issue: IssueDetail): boolean => {
+    const financials = issue.prospectus_facts?.facts?.financials?.financials;
+    if (!financials || typeof financials !== 'object') return false;
+    const periods = Array.isArray(financials.periods) ? financials.periods : [];
+    const metricKeys = [
+      'revenue',
+      'ebitda',
+      'pat',
+      'assets',
+      'debt',
+      'cash_flow',
+      'ratios',
+      'profit_and_loss',
+      'balance_sheet',
+      'working_capital',
+      'borrowings',
+      'contingent_liabilities',
+      'notable_trends',
+    ];
+    const hasPeriodLabel = periods.some((period: any) => period?.value != null && String(period.value).trim() !== '');
+    const hasMetric = metricKeys.some((key) =>
+      Array.isArray(financials[key]) && financials[key].some((row: any) => row?.value != null && String(row.value).trim() !== '')
+    );
+    return hasPeriodLabel && hasMetric;
+  };
+
+  const out: { params: { slug: string }; props: { issue: IssueDetail } }[] = [];
+  for (const slug of listExtractedProspectusSlugs()) {
+    const issue = getDetailBySlug(slug);
+    if (issue && isEquityIPOType(issue.classification.issue_type) && hasFinancialsData(issue)) {
+      out.push({ params: { slug: publicIssueSlug(slug) }, props: { issue } });
+    }
+  }
+  return out;
+}
+
+const { issue } = Astro.props as { issue: IssueDetail };
+---
+
+<IssueFinancialsPage issue={issue} />

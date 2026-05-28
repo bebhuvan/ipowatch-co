@@ -416,15 +416,29 @@ const factText = (value: unknown): string | null => {
   return null;
 };
 
+const metricLabelFromExcerpt = (rawExcerpt: string | null, fallback: string): string => {
+  if (!rawExcerpt) return fallback;
+  const label = rawExcerpt
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/^\(?[a-z]\)?\.?\s+/i, '')
+    .replace(/\s+[-(]?\d[\d,]*(?:\.\d+)?\)?(?:\s+[-(]?\d[\d,]*(?:\.\d+)?\)?)*\s*$/g, '')
+    .trim();
+  return label || fallback;
+};
+
 const factItem = (label: string, leaf: unknown): FactItem | null => {
   if (!isFactLeaf(leaf)) return null;
   const value = factText(leaf.value);
   if (!value) return null;
+  const rawExcerpt = leaf.raw_excerpt ?? null;
   return {
-    label,
+    label: label === 'Ratio' || label === 'Return / ratio' || label === 'Ratios'
+      ? metricLabelFromExcerpt(rawExcerpt, label)
+      : label,
     value,
     rawValue: leaf.value,
-    rawExcerpt: leaf.raw_excerpt ?? null,
+    rawExcerpt,
     page: typeof leaf.source_page === 'number' ? leaf.source_page : null,
     section: leaf.source_section ?? null,
     confidence: leaf.confidence ?? null,

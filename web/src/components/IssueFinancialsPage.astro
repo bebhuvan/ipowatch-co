@@ -85,6 +85,17 @@ const factText = (value: unknown): string | null => {
   return null;
 };
 
+const metricLabelFromExcerpt = (rawExcerpt: string | null, fallback: string): string => {
+  if (!rawExcerpt) return fallback;
+  const label = rawExcerpt
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/^\(?[a-z]\)?\.?\s+/i, '')
+    .replace(/\s+[-(]?\d[\d,]*(?:\.\d+)?\)?(?:\s+[-(]?\d[\d,]*(?:\.\d+)?\)?)*\s*$/g, '')
+    .trim();
+  return label || fallback;
+};
+
 const rawNumberHasDecimals = (rawExcerpt: string | null): boolean =>
   /\d[\d,]*\.\d{2}/.test(rawExcerpt ?? '');
 
@@ -111,11 +122,14 @@ const factItem = (label: string, leaf: unknown): FactItem | null => {
   if (!isFactLeaf(leaf)) return null;
   const value = factText(leaf.value);
   if (!value) return null;
+  const rawExcerpt = leaf.raw_excerpt ?? null;
   return {
-    label,
+    label: label === 'Ratio' || label === 'Return / ratio' || label === 'Ratios'
+      ? metricLabelFromExcerpt(rawExcerpt, label)
+      : label,
     value,
     rawValue: leaf.value,
-    rawExcerpt: leaf.raw_excerpt ?? null,
+    rawExcerpt,
     page: typeof leaf.source_page === 'number' ? leaf.source_page : null,
     section: leaf.source_section ?? null,
     confidence: leaf.confidence ?? null,
@@ -145,7 +159,7 @@ const seriesRow = (label: string, key: string): StatementRow | null => {
   const width = Math.max(periodLabels.length, values.length);
   const padded = Array.from({ length: width }, (_, idx) => values[idx] ?? null);
   return {
-    label,
+    label: values[0]?.label ?? label,
     values: padded,
     pages: Array.from(new Set(values.map((fact) => fact.page).filter((page): page is number => page != null))).sort((a, b) => a - b),
   };

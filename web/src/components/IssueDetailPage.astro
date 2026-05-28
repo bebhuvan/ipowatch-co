@@ -445,10 +445,18 @@ const factLabelFromPath = (path: string): string => {
   return labelize(leaf);
 };
 
+const normalizeFinancialFactItem = (item: FactItem, path: string): FactItem => {
+  if (!path.startsWith('financials.')) return item;
+  const n = typeof item.rawValue === 'number' ? item.rawValue : parseNum(item.rawValue);
+  if (n == null) return item;
+  const value = displayFinancialValue(item.label, n, item).toLocaleString('en-IN', { maximumFractionDigits: 2 });
+  return { ...item, value };
+};
+
 const collectDossierFacts = (value: unknown, path = ''): DossierFact[] => {
   if (isFactLeaf(value)) {
     const item = factItem(factLabelFromPath(path), value);
-    return item && item.page != null ? [{ ...item, path }] : [];
+    return item && item.page != null ? [{ ...normalizeFinancialFactItem(item, path), path }] : [];
   }
   if (Array.isArray(value)) {
     return value.flatMap((child, idx) => collectDossierFacts(child, `${path}[${idx}]`));

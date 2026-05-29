@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.28-0548",
+  "dataset_version": "v3.2026.05.29-0550",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6458_22012026200901.zip",
     "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/QLineBiotechLimited_RHP.zip"
@@ -23,6 +23,10 @@
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -48,6 +52,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -56,7 +72,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -66,20 +90,29 @@
     }
   },
   "filings_path": "issues/q-line-biotech-7c0bb8/filings.json",
-  "generated_at": "2026-05-28T05:48:40+00:00",
+  "generated_at": "2026-05-29T05:50:27+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:medical-equipmentsuppliesaccessories/q-linebiotech/QBL",
+      "moneycontrol:company_code:13160117"
+    ],
     "board_type": "SME Board",
     "company_name": "Q-Line Biotech Limited",
     "issue_type": "IPO",
     "slug": "q-line-biotech-7c0bb8",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "QLINE"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 2974,
+    "current_price_paise": 44500
+  },
   "market_path": "issues/q-line-biotech-7c0bb8/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 34300,
+    "issue_size_paise": 214484760000,
     "price_band_lower_paise": 32600,
     "price_band_upper_paise": 34300
   },
@@ -261,41 +294,51 @@
         "pb": 3.49,
         "pe": 32.64,
         "sector_pb": 3.61,
-        "sector_pe": 27.74
+        "sector_pe": 26.9
       }
     }
   },
   "research_path": "issues/q-line-biotech-7c0bb8/research.json",
   "schema_version": "3.0.0",
   "slug": "q-line-biotech-7c0bb8",
-  "source_dataset_version": "v2026.05.28-0548",
+  "source_dataset_version": "v2026.05.29-0550",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-05-29T05:49:15+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-05-28T05:43:49+00:00",
+      "snapshot_at": "2026-05-29T05:45:16+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-05-28T05:43:58+00:00",
+      "snapshot_at": "2026-05-29T05:45:28+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-05-28T05:44:00+00:00",
+      "snapshot_at": "2026-05-29T05:45:29+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "95.3100"
+  },
   "subscription_path": "issues/q-line-biotech-7c0bb8/subscription.json",
   "timeline": {
     "close_date": "2026-05-25",
+    "listing_date": "2026-05-29",
     "open_date": "2026-05-21"
   },
   "url_path": "/ipos/q-line-biotech/"

@@ -465,11 +465,101 @@ def _subscription_doc(record: dict[str, Any], meta: dict[str, Any]) -> dict[str,
 
 def _subscription_payload(record: dict[str, Any]) -> dict[str, Any]:
     subscription = dict(record.get("subscription") or {})
+    _ensure_consolidated_subscription(subscription)
     if not _has_subscription_categories(subscription):
         availability = _subscription_availability(record)
         if availability:
             subscription["data_availability"] = availability
     return subscription
+
+
+def _ensure_consolidated_subscription(subscription: dict[str, Any]) -> None:
+    """Guarantee a cross-exchange ``consolidated`` book, in place.
+
+    BSE publishes a genuine NSE+BSE consolidated book; when we have it we keep
+    it and label its basis. But NSE-primary issues (and any issue where BSE's
+    consolidated is absent) previously had no consolidated view at all — the
+    detail page fell back to a single exchange with no headline. Here we
+    compute one by merging the per-exchange books: bids summed across
+    exchanges per category, times recomputed, and per-category attribution
+    recorded so the UI can show "QIB 3.5x (NSE) / 3.4x (BSE)".
+    """
+    cons = subscription.get("consolidated")
+    if isinstance(cons, dict) and cons.get("categories"):
+        cons = dict(cons)
+        cons.setdefault("basis", "exchange_published")
+        subscription["consolidated"] = cons
+        return
+
+    by_exchange = subscription.get("by_exchange") or {}
+    books = {
+        exch: book
+        for exch, book in by_exchange.items()
+        if isinstance(book, dict) and book.get("categories")
+    }
+    if not books:
+        return
+
+    merged: dict[str, dict[str, Any]] = {}
+    order: list[str] = []
+    for exch, book in books.items():
+        for c in book.get("categories") or []:
+            key = c.get("category")
+            if not key:
+                continue
+            if key not in merged:
+                merged[key] = {"shares_offered": None, "shares_bid": None, "applications": None, "by_exchange": {}}
+                order.append(key)
+            m = merged[key]
+            offered, bid, apps = c.get("shares_offered"), c.get("shares_bid"), c.get("applications")
+            if offered is not None:
+                m["shares_offered"] = offered if m["shares_offered"] is None else max(m["shares_offered"], offered)
+            if bid is not None:
+                m["shares_bid"] = (m["shares_bid"] or 0) + bid
+            if apps is not None:
+                m["applications"] = (m["applications"] or 0) + apps
+            m["by_exchange"][exch] = {"shares_bid": bid, "times_x": c.get("times_x")}
+
+    categories: list[dict[str, Any]] = []
+    total_bid = total_offered = 0
+    for key in order:
+        m = merged[key]
+        offered, bid = m["shares_offered"], m["shares_bid"]
+        if offered and bid is not None:
+            times = f"{bid / offered:.4f}"  # true cross-exchange multiple
+        elif len(m["by_exchange"]) == 1:
+            # Only one exchange covers this category (e.g. NSE, which does not
+            # publish per-category shares-offered) — carry its reported times.
+            times = next(iter(m["by_exchange"].values())).get("times_x")
+        else:
+            times = None
+        cat: dict[str, Any] = {
+            "category": key,
+            "shares_offered": offered,
+            "shares_bid": bid,
+            "times_x": times,
+            "by_exchange": m["by_exchange"],
+        }
+        if m["applications"] is not None:
+            cat["applications"] = m["applications"]
+        categories.append(cat)
+        if offered:  # top-level categories carry shares_offered; subcategories do not
+            total_offered += offered
+            total_bid += bid or 0
+
+    overall = f"{total_bid / total_offered:.4f}" if total_offered else None
+    if overall is None and len(books) == 1:
+        # Single-exchange issue with no per-category offered: fall back to that
+        # book's headline times so the consolidated still carries a multiple.
+        only_book = next(iter(books.values()))
+        overall = only_book.get("total_times_x")
+    subscription["consolidated"] = {
+        "categories": categories,
+        "total_times_x": overall,
+        "basis": "computed_nse_bse",
+    }
+    if overall and not subscription.get("overall_times_x"):
+        subscription["overall_times_x"] = overall
 
 
 def _has_subscription_categories(subscription: dict[str, Any]) -> bool:

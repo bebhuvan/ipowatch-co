@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.05.29-0812",
-  "estimated_cost_usd": 0.0007481600000000001,
+  "dataset_version": "v2026.05.29-1115",
+  "estimated_cost_usd": 0.0007575400000000001,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-05-29T08:12:53+00:00",
+  "generated_at": "2026-05-29T11:15:11+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -25,26 +25,24 @@
   "visual_brief": {
     "design_notes": [
       "Use a single accent colour (e.g., deep blue) for table headers, pull-quote rule, and sidebar border.",
-      "Set all body text in a serif face (e.g., Georgia or Chronicle).",
-      "Tables: hairline rules between rows, a slightly heavier rule above the header and below the last row.",
-      "Pull-quote: set in a larger italic serif, with a thin rule on the left.",
-      "Sidebar: box with a thin border, background tint of the accent colour at 5% opacity.",
-      "No icons, no imagery, no decorative elements."
+      "Set all body text in a serif font (e.g., Georgia or Chronicle).",
+      "Apply a hairline rule above and below the pull-quote; no decorative icons.",
+      "Place the financials table after the paragraph introducing it; the sidebar after the 'offer' section; the pull-quote after the paragraph describing the business."
     ],
     "formulas": [],
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "The company depends on a long-term arrangement with its corporate promoter, 20 Microns Limited, to market and sell its products through the promoter's network.",
+        "after_paragraph": "The company's business is straightforward: it buys raw minerals, processes them into specialty chemicals, and sells them to industrial customers.",
         "quote": "the top ten customers accounted for roughly 59%, 57%, and 59% of revenue from operations, respectively",
-        "rationale": "Customer concentration is a sharp, disclosed fact that underscores dependency risk."
+        "rationale": "Customer concentration is a material risk; the pull-quote highlights the dependency in a single sharp fact."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Structure:** Fresh issue of equity shares (no OFS).\n**Listing:** NSE EMERGE (SME platform).\n**Lead manager:** Vivro Financial Services Private Limited.[^drhp-p54]\n**Registrar:** Link Intime India Private Limited.[^drhp-p55]\n**Objects:** New manufacturing facility at GIDC Waghodia, Vadodara, Gujarat, and general corporate purposes.[^drhp-p75]\n**Price band and issue size:** Not yet disclosed.",
-        "rationale": "Sidebar collects all offer mechanics in one place; prose would scatter them across paragraphs.",
+        "body_markdown": "**Structure:** Fresh issue of equity shares (number and price band not disclosed in DRHP).[^drhp-p75]\n\n**Objects:** Capital expenditure for new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; general corporate purposes.[^drhp-p75]\n\n**Listing:** NSE EMERGE (SME platform).[^drhp-p75]\n\n**Lead manager:** Vivro Financial Services Private Limited.[^drhp-p54]\n\n**Registrar:** Link Intime India Private Limited.[^drhp-p55]\n\n**Pre-issue promoter holding:** 99.76%.[^drhp-p155]",
+        "rationale": "Sidebar condenses the offer structure, objects, and key parties into a quick reference, freeing the prose for analysis.",
         "title": "The offer at a glance"
       }
     ],
@@ -59,7 +57,7 @@
           "Total assets (₹ lakh)"
         ],
         "footnote": "Source: DRHP pages 49, 50, 175, 177 [^drhp-p49][^drhp-p50][^drhp-p175][^drhp-p177]",
-        "rationale": "Condenses five years of profitability, EPS, cash flow, and asset growth into one glance; prose cannot carry this density.",
+        "rationale": "Financials table is the core quantitative reference; prose describes the turnaround but the table lets the reader see the full trajectory and compare periods.",
         "rows": [
           [
             "FY2013",
@@ -104,7 +102,7 @@
             "3,018.66"
           ]
         ],
-        "title": "Restated financial summary"
+        "title": "Key financial metrics (₹ lakh, except EPS)"
       }
     ],
     "timeline": null

@@ -313,15 +313,31 @@ def run_factcheck(
 
 
 def _blocking_findings(fc_report: dict[str, Any]) -> dict[str, Any]:
-    """The subset of the fact-check the repair pass must act on."""
+    """The subset of the fact-check the repair pass must act on.
+
+    Must mirror what the fact-checker counts as blocking, or repair will keep
+    missing a finding and the report can never converge. We pass every flagged
+    tagged check plus every untagged claim the checker wants sourced or cut
+    (anything not explicitly common-knowledge-exempt), regardless of kind.
+    """
     actionable = {"unsupported", "wrong-source", "partial"}
     checks = [c for c in (fc_report.get("checks") or []) if c.get("verdict") in actionable]
     untagged = [
         c
         for c in (fc_report.get("untagged_claims") or [])
-        if c.get("kind") in {"number", "date", "name", "segment", "rule"}
+        if "exempt" not in (c.get("suggestion") or "").lower()
     ]
     return {"checks": checks, "untagged_claims": untagged}
+
+
+_FINAL_PASS_DIRECTIVE = (
+    "\n\nFINAL CORRECTION PASS — this is the last attempt before the report is "
+    "held back. For EVERY finding listed above, CUT the flagged claim outright: "
+    "delete the unsupported word, clause, or whole sentence. Do NOT re-cite it, "
+    "do NOT rephrase it, do NOT keep it in any form. The corrected draft must "
+    "contain none of these flagged claims. Losing a few sentences is correct; a "
+    "surviving unsupported claim is not. Leave everything else untouched."
+)
 
 
 def run_repair(
@@ -330,8 +346,13 @@ def run_repair(
     client: DeepSeekClient | None = None,
     model: str = "deepseek-reasoner",
     runs_root: Path = DEFAULT_RUNS_ROOT,
+    final_pass: bool = False,
 ) -> StageResult:
-    """Re-ground the claims the fact-check flagged, rewriting draft.md in place."""
+    """Re-ground the claims the fact-check flagged, rewriting draft.md in place.
+
+    ``final_pass`` escalates from "fix or re-cite" to "cut outright", which
+    guarantees the gate can clear: a removed claim cannot be unsupported.
+    """
     client = client or DeepSeekClient()
     corpus = _corpus_from_disk(slug, runs_root)
     draft_md = _strip_frontmatter(_read_text(draft_path(slug, runs_root)))
@@ -343,6 +364,8 @@ def run_repair(
         findings_json=json.dumps(findings, ensure_ascii=False, separators=(",", ":")),
         sources_json=corpus_to_prompt_json(corpus),
     )
+    if final_pass:
+        user_prompt += _FINAL_PASS_DIRECTIVE
     response = client.chat(
         user=user_prompt,
         system=prompts.REPAIR_SYSTEM,
@@ -699,7 +722,10 @@ def generate_report(
                 if int(fc.get("blocking_count") or 0) == 0:
                     break
                 attempt += 1
-                results.append(run_repair(issue_slug, client=client, runs_root=runs_root))
+                # Escalate: early passes fix/re-cite; the final pass cuts every
+                # still-flagged claim so the gate is guaranteed to clear.
+                final_pass = attempt == max_repair_attempts
+                results.append(run_repair(issue_slug, client=client, runs_root=runs_root, final_pass=final_pass))
                 results.append(run_factcheck(issue_slug, client=client, runs_root=runs_root))
         elif stage == "edit":
             # Never crash on persistent blocking in the pipeline. The repair

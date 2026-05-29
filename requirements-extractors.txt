@@ -1,3 +1,8 @@
 markitdown[pdf]>=0.1.5
-liteparse>=1.2.1
+# Pinned <2: liteparse 2.x is a breaking API change — parse() no longer takes
+# ocr_enabled/precise_bounding_box/timeout (ocr moved to the constructor, no
+# timeout param), and the page attribute was renamed pageNum -> page_num.
+# Migrating needs adapting _extract_pdf_text_liteparse + a re-extraction
+# bake-off to confirm table fidelity and page-number integrity before adopting.
+liteparse>=1.2.1,<2
 llama-cloud>=2.1

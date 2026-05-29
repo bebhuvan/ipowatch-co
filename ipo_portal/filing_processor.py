@@ -840,7 +840,12 @@ def _extract_pdf_text_liteparse(pdf_path: Path) -> PDFText:
 def _liteparse_pages(parsed_pages: list[Any]) -> list[str]:
     numbered: list[tuple[int, str]] = []
     for fallback_idx, page in enumerate(parsed_pages, start=1):
+        # liteparse 1.x exposes ``pageNum``; 2.x renamed it ``page_num``.
+        # Accept either so page numbering (which every citation depends on)
+        # never silently falls back to enumeration order across versions.
         page_num = getattr(page, "pageNum", None)
+        if page_num is None:
+            page_num = getattr(page, "page_num", None)
         if not isinstance(page_num, int) or page_num < 1:
             page_num = fallback_idx
         numbered.append((page_num, str(getattr(page, "text", "") or "")))

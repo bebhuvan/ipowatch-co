@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import IssueDetailPage from '../../components/IssueDetailPage.astro';
 import {
   getCurrent,
@@ -11,24 +12,35 @@ import {
   type IssueDetail,
 } from '../../lib/issues';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  // Published research reports, keyed by public (hash-stripped) slug so the
+  // detail page can link to its co-located /ipos/<public-slug>/report.
+  const reportEntries = await getCollection('ipoReports');
+  const publishedReports = new Set(
+    reportEntries
+      .filter((e) => e.data.status === 'published')
+      .map((e) => publicIssueSlug(e.data.issue_slug)),
+  );
+
   const slugs = new Set<string>();
   for (const i of getCurrent()) slugs.add(i.slug);
   for (const i of getUpcoming()) slugs.add(i.slug);
   for (const i of getRecentHistorical(50)) slugs.add(i.slug);
   for (const slug of listExtractedProspectusSlugs()) slugs.add(slug);
 
-  const out: { params: { slug: string }; props: { issue: IssueDetail } }[] = [];
+  const out: { params: { slug: string }; props: { issue: IssueDetail; reportHref: string | null } }[] = [];
   for (const slug of slugs) {
     const issue = getDetailBySlug(slug);
     if (issue && isEquityIPOType(issue.classification.issue_type)) {
-      out.push({ params: { slug: publicIssueSlug(slug) }, props: { issue } });
+      const publicSlug = publicIssueSlug(slug);
+      const reportHref = publishedReports.has(publicSlug) ? `/ipos/${publicSlug}/report/` : null;
+      out.push({ params: { slug: publicSlug }, props: { issue, reportHref } });
     }
   }
   return out;
 }
 
-const { issue } = Astro.props as { issue: IssueDetail };
+const { issue, reportHref } = Astro.props as { issue: IssueDetail; reportHref: string | null };
 ---
 
-<IssueDetailPage issue={issue} />
+<IssueDetailPage issue={issue} reportHref={reportHref} />

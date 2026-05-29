@@ -1,0 +1,382 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+import { publicIssueSlug } from '../../../lib/issues';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('ipoReports');
+  // Map through publicIssueSlug so the report sits at /ipos/<public-slug>/report,
+  // co-located with the detail page (which strips the hash from the raw slug).
+  return entries.map((entry) => ({
+    params: { slug: publicIssueSlug(entry.data.issue_slug) },
+    props: { entry, publicSlug: publicIssueSlug(entry.data.issue_slug) },
+  }));
+}
+
+const { entry, publicSlug } = Astro.props as { entry: any; publicSlug: string };
+const { Content } = await render(entry);
+
+const publishedLong = new Date(entry.data.published_at).toLocaleDateString('en-IN', {
+  day: 'numeric', month: 'long', year: 'numeric',
+});
+---
+
+<Base title={`${entry.data.title} — IPO Watch`} description={entry.data.dek}>
+  <article class="report-article page-tight">
+    <nav class="report-crumbs">
+      <a href="/">IPO Watch</a>
+      <span aria-hidden="true">/</span>
+      <a href={`/ipos/${publicSlug}/`}>{entry.data.company_name}</a>
+      <span aria-hidden="true">/</span>
+      <span>Research report</span>
+    </nav>
+
+    <header class="report-header">
+      <div class="report-kicker">{entry.data.kicker}</div>
+      <h1 class="report-title serif">{entry.data.title}</h1>
+      <p class="report-dek serif">{entry.data.dek}</p>
+      <p class="report-byline">
+        <span>From the {entry.data.document_type}</span>
+        <span aria-hidden="true">·</span>
+        <span>Published {publishedLong}</span>
+        <span aria-hidden="true">·</span>
+        <span>{entry.data.reading_time_minutes} min read</span>
+      </p>
+    </header>
+
+    <div class="report-body serif">
+      <Content />
+    </div>
+
+    <section class="report-sources">
+      <h2 class="report-sources-title">Primary source</h2>
+      <p class="report-sources-note">
+        Every figure in this report is sourced to a page of the company’s filing.
+        Inline citations link to the page; the documents below are the filings themselves.
+      </p>
+      <ol class="report-sources-list">
+        {entry.data.sources.map((s) => (
+          <li>
+            <span class="src-tier">{s.source_tier}</span>
+            <span class="src-kind">{s.document_kind}</span>
+            <a href={s.url} rel="noopener" target="_blank">{s.title}</a>
+            <span class="src-publisher">{s.publisher}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .report-article {
+    padding-top: 60px;
+    padding-bottom: 112px;
+    max-width: 820px;
+  }
+
+  .report-crumbs {
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    margin-bottom: 32px;
+  }
+  .report-crumbs a:hover { color: var(--color-ink); }
+  .report-crumbs span { margin: 0 8px; }
+
+  .report-header {
+    border-bottom: 1px solid var(--color-rule);
+    padding-bottom: 30px;
+    margin-bottom: 44px;
+  }
+
+  .report-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-deep);
+    margin-bottom: 18px;
+  }
+  .report-kicker::before {
+    content: "";
+    width: 22px;
+    height: 2px;
+    background: var(--color-accent);
+  }
+
+  .report-title {
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.02;
+    letter-spacing: -0.022em;
+    font-weight: 500;
+    margin: 0 0 20px;
+    max-width: 20ch;
+  }
+
+  .report-dek {
+    font-size: 21px;
+    line-height: 1.5;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-ink-soft);
+    margin: 0 0 24px;
+    max-width: 56ch;
+  }
+
+  .report-byline {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--color-mute);
+    text-transform: uppercase;
+  }
+  .report-byline span + span::before {
+    content: "·";
+    margin: 0 8px;
+    color: var(--color-mute-2);
+  }
+
+  /* Body — shares the academy prose system */
+  .report-body {
+    font-size: 20px;
+    line-height: 1.72;
+    color: var(--color-ink-soft);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .report-body :global(p) {
+    margin: 0 0 1.35em;
+    max-width: 67ch;
+  }
+
+  .report-body > :global(p:first-of-type) {
+    font-size: 23px;
+    line-height: 1.55;
+    color: var(--color-ink);
+  }
+  .report-body > :global(p:first-of-type)::first-letter {
+    float: left;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 88px;
+    line-height: 0.7;
+    padding: 9px 14px 0 0;
+    color: var(--color-ink);
+  }
+
+  .report-body :global(h2) {
+    font-family: var(--font-serif);
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -0.014em;
+    margin: 1.9em 0 0.65em;
+    padding-top: 0.95em;
+    border-top: 1px solid var(--color-rule);
+    color: var(--color-ink);
+  }
+
+  .report-body :global(h3) {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 1.8em 0 0.5em;
+    color: var(--color-ink);
+  }
+
+  .report-body :global(strong) { font-weight: 600; }
+
+  .report-body :global(ul) {
+    margin: 0 0 1.35em 0;
+    padding-left: 1.4em;
+    max-width: 67ch;
+  }
+  .report-body :global(li) { margin-bottom: 0.5em; }
+
+  /* Tables — newspaper hairlines */
+  .report-body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8em 0 2em;
+    font-family: var(--font-sans);
+    font-size: 15.5px;
+    line-height: 1.5;
+  }
+  .report-body :global(thead th) {
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 10px 14px 10px 0;
+    border-top: 2px solid var(--color-rule-strong);
+    border-bottom: 1px solid var(--color-rule-strong);
+    color: var(--color-ink);
+    vertical-align: bottom;
+  }
+  .report-body :global(tbody td) {
+    padding: 12px 14px 12px 0;
+    border-bottom: 1px solid var(--color-rule);
+    vertical-align: top;
+  }
+  .report-body :global(tbody tr:last-child td) {
+    border-bottom: 1px solid var(--color-rule-strong);
+  }
+
+  /* Pull-quote */
+  .report-body :global(aside.pull-quote) {
+    margin: 2.2em 0;
+    padding-top: 22px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 33px;
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+    color: var(--color-ink);
+    max-width: 20ch;
+    position: relative;
+  }
+  .report-body :global(aside.pull-quote)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 44px;
+    height: 3px;
+    background: var(--color-accent);
+  }
+
+  /* Article sidebar — at-a-glance card */
+  .report-body :global(aside.article-sidebar) {
+    float: right;
+    width: 280px;
+    margin: 6px 0 18px 32px;
+    padding: 20px 22px;
+    border-top: 3px solid var(--color-ink);
+    border-bottom: 1px solid var(--color-ink);
+    background: var(--color-paper-soft);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-ink);
+  }
+  @media (max-width: 760px) {
+    .report-body :global(aside.article-sidebar) {
+      float: none;
+      width: auto;
+      margin: 1.6em 0;
+    }
+  }
+  .report-body :global(aside.article-sidebar .article-sidebar-label) {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent-deep);
+    margin-bottom: 6px;
+  }
+  .report-body :global(aside.article-sidebar .article-sidebar-title) {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: var(--color-ink);
+  }
+  .report-body :global(aside.article-sidebar p) {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0 0 0.6em;
+    max-width: none;
+  }
+
+  /* GFM footnotes — the page citations */
+  .report-body :global(sup) {
+    font-size: 0.72em;
+    color: var(--color-accent-deep);
+    font-feature-settings: "sups";
+    margin-left: 1px;
+  }
+  .report-body :global(.footnotes) {
+    margin-top: 3em;
+    padding-top: 1.4em;
+    border-top: 1px solid var(--color-rule);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--color-mute);
+  }
+  .report-body :global(.footnotes ol) { padding-left: 1.4em; }
+  .report-body :global(.footnotes li) { margin-bottom: 0.5em; }
+  .report-body :global(.footnotes a) {
+    color: var(--color-accent-deep);
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 2px;
+  }
+
+  /* Sources block */
+  .report-sources {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 2px solid var(--color-ink);
+  }
+  .report-sources-title {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    margin: 0 0 10px;
+  }
+  .report-sources-note {
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--color-mute);
+    margin: 0 0 18px;
+    max-width: 60ch;
+  }
+  .report-sources-list {
+    list-style: decimal;
+    padding-left: 1.4em;
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+  }
+  .report-sources-list li { margin-bottom: 12px; }
+  .report-sources-list .src-tier,
+  .report-sources-list .src-kind {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    margin-right: 8px;
+  }
+  .report-sources-list .src-tier { color: var(--color-accent-deep); font-weight: 600; }
+  .report-sources-list a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 2px;
+  }
+  .report-sources-list a:hover { color: var(--color-accent-deep); }
+  .report-sources-list .src-publisher {
+    display: block;
+    color: var(--color-mute);
+    margin-top: 2px;
+  }
+</style>

@@ -53,6 +53,19 @@ jobs:
       - name: Source structure gate
         run: python -m ipo_portal.orchestrator audit-source-structure --gate
 
+      # Generate research reports for any filing whose extraction is new or
+      # updated. Idempotent (the --pending work-list is empty when nothing
+      # changed) and resilient (a hiccup here must never block the daily data
+      # refresh or deploy). Reports that clear the fact-check gate render as
+      # status=published; the rest land as status=review and stay unlisted.
+      - name: Generate pending IPO research reports
+        if: ${{ secrets.DEEPSEEK_API_KEY != '' }}
+        continue-on-error: true
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_BASE_URL: ${{ secrets.DEEPSEEK_BASE_URL }}
+        run: python -m ipo_portal.orchestrator.ipo_report --pending
+
       - name: Build Astro site from V3
         working-directory: web
         run: npm run build
@@ -69,6 +82,7 @@ jobs:
         run: |
           git add data/derived
           git add data/ipo_watch_v3 data/site_v3
+          git add data/ipo_reports web/src/content/ipo-reports
           git add -f data/reports/latest_refresh_summary.json data/reports/primary_source_structure_audit.json data/reports/prospectus_facts_quality.json
           if git diff --cached --quiet; then
             echo "No data changes; skipping commit."

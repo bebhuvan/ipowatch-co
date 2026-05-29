@@ -1,0 +1,408 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/ipo-report/outline.schema.json",
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.outline.schema",
+  "dataset_version": "v2026.05.29-0747",
+  "estimated_cost_usd": 0.0038886400000000005,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-29T07:47:50+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-2 outline.",
+  "outline": {
+    "dek_candidates": [
+      "What the Draft Red Herring Prospectus discloses about A G Universal's business, finances, risks and valuation — sourced to the filing, page by page.",
+      "A plain-language breakdown of A G Universal's IPO filing, grounded in the DRHP's own numbers and disclosures."
+    ],
+    "design_notes": [
+      "The financials table should include all four periods with clear column headers.",
+      "The peer table should note that A G Universal's RONW is not disclosed, and the EPS for Adishakti Loha (₹460) seems anomalous and should be flagged in a note.",
+      "The risk section should be structured as a bullet list in prose form, not a bulleted list in the final article, to avoid bulletpoint thicket."
+    ],
+    "gaps": [
+      {
+        "blocking": false,
+        "reason": "No fact in the extracted excerpts covers the offer structure, objects, or issue price.",
+        "topic": "Offer details (fresh issue vs OFS, number of shares, price band, issue size)"
+      },
+      {
+        "blocking": false,
+        "reason": "Not mentioned in the available pages.",
+        "topic": "Objects of the issue and use of proceeds"
+      },
+      {
+        "blocking": false,
+        "reason": "The DRHP references a separate chapter on litigation (page 191 onward) which is not part of the provided excerpts.",
+        "topic": "Detailed litigation history"
+      },
+      {
+        "blocking": false,
+        "reason": "The filing does not disclose listing details; the brief mentions a listing date and price but those are not from the filing.",
+        "topic": "Exact listing date and post-listing price"
+      }
+    ],
+    "kicker_candidates": [
+      "DRHP deep dive",
+      "IPO filing analysis"
+    ],
+    "section_order": [
+      "intro",
+      "business",
+      "industry",
+      "offer",
+      "financials",
+      "valuation-and-peers",
+      "governance",
+      "risks"
+    ],
+    "sections": {
+      "business": {
+        "beats": [
+          {
+            "beat": "A G Universal trades in a range of steel products including ERW pipes, MS pipes, hot and cold rolled strips and sheets, TMT bars, channels, angles, and cPVC and uPVC pipes and fittings.",
+            "kind": "definition",
+            "source_ids": [
+              "drhp-p95",
+              "drhp-p96",
+              "drhp-p97",
+              "drhp-p98"
+            ]
+          },
+          {
+            "beat": "The company acts as a dealer for suppliers such as Surya Roshni Limited, Jindal Supreme (India) Private Limited, Swastik Pipe Limited, Ravindra Tubes Private Limited, and Sks Ispat & Power Ltd.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p95"
+            ]
+          },
+          {
+            "beat": "A substantial portion of revenue depends on a few clients: for the period ended November 30, 2022, the top 10 clients accounted for 92.61% of sales, and the top 5 contributed more than 75%.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p26"
+            ]
+          },
+          {
+            "beat": "The company does not have long-term contracts with most customers; business is conducted on a purchase-order basis.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p25"
+            ]
+          },
+          {
+            "beat": "All revenue is domestic; the company reported no international sales in the periods shown.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p100"
+            ]
+          },
+          {
+            "beat": "The DRHP lists competitive strengths including an experienced promoter and their network, a quality policy, strengthened human capital, and existing client and supplier relationships.",
+            "kind": "narrative",
+            "source_ids": [
+              "drhp-p98",
+              "drhp-p99"
+            ]
+          }
+        ],
+        "heading": "What the company does",
+        "purpose": "Explain the business model, product range, customer and supplier dependencies, and competitive strengths."
+      },
+      "financials": {
+        "beats": [
+          {
+            "beat": "Revenue from operations was ₹19.95 crore in FY20, ₹38.44 crore in FY21, ₹70.46 crore in FY22, and ₹34.55 crore for the 8-month period ended November 30, 2022.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p37"
+            ]
+          },
+          {
+            "beat": "Profit after tax was ₹4.95 lakh in FY20, ₹14.66 lakh in FY21, ₹70.89 lakh in FY22, and ₹114.29 lakh for the 8-month period ended November 30, 2022.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p38"
+            ]
+          },
+          {
+            "beat": "Operating profit before working capital changes was ₹7.97 lakh in FY20, ₹10.60 lakh in FY21, ₹15.43 lakh in FY22, and ₹6.60 lakh for the 8-month period ended November 30, 2022.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p38"
+            ]
+          },
+          {
+            "beat": "Net cash flow from operations was ₹19.65 lakh in FY20, ₹18.53 lakh in FY21, ₹13.47 lakh in FY22, and negative ₹22.96 lakh for the 8-month period ended November 30, 2022.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p39"
+            ]
+          },
+          {
+            "beat": "The company has not paid any dividends to date and states there is no assurance of future dividends.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p30"
+            ]
+          },
+          {
+            "beat": "No independent monitoring agency will be appointed for the issue proceeds as the issue size is less than ₹10,000 lakh.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p27"
+            ]
+          }
+        ],
+        "heading": "Financial performance",
+        "purpose": "Present the restated financials for the reported periods: revenue, profitability, cash flow."
+      },
+      "governance": {
+        "beats": [
+          {
+            "beat": "The promoters are Amit Gupta (aged 48, Chairman & Managing Director) and Bharti Gupta (aged 46, Non-Executive Director). They hold 48.14% and 38.21% of the pre-issue equity respectively, totaling 86.35%.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p136",
+              "drhp-p137",
+              "drhp-p161"
+            ]
+          },
+          {
+            "beat": "The company's registered office is owned by Mrs. Rajesh Gupta, a relative of the promoter, and is used under a deed dated December 12, 2022.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p25"
+            ]
+          },
+          {
+            "beat": "The company has entered into related party transactions in the past and may continue to do so; the DRHP notes these may not have been on arm's length terms.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p26"
+            ]
+          },
+          {
+            "beat": "For details of legal and regulatory proceedings, the DRHP refers to a separate chapter beginning on page 191, which is not included in the provided excerpts.",
+            "kind": "narrative",
+            "source_ids": [
+              "drhp-p138"
+            ]
+          }
+        ],
+        "heading": "Promoters and governance",
+        "purpose": "Explain who controls the company, the board, shareholding pattern, related party transactions, and litigations."
+      },
+      "industry": {
+        "beats": [
+          {
+            "beat": "The global steel market was valued at US$ 874.6 billion in 2021 and is expected to grow at a CAGR of 3.02% during 2022–2027.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p84"
+            ]
+          },
+          {
+            "beat": "India's crude steel production stood at 133.596 million tonnes in FY22, and finished steel consumption at 105.751 million tonnes. Exports were 13.49 MT and imports 4.67 MT.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p88"
+            ]
+          },
+          {
+            "beat": "The National Steel Policy 2017 targets 300 million tonnes of production capacity by 2030-31 and aims to raise per capita steel consumption from 74.1 kg to 160 kg.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p94"
+            ]
+          },
+          {
+            "beat": "The government approved a production-linked incentive (PLI) scheme for specialty steel in July 2021.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p93"
+            ]
+          },
+          {
+            "beat": "Demand drivers mentioned include a growing automobile sector, rising demand for long steel, and opportunities in steel recycling and urban infrastructure.",
+            "kind": "narrative",
+            "source_ids": [
+              "drhp-p86"
+            ]
+          },
+          {
+            "beat": "Headwinds flagged include the emergence of new COVID-19 variants, geopolitical tensions, and the climate emergency that could disrupt economic activity.",
+            "kind": "narrative",
+            "source_ids": [
+              "drhp-p79"
+            ]
+          }
+        ],
+        "heading": "Industry and market",
+        "purpose": "Describe the steel industry context, market size, growth drivers, headwinds, and government policies as presented in the DRHP."
+      },
+      "intro": {
+        "beats": [
+          {
+            "beat": "A G Universal Limited is a trading company that deals in steel pipes, strips, sheets and related products, acting as a distributor for several manufacturers.",
+            "kind": "definition",
+            "source_ids": [
+              "drhp-p95",
+              "drhp-p96",
+              "drhp-p97",
+              "drhp-p98"
+            ]
+          },
+          {
+            "beat": "The company has filed a Draft Red Herring Prospectus for an initial public offering of its equity shares on the SME platform of NSE, though the offer size and breakdown between fresh issue and offer for sale are not disclosed in the available pages.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": null,
+        "purpose": "Orient the reader: who A G Universal is, what it does, and that it is proposing an IPO."
+      },
+      "offer": {
+        "beats": [
+          {
+            "beat": "The lead manager to the issue is Share India Capital Services Private Limited and the registrar is Skyline Financial Services Private Limited.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p42"
+            ]
+          },
+          {
+            "beat": "The DRHP does not disclose the number of shares offered, the breakdown between fresh issue and offer for sale, or the stated objects of the issue in the pages provided.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "The offer and use of proceeds",
+        "purpose": "Summarise what is being offered, the lead manager, and note that key offer details are missing from the available excerpts."
+      },
+      "risks": {
+        "beats": [
+          {
+            "beat": "Customer concentration: top 10 clients account for 92.61% of sales; top 5 over 75%. Loss of any major customer would materially affect revenue and profitability.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p26"
+            ]
+          },
+          {
+            "beat": "No long-term contracts with most customers; business is done on a purchase order basis, leaving revenue vulnerable to order cancellations or delays.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p25"
+            ]
+          },
+          {
+            "beat": "The prices of core products like iron and steel are subject to fluctuations due to trade policies, supply-demand shifts, and other factors beyond the company's control.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p26"
+            ]
+          },
+          {
+            "beat": "The company has not made alternate arrangements for working capital beyond existing sanctioned limits; a shortfall could disrupt operations.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p27"
+            ]
+          },
+          {
+            "beat": "Insurance coverage may not be adequate to protect against unforeseen losses.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p28"
+            ]
+          },
+          {
+            "beat": "Changes in government regulations, taxes, or political instability could harm the business.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p31",
+              "drhp-p32"
+            ]
+          },
+          {
+            "beat": "The company does not own a registered trademark and lacks statutory protection against misuse by third parties.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p25"
+            ]
+          },
+          {
+            "beat": "No independent monitoring agency will oversee the use of issue proceeds, as the issue size is below the threshold.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p27"
+            ]
+          }
+        ],
+        "heading": "Key risks",
+        "purpose": "Highlight the most material risks disclosed in the DRHP."
+      },
+      "valuation-and-peers": {
+        "beats": [
+          {
+            "beat": "The DRHP provides a peer comparison table with three listed companies: Rathi Bars, Vaswani, and Adishakti Loha. For A G Universal, the basic EPS for the latest period is ₹114.29 on a face value of ₹10; the RONW is not disclosed in the excerpt.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p76"
+            ]
+          },
+          {
+            "beat": "The peers' EPS and stock prices are: Rathi Bars (EPS ₹11.93, price ₹76.00), Vaswani (EPS ₹12.92, price ₹179.00), and Adishakti Loha (EPS ₹460, price ₹1.0 — note: the EPS figure appears extremely high and may be an error in the filing or extraction).",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p76"
+            ]
+          },
+          {
+            "beat": "The peer table also shows RONW: Rathi Bars 3.25%, Vaswani 4.14%, Adishakti Loha 0.18%. A G Universal's RONW is not provided.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p76"
+            ]
+          }
+        ],
+        "heading": "Valuation and peer comparison",
+        "purpose": "Show how the DRHP compares A G Universal to listed peers on key metrics."
+      }
+    },
+    "title_candidates": [
+      "A G Universal Limited: A steel trader's SME IPO",
+      "A G Universal: What the DRHP reveals about the steel dealer's public offer"
+    ],
+    "visual_targets": [
+      {
+        "kind": "table",
+        "purpose": "Display revenue, PAT, operating profit, and cash flow across the four reported periods.",
+        "where": "financials"
+      },
+      {
+        "kind": "table",
+        "purpose": "Show the peer comparison with EPS, RONW, face value, and stock price for A G Universal and its three peers.",
+        "where": "valuation-and-peers"
+      },
+      {
+        "kind": "pull_quote",
+        "purpose": "Highlight the customer concentration statistic: top 10 clients account for 92.61% of sales.",
+        "where": "risks"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "a-g-universal-c13e20",
+  "sources": [],
+  "time_zone": "Asia/Kolkata"
+}

@@ -1,0 +1,520 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/ipo-report/factcheck.schema.json",
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.factcheck.schema",
+  "dataset_version": "v2026.05.29-0746",
+  "estimated_cost_usd": 0.0065146200000000005,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-29T07:46:06+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-4 fact-check.",
+  "report": {
+    "blocking_count": 2,
+    "checks": [
+      {
+        "note": "Page supports operating two segments and RMC plant, but does not mention 'Mumbai-based' or 'railways, bridges, roads' specifics.",
+        "sentence": "A B Infrabuild is a Mumbai-based infrastructure contractor that builds railways, bridges, and roads, and operates a ready-mix concrete plant.",
+        "source_id": "drhp-p63",
+        "supporting_excerpt_quote": "We operate in two segments, x Creation of Infrastructure x Operating a Ready Mix Concrete Plant.",
+        "tag_index": 1,
+        "verdict": "partial"
+      },
+      {
+        "note": "Page explicitly lists railways, bridges, and roads.",
+        "sentence": "A B Infrabuild is a Mumbai-based infrastructure contractor that builds railways, bridges, and roads, and operates a ready-mix concrete plant.",
+        "source_id": "drhp-p71",
+        "supporting_excerpt_quote": "Railways - Designing and constructing platforms, station building, gauge conversion and laying of railway tracks... Bridges - Perform contracts across various bridge works like Beam bridge, Cantilever bridge, Arch Bridge, Suspension Bridge, cable-stayed bridge and Truss Bridge... Roadways - Construction of bituminous and concrete roads",
+        "tag_index": 2,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms Mumbai-based and RMC plant.",
+        "sentence": "A B Infrabuild is a Mumbai-based infrastructure contractor that builds railways, bridges, and roads, and operates a ready-mix concrete plant.",
+        "source_id": "drhp-p67",
+        "supporting_excerpt_quote": "We are a major player in developing infrastructure in the city of Mumbai... manufacturing of RMC activities at our facility at Kashimira, Thane District, Maharashtra",
+        "tag_index": 3,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page lists the named government clients but does not state 'almost entirely' or 'over a decade'.",
+        "sentence": "It works almost entirely for government clients — Western Railway, Central Railway, the Municipal Corporation of Greater Mumbai — and has been doing so for over a decade.",
+        "source_id": "drhp-p63",
+        "supporting_excerpt_quote": "Our major customers include Municipal Corporation of Greater Mumbai, Western Railway, Central Railway, Mumbai Railway Vikas Corporation Ltd, Mumbai Metropolitan Region Development Authority, Dedicated Freight Corridor Corporation of India Ltd.",
+        "tag_index": 4,
+        "verdict": "partial"
+      },
+      {
+        "note": "Page confirms Western Railway as a client since 2006, supporting 'over a decade'.",
+        "sentence": "It works almost entirely for government clients — Western Railway, Central Railway, the Municipal Corporation of Greater Mumbai — and has been doing so for over a decade.",
+        "source_id": "drhp-p67",
+        "supporting_excerpt_quote": "Western Railway has been a major contributor of the company’s revenue and has been a client since 2006.",
+        "tag_index": 5,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms share count and that issue price is not set (shown as [•]).",
+        "sentence": "The company is now raising capital through an initial public offering of 44.28 lakh equity shares. The issue price has not yet been set.",
+        "source_id": "drhp-p29",
+        "supporting_excerpt_quote": "Equity Shares Offered 44,28,000 Equity Shares of ₹ 10/- each at an Issue Price of ₹ [•]/- each",
+        "tag_index": 6,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact figure confirmed.",
+        "sentence": "promoter Amit Bholanath Mishra owns 90.949% of the company before the issue.",
+        "source_id": "drhp-p100",
+        "supporting_excerpt_quote": "He currently holds 74,95,476 Equity Shares, constituting 90.949% of pre – Issue issued, subscribed and paid-up equity share capital of our Company.",
+        "tag_index": 7,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact figure confirmed.",
+        "sentence": "One customer — Indian Railways — contributed 57% of revenue in fiscal 2018.",
+        "source_id": "drhp-p12",
+        "supporting_excerpt_quote": "Majority of our revenues will be dependent on one customer, Indian Railways, which is our largest customer, contributing to 57% of our revenue in Fiscal 2018.",
+        "tag_index": 8,
+        "verdict": "supported"
+      },
+      {
+        "note": "Table shows revenue declining from FY15 (9,021.12) to FY18 (7,344.47) for four fiscal years.",
+        "sentence": "Revenue has been declining for four straight years.",
+        "source_id": "drhp-p27",
+        "supporting_excerpt_quote": "Revenue from Operations 19 6,053.05 7,344.47 7,452.76 9,021.12 8,661.35",
+        "tag_index": 9,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms two segments.",
+        "sentence": "The company operates in two segments: infrastructure creation and ready-mix concrete (RMC) manufacturing.",
+        "source_id": "drhp-p63",
+        "supporting_excerpt_quote": "We operate in two segments, x Creation of Infrastructure x Operating a Ready Mix Concrete Plant.",
+        "tag_index": 10,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page lists all mentioned types.",
+        "sentence": "The infrastructure side covers railway work — designing and constructing platforms, station buildings, gauge conversion, and laying tracks — along with bridges (beam, cantilever, arch, suspension, cable-stayed, and truss) and roads (bituminous and concrete).",
+        "source_id": "drhp-p71",
+        "supporting_excerpt_quote": "Railways - Designing and constructing platforms, station building, gauge conversion and laying of railway tracks... Bridges - Perform contracts across various bridge works like Beam bridge, Cantilever bridge, Arch Bridge, Suspension Bridge, cable-stayed bridge and Truss Bridge... Roadways - Construction of bituminous and concrete roads",
+        "tag_index": 11,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms location and state-of-the-art machines.",
+        "sentence": "The RMC plant is a state-of-the-art facility at Kashimira in Thane district, Maharashtra.",
+        "source_id": "drhp-p67",
+        "supporting_excerpt_quote": "manufacturing of RMC activities at our facility at Kashimira, Thane District, Maharashtra",
+        "tag_index": 12,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms each step.",
+        "sentence": "Contracts are won through competitive bidding. The client floats a tender, a pre-bid meeting resolves queries, the contractor bids, and the lowest quote typically wins a Letter of Acceptance. The contractor then deposits a performance guarantee before work begins.",
+        "source_id": "drhp-p72",
+        "supporting_excerpt_quote": "Steps involved in Contract Execution: 1) Tender is Floated by client for a specific Work /Contract 2) Pre-Bid Meeting held for discussion and resolving Queries in regard to floated Tender 3) Tender is bidded by Contractor... 4) Job /Work is awarded to the lowest Quote – Letter of Acceptance issued to the lowest Bidder 5) Contractor has to deposit Security in form of performance Guarantee for the contact awarded",
+        "tag_index": 13,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page lists all named entities.",
+        "sentence": "The client list is dominated by government entities: Western Railway, Central Railway, Mumbai Railway Vikas Corporation (MRVCL), Municipal Corporation of Greater Mumbai (MCGM), Mumbai Metropolitan Region Development Authority (MMRDA), and Dedicated Freight Corridor Corporation of India.",
+        "source_id": "drhp-p63",
+        "supporting_excerpt_quote": "Our major customers include Municipal Corporation of Greater Mumbai, Western Railway, Central Railway, Mumbai Railway Vikas Corporation Ltd, Mumbai Metropolitan Region Development Authority, Dedicated Freight Corridor Corporation of India Ltd.",
+        "tag_index": 14,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact year confirmed.",
+        "sentence": "Western Railway has been a client since 2006",
+        "source_id": "drhp-p67",
+        "supporting_excerpt_quote": "Western Railway has been a major contributor of the company’s revenue and has been a client since 2006.",
+        "tag_index": 15,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact percentage confirmed.",
+        "sentence": "and contributed 52% of the order book.",
+        "source_id": "drhp-p65",
+        "supporting_excerpt_quote": "Our Order Book with Western Railway being our major client contributing to 52% of the Orders on Hand",
+        "tag_index": 16,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms box-pushing, Mumbai presence, and consolidation in Maharashtra.",
+        "sentence": "The company highlights expertise in box-pushing construction techniques, a strong order book, and is primarily active in Mumbai, consolidating its position across Maharashtra.",
+        "source_id": "drhp-p67",
+        "supporting_excerpt_quote": "Box Pushing technique is used by us in executing our projects... We are a major player in developing infrastructure in the city of Mumbai but are slowly and consolidating our position in Maharashtra with a strong order book.",
+        "tag_index": 17,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact figure confirmed.",
+        "sentence": "Revenue from the top few customers accounted for 57% of total revenue in fiscal 2018.",
+        "source_id": "drhp-p67",
+        "supporting_excerpt_quote": "Our revenue from key customers for the period ended March 31, 2018 amounts to 57% of our total revenue.",
+        "tag_index": 18,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact figure confirmed.",
+        "sentence": "The infrastructure and construction sector contributes about 8% to India's GDP (at constant prices).",
+        "source_id": "drhp-p58",
+        "supporting_excerpt_quote": "Highly fragmented and working capital intensive market, contributing ~8% to India’s GDP (at constant prices)",
+        "tag_index": 19,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms fragmentation and working capital intensity. Organized/unorganized competition not explicit here but covered by p76.",
+        "sentence": "It is a highly fragmented and working-capital-intensive market, with competition from both organized and unorganized players.",
+        "source_id": "drhp-p58",
+        "supporting_excerpt_quote": "Highly fragmented and working capital intensive market",
+        "tag_index": 20,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms organized and unorganized competition.",
+        "sentence": "It is a highly fragmented and working-capital-intensive market, with competition from both organized and unorganized players.",
+        "source_id": "drhp-p76",
+        "supporting_excerpt_quote": "We operate in a competitive industry, with competitors both in the organized as well as the unorganized Sector.",
+        "tag_index": 21,
+        "verdict": "supported"
+      },
+      {
+        "note": "All programs listed.",
+        "sentence": "Demand is driven by government flagship programs: the 100 Smart Cities Mission, Atal Mission for Urban Rejuvenation and Transformation (AMRUT), Make in India, and Power for All.",
+        "source_id": "drhp-p58",
+        "supporting_excerpt_quote": "Government flagship programs including 100 Smart Cities Mission, Atal Mission for Urban Rejuvenation and Transformation (AMRUT), Make in India and Power for All",
+        "tag_index": 22,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact statement.",
+        "sentence": "FDI norms in 15 sectors including real estate and construction have been eased.",
+        "source_id": "drhp-p59",
+        "supporting_excerpt_quote": "Norms for FDI in 15 sectors including real estate and construction development have been eased",
+        "tag_index": 23,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms these drivers.",
+        "sentence": "Rising industrialization, urbanization, and population growth also support the sector.",
+        "source_id": "drhp-p59",
+        "supporting_excerpt_quote": "Rising industrialization, urbanization, a rise in disposable income and population growth",
+        "tag_index": 24,
+        "verdict": "supported"
+      },
+      {
+        "note": "All figures confirmed.",
+        "sentence": "The logistics sector in India is expected to grow at a CAGR of 10.5%, from US$160 billion in 2017 to US$215 billion by 2020.",
+        "source_id": "drhp-p59",
+        "supporting_excerpt_quote": "The logistics sector in India is expected to increase at a Compound Annual Growth Rate (CAGR) of 10.5 per cent, from US$ 160 billion in 2017 to US$ 215 billion by 2020.",
+        "tag_index": 25,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms 9.0%.",
+        "sentence": "Infrastructure spending as a percentage of GDP was 9.0% during the 12th Five-Year Plan (2012-2017).",
+        "source_id": "drhp-p60",
+        "supporting_excerpt_quote": "12th FYP 9.0%",
+        "tag_index": 26,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page lists each headwind.",
+        "sentence": "Key headwinds include the slow pace of government projects, working capital crunches that can affect profitability, and changes in government policies.",
+        "source_id": "drhp-p76",
+        "supporting_excerpt_quote": "Slow pace of Government Projects... Working capital crunch may affect the profitability of the Company... Changes in Government Policies",
+        "tag_index": 27,
+        "verdict": "supported"
+      },
+      {
+        "note": "All details confirmed.",
+        "sentence": "The offer consists of 44,28,000 equity shares of face value ₹10 each. The issue price is to be determined — the filing shows it as ₹[●].",
+        "source_id": "drhp-p29",
+        "supporting_excerpt_quote": "Equity Shares Offered 44,28,000 Equity Shares of ₹ 10/- each at an Issue Price of ₹ [•]/- each",
+        "tag_index": 28,
+        "verdict": "supported"
+      },
+      {
+        "note": "Amount confirmed; general corporate purposes undisclosed.",
+        "sentence": "The proceeds will be used primarily to meet working capital requirements of ₹1,130 lakhs, with the remainder allocated to general corporate purposes (the amount for that purpose is not disclosed).",
+        "source_id": "drhp-p48",
+        "supporting_excerpt_quote": "1) To meet the Working Capital Requirements 1130.00 2) General Corporate Purposes [x]",
+        "tag_index": 29,
+        "verdict": "supported"
+      },
+      {
+        "note": "Both names confirmed.",
+        "sentence": "The lead manager to the issue is Mark Corporate Advisors Private Limited. The registrar is Bigshare Services Private Limited.",
+        "source_id": "drhp-p31",
+        "supporting_excerpt_quote": "Lead Manager to the Issue Mark Corporate Advisors Private Limited... Registrar to the Issue Bigshare Services Private Limited",
+        "tag_index": 30,
+        "verdict": "supported"
+      },
+      {
+        "note": "All claims confirmed.",
+        "sentence": "The company has not appointed any independent agency for project appraisal, and no monitoring agency has been appointed. Fund deployment will be at the discretion of management, monitored by the Audit Committee.",
+        "source_id": "drhp-p18",
+        "supporting_excerpt_quote": "The Company has not appointed any independent agency for the appraisal of the proposed Project. There is no monitoring agency appointed by Our Company and the deployment of funds are at the discretion of our Management and our Board of Directors, though it shall be monitored by the Audit Committee.",
+        "tag_index": 31,
+        "verdict": "supported"
+      },
+      {
+        "note": "Figures match: FY15 9,021.12 and 10-month 6,053.05.",
+        "sentence": "The revenue decline is consistent: from ₹9,021.12 lakhs in fiscal 2015 to ₹6,053.05 lakhs for the ten-month period ended June 30, 2018.",
+        "source_id": "drhp-p27",
+        "supporting_excerpt_quote": "Revenue from Operations 19 6,053.05 7,344.47 7,452.76 9,021.12 8,661.35",
+        "tag_index": 32,
+        "verdict": "supported"
+      },
+      {
+        "note": "Figures match: FY15 95.95, FY18 15.86, 10-month 314.66.",
+        "sentence": "Net profit after adjustments fell from ₹95.95 lakhs in fiscal 2015 to just ₹15.86 lakhs in fiscal 2018, before surging to ₹314.66 lakhs for the ten-month period ended June 30, 2018.",
+        "source_id": "drhp-p27",
+        "supporting_excerpt_quote": "Net Profit after adjustments 314.66 15.86 32.63 78.36 95.95",
+        "tag_index": 33,
+        "verdict": "supported"
+      },
+      {
+        "note": "Figures confirm EBITDA (PBIDT) pattern and numbers.",
+        "sentence": "EBITDA followed a similar pattern: ₹784.46 lakhs (2015), ₹945.78 lakhs (2016), ₹783.31 lakhs (2017), ₹676.19 lakhs (2018), and ₹928.80 lakhs for the ten months ended June 30, 2018.",
+        "source_id": "drhp-p111",
+        "supporting_excerpt_quote": "Profit Before Interest, Depreciation and Tax 928.80 676.19 783.31 945.78 784.46",
+        "tag_index": 34,
+        "verdict": "supported"
+      },
+      {
+        "note": "Figures match.",
+        "sentence": "Total assets grew from ₹7,062.34 lakhs in Fiscal 2015 to ₹8,232.15 lakhs as of June 30, 2018.",
+        "source_id": "drhp-p26",
+        "supporting_excerpt_quote": "Total Assets 8,232.15 7,536.93 6,295.21 7,266.50 7,062.34",
+        "tag_index": 35,
+        "verdict": "supported"
+      },
+      {
+        "note": "Figures match.",
+        "sentence": "Long-term borrowings decreased significantly from ₹586.63 lakhs in Fiscal 2015 to ₹133.09 lakhs as of June 30, 2018, but short-term borrowings increased from ₹3,082.27 lakhs to ₹3,537.35 lakhs over the same period.",
+        "source_id": "drhp-p26",
+        "supporting_excerpt_quote": "Long Term Borrowings 133.09 131.51 188.77 672.72 586.63   Short Term Borrowings 3,537.35 3,312.08 3,020.55 3,227.89 3,082.27",
+        "tag_index": 36,
+        "verdict": "supported"
+      },
+      {
+        "note": "Both points confirmed.",
+        "sentence": "The company has reported negative cash flows in recent years, which is flagged as a risk. Failure to recover trade receivables on time could also affect financial condition.",
+        "source_id": "drhp-p16",
+        "supporting_excerpt_quote": "Our Company had negative cash flow in recent financial years... Failure to recover amounts from our Sundry Debtors / Trade Receivables on a timely manner might affect our financial condition.",
+        "tag_index": 37,
+        "verdict": "supported"
+      },
+      {
+        "note": "EPS figure confirmed.",
+        "sentence": "The EPS rose sharply in the latest reported fiscal year to ₹28.14.",
+        "source_id": "drhp-p54",
+        "supporting_excerpt_quote": "Financial Year ended March 31, 2018 28.14",
+        "tag_index": 38,
+        "verdict": "supported"
+      },
+      {
+        "note": "NAV figures appear in excerpt; periods not specified.",
+        "sentence": "The filing also shows net asset value (NAV) per share on two different bases: ₹12.39 and ₹44.71. The periods to which these NAV figures relate are not specified in the available excerpts.",
+        "source_id": "drhp-p55",
+        "supporting_excerpt_quote": "12.39   44.71",
+        "tag_index": 39,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms statements.",
+        "sentence": "The issue price will be determined by the company in consultation with the lead manager but has not yet been revealed. The filing states that \"the Issue Price of ₹ [●] is determined by our Company, in consultation with the Lead Manager is justified based on the above accounting ratios.\" The face value is ₹10 per equity share, and the issue price is [●] times the face value.",
+        "source_id": "drhp-p55",
+        "supporting_excerpt_quote": "The Issue Price of ₹ [●] is determined by our Company, in consultation with the Lead Manager is justified based on the above accounting ratios.... The face value of Equity Shares of our Company is ₹ 10 per Equity Share and the Issue price is [●] times the face value.",
+        "tag_index": 40,
+        "verdict": "supported"
+      },
+      {
+        "note": "All figures confirmed.",
+        "sentence": "The sole promoter is Amit Bholanath Mishra, who holds 74,95,476 equity shares — 90.949% of the pre-issue capital.",
+        "source_id": "drhp-p100",
+        "supporting_excerpt_quote": "He currently holds 74,95,476 Equity Shares, constituting 90.949% of pre – Issue issued, subscribed and paid-up equity share capital of our Company.",
+        "tag_index": 41,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms names, shareholdings, and designations.",
+        "sentence": "Other directors hold only 300 shares each: Bharat Kumar Parmar (Whole Time Director), Shree Prakash Singh (Whole Time Director), and Mukesh Pandey (Whole Time Director).",
+        "source_id": "drhp-p93",
+        "supporting_excerpt_quote": "Bharat kumar Parmar 300 Whole Time Director   Shree Prakash Singh 300 Whole Time Director   Mukesh Pandey 300 Whole Time Director",
+        "tag_index": 42,
+        "verdict": "supported"
+      },
+      {
+        "note": "All details confirmed.",
+        "sentence": "Key management personnel include Ms. Anchal Pachori (Chief Financial Officer, aged 28, a Chartered Accountant) and Mr. Mohit Soni (Company Secretary and Compliance Officer, aged 26, an Associate Member of the Institute of Company Secretaries of India).",
+        "source_id": "drhp-p97",
+        "supporting_excerpt_quote": "Ms. Anchal Pachori aged 28 years, is the Chief Financial Officer... She is a Chartered Accountant... Mr. Mohit Soni aged 26 years, is the Company Secretary and Compliance Officer... He is an Associate Member of the Institute of Company Secretaries of India",
+        "tag_index": 43,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact percentage confirmed.",
+        "sentence": "Mr. Hatim Sakerwala holds 9% of the equity shares.",
+        "source_id": "drhp-p98",
+        "supporting_excerpt_quote": "Mr. Hatim Sakerwala holds 9% of the equity shares of our Company as on date of this Draft",
+        "tag_index": 44,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms loan taken amount.",
+        "sentence": "Related party transactions include loans taken from KMP/directors of ₹68.4 lakhs and director remuneration of ₹57.7 lakhs in fiscal 2018. Outstanding payables to related parties stood at ₹324.3 lakhs as of March 31, 2018.",
+        "source_id": "drhp-p129",
+        "supporting_excerpt_quote": "Loan Taken         68.4",
+        "tag_index": 45,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms remuneration and payables figures.",
+        "sentence": "Related party transactions include loans taken from KMP/directors of ₹68.4 lakhs and director remuneration of ₹57.7 lakhs in fiscal 2018. Outstanding payables to related parties stood at ₹324.3 lakhs as of March 31, 2018.",
+        "source_id": "drhp-p130",
+        "supporting_excerpt_quote": "Director Remuneration       57.7   Payables                   324.3",
+        "tag_index": 46,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact statement.",
+        "sentence": "No criminal cases or investigations have been filed against any director.",
+        "source_id": "drhp-p90",
+        "supporting_excerpt_quote": "there have been no criminal cases filed or investigations being undertaken with regard to alleged commission of any offence by any of our directors",
+        "tag_index": 47,
+        "verdict": "supported"
+      },
+      {
+        "note": "For directors, confirmed.",
+        "sentence": "Neither the promoter nor any director is on the RBI list of willful defaulters.",
+        "source_id": "drhp-p90",
+        "supporting_excerpt_quote": "None of the above mentioned Directors are on the RBI List of willful defaulters.",
+        "tag_index": 48,
+        "verdict": "supported"
+      },
+      {
+        "note": "For promoter, confirmed.",
+        "sentence": "Neither the promoter nor any director is on the RBI list of willful defaulters.",
+        "source_id": "drhp-p100",
+        "supporting_excerpt_quote": "Our Promoter has confirmed that he has not been declared as willful defaulters by the RBI or any other governmental authority",
+        "tag_index": 49,
+        "verdict": "supported"
+      },
+      {
+        "note": "All details confirmed.",
+        "sentence": "However, two companies promoted by the promoter — Al-Noor Chickens Private Limited and A B Magma Automobiles Private Limited — were struck off by the Registrar of Companies in March 2016 for non-operation.",
+        "source_id": "drhp-p18",
+        "supporting_excerpt_quote": "Two companies Al-Noor Chickens Private Limited and A B Magma Automobiles Private Limited promoted by our promoter have been stuck off by the Registrar of Companies (ROC) on March 12, 2016 and March 11, 2016 respectively due to non-operation of business.",
+        "tag_index": 50,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms 57% for Indian Railways.",
+        "sentence": "Indian Railways is the largest customer, contributing 57% of revenue in fiscal 2018. Western Railway alone accounts for 52% of the order book. Losing this client would severely impact revenue.",
+        "source_id": "drhp-p12",
+        "supporting_excerpt_quote": "Indian Railways... contributing to 57% of our revenue in Fiscal 2018.",
+        "tag_index": 51,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms 52% for Western Railway order book.",
+        "sentence": "Indian Railways is the largest customer, contributing 57% of revenue in fiscal 2018. Western Railway alone accounts for 52% of the order book. Losing this client would severely impact revenue.",
+        "source_id": "drhp-p65",
+        "supporting_excerpt_quote": "Our Order Book with Western Railway being our major client contributing to 52% of the Orders on Hand",
+        "tag_index": 52,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact statement.",
+        "sentence": "Contracts in the order book may be adjusted, cancelled, or suspended by clients. The order book is not a reliable indicator of future revenue.",
+        "source_id": "drhp-p14",
+        "supporting_excerpt_quote": "The contracts in our order book may be adjusted, cancelled or suspended by our clients and, therefore, our order book is not necessarily indicative of our future revenues or earnings.",
+        "tag_index": 53,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms.",
+        "sentence": "The company has reported negative cash flows in recent years, which could adversely affect operations if sustained.",
+        "source_id": "drhp-p16",
+        "supporting_excerpt_quote": "Our Company had negative cash flow in recent financial years... Sustained negative cash flow could adversely impact our business, financial condition and results of operations.",
+        "tag_index": 54,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms.",
+        "sentence": "The company had unsecured loans of ₹405.02 lakhs as of March 31, 2018, repayable on demand. A sudden repayment demand could strain cash flow.",
+        "source_id": "drhp-p16",
+        "supporting_excerpt_quote": "Our Company has availed ₹ 405.02 lakhs as unsecured loan as on March 31, 2018 which are repayable on demand. Any demand from the lenders for repayment of such unsecured loan may affect our cash flow and financial condition.",
+        "tag_index": 55,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms.",
+        "sentence": "The company requires numerous licenses and permits; failure to obtain or renew them could disrupt operations.",
+        "source_id": "drhp-p17",
+        "supporting_excerpt_quote": "We require number of approvals, licenses, registrations and permits... failure to obtain, retain or renew such approvals and licenses in a timely manner... may adversely affect our operations.",
+        "tag_index": 56,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms.",
+        "sentence": "Pending legal proceedings against the company, promoter, and directors could result in liabilities and penalties.",
+        "source_id": "drhp-p11",
+        "supporting_excerpt_quote": "We, Our Promoter and Directors are currently involved in certain litigation which is currently pending at various stages; any adverse decision in such proceedings may render us liable to liabilities and penalties and may adversely affect our business and results of operations.",
+        "tag_index": 57,
+        "verdict": "supported"
+      },
+      {
+        "note": "Exact statement.",
+        "sentence": "The issue price may not be indicative of the market price after listing, and the stock could trade below the issue price.",
+        "source_id": "drhp-p19",
+        "supporting_excerpt_quote": "The Issue price of our Equity Shares may not be indicative of the market price of our Equity Shares after the Issue and the market price of our Equity Shares may decline below the issue price",
+        "tag_index": 58,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms.",
+        "sentence": "The company issued equity shares in the last 12 months at a price that may be lower than the issue price.",
+        "source_id": "drhp-p16",
+        "supporting_excerpt_quote": "Our Company has issued Equity Shares in the last 12 months at a price which may be lower than the Issue Price.",
+        "tag_index": 59,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms.",
+        "sentence": "The company has entered into related party transactions in the past and may continue to do so.",
+        "source_id": "drhp-p15",
+        "supporting_excerpt_quote": "We have in the past entered into related party transactions and we may continue to do so in the future.",
+        "tag_index": 60,
+        "verdict": "supported"
+      },
+      {
+        "note": "Page confirms.",
+        "sentence": "The company generates a major portion of its revenue from operations in Mumbai. Any adverse developments affecting this region could impact revenue.",
+        "source_id": "drhp-p13",
+        "supporting_excerpt_quote": "We generate major portion of our revenue from our operations in certain geographical regions especially Mumbai and any adverse developments affecting our operations in these regions could have an adverse impact on our revenue and results of operations.",
+        "tag_index": 61,
+        "verdict": "supported"
+      }
+    ],
+    "summary": "Most claims are well-sourced from the DRHP excerpts. Two tags (index 1 and 4) are marked 'partial' because the cited page does not fully support the specific claims (e.g., page 63 does not mention 'Mumbai-based' or 'railways, bridges, roads', and does not state 'almost entirely' or 'over a decade'). These partials require attention but are not blocking; the number of blocking items is set to 2 as a conservative count. Overall, the report's sourcing is sound, with only minor mismatches between tag and excerpt content.",
+    "untagged_claims": []
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "a-b-infrabuild-c81c90",
+  "sources": [],
+  "time_zone": "Asia/Kolkata"
+}

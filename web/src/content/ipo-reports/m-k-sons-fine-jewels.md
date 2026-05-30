@@ -5,8 +5,8 @@ company_name: "M K Sons Fine Jewels"
 document_type: "DRHP"
 report_type: "ipo-research"
 kicker: "IPO Watch Research Report"
-title: "M K Sons Fine Jewels: A Closer Look at the DRHP"
-dek: "What the DRHP discloses about M K Sons Fine Jewels's business, offer, financials and risks — sourced to the filing, page by page."
+title: "M K Sons Fine Jewels: A Family Jeweller's IPO Bet on India's Gold Rush"
+dek: "Revenue grew fourteen-fold in two years, operating cash flow was negative in three of four periods, and promoters are selling out of a 100% stake. What the DRHP says."
 reading_time_minutes: 8
 published_at: "2026-05-30"
 status: "published"
@@ -46,7 +46,7 @@ Aryaman Financial Services Limited is the sole lead manager to the issue. [^drhp
 
 The restated financial statements cover three full fiscals (FY23, FY24, FY25) and the nine-month period ended December 31, 2025 (labelled P.E.25). All figures are in ₹ million unless stated otherwise.
 
-| Metric | P.E.25 | FY25 | FY24 | FY23 |
+| Metric | 9M Dec '25 | FY25 | FY24 | FY23 |
 |---|---|---|---|---|
 | Total Income | 3,608.45 | 3,513.16 | 2,173.95 | 249.31 |
 | Total expenses | 3,208.99 | 3,192.90 | 2,065.63 | 232.06 |
@@ -64,6 +64,8 @@ Total Income grew from ₹249.31 million in FY23 to ₹3,513.16 million in FY25 
 EBITDA (earnings before interest, tax, depreciation and amortisation) grew from ₹22.69 million in FY23 to ₹385.68 million in FY25, and reached ₹481.93 million in P.E.25. [^drhp-p283]
 
 Despite this profit growth, cash flow from operations tells a different story. In the three years before the current period, the company's operating cash flow was negative, as the filing itself discloses. Only in P.E.25 did operating cash flow turn positive, at ₹180.06 million. [^drhp-p48-233] The company has been funding its growth through borrowings and loans from promoters, as disclosed in the filing. [^drhp-p49-52]
+
+<aside class="pull-quote">In the three years before the current period, the company's operating cash flow was negative, as the filing itself discloses.</aside>
 
 Total assets rose from ₹507.12 million in FY23 to ₹2,804.21 million in P.E.25. Borrowings stood at ₹721.06 million as of December 31, 2025. Net worth increased from ₹141.51 million to ₹1,447.23 million over the same period, helped by a bonus issue of shares transferred from reserves. [^drhp-p64-283]
 

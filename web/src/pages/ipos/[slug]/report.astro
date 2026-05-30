@@ -81,7 +81,7 @@ const latestPeriodLabel = latestPeriodRaw ? shortPeriod(latestPeriodRaw) : '';
         {offerCard.length > 0 && (
           <div class="report-offer">
             {offerCard.map((r) => (
-              <div class="report-offer-cell">
+              <div class={`report-offer-cell${r.label === 'Use of proceeds' ? ' report-offer-cell--wide' : ''}`}>
                 <div class="report-offer-label">{r.label}</div>
                 <div class="report-offer-val serif">{r.value}</div>
               </div>
@@ -282,6 +282,7 @@ const latestPeriodLabel = latestPeriodRaw ? shortPeriod(latestPeriodRaw) : '';
     margin-bottom: 30px;
   }
   .report-offer-cell { background: var(--color-paper); padding: 13px 16px; }
+  .report-offer-cell--wide { grid-column: 1 / -1; }
   .report-offer-label {
     font-family: var(--font-sans);
     font-size: 10.5px;
@@ -291,7 +292,7 @@ const latestPeriodLabel = latestPeriodRaw ? shortPeriod(latestPeriodRaw) : '';
     color: var(--color-mute);
     margin-bottom: 5px;
   }
-  .report-offer-val { font-size: 16px; line-height: 1.25; color: var(--color-ink); }
+  .report-offer-val { font-size: 16px; line-height: 1.4; color: var(--color-ink); white-space: pre-line; }
 
   /* Financials sub-block inside the snapshot */
   .report-fin-head {

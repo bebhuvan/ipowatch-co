@@ -847,8 +847,11 @@ export const getOfferCard = (slug: string): OfferRow[] => {
   if (reg) rows.push({ label: 'Registrar', value: titleCaseFirm(String(reg)) });
 
   const objects = Array.isArray(off.objects_of_issue) ? off.objects_of_issue.map(leafVal).filter(Boolean) : [];
-  if (objects.length === 1) rows.push({ label: 'Use of proceeds', value: trunc(objects[0], 56) });
-  else if (objects.length > 1) rows.push({ label: 'Use of proceeds', value: objects.length + ' stated objects' });
+  if (objects.length > 0) {
+    // List each object on its own line; the cell spans full width so no truncation needed.
+    const lines = objects.map((o: string, i: number) => (i + 1) + '. ' + String(o));
+    rows.push({ label: 'Use of proceeds', value: lines.join('\n') });
+  }
 
   const open = fmtDay(tl.open_date);
   const close = fmtDay(tl.close_date);

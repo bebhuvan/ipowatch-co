@@ -516,13 +516,21 @@ def _markdown_table(columns: list[str], rows: list[list[Any]]) -> str:
 
 
 def _insert_after_paragraph(body: str, anchor: str | None, block: str) -> tuple[str, bool]:
-    """Insert ``block`` after the first paragraph starting with ``anchor``."""
+    """Insert ``block`` after the first paragraph that starts with or contains ``anchor``."""
     if not anchor:
         return body, False
     needle = anchor.strip()[:40].lower()
     paras = _PARA_SPLIT.split(body)
+    # First pass: prefer paragraphs that start with the anchor (original behaviour).
     for i, para in enumerate(paras):
         if para.strip().lower().startswith(needle):
+            paras.insert(i + 1, block)
+            return "\n\n".join(paras), True
+    # Second pass: accept paragraphs that contain the anchor anywhere (handles
+    # cases where the LLM writes the anchor as a mid-paragraph sentence after
+    # repair passes alter the paragraph structure).
+    for i, para in enumerate(paras):
+        if needle in para.strip().lower():
             paras.insert(i + 1, block)
             return "\n\n".join(paras), True
     return body, False

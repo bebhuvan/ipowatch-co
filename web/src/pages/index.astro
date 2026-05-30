@@ -332,6 +332,14 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
 
 <Base title="IPO Watch" description={metaDescription} schemas={schemas}>
 
+<!-- ════════════  PITCH  ════════════ -->
+<div class="page-tight pt-7 pb-6 border-b border-[color:var(--color-rule)]">
+  <p class="serif italic text-[16px] leading-[1.55] text-[color:var(--color-mute)] max-w-[80ch]">
+    Live subscription data, prices, prospectus documents, and post-listing returns
+    for every public issue on NSE and BSE — since 2001.
+  </p>
+</div>
+
 <!-- ════════════  LEAD  ════════════ -->
 {lead && (
   <section class="page-tight pt-24 pb-24 border-b border-[color:var(--color-rule)]">
@@ -371,23 +379,23 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
           )}
         </div>
         <aside class="md:border-l md:border-[color:var(--color-rule)] md:pl-8">
-          <div class="label text-[color:var(--color-ink)] mb-7">The deal, in numbers</div>
+          <p class="serif italic text-[15px] text-[color:var(--color-mute)] mb-6">The deal, in numbers</p>
           <div class="border-t border-[color:var(--color-ink)]">
-            <div class="flex justify-between items-baseline py-[14px] border-b border-[color:var(--color-rule)]">
-              <span class="label">Price band</span>
-              <span class="t-value num">{formatRupeeRange(lead.price_band.min, lead.price_band.max)}</span>
+            <div class="flex justify-between items-baseline py-[16px] border-b border-[color:var(--color-rule)]">
+              <span class="stat-label">Price band</span>
+              <span class="serif text-[26px] num leading-tight">{formatRupeeRange(lead.price_band.min, lead.price_band.max)}</span>
             </div>
-            <div class="flex justify-between items-baseline py-[14px] border-b border-[color:var(--color-rule)]">
-              <span class="label">Shares per lot</span>
-              <span class="t-value num">{lead.lotSize ? formatInt(lead.lotSize) : '—'}</span>
+            <div class="flex justify-between items-baseline py-[16px] border-b border-[color:var(--color-rule)]">
+              <span class="stat-label">Shares per lot</span>
+              <span class="serif text-[26px] num leading-tight">{lead.lotSize ? formatInt(lead.lotSize) : '—'}</span>
             </div>
-            <div class="flex justify-between items-baseline py-[14px] border-b border-[color:var(--color-rule)]">
-              <span class="label">Retail minimum</span>
-              <span class="t-value num">{lead.lotSize && lead.price_band.max ? formatRupee(lead.lotSize * lead.price_band.max) : '—'}</span>
+            <div class="flex justify-between items-baseline py-[16px] border-b border-[color:var(--color-rule)]">
+              <span class="stat-label">Retail minimum</span>
+              <span class="serif text-[26px] num leading-tight">{lead.lotSize && lead.price_band.max ? formatRupee(lead.lotSize * lead.price_band.max) : '—'}</span>
             </div>
-            <div class="flex justify-between items-baseline py-[14px] border-b border-[color:var(--color-rule)]">
-              <span class="label">Issue size</span>
-              <span class="t-value num">{lead.raisingText ?? '—'}</span>
+            <div class="flex justify-between items-baseline py-[16px] border-b border-[color:var(--color-rule)]">
+              <span class="stat-label">Issue size</span>
+              <span class="serif text-[26px] num leading-tight">{lead.raisingText ?? '—'}</span>
             </div>
           </div>
         </aside>

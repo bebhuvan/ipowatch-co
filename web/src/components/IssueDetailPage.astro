@@ -44,6 +44,16 @@ const brlmName = brlm.name ?? (leadManagerNames.length ? leadManagerNames.join('
 const registrarName = registrar.name ?? issue.parties?.registrar ?? null;
 const sponsorName = sponsor.name ?? issue.parties?.sponsor_bank ?? null;
 
+// Exchange data often sends party names in ALL CAPS — convert to title case for display.
+const _abbrevs = new Set(['IPO', 'NSE', 'BSE', 'SEBI', 'LLP', 'NBFC', 'AMC', 'AIF', 'SBI', 'HDFC', 'ICICI', 'IIFL', 'JM', 'SPA', 'BOI', 'PTC', 'UTI']);
+const titleCase = (str: string | null | undefined): string | null => {
+  if (!str) return null;
+  return str.replace(/\b([A-Z][A-Z0-9]*)\b/g, (word) => {
+    if (_abbrevs.has(word)) return word;
+    return word.charAt(0) + word.slice(1).toLowerCase();
+  }).replace(/\bPvt\b/g, 'Pvt').replace(/\bLtd\b/g, 'Ltd').replace(/\bPte\b/g, 'Pte');
+};
+
 const ing = extractIngredient(issue);
 const priceMin = ing.priceMin;
 const priceMax = ing.priceMax;
@@ -906,7 +916,7 @@ const metaDescription = `Indian Primary Market Analysis for ${company} ${issueTy
     {heroFigure && (
       <div class="shrink-0 lg:text-right">
         <p class={`figure num ${heroFigure.isGain && heroFigure.gain != null && heroFigure.gain > 50 ? 'acc' : ''}`}>{heroFigure.value}</p>
-        <p class="label mt-3">{heroFigure.label}</p>
+        <p class="stat-label mt-3">{heroFigure.label}</p>
       </div>
     )}
   </div>
@@ -917,49 +927,49 @@ const metaDescription = `Indian Primary Market Analysis for ${company} ${issueTy
   <div class="flex flex-wrap gap-x-10 gap-y-6 items-baseline">
     {priceMin != null && priceMax != null && (
       <div>
-        <div class="label mb-1.5">Price band</div>
+        <div class="stat-label mb-2">Price band</div>
         <div class="serif text-[28px] num leading-tight">{formatRupeeRange(priceMin, priceMax)}</div>
       </div>
     )}
     {issue.pricing.issue_price != null && status === 'past' && (
       <div>
-        <div class="label mb-1.5">Issue price</div>
+        <div class="stat-label mb-2">Issue price</div>
         <div class="serif text-[28px] num leading-tight">{formatRupee(issue.pricing.issue_price)}</div>
       </div>
     )}
     {lotSize != null && (
       <div>
-        <div class="label mb-1.5">Shares per lot</div>
+        <div class="stat-label mb-2">Shares per lot</div>
         <div class="serif text-[28px] num leading-tight">{formatInt(lotSize)}</div>
       </div>
     )}
     {minInvestment != null && (
       <div>
-        <div class="label mb-1.5">Retail minimum</div>
+        <div class="stat-label mb-2">Retail minimum</div>
         <div class="serif text-[28px] num leading-tight">{formatRupee(minInvestment)}</div>
       </div>
     )}
     {sizeText && (
       <div>
-        <div class="label mb-1.5">Issue size</div>
+        <div class="stat-label mb-2">Issue size</div>
         <div class="serif text-[28px] num leading-tight">{sizeText}</div>
       </div>
     )}
     {faceValue != null && (
       <div>
-        <div class="label mb-1.5">Face value</div>
+        <div class="stat-label mb-2">Face value</div>
         <div class="serif text-[28px] num leading-tight">{formatRupee(faceValue)}</div>
       </div>
     )}
     {status === 'past' && issue.listing_performance.listing_day_close != null && (
       <div>
-        <div class="label mb-1.5">Listing-day close</div>
+        <div class="stat-label mb-2">Listing-day close</div>
         <div class="serif text-[28px] num leading-tight">{formatRupee(issue.listing_performance.listing_day_close)}</div>
       </div>
     )}
     {status === 'past' && issue.listing_performance.gain_loss != null && (
       <div>
-        <div class="label mb-1.5">Return since listing</div>
+        <div class="stat-label mb-2">Return since listing</div>
         <div class={`serif text-[28px] num leading-tight ${issue.listing_performance.gain_loss > 50 ? 'acc' : ''}`}>{fmtGain(issue.listing_performance.gain_loss)}</div>
       </div>
     )}
@@ -1079,42 +1089,45 @@ const metaDescription = `Indian Primary Market Analysis for ${company} ${issueTy
       <div class="mt-8 mb-20">
         <div class="label mb-6 text-center">Financial story</div>
         {primaryFinancialSeries.length > 0 && (
-          <div class="max-w-[840px] mx-auto bg-white border border-[color:var(--color-rule-card)] p-8 md:p-10">
-            <div class="flex flex-wrap items-baseline justify-between gap-4 mb-5">
-              <h3 class="serif text-[22px] leading-tight">{primaryFinancialSeries[0].source.label}</h3>
-              <span class="text-[11px] mute uppercase tracking-[0.08em]">reported sequence</span>
+          <div class="max-w-[840px] mx-auto">
+            <div class="flex flex-wrap items-baseline justify-between gap-4 mb-4 border-t border-[color:var(--color-ink)] pt-4">
+              <h3 class="serif text-[20px] leading-tight">{primaryFinancialSeries[0].source.label}</h3>
+              <span class="label">reported sequence</span>
             </div>
             <svg viewBox={`0 0 ${primaryChart.width} ${primaryChart.height}`} class="w-full h-auto block" role="img" aria-label={`${primaryFinancialSeries[0].source.label} chart`}>
-              <line x1="28" x2={primaryChart.width - 28} y1={primaryChart.zeroY} y2={primaryChart.zeroY} stroke="var(--color-rule)" stroke-width="1" />
+              {/* Zero baseline */}
+              <line x1="28" x2={primaryChart.width - 28} y1={primaryChart.zeroY} y2={primaryChart.zeroY} stroke="var(--color-ink)" stroke-width="1.5" />
+              {/* Bars — accent for positive, muted for negative */}
               {primaryChart.bars.map((bar) => (
-                <rect x={bar.x} y={bar.y} width={bar.w} height={bar.h} fill={bar.row.value < 0 ? 'var(--color-mute-2)' : 'var(--color-ink)'} opacity={bar.row.value < 0 ? '0.55' : '0.88'} />
+                <rect x={bar.x} y={bar.y} width={bar.w} height={bar.h}
+                  fill={bar.row.value < 0 ? 'var(--color-mute-2)' : 'var(--color-accent)'}
+                  opacity={bar.row.value < 0 ? '0.6' : '0.75'} />
               ))}
-              {primaryChart.points && <polyline points={primaryChart.points} fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />}
+              {/* Trend line */}
+              {primaryChart.points && <polyline points={primaryChart.points} fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5" />}
             </svg>
-            <div class="grid gap-3 mt-5" style={`grid-template-columns: repeat(${Math.min(primaryFinancialSeries.length, 8)}, minmax(0, 1fr));`}>
+            <div class="grid gap-2 mt-4 border-t border-[color:var(--color-rule)] pt-4" style={`grid-template-columns: repeat(${Math.min(primaryFinancialSeries.length, 8)}, minmax(0, 1fr));`}>
               {primaryFinancialSeries.map((row) => (
                 <div class="min-w-0 text-center">
-                  <div class="serif text-[16px] leading-tight num break-words">{row.value.toLocaleString('en-IN')}</div>
-                  <div class="mt-1 text-[10px] mute num">{row.label}</div>
+                  <div class="serif text-[18px] font-light leading-tight num break-words">{row.value.toLocaleString('en-IN')}</div>
+                  <div class="mt-1 text-[11px] mute num">{row.label}</div>
                 </div>
               ))}
             </div>
             {secondaryFinancialSeries.length > 0 && (
-              <div class="mt-8 pt-8 border-t border-[color:var(--color-rule)]">
-                <div class="flex items-baseline justify-between gap-4 mb-3">
-                  <h4 class="text-[12px] mute uppercase tracking-[0.08em]">{secondaryFinancialSeries[0].source.label}</h4>
-                </div>
+              <div class="mt-8 pt-6 border-t border-[color:var(--color-rule)]">
+                <div class="stat-label mb-4">{secondaryFinancialSeries[0].source.label}</div>
                 <div class="space-y-3">
                   {secondaryFinancialSeries.map((row) => {
                     const maxAbs = Math.max(...secondaryFinancialSeries.map((r) => Math.abs(r.value)), 1);
                     const w = Math.max(2, (Math.abs(row.value) / maxAbs) * 100);
                     return (
-                      <div class="grid grid-cols-[52px_minmax(0,1fr)_90px] items-center gap-3 text-[12px]">
-                        <span class="mute num">{row.label}</span>
-                        <span class="h-[8px] bg-[color:var(--color-rule)] relative">
-                          <span class={`absolute inset-y-0 ${row.value < 0 ? 'right-1/2 bg-[color:var(--color-mute-2)]' : 'left-1/2 bg-[color:var(--color-ink)]'}`} style={`width: ${Math.min(50, w / 2).toFixed(1)}%;`}></span>
+                      <div class="grid grid-cols-[52px_minmax(0,1fr)_90px] items-center gap-3">
+                        <span class="text-[12px] mute num">{row.label}</span>
+                        <span class="h-[10px] bg-[color:var(--color-rule)] relative">
+                          <span class={`absolute inset-y-0 ${row.value < 0 ? 'right-1/2 bg-[color:var(--color-mute-2)]' : 'left-1/2 bg-[color:var(--color-accent)]'}`} style={`width: ${Math.min(50, w / 2).toFixed(1)}%; opacity: 0.7;`}></span>
                         </span>
-                        <span class="text-right num serif text-[15px]">{row.value.toLocaleString('en-IN')}</span>
+                        <span class="text-right num serif text-[16px] font-light">{row.value.toLocaleString('en-IN')}</span>
                       </div>
                     );
                   })}
@@ -1314,16 +1327,16 @@ const metaDescription = `Indian Primary Market Analysis for ${company} ${issueTy
       </div>
 
       <!-- Right sidebar: valuation + offer split + shareholding -->
-      <aside class="space-y-12">
+      <aside class="space-y-10">
 
         {tijoriValuationRows.filter(r => r.value != null && r.value !== '').length > 0 && (
-          <div class="border-t-2 border-[color:var(--color-ink)] pt-6">
-            <div class="label mb-5">Valuation</div>
+          <div class="border-t-2 border-[color:var(--color-ink)] pt-5">
+            <div class="label mb-4">Valuation</div>
             <dl>
               {tijoriValuationRows.filter(r => r.value != null && r.value !== '').map((row) => (
-                <div class="flex justify-between items-baseline gap-4 py-3 border-b border-[color:var(--color-rule)]">
-                  <dt class="text-[12px] mute">{row.label}</dt>
-                  <dd class="num serif text-[17px]">{String(row.value)}</dd>
+                <div class="flex justify-between items-baseline gap-4 py-[13px] border-b border-[color:var(--color-rule)]">
+                  <dt class="stat-label">{row.label}</dt>
+                  <dd class="num serif text-[20px] font-light">{String(row.value)}</dd>
                 </div>
               ))}
             </dl>
@@ -1331,13 +1344,13 @@ const metaDescription = `Indian Primary Market Analysis for ${company} ${issueTy
         )}
 
         {tijoriOfferRows.filter(r => r.value).length > 0 && (
-          <div class="border-t border-[color:var(--color-rule)] pt-6">
-            <div class="label mb-5">Offer structure</div>
+          <div class="border-t border-[color:var(--color-rule)] pt-5">
+            <div class="label mb-4">Offer structure</div>
             <dl>
               {tijoriOfferRows.filter(r => r.value).map((row) => (
-                <div class="flex justify-between items-baseline gap-4 py-3 border-b border-[color:var(--color-rule)]">
-                  <dt class="text-[12px] mute">{row.label}</dt>
-                  <dd class="num serif text-[15px]">{row.value}</dd>
+                <div class="flex justify-between items-baseline gap-4 py-[13px] border-b border-[color:var(--color-rule)]">
+                  <dt class="stat-label">{row.label}</dt>
+                  <dd class="num serif text-[18px]">{row.value}</dd>
                 </div>
               ))}
             </dl>
@@ -1345,24 +1358,24 @@ const metaDescription = `Indian Primary Market Analysis for ${company} ${issueTy
         )}
 
         {tijoriHoldingRows.length > 0 && (
-          <div class="border-t border-[color:var(--color-rule)] pt-6">
-            <div class="label mb-5">Shareholding</div>
+          <div class="border-t border-[color:var(--color-rule)] pt-5">
+            <div class="label mb-4">Shareholding</div>
             <dl>
               {tijoriHoldingRows.map((row) => (
-                <div class="py-3 border-b border-[color:var(--color-rule)]">
-                  <div class="text-[12px] mute mb-2">{row.label}</div>
-                  <div class="flex items-center gap-6">
+                <div class="py-4 border-b border-[color:var(--color-rule)]">
+                  <div class="stat-label mb-3">{row.label}</div>
+                  <div class="flex items-baseline gap-5">
                     {row.pre != null && (
-                      <div class="text-center">
-                        <div class="num serif text-[20px]">{row.pre}%</div>
-                        <div class="text-[10px] mute mt-1 uppercase tracking-[0.08em]">Pre-IPO</div>
+                      <div>
+                        <div class="num serif text-[22px] font-light">{row.pre}%</div>
+                        <div class="label mt-1">Pre-IPO</div>
                       </div>
                     )}
-                    {row.pre != null && row.post != null && <span class="text-[color:var(--color-mute-2)]">→</span>}
+                    {row.pre != null && row.post != null && <span class="text-[15px] text-[color:var(--color-mute-2)] pb-1">→</span>}
                     {row.post != null && (
-                      <div class="text-center">
-                        <div class="num serif text-[20px]">{row.post}%</div>
-                        <div class="text-[10px] mute mt-1 uppercase tracking-[0.08em]">Post-IPO</div>
+                      <div>
+                        <div class="num serif text-[22px] font-light text-[color:var(--color-ink)]">{row.post}%</div>
+                        <div class="label mt-1">Post-IPO</div>
                       </div>
                     )}
                   </div>
@@ -1415,18 +1428,18 @@ const metaDescription = `Indian Primary Market Analysis for ${company} ${issueTy
                   <div class="flex items-baseline justify-between gap-4">
                     <div class="flex items-baseline gap-3 min-w-0">
                       <span class="text-[12px] mute num w-6 shrink-0">{row.sr ?? ''}</span>
-                      <h3 class={`${row.isChild ? 'text-[15px] text-[color:var(--color-mute)]' : 'serif text-[22px] text-[color:var(--color-ink)]'} leading-snug truncate`}>
+                      <h3 class={`${row.isChild ? 'text-[14px] text-[color:var(--color-mute)]' : 'serif text-[18px] text-[color:var(--color-ink)]'} leading-snug truncate`}>
                         {row.category}
                       </h3>
                     </div>
-                    <span class={`serif num leading-none shrink-0 ${hasTimes ? 'text-[32px]' : 'text-[22px]'} ${isLeader || (hasTimes && row.times! >= 5) ? 'acc' : 'text-[color:var(--color-ink)]'}`}>
+                    <span class={`serif num leading-none shrink-0 ${hasTimes ? 'text-[26px]' : 'text-[19px]'} ${isLeader || (hasTimes && row.times! >= 5) ? 'acc' : 'text-[color:var(--color-ink)]'}`}>
                       {hasTimes ? formatTimes(row.times) : formatInt(row.bid)}
                     </span>
                   </div>
-                  <div class={`mt-3 h-[6px] bg-[color:var(--color-rule)] relative ${row.isChild ? 'ml-9' : 'ml-9'}`}>
+                  <div class={`mt-3 h-[10px] bg-[color:var(--color-rule)] relative ${row.isChild ? 'ml-9' : 'ml-9'}`}>
                     <span
-                      class={`absolute inset-y-0 left-0 ${isLeader ? 'bg-[color:var(--color-accent)]' : row.isChild ? 'bg-[color:var(--color-mute-2)]' : 'bg-[color:var(--color-ink)]'}`}
-                      style={`width: ${Math.max(width, row.metric > 0 ? 1.5 : 0).toFixed(1)}%; opacity: ${row.isChild ? 0.75 : 1};`}
+                      class={`absolute inset-y-0 left-0 transition-all ${isLeader ? 'bg-[color:var(--color-accent)]' : row.isChild ? 'bg-[color:var(--color-mute-2)]' : 'bg-[color:var(--color-ink)]'}`}
+                      style={`width: ${Math.max(width, row.metric > 0 ? 1.5 : 0).toFixed(1)}%; opacity: ${row.isChild ? 0.6 : 1};`}
                     ></span>
                   </div>
                   {(hasTimes || row.offered != null || row.applications != null) && (
@@ -1500,33 +1513,31 @@ const metaDescription = `Indian Primary Market Analysis for ${company} ${issueTy
 
 <!-- PARTIES -->
 {(brlmName || registrarName || sponsorName) && (
-  <section id="parties" class="bg-[color:var(--color-paper-soft)]">
-    <div class="page-tight py-20">
-      <header class="mb-10">
-        <h2 class="section-title">Parties to the issue</h2>
-      </header>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {brlmName && (
-          <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-            <div class="label mb-3">Book-running lead manager</div>
-            <div class="serif font-medium text-[20px] leading-snug">{brlmName}</div>
-            {brlm.meta && <p class="text-[12px] mute mt-2">{brlm.meta}</p>}
-          </div>
-        )}
-        {registrarName && (
-          <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-            <div class="label mb-3">Registrar</div>
-            <div class="serif font-medium text-[20px] leading-snug">{registrarName}</div>
-            {registrar.meta && <p class="text-[12px] mute mt-2">{registrar.meta}</p>}
-          </div>
-        )}
-        {sponsorName && (
-          <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-            <div class="label mb-3">Sponsor bank</div>
-            <div class="serif font-medium text-[20px] leading-snug">{sponsorName}</div>
-          </div>
-        )}
-      </div>
+  <section id="parties" class="page-tight py-20 border-t border-[color:var(--color-rule)]">
+    <header class="mb-10">
+      <h2 class="section-title">Parties to the issue</h2>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-[color:var(--color-ink)]">
+      {brlmName && (
+        <div class="pt-6 pr-8 pb-8 border-b sm:border-b-0 sm:border-r border-[color:var(--color-rule)]">
+          <div class="stat-label mb-3">Book-running lead manager</div>
+          <div class="serif text-[20px] leading-[1.3] text-[color:var(--color-ink-soft)]">{titleCase(brlmName)}</div>
+          {brlm.meta && <p class="text-[12px] mute mt-2">{brlm.meta}</p>}
+        </div>
+      )}
+      {registrarName && (
+        <div class="pt-6 px-0 sm:px-8 pb-8 border-b sm:border-b-0 sm:border-r border-[color:var(--color-rule)]">
+          <div class="stat-label mb-3">Registrar</div>
+          <div class="serif text-[20px] leading-[1.3] text-[color:var(--color-ink-soft)]">{titleCase(registrarName)}</div>
+          {registrar.meta && <p class="text-[12px] mute mt-2">{registrar.meta}</p>}
+        </div>
+      )}
+      {sponsorName && (
+        <div class="pt-6 pl-0 sm:pl-8 pb-8">
+          <div class="stat-label mb-3">Sponsor bank</div>
+          <div class="serif text-[20px] leading-[1.3] text-[color:var(--color-ink-soft)]">{titleCase(sponsorName)}</div>
+        </div>
+      )}
     </div>
   </section>
 )}

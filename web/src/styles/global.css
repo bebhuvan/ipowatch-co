@@ -1,13 +1,17 @@
+/* Self-hosted variable fonts — eliminates Google Fonts CDN round-trip.
+   Source Serif 4 (opsz + italic) replaces Newsreader; richer optical size
+   axis, more refined at display and text sizes.
+   Inter Tight replaces Inter; same family, tighter metrics for dense UI. */
+@import "@fontsource-variable/source-serif-4/opsz.css";
+@import "@fontsource-variable/source-serif-4/opsz-italic.css";
+@import "@fontsource-variable/inter-tight/wght.css";
+
 @import "tailwindcss";
 
-/* Newsreader — display + body serif by Production Type, designed for digital
-   news/finance reading with optical-size axis.
-   Inter — body, labels, UI. Loaded via Google Fonts in Base.astro. */
-
 @theme {
-  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-serif: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
   --font-sans:
-    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    "Inter Tight Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --color-paper: #ffffff;
   --color-paper-soft: #fafaf7;
@@ -18,17 +22,14 @@
   --color-rule: #ebe7da;
   --color-rule-card: #ebe7d9;
   --color-rule-strong: #0f0e0c;
-  --color-accent: #e8765a; /* soft coral — the single accent */
+  --color-accent: #e8765a;
   --color-accent-deep: #d05a3f;
   --color-accent-soft: #fce5dd;
   --color-gold: #b07a35;
   --color-pos: #2f6a3e;
-
-  /* Warm-white hover (was hardcoded #fffaf7 across pages) */
   --color-paper-warm: #fffaf7;
 
-  /* Ink tint ramp — for charts/series, so colour stays single-accent.
-     ink → ink-2 → mute → ink-4 → ink-5, darkest to lightest. */
+  /* Ink tint ramp for charts */
   --color-ink-2: #3a3833;
   --color-ink-4: #9b988f;
   --color-ink-5: #c9c6bc;
@@ -67,9 +68,7 @@
   a {
     color: inherit;
     text-decoration: none;
-    transition:
-      color 0.2s ease,
-      opacity 0.2s ease;
+    transition: color 0.2s ease, opacity 0.2s ease;
   }
   a:focus-visible,
   button:focus-visible,
@@ -81,6 +80,7 @@
 
   .serif {
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
     font-feature-settings: "lnum", "tnum";
     font-variant-numeric: tabular-nums lining-nums;
   }
@@ -88,20 +88,12 @@
   .num {
     font-variant-numeric: tabular-nums lining-nums;
   }
-  .mute {
-    color: var(--color-mute);
-  }
-  .mute-2 {
-    color: var(--color-mute-2);
-  }
-  .acc {
-    color: var(--color-accent);
-  }
-  .acc-deep {
-    color: var(--color-accent-deep);
-  }
+  .mute   { color: var(--color-mute); }
+  .mute-2 { color: var(--color-mute-2); }
+  .acc      { color: var(--color-accent); }
+  .acc-deep { color: var(--color-accent-deep); }
 
-  /* Page frames */
+  /* ── Page frames ─────────────────────────────────────────────────── */
   .page {
     max-width: 1320px;
     margin-inline: auto;
@@ -113,104 +105,115 @@
     padding-inline: 24px;
   }
   @media (min-width: 768px) {
-    .page {
-      padding-inline: 56px;
-    }
-    .page-tight {
-      padding-inline: 56px;
-    }
+    .page       { padding-inline: 56px; }
+    .page-tight { padding-inline: 56px; }
   }
 
-  /* Hairline */
   .rule {
     border: 0;
     border-top: 1px solid var(--color-rule);
   }
 
-  /* Display hierarchy — Roman by default. Italic is reserved for accents. */
+  /* ── Display hierarchy ───────────────────────────────────────────── */
   .headline {
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
     font-weight: 400;
-    font-size: clamp(42px, 10.5vw, 84px);
+    font-size: clamp(40px, 9.5vw, 80px);
     line-height: 1.04;
-    letter-spacing: -0.014em;
+    letter-spacing: -0.016em;
   }
   .section-title {
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
     font-weight: 500;
-    font-size: 32px;
+    font-size: 30px;
     letter-spacing: -0.01em;
     line-height: 1.12;
   }
   .lede {
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
     font-weight: 400;
     font-size: 21px;
     line-height: 1.5;
     color: var(--color-ink-soft);
   }
+
+  /* Display figures — heroic numbers */
   .figure {
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
     font-weight: 300;
-    font-size: clamp(56px, 7.5vw, 92px);
+    font-size: clamp(52px, 7vw, 86px);
     letter-spacing: -0.025em;
     line-height: 0.94;
   }
   .figure-2 {
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
     font-weight: 300;
-    font-size: 52px;
+    font-size: 48px;
     letter-spacing: -0.012em;
     line-height: 0.98;
   }
 
-  /* Serif body ladder — replaces ad-hoc text-[Npx] on the home so sizes
-     step on one scale. Each carries family + leading + tracking. */
+  /* Serif body ladder */
   .t-sub {
-    /* sub-leads, descriptive serif paragraphs */
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
     font-weight: 400;
     font-size: 20px;
-    line-height: 1.45;
+    line-height: 1.48;
     color: var(--color-ink-soft);
   }
   .t-title {
-    /* card + list-row headings */
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
     font-weight: 500;
-    font-size: 22px;
+    font-size: 21px;
     line-height: 1.2;
-    letter-spacing: -0.006em;
+    letter-spacing: -0.005em;
   }
   .t-value {
-    /* secondary figures in stat tables */
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 1.05;
+    font-size: 23px;
+    line-height: 1.06;
     letter-spacing: -0.01em;
   }
   .t-stat {
-    /* stat-band numbers */
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
     font-weight: 400;
-    font-size: 34px;
+    font-size: 32px;
     line-height: 1;
     letter-spacing: -0.012em;
   }
 
+  /* ── Label system ────────────────────────────────────────────────── */
+  /* .label — kickers, nav, small UI labels */
   .label {
-    font-size: 10.5px;
-    letter-spacing: 0.14em;
+    font-size: 11px;
+    letter-spacing: 0.11em;
     text-transform: uppercase;
     color: var(--color-mute);
     font-weight: 600;
   }
-  .label-acc {
-    color: var(--color-accent);
+  .label-acc { color: var(--color-accent); }
+
+  /* .stat-label — data table column headers, vitals band.
+     Larger than .label so ratio to serif values is readable. */
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    font-weight: 600;
   }
 
-  /* Live pulse */
+  /* ── Live pulse ──────────────────────────────────────────────────── */
   .live-dot {
     display: inline-block;
     width: 6px;
@@ -222,129 +225,116 @@
     vertical-align: 1px;
   }
   @keyframes live-pulse {
-    0%,
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.35;
-      transform: scale(0.8);
-    }
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.35; transform: scale(0.8); }
   }
 
+  /* ── Site header ─────────────────────────────────────────────────── */
   .site-header {
-    padding-top: 28px;
-    padding-bottom: 18px;
+    padding-top: 20px;
+    padding-bottom: 0;
     border-bottom: 1px solid var(--color-rule);
   }
 
+  /* Two columns: brand left, nav right — no kicker in the header. */
   .site-header-main {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    display: flex;
     align-items: center;
-    gap: 28px;
-  }
-
-  .site-kicker {
-    font-size: 10.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-mute);
-    font-weight: 600;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 18px;
   }
 
   .site-brand {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 11px;
-    text-align: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .site-brand:hover { opacity: 0.78; }
+  .site-brand-wordmark {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: -0.008em;
+    color: var(--color-ink);
   }
 
   .site-nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-    gap: 6px 18px;
+    gap: 4px 16px;
     font-size: 13px;
     color: var(--color-mute);
     font-weight: 600;
+    letter-spacing: 0.01em;
   }
+  .site-nav a:hover { color: var(--color-ink); }
 
-  .site-nav a:hover {
-    color: var(--color-ink);
-  }
-
+  /* Status strip — date + counts */
   .site-status {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 14px;
-    padding-top: 13px;
-    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 11px;
     border-top: 1px solid var(--color-rule);
-    font-size: 12.5px;
+    font-size: 12px;
     color: var(--color-mute);
   }
 
+  /* ── Issue badges ────────────────────────────────────────────────── */
   .issue-badge {
     display: inline-flex;
     align-items: center;
-    min-height: 21px;
+    min-height: 20px;
     border: 1px solid currentColor;
-    padding: 2px 8px;
+    padding: 2px 7px;
     font-size: 9.5px;
-    letter-spacing: 0.13em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     font-weight: 700;
     line-height: 1;
   }
+  .issue-badge-live { color: var(--color-accent); background: var(--color-paper-warm); }
+  .issue-badge-dark { color: var(--color-ink); background: var(--color-paper); }
 
-  .issue-badge-live {
-    color: var(--color-accent);
-    background: var(--color-paper-warm);
-  }
-  .issue-badge-dark {
-    color: var(--color-ink);
-    background: var(--color-paper);
-  }
-
-  /* ── IPO detail page section anchor nav ────────────────────── */
+  /* ── Detail page section nav ─────────────────────────────────────── */
   .ipo-nav-link {
     display: inline-block;
     padding: 13px 20px;
     font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
     color: var(--color-mute);
     white-space: nowrap;
     border-bottom: 2px solid transparent;
     transition: color 0.15s ease, border-color 0.15s ease;
-    margin-bottom: -1px; /* sit flush on the container's bottom border */
+    margin-bottom: -1px;
   }
   .ipo-nav-link:hover {
     color: var(--color-ink);
     border-bottom-color: var(--color-accent);
   }
 
-  /* ── Compact IPO listing rows (used by /live/ and /upcoming/) ── */
+  /* ── Compact IPO listing rows ────────────────────────────────────── */
   .ipo-list {
     border-top: 2px solid var(--color-ink);
     margin-top: 36px;
   }
 
-  .ipo-row-wrap {
-    position: relative;
-  }
+  .ipo-row-wrap { position: relative; }
 
   .ipo-row-accent {
     position: absolute;
-    left: -56px; /* flush with page-tight left edge on md+ */
-    top: 0;
-    bottom: 0;
+    left: -56px;
+    top: 0; bottom: 0;
     width: 2px;
     background: var(--color-accent);
     transform: scaleY(0);
@@ -352,9 +342,7 @@
     transition: transform 0.18s ease;
     pointer-events: none;
   }
-  @media (max-width: 767px) {
-    .ipo-row-accent { display: none; }
-  }
+  @media (max-width: 767px) { .ipo-row-accent { display: none; } }
   .ipo-row-wrap:hover .ipo-row-accent { transform: scaleY(1); }
 
   .ipo-row {
@@ -397,6 +385,7 @@
 
   .ipo-row-company {
     font-family: var(--font-serif);
+    font-optical-sizing: auto;
     font-size: 20px;
     font-weight: 500;
     line-height: 1.15;
@@ -405,9 +394,7 @@
   }
   .ipo-row-wrap:hover .ipo-row-company { color: var(--color-accent-deep); }
 
-  .ipo-row-stats {
-    display: none;
-  }
+  .ipo-row-stats { display: none; }
   @media (min-width: 640px) {
     .ipo-row-stats {
       display: flex;
@@ -418,11 +405,12 @@
   }
 
   .ipo-row-stat { display: flex; flex-direction: column; gap: 2px; }
-  .ipo-row-stat .label { font-size: 9.5px; letter-spacing: 0.14em; }
+  .ipo-row-stat .label { font-size: 9.5px; letter-spacing: 0.13em; }
 
   .ipo-row-val {
     font-family: var(--font-serif);
-    font-size: 16.5px;
+    font-optical-sizing: auto;
+    font-size: 16px;
     font-weight: 400;
     color: var(--color-ink);
     white-space: nowrap;
@@ -440,19 +428,14 @@
     white-space: nowrap;
     text-align: right;
   }
-  @media (min-width: 640px) {
-    .ipo-row-timing { grid-column: 3; }
-  }
-
+  @media (min-width: 640px) { .ipo-row-timing { grid-column: 3; } }
   .ipo-row-timing-live { color: var(--color-accent); }
   .ipo-row-timing-soon { color: var(--color-gold); }
 
-  /* Reading column — consistent width for long-form text blocks */
-  .reading {
-    max-width: 68ch;
-  }
+  /* ── Reading column ──────────────────────────────────────────────── */
+  .reading { max-width: 68ch; }
 
-  /* Harmonised definition lists used across detail pages */
+  /* ── Definition lists ────────────────────────────────────────────── */
   .def-list dt {
     font-size: 12px;
     color: var(--color-mute);
@@ -481,38 +464,47 @@
     }
   }
 
+  /* ── Mobile overrides ────────────────────────────────────────────── */
   @media (max-width: 767px) {
     .site-header {
-      padding-top: 24px;
-      padding-bottom: 18px;
+      padding-top: 16px;
     }
+
+    /* Stack: brand on top, nav below — both centered */
     .site-header-main {
-      grid-template-columns: 1fr;
-      justify-items: center;
-      gap: 15px;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 16px;
     }
-    .site-kicker {
-      text-align: center;
-      font-size: 10px;
+
+    .site-brand-wordmark {
+      font-size: 26px;
     }
     .site-brand img {
-      width: 30px;
-      height: 30px;
+      width: 26px;
+      height: 26px;
     }
-    .site-brand .serif {
-      font-size: 29px;
-    }
+
+    /* Single scrollable row — no wrapping */
     .site-nav {
+      width: 100%;
+      flex-wrap: nowrap;
       justify-content: center;
-      gap: 6px 10px;
-      max-width: 360px;
-      font-size: 12.5px;
+      gap: 0 12px;
+      font-size: 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 2px;
     }
+    .site-nav::-webkit-scrollbar { display: none; }
+
     .site-status {
       align-items: flex-start;
       flex-direction: column;
-      gap: 8px;
-      margin-top: 16px;
+      gap: 6px;
+      margin-top: 0;
     }
   }
 }

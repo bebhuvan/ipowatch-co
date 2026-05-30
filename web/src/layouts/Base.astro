@@ -64,9 +64,7 @@ const todayLong = today.toLocaleDateString('en-IN', {
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Fonts self-hosted via @fontsource-variable — no external CDN round-trip -->
     <title>{displayTitle}</title>
 
     <!-- Canonical URL -->
@@ -114,12 +112,9 @@ const todayLong = today.toLocaleDateString('en-IN', {
   <body class="min-h-screen">
     <header class="page site-header">
       <div class="site-header-main">
-        <span class="site-kicker">
-          Indian public issues since 2001
-        </span>
         <a href="/" class="site-brand" aria-label={`${siteName} home`}>
-          <img src="/logo.svg" alt="" width="32" height="32" class="w-8 h-8" />
-          <span class="serif font-normal text-[31px] leading-none tracking-[-0.004em]">IPO Watch</span>
+          <img src="/logo.svg" alt="" width="28" height="28" class="w-7 h-7 text-[color:var(--color-ink)]" />
+          <span class="site-brand-wordmark">IPO Watch</span>
         </a>
         <nav class="site-nav">
           <a href="/live/">Open</a>
@@ -132,16 +127,14 @@ const todayLong = today.toLocaleDateString('en-IN', {
         </nav>
       </div>
       <div class="site-status">
-        <span>
-          <span class="num">{todayLong}</span>
-        </span>
-        <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+        <span class="num text-[12px]">{todayLong}</span>
+        <div class="flex flex-wrap items-baseline gap-x-5 gap-y-1.5">
           <span><span class="live-dot"></span><strong class="text-[color:var(--color-ink)] font-semibold num">{open.length}</strong> open</span>
           {closingToday > 0 && (
             <span><strong class="text-[color:var(--color-ink)] font-semibold num">{closingToday}</strong> close today</span>
           )}
           <span><strong class="text-[color:var(--color-ink)] font-semibold num">{upcoming.length}</strong> upcoming</span>
-          <span class="text-[11.5px] mute-2">Updated {builtAt} IST</span>
+          <span class="text-[11px] mute-2">Updated {builtAt} IST</span>
         </div>
       </div>
     </header>

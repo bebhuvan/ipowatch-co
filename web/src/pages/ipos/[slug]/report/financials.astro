@@ -1,0 +1,269 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import ColumnChart from '../../../../components/charts/ColumnChart.astro';
+import {
+  getFinancialsBySlug,
+  getDetailBySlug,
+  listFinancialsSlugs,
+  publicIssueSlug,
+} from '../../../../lib/issues';
+
+export function getStaticPaths() {
+  return listFinancialsSlugs().map((slug) => ({
+    params: { slug: publicIssueSlug(slug) },
+    props: { slug, publicSlug: publicIssueSlug(slug) },
+  }));
+}
+
+const { slug, publicSlug } = Astro.props;
+const fin = getFinancialsBySlug(slug);
+const issue = getDetailBySlug(slug);
+const company = (issue && issue.company.name) || fin.slug;
+const docType = fin.document_type || 'DRHP';
+
+const DASHES = ['-', '—', '–'];
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+function parseNum(v) {
+  if (v == null) return null;
+  const t = String(v).trim();
+  if (!t || DASHES.indexOf(t) !== -1) return null;
+  const low = t.toLowerCase();
+  if (low === 'na' || low === 'n.a.' || low === 'nil') return null;
+  const neg = t.startsWith('(') && t.endsWith(')');
+  let cleaned = '';
+  for (const ch of t) {
+    if ((ch >= '0' && ch <= '9') || ch === '.') cleaned += ch;
+  }
+  if (!cleaned) return null;
+  const n = Number(cleaned);
+  if (Number.isNaN(n)) return null;
+  return neg ? -n : n;
+}
+
+function shortPeriod(label) {
+  const ym = new RegExp('20\\d{2}').exec(label);
+  const year = ym ? ym[0] : '';
+  const yy = year ? year.slice(2) : '';
+  const lower = label.toLowerCase();
+  const isStub = lower.indexOf('period ended') !== -1 && !new RegExp('31\\s*march').test(lower);
+  if (isStub) {
+    const mon = MONTHS.find((m) => lower.indexOf(m) !== -1);
+    const monLabel = mon ? mon.charAt(0).toUpperCase() + mon.slice(1) : 'P.E.';
+    return year ? monLabel + " '" + yy + '*' : monLabel + '*';
+  }
+  return year ? 'FY' + yy : label;
+}
+
+const periods = fin.statements.pnl.periods.length ? fin.statements.pnl.periods : fin.periods;
+const shortPeriods = periods.map(shortPeriod);
+const hasStub = periods.some((p) => shortPeriod(p).indexOf('*') !== -1);
+
+// Find the last row whose label contains any of the keywords.
+function findRow(st, keywords) {
+  const rows = st && st.rows ? st.rows.slice().reverse() : [];
+  return rows.find((r) => {
+    const lab = (r.label || '').toLowerCase();
+    return keywords.some((k) => lab.indexOf(k) !== -1);
+  });
+}
+
+// Detect unit-to-crore multiplier (always display in Indian crore/lakh, never millions).
+const rawUnit = (fin.currency_unit || '').toLowerCase();
+const UNIT_DIVISOR = rawUnit.includes('crore') || rawUnit.includes('cr') ? 1
+  : rawUnit.includes('million') ? 0.1
+  : rawUnit.includes('lakh') ? 0.01
+  : 1 / 1e7;  // raw rupees
+
+// Format a crore value: >=1cr shows "X.X cr", smaller shows "XX L"
+function cr(n) {
+  if (n == null) return '—';
+  if (Math.abs(n) >= 1) return String.fromCharCode(0x20b9) + n.toLocaleString('en-IN', { maximumFractionDigits: 1 }) + ' cr';
+  return String.fromCharCode(0x20b9) + (n * 100).toLocaleString('en-IN', { maximumFractionDigits: 1 }) + ' L';
+}
+
+// Chronological (oldest to newest) series in crore.
+function seriesCr(row) {
+  if (!row) return [];
+  const out = row.values.map((v, i) => {
+    const num = parseNum(v);
+    return { label: shortPeriods[i] || periods[i] || '', value: num == null ? null : num * UNIT_DIVISOR };
+  });
+  return out.reverse();
+}
+
+const pnl = fin.statements.pnl;
+const revenueRow = findRow(pnl, ['revenue from operations']);
+const patRow = findRow(pnl, ['profit after tax', 'profit for the', 'net profit', 'restated profit']);
+const cfoRow = findRow(fin.statements.cash_flow, ['cash generated from operating', 'cash flow from operating', 'net cash from operating']);
+
+const revenueSeries = seriesCr(revenueRow);
+const patSeries = seriesCr(patRow);
+const cfoSeries = seriesCr(cfoRow);
+
+function latest(row) {
+  return row ? parseNum(row.values[0]) : null;
+}
+
+const statementCount = ['pnl', 'balance_sheet', 'cash_flow'].filter(
+  (k) => fin.statements[k] && fin.statements[k].rows && fin.statements[k].rows.length,
+).length;
+
+const kpis = [
+  { label: 'Revenue (' + (shortPeriods[0] || '') + ')', value: cr(latest(revenueRow) == null ? null : latest(revenueRow) * UNIT_DIVISOR) },
+  { label: 'Net profit (' + (shortPeriods[0] || '') + ')', value: cr(latest(patRow) == null ? null : latest(patRow) * UNIT_DIVISOR) },
+  { label: 'Periods reported', value: String(periods.length) },
+  { label: 'Statements', value: statementCount + ' / 3' },
+].filter((k) => k.value !== '—' || k.label === 'Statements');
+
+function pageRange(st) {
+  const pages = ((st && st.rows) || []).map((r) => r.source_page).filter((p) => typeof p === 'number');
+  if (!pages.length) return '';
+  const lo = Math.min.apply(null, pages);
+  const hi = Math.max.apply(null, pages);
+  return lo === hi ? docType + ' p.' + lo : docType + ' pp.' + lo + '-' + hi;
+}
+
+const statementsToShow = [
+  { key: 'Statement of Profit & Loss', st: fin.statements.pnl },
+  { key: 'Balance Sheet', st: fin.statements.balance_sheet },
+  { key: 'Cash Flow Statement', st: fin.statements.cash_flow },
+  { key: 'Accounting Ratios', st: fin.statements.ratios },
+].filter((s) => s.st && s.st.rows && s.st.rows.length > 0);
+---
+
+<Base title={`${company} — Financial Statements | IPO Watch`} description={`Full restated financial statements (P&L, balance sheet, cash flow) for ${company}, extracted from its ${docType}.`}>
+  <article class="fin page-tight">
+    <nav class="fin-crumbs">
+      <a href="/">IPO Watch</a><span aria-hidden="true">/</span>
+      <a href={`/ipos/${publicSlug}/`}>{company}</a><span aria-hidden="true">/</span>
+      <a href={`/ipos/${publicSlug}/report/`}>Research report</a><span aria-hidden="true">/</span>
+      <span>Financials</span>
+    </nav>
+
+    <header class="fin-head">
+      <div class="label-acc">Restated financial statements</div>
+      <h1 class="fin-title serif">{company}: the financials, in full</h1>
+      <p class="fin-dek serif">Every line of the restated Profit &amp; Loss, Balance Sheet and Cash Flow statement, across {periods.length} reported periods — extracted from the {docType}{fin.currency_unit ? `, in ${fin.currency_unit}` : ''}.</p>
+      <p class="fin-back"><a href={`/ipos/${publicSlug}/report/`}>← Back to the research report</a></p>
+    </header>
+
+    <section class="kpis">
+      {kpis.map((k) => (
+        <div class="kpi">
+          <div class="label">{k.label}</div>
+          <div class="kpi-val serif num">{k.value}</div>
+        </div>
+      ))}
+    </section>
+
+    {(revenueSeries.length > 1 || patSeries.length > 1) && (
+      <section class="charts">
+        {revenueSeries.length > 1 && (
+          <div class="chart-card">
+            <div class="label">Revenue from operations</div>
+            <ColumnChart data={revenueSeries} unit="₹ crore" />
+          </div>
+        )}
+        {patSeries.length > 1 && (
+          <div class="chart-card">
+            <div class="label">Net profit</div>
+            <ColumnChart data={patSeries} unit="₹ crore" />
+          </div>
+        )}
+        {cfoSeries.length > 1 && (
+          <div class="chart-card">
+            <div class="label">Net cash from operations</div>
+            <ColumnChart data={cfoSeries} unit="₹ crore" />
+          </div>
+        )}
+      </section>
+    )}
+
+    {statementsToShow.map(({ key, st }) => (
+      <section class="stmt">
+        <div class="stmt-head">
+          <h2 class="section-title serif">{key}</h2>
+          {pageRange(st) && <span class="stmt-src label">{pageRange(st)}</span>}
+        </div>
+        <div class="stmt-scroll">
+          <table class="stmt-table num">
+            <thead>
+              <tr>
+                <th class="lbl">Line item</th>
+                {(st.periods.length ? st.periods : periods).map((p) => <th>{shortPeriod(p)}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {st.rows.map((r) => (
+                <tr class={r.level > 0 ? 'sub' : 'top'}>
+                  <td class="lbl" style={`padding-left:${r.level * 16}px`}>{r.label}</td>
+                  {r.values.map((v) => <td>{v == null || v === '' ? '—' : v}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))}
+
+    <footer class="fin-foot">
+      {hasStub && <p>* Interim stub period (not a full financial year); not directly comparable.</p>}
+      <p>Figures are reproduced verbatim from the {docType}{fin.currency_unit ? ` (${fin.currency_unit})` : ''}; charts convert to ₹ crore. Every row is validated against the cited filing page. Verify against the original filing before relying on these numbers.</p>
+    </footer>
+  </article>
+</Base>
+
+<style>
+  .fin { padding-top: 48px; padding-bottom: 96px; }
+
+  .fin-crumbs {
+    font-family: var(--font-sans);
+    font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--color-mute); margin-bottom: 28px;
+  }
+  .fin-crumbs a:hover { color: var(--color-ink); }
+  .fin-crumbs span { margin: 0 8px; }
+
+  .fin-head { border-bottom: 1px solid var(--color-rule); padding-bottom: 26px; margin-bottom: 32px; }
+  .fin-title { font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -0.02em; font-weight: 500; margin: 14px 0 16px; max-width: 22ch; }
+  .fin-dek { font-size: 19px; line-height: 1.5; font-style: italic; font-weight: 300; color: var(--color-ink-soft); margin: 0 0 16px; max-width: 60ch; }
+  .fin-back a { font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--color-accent-deep); }
+  .fin-back a:hover { text-decoration: underline; }
+
+  /* KPI strip */
+  .kpis {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px; background: var(--color-rule);
+    border: 1px solid var(--color-rule); margin-bottom: 40px;
+  }
+  .kpi { background: var(--color-paper); padding: 16px 18px; }
+  .kpi-val { font-size: 26px; line-height: 1.1; margin-top: 6px; color: var(--color-ink); }
+
+  /* charts */
+  .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px 36px; margin-bottom: 44px; }
+  .chart-card .label { margin-bottom: 4px; }
+
+  /* statement tables */
+  .stmt { margin: 0 0 48px; }
+  .stmt-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+  .section-title { font-size: 26px; font-weight: 500; }
+  .stmt-src { color: var(--color-mute); white-space: nowrap; }
+  .stmt-scroll { overflow-x: auto; }
+
+  .stmt-table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); font-size: 13.5px; line-height: 1.45; min-width: 560px; }
+  .stmt-table thead th {
+    text-align: right; font-weight: 600; padding: 9px 12px 9px 0;
+    border-top: 2px solid var(--color-rule-strong); border-bottom: 1px solid var(--color-rule-strong);
+    color: var(--color-ink); white-space: nowrap;
+  }
+  .stmt-table thead th.lbl { text-align: left; }
+  .stmt-table tbody td { text-align: right; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--color-rule); white-space: nowrap; }
+  .stmt-table tbody td.lbl { text-align: left; white-space: normal; color: var(--color-ink); padding-right: 24px; }
+  .stmt-table tbody tr.sub td.lbl { color: var(--color-mute); }
+  .stmt-table tbody tr.top td.lbl { font-weight: 600; }
+  .stmt-table tbody tr:hover td { background: var(--color-paper-soft); }
+
+  .fin-foot { margin-top: 8px; border-top: 1px solid var(--color-rule); padding-top: 16px; font-family: var(--font-sans); font-size: 12px; line-height: 1.55; color: var(--color-mute); }
+  .fin-foot p { margin: 0 0 6px; max-width: 70ch; }
+</style>

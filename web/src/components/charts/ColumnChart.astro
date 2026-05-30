@@ -1,0 +1,128 @@
+---
+/**
+ * Server-rendered column chart in the IPO Watch newspaper idiom.
+ * No client JS. Colours from global.css tokens. Supports negative
+ * values (zero baseline) for series like net cash flow.
+ *
+ * The viewBox is kept close to the real render width so type and bars
+ * do not shrink when the SVG scales down inside a column.
+ *
+ * <ColumnChart data={[{label:'FY22', value:70.5}, ...]} unit="₹ cr" />
+ */
+interface Datum {
+  label: string;
+  value: number | null;
+}
+interface Props {
+  data: Datum[];
+  unit?: string;
+  caption?: string;
+  height?: number;
+  accent?: string; // CSS colour (token), e.g. 'var(--color-accent)'
+  format?: 'compact' | 'plain';
+}
+
+const {
+  data = [],
+  unit,
+  caption,
+  height = 300,
+  accent = 'var(--color-accent)',
+  format = 'compact',
+} = Astro.props as Props;
+
+const W = 460;
+const H = height;
+const PAD_L = 12;
+const PAD_R = 12;
+const PAD_T = 40; // room for value labels
+const PAD_B = 46; // room for x labels
+
+const points = data.filter((d) => typeof d.value === 'number') as { label: string; value: number }[];
+const values = points.map((d) => d.value);
+const rawMax = values.length ? Math.max(...values, 0) : 0;
+const rawMin = values.length ? Math.min(...values, 0) : 0;
+const span = rawMax - rawMin || 1;
+const headroom = span * 0.16;
+const yMax = rawMax + headroom;
+const yMin = rawMin < 0 ? rawMin - headroom : 0;
+const ySpan = yMax - yMin || 1;
+
+const plotW = W - PAD_L - PAD_R;
+const plotH = H - PAD_T - PAD_B;
+const yFor = (v: number) => PAD_T + (1 - (v - yMin) / ySpan) * plotH;
+const zeroY = yFor(0);
+
+const n = Math.max(points.length, 1);
+const slot = plotW / n;
+const barW = Math.min(96, Math.max(30, slot * 0.62));
+
+const fmt = (v: number) => {
+  if (format === 'plain') return v.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+  const abs = Math.abs(v);
+  if (abs >= 1000) return (v / 1000).toLocaleString('en-IN', { maximumFractionDigits: 1 }) + 'k';
+  return v.toLocaleString('en-IN', { maximumFractionDigits: abs < 10 ? 2 : 1 });
+};
+---
+
+<figure class="cc">
+  <svg viewBox={`0 0 ${W} ${H}`} class="cc-svg" role="img" aria-label={caption ?? 'Column chart'}>
+    <!-- zero baseline -->
+    <line x1={PAD_L} x2={W - PAD_R} y1={zeroY} y2={zeroY} stroke="var(--color-ink)" stroke-width="1" />
+    {points.map((d, i) => {
+      const cx = PAD_L + slot * (i + 0.5);
+      const x = cx - barW / 2;
+      const top = yFor(Math.max(d.value, 0));
+      const bottom = yFor(Math.min(d.value, 0));
+      const h = Math.max(2, bottom - top);
+      const negative = d.value < 0;
+      const labelY = negative ? bottom + 20 : top - 11;
+      return (
+        <g>
+          <rect
+            x={x}
+            y={top}
+            width={barW}
+            height={h}
+            fill={negative ? 'var(--color-ink-4)' : accent}
+          />
+          <text x={cx} y={labelY} text-anchor="middle" class="cc-val">{fmt(d.value)}</text>
+          <text x={cx} y={H - 14} text-anchor="middle" class="cc-lab">{d.label}</text>
+        </g>
+      );
+    })}
+  </svg>
+  {(unit || caption) && (
+    <figcaption class="cc-cap">
+      {unit && <span class="cc-unit">{unit}</span>}
+      {caption && <span>{caption}</span>}
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .cc { margin: 0.6em 0 0; }
+  .cc-svg { width: 100%; height: auto; display: block; }
+  .cc-val {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    font-weight: 600;
+    fill: var(--color-ink);
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  .cc-lab {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    fill: var(--color-mute);
+    letter-spacing: 0.01em;
+  }
+  .cc-cap {
+    margin-top: 8px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--color-mute);
+    display: flex;
+    gap: 10px;
+  }
+  .cc-unit { color: var(--color-accent-deep); font-weight: 600; }
+</style>

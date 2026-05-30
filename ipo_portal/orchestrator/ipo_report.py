@@ -455,7 +455,44 @@ def run_visual(
 
 
 _PARA_SPLIT = re.compile(r"\n\s*\n")
-_FOOTNOTE_TAG = re.compile(r"\[\^(drhp-p\d+)\]")
+_FOOTNOTE_TAG = re.compile(r"\[\^(drhp-p[\d\-]+)\]")  # matches single and grouped refs
+_FOOTNOTE_CLUSTER = re.compile(r"(\[\^drhp-p\d+\](?:\s*\[\^drhp-p\d+\])+)")  # 2+ consecutive refs
+
+
+def _collapse_footnote_clusters(text: str, definitions: dict[str, str]) -> str:
+    """Replace runs of 2+ consecutive [^drhp-pNN] refs with a single grouped ref.
+
+    A sentence like "...income[^p58][^p59][^p60][^p61]" becomes "...income[^p58-61]"
+    using a new footnote key that spans the page range. This keeps sourcing
+    traceable (the grouped def lists all pages) while cutting the visual clutter.
+    """
+    def _collapse(m: re.Match) -> str:
+        raw = m.group(0)
+        pages = [int(p) for p in re.findall(r"drhp-p(\d+)", raw)]
+        pages.sort()
+        if len(pages) < 2:
+            return raw
+        lo, hi = pages[0], pages[-1]
+        if lo == hi:
+            return f"[^drhp-p{lo}]"
+        key = f"drhp-p{lo}-{hi}"
+        # Build a grouped def spanning all pages (reuse the first page's URL as anchor)
+        if key not in definitions:
+            first_def = definitions.get(f"drhp-p{lo}", "")
+            url = re.search(r'\(([^)]+)\)', first_def)
+            url_str = url.group(1) if url else ""
+            page_range = f"pp.{lo}–{hi}" if hi > lo + 1 else f"pp.{lo}–{hi}"
+            definitions[key] = f"[DRHP, {page_range}]({url_str})" if url_str else f"DRHP, {page_range}"
+        return f"[^{key}]"
+
+    # Also strip bare floating clusters (a line that is only footnote refs + spaces)
+    lines = []
+    for line in text.split("\n"):
+        stripped = line.strip()
+        if stripped and re.fullmatch(r"(\[\^drhp-p\d+\]\s*)+", stripped):
+            continue  # drop orphaned citation-only lines
+        lines.append(_FOOTNOTE_CLUSTER.sub(_collapse, line))
+    return "\n".join(lines)
 
 
 def _plainify_citations(text: str) -> str:
@@ -568,47 +605,33 @@ def run_render(
         block = f'<aside class="pull-quote">{quote}</aside>'
         body, _ = _insert_after_paragraph(body, pq.get("after_paragraph"), block)
 
-    # --- inject sidebars as inline asides after the intro ---
-    sidebar_blocks: list[str] = []
-    for sb in visual.get("sidebars") or []:
-        sb_body = _plainify_citations(sb.get("body_markdown") or "")
-        if not sb_body:
-            continue
-        # Raw-HTML block content is not markdown-processed, so convert inline
-        # bold to <strong> and single newlines to <br> ourselves.
-        paras = ""
-        for chunk in _PARA_SPLIT.split(sb_body):
-            chunk = chunk.strip()
-            if not chunk:
-                continue
-            chunk = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", chunk)
-            chunk = "<br>".join(line.strip() for line in chunk.split("\n") if line.strip())
-            paras += f"<p>{chunk}</p>"
-        title = sb.get("title") or "At a glance"
-        sidebar_blocks.append(
-            '<aside class="article-sidebar">'
-            '<div class="article-sidebar-label">At a glance</div>'
-            f'<div class="article-sidebar-title">{title}</div>'
-            f"{paras}</aside>"
-        )
-    if sidebar_blocks:
-        first_para = _PARA_SPLIT.split(body, 1)
-        if len(first_para) == 2:
-            body = first_para[0] + "\n\n" + "\n\n".join(sidebar_blocks) + "\n\n" + first_para[1]
-        else:
-            body = "\n\n".join(sidebar_blocks) + "\n\n" + body
+    # NOTE: LLM "sidebars" (e.g. an offer-at-a-glance) are intentionally NOT
+    # injected into the article body — they tended to restate the intro prose.
+    # Structured key facts (offer, financial KPIs) are rendered as data-driven
+    # cards in the report template's snapshot band instead. Pull-quotes still
+    # break up the text above.
 
-    # --- resolve footnote citations: one definition per cited page ---
-    cited_pages = sorted(set(_FOOTNOTE_TAG.findall(body)), key=lambda s: int(s.split("p")[-1]))
+    # --- collapse citation clusters (3 24 25 26 → ²⁴⁻²⁶) before resolving ---
     url_by_id = {d["source_id"]: d["url"] for d in (corpus_doc.get("corpus") or [])}
     fallback_url = next(iter(url_by_id.values()), None)
     doc_type = brief.get("document_type", "DRHP")
-    footnote_defs = []
-    for sid in cited_pages:
+    # Build per-page def dict first so _collapse_footnote_clusters can add grouped ones.
+    per_page_defs: dict[str, str] = {}
+    for d in (corpus_doc.get("corpus") or []):
+        sid = d["source_id"]
         page = sid.split("p")[-1]
-        url = url_by_id.get(sid) or fallback_url
+        url = d.get("url") or fallback_url
         label = f"{doc_type}, page {page}"
-        footnote_defs.append(f"[^{sid}]: [{label}]({url})" if url else f"[^{sid}]: {label}")
+        per_page_defs[sid] = f"[{label}]({url})" if url else label
+    body = _collapse_footnote_clusters(body, per_page_defs)
+
+    # --- resolve footnote citations: one definition per cited ref ---
+    cited_ids = sorted(set(_FOOTNOTE_TAG.findall(body)), key=lambda s: (len(s), s))
+    footnote_defs = []
+    for sid in cited_ids:
+        defn = per_page_defs.get(sid)
+        if defn:
+            footnote_defs.append(f"[^{sid}]: {defn}")
 
     # --- frontmatter ---
     def _first(cands: Any, fallback: str) -> str:
@@ -657,7 +680,7 @@ def run_render(
 
     notes = [
         f"Rendered {word_count} words (~{reading_time} min), status={resolved_status}, "
-        f"{len(cited_pages)} cited pages, {len(visual.get('tables') or [])} table(s)."
+        f"{len(cited_ids)} cited refs, {len(visual.get('tables') or [])} table(s)."
     ]
     return StageResult(
         stage="render",
@@ -752,6 +775,11 @@ def pending_report_slugs(
     A report is stale when its source ``prospectus_facts.json`` was written
     more recently than the rendered ``.md`` — i.e. a fresh extraction needs a
     fresh report. This is the idempotent work-list CI iterates over.
+
+    DRHP reports are **go-forward only**: already-listed issues are skipped, so
+    we never auto-publish a stale DRHP analysis for an old, listed IPO (where
+    post-listing data is what matters). Brand-new filings (no exchange data
+    yet) have no core.json and are included.
     """
     from .ipo_report_adapter import DEFAULT_ISSUES_ROOT, _load
 
@@ -764,10 +792,24 @@ def pending_report_slugs(
         if not (doc.get("quality", {}).get("verified_fact_count") or 0):
             continue
         slug = facts_file.parent.name
+        if _is_already_listed(facts_file.parent):
+            continue  # old DRHP for a listed IPO — not a go-forward target
         out = render_path(slug, render_root)
         if not out.exists() or facts_file.stat().st_mtime > out.stat().st_mtime:
             pending.append(slug)
     return pending
+
+
+def _is_already_listed(issue_dir: Path) -> bool:
+    """True if core.json marks this issue as already Listed (an old filing)."""
+    core_file = issue_dir / "core.json"
+    if not core_file.exists():
+        return False  # brand-new filing, no exchange data yet — include it
+    try:
+        core = json.loads(core_file.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return False
+    return (core.get("identity") or {}).get("status") == "Listed"
 
 
 def generate_pending_reports(

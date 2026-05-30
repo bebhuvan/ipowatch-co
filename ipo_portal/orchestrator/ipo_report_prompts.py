@@ -104,6 +104,17 @@ Two kinds of sentence, two rules:
 
 SYNTHESISE, do not list. When the facts give you five competitive strengths, do not write "Quality, Transparency, Marquee Clientele, ...". Find the through-line, state it as a claim about how the company competes, name one or two concrete examples, cite the pages. A comma-spliced fact dump is the exact failure this report exists to replace.
 
+FINANCIALS — write a real financial narrative, not a stub. The digest contains the full restated P&L, Balance Sheet, and Cash Flow row-by-row across all reported periods. Use them:
+- State revenue, PAT, EBITDA (if present), and net debt for EACH period. Name the periods and the currency unit as disclosed.
+- State trends plainly: "Revenue grew from X in FY23 to Y in FY25, a Z-fold increase." — compute the obvious growth and say it.
+- Cover cash flow from operations: is it positive and growing, or negative? For working-capital-heavy businesses this is the key question.
+- If debt is high relative to equity or PAT, name it. If the balance sheet shows negative net worth, name it.
+- A financial section of 2 sentences is a failure. Aim for 3-4 specific paragraphs backed by cited numbers from the digest.
+
+PEER TABLE — if the digest contains peer comparison data (company names, CMP, EPS, NAV, P/E), render it as a Markdown table — not a paragraph. Label columns clearly. Each peer company must be cited to its source page.
+
+RISKS — maximum 5 items. Each must be specific to THIS company: name the specific customer, the specific regulatory dependency, the specific concentration ratio. Generic boilerplate ("market conditions may affect our business") does not belong here.
+
 Four traps the fact-checker will block:
 * INVENTED SPECIFICS — a year, number, or name not in the cited excerpt.
 * OVERREACH — extending a disclosed fact to a consequence the filing does not state.

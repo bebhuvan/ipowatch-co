@@ -735,6 +735,130 @@ export const listExtractedProspectusSlugs = (): string[] => {
     });
 };
 
+// --- Full restated financial statements (financials.json bundle) ---
+
+export type FinancialRow = {
+  label: string;
+  level: number;
+  values: (string | null)[];
+  raw_excerpt: string;
+  source_page: number | null;
+};
+export type FinancialStatement = {
+  title: string;
+  periods: string[];
+  unit: string | null;
+  rows: FinancialRow[];
+  found: boolean;
+  validation?: { checked: number; repaired: number; dropped: number };
+};
+export type Financials = {
+  slug: string;
+  document_type: string;
+  document_url: string | null;
+  currency_unit: string | null;
+  periods: string[];
+  statements: {
+    pnl: FinancialStatement;
+    balance_sheet: FinancialStatement;
+    cash_flow: FinancialStatement;
+    ratios: FinancialStatement;
+  };
+  quality: { state: string; failures: unknown[]; warnings: unknown[] };
+  balance_sheet_tie_out?: unknown;
+};
+
+export const getFinancialsBySlug = (slug: string): Financials | null =>
+  readJsonIf<Financials>(join(v2Root, 'issues', slug, 'financials.json'));
+
+export const listFinancialsSlugs = (): string[] => {
+  const dir = join(v2Root, 'issues');
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .filter((slug) => existsSync(join(dir, slug, 'financials.json')));
+};
+
+// --- Structured "offer at a glance" card (from core.json + prospectus_facts) ---
+
+export type OfferRow = { label: string; value: string };
+
+const titleCaseFirm = (s: string): string =>
+  s.toLowerCase().replace(/\b([a-z])/g, (m) => m.toUpperCase());
+
+const fmtDay = (iso: string | null | undefined): string | null => {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+};
+
+const leafVal = (x: any): any =>
+  x && typeof x === 'object' && !Array.isArray(x) && 'value' in x ? x.value : x;
+const firstLeaf = (a: any): any =>
+  Array.isArray(a) ? a.map(leafVal).filter(Boolean)[0] : null;
+const trunc = (s: any, n: number): string => {
+  const t = String(s);
+  return t.length > n ? t.slice(0, n - 1).trimEnd() + '…' : t;
+};
+
+export const getOfferCard = (slug: string): OfferRow[] => {
+  const core = readJsonIf<any>(join(v2Root, 'issues', slug, 'core.json'));
+  const pf = readJsonIf<any>(join(v2Root, 'issues', slug, 'prospectus_facts.json'));
+  if (!core && !pf) return [];
+  const id = (core && core.identity) || {};
+  const pr = (core && core.pricing) || {};
+  const tl = (core && core.timeline) || {};
+  const off = (pf && pf.facts && pf.facts.offer && pf.facts.offer.offer) || {};
+  const docType = (pf && pf.document_type) || null;
+  const listed = id.status === 'Listed';
+  const rows: OfferRow[] = [];
+
+  // Type (+ filing stage for live, pre-listing filings)
+  let typeLabel = id.board_type === 'SME Board' ? 'SME IPO' : (id.issue_type || 'IPO');
+  if (docType && !listed) typeLabel += ' · ' + docType;
+  if (id.symbol) typeLabel += ' · ' + id.symbol;
+  rows.push({ label: 'Type', value: typeLabel });
+
+  // Issue size / price — from exchange data (present once listed)
+  if (typeof pr.issue_size_paise === 'number') {
+    rows.push({ label: 'Issue size', value: '₹' + (pr.issue_size_paise / 1e9).toLocaleString('en-IN', { maximumFractionDigits: 2 }) + ' cr' });
+  }
+  if (typeof pr.issue_price_paise === 'number') {
+    rows.push({ label: 'Issue price', value: '₹' + (pr.issue_price_paise / 100).toLocaleString('en-IN', { maximumFractionDigits: 2 }) + ' / share' });
+  } else if (!listed && docType) {
+    rows.push({ label: 'Price band', value: 'To be announced' });
+  }
+
+  // Offer structure — from the filing (fresh / OFS)
+  const fresh = leafVal(off.fresh_issue);
+  const ofs = leafVal(off.offer_for_sale);
+  if (fresh || ofs) {
+    const parts: string[] = [];
+    if (fresh) parts.push('Fresh issue');
+    if (ofs) parts.push('OFS');
+    rows.push({ label: 'Offer', value: parts.join(' + ') });
+  }
+
+  const lead = firstLeaf(off.lead_managers);
+  if (lead) rows.push({ label: 'Lead manager', value: titleCaseFirm(String(lead)) });
+  const reg = leafVal(off.registrar);
+  if (reg) rows.push({ label: 'Registrar', value: titleCaseFirm(String(reg)) });
+
+  const objects = Array.isArray(off.objects_of_issue) ? off.objects_of_issue.map(leafVal).filter(Boolean) : [];
+  if (objects.length === 1) rows.push({ label: 'Use of proceeds', value: trunc(objects[0], 56) });
+  else if (objects.length > 1) rows.push({ label: 'Use of proceeds', value: objects.length + ' stated objects' });
+
+  const open = fmtDay(tl.open_date);
+  const close = fmtDay(tl.close_date);
+  if (open && close) rows.push({ label: 'IPO dates', value: open + ' – ' + close });
+  const lst = fmtDay(tl.listing_date);
+  if (lst) rows.push({ label: 'Listed', value: lst });
+
+  return rows;
+};
+
 export type YearStats = {
   year: number;
   total: number;

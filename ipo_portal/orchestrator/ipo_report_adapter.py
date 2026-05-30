@@ -135,6 +135,17 @@ def _humanise(field_name: str) -> str:
     return field_name.replace("_", " ").strip().capitalize()
 
 
+def _short_period(label: str) -> str:
+    """'For the year ended March 31, 2025' → 'FY25'."""
+    import re as _re
+    ym = _re.search(r"20(\d{2})", label)
+    yy = ym.group(1) if ym else ""
+    low = label.lower()
+    if "period ended" in low and "march" not in low:
+        return f"P.E.{yy}" if yy else "Stub"
+    return f"FY{yy}" if yy else label[:8]
+
+
 def _rupees_from_paise(paise: Any) -> str | None:
     try:
         rupees = int(paise) / 100.0
@@ -212,6 +223,11 @@ def build_report_inputs(
 
     facts = facts_doc["facts"]
 
+    # --- load full restated financials from financials.json (if available) ---
+    fin_doc = _load(issue_dir / "financials.json")
+
+    facts = facts_doc["facts"]
+
     # --- facts digest (by section) + per-page excerpt map ---------------
     facts_digest: dict[str, list[dict[str, Any]]] = {}
     page_excerpts: dict[int, list[str]] = {}
@@ -243,6 +259,48 @@ def build_report_inputs(
                         page_excerpts.setdefault(page, []).append(excerpt)
         if entries:
             facts_digest[section] = entries
+
+    # --- inject full restated statements into the financials digest ------
+    # The 7-section extractor only captures scattered scalars; financials.json
+    # has the complete multi-period P&L / BS / CF row-by-row. We add a compact
+    # summary (top-level rows + key ratios) so the draft can write a real
+    # financial narrative with multi-period comparisons and cite DRHP pages.
+    if fin_doc and fin_doc.get("statements"):
+        fin_entries = facts_digest.setdefault("financials", [])
+        unit = fin_doc.get("currency_unit") or ""
+        periods = fin_doc.get("periods") or []
+        for stmt_key, stmt in fin_doc["statements"].items():
+            if not isinstance(stmt, dict) or not stmt.get("rows"):
+                continue
+            stmt_title = stmt.get("title", stmt_key)
+            for row in stmt["rows"]:
+                if row.get("level", 0) != 0:
+                    continue  # only top-level rows in the digest — sub-lines clutter it
+                values = row.get("values") or []
+                page = row.get("source_page")
+                # Build a compact value string: "FY25: X, FY24: Y, FY23: Z"
+                val_parts = []
+                for i, v in enumerate(values[:4]):  # max 4 periods
+                    if v and v not in ("-", "—"):
+                        label = _short_period(periods[i]) if i < len(periods) else f"P{i+1}"
+                        val_parts.append(f"{label}: {v}")
+                if not val_parts:
+                    continue
+                fin_entries.append({
+                    "label": f"{stmt_title} — {row['label']}",
+                    "value": "; ".join(val_parts) + (f" ({unit})" if unit else ""),
+                    "excerpt": row.get("raw_excerpt") or "",
+                    "page": page,
+                    "section_heading": stmt_title,
+                    "confidence": "high",
+                    "source": "financials_extractor",
+                })
+                if isinstance(page, int) and row.get("raw_excerpt"):
+                    bucket = seen_excerpt_per_page.setdefault(page, set())
+                    excerpt = row["raw_excerpt"].strip()
+                    if excerpt not in bucket:
+                        bucket.add(excerpt)
+                        page_excerpts.setdefault(page, []).append(excerpt)
 
     # --- corpus: one SourceDoc per cited DRHP page ----------------------
     now = utc_now_iso()
@@ -306,13 +364,13 @@ def build_report_inputs(
         offer_summary=offer_summary,
         listing_context=listing_context,
         must_answer=[
-            "What does the company actually do, and how does it make money?",
-            "What is the offer — fresh issue versus offer for sale, and what are the stated objects (use of proceeds)?",
-            "What do the disclosed financials show across the reported periods (revenue, profitability, debt)?",
-            "What industry is it in, and what are the demand drivers and headwinds the filing names?",
-            "How is it valued, and against which listed peers?",
-            "Who controls the company (promoters, shareholding), and what does the governance and litigation disclosure show?",
-            "What are the most material risks the filing itself flags?",
+            "What does the company actually do and how does it make money? Include specific products/services, how contracts are won, and 1-2 concrete customer or revenue examples.",
+            "What is the offer structure — fresh issue vs OFS, use of proceeds (name the specific objects and amounts), lead manager and registrar.",
+            "Multi-period financial narrative: revenue trend, PAT trend, EBITDA if disclosed, debt level, and cash flow — with actual numbers across ALL reported periods (use the full restated statements provided in the digest). State the currency unit clearly.",
+            "What industry/market is it in? Size, growth rate, key demand drivers, named competition, and the specific headwinds the filing acknowledges.",
+            "Valuation: how is the price band justified? Build a PEER COMPARISON TABLE (named peers with CMP, EPS, NAV, P/E) if the filing discloses it — this is a table, not a paragraph.",
+            "Who controls the company — promoter names, pre-issue shareholding %, and any governance flags (related-party transactions, litigation, auditor qualifications, negative cash flows).",
+            "Top 3-5 MATERIAL risks only, each stated as a specific claim about this company (not generic IPO boilerplate). Stop at 5.",
         ],
         must_not_say=[
             "No investment recommendation, verdict, or 'subscribe / avoid' call.",
@@ -320,8 +378,10 @@ def build_report_inputs(
             "No number, date, or name that is not in the filing excerpts — every specific must carry a [^drhp-pNN] citation.",
             "Redacted or undisclosed values ([●], blanks) must be described as not disclosed, never estimated or filled in.",
             "No claim about subscription, allotment, or post-listing outcome unless the filing states it.",
+            "Do NOT fill the risks section with more than 5 risk items. Depth over breadth — one specific, well-explained risk beats five generic bullet points.",
+            "Financial statements are in the digest — use them. Do NOT write a financial section of only 2 sentences.",
         ],
-        length_target_words=1900,
+        length_target_words=2400,
         source_ids=source_ids,
         notes=(
             f"Extraction quality: {facts_doc.get('quality', {}).get('state')}, "

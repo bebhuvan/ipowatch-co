@@ -1,0 +1,372 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/ipo-report/outline.schema.json",
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.outline.schema",
+  "dataset_version": "v2026.05.30-0734",
+  "estimated_cost_usd": 0.004010860000000001,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-30T07:34:42+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-2 outline.",
+  "outline": {
+    "dek_candidates": [
+      "What the DRHP discloses about M K Sons Fine Jewels's business, offer, financials and risks — sourced to the filing, page by page.",
+      "A plain-English breakdown of M K Sons Fine Jewels's IPO filing, with every claim linked to the original document."
+    ],
+    "design_notes": [
+      "Lead with a clear one-paragraph intro that tells the reader who M K Sons is, what it does, and what the IPO offers.",
+      "Financials section must present all periods in a single table for easy comparison.",
+      "Peer comparison table is essential — it is the only valuation anchor the filing provides.",
+      "Risks section should be 3-5 specific items, each with a concrete explanation and citation.",
+      "Avoid language like 'robust', 'seamless', 'comprehensive' — use plain, direct English."
+    ],
+    "gaps": [
+      {
+        "blocking": false,
+        "reason": "The DRHP redacts the price and size in rupees; only share numbers are given.",
+        "topic": "Offer price and price band"
+      },
+      {
+        "blocking": false,
+        "reason": "Not mentioned in the provided excerpts.",
+        "topic": "Registrar for the issue"
+      },
+      {
+        "blocking": false,
+        "reason": "Not disclosed in the extracted facts.",
+        "topic": "Detailed segment revenue break-up (e.g., gold vs diamond)"
+      }
+    ],
+    "kicker_candidates": [
+      "IPO Watch Research Report",
+      "Pre-IPO Analysis",
+      "DRHP Deep Dive"
+    ],
+    "section_order": [
+      "intro",
+      "business",
+      "industry",
+      "offer",
+      "financials",
+      "valuation-and-peers",
+      "governance",
+      "risks"
+    ],
+    "sections": {
+      "business": {
+        "beats": [
+          {
+            "beat": "M K Sons sells jewellery to individuals for personal use — engagement rings, wedding sets, daily wear. Most customers walk into a showroom and buy finished pieces.",
+            "source_ids": [
+              "drhp-p50"
+            ]
+          },
+          {
+            "beat": "The product range spans gold, diamond, platinum and silver items. Gold is the dominant material, reflecting the broader Indian market where gold accounts for 80% of gems and jewellery sales.",
+            "source_ids": [
+              "drhp-p51",
+              "drhp-p129"
+            ]
+          },
+          {
+            "beat": "The company does not manufacture its own jewellery. It relies entirely on third-party manufacturers and karigars (artisans), none of whom work exclusively for M K Sons.",
+            "source_ids": [
+              "drhp-p39"
+            ]
+          },
+          {
+            "beat": "Revenue is heavily concentrated in Gujarat, with one showroom generating the majority of sales. This geographic concentration is a material risk acknowledged in the filing.",
+            "source_ids": [
+              "drhp-p28"
+            ]
+          }
+        ],
+        "heading": "What the company does",
+        "purpose": "Explain how M K Sons earns revenue: retail jewellery sales, product mix, customer profile, manufacturing reliance, and geographic concentration."
+      },
+      "financials": {
+        "beats": [
+          {
+            "beat": "Revenue from operations grew from ₹249.31 million in FY23 to ₹2,173.95 million in FY24 and ₹3,513.16 million in FY25. For the nine months ended December 31, 2025 (P.E.25), revenue was ₹3,608.45 million.",
+            "source_ids": [
+              "drhp-p65"
+            ]
+          },
+          {
+            "beat": "Profit after tax followed a similar trajectory: ₹13.39 million (FY23), ₹81.65 million (FY24), ₹232.62 million (FY25), and ₹291.65 million in P.E.25.",
+            "source_ids": [
+              "drhp-p65"
+            ]
+          },
+          {
+            "beat": "EBITDA (earnings before interest, tax, depreciation and amortisation) was ₹22.69 million (FY23), ₹128.71 million (FY24), ₹385.68 million (FY25), and ₹481.93 million in P.E.25.",
+            "source_ids": [
+              "drhp-p283"
+            ]
+          },
+          {
+            "beat": "Despite profit growth, cash flow from operations was negative in three of the four periods: ₹(49.47) million (FY23), ₹(235.57) million (FY24), ₹(95.31) million (FY25). It turned positive to ₹180.06 million in P.E.25.",
+            "source_ids": [
+              "drhp-p66"
+            ]
+          },
+          {
+            "beat": "Total assets rose from ₹507.12 million (FY23) to ₹2,804.21 million (P.E.25). Borrowings stood at ₹721.06 million as of December 31, 2025.",
+            "source_ids": [
+              "drhp-p64",
+              "drhp-p233"
+            ]
+          },
+          {
+            "beat": "Net worth increased from ₹141.51 million (FY23) to ₹1,447.23 million (P.E.25). Return on net worth (RoNW) was 9.48% in FY23, peaked at 36.56% in FY24, and was 20.16% in P.E.25.",
+            "source_ids": [
+              "drhp-p283"
+            ]
+          },
+          {
+            "beat": "Basic earnings per share (face value ₹10) were ₹0.60 (FY23), ₹3.63 (FY24), ₹10.26 (FY25), and ₹6.83 (P.E.25). Net asset value per share was ₹6.29, ₹9.91, ₹51.27, and ₹33.90 respectively.",
+            "source_ids": [
+              "drhp-p283"
+            ]
+          }
+        ],
+        "heading": "Financial health over three years and a period",
+        "purpose": "Present the restated financial statements across all reported periods (P.E.25, FY25, FY24, FY23) with key metrics: revenue, PAT, EBITDA, cash flows, debt, and ratios."
+      },
+      "governance": {
+        "beats": [
+          {
+            "beat": "The company is promoted by three individuals: Ramchand Murlidhar Raimalani (Chairman & MD), his spouse Neelam Ramchand Raimalani (Whole Time Director), and their son Kush Ramchand Raimalani (Whole Time Director).",
+            "source_ids": [
+              "drhp-p218",
+              "drhp-p219",
+              "drhp-p222"
+            ]
+          },
+          {
+            "beat": "Promoters collectively hold 42,690,360 equity shares, representing 100% of the pre-offer issued equity. No other shareholders exist.",
+            "source_ids": [
+              "drhp-p218"
+            ]
+          },
+          {
+            "beat": "The company has not declared any dividends for any of the periods covered in the DRHP (FY23, FY24, FY25, and the current period up to December 31, 2025).",
+            "source_ids": [
+              "drhp-p226"
+            ]
+          },
+          {
+            "beat": "The company's statutory auditors included a qualification in their examination report in the past — a flag the filing itself raises as a risk.",
+            "source_ids": [
+              "drhp-p43"
+            ]
+          },
+          {
+            "beat": "Related-party transactions are significant: promoters have extended unsecured loans totalling ₹15.21 million, and the company bought a business from a related party.",
+            "source_ids": [
+              "drhp-p220",
+              "drhp-p36"
+            ]
+          }
+        ],
+        "heading": "Governance and ownership",
+        "purpose": "Identify promoters, pre-issue shareholding, auditor qualifications, related-party transactions, and dividend policy."
+      },
+      "industry": {
+        "beats": [
+          {
+            "beat": "India's retail gems and jewellery market was valued at ₹7,204 billion in CY25 and is expected to grow at a CAGR of 10.6% to 12.2%, driven by rising incomes, urbanisation, and wedding/festival demand.",
+            "source_ids": [
+              "drhp-p127"
+            ]
+          },
+          {
+            "beat": "The gold jewellery segment alone was worth ₹5,732 billion in CY30? Actually earlier: ₹5,732 billion in CY25? Check — but the filing projects ₹9,551 billion by CY30 at a CAGR of 8.9%.",
+            "source_ids": [
+              "drhp-p140"
+            ]
+          },
+          {
+            "beat": "The market is fragmented: unorganised players hold 63.3% share, organised retailers 36.7%. M K Sons competes with national chains like Tribhovandas Bhimji Zaveri, Senco Gold, and PNGS Reva Diamond.",
+            "source_ids": [
+              "drhp-p142",
+              "drhp-p105"
+            ]
+          },
+          {
+            "beat": "Key headwinds include gold price volatility, a 50% US tariff on Indian jewellery exports, and competition from lab-grown diamonds. The filing also notes risks from geopolitical disruptions affecting energy imports.",
+            "source_ids": [
+              "drhp-p127",
+              "drhp-p134",
+              "drhp-p116"
+            ]
+          }
+        ],
+        "heading": "Industry and market",
+        "purpose": "Profile the Indian gems and jewellery market: size, growth, competition, drivers and headwinds the filing identifies."
+      },
+      "intro": {
+        "beats": [
+          {
+            "beat": "M K Sons Fine Jewels is a Gujarat-based jewellery retailer that designs and sells gold, diamond, platinum and silver jewellery primarily to individual customers through its showrooms.",
+            "source_ids": [
+              "drhp-p50",
+              "drhp-p51"
+            ]
+          },
+          {
+            "beat": "The company is entirely owned by the Raimalani family — promoters hold 100% of the pre-offer equity — and has grown rapidly in recent years, with revenue more than doubling between FY23 and FY25.",
+            "source_ids": [
+              "drhp-p218",
+              "drhp-p65"
+            ]
+          },
+          {
+            "beat": "The IPO consists of a fresh issue of up to 13.6 million shares (amount redacted) and an offer for sale of up to 3.4 million shares (amount redacted) by one promoter selling shareholder.",
+            "source_ids": [
+              "drhp-p94"
+            ]
+          }
+        ],
+        "heading": null,
+        "purpose": "Orientation: M K Sons Fine Jewels is a jewellery retailer based in Gujarat, selling gold, diamond, platinum and silver products to individual customers. It is 100% promoter-owned and is raising fresh capital for expansion and debt repayment."
+      },
+      "offer": {
+        "beats": [
+          {
+            "beat": "The IPO has two components: a fresh issue of up to 13.6 million shares by the company and an offer for sale of up to 3.4 million shares by the promoter selling shareholder. The total rupee amounts are redacted in the DRHP.",
+            "source_ids": [
+              "drhp-p94"
+            ]
+          },
+          {
+            "beat": "Proceeds from the fresh issue will be used for: (i) setting up one new showroom in Maharashtra, (ii) expanding an existing showroom in Gujarat, (iii) repaying or pre-paying certain borrowings, and (iv) general corporate purposes.",
+            "source_ids": [
+              "drhp-p94"
+            ]
+          },
+          {
+            "beat": "The objects of the offer have not been appraised by any bank or financial institution — a risk the company itself discloses.",
+            "source_ids": [
+              "drhp-p33"
+            ]
+          },
+          {
+            "beat": "Aryaman Financial Services Limited is the sole lead manager to the issue. The registrar is not named in the excerpts provided.",
+            "source_ids": [
+              "drhp-p112"
+            ]
+          }
+        ],
+        "heading": "The offer and its objects",
+        "purpose": "Detail the IPO structure, use of proceeds, lead manager, and any known redactions."
+      },
+      "risks": {
+        "beats": [
+          {
+            "beat": "Geographic concentration: a single showroom in Gujarat generates the majority of revenue. Any disruption to that location would severely impact the business.",
+            "source_ids": [
+              "drhp-p28"
+            ]
+          },
+          {
+            "beat": "Negative operating cash flows: in FY23, FY24, and FY25, the company consumed cash from operations. It relied on borrowings and promoters' funds to sustain growth.",
+            "source_ids": [
+              "drhp-p48",
+              "drhp-p66"
+            ]
+          },
+          {
+            "beat": "Reliance on unaffiliated third-party manufacturers: all jewellery is produced by external karigars with no exclusive contracts. Loss of a key supplier could disrupt inventory.",
+            "source_ids": [
+              "drhp-p39"
+            ]
+          },
+          {
+            "beat": "High inventory levels: as of December 31, 2025, inventory stood at ₹2,405.92 million — over 85% of total assets — exposing the company to obsolescence and price fluctuation risks.",
+            "source_ids": [
+              "drhp-p31"
+            ]
+          },
+          {
+            "beat": "Past qualified audit opinion: the statutory auditors previously issued a qualified report, indicating potential issues with financial reporting controls.",
+            "source_ids": [
+              "drhp-p43"
+            ]
+          }
+        ],
+        "heading": "Material risks from the filing",
+        "purpose": "Present 3–5 specific risks that are unique or material to M K Sons, not generic IPO boilerplate."
+      },
+      "valuation-and-peers": {
+        "beats": [
+          {
+            "beat": "The DRHP provides a peer comparison with three listed jewellery companies. The table below reproduces the key metrics as disclosed.",
+            "source_ids": [
+              "drhp-p105"
+            ]
+          },
+          {
+            "beat": "Tribhovandas Bhimji Zaveri: CMP ₹146.18, EPS ₹10.84, NAV ₹98.49, P/E 13.49x, RoNW 10.86%.",
+            "source_ids": [
+              "drhp-p105"
+            ]
+          },
+          {
+            "beat": "Senco Gold: CMP ₹318.10, EPS ₹10.48, NAV ₹120.37, P/E 30.38x, RoNW 8.18%.",
+            "source_ids": [
+              "drhp-p105"
+            ]
+          },
+          {
+            "beat": "PNGS Reva Diamond Jewellery: CMP ₹396.90, EPS ₹35.21, NAV ₹206.19, P/E 11.27x, RoNW 59.36%.",
+            "source_ids": [
+              "drhp-p105"
+            ]
+          },
+          {
+            "beat": "Industry average P/E for the peer set is 22.07x, with a range of 11.27x to 32.86x. M K Sons's own FY25 EPS is ₹10.26 (basic and diluted) and its NAV per share is ₹51.27.",
+            "source_ids": [
+              "drhp-p105",
+              "drhp-p103",
+              "drhp-p104"
+            ]
+          }
+        ],
+        "heading": "Valuation and peer comparison",
+        "purpose": "Present the peer comparison table from the filing and the company's own earnings, NAV and RoNW metrics. Note that the offer price is redacted, so P/E multiple cannot be computed."
+      }
+    },
+    "title_candidates": [
+      "M K Sons Fine Jewels: A Closer Look at the DRHP",
+      "M K Sons Fine Jewels IPO: Inside the Filing",
+      "M K Sons Fine Jewels: What the DRHP Tells Us"
+    ],
+    "visual_targets": [
+      {
+        "kind": "table",
+        "purpose": "Restated profit and loss, balance sheet, and cash flow summary across P.E.25, FY25, FY24, FY23.",
+        "where": "financials"
+      },
+      {
+        "kind": "table",
+        "purpose": "Peer comparison table with CMP, EPS, NAV, P/E, RoNW for Tribhovandas Bhimji Zaveri, Senco Gold, PNGS Reva Diamond.",
+        "where": "valuation-and-peers"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "m-k-sons-fine-jewels",
+  "sources": [],
+  "time_zone": "Asia/Kolkata"
+}

@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { getBreadcrumbSchema } from '../../lib/seo';
 import { getCurrent, getDetailBySlug, extractIngredient } from '../../lib/issues';
 import {
   formatLakhCr,
@@ -45,9 +46,17 @@ const typeTag = (issue: { issue_type: string | null; exchange_platform: string |
 
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
 const closeTiming = (d: number) => d === 0 ? 'Closes today' : d === 1 ? 'Closes tomorrow' : d > 0 ? `Closes in ${d} days` : 'Closed';
+
+const schemas = [
+  getBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Open Issues", url: "/live/" }
+  ])
+];
+const metaDescription = `Track all ${enriched.length} Indian public IPOs currently open for subscription on the NSE & BSE. Get up-to-date subscription multiples, price bands, minimum lot sizes, retail investment values, and key book running lead managers (BRLM).`;
 ---
 
-<Base title="Open for subscription">
+<Base title="Live IPOs Open for Subscription (NSE & BSE)" description={metaDescription} schemas={schemas}>
 <section class="page-tight pt-16 pb-8">
   <div class="text-[12.5px] mute mb-6 inline-flex items-center gap-2">
     <span class="live-dot"></span>

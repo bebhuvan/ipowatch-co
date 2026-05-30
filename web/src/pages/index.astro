@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getWebsiteSchema, getOrganizationSchema } from '../lib/seo';
 import {
   getCurrent,
   getUpcoming,
@@ -324,9 +325,12 @@ const leadContext = (() => {
 
 // Total raised this year (best effort — sum from detail when available)
 // Skipped for now; we'll show what's robust.
+
+const schemas = [getWebsiteSchema(), getOrganizationSchema()];
+const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE) with real-time subscription numbers, pricing, lot sizes, prospectus documents, and post-listing performance.";
 ---
 
-<Base title="IPO Watch">
+<Base title="IPO Watch" description={metaDescription} schemas={schemas}>
 
 <!-- ════════════  LEAD  ════════════ -->
 {lead && (

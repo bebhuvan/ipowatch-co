@@ -6,15 +6,36 @@ import { daysFromNow } from '../lib/format';
 type Props = {
   title?: string;
   description?: string;
+  ogType?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  schemas?: any[];
+  geoRegion?: string;
+  geoPlacename?: string;
+  geoPosition?: string;
+  robots?: string;
 };
 
 const {
   title = 'IPO Watch',
   description = 'Indian equity IPO and primary market data from NSE and BSE.',
+  ogType = 'website',
+  ogImage = '/og-image.png',
+  canonicalUrl,
+  schemas = [],
+  geoRegion = 'IN-MH',
+  geoPlacename = 'Mumbai',
+  geoPosition = '19.0760;72.8777',
+  robots = 'index, follow, max-image-preview:large',
 } = Astro.props;
 
 const siteName = 'IPO Watch';
 const siteDomain = 'ipowatch.co';
+const siteUrl = Astro.site ? Astro.site.origin : 'https://ipowatch.co';
+
+const displayTitle = title === siteName ? `${siteName} · ${siteDomain}` : `${title} · ${siteName}`;
+const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
+const ogImageAbs = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 
 const manifest = getManifest();
 const builtAtSource = manifest.generated_at ?? new Date().toISOString();
@@ -35,7 +56,7 @@ const todayLong = today.toLocaleDateString('en-IN', {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,7 +67,49 @@ const todayLong = today.toLocaleDateString('en-IN', {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-    <title>{title === siteName ? `${siteName} · ${siteDomain}` : `${title} · ${siteName}`}</title>
+    <title>{displayTitle}</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={displayTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageAbs} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonical} />
+    <meta property="twitter:title" content={displayTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImageAbs} />
+
+    <!-- Robots & Search Directives -->
+    <meta name="robots" content={robots} />
+    <meta name="googlebot" content={robots} />
+
+    <!-- GEO / Geotargeting Meta Tags (Indian Localized SEO) -->
+    <meta name="geo.region" content={geoRegion} />
+    <meta name="geo.placename" content={geoPlacename} />
+    <meta name="geo.position" content={geoPosition} />
+    <meta name="ICBM" content={geoPosition} />
+
+    <!-- Additional local descriptors -->
+    <meta name="DC.title" content={displayTitle} />
+    <meta name="DC.description" content={description} />
+    <meta name="DC.publisher" content={siteName} />
+    <meta name="DC.format" content="text/html" />
+    <meta name="DC.language" content="en-IN" />
+    <meta name="DC.coverage" content="India" />
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    {schemas && schemas.map((schema) => (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+    ))}
   </head>
   <body class="min-h-screen">
     <header class="page site-header">

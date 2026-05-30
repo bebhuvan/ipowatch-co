@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getIPOSchemas } from '../lib/seo';
 import TrajectoryChart from './TrajectoryChart.astro';
 import {
   formatDateLong,
@@ -16,7 +17,7 @@ import {
   type IssueDetail,
 } from '../lib/issues';
 
-const { issue } = Astro.props as { issue: IssueDetail };
+const { issue, reportHref = null } = Astro.props as { issue: IssueDetail; reportHref?: string | null };
 const today = new Date();
 
 const status = issue.classification.status;
@@ -358,9 +359,7 @@ type FactLeaf = {
   source_section?: string | null;
   confidence?: string | null;
 };
-type FactItem = { label: string; value: string; rawValue: unknown; rawExcerpt: string | null; page: number | null; section: string | null; confidence: string | null };
-type DossierFact = FactItem & { path: string };
-type DossierGroup = { title: string; deck: string; facts: DossierFact[] };
+type FactItem = { label: string; value: string; rawValue: unknown; page: number | null; section: string | null; confidence: string | null };
 
 const isFactLeaf = (value: unknown): value is FactLeaf =>
   Boolean(value && typeof value === 'object' && 'value' in (value as Record<string, unknown>));
@@ -405,8 +404,7 @@ const readableFactText = (text: string): string => {
     .replace(/\bour financial condition\b/g, 'its financial condition')
     .replace(/\bour manufacturing facility\b/g, 'its manufacturing facility')
     .replace(/\bour visibility and brand\b/g, 'its visibility and brand')
-    .replace(/\bour logo\b/g, 'its logo')
-    .replace(/\bGeneral Corporate Purposes\b/g, 'general corporate purposes');
+    .replace(/\bour logo\b/g, 'its logo');
 };
 
 const factText = (value: unknown): string | null => {
@@ -416,29 +414,14 @@ const factText = (value: unknown): string | null => {
   return null;
 };
 
-const metricLabelFromExcerpt = (rawExcerpt: string | null, fallback: string): string => {
-  if (!rawExcerpt) return fallback;
-  const label = rawExcerpt
-    .replace(/\s+/g, ' ')
-    .trim()
-    .replace(/^\(?[a-z]\)?\.?\s+/i, '')
-    .replace(/\s+[-(]?\d[\d,]*(?:\.\d+)?\)?(?:\s+[-(]?\d[\d,]*(?:\.\d+)?\)?)*\s*$/g, '')
-    .trim();
-  return label || fallback;
-};
-
 const factItem = (label: string, leaf: unknown): FactItem | null => {
   if (!isFactLeaf(leaf)) return null;
   const value = factText(leaf.value);
   if (!value) return null;
-  const rawExcerpt = leaf.raw_excerpt ?? null;
   return {
-    label: label === 'Ratio' || label === 'Return / ratio' || label === 'Ratios'
-      ? metricLabelFromExcerpt(rawExcerpt, label)
-      : label,
+    label,
     value,
     rawValue: leaf.value,
-    rawExcerpt,
     page: typeof leaf.source_page === 'number' ? leaf.source_page : null,
     section: leaf.source_section ?? null,
     confidence: leaf.confidence ?? null,
@@ -449,39 +432,6 @@ const factList = (label: string, values: unknown, limit = 6): FactItem[] =>
   Array.isArray(values)
     ? values.map((leaf) => factItem(label, leaf)).filter((leaf): leaf is FactItem => leaf != null).slice(0, limit)
     : [];
-
-const factLabelFromPath = (path: string): string => {
-  const parts = path
-    .replace(/\[\d+\]/g, '')
-    .split('.')
-    .filter(Boolean);
-  const leaf = parts.at(-1) ?? path;
-  return labelize(leaf);
-};
-
-const normalizeFinancialFactItem = (item: FactItem, path: string): FactItem => {
-  if (!path.startsWith('financials.')) return item;
-  const n = typeof item.rawValue === 'number' ? item.rawValue : parseNum(item.rawValue);
-  if (n == null) return item;
-  const value = displayFinancialValue(item.label, n, item).toLocaleString('en-IN', { maximumFractionDigits: 2 });
-  return { ...item, value };
-};
-
-const collectDossierFacts = (value: unknown, path = ''): DossierFact[] => {
-  if (isFactLeaf(value)) {
-    const item = factItem(factLabelFromPath(path), value);
-    return item && item.page != null ? [{ ...normalizeFinancialFactItem(item, path), path }] : [];
-  }
-  if (Array.isArray(value)) {
-    return value.flatMap((child, idx) => collectDossierFacts(child, `${path}[${idx}]`));
-  }
-  if (value && typeof value === 'object') {
-    return Object.entries(value as Record<string, unknown>).flatMap(([key, child]) =>
-      collectDossierFacts(child, path ? `${path}.${key}` : key)
-    );
-  }
-  return [];
-};
 
 const uniqueFacts = (items: FactItem[], limit = items.length): FactItem[] => {
   const seen = new Set<string>();
@@ -495,8 +445,6 @@ const uniqueFacts = (items: FactItem[], limit = items.length): FactItem[] => {
   }
   return out;
 };
-
-const uniqueDossierFacts = (items: DossierFact[]): DossierFact[] => uniqueFacts(items) as DossierFact[];
 
 const sourcePages = (items: (FactItem | null | undefined)[], limit = 6): string | null => {
   const pages = Array.from(new Set(items
@@ -515,7 +463,7 @@ const sentenceJoin = (items: string[]) => {
 
 const stripTerminalPeriod = (value: string) => value.replace(/[.;]\s*$/g, '');
 const lowerFirst = (value: string) => {
-  if (!value || /^[A-Z]{2,}\b/.test(value) || /^Rs\.?\b/.test(value) || /^₹/.test(value) || /^INR\b/.test(value)) return value;
+  if (!value || /^[A-Z]{2,}\b/.test(value)) return value;
   return value.charAt(0).toLowerCase() + value.slice(1);
 };
 const sentence = (value: string | null | undefined) => {
@@ -523,22 +471,12 @@ const sentence = (value: string | null | undefined) => {
   const trimmed = value.trim();
   return trimmed.endsWith('.') ? trimmed : `${trimmed}.`;
 };
+const firstFact = (values: unknown, fallbackLabel: string): FactItem | null =>
+  Array.isArray(values)
+    ? values.map((leaf) => factItem(fallbackLabel, leaf)).find((leaf): leaf is FactItem => leaf != null) ?? null
+    : factItem(fallbackLabel, values);
 
 type ChartPoint = { label: string; value: number; source: FactItem };
-const displayFinancialValue = (label: string, value: number, fact: FactItem): number => {
-  const metric = label.toLowerCase();
-  if (metric.includes('ratio') || metric.includes('return') || metric.includes('eps') || metric.includes('ronw') || metric.includes('roce')) {
-    return value;
-  }
-  if (
-    Number.isInteger(value) &&
-    Math.abs(value) >= 100 &&
-    /\d[\d,]*\.\d{2}/.test(fact.rawExcerpt ?? '')
-  ) {
-    return value / 100;
-  }
-  return value;
-};
 const numericFactSeries = (label: string, values: unknown, periodValues: unknown, limit = 8): ChartPoint[] => {
   if (!Array.isArray(values)) return [];
   const periods = Array.isArray(periodValues)
@@ -552,7 +490,7 @@ const numericFactSeries = (label: string, values: unknown, periodValues: unknown
       if (n == null) return null;
       return {
         label: periods[idx] ?? `P${idx + 1}`,
-        value: displayFinancialValue(label, n, fact),
+        value: n,
         source: fact,
       };
     })
@@ -604,7 +542,6 @@ const issueTermFacts = facts.issue_terms?.issue_terms ?? {};
 const intermediaryFacts = facts.intermediaries?.intermediaries ?? {};
 const valuationFacts = facts.valuation_and_peers?.valuation_and_peers ?? {};
 const governanceFacts = facts.governance?.governance ?? {};
-const managementFacts = facts.management_discussion?.management_discussion ?? {};
 const hasVerifiedProspectus = Boolean(prospectus?.deepseek?.used && prospectusQuality?.state !== 'fail');
 
 const companyDescriptionFact = factItem('Company', businessFacts.company_description);
@@ -721,27 +658,14 @@ const articleProducts = uniqueFacts(factList('Product line', businessFacts.produ
 const articleStrengths = uniqueFacts(factList('Strength', businessFacts.competitive_strengths, 8), 8);
 const articleCustomers = uniqueFacts(factList('Customer concentration', businessFacts.customers, 4), 4);
 const articleDependencies = uniqueFacts(factList('Dependency', businessFacts.key_dependencies, 4), 4);
-const articleEndIndustries = uniqueFacts(factList('End-user industry', businessFacts.end_user_industries, 6), 6);
-const articleDistribution = uniqueFacts(factList('Distribution', businessFacts.distribution_network, 4), 4);
-const articleRnD = uniqueFacts(factList('R&D / technology', businessFacts.r_and_d, 4), 4);
 const articleGeographies = uniqueFacts(factList('Geography', businessFacts.geographies, 4), 4);
 const articleMarketSizes = uniqueFacts(factList('Market size', industryFacts.market_size, 8), 8);
-const articleAddressableMarket = uniqueFacts(factList('Addressable market', industryFacts.addressable_market, 6), 6);
 const articleGrowthRates = uniqueFacts(factList('Growth rate', industryFacts.growth_rates, 8), 8);
 const articleDrivers = uniqueFacts(factList('Driver', industryFacts.drivers, 8), 8);
-const articleDemandCatalysts = uniqueFacts(factList('Demand catalyst', industryFacts.demand_catalysts, 6), 6);
-const articlePolicyTailwinds = uniqueFacts(factList('Policy tailwind', industryFacts.policy_tailwinds, 5), 5);
-const articleOpportunitySet = uniqueFacts(factList('Opportunity', industryFacts.opportunity_set, 8), 8);
-const articleImportSubstitution = uniqueFacts(factList('Import substitution', industryFacts.import_substitution, 5), 5);
-const articleCustomerIndustryTrends = uniqueFacts(factList('Customer-industry trend', industryFacts.customer_industry_trends, 5), 5);
 const articleCompetition = uniqueFacts(factList('Competition', industryFacts.competition, 6), 6);
 const articleHeadwinds = uniqueFacts(factList('Headwind', industryFacts.headwinds, 6), 6);
 const articleRegulation = uniqueFacts(factList('Regulation', industryFacts.regulatory_context, 8), 8);
 const articleObjects = uniqueFacts(factList('Object', offerFacts.objects_of_issue, 8), 8);
-const articleUseOfProceeds = uniqueFacts(factList('Use of proceeds', offerFacts.use_of_proceeds, 8), 8);
-const articleIssueRationale = uniqueFacts(factList('Issue rationale', offerFacts.strategic_rationale_for_issue, 6), 6);
-const articleCapexDetail = uniqueFacts(factList('Capex detail', offerFacts.capex_detail, 6), 6);
-const articleWorkingCapitalNeed = uniqueFacts(factList('Working-capital need', offerFacts.working_capital_need, 6), 6);
 const articlePromoters = uniqueFacts(factList('Promoter', governanceFacts.promoters, 8), 8);
 const articleShareholding = uniqueFacts(factList('Shareholding', governanceFacts.shareholding, 8), 8);
 const articleLitigation = uniqueFacts(factList('Litigation', governanceFacts.litigation, 5), 5);
@@ -751,73 +675,15 @@ const articlePAT = numericFactSeries('Profit after tax', financialFacts.pat, fin
 const articleCashFlow = numericFactSeries('Operating cash flow', financialFacts.cash_flow, financialFacts.periods, 8);
 const articleAssets = numericFactSeries('Assets', financialFacts.assets, financialFacts.periods, 8);
 const articleRatios = numericFactSeries('Return / ratio', financialFacts.ratios, financialFacts.periods, 8);
-const articleRevenueBreakdown = uniqueFacts(factList('Revenue breakdown', financialFacts.revenue_breakdown, 6), 6);
-const articleMarginBridge = uniqueFacts(factList('Margin bridge', financialFacts.margin_bridge, 6), 6);
-const articleCashConversion = uniqueFacts(factList('Cash conversion', financialFacts.cash_conversion, 6), 6);
 const primaryFinancialSeries = articlePAT.length >= 2 ? articlePAT : articleCashFlow.length >= 2 ? articleCashFlow : articleAssets;
 const secondaryFinancialSeries = articleCashFlow.length >= 2 && primaryFinancialSeries !== articleCashFlow ? articleCashFlow : articleAssets.length >= 2 ? articleAssets : [];
 const primaryChart = chartGeometry(primaryFinancialSeries);
+const secondaryChart = chartGeometry(secondaryFinancialSeries);
 const financialSourceFacts = [...primaryFinancialSeries.map((row) => row.source), ...secondaryFinancialSeries.map((row) => row.source)];
 const financialTrendFacts = uniqueFacts([
   ...factList('Financial trend', financialFacts.notable_trends, 4),
-  ...articleRevenueBreakdown,
-  ...articleMarginBridge,
-  ...articleCashConversion,
+  ...financialNarrativeRows,
 ], 8);
-const hasFinancialPeriodLabels = Array.isArray(financialFacts.periods) && financialFacts.periods.some((period: any) =>
-  period?.value != null && String(period.value).trim() !== ''
-);
-const hasFinancialSubpageFacts = [
-  'revenue',
-  'ebitda',
-  'pat',
-  'assets',
-  'debt',
-  'cash_flow',
-  'ratios',
-  'profit_and_loss',
-  'balance_sheet',
-  'working_capital',
-  'borrowings',
-  'contingent_liabilities',
-  'notable_trends',
-].some((key) =>
-  Array.isArray(financialFacts[key]) && financialFacts[key].some((row: any) => row?.value != null && String(row.value).trim() !== '')
-);
-const financialsUrl = issue.url_path.startsWith('/ipos/') && hasFinancialPeriodLabels && hasFinancialSubpageFacts
-  ? `${issue.url_path}financials/`
-  : null;
-const hasNarrativeContext = (fact: FactItem) => (fact.value.match(/[A-Za-z]/g) ?? []).length >= 12;
-
-const articleOpportunityFacts = uniqueFacts([
-  ...factList('Company opportunity', businessFacts.market_opportunity, 6),
-  ...factList('Company opportunity', businessFacts.opportunity_summary, 6),
-  ...articleOpportunitySet,
-  ...articleDemandCatalysts,
-  ...articleDrivers,
-  ...articlePolicyTailwinds,
-  ...articleImportSubstitution,
-  ...articleCustomerIndustryTrends,
-  ...factList('Management opportunity', managementFacts.opportunity_commentary, 6),
-  ...factList('Future outlook', managementFacts.future_outlook_from_filing, 5),
-  ...articleAddressableMarket,
-  ...articleMarketSizes,
-  ...articleGrowthRates,
-], 16);
-const articleOpportunityNarrativeFacts = articleOpportunityFacts.filter(hasNarrativeContext);
-
-const articleExecutionFacts = uniqueFacts([
-  ...factList('Growth strategy', businessFacts.growth_strategy, 8),
-  ...factList('Execution plan', businessFacts.strategy_and_execution_plan, 8),
-  ...factList('Capacity expansion', businessFacts.capacity_expansion_plan, 6),
-  ...articleIssueRationale,
-  ...articleObjects,
-  ...articleUseOfProceeds,
-  ...articleCapexDetail,
-  ...articleWorkingCapitalNeed,
-  ...factList('Strategy progress', managementFacts.strategy_progress, 5),
-  ...factList('Capacity / working capital need', managementFacts.capacity_or_working_capital_needs, 5),
-], 16);
 
 const shareholdingRows = articleShareholding
   .map((fact) => ({ ...fact, pct: pctFromText(fact.value) }))
@@ -839,17 +705,8 @@ const businessParagraphs = [
   articleProducts.length
     ? sentence(`The operating mix covers ${articleProducts.map((fact) => stripTerminalPeriod(fact.value)).join(', ')}`)
     : null,
-  articleEndIndustries.length
-    ? sentence(`Demand is linked to end-user industries such as ${articleEndIndustries.map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join(', ')}`)
-    : null,
-  articleDistribution.length
-    ? sentence(`The route to market matters here: ${lowerFirst(stripTerminalPeriod(articleDistribution[0].value))}`)
-    : null,
   articleStrengths.length
     ? sentence(`Management's own case rests on ${articleStrengths.slice(0, 5).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join(', ')}`)
-    : null,
-  articleRnD.length
-    ? sentence(`The DRHP also points to process or product-development depth: ${lowerFirst(stripTerminalPeriod(articleRnD[0].value))}`)
     : null,
   articleCustomers.length
     ? sentence(`The same filing also shows concentration risk: ${lowerFirst(stripTerminalPeriod(articleCustomers[0].value))}`)
@@ -864,14 +721,11 @@ const businessParagraphs = [
 
 const industryParagraphs = [
   articleIndustryName ? sentence(`This is a ${articleIndustryName} issue`) : null,
-  articleOpportunityNarrativeFacts.length
-    ? sentence(`The opportunity case in the filing is built around ${articleOpportunityNarrativeFacts.slice(0, 4).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
+  articleMarketSizes.length || articleGrowthRates.length
+    ? sentence(`The industry section gives a scale-and-growth frame: ${[...articleMarketSizes.slice(0, 3), ...articleGrowthRates.slice(0, 3)].map((fact) => stripTerminalPeriod(fact.value)).join('; ')}`)
     : null,
-  articleMarketSizes.length || articleAddressableMarket.length || articleGrowthRates.length
-    ? sentence(`The industry section gives a scale-and-growth frame: ${[...articleAddressableMarket.slice(0, 2), ...articleMarketSizes.slice(0, 3), ...articleGrowthRates.slice(0, 3)].map((fact) => stripTerminalPeriod(fact.value)).join('; ')}`)
-    : null,
-  articleDrivers.length || articleDemandCatalysts.length || articlePolicyTailwinds.length
-    ? sentence(`Demand drivers cited in the DRHP include ${[...articleDemandCatalysts.slice(0, 3), ...articleDrivers.slice(0, 4), ...articlePolicyTailwinds.slice(0, 2)].map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join(', ')}`)
+  articleDrivers.length
+    ? sentence(`Demand drivers cited in the DRHP include ${articleDrivers.slice(0, 6).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join(', ')}`)
     : null,
   articleCompetition.length || articleHeadwinds.length
     ? sentence(`The counterweight is competitive intensity: ${[...articleCompetition.slice(0, 3), ...articleHeadwinds.slice(0, 3)].map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
@@ -879,20 +733,8 @@ const industryParagraphs = [
 ].filter((line): line is string => Boolean(line));
 
 const objectParagraph = articleObjects.length
-  ? sentence(`The proceeds are not just a balance-sheet event: the named objects are ${[...articleObjects, ...articleUseOfProceeds, ...articleIssueRationale].slice(0, 8).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
+  ? sentence(`The proceeds are not just a balance-sheet event: the named objects are ${articleObjects.map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
   : null;
-
-const opportunityParagraphs = [
-  articleOpportunityNarrativeFacts.length
-    ? sentence(`The core opportunity is ${articleOpportunityNarrativeFacts.slice(0, 5).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
-    : null,
-  articleExecutionFacts.length
-    ? sentence(`The execution path disclosed in the filing is ${articleExecutionFacts.slice(0, 6).map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
-    : null,
-  articleCapexDetail.length || articleWorkingCapitalNeed.length
-    ? sentence(`Capital allocation is therefore a key part of the story: ${[...articleCapexDetail.slice(0, 3), ...articleWorkingCapitalNeed.slice(0, 3)].map((fact) => lowerFirst(stripTerminalPeriod(fact.value))).join('; ')}`)
-    : null,
-].filter((line): line is string => Boolean(line));
 
 const controlParagraph = shareholdingRows.length
   ? sentence(`Control is concentrated before the issue, with ${shareholdingRows.map((fact) => `${stripTerminalPeriod(fact.value)}`).join('; ')}`)
@@ -905,7 +747,6 @@ const riskThesisFacts = uniqueFacts([
   ...factList('Customer/supplier risk', riskFacts.customer_supplier_risks, 4),
   ...factList('Financial risk', riskFacts.financial_risks, 5),
   ...factList('Regulatory risk', riskFacts.regulatory_risks, 5),
-  ...factList('Execution risk', riskFacts.opportunity_execution_risks, 5),
   ...factList('Red flag', riskFacts.red_flags, 5),
 ], 14);
 const riskParagraphs = [
@@ -920,126 +761,10 @@ const riskParagraphs = [
     : null,
 ].filter((line): line is string => Boolean(line));
 
-const allDossierFacts = uniqueDossierFacts(collectDossierFacts(facts));
-const dossierBucket = (title: string, deck: string, matcher: (fact: DossierFact) => boolean): DossierGroup => ({
-  title,
-  deck,
-  facts: allDossierFacts.filter(matcher),
-});
-const pathHas = (fact: DossierFact, parts: string[]) => parts.some((part) => fact.path.includes(part));
-const rawDossierGroups = [
-  dossierBucket(
-    'Business model',
-    'What the company does, where demand comes from, and how revenue is exposed.',
-    (fact) => fact.path.startsWith('business.') && pathHas(fact, [
-      'company_description',
-      'business_model',
-      'products_services',
-      'brands',
-      'customers',
-      'customer_concentration',
-      'end_user_industries',
-      'geographies',
-      'revenue_mix',
-      'export_domestic_mix',
-    ])
-  ),
-  dossierBucket(
-    'Opportunity and strategy',
-    'Market opportunity, demand catalysts, policy tailwinds, expansion plans, and execution route.',
-    (fact) =>
-      pathHas(fact, [
-        'market_opportunity',
-        'opportunity_summary',
-        'growth_strategy',
-        'strategy_and_execution_plan',
-        'capacity_expansion_plan',
-        'competitive_strengths',
-        'execution_constraints',
-        'industry.market_size',
-        'addressable_market',
-        'growth_rates',
-        'drivers',
-        'demand_catalysts',
-        'policy_tailwinds',
-        'opportunity_set',
-        'macro_story',
-        'import_substitution',
-        'customer_industry_trends',
-        'opportunity_commentary',
-        'future_outlook_from_filing',
-        'strategy_progress',
-      ])
-  ),
-  dossierBucket(
-    'Operations',
-    'Facilities, capacity, suppliers, manufacturing process, raw materials, quality systems, and people.',
-    (fact) => fact.path.startsWith('business.') && pathHas(fact, [
-      'suppliers',
-      'supplier_concentration',
-      'facilities',
-      'capacity_and_utilization',
-      'manufacturing_process',
-      'raw_materials',
-      'licenses_certifications',
-      'employees',
-      'technology_or_ip',
-      'r_and_d',
-      'distribution_network',
-      'key_dependencies',
-    ])
-  ),
-  dossierBucket(
-    'Issue economics',
-    'Offer structure, use of proceeds, price, lot size, reservation, timetable, and listing mechanics.',
-    (fact) => fact.path.startsWith('offer.') || fact.path.startsWith('issue_terms.')
-  ),
-  dossierBucket(
-    'Financials and KPIs',
-    'Reported financial sequence, margins, cash conversion, working capital, borrowings, and auditor context.',
-    (fact) => fact.path.startsWith('financials.') || fact.path.startsWith('management_discussion.')
-  ),
-  dossierBucket(
-    'Valuation and peers',
-    'Basis-for-price metrics, peer tables, return metrics, NAV, EPS, RoNW, and valuation rationale.',
-    (fact) => fact.path.startsWith('valuation_and_peers.')
-  ),
-  dossierBucket(
-    'Governance and ownership',
-    'Promoters, directors, KMP, shareholding, capital structure, litigation, related parties, and intermediaries.',
-    (fact) => fact.path.startsWith('governance.') || fact.path.startsWith('intermediaries.') || fact.path.startsWith('history_and_structure.')
-  ),
-  dossierBucket(
-    'Risks and red flags',
-    'Risk-factor themes, dependencies, legal/regulatory issues, concentration, cash-flow risk, and red flags.',
-    (fact) => fact.path.startsWith('risks.')
-  ),
-];
-const assignedDossierPaths = new Set<string>();
-const dossierGroups = rawDossierGroups.map((group) => ({
-  ...group,
-  facts: uniqueDossierFacts(group.facts).filter((fact) => {
-    if (assignedDossierPaths.has(fact.path)) return false;
-    assignedDossierPaths.add(fact.path);
-    return true;
-  }),
-})).filter((group) => group.facts.length > 0);
-const categorizedDossierPaths = new Set(dossierGroups.flatMap((group) => group.facts.map((fact) => fact.path)));
-const uncategorizedDossierFacts = allDossierFacts.filter((fact) => !categorizedDossierPaths.has(fact.path));
-if (uncategorizedDossierFacts.length) {
-  dossierGroups.push({
-    title: 'Other extracted facts',
-    deck: 'Additional citation-verified facts that did not fit the main research buckets.',
-    facts: uncategorizedDossierFacts,
-  });
-}
-const materialFactCount = dossierGroups.reduce((sum, group) => sum + group.facts.length, 0);
-
 const hasResearchArticle = Boolean(
   articleLeadParagraphs.length ||
   businessParagraphs.length ||
   industryParagraphs.length ||
-  opportunityParagraphs.length ||
   articleObjects.length ||
   primaryFinancialSeries.length ||
   shareholdingSourceFacts.length ||
@@ -1092,246 +817,671 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
   progressPct = Math.max(0, Math.min(100, (e / t) * 100));
 }
 
+const schemas = getIPOSchemas(issue);
+const formattedPriceRange = priceMin != null && priceMax != null ? `${formatRupee(priceMin)} - ${formatRupee(priceMax)}` : priceMax != null ? formatRupee(priceMax) : 'N/A';
+const metaDescription = `Indian Primary Market Analysis for ${company} ${issueType} on ${exchange}. Pricing details: Price band of ${formattedPriceRange}, lot size of ${lotSize || 'N/A'} shares. Track real-time subscription status, bidding trajectory, timeline dates, Lead Managers (BRLM), and listing performance.`;
 ---
 
-<Base title={company}>
+<Base title={company} description={metaDescription} schemas={schemas}>
 
-<!-- STATUS LINE -->
-<div class="page-tight pt-16 pb-3 flex flex-wrap items-baseline gap-x-3 text-[12.5px] mute">
-  <span class="inline-flex items-center gap-2">
-    {status === 'current' && <span class="live-dot"></span>}
-    <span class="label" style="color: inherit">{statusLabel}</span>
-  </span>
-  <span class="mute-2">·</span>
-  <span>{tagLine}</span>
-  {dateLine && (<>
-    <span class="mute-2">·</span>
-    <span>{dateLine}</span>
-  </>)}
-</div>
-
-<!-- HEADLINE + STANDFIRST -->
-<section class="page-tight pb-12">
-  <h1 class="headline mb-7 max-w-[16ch] break-words hyphens-auto">{company}</h1>
-  {standfirst && <p class="serif text-[22px] leading-[1.46] text-[color:var(--color-ink-soft)] max-w-[60ch]">{standfirst}.</p>}
-</section>
-
-<!-- HERO FIGURE -->
-{heroFigure && (
-  <section class="page-tight pt-10 pb-20 border-t border-[color:var(--color-rule)]">
-    <p class={`figure num ${heroFigure.isGain && heroFigure.gain != null && heroFigure.gain > 50 ? 'acc' : ''}`}>{heroFigure.value}</p>
-    <p class="label mt-5">{heroFigure.label}</p>
-    {status === 'current' && progressPct > 0 && (
-      <div class="mt-9 max-w-[36ch]">
-        <div class="flex justify-between items-baseline text-[11px] tracking-[0.08em] uppercase mute font-semibold mb-2">
-          <span>Subscription window</span>
-          <span class="num">{Math.round(progressPct)}%</span>
+<!-- HERO -->
+<section class="page-tight pt-14 pb-10">
+  <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 lg:gap-16">
+    <div class="flex-1 min-w-0">
+      <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[12.5px] mute">
+        <span class="inline-flex items-center gap-2">
+          {status === 'current' && <span class="live-dot"></span>}
+          <span class="label" style="color: inherit">{statusLabel}</span>
+        </span>
+        <span class="mute-2">·</span>
+        <span>{tagLine}</span>
+        {dateLine && (<>
+          <span class="mute-2">·</span>
+          <span>{dateLine}</span>
+        </>)}
+      </div>
+      <h1 class="headline mt-5 max-w-[18ch] break-words hyphens-auto">{company}</h1>
+      {standfirst && <p class="serif text-[22px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[56ch] mt-5">{standfirst}.</p>}
+      {reportHref && (
+        <a
+          href={reportHref}
+          class="inline-flex items-baseline gap-2 mt-6 text-[13px] font-semibold tracking-[0.04em] border-b-2 pb-1"
+          style="color: var(--color-accent-deep); border-color: var(--color-accent)"
+        >
+          <span class="uppercase">Read the full research report</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      )}
+      {status === 'current' && progressPct > 0 && (
+        <div class="mt-8 max-w-[36ch]">
+          <div class="flex justify-between items-baseline text-[11px] tracking-[0.08em] uppercase mute font-semibold mb-2">
+            <span>Subscription window</span>
+            <span class="num">{Math.round(progressPct)}%</span>
+          </div>
+          <div class="h-[3px] bg-[color:var(--color-rule)] relative overflow-hidden">
+            <div class="absolute inset-y-0 left-0 bg-[color:var(--color-accent)]" style={`width: ${progressPct}%`}></div>
+          </div>
         </div>
-        <div class="h-[3px] bg-[color:var(--color-rule)] relative overflow-hidden">
-          <div class="absolute inset-y-0 left-0 bg-[color:var(--color-accent)]" style={`width: ${progressPct}%`}></div>
-        </div>
-      </div>
-    )}
-  </section>
-)}
-
-<!-- SPECS CARDS -->
-<section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-    {priceMin != null && priceMax != null && (
-      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-        <div class="label mb-2">Price band</div>
-        <div class="serif text-[26px] num leading-tight">{formatRupeeRange(priceMin, priceMax)}</div>
-      </div>
-    )}
-    {issue.pricing.issue_price != null && status === 'past' && (
-      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-        <div class="label mb-2">Issue price</div>
-        <div class="serif text-[26px] num leading-tight">{formatRupee(issue.pricing.issue_price)}</div>
-      </div>
-    )}
-    {lotSize != null && (
-      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-        <div class="label mb-2">Shares per lot</div>
-        <div class="serif text-[26px] num leading-tight">{formatInt(lotSize)}</div>
-      </div>
-    )}
-    {minInvestment != null && (
-      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-        <div class="label mb-2">Retail minimum</div>
-        <div class="serif text-[26px] num leading-tight">{formatRupee(minInvestment)}</div>
-      </div>
-    )}
-    {sizeText && (
-      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-        <div class="label mb-2">Issue size</div>
-        <div class="serif text-[26px] num leading-tight">{sizeText}</div>
-      </div>
-    )}
-    {faceValue != null && (
-      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-        <div class="label mb-2">Face value</div>
-        <div class="serif text-[26px] num leading-tight">{formatRupee(faceValue)}</div>
-      </div>
-    )}
-    {status === 'past' && issue.listing_performance.listing_day_close != null && (
-      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-        <div class="label mb-2">Listing-day close</div>
-        <div class="serif text-[26px] num leading-tight">{formatRupee(issue.listing_performance.listing_day_close)}</div>
-      </div>
-    )}
-    {status === 'past' && issue.listing_performance.current_price != null && (
-      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-        <div class="label mb-2">Current price</div>
-        <div class="serif text-[26px] num leading-tight">{formatRupee(issue.listing_performance.current_price)}</div>
-      </div>
-    )}
-    {status === 'past' && issue.listing_performance.gain_loss != null && (
-      <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-        <div class="label mb-2">Return since listing</div>
-        <div class={`serif text-[26px] num leading-tight ${issue.listing_performance.gain_loss > 50 ? 'acc' : ''}`}>{fmtGain(issue.listing_performance.gain_loss)}</div>
+      )}
+    </div>
+    {heroFigure && (
+      <div class="shrink-0 lg:text-right">
+        <p class={`figure num ${heroFigure.isGain && heroFigure.gain != null && heroFigure.gain > 50 ? 'acc' : ''}`}>{heroFigure.value}</p>
+        <p class="label mt-3">{heroFigure.label}</p>
       </div>
     )}
   </div>
 </section>
 
-<!-- SUBSCRIPTION BY CATEGORY -->
-{subscriptionRows.length > 0 && (
-  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
-    <header class="flex items-baseline justify-between mb-9">
-      <h2 class="section-title">Subscription by investor category</h2>
-      {subscriptionUpdatedAt && <span class="text-[12px] mute num">as of {subscriptionUpdatedAt}</span>}
-    </header>
-    {subscriptionTotalRow && (
-      <div class="mb-7 border-y border-[color:var(--color-ink)] py-5">
-        <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-4 md:items-end">
-          <div>
-            <p class="label mb-2">Total demand</p>
-            <p class="serif text-[26px] md:text-[32px] leading-tight num">
-              {formatInt(subscriptionTotalRow.bid)} shares bid
-              {subscriptionTotalRow.offered != null && <> against {formatInt(subscriptionTotalRow.offered)} offered</>}
-            </p>
-          </div>
-          <div class="md:text-right">
-            <p class="serif text-[42px] leading-none num acc">{subscriptionTotalRow.times == null ? '—' : formatTimes(subscriptionTotalRow.times)}</p>
-            {subscriptionTotalRow.applications != null && <p class="mt-2 text-[12.5px] mute num">{formatInt(subscriptionTotalRow.applications)} applications</p>}
-          </div>
-        </div>
+<!-- VITALS BAND -->
+<section class="page-tight pb-16">
+  <div class="flex flex-wrap gap-x-10 gap-y-6 items-baseline">
+    {priceMin != null && priceMax != null && (
+      <div>
+        <div class="label mb-1.5">Price band</div>
+        <div class="serif text-[28px] num leading-tight">{formatRupeeRange(priceMin, priceMax)}</div>
       </div>
     )}
-    {subscriptionAllZero && (
-      <p class="mb-7 text-[13px] mute leading-relaxed max-w-[72ch]">
-        BSE is publishing the category book for this issue, but the latest feed currently reports zero bids and no subscription multiple.
-      </p>
+    {issue.pricing.issue_price != null && status === 'past' && (
+      <div>
+        <div class="label mb-1.5">Issue price</div>
+        <div class="serif text-[28px] num leading-tight">{formatRupee(issue.pricing.issue_price)}</div>
+      </div>
     )}
-    <div class="space-y-4">
-      {subscriptionVisualRows.map((row) => {
-        const width = subscriptionMax > 0 ? Math.min(100, (row.metric / subscriptionMax) * 100) : 0;
-        const isLeader = row.metric > 0 && row.metric === subscriptionLeaderMetric;
-        const hasTimes = row.times != null;
-        return (
-          <article class={`border-b border-[color:var(--color-rule)] pb-4 ${row.isChild ? 'ml-0 md:ml-12' : ''}`}>
-            <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_116px] gap-3 md:items-baseline">
+    {lotSize != null && (
+      <div>
+        <div class="label mb-1.5">Shares per lot</div>
+        <div class="serif text-[28px] num leading-tight">{formatInt(lotSize)}</div>
+      </div>
+    )}
+    {minInvestment != null && (
+      <div>
+        <div class="label mb-1.5">Retail minimum</div>
+        <div class="serif text-[28px] num leading-tight">{formatRupee(minInvestment)}</div>
+      </div>
+    )}
+    {sizeText && (
+      <div>
+        <div class="label mb-1.5">Issue size</div>
+        <div class="serif text-[28px] num leading-tight">{sizeText}</div>
+      </div>
+    )}
+    {faceValue != null && (
+      <div>
+        <div class="label mb-1.5">Face value</div>
+        <div class="serif text-[28px] num leading-tight">{formatRupee(faceValue)}</div>
+      </div>
+    )}
+    {status === 'past' && issue.listing_performance.listing_day_close != null && (
+      <div>
+        <div class="label mb-1.5">Listing-day close</div>
+        <div class="serif text-[28px] num leading-tight">{formatRupee(issue.listing_performance.listing_day_close)}</div>
+      </div>
+    )}
+    {status === 'past' && issue.listing_performance.gain_loss != null && (
+      <div>
+        <div class="label mb-1.5">Return since listing</div>
+        <div class={`serif text-[28px] num leading-tight ${issue.listing_performance.gain_loss > 50 ? 'acc' : ''}`}>{fmtGain(issue.listing_performance.gain_loss)}</div>
+      </div>
+    )}
+  </div>
+</section>
+
+<!-- LIVE DEMAND -->
+{(subscriptionRows.length > 0 || issue.subscription.trajectory.length > 1 || bidBook.length > 0) && (
+  <section class="bg-[color:var(--color-paper-soft)]">
+    <div class="page-tight py-20">
+      {subscriptionRows.length > 0 && (
+        <div>
+          <header class="flex items-baseline justify-between mb-10">
+            <h2 class="section-title">Subscription by investor category</h2>
+            {subscriptionUpdatedAt && <span class="text-[12px] mute num">as of {subscriptionUpdatedAt}</span>}
+          </header>
+          {subscriptionTotalRow && (
+            <div class="mb-10 flex items-baseline justify-between gap-4 pb-6 border-b-2 border-[color:var(--color-ink)]">
               <div>
-                <div class="flex items-baseline gap-3">
-                  <span class="text-[12px] mute num w-8 shrink-0">{row.sr ?? ''}</span>
-                  <h3 class={`${row.isChild ? 'text-[13px] text-[color:var(--color-mute)]' : 'serif text-[22px] text-[color:var(--color-ink)]'} leading-snug`}>
-                    {row.category}
-                  </h3>
-                </div>
-                <p class="mt-2 ml-11 text-[12.5px] mute leading-relaxed">
-                  {row.bid != null && <>Shares bid <span class="num text-[color:var(--color-ink)]">{formatInt(row.bid)}</span></>}
-                  {row.offered != null && <> <span class="mute-2">·</span> Offered <span class="num text-[color:var(--color-ink)]">{formatInt(row.offered)}</span></>}
-                  {row.applications != null && <> <span class="mute-2">·</span> Applications <span class="num text-[color:var(--color-ink)]">{formatInt(row.applications)}</span></>}
+                <p class="label mb-2">Total demand</p>
+                <p class="serif text-[30px] md:text-[38px] leading-tight num">
+                  {formatInt(subscriptionTotalRow.bid)} shares bid
+                  {subscriptionTotalRow.offered != null && <> <span class="mute-2">·</span> {formatInt(subscriptionTotalRow.offered)} offered</>}
                 </p>
               </div>
-              <div class="md:text-right ml-11 md:ml-0">
-                <span class={`serif num leading-none ${hasTimes ? 'text-[30px]' : 'text-[22px]'} ${isLeader || (hasTimes && row.times! >= 5) ? 'acc' : 'text-[color:var(--color-ink)]'}`}>
-                  {hasTimes ? formatTimes(row.times) : formatInt(row.bid)}
-                </span>
-                {!hasTimes && <span class="ml-2 text-[11px] mute uppercase tracking-[0.08em]">shares</span>}
+              <div class="text-right">
+                <p class="serif text-[52px] leading-none num acc">{subscriptionTotalRow.times == null ? '—' : formatTimes(subscriptionTotalRow.times)}</p>
+                {subscriptionTotalRow.applications != null && <p class="mt-1 text-[12.5px] mute num">{formatInt(subscriptionTotalRow.applications)} applications</p>}
               </div>
             </div>
-            <div class={`mt-3 ${row.isChild ? 'ml-11' : 'ml-11'} h-[10px] bg-[color:var(--color-rule)] relative`}>
-              <span
-                class={`absolute inset-y-0 left-0 ${isLeader ? 'bg-[color:var(--color-accent)]' : row.isChild ? 'bg-[color:var(--color-mute-2)]' : 'bg-[color:var(--color-ink)]'}`}
-                style={`width: ${Math.max(width, row.metric > 0 ? 1.5 : 0).toFixed(1)}%; opacity: ${row.isChild ? 0.75 : 1};`}
-              ></span>
-            </div>
-          </article>
-        );
-      })}
-    </div>
-    {issue.subscription.shares_bid != null && (
-      <p class="mt-5 text-[12.5px] mute">
-        Total shares bid: <span class="num text-[color:var(--color-ink)]">{formatInt(issue.subscription.shares_bid)}</span>{issue.subscription.times != null && <> · total subscription <span class="num text-[color:var(--color-ink)]">{formatTimes(issue.subscription.times)}</span></>}.
-      </p>
-    )}
-  </section>
-)}
-
-<!-- TRAJECTORY -->
-{issue.subscription.trajectory.length > 1 && (
-  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
-    <header class="mb-9">
-      <h2 class="section-title">Subscription over time</h2>
-    </header>
-    <div class="max-w-[1080px]">
-      <TrajectoryChart observations={issue.subscription.trajectory} />
-    </div>
-  </section>
-)}
-
-<!-- BID BOOK -->
-{bidBook.length > 0 && (
-  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
-    <header class="flex items-baseline justify-between mb-9">
-      <h2 class="section-title">Bid book by price</h2>
-      <span class="text-[12px] mute">{bidBookSource === 'NSE' ? 'cumulative NSE demand' : 'where the demand sits'}</span>
-    </header>
-    <div class="space-y-3 max-w-[980px]">
-      {bidBook.slice().sort((a, b) => b.price - a.price).map((row) => {
-        const pct = bidBookMaxQty > 0 ? (row.quantity / bidBookMaxQty) * 100 : 0;
-        const isCutoff = priceMax != null && row.price === priceMax;
-        return (
-          <div class="grid grid-cols-[86px_minmax(0,1fr)] sm:grid-cols-[108px_minmax(0,1fr)_170px] items-center gap-3 sm:gap-5 num py-1">
-            <span class={`text-left sm:text-right serif text-[23px] ${isCutoff ? 'acc' : ''}`}>{formatRupee(row.price)}</span>
-            <span class="relative h-[28px] bg-[color:var(--color-paper-soft)] border border-[color:var(--color-rule)]">
-              <span
-                class={`absolute inset-y-0 left-0 ${isCutoff ? 'bg-[color:var(--color-accent)]' : 'bg-[color:var(--color-ink)]'}`}
-                style={`width: ${pct.toFixed(1)}%; opacity: ${isCutoff ? 1 : 0.3 + (pct / 100) * 0.6};`}
-              ></span>
-            </span>
-            <span class="col-start-2 sm:col-start-auto text-right serif text-[21px] num">{formatInt(row.quantity)}</span>
+          )}
+          {subscriptionAllZero && (
+            <p class="mb-8 text-[13px] mute leading-relaxed max-w-[72ch]">
+              BSE is publishing the category book for this issue, but the latest feed currently reports zero bids and no subscription multiple.
+            </p>
+          )}
+          <div class="space-y-0">
+            {subscriptionVisualRows.map((row) => {
+              const width = subscriptionMax > 0 ? Math.min(100, (row.metric / subscriptionMax) * 100) : 0;
+              const isLeader = row.metric > 0 && row.metric === subscriptionLeaderMetric;
+              const hasTimes = row.times != null;
+              return (
+                <div class={`py-5 border-b border-[color:var(--color-rule)] ${row.isChild ? 'pl-0 md:pl-10' : ''}`}>
+                  <div class="flex items-baseline justify-between gap-4">
+                    <div class="flex items-baseline gap-3 min-w-0">
+                      <span class="text-[12px] mute num w-6 shrink-0">{row.sr ?? ''}</span>
+                      <h3 class={`${row.isChild ? 'text-[15px] text-[color:var(--color-mute)]' : 'serif text-[22px] text-[color:var(--color-ink)]'} leading-snug truncate`}>
+                        {row.category}
+                      </h3>
+                    </div>
+                    <span class={`serif num leading-none shrink-0 ${hasTimes ? 'text-[32px]' : 'text-[22px]'} ${isLeader || (hasTimes && row.times! >= 5) ? 'acc' : 'text-[color:var(--color-ink)]'}`}>
+                      {hasTimes ? formatTimes(row.times) : formatInt(row.bid)}
+                    </span>
+                  </div>
+                  <div class={`mt-3 h-[6px] bg-[color:var(--color-rule)] relative ${row.isChild ? 'ml-9' : 'ml-9'}`}>
+                    <span
+                      class={`absolute inset-y-0 left-0 ${isLeader ? 'bg-[color:var(--color-accent)]' : row.isChild ? 'bg-[color:var(--color-mute-2)]' : 'bg-[color:var(--color-ink)]'}`}
+                      style={`width: ${Math.max(width, row.metric > 0 ? 1.5 : 0).toFixed(1)}%; opacity: ${row.isChild ? 0.75 : 1};`}
+                    ></span>
+                  </div>
+                  <p class="mt-2 ml-9 text-[12px] mute">
+                    {row.bid != null && <>Shares bid <span class="num text-[color:var(--color-ink)]">{formatInt(row.bid)}</span></>}
+                    {row.offered != null && <> <span class="mute-2">·</span> Offered <span class="num text-[color:var(--color-ink)]">{formatInt(row.offered)}</span></>}
+                    {row.applications != null && <> <span class="mute-2">·</span> Applications <span class="num text-[color:var(--color-ink)]">{formatInt(row.applications)}</span></>}
+                  </p>
+                </div>
+              );
+            })}
           </div>
-        );
-      })}
+          {issue.subscription.shares_bid != null && (
+            <p class="mt-6 text-[12.5px] mute">
+              Total shares bid: <span class="num text-[color:var(--color-ink)]">{formatInt(issue.subscription.shares_bid)}</span>{issue.subscription.times != null && <> · total subscription <span class="num text-[color:var(--color-ink)]">{formatTimes(issue.subscription.times)}</span></>}.
+            </p>
+          )}
+        </div>
+      )}
+
+      {issue.subscription.trajectory.length > 1 && (
+        <div class={`${subscriptionRows.length > 0 ? 'mt-16' : ''}`}>
+          <header class="mb-8">
+            <h2 class="section-title">Subscription over time</h2>
+          </header>
+          <div class="max-w-[1080px]">
+            <TrajectoryChart observations={issue.subscription.trajectory} />
+          </div>
+        </div>
+      )}
+
+      {bidBook.length > 0 && (
+        <div class={`${subscriptionRows.length > 0 || issue.subscription.trajectory.length > 1 ? 'mt-16' : ''}`}>
+          <header class="flex items-baseline justify-between mb-8">
+            <h2 class="section-title">Bid book by price</h2>
+            <span class="text-[12px] mute">{bidBookSource === 'NSE' ? 'cumulative NSE demand' : 'where the demand sits'}</span>
+          </header>
+          <div class="space-y-2 max-w-[980px]">
+            {bidBook.slice().sort((a, b) => b.price - a.price).map((row) => {
+              const pct = bidBookMaxQty > 0 ? (row.quantity / bidBookMaxQty) * 100 : 0;
+              const isCutoff = priceMax != null && row.price === priceMax;
+              return (
+                <div class="grid grid-cols-[86px_minmax(0,1fr)] sm:grid-cols-[108px_minmax(0,1fr)_170px] items-center gap-3 sm:gap-5 num py-1">
+                  <span class={`text-left sm:text-right serif text-[22px] ${isCutoff ? 'acc' : ''}`}>{formatRupee(row.price)}</span>
+                  <span class="relative h-[24px] bg-white border border-[color:var(--color-rule)]">
+                    <span
+                      class={`absolute inset-y-0 left-0 ${isCutoff ? 'bg-[color:var(--color-accent)]' : 'bg-[color:var(--color-ink)]'}`}
+                      style={`width: ${pct.toFixed(1)}%; opacity: ${isCutoff ? 1 : 0.3 + (pct / 100) * 0.6};`}
+                    ></span>
+                  </span>
+                  <span class="col-start-2 sm:col-start-auto text-right serif text-[20px] num">{formatInt(row.quantity)}</span>
+                </div>
+              );
+            })}
+          </div>
+          {(bidBook[0]?.timestamp || demandGraph?.note) && (
+            <p class="mt-5 text-[12.5px] mute max-w-[78ch]">
+              {bidBook[0]?.timestamp && <>Updated <span class="num">{bidBook[0].timestamp}</span>. </>}
+              {demandGraph?.note && <>{demandGraph.note}</>}
+            </p>
+          )}
+        </div>
+      )}
     </div>
-    {(bidBook[0]?.timestamp || demandGraph?.note) && (
-      <p class="mt-5 text-[12.5px] mute max-w-[78ch]">
-        {bidBook[0]?.timestamp && <>Updated <span class="num">{bidBook[0].timestamp}</span>. </>}
-        {demandGraph?.note && <>{demandGraph.note}</>}
-      </p>
+  </section>
+)}
+
+<!-- PROSPECTUS RESEARCH NOTE -->
+{hasVerifiedProspectus && hasResearchArticle && (
+  <section class="page-tight py-20">
+    <header class="mb-14">
+      <div class="flex flex-wrap items-baseline justify-between gap-4">
+        <h2 class="section-title">Prospectus research note</h2>
+        <span class="text-[12px] mute">
+          {prospectusQuality?.state === 'review' ? 'review extraction' : 'verified extraction'}
+          {prospectusQuality?.verified_fact_count != null && <> · <span class="num">{prospectusQuality.verified_fact_count}</span> verified facts</>}
+        </span>
+      </div>
+    </header>
+
+    <div class="max-w-[680px]">
+      <!-- Executive summary -->
+      {articleLeadParagraphs.length > 0 && (
+        <div class="mb-20">
+          {articleLeadParagraphs.map((line, idx) => (
+            <p class={`${idx === 0 ? 'serif text-[24px] leading-[1.45] text-[color:var(--color-ink-soft)]' : 'mt-5 text-[16px] leading-[1.72] text-[color:var(--color-ink)]'}`}>
+              {line}
+            </p>
+          ))}
+          {sourcePages([companyDescriptionFact, businessModelFact, industryNameFact]) && (
+            <p class="mt-5 text-[11px] mute">{sourcePages([companyDescriptionFact, businessModelFact, industryNameFact])}</p>
+          )}
+        </div>
+      )}
+
+      <!-- Business model -->
+      {businessParagraphs.length > 0 && (
+        <div class="mb-20">
+          <div class="label mb-5">Business model</div>
+          <div class="space-y-5">
+            {businessParagraphs.map((line) => (
+              <p class="text-[16px] leading-[1.72]">{line}</p>
+            ))}
+          </div>
+          {sourcePages([...articleProducts, ...articleStrengths, ...articleCustomers, ...articleDependencies, ...articleGeographies]) && (
+            <p class="mt-5 text-[11px] mute">{sourcePages([...articleProducts, ...articleStrengths, ...articleCustomers, ...articleDependencies, ...articleGeographies])}</p>
+          )}
+        </div>
+      )}
+
+      <!-- Sector and industry -->
+      {industryParagraphs.length > 0 && (
+        <div class="mb-20">
+          <div class="label mb-5">Sector and industry</div>
+          <div class="space-y-5">
+            {industryParagraphs.map((line) => (
+              <p class="text-[16px] leading-[1.72]">{line}</p>
+            ))}
+          </div>
+          {(articleMarketSizes.length > 0 || articleGrowthRates.length > 0) && (
+            <div class="mt-8 flex flex-wrap gap-x-10 gap-y-5">
+              {[...articleMarketSizes.slice(0, 3), ...articleGrowthRates.slice(0, 3)].map((fact) => (
+                <div>
+                  <div class="label mb-1">{fact.label}</div>
+                  <div class="serif text-[22px] num leading-tight">{fact.value}</div>
+                </div>
+              ))}
+            </div>
+          )}
+          {sourcePages([...articleMarketSizes, ...articleGrowthRates, ...articleDrivers, ...articleCompetition, ...articleHeadwinds]) && (
+            <p class="mt-6 text-[11px] mute">{sourcePages([...articleMarketSizes, ...articleGrowthRates, ...articleDrivers, ...articleCompetition, ...articleHeadwinds])}</p>
+          )}
+        </div>
+      )}
+
+      <!-- Objects of the issue -->
+      {articleObjects.length > 0 && (
+        <div class="mb-20">
+          <div class="label mb-5">Objects of the issue</div>
+          {objectParagraph && <p class="text-[15px] leading-[1.72] mb-8">{objectParagraph}</p>}
+          <ol class="list-none p-0 m-0 space-y-5">
+            {articleObjects.slice(0, 6).map((fact, idx) => (
+              <li class="flex gap-5">
+                <span class="serif text-[30px] num text-[color:var(--color-mute-2)] leading-none shrink-0 w-8 text-right">{idx + 1}</span>
+                <p class="text-[15px] leading-[1.72] pt-2">{fact.value}</p>
+              </li>
+            ))}
+          </ol>
+          {sourcePages(articleObjects) && <p class="mt-6 text-[11px] mute">{sourcePages(articleObjects)}</p>}
+        </div>
+      )}
+    </div>
+
+    <!-- Financial story -->
+    {(primaryFinancialSeries.length > 0 || financialTrendFacts.length > 0) && (
+      <div class="mt-8 mb-20">
+        <div class="label mb-6 text-center">Financial story</div>
+        {primaryFinancialSeries.length > 0 && (
+          <div class="max-w-[840px] mx-auto bg-white border border-[color:var(--color-rule-card)] p-8 md:p-10">
+            <div class="flex flex-wrap items-baseline justify-between gap-4 mb-5">
+              <h3 class="serif text-[22px] leading-tight">{primaryFinancialSeries[0].source.label}</h3>
+              <span class="text-[11px] mute uppercase tracking-[0.08em]">reported sequence</span>
+            </div>
+            <svg viewBox={`0 0 ${primaryChart.width} ${primaryChart.height}`} class="w-full h-auto block" role="img" aria-label={`${primaryFinancialSeries[0].source.label} chart`}>
+              <line x1="28" x2={primaryChart.width - 28} y1={primaryChart.zeroY} y2={primaryChart.zeroY} stroke="var(--color-rule)" stroke-width="1" />
+              {primaryChart.bars.map((bar) => (
+                <rect x={bar.x} y={bar.y} width={bar.w} height={bar.h} fill={bar.row.value < 0 ? 'var(--color-mute-2)' : 'var(--color-ink)'} opacity={bar.row.value < 0 ? '0.55' : '0.88'} />
+              ))}
+              {primaryChart.points && <polyline points={primaryChart.points} fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />}
+            </svg>
+            <div class="grid gap-3 mt-5" style={`grid-template-columns: repeat(${Math.min(primaryFinancialSeries.length, 8)}, minmax(0, 1fr));`}>
+              {primaryFinancialSeries.map((row) => (
+                <div class="min-w-0 text-center">
+                  <div class="serif text-[16px] leading-tight num break-words">{row.value.toLocaleString('en-IN')}</div>
+                  <div class="mt-1 text-[10px] mute num">{row.label}</div>
+                </div>
+              ))}
+            </div>
+            {secondaryFinancialSeries.length > 0 && (
+              <div class="mt-8 pt-8 border-t border-[color:var(--color-rule)]">
+                <div class="flex items-baseline justify-between gap-4 mb-3">
+                  <h4 class="text-[12px] mute uppercase tracking-[0.08em]">{secondaryFinancialSeries[0].source.label}</h4>
+                </div>
+                <div class="space-y-3">
+                  {secondaryFinancialSeries.map((row) => {
+                    const maxAbs = Math.max(...secondaryFinancialSeries.map((r) => Math.abs(r.value)), 1);
+                    const w = Math.max(2, (Math.abs(row.value) / maxAbs) * 100);
+                    return (
+                      <div class="grid grid-cols-[52px_minmax(0,1fr)_90px] items-center gap-3 text-[12px]">
+                        <span class="mute num">{row.label}</span>
+                        <span class="h-[8px] bg-[color:var(--color-rule)] relative">
+                          <span class={`absolute inset-y-0 ${row.value < 0 ? 'right-1/2 bg-[color:var(--color-mute-2)]' : 'left-1/2 bg-[color:var(--color-ink)]'}`} style={`width: ${Math.min(50, w / 2).toFixed(1)}%;`}></span>
+                        </span>
+                        <span class="text-right num serif text-[15px]">{row.value.toLocaleString('en-IN')}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+        {financialTrendFacts.length > 0 && (
+          <div class="max-w-[680px] mx-auto mt-8 space-y-4">
+            {financialTrendFacts.slice(0, 5).map((fact) => (
+              <p class="text-[16px] leading-[1.72]">
+                <span class="font-semibold">{fact.label}.</span> {fact.value}
+              </p>
+            ))}
+          </div>
+        )}
+        {articleRatios.length > 0 && (
+          <div class="max-w-[680px] mx-auto mt-8 grid grid-cols-2 sm:grid-cols-3 gap-px bg-[color:var(--color-rule)] border border-[color:var(--color-rule)]">
+            {articleRatios.slice(0, 6).map((row) => (
+              <div class="bg-white p-5">
+                <div class="text-[10px] mute uppercase tracking-[0.08em]">{row.label}</div>
+                <div class="mt-2 serif text-[21px] num">{row.value.toLocaleString('en-IN')}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        {sourcePages(financialSourceFacts.length ? financialSourceFacts : financialTrendFacts) && (
+          <p class="max-w-[680px] mx-auto mt-4 text-[11px] mute">{sourcePages(financialSourceFacts.length ? financialSourceFacts : financialTrendFacts)}</p>
+        )}
+      </div>
     )}
+
+    <!-- Shareholding and control -->
+    {(shareholdingSourceFacts.length > 0 || controlParagraph) && (
+      <div class="max-w-[680px] mb-20">
+        <div class="label mb-5">Shareholding and control</div>
+        {controlParagraph && <p class="text-[16px] leading-[1.72] mb-8">{controlParagraph}</p>}
+        {shareholdingRows.length > 0 && (
+          <div class="space-y-5 mb-8">
+            {shareholdingRows.map((row) => (
+              <div>
+                <div class="flex items-baseline justify-between gap-4">
+                  <span class="text-[14px] leading-snug">{row.value}</span>
+                  <span class="serif text-[22px] num">{row.pct.toFixed(row.pct % 1 === 0 ? 0 : 2)}%</span>
+                </div>
+                <div class="mt-2 h-[10px] bg-[color:var(--color-rule)] relative">
+                  <span class="absolute inset-y-0 left-0 bg-[color:var(--color-ink)]" style={`width: ${Math.max(0, Math.min(100, row.pct)).toFixed(2)}%;`}></span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {articleRelatedParty.length > 0 && (
+          <p class="mt-5 text-[16px] leading-[1.72]">
+            <span class="font-semibold">Related-party angle.</span> {articleRelatedParty[0].value}
+          </p>
+        )}
+        {articleLitigation.length > 0 && (
+          <p class="mt-5 text-[16px] leading-[1.72]">
+            <span class="font-semibold">Legal overhang.</span> {articleLitigation[0].value}
+          </p>
+        )}
+        {sourcePages(shareholdingSourceFacts) && <p class="mt-5 text-[11px] mute">{sourcePages(shareholdingSourceFacts)}</p>}
+      </div>
+    )}
+
+    <!-- Risk thesis -->
+    {riskParagraphs.length > 0 && (
+      <div class="max-w-[680px]">
+        <div class="label mb-5">Risk thesis</div>
+        <div class="flex gap-5 mb-8">
+          <div class="w-[3px] bg-[color:var(--color-accent)] shrink-0 rounded-full"></div>
+          <div>
+            <p class="serif text-[28px] leading-none num">{riskCountFact?.value ?? riskThesisFacts.length}</p>
+            <p class="mt-1 text-[12px] mute leading-relaxed">{riskCountFact ? 'risk factors disclosed in the filing' : 'risk items extracted from the filing'}</p>
+          </div>
+        </div>
+        <div class="space-y-5 mb-8">
+          {riskParagraphs.map((line) => (
+            <p class="text-[16px] leading-[1.72]">{line}</p>
+          ))}
+        </div>
+        {riskThesisFacts.length > 0 && (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-0 border-t border-[color:var(--color-ink)]">
+            {riskThesisFacts.slice(0, 8).map((fact) => (
+              <p class="py-4 border-b border-[color:var(--color-rule)] text-[13.5px] leading-relaxed">
+                <span class="block text-[10px] mute uppercase tracking-[0.08em] mb-1">{fact.label}</span>
+                {fact.value}
+              </p>
+            ))}
+          </div>
+        )}
+        {sourcePages([riskCountFact, ...riskThesisFacts]) && <p class="mt-4 text-[11px] mute">{sourcePages([riskCountFact, ...riskThesisFacts])}</p>}
+      </div>
+    )}
+  </section>
+)}
+
+<!-- TIJORI ENRICHMENT -->
+{hasTijoriResearch && (
+  <section class="page-tight py-20 border-t border-[color:var(--color-rule)]">
+    <header class="flex flex-wrap items-baseline justify-between gap-4 mb-12">
+      <h2 class="section-title">Company research</h2>
+      <span class="text-[11px] mute tracking-[0.06em] uppercase font-semibold">
+        Source: Tijori Finance · third-party enrichment
+      </span>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-16">
+      <!-- Left: description + financials + revenue mix -->
+      <div class="space-y-16">
+
+        {tijori?.business_description && (
+          <div>
+            <div class="label mb-4">About the company</div>
+            <p class="serif text-[18px] leading-[1.6] text-[color:var(--color-ink-soft)] max-w-[62ch]">{tijori.business_description}</p>
+          </div>
+        )}
+
+        {tijoriFinancialRows.length > 0 && (
+          <div>
+            <div class="label mb-4">Financials (₹ crore)</div>
+            <table class="w-full text-[13.5px]">
+              <thead>
+                <tr class="border-b-2 border-[color:var(--color-ink)]">
+                  <th class="text-left pb-3 pr-6 label">Period</th>
+                  <th class="text-right pb-3 pr-6 label">Revenue</th>
+                  <th class="text-right pb-3 pr-6 label">PAT</th>
+                  <th class="text-right pb-3 label">Debt</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tijoriFinancialRows.map((row) => (
+                  <tr class="border-b border-[color:var(--color-rule)]">
+                    <td class="py-3 pr-6 mute">{row.period ?? '—'}</td>
+                    <td class="py-3 pr-6 text-right num serif">{fmtCr(row.net_sales_cr)}</td>
+                    <td class="py-3 pr-6 text-right num serif">{fmtCr(row.pat_cr)}</td>
+                    <td class="py-3 text-right num serif">{fmtCr(row.debt_cr)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {tijoriRevenueRows.length > 0 && (
+          <div>
+            <div class="label mb-5">Revenue mix</div>
+            <div class="space-y-3">
+              {tijoriRevenueRows.map((row) => (
+                <div class="flex items-center gap-4">
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-baseline justify-between gap-4 mb-1">
+                      <span class="text-[13px] truncate">{row.segment}</span>
+                      <span class="text-[13px] num serif font-medium shrink-0">{row.percent?.toFixed(1)}%</span>
+                    </div>
+                    <div class="h-[3px] bg-[color:var(--color-rule)]">
+                      <div class="h-full bg-[color:var(--color-accent)]" style={`width: ${Math.min(100, row.percent ?? 0)}%`}></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {tijoriPeerRows.length > 0 && (
+          <div>
+            <div class="label mb-4">Peer comparison</div>
+            <table class="w-full text-[13.5px]">
+              <thead>
+                <tr class="border-b-2 border-[color:var(--color-ink)]">
+                  <th class="text-left pb-3 pr-6 label">Company</th>
+                  <th class="text-right pb-3 pr-6 label">Mkt cap (Cr)</th>
+                  <th class="text-right pb-3 pr-6 label">Revenue</th>
+                  <th class="text-right pb-3 pr-6 label">PAT</th>
+                  <th class="text-right pb-3 pr-6 label">P/E</th>
+                  <th class="text-right pb-3 label">P/B</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tijoriPeerRows.map((row) => (
+                  <tr class="border-b border-[color:var(--color-rule)]">
+                    <td class="py-3 pr-6 font-semibold">{row.company_name}</td>
+                    <td class="py-3 pr-6 text-right num serif">{row.market_cap ?? '—'}</td>
+                    <td class="py-3 pr-6 text-right num serif">{fmtCr(row.net_sales_cr)}</td>
+                    <td class="py-3 pr-6 text-right num serif">{fmtCr(row.pat_cr)}</td>
+                    <td class="py-3 pr-6 text-right num serif">{fmtMultiple(row.pe)}</td>
+                    <td class="py-3 text-right num serif">{fmtMultiple(row.pb)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      <!-- Right sidebar: valuation + offer split + shareholding -->
+      <aside class="space-y-12">
+
+        {tijoriValuationRows.filter(r => r.value != null && r.value !== '').length > 0 && (
+          <div class="border-t-2 border-[color:var(--color-ink)] pt-6">
+            <div class="label mb-5">Valuation</div>
+            <dl>
+              {tijoriValuationRows.filter(r => r.value != null && r.value !== '').map((row) => (
+                <div class="flex justify-between items-baseline gap-4 py-3 border-b border-[color:var(--color-rule)]">
+                  <dt class="text-[12px] mute">{row.label}</dt>
+                  <dd class="num serif text-[17px]">{String(row.value)}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+
+        {tijoriOfferRows.filter(r => r.value).length > 0 && (
+          <div class="border-t border-[color:var(--color-rule)] pt-6">
+            <div class="label mb-5">Offer structure</div>
+            <dl>
+              {tijoriOfferRows.filter(r => r.value).map((row) => (
+                <div class="flex justify-between items-baseline gap-4 py-3 border-b border-[color:var(--color-rule)]">
+                  <dt class="text-[12px] mute">{row.label}</dt>
+                  <dd class="num serif text-[15px]">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+
+        {tijoriHoldingRows.length > 0 && (
+          <div class="border-t border-[color:var(--color-rule)] pt-6">
+            <div class="label mb-5">Shareholding</div>
+            <dl>
+              {tijoriHoldingRows.map((row) => (
+                <div class="py-3 border-b border-[color:var(--color-rule)]">
+                  <div class="text-[12px] mute mb-2">{row.label}</div>
+                  <div class="flex items-center gap-6">
+                    {row.pre != null && (
+                      <div class="text-center">
+                        <div class="num serif text-[20px]">{row.pre}%</div>
+                        <div class="text-[10px] mute mt-1 uppercase tracking-[0.08em]">Pre-IPO</div>
+                      </div>
+                    )}
+                    {row.pre != null && row.post != null && <span class="text-[color:var(--color-mute-2)]">→</span>}
+                    {row.post != null && (
+                      <div class="text-center">
+                        <div class="num serif text-[20px]">{row.post}%</div>
+                        <div class="text-[10px] mute mt-1 uppercase tracking-[0.08em]">Post-IPO</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+)}
+
+<!-- PARTIES -->
+{(brlmName || registrarName || sponsorName) && (
+  <section class="bg-[color:var(--color-paper-soft)]">
+    <div class="page-tight py-20">
+      <header class="mb-10">
+        <h2 class="section-title">Parties to the issue</h2>
+      </header>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {brlmName && (
+          <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+            <div class="label mb-3">Book-running lead manager</div>
+            <div class="serif font-medium text-[20px] leading-snug">{brlmName}</div>
+            {brlm.meta && <p class="text-[12px] mute mt-2">{brlm.meta}</p>}
+          </div>
+        )}
+        {registrarName && (
+          <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+            <div class="label mb-3">Registrar</div>
+            <div class="serif font-medium text-[20px] leading-snug">{registrarName}</div>
+            {registrar.meta && <p class="text-[12px] mute mt-2">{registrar.meta}</p>}
+          </div>
+        )}
+        {sponsorName && (
+          <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
+            <div class="label mb-3">Sponsor bank</div>
+            <div class="serif font-medium text-[20px] leading-snug">{sponsorName}</div>
+          </div>
+        )}
+      </div>
+    </div>
   </section>
 )}
 
 <!-- EXCHANGE ISSUE DETAILS -->
 {(visibleIssueInfoRows.length > 0 || offerMetadataRows.length > 0) && (
-  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
-    <header class="flex items-baseline justify-between mb-9">
+  <section class="page-tight py-20">
+    <header class="flex items-baseline justify-between mb-10">
       <h2 class="section-title">Exchange filings</h2>
       <span class="text-[12px] mute">Fields captured from NSE and BSE</span>
     </header>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
       {visibleIssueInfoRows.length > 0 && (
         <div>
-          <div class="label mb-4">Issue information</div>
-          <dl class="border-t border-[color:var(--color-ink)]">
+          <div class="label mb-5">Issue information</div>
+          <dl class="border-t border-[color:var(--color-rule-strong)]">
             {visibleIssueInfoRows.map((row) => (
-              <div class="grid grid-cols-1 sm:grid-cols-[180px_minmax(0,1fr)] gap-1 sm:gap-5 py-3 border-b border-[color:var(--color-rule)]">
-                <dt class="text-[12px] mute leading-snug">{row.title}</dt>
-                <dd class="text-[13px] leading-snug min-w-0">
+              <div class="grid grid-cols-1 sm:grid-cols-[160px_minmax(0,1fr)] gap-1 sm:gap-5 py-5 border-b border-[color:var(--color-rule)]">
+                <dt class="text-[12.5px] mute leading-snug">{row.title}</dt>
+                <dd class="text-[15px] leading-snug min-w-0">
                   {row.href ? (
                     <a href={row.href} target="_blank" rel="noopener" class="hover:acc break-words">{row.value && row.value.startsWith('http') ? row.value : row.title}</a>
                   ) : (
@@ -1345,12 +1495,12 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
       )}
       {offerMetadataRows.length > 0 && (
         <div>
-          <div class="label mb-4">Company and offer metadata</div>
-          <dl class="border-t border-[color:var(--color-ink)]">
+          <div class="label mb-5">Company and offer metadata</div>
+          <dl class="border-t border-[color:var(--color-rule-strong)]">
             {offerMetadataRows.map((row) => (
-              <div class="grid grid-cols-1 sm:grid-cols-[180px_minmax(0,1fr)] gap-1 sm:gap-5 py-3 border-b border-[color:var(--color-rule)]">
-                <dt class="text-[12px] mute leading-snug">{row.title}</dt>
-                <dd class="text-[13px] leading-snug min-w-0">
+              <div class="grid grid-cols-1 sm:grid-cols-[160px_minmax(0,1fr)] gap-1 sm:gap-5 py-5 border-b border-[color:var(--color-rule)]">
+                <dt class="text-[12.5px] mute leading-snug">{row.title}</dt>
+                <dd class="text-[15px] leading-snug min-w-0">
                   {row.href ? (
                     <a href={row.href} target="_blank" rel="noopener" class="hover:acc break-words">{row.value}</a>
                   ) : (
@@ -1366,553 +1516,29 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
   </section>
 )}
 
-<!-- THIRD-PARTY RESEARCH SNAPSHOT -->
-{hasTijoriResearch && tijori && (
-  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
-    <header class="flex flex-wrap items-baseline justify-between gap-4 mb-9">
-      <h2 class="section-title">Research snapshot</h2>
-      <span class="text-[12px] mute">Tijori enrichment</span>
-    </header>
-
-    {tijori.business_description && (
-      <p class="serif text-[22px] leading-[1.46] text-[color:var(--color-ink-soft)] max-w-[72ch] mb-10">
-        {tijori.business_description}
-      </p>
-    )}
-
-    {(tijoriValuationRows.length > 0 || tijoriOfferRows.length > 0) && (
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
-        {tijoriValuationRows.length > 0 && (
-          <div>
-            <div class="label mb-4">Valuation</div>
-            <dl class="grid grid-cols-2 sm:grid-cols-3 gap-px bg-[color:var(--color-rule)] border border-[color:var(--color-rule)]">
-              {tijoriValuationRows.map((row) => (
-                <div class="bg-white p-4 min-w-0">
-                  <dt class="text-[11px] mute uppercase tracking-[0.08em]">{row.label}</dt>
-                  <dd class="mt-2 serif text-[22px] leading-tight num break-words">{fmtMultiple(row.value)}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        )}
-        {tijoriOfferRows.length > 0 && (
-          <div>
-            <div class="label mb-4">Offer split</div>
-            <dl class="border-t border-[color:var(--color-ink)]">
-              {tijoriOfferRows.map((row) => (
-                <div class="grid grid-cols-1 sm:grid-cols-[180px_minmax(0,1fr)] gap-1 sm:gap-5 py-3 border-b border-[color:var(--color-rule)]">
-                  <dt class="text-[12px] mute leading-snug">{row.label}</dt>
-                  <dd class="text-[14px] leading-snug num">{row.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        )}
-      </div>
-    )}
-
-    {(tijoriFinancialRows.length > 0 || tijoriRevenueRows.length > 0) && (
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
-        {tijoriFinancialRows.length > 0 && (
-          <div>
-            <div class="label mb-4">Financial trend</div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-left border-t border-[color:var(--color-ink)]">
-                <thead>
-                  <tr class="text-[11px] mute uppercase tracking-[0.08em]">
-                    <th class="py-3 pr-4 font-semibold">Period</th>
-                    <th class="py-3 px-4 font-semibold text-right">Sales</th>
-                    <th class="py-3 px-4 font-semibold text-right">PAT</th>
-                    <th class="py-3 pl-4 font-semibold text-right">Debt</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tijoriFinancialRows.map((row) => (
-                    <tr class="border-t border-[color:var(--color-rule)] text-[13px]">
-                      <td class="py-3 pr-4 whitespace-nowrap">{row.period ?? '—'}</td>
-                      <td class="py-3 px-4 text-right num whitespace-nowrap">{fmtCr(row.net_sales_cr)}</td>
-                      <td class="py-3 px-4 text-right num whitespace-nowrap">{fmtCr(row.pat_cr)}</td>
-                      <td class="py-3 pl-4 text-right num whitespace-nowrap">{fmtCr(row.debt_cr)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
-        {tijoriRevenueRows.length > 0 && (
-          <div>
-            <div class="label mb-4">Revenue mix</div>
-            <div class="space-y-3">
-              {tijoriRevenueRows.slice(0, 8).map((row) => (
-                <div>
-                  <div class="flex items-baseline justify-between gap-4 text-[13px]">
-                    <span class="min-w-0 break-words">{row.segment}</span>
-                    <span class="num serif text-[20px]">{row.percent?.toFixed(1)}%</span>
-                  </div>
-                  <div class="mt-2 h-[8px] bg-[color:var(--color-rule)] relative">
-                    <span class="absolute inset-y-0 left-0 bg-[color:var(--color-ink)]" style={`width: ${Math.max(0, Math.min(100, row.percent ?? 0)).toFixed(1)}%`}></span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    )}
-
-    {(tijoriPeerRows.length > 0 || tijoriHoldingRows.length > 0) && (
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        {tijoriPeerRows.length > 0 && (
-          <div>
-            <div class="label mb-4">Peers</div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-left border-t border-[color:var(--color-ink)]">
-                <thead>
-                  <tr class="text-[11px] mute uppercase tracking-[0.08em]">
-                    <th class="py-3 pr-4 font-semibold">Company</th>
-                    <th class="py-3 px-4 font-semibold text-right">Sales</th>
-                    <th class="py-3 px-4 font-semibold text-right">P/E</th>
-                    <th class="py-3 pl-4 font-semibold text-right">P/B</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tijoriPeerRows.map((row) => (
-                    <tr class="border-t border-[color:var(--color-rule)] text-[13px]">
-                      <td class="py-3 pr-4 min-w-[140px]">{row.company_name}</td>
-                      <td class="py-3 px-4 text-right num whitespace-nowrap">{fmtCr(row.net_sales_cr)}</td>
-                      <td class="py-3 px-4 text-right num whitespace-nowrap">{fmtMultiple(row.pe)}</td>
-                      <td class="py-3 pl-4 text-right num whitespace-nowrap">{fmtMultiple(row.pb)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
-        {tijoriHoldingRows.length > 0 && (
-          <div>
-            <div class="label mb-4">Shareholding</div>
-            <dl class="border-t border-[color:var(--color-ink)]">
-              {tijoriHoldingRows.map((row) => (
-                <div class="grid grid-cols-1 sm:grid-cols-[180px_minmax(0,1fr)] gap-1 sm:gap-5 py-3 border-b border-[color:var(--color-rule)]">
-                  <dt class="text-[12px] mute leading-snug">{row.label}</dt>
-                  <dd class="text-[14px] leading-snug num">
-                    {row.pre && <>Pre-IPO {row.pre}</>}
-                    {row.pre && row.post && <span class="mute-2"> · </span>}
-                    {row.post && <>Post-IPO {row.post}</>}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        )}
-      </div>
-    )}
-  </section>
-)}
-
-<!-- PARTIES -->
-{(brlmName || registrarName || sponsorName) && (
-  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
-    <header class="mb-9">
-      <h2 class="section-title">Parties to the issue</h2>
-    </header>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-      {brlmName && (
-        <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-          <div class="label mb-3">Book-running lead manager</div>
-          <div class="serif font-medium text-[20px] leading-snug">{brlmName}</div>
-          {brlm.meta && <p class="text-[12px] mute mt-2">{brlm.meta}</p>}
-        </div>
-      )}
-      {registrarName && (
-        <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-          <div class="label mb-3">Registrar</div>
-          <div class="serif font-medium text-[20px] leading-snug">{registrarName}</div>
-          {registrar.meta && <p class="text-[12px] mute mt-2">{registrar.meta}</p>}
-        </div>
-      )}
-      {sponsorName && (
-        <div class="bg-white border border-[color:var(--color-rule-card)] p-6">
-          <div class="label mb-3">Sponsor bank</div>
-          <div class="serif font-medium text-[20px] leading-snug">{sponsorName}</div>
-        </div>
-      )}
-    </div>
-  </section>
-)}
-
-<!-- VERIFIED PROSPECTUS FACTS -->
-{hasVerifiedProspectus && hasResearchArticle && (
-  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
-    <header class="mb-9">
-      <div class="flex flex-wrap items-baseline justify-between gap-4">
-        <h2 class="section-title">Prospectus research note</h2>
-        <span class="text-[12px] mute">
-          {prospectusQuality?.state === 'review' ? 'review extraction' : 'verified extraction'}
-          {prospectusQuality?.verified_fact_count != null && <> · <span class="num">{prospectusQuality.verified_fact_count}</span> verified facts</>}
-        </span>
-      </div>
-    </header>
-
-    {articleLeadParagraphs.length > 0 && (
-      <div class="mb-14 max-w-[78ch]">
-        {articleLeadParagraphs.map((line, idx) => (
-          <p class={`${idx === 0 ? 'serif text-[25px] leading-[1.45] text-[color:var(--color-ink-soft)]' : 'mt-5 text-[16px] leading-[1.8] text-[color:var(--color-ink)]'}`}>
-            {line}
-          </p>
-        ))}
-        {sourcePages([companyDescriptionFact, businessModelFact, industryNameFact]) && (
-          <p class="mt-5 text-[11px] mute">{sourcePages([companyDescriptionFact, businessModelFact, industryNameFact])}</p>
-        )}
-      </div>
-    )}
-
-    {(businessParagraphs.length > 0 || articleStrengths.length > 0 || articleCustomers.length > 0) && (
-      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-12 mb-16">
-        <article>
-          <div class="label mb-4">Business model</div>
-          <div class="space-y-5">
-            {businessParagraphs.map((line) => (
-              <p class="text-[16px] leading-[1.82] max-w-[76ch]">{line}</p>
-            ))}
-          </div>
-          {sourcePages([...articleProducts, ...articleEndIndustries, ...articleDistribution, ...articleRnD, ...articleStrengths, ...articleCustomers, ...articleDependencies, ...articleGeographies]) && (
-            <p class="mt-5 text-[11px] mute">{sourcePages([...articleProducts, ...articleEndIndustries, ...articleDistribution, ...articleRnD, ...articleStrengths, ...articleCustomers, ...articleDependencies, ...articleGeographies])}</p>
-          )}
-        </article>
-        {(articleStrengths.length > 0 || articleCustomers.length > 0 || articleDependencies.length > 0) && (
-          <aside>
-            <div class="label mb-4">Operating read-through</div>
-            <dl class="border-t border-[color:var(--color-ink)]">
-              {[...articleStrengths.slice(0, 3), ...articleCustomers.slice(0, 1), ...articleDependencies.slice(0, 1)].map((fact) => (
-                <div class="py-4 border-b border-[color:var(--color-rule)]">
-                  <dt class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</dt>
-                  <dd class="mt-2 text-[14px] leading-relaxed">{fact.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </aside>
-        )}
-      </div>
-    )}
-
-    {(industryParagraphs.length > 0 || articleMarketSizes.length > 0 || articleDrivers.length > 0 || articleRegulation.length > 0) && (
-      <div class="mb-16">
-        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-12">
-          <article>
-            <div class="label mb-4">Sector and industry</div>
-            <div class="space-y-5">
-              {industryParagraphs.map((line) => (
-                <p class="text-[16px] leading-[1.82] max-w-[76ch]">{line}</p>
-              ))}
-            </div>
-            {sourcePages([...articleOpportunityFacts, ...articleMarketSizes, ...articleAddressableMarket, ...articleGrowthRates, ...articleDrivers, ...articleDemandCatalysts, ...articlePolicyTailwinds, ...articleCompetition, ...articleHeadwinds]) && (
-              <p class="mt-5 text-[11px] mute">{sourcePages([...articleOpportunityFacts, ...articleMarketSizes, ...articleAddressableMarket, ...articleGrowthRates, ...articleDrivers, ...articleDemandCatalysts, ...articlePolicyTailwinds, ...articleCompetition, ...articleHeadwinds])}</p>
-            )}
-          </article>
-          <div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[color:var(--color-rule)] border border-[color:var(--color-rule)]">
-              {[...articleAddressableMarket.slice(0, 2), ...articleMarketSizes.slice(0, 4), ...articleGrowthRates.slice(0, 4)].slice(0, 8).map((fact) => (
-                <div class="bg-white p-5 min-w-0">
-                  <div class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</div>
-                  <div class="mt-3 serif text-[22px] leading-tight num break-words">{fact.value}</div>
-                </div>
-              ))}
-            </div>
-            {articleRegulation.length > 0 && (
-              <div class="mt-6 border-t border-[color:var(--color-ink)]">
-                {articleRegulation.slice(0, 4).map((fact) => (
-                  <p class="py-3 border-b border-[color:var(--color-rule)] text-[13px] leading-relaxed">
-                    <span class="font-semibold">Regulatory context.</span> {fact.value}
-                  </p>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    )}
-
-    {(opportunityParagraphs.length > 0 || articleOpportunityFacts.length > 0 || articleExecutionFacts.length > 0) && (
-      <div class="mb-16">
-        <div class="label mb-4">Opportunity and execution path</div>
-        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] gap-12">
-          <article>
-            <div class="space-y-5">
-              {opportunityParagraphs.map((line) => (
-                <p class="text-[16px] leading-[1.82] max-w-[78ch]">{line}</p>
-              ))}
-            </div>
-            {sourcePages([...articleOpportunityFacts, ...articleExecutionFacts]) && (
-              <p class="mt-5 text-[11px] mute">{sourcePages([...articleOpportunityFacts, ...articleExecutionFacts])}</p>
-            )}
-          </article>
-          <aside>
-            <div class="border-t border-[color:var(--color-ink)]">
-              {[...articleExecutionFacts.slice(0, 5), ...articleOpportunityFacts.slice(0, 3)].slice(0, 8).map((fact, idx) => (
-                <div class="grid grid-cols-[34px_minmax(0,1fr)] gap-4 py-4 border-b border-[color:var(--color-rule)]">
-                  <span class="serif text-[22px] leading-none num text-[color:var(--color-ink-soft)]">{idx + 1}</span>
-                  <div>
-                    <div class="text-[10px] mute uppercase tracking-[0.08em]">{fact.label}</div>
-                    <p class="mt-2 text-[14px] leading-relaxed">{fact.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </aside>
-        </div>
-      </div>
-    )}
-
-    {(articleObjects.length > 0 || offerNarrativeFacts.length > 0) && (
-      <div class="mb-16">
-        <div class="label mb-4">Objects of the issue</div>
-        {objectParagraph && <p class="text-[16px] leading-[1.82] max-w-[78ch] mb-6">{objectParagraph}</p>}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {articleObjects.slice(0, 6).map((fact, idx) => (
-            <article class="border border-[color:var(--color-rule-card)] bg-white p-5">
-              <div class="serif text-[30px] leading-none num text-[color:var(--color-ink-soft)]">{idx + 1}</div>
-              <p class="mt-4 text-[14px] leading-relaxed">{fact.value}</p>
-            </article>
-          ))}
-        </div>
-        {sourcePages(articleObjects) && <p class="mt-4 text-[11px] mute">{sourcePages(articleObjects)}</p>}
-      </div>
-    )}
-
-    {(primaryFinancialSeries.length > 0 || financialTrendFacts.length > 0) && (
-      <div class="mb-16">
-        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div class="label">Financial story</div>
-          {financialsUrl && (
-            <a href={financialsUrl} class="text-[12px] font-semibold border-b border-[color:var(--color-ink)]">
-              View full financials
-            </a>
-          )}
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] gap-12">
-          {primaryFinancialSeries.length > 0 && (
-            <div>
-              <div class="border-y border-[color:var(--color-ink)] py-5">
-                <div class="flex flex-wrap items-baseline justify-between gap-4 mb-4">
-                  <h3 class="serif text-[24px] leading-tight">{primaryFinancialSeries[0].source.label}</h3>
-                  <span class="text-[11px] mute uppercase tracking-[0.08em]">reported sequence</span>
-                </div>
-                <svg viewBox={`0 0 ${primaryChart.width} ${primaryChart.height}`} class="w-full h-auto block" role="img" aria-label={`${primaryFinancialSeries[0].source.label} chart`}>
-                  <line x1="28" x2={primaryChart.width - 28} y1={primaryChart.zeroY} y2={primaryChart.zeroY} stroke="var(--color-rule)" stroke-width="1" />
-                  {primaryChart.bars.map((bar) => (
-                    <rect x={bar.x} y={bar.y} width={bar.w} height={bar.h} fill={bar.row.value < 0 ? 'var(--color-mute-2)' : 'var(--color-ink)'} opacity={bar.row.value < 0 ? '0.55' : '0.88'} />
-                  ))}
-                  {primaryChart.points && <polyline points={primaryChart.points} fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />}
-                </svg>
-                <div class="grid gap-2 mt-4" style={`grid-template-columns: repeat(${Math.min(primaryFinancialSeries.length, 8)}, minmax(0, 1fr));`}>
-                  {primaryFinancialSeries.map((row) => (
-                    <div class="min-w-0 text-center">
-                      <div class="serif text-[16px] leading-tight num break-words">{row.value.toLocaleString('en-IN')}</div>
-                      <div class="mt-1 text-[10px] mute num">{row.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              {secondaryFinancialSeries.length > 0 && (
-                <div class="mt-6">
-                  <div class="flex items-baseline justify-between gap-4 mb-2">
-                    <h4 class="text-[12px] mute uppercase tracking-[0.08em]">{secondaryFinancialSeries[0].source.label}</h4>
-                  </div>
-                  <div class="space-y-2">
-                    {secondaryFinancialSeries.map((row) => {
-                      const maxAbs = Math.max(...secondaryFinancialSeries.map((r) => Math.abs(r.value)), 1);
-                      const w = Math.max(2, (Math.abs(row.value) / maxAbs) * 100);
-                      return (
-                        <div class="grid grid-cols-[48px_minmax(0,1fr)_90px] items-center gap-3 text-[12px]">
-                          <span class="mute num">{row.label}</span>
-                          <span class="h-[8px] bg-[color:var(--color-rule)] relative">
-                            <span class={`absolute inset-y-0 ${row.value < 0 ? 'right-1/2 bg-[color:var(--color-mute-2)]' : 'left-1/2 bg-[color:var(--color-ink)]'}`} style={`width: ${Math.min(50, w / 2).toFixed(1)}%;`}></span>
-                          </span>
-                          <span class="text-right num serif text-[15px]">{row.value.toLocaleString('en-IN')}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-          <div>
-            <div class="space-y-4">
-              {financialTrendFacts.slice(0, 5).map((fact) => (
-                <p class="text-[15px] leading-[1.75]">
-                  <span class="font-semibold">{fact.label}.</span> {fact.value}
-                </p>
-              ))}
-            </div>
-            {articleRatios.length > 0 && (
-              <div class="mt-7 grid grid-cols-2 sm:grid-cols-3 gap-px bg-[color:var(--color-rule)] border border-[color:var(--color-rule)]">
-                {articleRatios.slice(0, 6).map((row) => (
-                  <div class="bg-white p-4">
-                    <div class="text-[10px] mute uppercase tracking-[0.08em]">{row.label}</div>
-                    <div class="mt-2 serif text-[20px] num">{row.value.toLocaleString('en-IN')}</div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-        {sourcePages(financialSourceFacts.length ? financialSourceFacts : financialTrendFacts) && (
-          <p class="mt-4 text-[11px] mute">{sourcePages(financialSourceFacts.length ? financialSourceFacts : financialTrendFacts)}</p>
-        )}
-      </div>
-    )}
-
-    {(shareholdingSourceFacts.length > 0 || controlParagraph) && (
-      <div class="mb-16">
-        <div class="label mb-4">Shareholding and control</div>
-        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-12">
-          <article>
-            {controlParagraph && <p class="text-[16px] leading-[1.82] max-w-[74ch]">{controlParagraph}</p>}
-            {articleRelatedParty.length > 0 && (
-              <p class="mt-5 text-[15px] leading-[1.75]">
-                <span class="font-semibold">Related-party angle.</span> {articleRelatedParty[0].value}
-              </p>
-            )}
-            {articleLitigation.length > 0 && (
-              <p class="mt-5 text-[15px] leading-[1.75]">
-                <span class="font-semibold">Legal overhang.</span> {articleLitigation[0].value}
-              </p>
-            )}
-          </article>
-          <div>
-            {shareholdingRows.length > 0 ? (
-              <div class="space-y-5">
-                {shareholdingRows.map((row) => (
-                  <div>
-                    <div class="flex items-baseline justify-between gap-4">
-                      <span class="text-[13px] leading-snug">{row.value}</span>
-                      <span class="serif text-[22px] num">{row.pct.toFixed(row.pct % 1 === 0 ? 0 : 2)}%</span>
-                    </div>
-                    <div class="mt-2 h-[12px] bg-[color:var(--color-rule)] relative">
-                      <span class="absolute inset-y-0 left-0 bg-[color:var(--color-ink)]" style={`width: ${Math.max(0, Math.min(100, row.pct)).toFixed(2)}%;`}></span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <dl class="border-t border-[color:var(--color-ink)]">
-                {shareholdingSourceFacts.slice(0, 6).map((fact) => (
-                  <div class="py-3 border-b border-[color:var(--color-rule)]">
-                    <dt class="text-[11px] mute uppercase tracking-[0.08em]">{fact.label}</dt>
-                    <dd class="mt-1 text-[14px] leading-relaxed">{fact.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            )}
-          </div>
-        </div>
-        {sourcePages(shareholdingSourceFacts) && <p class="mt-4 text-[11px] mute">{sourcePages(shareholdingSourceFacts)}</p>}
-      </div>
-    )}
-
-    {riskParagraphs.length > 0 && (
-      <div>
-        <div class="label mb-4">Risk thesis</div>
-        <div class="grid grid-cols-1 lg:grid-cols-[220px_minmax(0,1fr)] gap-10">
-          <div>
-            <p class="serif text-[42px] leading-none num">{riskCountFact?.value ?? riskThesisFacts.length}</p>
-            <p class="mt-3 text-[12px] mute leading-relaxed">{riskCountFact ? 'risk factors disclosed in the filing' : 'risk items extracted from the filing'}</p>
-          </div>
-          <article>
-            <div class="space-y-5">
-              {riskParagraphs.map((line) => (
-                <p class="text-[15px] leading-[1.78] max-w-[82ch]">{line}</p>
-              ))}
-            </div>
-            {riskThesisFacts.length > 0 && (
-              <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-10 border-t border-[color:var(--color-ink)]">
-                {riskThesisFacts.slice(0, 8).map((fact) => (
-                  <p class="py-3 border-b border-[color:var(--color-rule)] text-[13px] leading-relaxed">
-                    <span class="block text-[10px] mute uppercase tracking-[0.08em]">{fact.label}</span>
-                    {fact.value}
-                  </p>
-                ))}
-              </div>
-            )}
-          </article>
-        </div>
-        {sourcePages([riskCountFact, ...riskThesisFacts]) && <p class="mt-4 text-[11px] mute">{sourcePages([riskCountFact, ...riskThesisFacts])}</p>}
-      </div>
-    )}
-  </section>
-)}
-
-<!-- PROSPECTUS FACT BASE -->
-{hasVerifiedProspectus && materialFactCount > 0 && (
-  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
-    <header class="mb-9">
-      <div class="flex flex-wrap items-baseline justify-between gap-4">
-        <h2 class="section-title">Prospectus fact base</h2>
-        <span class="text-[12px] mute">
-          <span class="num">{materialFactCount}</span> citation-verified facts
-        </span>
-      </div>
-      <p class="mt-4 text-[14px] leading-relaxed mute max-w-[78ch]">
-        Material facts extracted from the filing, grouped so the article can be checked against the underlying data instead of becoming the only source of truth.
-      </p>
-    </header>
-    <div class="space-y-4">
-      {dossierGroups.map((group, groupIdx) => (
-        <details class="border-y border-[color:var(--color-rule)] py-4" open={groupIdx < 4}>
-          <summary class="cursor-pointer list-none">
-            <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_96px] gap-3 md:items-baseline">
-              <div>
-                <h3 class="serif text-[24px] leading-tight">{group.title}</h3>
-                <p class="mt-2 text-[12.5px] mute leading-relaxed max-w-[78ch]">{group.deck}</p>
-              </div>
-              <span class="md:text-right text-[12px] mute num">{group.facts.length} facts</span>
-            </div>
-          </summary>
-          <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-x-10 border-t border-[color:var(--color-ink)]">
-            {group.facts.map((fact) => (
-              <article class="py-4 border-b border-[color:var(--color-rule)]">
-                <div class="flex flex-wrap items-baseline justify-between gap-3">
-                  <h4 class="text-[10px] mute uppercase tracking-[0.08em]">{fact.label}</h4>
-                  <span class="text-[10px] mute num">
-                    DRHP p.{fact.page}{fact.confidence ? ` · ${fact.confidence}` : ''}
-                  </span>
-                </div>
-                <p class="mt-2 text-[13.5px] leading-relaxed">{fact.value}</p>
-                {fact.section && <p class="mt-2 text-[11px] mute">{fact.section}</p>}
-              </article>
-            ))}
-          </div>
-        </details>
-      ))}
-    </div>
-  </section>
-)}
-
 <!-- DOCUMENTS -->
 {documents.length > 0 && (
-  <section class="page-tight pt-12 pb-20 border-t border-[color:var(--color-rule)]">
-    <header class="mb-9">
-      <h2 class="section-title">Documents</h2>
-    </header>
-    <ul class="list-none p-0 m-0">
-      {documents.map((doc: any) => (
-        <li>
-          <a href={doc.url} target="_blank" rel="noopener" class="flex items-baseline justify-between gap-6 py-4 border-b border-[color:var(--color-rule)] group">
-            <span class="serif font-medium text-[16px] group-hover:acc transition-colors">{doc.type}</span>
-            <span class="text-[12px] mute num">{doc.source_date ?? doc.date ?? ''}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
+  <section class="bg-[color:var(--color-paper-soft)]">
+    <div class="page-tight py-20">
+      <header class="mb-10">
+        <h2 class="section-title">Documents</h2>
+      </header>
+      <ul class="list-none p-0 m-0 bg-white border border-[color:var(--color-rule-card)]">
+        {documents.map((doc: any, idx: number) => (
+          <li>
+            <a href={doc.url} target="_blank" rel="noopener" class={`flex items-baseline justify-between gap-6 py-5 px-6 group ${idx < documents.length - 1 ? 'border-b border-[color:var(--color-rule)]' : ''}`}>
+              <span class="serif font-medium text-[16px] group-hover:acc transition-colors">{doc.type}</span>
+              <span class="text-[12px] mute num">{doc.source_date ?? doc.date ?? ''}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   </section>
 )}
 
 <!-- PROVENANCE -->
-<section class="page-tight pt-8 pb-16 border-t border-[color:var(--color-rule)]">
+<section class="page-tight pt-10 pb-16 border-t border-[color:var(--color-rule)]">
   <p class="text-[11.5px] mute leading-[1.6] max-w-[70ch]">
     Data sources:
     {(issue.sources ?? []).map((s: any, i: number) => (

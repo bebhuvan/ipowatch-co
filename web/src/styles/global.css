@@ -248,7 +248,7 @@
 
   .site-kicker {
     font-size: 10.5px;
-    letter-spacing: 0.17em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--color-mute);
     font-weight: 600;
@@ -303,12 +303,129 @@
 
   .issue-badge-live {
     color: var(--color-accent);
-    background: #fffaf7;
+    background: var(--color-paper-warm);
   }
   .issue-badge-dark {
     color: var(--color-ink);
     background: var(--color-paper);
   }
+
+  /* ── Compact IPO listing rows (used by /live/ and /upcoming/) ── */
+  .ipo-list {
+    border-top: 2px solid var(--color-ink);
+    margin-top: 36px;
+  }
+
+  .ipo-row-wrap {
+    position: relative;
+  }
+
+  .ipo-row-accent {
+    position: absolute;
+    left: -56px; /* flush with page-tight left edge on md+ */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-accent);
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 0.18s ease;
+    pointer-events: none;
+  }
+  @media (max-width: 767px) {
+    .ipo-row-accent { display: none; }
+  }
+  .ipo-row-wrap:hover .ipo-row-accent { transform: scaleY(1); }
+
+  .ipo-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 6px 0;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-rule);
+    text-decoration: none;
+    transition: background 0.12s ease;
+  }
+  @media (min-width: 640px) {
+    .ipo-row {
+      grid-template-columns: minmax(0, 1.6fr) minmax(auto, 380px) auto;
+      grid-template-rows: 1fr;
+      align-items: center;
+      gap: 0 36px;
+      padding: 16px 0;
+    }
+  }
+
+  .ipo-row-main { grid-column: 1; }
+
+  .ipo-row-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px 8px;
+    margin-bottom: 5px;
+  }
+
+  .ipo-row-type {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--color-mute);
+  }
+
+  .ipo-row-company {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--color-ink);
+    transition: color 0.15s ease;
+  }
+  .ipo-row-wrap:hover .ipo-row-company { color: var(--color-accent-deep); }
+
+  .ipo-row-stats {
+    display: none;
+  }
+  @media (min-width: 640px) {
+    .ipo-row-stats {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 8px 20px;
+    }
+  }
+
+  .ipo-row-stat { display: flex; flex-direction: column; gap: 2px; }
+  .ipo-row-stat .label { font-size: 9.5px; letter-spacing: 0.14em; }
+
+  .ipo-row-val {
+    font-family: var(--font-serif);
+    font-size: 16.5px;
+    font-weight: 400;
+    color: var(--color-ink);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums lining-nums;
+    line-height: 1.1;
+  }
+
+  .ipo-row-timing {
+    grid-column: 2;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    white-space: nowrap;
+    text-align: right;
+  }
+  @media (min-width: 640px) {
+    .ipo-row-timing { grid-column: 3; }
+  }
+
+  .ipo-row-timing-live { color: var(--color-accent); }
+  .ipo-row-timing-soon { color: var(--color-gold); }
 
   /* Reading column — consistent width for long-form text blocks */
   .reading {

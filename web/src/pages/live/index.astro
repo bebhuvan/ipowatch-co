@@ -71,58 +71,54 @@ const metaDescription = `Track all ${enriched.length} Indian public IPOs current
   </p>
 </section>
 
-<section class="page-tight pt-12 pb-24">
+<section class="page-tight pb-24">
   {enriched.length === 0 ? (
-    <p class="serif italic text-[20px] mute">A quiet day on the primary market.</p>
+    <p class="serif italic text-[20px] mute mt-12">A quiet day on the primary market.</p>
   ) : (
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {enriched.map(({ issue, subscriptionTimes, lotSize, closeDays, raise, brlmName }, idx) => {
-        const subPct = subscriptionTimes != null ? Math.min(100, (Math.min(subscriptionTimes, 10) / 10) * 100) : 0;
-        return (
-          <a href={issue.url_path} class="group block bg-white border border-[color:var(--color-rule-card)] p-[28px_32px_24px] relative overflow-hidden transition-all duration-300 hover:border-[color:var(--color-accent)] hover:bg-[#fffaf7]">
-            <span class="absolute top-[20px] right-[26px] serif italic font-light text-[22px] leading-none text-[color:var(--color-mute-2)] group-hover:text-[color:var(--color-accent)] transition-colors">{ROMAN[idx] ?? idx + 1}</span>
-            <div class="flex items-center gap-[10px] text-[10px] tracking-[0.18em] uppercase font-semibold mute mb-4 pr-[40px]">
-              <span class="issue-badge issue-badge-live">Live</span>
-              <span>{typeTag(issue)}{brlmName ? ` · ${brlmName}` : ''}</span>
+    <ul class="ipo-list">
+      {enriched.map(({ issue, subscriptionTimes, lotSize, closeDays, raise, brlmName }) => (
+        <li class="ipo-row-wrap">
+          <span class="ipo-row-accent"></span>
+          <a href={issue.url_path} class="ipo-row">
+            <div class="ipo-row-main">
+              <div class="ipo-row-tags">
+                <span class="issue-badge issue-badge-live">Live</span>
+                <span class="ipo-row-type">{typeTag(issue)}</span>
+              </div>
+              <div class="ipo-row-company">{issue.company_name}</div>
             </div>
-            <h3 class="serif font-medium text-[22px] leading-[1.18] mb-2 group-hover:text-[color:var(--color-accent-deep)] transition-colors">{issue.company_name}</h3>
-            <div class="grid grid-cols-2 gap-[14px_24px] pt-4 mt-4 border-t border-[color:var(--color-rule)]">
-              <div>
-                <div class="label mb-1">Price band</div>
-                <div class="serif text-[19px] num leading-tight">{formatRupeeRange(issue.price_band.min, issue.price_band.max)}</div>
+            <div class="ipo-row-stats">
+              <div class="ipo-row-stat">
+                <span class="label">Price band</span>
+                <span class="ipo-row-val">{formatRupeeRange(issue.price_band.min, issue.price_band.max)}</span>
               </div>
-              <div>
-                <div class="label mb-1">Shares per lot</div>
-                <div class="serif text-[19px] num leading-tight">{lotSize ? formatInt(lotSize) : '—'}</div>
+              <div class="ipo-row-stat">
+                <span class="label">Lot</span>
+                <span class="ipo-row-val">{lotSize ? formatInt(lotSize) : '—'}</span>
               </div>
-              <div>
-                <div class="label mb-1">Retail minimum</div>
-                <div class="serif text-[19px] num leading-tight">{lotSize && issue.price_band.max ? formatRupee(lotSize * issue.price_band.max) : '—'}</div>
+              <div class="ipo-row-stat">
+                <span class="label">Min. investment</span>
+                <span class="ipo-row-val">{lotSize && issue.price_band.max ? formatRupee(lotSize * issue.price_band.max) : '—'}</span>
               </div>
-              <div>
-                <div class="label mb-1">Issue size</div>
-                <div class="serif text-[19px] num leading-tight">{raise ?? '—'}</div>
-              </div>
+              {subscriptionTimes != null ? (
+                <div class="ipo-row-stat">
+                  <span class="label">Subscribed</span>
+                  <span class="ipo-row-val acc">{formatTimes(subscriptionTimes)}</span>
+                </div>
+              ) : (
+                <div class="ipo-row-stat">
+                  <span class="label">Issue size</span>
+                  <span class="ipo-row-val">{raise ?? '—'}</span>
+                </div>
+              )}
             </div>
-            <div class="flex items-baseline justify-between gap-4 mt-4 pt-[14px] border-t border-[color:var(--color-rule)]">
-              <div class="flex items-center gap-3 flex-1 min-w-0">
-                <span class="flex-none w-[90px] h-[3px] bg-[color:var(--color-rule)] relative overflow-hidden">
-                  {subscriptionTimes != null && (
-                    <span class="absolute inset-y-0 left-0 bg-[color:var(--color-accent)]" style={`width: ${subPct}%`}></span>
-                  )}
-                </span>
-                <span class={`serif font-medium text-[15px] ${subscriptionTimes != null ? '' : 'mute font-normal'}`}>
-                  {subscriptionTimes != null ? `${formatTimes(subscriptionTimes)} subscribed` : 'Awaiting first bids'}
-                </span>
-              </div>
-              <span class={`text-[11px] tracking-[0.12em] uppercase font-semibold whitespace-nowrap ${closeDays === 0 ? 'text-[color:var(--color-accent)]' : 'mute'}`}>
-                {closeTiming(closeDays)}
-              </span>
-            </div>
+            <span class={`ipo-row-timing ${closeDays === 0 ? 'ipo-row-timing-live' : closeDays === 1 ? 'ipo-row-timing-soon' : ''}`}>
+              {closeTiming(closeDays)}
+            </span>
           </a>
-        );
-      })}
-    </div>
+        </li>
+      ))}
+    </ul>
   )}
 </section>
 </Base>

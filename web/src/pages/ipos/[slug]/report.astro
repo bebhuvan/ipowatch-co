@@ -661,6 +661,147 @@ const latestPeriodLabel = latestPeriodRaw ? shortPeriod(latestPeriodRaw) : '';
     max-width: none;
   }
 
+  /* ── Implied price range bar ────────────────────────────────── */
+  .report-body :global(.price-range) {
+    margin: 2.2em 0;
+    padding-bottom: 4px;
+  }
+  .report-body :global(.price-range-label) {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    margin-bottom: 28px;
+  }
+  .report-body :global(.price-range-track) {
+    position: relative;
+    height: 3px;
+    background: var(--color-accent);
+    margin: 0 0 4px;
+  }
+  .report-body :global(.price-range-marker) {
+    position: absolute;
+    top: -6px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .report-body :global(.price-range-tick) {
+    width: 1px;
+    height: 15px;
+    background: var(--color-ink);
+    margin-bottom: 6px;
+  }
+  .report-body :global(.price-range-marker-mid .price-range-tick) {
+    height: 20px;
+    width: 2px;
+    background: var(--color-ink);
+  }
+  .report-body :global(.price-range-price) {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-ink);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  .report-body :global(.price-range-sub) {
+    font-family: var(--font-sans);
+    font-size: 9.5px;
+    color: var(--color-mute);
+    white-space: nowrap;
+    margin-top: 2px;
+    display: block;
+    text-align: center;
+  }
+  .report-body :global(.price-range-note) {
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    color: var(--color-mute);
+    font-style: italic;
+    margin-top: 42px;
+    max-width: none;
+  }
+
+  /* ── Pre/post-IPO shareholding bar ─────────────────────────── */
+  .report-body :global(.shareholding) {
+    margin: 2.2em 0;
+  }
+  .report-body :global(.shareholding-label) {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    margin-bottom: 14px;
+  }
+  .report-body :global(.shareholding-row) {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .report-body :global(.shareholding-period) {
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--color-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    width: 60px;
+    flex-shrink: 0;
+  }
+  .report-body :global(.shareholding-bar) {
+    flex: 1;
+    display: flex;
+    height: 36px;
+    gap: 2px;
+    overflow: hidden;
+  }
+  .report-body :global(.sh-seg) {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    overflow: hidden;
+  }
+  .report-body :global(.sh-promoter) { background: var(--color-ink); }
+  .report-body :global(.sh-public) {
+    background: var(--color-paper-soft);
+    border: 1px solid var(--color-rule);
+  }
+  .report-body :global(.sh-pct) {
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .report-body :global(.sh-promoter .sh-pct) { color: var(--color-paper); }
+  .report-body :global(.sh-public .sh-pct) { color: var(--color-ink); }
+  .report-body :global(.sh-name) {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-left: 6px;
+    white-space: nowrap;
+  }
+  .report-body :global(.sh-promoter .sh-name) { color: rgba(255,255,255,0.65); }
+  .report-body :global(.sh-public .sh-name) { color: var(--color-mute); }
+  .report-body :global(.shareholding-note) {
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    color: var(--color-mute);
+    font-style: italic;
+    margin-top: 10px;
+    max-width: none;
+    line-height: 1.5;
+  }
+
   /* GFM footnotes — editorial citation marks, not loud numbers */
   .report-body :global(sup) {
     font-size: 0.62em;

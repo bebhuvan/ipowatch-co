@@ -44,6 +44,12 @@ jobs:
       - name: Refresh V3 data
         run: python -m ipo_portal.orchestrator refresh-daily --skip-kite --skip-yahoo --skip-tijori --skip-enrich
 
+      - name: Refresh capital-raising stats (IndiaDataHub)
+        continue-on-error: true
+        env:
+          INDIA_DATAHUB_API_KEY: ${{ secrets.INDIA_DATAHUB_API_KEY }}
+        run: python -m ipo_portal.datahub
+
       - name: V3 quality gate
         run: python scripts/audit_v3_quality.py --site-root data/ipo_watch_v3 --gate
 

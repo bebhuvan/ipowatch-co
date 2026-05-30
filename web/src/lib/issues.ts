@@ -1053,7 +1053,11 @@ let datahubCache: DatahubFile | null = null;
 export const getDatahub = (): DatahubFile | null => {
   if (datahubCache) return datahubCache;
   try {
-    const path = join(legacyDataRoot, 'datahub', 'capital_raising.json');
+    // Primary: data/derived/ is committed and deployed with the site.
+    // Fallback: data/site/datahub/ for local dev (gitignored).
+    const primaryPath = join(resolve(dirname(fileURLToPath(import.meta.url)), '../../../data/derived'), 'capital_raising.json');
+    const legacyPath = join(legacyDataRoot, 'datahub', 'capital_raising.json');
+    const path = existsSync(primaryPath) ? primaryPath : legacyPath;
     if (!existsSync(path)) return null;
     datahubCache = JSON.parse(readFileSync(path, 'utf-8')) as DatahubFile;
     return datahubCache;

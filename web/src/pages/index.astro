@@ -485,87 +485,59 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
 
 <!-- ════════════  PIPELINE  ════════════ -->
 <section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
-  <header class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-7 md:gap-12 items-end mb-10">
+  <header class="flex flex-wrap items-baseline justify-between gap-5 mb-12">
     <div>
-      <h2 class="section-title mb-3">The week ahead</h2>
-      <p class="t-sub max-w-[42ch]">
-        Opening and closing dates for the next seven days.
-      </p>
+      <h2 class="section-title">The week ahead</h2>
+      {pipelineEvents.length > 0 && (
+        <p class="mt-2 text-[13px] mute">
+          <span class="num text-[color:var(--color-ink)] font-semibold">{formatInt(pipelineOpenCount)}</span> opening{pipelineOpenCount !== 1 ? 's' : ''},&nbsp;
+          <span class="num text-[color:var(--color-accent)] font-semibold">{formatInt(pipelineCloseCount)}</span> closing{pipelineCloseCount !== 1 ? 's' : ''}
+        </p>
+      )}
     </div>
-    <div class="grid grid-cols-3 border-y border-[color:var(--color-rule)] md:min-w-[360px]">
-      <div class="py-3 pr-5 border-r border-[color:var(--color-rule)]">
-        <p class="t-stat num">{formatInt(pipelineEvents.length)}</p>
-        <p class="label mt-2">Events</p>
-      </div>
-      <div class="py-3 px-5 border-r border-[color:var(--color-rule)]">
-        <p class="t-stat num">{formatInt(pipelineOpenCount)}</p>
-        <p class="label mt-2">Open</p>
-      </div>
-      <div class="py-3 pl-5">
-        <p class="t-stat text-[color:var(--color-accent)] num">{formatInt(pipelineCloseCount)}</p>
-        <p class="label mt-2">Close</p>
-      </div>
-    </div>
+    <a href="/upcoming/" class="label hover:text-[color:var(--color-accent)]">Full calendar →</a>
   </header>
-  <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-10 items-start">
-    <div class="border-t border-[color:var(--color-ink)]">
-      {pipeline.map((row) => (
-        <article class={`grid grid-cols-1 sm:grid-cols-[116px_minmax(0,1fr)] gap-4 sm:gap-9 py-5 sm:py-6 border-b border-[color:var(--color-rule)] ${row.isToday ? 'bg-[color:var(--color-paper-warm)] px-4 sm:px-5 -mx-4 sm:-mx-5 border-l-2 border-l-[color:var(--color-accent)]' : ''}`}>
-          <div class="flex sm:block items-baseline justify-between gap-4">
-            <div class="flex sm:block items-baseline gap-3">
-              <span class="text-[10.5px] tracking-[0.14em] uppercase mute font-semibold">{row.dow}</span>
-              <div class="sm:mt-2">
-                <span class={`serif font-normal text-[36px] sm:text-[42px] leading-none ${row.isToday ? 'text-[color:var(--color-accent)]' : ''} ${row.isWeekend ? 'text-[color:var(--color-mute-2)]' : ''} num`}>{row.dnum}</span>
-                <span class="ml-2 sm:ml-0 sm:block text-[10.5px] tracking-[0.14em] uppercase mute font-semibold">{row.month}</span>
-              </div>
-            </div>
-            {row.isToday && <span class="label text-[color:var(--color-accent)]">Today</span>}
-          </div>
 
-          <div class="min-w-0">
-            <div class="flex items-center justify-between gap-4 mb-3">
-              <p class="serif text-[18px] leading-tight text-[color:var(--color-ink-soft)]">{row.fullDate}</p>
-              <span class="label num whitespace-nowrap">{row.events.length ? `${formatInt(row.events.length)} ${row.events.length === 1 ? 'event' : 'events'}` : 'Quiet'}</span>
-            </div>
-            {row.events.length === 0 ? (
-              <div class="border border-[color:var(--color-rule-card)] bg-white px-4 py-3">
-                <span class="serif italic text-[14px] text-[color:var(--color-mute)]">{row.isWeekend ? 'Markets closed' : 'No IPO window scheduled'}</span>
-              </div>
-            ) : (
-              <div class="space-y-2">
-                {row.events.map((e) => (
-                  <a href={e.url} class="group grid grid-cols-1 sm:grid-cols-[76px_minmax(0,1fr)_auto] gap-1 sm:gap-4 items-baseline border border-[color:var(--color-rule-card)] bg-white px-4 py-3 transition-colors hover:border-[color:var(--color-accent)] hover:bg-[color:var(--color-paper-warm)]">
-                    <span class={`text-[10.5px] tracking-[0.14em] uppercase font-semibold ${e.verb === 'Closes' ? 'text-[color:var(--color-accent)]' : 'text-[color:var(--color-ink)]'}`}>{e.verb}</span>
-                    <span class="serif font-medium text-[18px] leading-[1.22] group-hover:text-[color:var(--color-accent-deep)] transition-colors">{displayName(e.name)}</span>
-                    <span class="text-[11px] mute tracking-[0.02em] sm:text-right">{e.tag}</span>
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
-        </article>
-      ))}
-    </div>
-
-    <aside class="lg:sticky lg:top-8 border-t border-[color:var(--color-ink)] pt-5">
-      <p class="label mb-4">At a glance</p>
-      <p class="serif text-[22px] leading-[1.35] text-[color:var(--color-ink-soft)]">
-        {pipelineEvents.length > 0
-          ? <>The next seven days have <span class="text-[color:var(--color-ink)] num">{formatInt(pipelineEvents.length)}</span> tracked IPO calendar events: <span class="text-[color:var(--color-ink)] num">{formatInt(pipelineOpenCount)}</span> openings and <span class="text-[color:var(--color-accent)] num">{formatInt(pipelineCloseCount)}</span> closings.</>
-          : <>The next seven days are quiet in the captured IPO calendar.</>}
-      </p>
-      <div class="mt-6 border-t border-[color:var(--color-rule)]">
-        <div class="flex justify-between items-baseline gap-6 py-4 border-b border-[color:var(--color-rule)]">
-          <span class="label">Busiest day</span>
-          <span class="serif text-[18px] text-right">{busiestPipelineDay ? busiestPipelineDay.fullDate : 'None scheduled'}</span>
+  <div class="border-t border-[color:var(--color-ink)]">
+    {pipeline.map((row) => (
+      <div class={`grid grid-cols-[72px_minmax(0,1fr)] sm:grid-cols-[96px_minmax(0,1fr)] gap-6 sm:gap-10 py-6 border-b border-[color:var(--color-rule)] ${row.isToday ? 'border-l-2 border-l-[color:var(--color-accent)] pl-4 -ml-4 sm:pl-5 sm:-ml-5' : ''}`}>
+        {/* Date column — compact */}
+        <div class="pt-0.5">
+          <span class={`block text-[11px] tracking-[0.12em] uppercase font-semibold ${row.isToday ? 'text-[color:var(--color-accent)]' : 'mute'}`}>
+            {row.isToday ? 'Today' : row.dow}
+          </span>
+          <span class={`block serif font-light text-[40px] sm:text-[46px] leading-[0.92] num mt-1 ${row.isToday ? 'text-[color:var(--color-accent)]' : row.isWeekend ? 'text-[color:var(--color-mute-2)]' : 'text-[color:var(--color-ink)]'}`}>
+            {row.dnum}
+          </span>
+          <span class={`block text-[11px] tracking-[0.12em] uppercase font-semibold mt-1 ${row.isWeekend ? 'text-[color:var(--color-mute-2)]' : 'mute'}`}>
+            {row.month}
+          </span>
         </div>
-        <div class="flex justify-between items-baseline gap-6 py-4 border-b border-[color:var(--color-rule)]">
-          <span class="label">Today</span>
-          <span class="serif text-[18px] text-right">{pipeline[0]?.events.length ? `${formatInt(pipeline[0].events.length)} ${pipeline[0].events.length === 1 ? 'event' : 'events'}` : (pipeline[0]?.isWeekend ? 'Market weekend' : 'No event')}</span>
+
+        {/* Events column */}
+        <div class="min-w-0 pt-0.5">
+          {row.events.length === 0 ? (
+            <p class="serif italic text-[15px] text-[color:var(--color-mute-2)] mt-2">
+              {row.isWeekend ? 'Markets closed' : 'Nothing scheduled'}
+            </p>
+          ) : (
+            <div class="divide-y divide-[color:var(--color-rule)]">
+              {row.events.map((e) => (
+                <a href={e.url} class="group flex items-baseline gap-3 sm:gap-5 py-3 first:pt-0">
+                  <span class={`shrink-0 text-[10px] tracking-[0.12em] uppercase font-bold w-[42px] ${e.verb === 'Closes' ? 'text-[color:var(--color-accent)]' : 'text-[color:var(--color-ink-soft)]'}`}>
+                    {e.verb}
+                  </span>
+                  <span class="serif font-medium text-[17px] leading-[1.25] group-hover:text-[color:var(--color-accent-deep)] transition-colors min-w-0 truncate">
+                    {displayName(e.name)}
+                  </span>
+                  <span class="hidden sm:block text-[11px] mute shrink-0 ml-auto">{e.tag}</span>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </div>
-      <a href="/upcoming/" class="mt-6 inline-flex label hover:text-[color:var(--color-accent)]">Full calendar →</a>
-    </aside>
+    ))}
   </div>
 </section>
 

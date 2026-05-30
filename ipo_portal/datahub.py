@@ -146,13 +146,19 @@ def main(argv: list[str] | None = None) -> int:
     repo_root = Path(__file__).resolve().parents[1]
     _load_dotenv(repo_root)
 
-    out_path = repo_root / "data" / "site" / "datahub" / "capital_raising.json"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
+    # Primary output: data/derived/ is tracked in git and deployed with the site.
+    # Legacy output: data/site/datahub/ kept for local compatibility (gitignored).
+    payload = json.dumps(build_capital_raising(), indent=2)
 
-    print(f"[datahub] fetching {len(INDICATORS)} indicators…", file=sys.stderr)
-    data = build_capital_raising()
-    out_path.write_text(json.dumps(data, indent=2))
-    print(f"[datahub] wrote {out_path}  (annual rows: {len(data['annual'])})", file=sys.stderr)
+    derived_path = repo_root / "data" / "derived" / "capital_raising.json"
+    derived_path.parent.mkdir(parents=True, exist_ok=True)
+    derived_path.write_text(payload)
+    print(f"[datahub] wrote {derived_path}  (primary)", file=sys.stderr)
+
+    legacy_path = repo_root / "data" / "site" / "datahub" / "capital_raising.json"
+    legacy_path.parent.mkdir(parents=True, exist_ok=True)
+    legacy_path.write_text(payload)
+    print(f"[datahub] wrote {legacy_path}  (legacy)", file=sys.stderr)
     return 0
 
 

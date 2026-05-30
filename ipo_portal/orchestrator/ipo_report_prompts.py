@@ -127,7 +127,10 @@ Four traps the fact-checker will block:
 
 OUTPUT is the report only. No frontmatter, no commentary, no preamble, no closing summary paragraph."""
 
-DRAFT_USER_TEMPLATE = """OUTLINE:
+DRAFT_USER_TEMPLATE = """BRIEF NOTES (read carefully before writing):
+{brief_notes}
+
+OUTLINE:
 {outline_json}
 
 EXTRACTED FACTS:
@@ -147,7 +150,8 @@ Reminders from the spec:
 * Define any industry or finance term in the same breath you first use it.
 * Do NOT over-cite — group a cluster of related facts under one or two citations rather than tagging every clause. But every specific must trace to a page.
 * Synthesise lists into claims. No comma-spliced fact dumps.
-* Present rupee figures as the filing states them (preserve the magnitude and units in the excerpt). When a value is disclosed only as a redaction, say so.
+* Rupee figures: present in ₹ crore. If the filing states figures in millions, divide by 10 to convert (₹ X million = ₹ X/10 crore). If the filing already states figures in crore, use them as-is. Never write "₹ X million" — the reader expects crore.
+* When a value is disclosed only as a redaction ([●]), say so.
 * Third person throughout. No "subscribe/avoid", no price targets, no listing-gain talk. End on the strongest specific, not a meta-summary.
 
 Length: aim for {length_target_words} words of body text. Density over padding; explanation is not padding."""

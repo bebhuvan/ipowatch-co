@@ -251,6 +251,7 @@ def run_draft(
         )
 
     user_prompt = prompts.DRAFT_USER_TEMPLATE.format(
+        brief_notes=brief.get("notes") or "(none)",
         outline_json=json.dumps(outline, ensure_ascii=False),
         facts_json=json.dumps(facts, ensure_ascii=False, separators=(",", ":")),
         sources_json=_sources_index_json(corpus),

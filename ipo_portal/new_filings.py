@@ -265,489 +265,107 @@ def process_new_filing(
     out_root: Path = DEFAULT_OUT_ROOT,
     model: str = DEFAULT_MODEL,
     retry_model: str | None = RETRY_MODEL,
+    force: bool = False,
+    dry_run: bool = False,
 ) -> dict[str, Any]:
-    pdf_bytes, pdf_path = download_pdf(job.document_url)
-    pdf = extract_pdf_text(pdf_path, backend=PDFTOTEXT_EXTRACTOR)
+    """Process a new SEBI filing using the DeepSeek 7-section extraction,
+    statement extraction, and research report generation pipeline.
+    """
     slug = filing_slug(job)
-    source_text = _full_text(pdf)
-    facts, call = _extract_with_gemini(source_text, model=model, job=job)
-    _augment_financial_periods(facts, pdf)
-    _augment_risks(facts, pdf)
-    citation = validate_facts(facts, pdf)
-    quality = assess_article_quality(facts, citation)
-    calls = [call]
+    
+    if dry_run:
+        return {"quality": {"publishable": True}, "slug": slug}
+        
+    from .filing_processor import process_filing, FilingJob as ProcessorFilingJob
+    from .financials_extractor import extract_financials
+    from .orchestrator.ipo_report import generate_report, render_path
 
-    if retry_model and quality["state"] == "fail":
-        retry_facts, retry_call = _extract_with_gemini(source_text, model=retry_model, job=job)
-        _augment_financial_periods(retry_facts, pdf)
-        _augment_risks(retry_facts, pdf)
-        retry_citation = validate_facts(retry_facts, pdf)
-        retry_quality = assess_article_quality(retry_facts, retry_citation)
-        calls.append(retry_call)
-        if _quality_rank(retry_quality) > _quality_rank(quality):
-            facts = retry_facts
-            citation = retry_citation
-            quality = retry_quality
-
-    article = build_article(
-        job=job,
+    # 1. Extract prospectus facts using DeepSeek 7-section
+    processor_job = ProcessorFilingJob(
         slug=slug,
-        facts=facts,
-        citation=citation,
-        quality=quality,
-        pdf=pdf,
-        pdf_bytes=pdf_bytes,
-        pdf_path=pdf_path,
-        calls=calls,
+        url=job.document_url,
+        document_type=job.document_type,
+        source="automatic",
     )
-    target = out_root / slug / "article.json"
-    if article["quality"]["publishable"]:
-        _write_json(target, article)
-        stale_quarantine = out_root / "_quarantine" / f"{slug}.json"
-        if stale_quarantine.exists():
-            stale_quarantine.unlink()
-    else:
-        _write_json(out_root / "_quarantine" / f"{slug}.json", article)
-    return article
-
-
-def _extract_with_gemini(source_text: str, *, model: str, job: NewFilingJob) -> tuple[dict[str, Any], dict[str, Any]]:
-    _load_dotenv(PROJECT_ROOT / ".env")
+    process_filing(
+        processor_job,
+        model=None,  # will default to deepseek-chat
+        provider="deepseek",
+        force=force,
+    )
+    
+    # 2. Extract financials statements
     try:
-        from google import genai
-        from google.genai import types
-    except ImportError as exc:
-        raise RuntimeError("google-genai is required. Install requirements.txt.") from exc
+        extract_financials(slug, provider="deepseek", force=force)
+    except Exception as exc:
+        print(f"[refresh-new-filings] financials extraction skipped for {slug}: {exc}")
 
-    api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if not api_key:
-        raise RuntimeError("GEMINI_API_KEY or GOOGLE_API_KEY is not set")
-    client = genai.Client(api_key=api_key)
-    prompt = _prompt(job, source_text)
-    started = time.monotonic()
-    response = client.models.generate_content(
-        model=model,
-        contents=[prompt],
-        config=types.GenerateContentConfig(
-            temperature=0,
-            response_mime_type="application/json",
-            max_output_tokens=16_000,
-            system_instruction=SYSTEM_PROMPT,
-        ),
-    )
-    elapsed_ms = int((time.monotonic() - started) * 1000)
-    raw = response.text or ""
-    facts = _parse_json(raw)
-    if isinstance(facts, list) and len(facts) == 1 and isinstance(facts[0], dict):
-        facts = facts[0]
-    if not isinstance(facts, dict):
-        raise RuntimeError(f"Gemini returned {type(facts).__name__}, expected object")
-    usage = _gemini_usage(response)
-    call = {
-        "provider": "gemini",
-        "model": model,
-        "elapsed_ms": elapsed_ms,
-        "prompt_tokens": usage.get("prompt_token_count"),
-        "completion_tokens": usage.get("candidates_token_count"),
-        "total_tokens": usage.get("total_token_count"),
-        "thoughts_tokens": usage.get("thoughts_token_count"),
-    }
-    return facts, call
-
-
-def _prompt(job: NewFilingJob, source_text: str) -> str:
-    text = source_text[:MAX_FULL_TEXT_CHARS]
-    return (
-        "Extract a validated fact set for a high-quality SEBI new-filing article.\n"
-        f"Company from SEBI listing: {job.company_name}\n"
-        f"SEBI filing date: {job.filing_date}\n"
-        f"Document type from listing: {job.document_type}\n\n"
-        "Return exactly this JSON shape. Do not add keys:\n"
-        f"{json.dumps(ARTICLE_SCHEMA, ensure_ascii=False, indent=2)}\n\n"
-        "All values shown as strings in the schema are placeholders. Replace them with supported facts or null. "
-        "Every object with value/raw_excerpt/source_page/confidence must keep that shape. "
-        "Every array item must also keep that same fact shape; never return primitive strings or numbers in arrays.\n\n"
-        "For financials.periods, do not extract only the latest period when a multi-period financial table is present. "
-        "Extract every available period column up to four periods, preserving the table's period labels such as 9M FY2026, FY2025, FY2024, FY2023. "
-        "It is acceptable for several cells in a metric row to use the same exact row excerpt, as long as that excerpt is contiguous on one PDF page and contains the cited value. "
-        "For industry_context, use only the Industry Overview or equivalent section in the filing, not outside knowledge. "
-        "For risks.top_risks, prefer risks that affect revenue concentration, working capital, debt, regulation, litigation, "
-        "suppliers/customers, promoters, or execution of objects of the issue. If a table cell or risk explanation cannot "
-        "be backed by one exact excerpt, set that leaf to null.\n\n"
-        "FULL PDF TEXT:\n"
-        f"{text}"
-    )
-
-
-def _augment_financial_periods(facts: dict[str, Any], pdf: PDFText) -> None:
-    """Fill common KPI/restated-financial period tables when the model under-extracts them."""
-    financials = facts.setdefault("financials", {})
-    existing = financials.get("periods")
-    if isinstance(existing, list) and len([row for row in existing if isinstance(row, dict)]) >= 3:
-        return
-
-    parsed = _parse_kpi_financial_periods(pdf)
-    if len(parsed) < 3:
-        return
-    financials["periods"] = parsed[:4]
-
-
-def _augment_risks(facts: dict[str, Any], pdf: PDFText) -> None:
-    risks = facts.setdefault("risks", {})
-    existing = risks.get("top_risks")
-    existing_count = len(existing) if isinstance(existing, list) else 0
-    if existing_count >= 5:
-        return
-    parsed = _parse_risk_summaries(pdf)
-    if not parsed:
-        return
-    merged = []
-    seen = set()
-    if isinstance(existing, list):
-        for row in existing:
-            risk_text = _norm(_nested_value(row, ["risk", "value"]) or _nested_value(row, ["value"]) or "")
-            risk_excerpt = _norm(_nested_value(row, ["risk", "raw_excerpt"]) or _nested_value(row, ["raw_excerpt"]) or "")
-            if risk_text:
-                seen.add(risk_text[:80])
-            if risk_excerpt:
-                seen.add(risk_excerpt[:100])
-            merged.append(row)
-    for row in parsed:
-        key = _norm(_nested_value(row, ["risk", "value"]) or "")[:80]
-        excerpt_key = _norm(_nested_value(row, ["risk", "raw_excerpt"]) or "")[:100]
-        if not key or key in seen or excerpt_key in seen or _risk_duplicate(row, merged):
-            continue
-        merged.append(row)
-        seen.add(key)
-        seen.add(excerpt_key)
-        if len(merged) >= 8:
-            break
-    risks["top_risks"] = merged
-    if not _fact_from_leaf(risks.get("risk_factor_count"), "risks.risk_factor_count"):
-        count = _risk_count_fact(pdf)
-        if count:
-            risks["risk_factor_count"] = count
-
-
-def _parse_risk_summaries(pdf: PDFText) -> list[dict[str, Any]]:
-    rows = []
-    for page_no, page in enumerate(pdf.pages[:90], start=1):
-        if "risk" not in page.lower():
-            continue
-        text = _clean_label(page)
-        for match in re.finditer(r"(?:^|\s)([1-9]\d?)\.\s+(.+?)(?=\s+[1-9]\d?\.\s+|$)", text):
-            number = int(match.group(1))
-            body = match.group(2).strip()
-            if number > 20 or len(body) < 80:
-                continue
-            if any(skip in body[:80].lower() for skip in ("for details", "there can be no assurance")):
-                continue
-            first = _first_sentence(body)
-            if not first:
-                continue
-            why = _first_sentence(body[len(first):].strip()) or _risk_implication(first)
-            rows.append(
-                {
-                    "risk": _synthetic_fact(first, _excerpt_window(body, first), page_no),
-                    "why_it_matters": _synthetic_fact(why, _excerpt_window(body, why) if why in body else _excerpt_window(body, first), page_no),
-                }
-            )
-        if len(rows) >= 8:
-            break
-    return rows[:8]
-
-
-def _risk_count_fact(pdf: PDFText) -> dict[str, Any] | None:
-    max_number = 0
-    max_excerpt = ""
-    max_page = 0
-    for page_no, page in enumerate(pdf.pages[:90], start=1):
-        if "risk" not in page.lower():
-            continue
-        for match in re.finditer(r"(?:^|\n)\s*([1-9]\d?)\.\s+([^\n]{20,180})", page):
-            number = int(match.group(1))
-            if number > max_number:
-                max_number = number
-                max_excerpt = match.group(0).strip()
-                max_page = page_no
-    if not max_number:
-        return None
-    return _synthetic_fact(str(max_number), max_excerpt, max_page)
-
-
-def _first_sentence(text: str) -> str:
-    text = _clean_label(text)
-    match = re.match(r"(.+?(?:\.|;))(?:\s|$)", text)
-    if match:
-        return match.group(1).strip()
-    return text[:260].rsplit(" ", 1)[0].strip()
-
-
-def _risk_duplicate(candidate: dict[str, Any], rows: list[Any]) -> bool:
-    cand = _norm(_nested_value(candidate, ["risk", "raw_excerpt"]) or _nested_value(candidate, ["risk", "value"]) or "")
-    if not cand:
-        return False
-    for row in rows:
-        existing = _norm(_nested_value(row, ["risk", "raw_excerpt"]) or _nested_value(row, ["risk", "value"]) or _nested_value(row, ["value"]) or "")
-        if not existing:
-            continue
-        if cand[:90] in existing or existing[:90] in cand:
-            return True
-    return False
-
-
-def _risk_implication(text: str) -> str:
-    cleaned = str(text).rstrip(".")
-    return f"{cleaned} could affect revenue growth, profitability, cash flows or execution of the offer plan."
-
-
-def _excerpt_window(body: str, needle: str, limit: int = 420) -> str:
-    body = _clean_label(body)
-    needle = _clean_label(needle)
-    if not needle:
-        return body[:limit]
-    idx = body.find(needle)
-    if idx < 0:
-        return body[:limit]
-    return body[idx : idx + max(len(needle), min(limit, len(body) - idx))].strip()
-
-
-def _nested_value(root: Any, path: list[str]) -> Any:
-    current = root
-    for part in path:
-        if not isinstance(current, dict):
-            return None
-        current = current.get(part)
-    return current
-
-
-def _parse_kpi_financial_periods(pdf: PDFText) -> list[dict[str, Any]]:
-    best: tuple[int, int, list[dict[str, Any]]] | None = None
-    for page_no, page in enumerate(pdf.pages, start=1):
-        lower = page.lower()
-        if "revenue from operations" not in lower or "pat" not in lower:
-            continue
-        lines = [line.rstrip() for line in page.splitlines() if line.strip()]
-        row_lines = {
-            "revenue_from_operations": _find_metric_line(lines, r"\bRevenue from Operations\b"),
-            "ebitda": _find_metric_line(lines, r"^\s*EBITDA\s+"),
-            "profit_after_tax": _find_metric_line(lines, r"^\s*PAT\s+"),
-            "pat_margin": _find_metric_line(lines, r"^\s*PAT Margin\s+"),
-            "roe": _find_metric_line(lines, r"^\s*ROE\s+"),
-            "debt_to_equity": _find_metric_line(lines, r"Debt to Equity Ratio"),
-        }
-        if not row_lines["revenue_from_operations"] or not row_lines["profit_after_tax"]:
-            continue
-        labels = _period_labels_from_page(page)
-        metric_values = {key: _numbers_from_metric_line(line) for key, line in row_lines.items() if line}
-        width = min([len(labels)] + [len(values) for key, values in metric_values.items() if key in {"revenue_from_operations", "profit_after_tax"}])
-        if width < 2:
-            continue
-        rows = []
-        for idx in range(min(width, 4)):
-            period_excerpt = row_lines["revenue_from_operations"] or labels[idx]
-            rows.append(
-                {
-                    "period": _synthetic_fact(labels[idx], period_excerpt.strip(), page_no),
-                    "revenue_from_operations": _metric_fact(row_lines["revenue_from_operations"], metric_values, "revenue_from_operations", idx, page_no),
-                    "ebitda": _metric_fact(row_lines["ebitda"], metric_values, "ebitda", idx, page_no),
-                    "profit_after_tax": _metric_fact(row_lines["profit_after_tax"], metric_values, "profit_after_tax", idx, page_no),
-                    "net_worth": None,
-                    "borrowings": None,
-                    "total_assets": None,
-                    "operating_cash_flow": None,
-                    "pat_margin": _metric_fact(row_lines["pat_margin"], metric_values, "pat_margin", idx, page_no),
-                    "roe": _metric_fact(row_lines["roe"], metric_values, "roe", idx, page_no),
-                    "debt_to_equity": _metric_fact(row_lines["debt_to_equity"], metric_values, "debt_to_equity", idx, page_no),
-                }
-            )
-        score = sum(1 for value in row_lines.values() if value)
-        if best is None or score > best[1]:
-            best = (page_no, score, rows)
-    return best[2] if best else []
-
-
-def _find_metric_line(lines: list[str], pattern: str) -> str | None:
-    regex = re.compile(pattern, re.IGNORECASE)
-    for line in lines:
-        if regex.search(line):
-            return line.strip()
-    return None
-
-
-def _period_labels_from_page(page: str) -> list[str]:
-    labels = []
-    month_match = re.search(r"(?:period\s+ended\s+)?(December\s+31,\s+20\d{2})", page, flags=re.IGNORECASE)
-    if month_match:
-        labels.append(f"Period ended {_clean_label(month_match.group(1))}")
-    fy_labels = []
-    for match in re.finditer(r"\bFY\s*20\d{2}\b", page, flags=re.IGNORECASE):
-        label = re.sub(r"\s+", " ", match.group(0).upper())
-        if label not in fy_labels:
-            fy_labels.append(label)
-    labels.extend(fy_labels)
-    while len(labels) < 4:
-        labels.append(f"Period {len(labels) + 1}")
-    return labels[:4]
-
-
-def _clean_label(text: str) -> str:
-    return " ".join(str(text).split())
-
-
-def _numbers_from_metric_line(line: str) -> list[str]:
-    if not line:
-        return []
-    matches = re.findall(r"\(?-?\d[\d,]*(?:\.\d+)?%?\)?", line)
-    values = [match for match in matches if re.search(r"\d", match)]
-    return values[-4:] if len(values) > 4 else values
-
-
-def _metric_fact(line: str | None, values_by_key: dict[str, list[str]], key: str, idx: int, page_no: int) -> dict[str, Any] | None:
-    values = values_by_key.get(key) or []
-    if not line or idx >= len(values):
-        return None
-    return _synthetic_fact(values[idx], line.strip(), page_no)
-
-
-def _synthetic_fact(value: str, raw_excerpt: str, page_no: int) -> dict[str, Any]:
+    # 3. Generate beautiful editorial research report
+    generate_report(slug)
+    
+    # 4. Check if successfully published
+    rendered_file = render_path(slug)
+    is_published = False
+    if rendered_file.exists():
+        content = rendered_file.read_text(encoding="utf-8")
+        is_published = 'status: "published"' in content or "status: 'published'" in content
+        
     return {
-        "value": value,
-        "raw_excerpt": raw_excerpt,
-        "source_page": page_no,
-        "confidence": "high",
-    }
-
-
-def validate_facts(facts: dict[str, Any], pdf: PDFText) -> dict[str, Any]:
-    checked = repaired = redacted = 0
-    failures: list[dict[str, Any]] = []
-    for path, leaf in _iter_fact_leaves(facts):
-        if not isinstance(leaf, dict) or leaf.get("value") is None:
-            continue
-        checked += 1
-        excerpt = leaf.get("raw_excerpt")
-        page = leaf.get("source_page")
-        if isinstance(excerpt, str) and isinstance(page, int) and _excerpt_on_page(pdf, excerpt, page):
-            continue
-        found = _find_excerpt_page(pdf, excerpt) if isinstance(excerpt, str) else None
-        if found is not None:
-            leaf["source_page"] = found
-            repaired += 1
-            continue
-        _redact(leaf)
-        redacted += 1
-        failures.append({"path": path, "old_page": page, "raw_excerpt": str(excerpt or "")[:180]})
-    return {
-        "checked_count": checked,
-        "repaired_count": repaired,
-        "redacted_count": redacted,
-        "redaction_rate": round(redacted / checked, 4) if checked else None,
-        "repair_rate": round(repaired / checked, 4) if checked else None,
-        "failures": failures[:200],
-    }
-
-
-def assess_article_quality(facts: dict[str, Any], citation: dict[str, Any]) -> dict[str, Any]:
-    verified = [path for path, leaf in _iter_fact_leaves(facts) if isinstance(leaf, dict) and leaf.get("value") is not None]
-    groups = {path.split(".", 1)[0] for path in verified if "." in path}
-    missing = sorted(REQUIRED_FACT_GROUPS - groups)
-    redaction_rate = citation.get("redaction_rate")
-    failures = []
-    warnings = []
-    if len(verified) < MIN_VERIFIED_FACTS:
-        failures.append({"code": "too_few_verified_facts", "verified": len(verified), "minimum": MIN_VERIFIED_FACTS})
-    if missing:
-        failures.append({"code": "missing_required_fact_groups", "groups": missing})
-    if redaction_rate is not None and redaction_rate > 0.30:
-        failures.append({"code": "redaction_rate_too_high", "rate": redaction_rate})
-    elif redaction_rate is not None and redaction_rate > 0.12:
-        warnings.append({"code": "redaction_rate_review", "rate": redaction_rate})
-    state = "fail" if failures else "review" if warnings else "pass"
-    return {
-        "state": state,
-        "publishable": state in {"pass", "review"},
-        "verified_fact_count": len(verified),
-        "fact_groups": sorted(groups),
-        "failures": failures,
-        "warnings": warnings,
-    }
-
-
-def build_article(
-    *,
-    job: NewFilingJob,
-    slug: str,
-    facts: dict[str, Any],
-    citation: dict[str, Any],
-    quality: dict[str, Any],
-    pdf: PDFText,
-    pdf_bytes: bytes,
-    pdf_path: Path,
-    calls: list[dict[str, Any]],
-) -> dict[str, Any]:
-    company = _fact_value(facts, "company.name") or job.company_name
-    doc_type = _fact_value(facts, "offer.document_type") or job.document_type
-    headline = f"{company} {doc_type}: SEBI filing note"
-    dek = _make_dek(facts, doc_type)
-    article = _research_article(facts, company=company, doc_type=doc_type)
-    citations = _citation_index(facts)
-    return {
-        "$schema": "https://ipo-watch.local/schema/v3/new-filing-article.schema.json",
-        "schema_version": SCHEMA_VERSION,
         "slug": slug,
-        "url_path": f"/new-filings/{slug}/",
-        "headline": headline,
-        "dek": dek,
-        "company_name": company,
-        "filing_date": job.filing_date,
-        "document_type": doc_type,
-        "document_url": job.document_url,
-        "detail_url": job.detail_url,
-        "document_sha256": hashlib.sha256(pdf_bytes).hexdigest(),
-        "local_pdf_path": str(pdf_path),
-        "pdf_pages": len(pdf.pages),
-        "pdf_text_chars": len(pdf.text),
-        "generated_at": _now(),
-        "quality": quality,
-        "citation_validation": citation,
-        "model_calls": calls,
-        "facts": facts,
-        "article": {
-            "summary": article["summary"],
-            "blocks": article["blocks"],
-            "sections": article["sections"],
-            "citations": citations,
-        },
+        "quality": {
+            "publishable": is_published
+        }
     }
 
 
 def rebuild_index(out_root: Path = DEFAULT_OUT_ROOT) -> Path:
+    from .orchestrator.ipo_report import DEFAULT_RENDER_ROOT
+    
     items = []
-    for path in sorted(out_root.glob("*/article.json")):
-        doc = _read_json(path)
-        if not doc.get("quality", {}).get("publishable"):
+    # Loop through all generated markdown files in web/src/content/ipo-reports/
+    for md_file in sorted(DEFAULT_RENDER_ROOT.glob("*.md")):
+        content = md_file.read_text(encoding="utf-8")
+        # Extract frontmatter between --- and ---
+        fm_match = re.match(r"^---\s*\n(.*?)\n---", content, re.DOTALL)
+        if not fm_match:
             continue
-        items.append(
-            {
-                "slug": doc.get("slug"),
-                "url_path": doc.get("url_path"),
-                "headline": doc.get("headline"),
-                "dek": doc.get("dek"),
-                "company_name": doc.get("company_name"),
-                "filing_date": doc.get("filing_date"),
-                "document_type": doc.get("document_type"),
-                "document_url": doc.get("document_url"),
-                "quality_state": doc.get("quality", {}).get("state"),
-                "verified_fact_count": doc.get("quality", {}).get("verified_fact_count"),
-                "generated_at": doc.get("generated_at"),
-            }
-        )
-    items.sort(key=lambda row: (row.get("filing_date") or "", row.get("generated_at") or ""), reverse=True)
+        fm_text = fm_match.group(1)
+        
+        # Simple parser for the YAML frontmatter
+        fm = {}
+        for line in fm_text.splitlines():
+            if ":" in line:
+                key, val = line.split(":", 1)
+                key = key.strip()
+                val = val.strip().strip('"').strip("'")
+                fm[key] = val
+                
+        # Get source document URL if available from the YAML list
+        url_match = re.search(r'url:\s*"([^"]+)"', fm_text)
+        doc_url = url_match.group(1) if url_match else ""
+        
+        status = fm.get("status", "review")
+        if status not in {"published", "review"}:
+            continue
+            
+        items.append({
+            "slug": fm.get("slug"),
+            "url_path": f"/new-filings/{fm.get('slug')}/",  # The redirect will handle this
+            "headline": fm.get("title", ""),
+            "dek": fm.get("dek", ""),
+            "company_name": fm.get("company_name", ""),
+            "filing_date": fm.get("published_at", ""),
+            "document_type": fm.get("document_type", "DRHP"),
+            "document_url": doc_url,
+            "quality_state": "pass" if status == "published" else "review",
+            "verified_fact_count": 0,
+            "generated_at": fm.get("published_at", "") + "T00:00:00Z",
+        })
+        
     index = {
         "$schema": "https://ipo-watch.local/schema/v3/new-filings-index.schema.json",
-        "schema_version": SCHEMA_VERSION,
-        "generated_at": _now(),
+        "schema_version": "1.1.0",
+        "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "count": len(items),
         "items": items,
     }
@@ -765,6 +383,36 @@ def filing_slug(job: NewFilingJob) -> str:
         parts.append(date_part)
     parts.append(digest)
     return "-".join(part for part in parts if part)
+
+
+def _load_dotenv(path: Path) -> None:
+    if not path.exists():
+        return
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+def _slugify(text: str) -> str:
+    cleaned = re.sub(r"\b(limited|ltd|private|pvt|company|co)\b", "", text, flags=re.IGNORECASE)
+    slug = re.sub(r"[^a-z0-9]+", "-", cleaned.lower()).strip("-")
+    return slug or "sebi-filing"
+
+
+def _now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def _read_json(path: Path) -> Any:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _write_json(path: Path, doc: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(doc, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def _full_text(pdf: PDFText) -> str:

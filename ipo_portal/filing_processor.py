@@ -96,9 +96,17 @@ Extraction checklist:
 SECTION_SPECS: list[dict[str, Any]] = [
     {
         "name": "business",
-        "keywords": ["BUSINESS OVERVIEW", "OUR BUSINESS", "SUMMARY OF BUSINESS"],
-        "min_page": 30,
-        "pages_after": 45,
+        "keywords": [
+            "OUR BUSINESS VERTICAL",
+            "OUR BUSINESS OVERVIEW",
+            "BUSINESS OVERVIEW",
+            "OUR BUSINESS",
+            "SUMMARY OF BUSINESS",
+        ],
+        # Indian DRHPs: summary/risk sections typically run to p.100+;
+        # the actual business chapter starts after that.
+        "min_page": 100,
+        "pages_after": 70,
         "schema": {
             "incorporation_and_history": [],
             "registered_office": None,
@@ -381,11 +389,17 @@ SECTION_SPECS: list[dict[str, Any]] = [
     },
     {
         "name": "valuation_and_peers",
-        "keywords": ["BASIS FOR OFFER PRICE", "BASIS FOR THE OFFER PRICE", "COMPARISON WITH INDUSTRY PEERS", "PEER GROUP"],
+        "keywords": [
+            "BASIS FOR OFFER PRICE",
+            "BASIS FOR THE OFFER PRICE",
+            "COMPARISON WITH INDUSTRY PEERS",
+            "PEER GROUP",
+        ],
         "min_page": 40,
-        "pages_after": 30,
+        "pages_after": 40,
         "schema": {
             "valuation_metrics": [],
+            "peer_companies": [],      # list of named peer companies with their P/E, EPS, RoNW
             "peer_comparison": [],
             "eps_nav_ronw": [],
             "price_to_earnings": [],

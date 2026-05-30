@@ -1,0 +1,432 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v2/ipo-report/outline.schema.json",
+  "currency": "INR",
+  "data_quality": {
+    "errors": [],
+    "state": "clean",
+    "warnings": []
+  },
+  "dataset": "ipo-watch.outline.schema",
+  "dataset_version": "v2026.05.30-1313",
+  "estimated_cost_usd": 0.00396816,
+  "field_provenance": {},
+  "freshness": {},
+  "generated_at": "2026-05-30T13:13:48+00:00",
+  "generated_by": "ipo_portal.orchestrator/0.1.0",
+  "language": "en-IN",
+  "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
+  "model": "deepseek-v4-flash",
+  "notes": "Stage-2 outline.",
+  "outline": {
+    "dek_candidates": [
+      "4 of Skechers' top 10 India stores, a PE investor selling at 8×, and a non-cooperating subsidiary auditor — what the DRHP says.",
+      "What the DRHP discloses about Gaurik Fashions Limited's business, offer, financials and risks — sourced to the filing, page by page."
+    ],
+    "design_notes": [
+      "The financial and valuation sections are table-heavy; ensure tables are clear and use consistent currency (₹ millions).",
+      "The intro should be punchy and immediate; avoid any background on the IPO process itself.",
+      "Each section should open with a plain-language claim before citing numbers.",
+      "The risks section must avoid listing all 36 risk factors; pick only the 4-5 most company-specific ones.",
+      "The governance section should flag the auditor issue prominently; it is a red flag that investors need to know.",
+      "Wherever a figure is redacted, state 'not disclosed' rather than guessing."
+    ],
+    "gaps": [
+      {
+        "blocking": false,
+        "reason": "Not provided in the extracted facts; the DRHP should contain this but the excerpts do not include it.",
+        "topic": "Lead manager and registrar for the IPO"
+      },
+      {
+        "blocking": false,
+        "reason": "Amounts are redacted ([●]); price band is not disclosed in the DRHP at filing stage.",
+        "topic": "Price band and exact size of the fresh issue in rupee terms"
+      },
+      {
+        "blocking": false,
+        "reason": "The extract provides only a P/E range (high/low/average) but no company names; a full peer comparison table cannot be built.",
+        "topic": "Names and detailed financials of peer companies for valuation comparison"
+      },
+      {
+        "blocking": false,
+        "reason": "The filing states 'significant portion' but does not give a precise figure in the provided excerpts.",
+        "topic": "Exact percentage of revenue from Skechers and geographic breakdown"
+      },
+      {
+        "blocking": false,
+        "reason": "Not present in the extracted financial statements; only total assets and equity are available.",
+        "topic": "Detailed debt schedule and interest coverage ratio"
+      }
+    ],
+    "kicker_candidates": [
+      "IPO Watch research report",
+      "DRHP Analysis"
+    ],
+    "section_order": [
+      "intro",
+      "business",
+      "industry",
+      "offer",
+      "financials",
+      "valuation-and-peers",
+      "governance",
+      "risks"
+    ],
+    "sections": {
+      "business": {
+        "beats": [
+          {
+            "beat": "The company operates through two verticals: retail (company-owned stores) and distribution (supplying to multi-brand outlets).",
+            "kind": "narrative",
+            "source_ids": [
+              "drhp-p32",
+              "drhp-p43"
+            ]
+          },
+          {
+            "beat": "Revenue is largely from footwear sales. The filing states 'majority of our revenue from operations is derived from the sale of footwear' and is concentrated in the northern region of India.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p33",
+              "drhp-p34"
+            ]
+          },
+          {
+            "beat": "A significant portion of revenue comes from Skechers stores. The company's relationship with Skechers is governed by non-exclusive agreements, meaning the brand may appoint other partners or go direct-to-consumer.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p33",
+              "drhp-p38"
+            ]
+          },
+          {
+            "beat": "The company also has subsidiaries: Gaurik Lifestyle Private Limited (for Guess stores) and Nuvora Retail Private Limited (for Bugatti stores). Part of the IPO proceeds will go into these subsidiaries.",
+            "kind": "example",
+            "source_ids": [
+              "drhp-p101"
+            ]
+          },
+          {
+            "beat": "All stores are on leased premises; the company does not own any real estate. This creates renewal risk.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p39"
+            ]
+          }
+        ],
+        "heading": "What the company does",
+        "purpose": "Describe the business model: how Gaurik makes money, its brand relationships, and channel structure."
+      },
+      "financials": {
+        "beats": [
+          {
+            "beat": "Revenue: ₹579.78 million (FY23), ₹1,720.05 million (FY24), ₹2,204.03 million (FY25), ₹2,025.86 million (nine months ended December 2025). The nine-month figure annualizes to ~₹2,700 million, indicating continued growth.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p235"
+            ]
+          },
+          {
+            "beat": "Profit after tax: ₹3.48 million (FY23), ₹34.86 million (FY24), ₹122.63 million (FY25), ₹173.25 million (nine months ended December 2025).",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p235"
+            ]
+          },
+          {
+            "beat": "EBITDA: ₹123.33 million (FY23), ₹443.99 million (FY24), ₹570.71 million (FY25), ₹529.46 million (nine months ended December 2025). EBITDA margin improved from 21.27% to 26.14% over the same periods.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p290"
+            ]
+          },
+          {
+            "beat": "Operating cash flow: negative ₹54.99 million (FY23), positive ₹159.33 million (FY24), ₹340.21 million (FY25), ₹116.87 million (nine months ended December 2025). The filing notes past negative cash flows as a risk.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p236",
+              "drhp-p42"
+            ]
+          },
+          {
+            "beat": "Total assets grew from ₹870.83 million (FY23) to ₹3,664.52 million (as at December 2025). Equity attributable to owners stood at ₹776.20 million as at December 2025.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p234"
+            ]
+          }
+        ],
+        "heading": "Financial performance",
+        "purpose": "Present revenue, profit, EBITDA, cash flow trends across all reported periods. Note that the figures are in ₹ millions unless otherwise stated.",
+        "visual_targets": [
+          {
+            "kind": "table",
+            "purpose": "Summary table of revenue, PAT, EBITDA, EBITDA margin, operating cash flow for FY23, FY24, FY25, and 9M FY26.",
+            "where": "financials"
+          }
+        ]
+      },
+      "governance": {
+        "beats": [
+          {
+            "beat": "Promoters: Vishnu Pillai (22.73%), Rajesh Dudi (22.73%), Swati Sinha (9.00%), Isha Dudi (9.00%) — collectively holding 63.45% of the pre-offer paid-up capital.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p220"
+            ]
+          },
+          {
+            "beat": "Vishnu Pillai is also the Managing Director.",
+            "kind": "narrative",
+            "source_ids": [
+              "drhp-p205"
+            ]
+          },
+          {
+            "beat": "Governance flags include: the statutory auditor of subsidiary Gaurik South Private Limited is not cooperating; some incorrect ROC filings and non-compliances with the Companies Act; delays in payment of statutory dues; CSR shortfalls transferred to PMNRF; and related-party transactions that may not be at arm's length.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p35",
+              "drhp-p37",
+              "drhp-p39",
+              "drhp-p50",
+              "drhp-p225"
+            ]
+          },
+          {
+            "beat": "Certain immediate relatives of promoters have refused to provide consents for disclosures required by SEBI ICDR Regulations.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p37"
+            ]
+          },
+          {
+            "beat": "Outstanding legal proceedings involving the company, directors, and subsidiaries are disclosed.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p48"
+            ]
+          }
+        ],
+        "heading": "Promoters and governance",
+        "purpose": "Identify the promoters, their holdings, and any governance red flags mentioned in the filing."
+      },
+      "industry": {
+        "beats": [
+          {
+            "beat": "India's overall retail market was estimated at ₹112 trillion by fiscal 2026. The domestic apparel and footwear industry is projected to reach ₹7,300-8,100 billion by FY30, growing at a CAGR of 6.5-8.5% between FY25 and FY30.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p149",
+              "drhp-p153"
+            ]
+          },
+          {
+            "beat": "Within this, the domestic footwear retail industry is forecast to reach ₹1,900-2,100 billion by FY30.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p154"
+            ]
+          },
+          {
+            "beat": "Key growth drivers include rising disposable incomes, e-commerce penetration, social media influence, and a growing working-age population.",
+            "kind": "narrative",
+            "source_ids": [
+              "drhp-p145",
+              "drhp-p156",
+              "drhp-p157",
+              "drhp-p158"
+            ]
+          },
+          {
+            "beat": "The market is fragmented with local, national, and multinational players. Global brands like Nike, Adidas, Puma, Skechers compete intensely, leading to price wars and thinning margins.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p152",
+              "drhp-p155",
+              "drhp-p160"
+            ]
+          },
+          {
+            "beat": "Headwinds include counterfeiting, geopolitical tensions, sustainability pressures, and increased competition from new entrants as e-commerce lowers barriers to entry.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p146",
+              "drhp-p160"
+            ]
+          },
+          {
+            "beat": "India's macroeconomic backdrop supports consumption: the economy is projected to expand 6.5% in 2026, urban population is expected to reach 567.7 million by 2030, and real GDP grew at a CAGR of 7.3% between FY23 and FY26.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p139",
+              "drhp-p141"
+            ]
+          }
+        ],
+        "heading": "Industry and market",
+        "purpose": "Context on the Indian apparel and footwear retail market, its size, growth drivers, competition, and headwinds."
+      },
+      "intro": {
+        "beats": [
+          {
+            "beat": "Gaurik Fashions is a multi-brand retail chain that sells footwear and apparel under licensed brands including Skechers, Guess, and Bugatti through stores in northern India.",
+            "kind": "narrative",
+            "source_ids": [
+              "drhp-p33",
+              "drhp-p34"
+            ]
+          },
+          {
+            "beat": "The IPO consists of a fresh issue of up to 62,00,000 equity shares (face value ₹10 each, amount not disclosed) and an offer for sale of up to 8,00,000 equity shares by an investor selling shareholder.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p100"
+            ]
+          }
+        ],
+        "heading": null,
+        "purpose": "Orientation: who Gaurik Fashions is, what it does, and what it is raising."
+      },
+      "offer": {
+        "beats": [
+          {
+            "beat": "Fresh issue: up to 62,00,000 equity shares of face value ₹10 each. The amount is not disclosed in the DRHP (redacted as [●]).",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p100"
+            ]
+          },
+          {
+            "beat": "Offer for sale: up to 8,00,000 equity shares by an investor selling shareholder. Amount also not disclosed.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p100"
+            ]
+          },
+          {
+            "beat": "The net proceeds from the fresh issue will be used for: (i) setting up new Skechers stores; (ii) investment in Gaurik Lifestyle Private Limited for new Guess stores; (iii) investment in Nuvora Retail Private Limited for new Bugatti stores and inventory; (iv) repayment of certain borrowings; (v) repayment of borrowings of subsidiaries; and (vi) general corporate purposes.",
+            "kind": "example",
+            "source_ids": [
+              "drhp-p100",
+              "drhp-p101"
+            ]
+          },
+          {
+            "beat": "The lead manager and registrar are not disclosed in the provided excerpts.",
+            "kind": "narrative",
+            "source_ids": []
+          }
+        ],
+        "heading": "The offer and its objects",
+        "purpose": "Detail the fresh issue and OFS, the use of proceeds, and key parties (lead manager, registrar) – with note on undisclosed amounts."
+      },
+      "risks": {
+        "beats": [
+          {
+            "beat": "Heavy reliance on the Skechers brand: a significant but undisclosed portion of revenue comes from Skechers stores; any adverse change in that relationship could severely hurt the business.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p33"
+            ]
+          },
+          {
+            "beat": "Geographic concentration: a significant portion of revenue is derived from northern India; regional economic or competitive shocks would disproportionately impact results.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p34"
+            ]
+          },
+          {
+            "beat": "The company's retail agreements are non-exclusive; brand owners can appoint other partners or switch to direct-to-consumer models, which could erode market share.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p38"
+            ]
+          },
+          {
+            "beat": "The statutory auditor of a subsidiary (Gaurik South Private Limited) is not cooperating, which may impair financial reporting and compliance.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p35"
+            ]
+          },
+          {
+            "beat": "Negative cash flows in the past (FY23) and significant debt on the balance sheet (total assets ₹3,664 million vs equity ₹776 million) indicate reliance on borrowings; the company plans to use IPO proceeds to repay debt, suggesting leveraged operations.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p42",
+              "drhp-p234"
+            ]
+          }
+        ],
+        "heading": "Key risks",
+        "purpose": "Highlight the most material risks specific to this company, not generic IPO risks."
+      },
+      "valuation-and-peers": {
+        "beats": [
+          {
+            "beat": "Basic EPS (₹): 0.25 (FY23), 2.35 (FY24), 7.04 (FY25), 9.13 (nine months ended December 2025). Weighted average EPS for FY23-25 is ₹4.34.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p123",
+              "drhp-p290"
+            ]
+          },
+          {
+            "beat": "Net asset value per share (₹): 3.42 (FY23), 9.99 (FY24), 27.41 (FY25), 41.32 (as at December 31, 2025).",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p124",
+              "drhp-p290"
+            ]
+          },
+          {
+            "beat": "Return on net worth: 7.61% (FY23), 37.50% (FY24), 41.35% (FY25). Weighted average 34.44%.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p123",
+              "drhp-p290"
+            ]
+          },
+          {
+            "beat": "The DRHP provides a peer group P/E range: high 61.14, low 57.91, average 59.52. However, the names of the peer companies are not disclosed in the provided excerpts.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p123"
+            ]
+          }
+        ],
+        "heading": "Valuation and peers",
+        "purpose": "Present the company's own EPS, NAV, RoNW and refer to the peer P/E range provided in the DRHP. Note that the peer names are not available in the extract, so a full comparison table cannot be built.",
+        "visual_targets": [
+          {
+            "kind": "table",
+            "purpose": "Table of Gaurik's EPS (basic, diluted), NAV, RoNW for all periods, and the peer P/E range if available.",
+            "where": "valuation-and-peers"
+          }
+        ]
+      }
+    },
+    "title_candidates": [
+      "Gaurik Fashions: India's Biggest Skechers Retailer Eyes the Markets",
+      "Gaurik Fashions: a branded footwear retailer takes the IPO route"
+    ],
+    "visual_targets": [
+      {
+        "kind": "table",
+        "purpose": "Summary financial table with revenue, PAT, EBITDA, EBITDA margin, operating cash flow for all periods.",
+        "where": "financials"
+      },
+      {
+        "kind": "table",
+        "purpose": "Key valuation metrics (EPS, NAV, RoNW) plus peer P/E range.",
+        "where": "valuation-and-peers"
+      }
+    ]
+  },
+  "schema_url_self": null,
+  "schema_version": "1.0.0",
+  "slug": "gaurik-fashions-a160dc",
+  "sources": [],
+  "time_zone": "Asia/Kolkata"
+}

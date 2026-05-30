@@ -347,6 +347,17 @@ def build_report_inputs(
             listing_bits.append(f"recent price {cur}")
     listing_context = "; ".join(listing_bits) or "Pre-listing filing."
 
+    # Detect financial denomination from extracted fact values.
+    # Many consolidated DRHPs state figures in millions; Indian readers expect crore.
+    _fin_text = json.dumps(facts.get("financials") or {})
+    _in_millions = "million" in _fin_text.lower() and "crore" not in _fin_text.lower()
+    _currency_note = (
+        "IMPORTANT: All financial figures in the filing are stated in ₹ millions. "
+        "You MUST convert every ₹ figure to crore (divide by 10) when writing the article. "
+        "Never write '₹ X million' — always write '₹ Y crore'. "
+        "Example: ₹579.78 million → ₹57.98 crore."
+    ) if _in_millions else ""
+
     brief = IPOReportBrief(
         slug=f"{slug}-report",
         issue_slug=slug,
@@ -364,12 +375,12 @@ def build_report_inputs(
         offer_summary=offer_summary,
         listing_context=listing_context,
         must_answer=[
-            "What does the company actually do and how does it make money? Include specific products/services, how contracts are won, and 1-2 concrete customer or revenue examples.",
-            "What is the offer structure — fresh issue vs OFS, use of proceeds (name the specific objects and amounts), lead manager and registrar.",
-            "Multi-period financial narrative: revenue trend, PAT trend, EBITDA if disclosed, debt level, and cash flow — with actual numbers across ALL reported periods (use the full restated statements provided in the digest). State the currency unit clearly.",
+            "What does the company actually do and how does it make money? Include specific products/services, how contracts are won, key brand/franchise relationships, store count or operating footprint, and revenue split by segment or vertical if disclosed.",
+            "What is the offer structure — fresh issue vs OFS, who the OFS selling shareholder is (name them), use of proceeds (name the specific objects), and lead manager if named.",
+            "Multi-period financial narrative: revenue trend, PAT trend, EBITDA if disclosed, debt level, and cash flow — with actual numbers across ALL reported periods (use the full restated statements in the digest). Present figures in ₹ crore. If the filing uses millions, divide by 10.",
             "What industry/market is it in? Size, growth rate, key demand drivers, named competition, and the specific headwinds the filing acknowledges.",
-            "Valuation: how is the price band justified? Build a PEER COMPARISON TABLE (named peers with CMP, EPS, NAV, P/E) if the filing discloses it — this is a table, not a paragraph.",
-            "Who controls the company — promoter names, pre-issue shareholding %, and any governance flags (related-party transactions, litigation, auditor qualifications, negative cash flows).",
+            "Valuation: build a PEER COMPARISON TABLE (named peers with their P/E, EPS, NAV, RoNW) if the filing discloses it — this is a table, not a paragraph. Then apply peer multiples to compute an implied price range.",
+            "Who controls the company — promoter names, pre-issue shareholding %, and any governance flags (related-party transactions, litigation, auditor qualifications, regulatory non-compliances, negative cash flows).",
             "Top 3-5 MATERIAL risks only, each stated as a specific claim about this company (not generic IPO boilerplate). Stop at 5.",
         ],
         must_not_say=[
@@ -383,10 +394,11 @@ def build_report_inputs(
         ],
         length_target_words=2400,
         source_ids=source_ids,
-        notes=(
+        notes="\n".join(filter(None, [
+            _currency_note,
             f"Extraction quality: {facts_doc.get('quality', {}).get('state')}, "
-            f"{facts_doc.get('quality', {}).get('verified_fact_count')} verified facts."
-        ),
+            f"{facts_doc.get('quality', {}).get('verified_fact_count')} verified facts.",
+        ])),
     )
 
     documents = [

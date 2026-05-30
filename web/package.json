@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "astro dev --host 127.0.0.1 --port 4321",
-    "build": "astro build",
+    "build": "astro build && cp dist/sitemap-index.xml dist/sitemap.xml",
     "cf:preview": "wrangler deploy --dry-run --env=\"\"",
     "cf:deploy": "wrangler deploy --env=\"\"",
     "cf:deploy:production": "wrangler deploy --env production",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource-variable/inter-tight": "^5.1.1",
     "@fontsource-variable/jetbrains-mono": "^5.1.2",
     "@fontsource-variable/source-serif-4": "^5.1.1",

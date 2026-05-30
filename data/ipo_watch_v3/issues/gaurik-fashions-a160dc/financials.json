@@ -1,0 +1,188 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v3/financials.schema.json",
+  "balance_sheet_tie_out": null,
+  "currency_unit": null,
+  "deepseek": {
+    "calls": [
+      {
+        "cached": false,
+        "completion_tokens": 396,
+        "estimated_cost_usd": 0.001108,
+        "model": "deepseek-v4-flash",
+        "page_range": [
+          312,
+          318
+        ],
+        "prompt_tokens": 7120,
+        "rows_in": 0,
+        "rows_kept": 0,
+        "slice_method": "keyword",
+        "statement": "pnl"
+      },
+      {
+        "slice_method": "not_found",
+        "statement": "balance_sheet"
+      },
+      {
+        "slice_method": "not_found",
+        "statement": "cash_flow"
+      },
+      {
+        "cached": false,
+        "completion_tokens": 2526,
+        "estimated_cost_usd": 0.001606,
+        "model": "deepseek-v4-flash",
+        "page_range": [
+          290,
+          296
+        ],
+        "prompt_tokens": 6418,
+        "rows_in": 6,
+        "rows_kept": 6,
+        "slice_method": "keyword",
+        "statement": "ratios"
+      }
+    ],
+    "cost_usd": "0.002714",
+    "model": "deepseek-v4-flash",
+    "used": true
+  },
+  "document_type": "DRHP",
+  "document_url": "https://nsearchives.nseindia.com/corporate/Registration_10052026085443_DRHP.zip",
+  "extracted_at": "2026-05-30T13:12:40+00:00",
+  "periods": [],
+  "quality": {
+    "failures": [
+      {
+        "code": "missing_required_statements",
+        "statements": [
+          "pnl",
+          "balance_sheet",
+          "cash_flow"
+        ]
+      }
+    ],
+    "state": "fail",
+    "warnings": []
+  },
+  "schema_version": "1.0.0",
+  "slug": "gaurik-fashions-a160dc",
+  "statements": {
+    "balance_sheet": {
+      "found": false,
+      "periods": [],
+      "rows": [],
+      "title": "Restated Statement of Assets and Liabilities (Balance Sheet)",
+      "unit": null
+    },
+    "cash_flow": {
+      "found": false,
+      "periods": [],
+      "rows": [],
+      "title": "Restated Statement of Cash Flows",
+      "unit": null
+    },
+    "pnl": {
+      "found": true,
+      "periods": [],
+      "rows": [],
+      "title": "Restated Statement of Profit and Loss",
+      "unit": null,
+      "validation": {
+        "checked": 0,
+        "dropped": 0,
+        "repaired": 0
+      }
+    },
+    "ratios": {
+      "found": true,
+      "periods": [
+        "For the period ended December 31, 2025",
+        "Fiscal 2025",
+        "Fiscal 2024",
+        "Fiscal 2023"
+      ],
+      "rows": [
+        {
+          "label": "Basic EPS (in ₹)",
+          "level": 0,
+          "raw_excerpt": "Basic EPS (in ₹)                                                                  9.13                     7.04                     2.35                    0.25",
+          "source_page": 290,
+          "values": [
+            "9.13",
+            "7.04",
+            "2.35",
+            "0.25"
+          ]
+        },
+        {
+          "label": "Diluted EPS (in ₹)",
+          "level": 0,
+          "raw_excerpt": "Diluted EPS (in ₹)                                                                9.13                     7.04                     2.35                    0.25",
+          "source_page": 290,
+          "values": [
+            "9.13",
+            "7.04",
+            "2.35",
+            "0.25"
+          ]
+        },
+        {
+          "label": "Return on net worth (%)",
+          "level": 0,
+          "raw_excerpt": "Return on net worth (%)                                                       28.15%                   41.35%                   37.50%                    7.61%",
+          "source_page": 290,
+          "values": [
+            "28.15%",
+            "41.35%",
+            "37.50%",
+            "7.61%"
+          ]
+        },
+        {
+          "label": "Net asset value per equity share (in ₹)",
+          "level": 0,
+          "raw_excerpt": "Net asset value per equity share (in ₹)                                         41.32                    27.41                      9.99                     3.42",
+          "source_page": 290,
+          "values": [
+            "41.32",
+            "27.41",
+            "9.99",
+            "3.42"
+          ]
+        },
+        {
+          "label": "EBITDA (₹ in millions)",
+          "level": 0,
+          "raw_excerpt": "EBITDA (₹ in millions)                                                         529.46                   570.71                   443.99                   123.33",
+          "source_page": 290,
+          "values": [
+            "529.46",
+            "570.71",
+            "443.99",
+            "123.33"
+          ]
+        },
+        {
+          "label": "EBITDA Margin (%)",
+          "level": 0,
+          "raw_excerpt": "EBITDA Margin (%)                                                             26.14%                   25.89%                   25.81%                   21.27%",
+          "source_page": 290,
+          "values": [
+            "26.14%",
+            "25.89%",
+            "25.81%",
+            "21.27%"
+          ]
+        }
+      ],
+      "title": "Accounting Ratios (Restated EPS, NAV, RoNW, EBITDA)",
+      "unit": "in ₹, except share data",
+      "validation": {
+        "checked": 6,
+        "dropped": 0,
+        "repaired": 0
+      }
+    }
+  }
+}

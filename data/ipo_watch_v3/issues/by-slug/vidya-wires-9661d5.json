@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.29-0550",
+  "dataset_version": "v3.2026.05.30-0511",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE14UN01029_09DEC2025.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Vidya_Wires_Limited_DRHP.zip",
@@ -72,7 +72,7 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
@@ -81,6 +81,10 @@
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -116,7 +120,7 @@
     }
   },
   "filings_path": "issues/vidya-wires-9661d5/filings.json",
-  "generated_at": "2026-05-29T05:50:27+00:00",
+  "generated_at": "2026-05-30T05:11:32+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -131,10 +135,11 @@
     "symbol": "VIDYAWIRES"
   },
   "listing_performance": {
-    "current_gain_bps": 11794,
-    "current_price_paise": 11333,
+    "current_gain_bps": 10894,
+    "current_price_paise": 10865,
     "listing_close_price_paise": 5314,
-    "listing_gain_bps": 219
+    "listing_gain_bps": 219,
+    "listing_open_price_paise": 5200
   },
   "market_path": "issues/vidya-wires-9661d5/market.json",
   "parties": {},
@@ -422,40 +427,47 @@
   "research_path": "issues/vidya-wires-9661d5/research.json",
   "schema_version": "3.0.0",
   "slug": "vidya-wires-9661d5",
-  "source_dataset_version": "v2026.05.29-0550",
+  "source_dataset_version": "v2026.05.30-0511",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-05-29T05:45:31+00:00",
+      "snapshot_at": "2026-05-30T05:06:42+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2025",
-      "snapshot_at": "2026-05-29T05:45:43+00:00",
+      "snapshot_at": "2026-05-30T05:06:53+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000100",
-      "snapshot_at": "2026-05-29T05:49:15+00:00",
+      "snapshot_at": "2026-05-30T05:10:12+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-05-29T05:45:16+00:00",
+      "snapshot_at": "2026-05-30T05:06:30+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-05-29T16:18:56+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-05-29T05:45:27+00:00",
+      "snapshot_at": "2026-05-30T05:06:38+00:00",
       "source": "nse",
       "url": null
     }

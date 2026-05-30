@@ -1,6 +1,6 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/provenance.schema.json",
-  "dataset_version": "v3.2026.05.29-0550",
+  "dataset_version": "v3.2026.05.30-0511",
   "field_provenance": {
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
@@ -52,7 +52,7 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
@@ -61,6 +61,10 @@
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -92,38 +96,45 @@
     "info": [],
     "review": []
   },
-  "generated_at": "2026-05-29T05:50:27+00:00",
+  "generated_at": "2026-05-30T05:11:32+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "shankara-building-products-5ff865",
-  "source_dataset_version": "v2026.05.29-0550",
+  "source_dataset_version": "v2026.05.30-0511",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-05-29T05:45:31+00:00",
+      "snapshot_at": "2026-05-30T05:06:42+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2017",
-      "snapshot_at": "2026-05-29T05:45:36+00:00",
+      "snapshot_at": "2026-05-30T05:06:48+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-05-29T05:45:16+00:00",
+      "snapshot_at": "2026-05-30T05:06:30+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-05-29T16:18:56+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-05-29T05:45:27+00:00",
+      "snapshot_at": "2026-05-30T05:06:38+00:00",
       "source": "nse",
       "url": null
     }

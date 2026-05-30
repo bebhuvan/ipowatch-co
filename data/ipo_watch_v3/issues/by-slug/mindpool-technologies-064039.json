@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.29-0550",
+  "dataset_version": "v3.2026.05.30-0511",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/emerge/corporates/content/ADV_INE00RQ01019_MINDPOOL.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/MTL_DP.pdf",
@@ -28,6 +28,10 @@
     "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -53,6 +57,26 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -71,9 +95,12 @@
     }
   },
   "filings_path": "issues/mindpool-technologies-064039/filings.json",
-  "generated_at": "2026-05-29T05:50:27+00:00",
+  "generated_at": "2026-05-30T05:11:32+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "yahoo:MINDPOOL.NS"
+    ],
     "board_type": "SME Board",
     "company_name": "Mindpool Technologies Limited",
     "issue_type": "IPO",
@@ -81,7 +108,13 @@
     "status": "Listed",
     "symbol": "MINDPOOL"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 17083,
+    "current_price_paise": 8125,
+    "listing_close_price_paise": 1785,
+    "listing_gain_bps": -4050,
+    "listing_open_price_paise": 2015
+  },
   "market_path": "issues/mindpool-technologies-064039/market.json",
   "parties": {},
   "pricing": {
@@ -94,19 +127,26 @@
   "public_slug": "mindpool-technologies",
   "schema_version": "3.0.0",
   "slug": "mindpool-technologies-064039",
-  "source_dataset_version": "v2026.05.29-0550",
+  "source_dataset_version": "v2026.05.30-0511",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-05-29T05:45:16+00:00",
+      "snapshot_at": "2026-05-30T05:06:30+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-05-29T16:18:56+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-05-29T05:45:28+00:00",
+      "snapshot_at": "2026-05-30T05:06:39+00:00",
       "source": "nse",
       "url": null
     }

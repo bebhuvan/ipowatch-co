@@ -1,7 +1,15 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/provenance.schema.json",
-  "dataset_version": "v3.2026.05.29-0550",
+  "dataset_version": "v3.2026.05.30-0511",
   "field_provenance": {
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "identity.board_type": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -22,6 +30,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -34,27 +54,36 @@
   "findings": {
     "blocking": [],
     "info": [],
-    "review": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "review": []
   },
-  "generated_at": "2026-05-29T05:50:27+00:00",
+  "generated_at": "2026-05-30T05:11:32+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "avg-logistics-5c82c4",
-  "source_dataset_version": "v2026.05.29-0550",
+  "source_dataset_version": "v2026.05.30-0511",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-05-30T05:06:41+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-05-30T05:06:41+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "rights_forthcoming",
-      "snapshot_at": "2026-05-29T05:45:23+00:00",
+      "snapshot_at": "2026-05-30T05:06:35+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "validation_state": "review"
+  "validation_state": "clean"
 }

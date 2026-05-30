@@ -515,6 +515,80 @@ def _markdown_table(columns: list[str], rows: list[list[Any]]) -> str:
     return "\n".join([head, rule, *body])
 
 
+def _render_industry_snapshot(snap: dict[str, Any]) -> str:
+    """Turn a visual-brief ``industry_snapshot`` spec into inline HTML blocks."""
+    parts: list[str] = []
+
+    # --- stat strip ---
+    stats = snap.get("stats") or []
+    if stats:
+        cells = "".join(
+            f'<div class="industry-stat">'
+            f'<div class="industry-stat-val">{s.get("val","")}</div>'
+            f'<div class="industry-stat-desc">{(s.get("desc") or "").replace(chr(10), "<br>")}</div>'
+            f'</div>'
+            for s in stats
+        )
+        parts.append(
+            f'<div class="industry-snapshot">'
+            f'<div class="industry-snapshot-label">Market at a glance</div>'
+            f'<div class="industry-snapshot-stats">{cells}</div>'
+            f'</div>'
+        )
+
+    # --- growth bars ---
+    bars = snap.get("growth_bars") or []
+    if bars:
+        bar_label = snap.get("growth_bars_label") or "Market growth"
+        source = snap.get("growth_bars_source") or ""
+        items = ""
+        for b in bars:
+            proj = b.get("projected", False)
+            cls = "market-growth-bar market-growth-bar--proj" if proj else "market-growth-bar"
+            val_html = b.get("value", "")
+            if proj:
+                val_html += ' <span class="market-growth-tag">projected</span>'
+            items += (
+                f'<div class="market-growth-item">'
+                f'<div class="market-growth-year">{b.get("year","")}</div>'
+                f'<div class="market-growth-bar-wrap"><div class="{cls}" style="width:{b.get("width_pct",100)}%"></div></div>'
+                f'<div class="market-growth-val">{val_html}</div>'
+                f'</div>'
+            )
+        source_line = f'<p class="market-growth-note">Source: {source}</p>' if source else ""
+        parts.append(
+            f'<div class="market-growth">'
+            f'<div class="market-growth-label">{bar_label}</div>'
+            f'{items}{source_line}'
+            f'</div>'
+        )
+
+    # --- split bar ---
+    sb = snap.get("split_bar")
+    if isinstance(sb, dict):
+        left_pct = float(sb.get("left_pct") or 50)
+        right_pct = round(100 - left_pct, 1)
+        left_lbl = sb.get("left_label") or ""
+        right_lbl = sb.get("right_label") or ""
+        bar_lbl = snap.get("split_bar_label") or "Market structure"
+        note = snap.get("split_bar_note") or ""
+        note_html = f'<p class="market-structure-note">{note}</p>' if note else ""
+        parts.append(
+            f'<div class="market-structure">'
+            f'<div class="market-structure-label">{bar_lbl}</div>'
+            f'<div class="market-structure-bar">'
+            f'<div class="market-structure-seg market-structure-org" style="width:{left_pct}%">'
+            f'<span class="market-structure-pct">{left_pct}%</span>'
+            f'<span class="market-structure-name">{left_lbl}</span></div>'
+            f'<div class="market-structure-seg market-structure-unorg" style="width:{right_pct}%">'
+            f'<span class="market-structure-pct">{right_pct}%</span>'
+            f'<span class="market-structure-name">{right_lbl}</span></div>'
+            f'</div>{note_html}</div>'
+        )
+
+    return "\n\n".join(parts)
+
+
 def _insert_after_paragraph(body: str, anchor: str | None, block: str) -> tuple[str, bool]:
     """Insert ``block`` after the first paragraph that starts with or contains ``anchor``."""
     if not anchor:
@@ -612,6 +686,11 @@ def run_render(
             continue
         block = f'<aside class="pull-quote">{quote}</aside>'
         body, _ = _insert_after_paragraph(body, pq.get("after_paragraph"), block)
+
+    # --- inject industry snapshot (stat strip + growth bars + split bar) ---
+    snap = visual.get("industry_snapshot")
+    if isinstance(snap, dict):
+        body, _ = _insert_after_paragraph(body, snap.get("after_paragraph"), _render_industry_snapshot(snap))
 
     # NOTE: LLM "sidebars" (e.g. an offer-at-a-glance) are intentionally NOT
     # injected into the article body — they tended to restate the intro prose.

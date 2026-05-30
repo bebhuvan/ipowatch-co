@@ -310,6 +310,26 @@
     background: var(--color-paper);
   }
 
+  /* ── IPO detail page section anchor nav ────────────────────── */
+  .ipo-nav-link {
+    display: inline-block;
+    padding: 13px 20px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    margin-bottom: -1px; /* sit flush on the container's bottom border */
+  }
+  .ipo-nav-link:hover {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-accent);
+  }
+
   /* ── Compact IPO listing rows (used by /live/ and /upcoming/) ── */
   .ipo-list {
     border-top: 2px solid var(--color-ink);

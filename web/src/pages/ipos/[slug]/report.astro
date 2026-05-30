@@ -491,6 +491,176 @@ const latestPeriodLabel = latestPeriodRaw ? shortPeriod(latestPeriodRaw) : '';
     font-weight: 600;
   }
 
+  /* ── Industry visual blocks ────────────────────────────────── */
+
+  /* Stat strip */
+  .report-body :global(.industry-snapshot) {
+    margin: 2.2em 0 1.6em;
+    padding: 18px 0 16px;
+    border-top: 2px solid var(--color-ink);
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .report-body :global(.industry-snapshot-label) {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-deep);
+    margin-bottom: 14px;
+  }
+  .report-body :global(.industry-snapshot-stats) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 18px 28px;
+  }
+  .report-body :global(.industry-stat-val) {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--color-ink);
+    line-height: 1.05;
+    margin-bottom: 5px;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  .report-body :global(.industry-stat-desc) {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--color-mute);
+    line-height: 1.45;
+  }
+
+  /* Growth bars */
+  .report-body :global(.market-growth) {
+    margin: 1.8em 0;
+  }
+  .report-body :global(.market-growth-label) {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    margin-bottom: 12px;
+  }
+  .report-body :global(.market-growth-item) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .report-body :global(.market-growth-year) {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-mute);
+    width: 32px;
+    flex-shrink: 0;
+  }
+  .report-body :global(.market-growth-bar-wrap) {
+    flex: 1;
+    height: 26px;
+    background: var(--color-paper-soft);
+    border: 1px solid var(--color-rule);
+    overflow: hidden;
+  }
+  .report-body :global(.market-growth-bar) {
+    height: 100%;
+    background: var(--color-accent);
+    transition: width 0s;
+  }
+  .report-body :global(.market-growth-bar--proj) {
+    background: var(--color-ink-4);
+  }
+  .report-body :global(.market-growth-val) {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-ink);
+    white-space: nowrap;
+    width: 130px;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  .report-body :global(.market-growth-tag) {
+    font-family: var(--font-sans);
+    font-size: 9.5px;
+    color: var(--color-mute);
+    font-style: italic;
+    font-weight: normal;
+  }
+  .report-body :global(.market-growth-note) {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--color-mute);
+    margin: 6px 0 0 42px;
+    font-style: italic;
+    max-width: none;
+  }
+
+  /* Organised / unorganised split bar */
+  .report-body :global(.market-structure) {
+    margin: 1.8em 0;
+  }
+  .report-body :global(.market-structure-label) {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    margin-bottom: 10px;
+  }
+  .report-body :global(.market-structure-bar) {
+    display: flex;
+    height: 46px;
+    gap: 2px;
+    margin-bottom: 8px;
+  }
+  .report-body :global(.market-structure-seg) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+    overflow: hidden;
+  }
+  .report-body :global(.market-structure-org) {
+    background: var(--color-accent);
+  }
+  .report-body :global(.market-structure-unorg) {
+    background: var(--color-paper-soft);
+    border: 1px solid var(--color-rule);
+  }
+  .report-body :global(.market-structure-pct) {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+  }
+  .report-body :global(.market-structure-org .market-structure-pct) { color: #fff; }
+  .report-body :global(.market-structure-unorg .market-structure-pct) { color: var(--color-ink); }
+  .report-body :global(.market-structure-name) {
+    font-family: var(--font-sans);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 2px;
+    display: block;
+  }
+  .report-body :global(.market-structure-org .market-structure-name) { color: rgba(255,255,255,0.75); }
+  .report-body :global(.market-structure-unorg .market-structure-name) { color: var(--color-mute); }
+  .report-body :global(.market-structure-note) {
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    color: var(--color-mute);
+    font-style: italic;
+    line-height: 1.5;
+    margin: 0;
+    max-width: none;
+  }
+
   /* GFM footnotes — editorial citation marks, not loud numbers */
   .report-body :global(sup) {
     font-size: 0.62em;

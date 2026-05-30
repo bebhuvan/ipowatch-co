@@ -98,7 +98,9 @@ const timeLabelFor = (iso: string) => new Intl.DateTimeFormat('en-IN', {
 }).format(new Date(iso));
 const allTicksSameDay = xTicks.length > 1 && xTicks.every((iso) => dayLabelFor(iso) === dayLabelFor(xTicks[0]));
 
-const empty = observations.length === 0;
+// Empty if no observations, OR if we have observations but no times data to plot
+// (e.g. BSE only providing raw bid counts, not subscription multiples yet)
+const empty = observations.length === 0 || vals.length === 0;
 const labelMinGap = 20;
 const labelX = W - PAD_R + 16;
 const labelTop = PAD_T + 8;
@@ -134,7 +136,11 @@ for (let i = finalLabels.length - 1; i >= 0; i--) {
   </figcaption>
 
   {empty ? (
-    <p class="py-10 text-center mute">No subscription data captured yet.</p>
+    <p class="py-10 text-center mute serif italic text-[17px]">
+      {observations.length > 0
+        ? 'Subscription multiples not yet available — exchange is publishing bid counts but the category-level allocation hasn\'t been disclosed.'
+        : 'No subscription data captured yet.'}
+    </p>
   ) : (
     <svg viewBox={`0 0 ${W} ${H}`} class="w-full min-w-[680px] sm:min-w-0 h-auto" role="img" aria-label="Subscription trajectory">
       <line x1={PAD_L} y1={PAD_T} x2={PAD_L} y2={H - PAD_B} stroke="var(--color-ink)" stroke-width="1" />

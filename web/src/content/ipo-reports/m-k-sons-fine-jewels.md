@@ -14,7 +14,7 @@ sources: []
 generated_by: "ipo_portal.orchestrator/0.1.0"
 ---
 
-M K Sons Fine Jewels sells gold, diamond, platinum and silver jewellery to individual customers. The company is entirely owned by the Raimalani family — promoters hold 100% of the pre-offer equity — and has grown rapidly in recent years, with revenue rising from ₹249 million in FY23 to ₹3,513 million in FY25. The IPO combines a fresh issue of up to 13.6 million shares by the company with an offer for sale of up to 3.4 million shares by a promoter selling shareholder; the rupee amounts for both components are redacted in the filing. Proceeds from the fresh issue are earmarked for opening a new showroom in Maharashtra, expanding an existing showroom in Gujarat, repaying borrowings, and general corporate purposes. [^drhp-p48-94]
+M K Sons Fine Jewels sells gold, diamond, platinum and silver jewellery to individual customers. The company is entirely owned by the Raimalani family — promoters hold 100% of the pre-offer equity — and has grown rapidly in recent years, with revenue rising from ₹24.9 crore in FY23 to ₹351.3 crore in FY25. The IPO combines a fresh issue of up to 13.6 million shares by the company with an offer for sale of up to 3.4 million shares by a promoter selling shareholder; the rupee amounts for both components are redacted in the filing. Proceeds from the fresh issue are earmarked for opening a new showroom in Maharashtra, expanding an existing showroom in Gujarat, repaying borrowings, and general corporate purposes. [^drhp-p48-94]
 
 ## What the company does
 
@@ -26,15 +26,15 @@ The company does not manufacture its own jewellery. Every piece it sells comes f
 
 Revenue is heavily concentrated in Gujarat. The filing acknowledges this geographic concentration as a material risk. [^drhp-p28]
 
-The revenue history needs a note. In FY23, the company reported only ₹249 million. By FY24 that had risen to ₹2,174 million — an 8.7-fold jump in a single year. The filing links this to the opening of new showrooms in Ahmedabad and Mumbai. [^drhp-p48] These are still early-stage stores; the Gujarat operations remain the anchor. Investors are, in effect, betting on whether the expansion into new cities can sustain the growth trajectory.
+The revenue history needs a note. In FY23, the company reported only ₹24.9 crore. By FY24 that had risen to ₹217.4 crore — an 8.7-fold jump in a single year. The filing links this to the opening of new showrooms in Ahmedabad and Mumbai. [^drhp-p48] These are still early-stage stores; the Gujarat operations remain the anchor. Investors are, in effect, betting on whether the expansion into new cities can sustain the growth trajectory.
 
 ## Industry and market
 
-India's retail gems and jewellery market was valued at ₹7,204 billion in CY25 and is expected to grow at a compound annual rate of 10.6% to 12.2%, driven by rising disposable incomes, urbanisation, and sustained wedding- and festival-led demand. [^drhp-p127] The gold jewellery segment alone was worth ₹5,732 billion in CY25 and is projected to reach ₹9,551 billion by CY30 at a CAGR of 8.9%. [^drhp-p140]
+India's retail gems and jewellery market was valued at ₹7.20 lakh crore in CY25 and is expected to grow at a compound annual rate of 10.6% to 12.2%, driven by rising disposable incomes, urbanisation, and sustained wedding- and festival-led demand. [^drhp-p127] The gold jewellery segment alone was worth ₹5.73 lakh crore in CY25 and is projected to reach ₹9.55 lakh crore by CY30 at a CAGR of 8.9%. [^drhp-p140]
 
-<div class="industry-snapshot"><div class="industry-snapshot-label">Market at a glance — CY25</div><div class="industry-snapshot-stats"><div class="industry-stat"><div class="industry-stat-val">₹7,204B</div><div class="industry-stat-desc">Total retail gems &amp; jewellery<br>India, CY25</div></div><div class="industry-stat"><div class="industry-stat-val">10.6–12.2%</div><div class="industry-stat-desc">Projected CAGR<br>total retail market</div></div><div class="industry-stat"><div class="industry-stat-val">8.9%</div><div class="industry-stat-desc">Gold segment CAGR<br>CY25 → CY30</div></div></div></div>
+<div class="industry-snapshot"><div class="industry-snapshot-label">Market at a glance — CY25</div><div class="industry-snapshot-stats"><div class="industry-stat"><div class="industry-stat-val">₹7.20 lakh cr</div><div class="industry-stat-desc">Total retail gems &amp; jewellery<br>India, CY25</div></div><div class="industry-stat"><div class="industry-stat-val">10.6–12.2%</div><div class="industry-stat-desc">Projected CAGR<br>total retail market</div></div><div class="industry-stat"><div class="industry-stat-val">8.9%</div><div class="industry-stat-desc">Gold segment CAGR<br>CY25 → CY30</div></div></div></div>
 
-<div class="market-growth"><div class="market-growth-label">Gold jewellery segment — projected growth</div><div class="market-growth-item"><div class="market-growth-year">CY25</div><div class="market-growth-bar-wrap"><div class="market-growth-bar" style="width:60%"></div></div><div class="market-growth-val">₹5,732B</div></div><div class="market-growth-item"><div class="market-growth-year">CY30</div><div class="market-growth-bar-wrap"><div class="market-growth-bar market-growth-bar--proj" style="width:100%"></div></div><div class="market-growth-val">₹9,551B <span class="market-growth-tag">projected</span></div></div><p class="market-growth-note">Source: DRHP industry report, p.140</p></div>
+<div class="market-growth"><div class="market-growth-label">Gold jewellery segment — projected growth</div><div class="market-growth-item"><div class="market-growth-year">CY25</div><div class="market-growth-bar-wrap"><div class="market-growth-bar" style="width:60%"></div></div><div class="market-growth-val">₹5.73 lakh cr</div></div><div class="market-growth-item"><div class="market-growth-year">CY30</div><div class="market-growth-bar-wrap"><div class="market-growth-bar market-growth-bar--proj" style="width:100%"></div></div><div class="market-growth-val">₹9.55 lakh cr <span class="market-growth-tag">projected</span></div></div><p class="market-growth-note">Source: DRHP industry report, p.140</p></div>
 
 The market is fragmented. Unorganised players (local jewellers, family-run shops) hold 63.3% of the market, while organised retailers account for 36.7%. M K Sons competes with national chains such as Tribhovandas Bhimji Zaveri, Senco Gold, and PNGS Reva Diamond Jewellery. [^drhp-p105-142]
 
@@ -54,32 +54,32 @@ Aryaman Financial Services Limited is the sole lead manager to the issue. [^drhp
 
 ## Financial health over three years and a period
 
-The restated financial statements cover three full fiscals (FY23, FY24, FY25) and the nine-month period ended December 31, 2025 (labelled P.E.25). All figures are in ₹ million unless stated otherwise.
+The restated financial statements cover three full fiscals (FY23, FY24, FY25) and the nine-month period ended December 31, 2025 (labelled P.E.25). All figures are in ₹ crore unless stated otherwise.
 
 | Metric | 9M Dec '25 | FY25 | FY24 | FY23 |
 |---|---|---|---|---|
-| Total Income | 3,608.45 | 3,513.16 | 2,173.95 | 249.31 |
-| Total expenses | 3,208.99 | 3,192.90 | 2,065.63 | 232.06 |
-| Profit before tax | 399.46 | 320.26 | 108.32 | 17.25 |
-| Profit after tax | 291.65 | 232.62 | 81.65 | 13.39 |
-| EBITDA | 481.93 | 385.68 | 128.71 | 22.69 |
-| Total assets | 2,804.21 | 2,196.38 | 952.11 | 507.12 |
-| Borrowings (closing) | 721.06 | — | — | — |
-| Net worth | 1,447.23 | 1,162.10 | 222.67 | 141.51 |
+| Total Income | 360.8 | 351.3 | 217.4 | 24.9 |
+| Total expenses | 320.9 | 319.3 | 206.6 | 23.2 |
+| Profit before tax | 40.0 | 32.0 | 10.8 | 1.7 |
+| Profit after tax | 29.2 | 23.3 | 8.2 | 1.3 |
+| EBITDA | 48.2 | 38.6 | 12.9 | 2.3 |
+| Total assets | 280.4 | 219.6 | 95.2 | 50.7 |
+| Borrowings (closing) | 72.1 | — | — | — |
+| Net worth | 144.7 | 116.2 | 22.3 | 14.2 |
 
 Sources: [^drhp-p65] (Income, expenses, PBT, PAT), [^drhp-p283] (EBITDA, Net Worth), [^drhp-p64] (Total Assets), [^drhp-p233] (Borrowings).
 
-Total Income grew from ₹249.31 million in FY23 to ₹3,513.16 million in FY25 — a fourteen-fold increase over two years. Profit after tax followed a similar trajectory, rising from ₹13.39 million to ₹232.62 million over the same period. The nine-month period ended December 2025 already exceeds the full FY25 figures on both income and profit, suggesting continued momentum. [^drhp-p65]
+Total Income grew from ₹24.93 crore in FY23 to ₹351.32 crore in FY25 — a fourteen-fold increase over two years. Profit after tax followed a similar trajectory, rising from ₹1.34 crore to ₹23.26 crore over the same period. The nine-month period ended December 2025 already exceeds the full FY25 figures on both income and profit, suggesting continued momentum. [^drhp-p65]
 
-EBITDA (earnings before interest, tax, depreciation and amortisation) grew from ₹22.69 million in FY23 to ₹385.68 million in FY25, and reached ₹481.93 million in P.E.25. [^drhp-p283]
+EBITDA (earnings before interest, tax, depreciation and amortisation) grew from ₹2.27 crore in FY23 to ₹38.57 crore in FY25, and reached ₹48.19 crore in P.E.25. [^drhp-p283]
 
-Despite this profit growth, cash flow from operations tells a different story. Operating cash flow was negative for three consecutive years: ₹(49.47) million in FY23, ₹(235.57) million in FY24, and ₹(95.31) million in FY25. [^drhp-p66] FY24 was the worst — the year the new showrooms opened and inventory was being built from scratch. By FY25 the drain moderated, and in P.E.25 operating cash flow turned positive at ₹180.06 million as the stores matured. The company funded the gap through borrowings (₹248.16 million of net financing inflows in FY24 alone) and unsecured loans from promoters. [^drhp-p49-52]
+Despite this profit growth, cash flow from operations tells a different story. Operating cash flow was negative for three consecutive years: ₹(4.95) crore in FY23, ₹(23.56) crore in FY24, and ₹(9.53) crore in FY25. [^drhp-p66] FY24 was the worst — the year the new showrooms opened and inventory was being built from scratch. By FY25 the drain moderated, and in P.E.25 operating cash flow turned positive at ₹18.01 crore as the stores matured. The company funded the gap through borrowings (₹24.82 crore of net financing inflows in FY24 alone) and unsecured loans from promoters. [^drhp-p49-52]
 
 <aside class="pull-quote">In the three years before the current period, the company's operating cash flow was negative, as the filing itself discloses.</aside>
 
-Total assets rose from ₹507.12 million in FY23 to ₹2,804.21 million in P.E.25. Borrowings stood at ₹721.06 million as of December 31, 2025. Net worth increased from ₹141.51 million to ₹1,447.23 million over the same period, helped by a bonus issue of shares transferred from reserves. [^drhp-p64-283]
+Total assets rose from ₹50.71 crore in FY23 to ₹280.42 crore in P.E.25. Borrowings stood at ₹72.11 crore as of December 31, 2025. Net worth increased from ₹14.15 crore to ₹144.72 crore over the same period, helped by a bonus issue of shares transferred from reserves. [^drhp-p64-283]
 
-Inventory dominates the balance sheet. As of December 31, 2025, inventory stood at ₹2,405.92 million; at end-FY25 it was ₹2,056.96 million; at end-FY24, ₹874.81 million. [^drhp-p31] Across all periods, inventory represents 86–94% of total assets. This is characteristic of gold jewellery retail — gold and diamonds are valuable — but it means the business is acutely sensitive to gold price swings: a 10% fall in gold prices would translate directly into a balance-sheet hit of roughly ₹240 million on the current stock.
+Inventory dominates the balance sheet. As of December 31, 2025, inventory stood at ₹240.59 crore; at end-FY25 it was ₹205.70 crore; at end-FY24, ₹87.48 crore. [^drhp-p31] Across all periods, inventory represents 86–94% of total assets. This is characteristic of gold jewellery retail — gold and diamonds are valuable — but it means the business is acutely sensitive to gold price swings: a 10% fall in gold prices would translate directly into a balance-sheet hit of roughly ₹24 crore on the current stock.
 
 Return on net worth (RoNW) was 9.48% in FY23, peaked at 36.56% in FY24, and stood at 20.16% in P.E.25. Basic earnings per share (face value ₹10) were ₹0.60 in FY23, ₹3.63 in FY24, ₹10.26 in FY25, and ₹6.83 in P.E.25. Net asset value per share was ₹6.29, ₹9.91, ₹51.27, and ₹33.90 respectively. [^drhp-p283]
 
@@ -87,18 +87,18 @@ Return on net worth (RoNW) was 9.48% in FY23, peaked at 36.56% in FY24, and stoo
 
 The DRHP provides a peer comparison with three listed jewellery companies. The table below reproduces the metrics as disclosed in the filing. Because M K Sons's own offer price is redacted, a price-to-earnings multiple for the issue cannot be computed.
 
-| Company | Face Value (₹) | CMP (₹) | Revenue (₹ mn) | EPS (₹) | NAV (₹) | P/E (x) | RoNW (%) |
+| Company | Face Value (₹) | CMP (₹) | Revenue (₹ cr) | EPS (₹) | NAV (₹) | P/E (x) | RoNW (%) |
 |---|---|---|---|---|---|---|---|
-| Tribhovandas Bhimji Zaveri | 10 | 146.18 | 26,204.84 | 10.84 | 98.49 | 13.49 | 10.86 |
-| Senco Gold | 10 | 318.10 | 62,586.76 | 10.48 | 120.37 | 30.38 | 8.18 |
-| PNGS Reva Diamond Jewellery | 10 | 396.90 | 2,581.83 | 35.21 | 206.19 | 11.27 | 59.36 |
+| Tribhovandas Bhimji Zaveri | 10 | 146.18 | 2,620.5 | 10.84 | 98.49 | 13.49 | 10.86 |
+| Senco Gold | 10 | 318.10 | 6,258.7 | 10.48 | 120.37 | 30.38 | 8.18 |
+| PNGS Reva Diamond Jewellery | 10 | 396.90 | 258.2 | 35.21 | 206.19 | 11.27 | 59.36 |
 
 
 The industry average P/E for the peer set is 22.07x, with a range of 11.27x (PNGS Reva) to 32.86x (Motisons Jewellers, which is included in the filing's P/E range calculation but not in the peer comparison table). [^drhp-p105]
 
 M K Sons's own FY25 EPS is ₹10.26 (basic and diluted), and its NAV per share is ₹51.27. [^drhp-p103-104] Its RoNW for FY25 is 19.98%. [^drhp-p104]
 
-The offer price is redacted, but the peer P/E range offers a valuation anchor. Applying the peer multiples to M K Sons's FY25 EPS of ₹10.26: at TBZ's 13.49× the implied price is ₹138 per share; at the peer average of 22.07×, ₹226; at Senco's 30.38×, ₹312. M K Sons's RoNW (19.98%) is nearly double TBZ's (10.86%) and Senco's (8.18%), which could support a premium to those peers — though Senco and TBZ have far larger revenue bases (₹62,587 million and ₹26,205 million respectively against M K Sons's ₹3,513 million in FY25). PNGS Reva, the closest in revenue scale at ₹2,582 million, trades at 11.27× earnings and 59.36% RoNW — a very different profitability profile. The price, once disclosed, will determine where in this range the company is positioned.
+The offer price is redacted, but the peer P/E range offers a valuation anchor. Applying the peer multiples to M K Sons's FY25 EPS of ₹10.26: at TBZ's 13.49× the implied price is ₹138 per share; at the peer average of 22.07×, ₹226; at Senco's 30.38×, ₹312. M K Sons's RoNW (19.98%) is nearly double TBZ's (10.86%) and Senco's (8.18%), which could support a premium to those peers — though Senco and TBZ have far larger revenue bases (₹6,258.7 crore and ₹2,620.5 crore respectively against M K Sons's ₹351.3 crore in FY25). PNGS Reva, the closest in revenue scale at ₹258.2 crore, trades at 11.27× earnings and 59.36% RoNW — a very different profitability profile. The price, once disclosed, will determine where in this range the company is positioned.
 
 ## Governance and ownership
 
@@ -108,7 +108,7 @@ Promoters collectively hold 42,690,360 equity shares, representing 100% of the p
 
 The company has not declared any dividends for any of the periods covered in the DRHP: FY23, FY24, FY25, and the period up to December 31, 2025. [^drhp-p226]
 
-Related-party transactions go beyond the headline loan figure. Promoters have extended unsecured loans totalling ₹15.21 million to the company. [^drhp-p36-220] The transactions also include the purchase of a business from a related party — a disclosure the filing itself flags as a potential conflict of interest that may recur in the future. The nature and terms of that business purchase are not detailed in the extracted excerpts but are on record in the filing.
+Related-party transactions go beyond the headline loan figure. Promoters have extended unsecured loans totalling ₹1.52 crore to the company. [^drhp-p36-220] The transactions also include the purchase of a business from a related party — a disclosure the filing itself flags as a potential conflict of interest that may recur in the future. The nature and terms of that business purchase are not detailed in the extracted excerpts but are on record in the filing.
 
 The company's statutory auditors previously included a qualification in their examination report: a flag the filing itself raises as a risk. [^drhp-p43]
 
@@ -116,11 +116,11 @@ The company's statutory auditors previously included a qualification in their ex
 
 **Geographic concentration.** Revenue is heavily concentrated in Gujarat. [^drhp-p28]
 
-**Negative operating cash flows.** In the three years before the current period, the company consumed cash from operations, as the filing discloses. It relied on borrowings and loans from promoters to sustain growth. Only in the nine-month period ended December 2025 did operating cash flow turn positive, at ₹180.06 million. [^drhp-p48-233]
+**Negative operating cash flows.** In the three years before the current period, the company consumed cash from operations, as the filing discloses. It relied on borrowings and loans from promoters to sustain growth. Only in the nine-month period ended December 2025 did operating cash flow turn positive, at ₹18.01 crore. [^drhp-p48-233]
 
 **Reliance on unaffiliated third-party manufacturers.** All jewellery is produced by external karigars with no exclusive contracts. The company has no captive manufacturing capacity. Loss of a supplier could disrupt inventory and delay deliveries to customers. [^drhp-p39]
 
-**High inventory levels.** As of December 31, 2025, inventory stood at ₹2,405.92 million. [^drhp-p31]
+**High inventory levels.** As of December 31, 2025, inventory stood at ₹240.59 crore. [^drhp-p31]
 
 **Past qualified audit opinion.** The statutory auditors previously issued a qualified report on the company's financial statements. While the filing does not detail the nature of the qualification, it signals that the company's financial reporting controls have not been entirely clean in the past. [^drhp-p43]
 

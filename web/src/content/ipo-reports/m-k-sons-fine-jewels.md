@@ -26,6 +26,8 @@ The company does not manufacture its own jewellery. Every piece it sells comes f
 
 Revenue is heavily concentrated in Gujarat. The filing acknowledges this geographic concentration as a material risk. [^drhp-p28]
 
+The revenue history needs a note. In FY23, the company reported only ₹249 million. By FY24 that had risen to ₹2,174 million — an 8.7-fold jump in a single year. The filing links this to the opening of new showrooms in Ahmedabad and Mumbai. [^drhp-p48] These are still early-stage stores; the Gujarat operations remain the anchor. Investors are, in effect, betting on whether the expansion into new cities can sustain the growth trajectory.
+
 ## Industry and market
 
 India's retail gems and jewellery market was valued at ₹7,204 billion in CY25 and is expected to grow at a compound annual rate of 10.6% to 12.2%, driven by rising disposable incomes, urbanisation, and sustained wedding- and festival-led demand. [^drhp-p127] The gold jewellery segment alone was worth ₹5,732 billion in CY25 and is projected to reach ₹9,551 billion by CY30 at a CAGR of 8.9%. [^drhp-p140]
@@ -33,6 +35,8 @@ India's retail gems and jewellery market was valued at ₹7,204 billion in CY25 
 The market is fragmented. Unorganised players (local jewellers, family-run shops) hold 63.3% of the market, while organised retailers account for 36.7%. M K Sons competes with national chains such as Tribhovandas Bhimji Zaveri, Senco Gold, and PNGS Reva Diamond Jewellery. [^drhp-p105-142]
 
 The filing flags several headwinds. Gold price volatility is one. [^drhp-p127] The United States has imposed a 50% blanket tariff on Indian exports, [^drhp-p134] which matters because the US is the largest destination for Indian gems and jewellery exports, accounting for 32% of India's exports in FY25. [^drhp-p133] Competition from synthetic diamonds is rising. [^drhp-p127] And geopolitical disruptions could affect energy imports, since India imports around 60% of its LPG demand and nearly 90% of that transits through the Strait of Hormuz. [^drhp-p116]
+
+One significant regulatory tailwind is worth flagging: customs duty on gold was reduced from 15% to 6% in the Union Budget of July 2024. [^drhp-p139] For a retailer whose inventory is essentially all gold, this meaningfully lowers the cost of stocking shelves. The full effect will appear in future statements — two of M K Sons's three negative-cash-flow years pre-date the cut.
 
 ## The offer and its objects
 
@@ -63,11 +67,13 @@ Total Income grew from ₹249.31 million in FY23 to ₹3,513.16 million in FY25 
 
 EBITDA (earnings before interest, tax, depreciation and amortisation) grew from ₹22.69 million in FY23 to ₹385.68 million in FY25, and reached ₹481.93 million in P.E.25. [^drhp-p283]
 
-Despite this profit growth, cash flow from operations tells a different story. In the three years before the current period, the company's operating cash flow was negative, as the filing itself discloses. Only in P.E.25 did operating cash flow turn positive, at ₹180.06 million. [^drhp-p48-233] The company has been funding its growth through borrowings and loans from promoters, as disclosed in the filing. [^drhp-p49-52]
+Despite this profit growth, cash flow from operations tells a different story. Operating cash flow was negative for three consecutive years: ₹(49.47) million in FY23, ₹(235.57) million in FY24, and ₹(95.31) million in FY25. [^drhp-p66] FY24 was the worst — the year the new showrooms opened and inventory was being built from scratch. By FY25 the drain moderated, and in P.E.25 operating cash flow turned positive at ₹180.06 million as the stores matured. The company funded the gap through borrowings (₹248.16 million of net financing inflows in FY24 alone) and unsecured loans from promoters. [^drhp-p49-52]
 
 <aside class="pull-quote">In the three years before the current period, the company's operating cash flow was negative, as the filing itself discloses.</aside>
 
 Total assets rose from ₹507.12 million in FY23 to ₹2,804.21 million in P.E.25. Borrowings stood at ₹721.06 million as of December 31, 2025. Net worth increased from ₹141.51 million to ₹1,447.23 million over the same period, helped by a bonus issue of shares transferred from reserves. [^drhp-p64-283]
+
+Inventory dominates the balance sheet. As of December 31, 2025, inventory stood at ₹2,405.92 million; at end-FY25 it was ₹2,056.96 million; at end-FY24, ₹874.81 million. [^drhp-p31] Across all periods, inventory represents 86–94% of total assets. This is characteristic of gold jewellery retail — gold and diamonds are valuable — but it means the business is acutely sensitive to gold price swings: a 10% fall in gold prices would translate directly into a balance-sheet hit of roughly ₹240 million on the current stock.
 
 Return on net worth (RoNW) was 9.48% in FY23, peaked at 36.56% in FY24, and stood at 20.16% in P.E.25. Basic earnings per share (face value ₹10) were ₹0.60 in FY23, ₹3.63 in FY24, ₹10.26 in FY25, and ₹6.83 in P.E.25. Net asset value per share was ₹6.29, ₹9.91, ₹51.27, and ₹33.90 respectively. [^drhp-p283]
 
@@ -86,6 +92,8 @@ The industry average P/E for the peer set is 22.07x, with a range of 11.27x (PNG
 
 M K Sons's own FY25 EPS is ₹10.26 (basic and diluted), and its NAV per share is ₹51.27. [^drhp-p103-104] Its RoNW for FY25 is 19.98%. [^drhp-p104]
 
+The offer price is redacted, but the peer P/E range offers a valuation anchor. Applying the peer multiples to M K Sons's FY25 EPS of ₹10.26: at TBZ's 13.49× the implied price is ₹138 per share; at the peer average of 22.07×, ₹226; at Senco's 30.38×, ₹312. M K Sons's RoNW (19.98%) is nearly double TBZ's (10.86%) and Senco's (8.18%), which could support a premium to those peers — though Senco and TBZ have far larger revenue bases (₹62,587 million and ₹26,205 million respectively against M K Sons's ₹3,513 million in FY25). PNGS Reva, the closest in revenue scale at ₹2,582 million, trades at 11.27× earnings and 59.36% RoNW — a very different profitability profile. The price, once disclosed, will determine where in this range the company is positioned.
+
 ## Governance and ownership
 
 The company is promoted by three individuals: Ramchand Murlidhar Raimalani (Chairman and Managing Director), his spouse Neelam Ramchand Raimalani (Whole Time Director), and their son Kush Ramchand Raimalani (Whole Time Director). Ramchand Murlidhar Raimalani is the spouse of Neelam Ramchand Raimalani and father of Kush Ramchand Raimalani. [^drhp-p218-222]
@@ -94,7 +102,7 @@ Promoters collectively hold 42,690,360 equity shares, representing 100% of the p
 
 The company has not declared any dividends for any of the periods covered in the DRHP: FY23, FY24, FY25, and the period up to December 31, 2025. [^drhp-p226]
 
-Related-party transactions include unsecured loans from promoters totalling ₹15.21 million to the company. The filing warns that such transactions may continue in the future and could involve conflicts of interest with other shareholders. [^drhp-p36-220]
+Related-party transactions go beyond the headline loan figure. Promoters have extended unsecured loans totalling ₹15.21 million to the company. [^drhp-p36-220] The transactions also include the purchase of a business from a related party — a disclosure the filing itself flags as a potential conflict of interest that may recur in the future. The nature and terms of that business purchase are not detailed in the extracted excerpts but are on record in the filing.
 
 The company's statutory auditors previously included a qualification in their examination report: a flag the filing itself raises as a risk. [^drhp-p43]
 
@@ -141,3 +149,6 @@ The company's statutory auditors previously included a qualification in their ex
 [^drhp-p103-104]: [DRHP, pp.103–104](https://www.sebi.gov.in/sebi_data/attachdocs/may-2026/1779262204888_1256.pdf)
 [^drhp-p105-142]: [DRHP, pp.105–142](https://www.sebi.gov.in/sebi_data/attachdocs/may-2026/1779262204888_1256.pdf)
 [^drhp-p218-222]: [DRHP, pp.218–222](https://www.sebi.gov.in/sebi_data/attachdocs/may-2026/1779262204888_1256.pdf)
+[^drhp-p48]: [DRHP, page 48](https://www.sebi.gov.in/sebi_data/attachdocs/may-2026/1779262204888_1256.pdf)
+[^drhp-p66]: [DRHP, page 66](https://www.sebi.gov.in/sebi_data/attachdocs/may-2026/1779262204888_1256.pdf)
+[^drhp-p139]: [DRHP, page 139](https://www.sebi.gov.in/sebi_data/attachdocs/may-2026/1779262204888_1256.pdf)

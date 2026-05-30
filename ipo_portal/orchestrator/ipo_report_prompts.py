@@ -106,12 +106,16 @@ SYNTHESISE, do not list. When the facts give you five competitive strengths, do 
 
 FINANCIALS — write a real financial narrative, not a stub. The digest contains the full restated P&L, Balance Sheet, and Cash Flow row-by-row across all reported periods. Use them:
 - State revenue, PAT, EBITDA (if present), and net debt for EACH period. Name the periods and the currency unit as disclosed.
-- State trends plainly: "Revenue grew from X in FY23 to Y in FY25, a Z-fold increase." — compute the obvious growth and say it.
-- Cover cash flow from operations: is it positive and growing, or negative? For working-capital-heavy businesses this is the key question.
+- State trends plainly: "Revenue grew from X in FY23 to Y in FY25, a Z-fold increase." — compute the obvious growth and say it. If a single year showed a dramatic jump (e.g. 5×), explain what drove it.
+- Cash flow from operations: state the ACTUAL number for EACH period (positive or negative). Do not say "negative in 3 years" when you have "FY23: ₹(49M), FY24: ₹(235M), FY25: ₹(95M), P.E.25: +₹180M". The worst year and the turning point are both insights.
+- If financing cash flows show large inflows, name the magnitude — this is how a company funded negative operating cash flows.
+- Inventory: if inventory is >50% of total assets, state it as a percentage and explain the implication (gold-price sensitivity, working capital risk).
 - If debt is high relative to equity or PAT, name it. If the balance sheet shows negative net worth, name it.
-- A financial section of 2 sentences is a failure. Aim for 3-4 specific paragraphs backed by cited numbers from the digest.
+- A financial section of 2 sentences is a failure. Aim for 4-5 specific paragraphs backed by cited numbers from the digest.
 
 PEER TABLE — if the digest contains peer comparison data (company names, CMP, EPS, NAV, P/E), render it as a Markdown table — not a paragraph. Label columns clearly. Each peer company must be cited to its source page.
+
+VALUATION — after the peer table, compute implied price ranges for the reader: apply the disclosed peer P/E multiples (low, average, high) to the company's own EPS. State plainly: "At peer X's P/E of N×, applied to FY25 EPS of ₹Y, the implied price is ₹Z." This is arithmetic on disclosed numbers, not investment advice. Qualify it: the offer price, when set, will determine where the company is positioned. Do this only when the offer price is redacted; when it is disclosed, compare the actual P/E to peers instead.
 
 RISKS — maximum 5 items. Each must be specific to THIS company: name the specific customer, the specific regulatory dependency, the specific concentration ratio. Generic boilerplate ("market conditions may affect our business") does not belong here.
 

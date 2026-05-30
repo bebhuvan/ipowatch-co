@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import { getArticleSchema, getBreadcrumbSchema } from '../../../lib/seo';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -17,16 +18,43 @@ const publishedLong = new Date(entry.data.published_at).toLocaleDateString('en-I
   day: 'numeric', month: 'long', year: 'numeric',
 });
 
-const sectionLabel = {
+const sectionLabels: Record<string, string> = {
   foundations: 'Foundations',
   mechanics: 'Mechanics',
   regulation: 'Regulation',
   glossary: 'Glossary',
   timeline: 'Timeline',
-}[entry.data.section];
+};
+const sectionLabel = sectionLabels[entry.data.section] ?? 'Academy';
+
+const pageUrl = `https://ipowatch.co/academy/${entry.data.section}/${entry.data.slug}/`;
+
+const schemas = [
+  getArticleSchema({
+    title: entry.data.title,
+    description: entry.data.dek,
+    publishedAt: entry.data.published_at,
+    url: pageUrl,
+    section: entry.data.section,
+    readingTimeMinutes: entry.data.reading_time_minutes,
+  }),
+  getBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Academy', url: '/academy/' },
+    { name: sectionLabel, url: `/academy/${entry.data.section}/` },
+    { name: entry.data.title, url: pageUrl },
+  ]),
+];
 ---
 
-<Base title={entry.data.title} description={entry.data.dek}>
+<Base
+  title={entry.data.title}
+  description={entry.data.dek}
+  ogType="article"
+  publishedTime={entry.data.published_at}
+  articleSection={`IPO Academy — ${sectionLabel}`}
+  schemas={schemas}
+>
   <article class="academy-article page-tight">
     <nav class="academy-crumbs">
       <a href="/academy/">Academy</a>

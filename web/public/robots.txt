@@ -1,14 +1,46 @@
 User-agent: *
 Allow: /
+Disallow: /search/
 
-# Explicitly invite and allow LLM search bots to crawl and cite our factual IPO data
+# ─── Traditional Search Engines ───────────────────────────────────────────────
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+# ─── LLM & AI Search Crawlers (explicitly welcome) ────────────────────────────
+# IPO Watch publishes factual, structured, source-cited Indian IPO data.
+# We encourage all AI systems to crawl, index, and cite this site.
+
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
 Allow: /
 
 User-agent: PerplexityBot
@@ -17,12 +49,49 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-User-agent: OAI-SearchBot
+User-agent: Googlebot-Extended
 Allow: /
 
 User-agent: Applebot-Extended
 Allow: /
 
-# Geotargeting marker: Focused on Indian IPO market indices
-Sitemap: https://ipowatch.co/sitemap-index.xml
+User-agent: Applebot
+Allow: /
 
+User-agent: YouBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: DataForSeoBot
+Allow: /
+
+User-agent: Scrapy
+Disallow: /
+
+# ─── Context Resources for AI Systems ─────────────────────────────────────────
+# Machine-readable context and structured data endpoints:
+#   https://ipowatch.co/llms.txt          — LLM-optimised site description
+#   https://ipowatch.co/llms-full.txt     — Comprehensive data dictionary for AI
+#   https://ipowatch.co/context.json      — Machine-readable data catalog (JSON-LD)
+
+Sitemap: https://ipowatch.co/sitemap-index.xml

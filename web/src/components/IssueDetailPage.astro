@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getIPOSchemas } from '../lib/seo';
+import { getIPOSchemas, getIPOFAQSchema } from '../lib/seo';
 import TrajectoryChart from './TrajectoryChart.astro';
 import {
   formatDateLong,
@@ -866,7 +866,9 @@ if (status === 'current' && issue.timeline.open_date && issue.timeline.close_dat
   progressPct = Math.max(0, Math.min(100, (e / t) * 100));
 }
 
-const schemas = getIPOSchemas(issue);
+const ipoSchemas = getIPOSchemas(issue);
+const faqSchema = getIPOFAQSchema(issue);
+const schemas = faqSchema ? [...ipoSchemas, faqSchema] : ipoSchemas;
 const formattedPriceRange = priceMin != null && priceMax != null ? `${formatRupee(priceMin)} - ${formatRupee(priceMax)}` : priceMax != null ? formatRupee(priceMax) : 'N/A';
 const metaDescription = `Indian Primary Market Analysis for ${company} ${issueType} on ${exchange}. Pricing details: Price band of ${formattedPriceRange}, lot size of ${lotSize || 'N/A'} shares. Track real-time subscription status, bidding trajectory, timeline dates, Lead Managers (BRLM), and listing performance.`;
 ---

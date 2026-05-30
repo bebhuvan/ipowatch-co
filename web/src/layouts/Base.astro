@@ -8,12 +8,19 @@ type Props = {
   description?: string;
   ogType?: string;
   ogImage?: string;
+  ogImageWidth?: string;
+  ogImageHeight?: string;
   canonicalUrl?: string;
   schemas?: any[];
   geoRegion?: string;
   geoPlacename?: string;
   geoPosition?: string;
   robots?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  articleSection?: string;
+  author?: string;
+  noindex?: boolean;
 };
 
 const {
@@ -21,13 +28,24 @@ const {
   description = 'Indian equity IPO and primary market data from NSE and BSE.',
   ogType = 'website',
   ogImage = '/og-image.png',
+  ogImageWidth = '1200',
+  ogImageHeight = '630',
   canonicalUrl,
   schemas = [],
   geoRegion = 'IN-MH',
   geoPlacename = 'Mumbai',
   geoPosition = '19.0760;72.8777',
-  robots = 'index, follow, max-image-preview:large',
+  robots,
+  publishedTime,
+  modifiedTime,
+  articleSection,
+  author = 'IPO Watch',
+  noindex = false,
 } = Astro.props;
+
+const robotsContent = robots ?? (noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
 
 const siteName = 'IPO Watch';
 const siteDomain = 'ipowatch.co';
@@ -61,14 +79,18 @@ const todayLong = today.toLocaleDateString('en-IN', {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="author" content={author} />
+    <meta name="application-name" content={siteName} />
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="/favicon.svg" />
     <!-- Fonts self-hosted via @fontsource-variable — no external CDN round-trip -->
     <title>{displayTitle}</title>
 
-    <!-- Canonical URL -->
+    <!-- Canonical + hreflang (en-IN is the sole locale; x-default → same URL) -->
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en-in" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={ogType} />
@@ -76,19 +98,30 @@ const todayLong = today.toLocaleDateString('en-IN', {
     <meta property="og:title" content={displayTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageAbs} />
+    <meta property="og:image:width" content={ogImageWidth} />
+    <meta property="og:image:height" content={ogImageHeight} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:locale" content="en_IN" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonical} />
-    <meta property="twitter:title" content={displayTitle} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={ogImageAbs} />
+    <!-- Article-specific OG tags (populated for academy/report pages) -->
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    {articleSection && <meta property="article:section" content={articleSection} />}
+    {(publishedTime || articleSection) && <meta property="article:author" content="IPO Watch" />}
 
-    <!-- Robots & Search Directives -->
-    <meta name="robots" content={robots} />
-    <meta name="googlebot" content={robots} />
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ipowatch_co" />
+    <meta name="twitter:creator" content="@ipowatch_co" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={displayTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    <!-- Robots & Search Directives — max-snippet:-1 opts in to full AI snippet extraction -->
+    <meta name="robots" content={robotsContent} />
+    <meta name="googlebot" content={robotsContent} />
 
     <!-- GEO / Geotargeting Meta Tags (Indian Localized SEO) -->
     <meta name="geo.region" content={geoRegion} />
@@ -96,13 +129,18 @@ const todayLong = today.toLocaleDateString('en-IN', {
     <meta name="geo.position" content={geoPosition} />
     <meta name="ICBM" content={geoPosition} />
 
-    <!-- Additional local descriptors -->
+    <!-- Dublin Core — machine-readable bibliographic metadata -->
     <meta name="DC.title" content={displayTitle} />
     <meta name="DC.description" content={description} />
     <meta name="DC.publisher" content={siteName} />
     <meta name="DC.format" content="text/html" />
     <meta name="DC.language" content="en-IN" />
     <meta name="DC.coverage" content="India" />
+    <meta name="DC.rights" content="https://ipowatch.co/" />
+    {publishedTime && <meta name="DC.date" content={publishedTime} />}
+
+    <!-- LLM / AI context pointers -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM context" />
 
     <!-- Schema.org JSON-LD Structured Data -->
     {schemas && schemas.map((schema) => (

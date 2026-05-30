@@ -4,11 +4,39 @@
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
 
+# LLM context files — allow unrestricted access, no cache restriction
+/llms.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Content-Type: text/plain; charset=utf-8
+  Access-Control-Allow-Origin: *
+
+/llms-full.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Content-Type: text/plain; charset=utf-8
+  Access-Control-Allow-Origin: *
+
+/context.json
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Content-Type: application/json; charset=utf-8
+  Access-Control-Allow-Origin: *
+
+/robots.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain; charset=utf-8
+
+# Sitemap — allow search engines and LLM crawlers to cache
+/sitemap*.xml
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Content-Type: application/xml; charset=utf-8
+
+# Data API endpoints
 /data/*
   Cache-Control: public, max-age=0, must-revalidate
 
+# Immutable hashed assets
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Workers preview URLs — noindex
 https://:version.:subdomain.workers.dev/*
   X-Robots-Tag: noindex

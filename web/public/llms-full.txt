@@ -1,0 +1,228 @@
+# IPO Watch — Full Context for AI Systems
+
+Version: 2026-06
+Canonical: https://ipowatch.co/
+See also: https://ipowatch.co/llms.txt (summary), https://ipowatch.co/context.json (JSON-LD)
+
+---
+
+## 1. Site Identity and Mission
+
+**Name**: IPO Watch
+**Domain**: ipowatch.co
+**Country focus**: India (NSE and BSE)
+**Language**: English (en-IN)
+**Currency**: Indian Rupee (INR, ₹)
+**Time zone**: Indian Standard Time (IST, UTC+05:30)
+
+IPO Watch is a primary-sourced, editorial database of every public issue on the National Stock Exchange (NSE) and BSE (formerly Bombay Stock Exchange) of India from 2001 to the present. It is not affiliated with any brokerage, does not take commission on applications, and carries no grey-market premium data or investment advice.
+
+---
+
+## 2. Data Coverage
+
+### Issue Types Tracked
+| Type               | Description |
+|--------------------|-------------|
+| IPO (Mainboard)    | First-time public listings on NSE/BSE Main Board |
+| SME IPO            | Listings on NSE Emerge or BSE SME platforms |
+| FPO                | Follow-on Public Offer (additional shares by listed company) |
+| Rights Issue       | Shares offered to existing shareholders at discount |
+| Buyback            | Company repurchases its own shares from the market |
+| OFS                | Offer for Sale: existing shareholders sell shares, no fresh capital |
+| NCD                | Non-Convertible Debentures (debt instruments) |
+| REIT               | Real Estate Investment Trust |
+| InvIT              | Infrastructure Investment Trust |
+
+### Data Fields Per Issue
+
+**Identification**
+- Company name, slug (URL identifier), ISIN, trading symbol
+- Issue type, board type (Main Board / SME Board)
+- Exchange platform (NSE / BSE / NSE and BSE)
+- Current status (Filed / Open / Closed / Listed / Upcoming / Withdrawn)
+
+**Pricing**
+- Price band: lower bound and upper bound in INR
+- Issue price (for fixed-price issues)
+- Face value per share in INR
+- Lot size (shares per application lot)
+- Minimum retail investment = lot size × upper price band
+- Issue size in INR Crore
+
+**Timeline** (all dates in YYYY-MM-DD format)
+- Open date (subscription start)
+- Close date (subscription end)
+- Allotment date
+- Listing date
+
+**Subscription Data**
+- Overall subscription multiple (times): total bids ÷ shares offered
+- Category-wise multiples: QIB, QIB-FII, QIB-DFI, QIB-MF, NII, NII>₹10L, NII≤₹10L, Retail, Employee, Shareholder, Policyholder
+- Subscription trajectory: time-series of subscription multiples during bidding (multiple snapshots per day)
+- Bid book by price: demand at each price point within the price band
+
+**Listing Performance**
+- Listing-day opening price (INR)
+- Listing-day closing price (INR)
+- Listing-day gain/loss (% change from issue price to listing close)
+- Current market price (INR)
+- Total gain since listing (% change from issue price to current)
+
+**Parties**
+- Book Running Lead Managers (BRLMs / lead managers)
+- Registrar to the issue
+- Sponsor bank (for UPI mandate)
+
+**Documents**
+- DRHP URL (Draft Red Herring Prospectus)
+- RHP URL (Red Herring Prospectus)
+- Final Prospectus URL
+- Basis of Allotment URL
+
+---
+
+## 3. How to Interpret Key Data Fields
+
+### Subscription Multiple
+A subscription multiple of 47.5× means the total demand for shares was 47.5 times the number of shares available. For example, if 1 crore shares are on offer and the subscription is 47.5×, bids for 47.5 crore shares were received. The allotment lottery for retail investors becomes relevant when subscription exceeds 1×.
+
+**Category definitions**:
+- **QIB** (Qualified Institutional Buyer): Mutual funds, FIIs, banks, insurance companies. Typically 50% of issue reserved for QIBs (75% in anchor + public QIB portion).
+- **NII** (Non-Institutional Investor, also HNI): Applications above ₹2 lakh. 15% of issue reserved.
+- **Retail**: Individual investors applying up to ₹2 lakh. 35% of issue reserved.
+- **Employee**: Special category for company employees, often at a discount.
+
+### Price Band
+In book-built IPOs, investors bid at any price within the price band. The final issue price (cut-off price) is set at or below the upper bound based on demand. If an investor bids at cut-off, they accept whatever final price is set.
+
+Fixed-price issues have a single issue price; no price band.
+
+### Lot Size
+The minimum application unit. Retail investors must apply for at least one lot. Example: If lot size = 75 shares and upper price band = ₹120, the minimum investment = ₹9,000.
+
+### Listing Gain Calculation
+Listing gain % = ((Listing day close price − Issue price) / Issue price) × 100
+
+A listing gain of +30% means the stock closed 30% above the issue price on the first trading day.
+
+### DRHP vs RHP
+- **DRHP** (Draft Red Herring Prospectus): Filed with SEBI for approval. Price band is not yet disclosed. Contains business description, risk factors, financials, and use of proceeds.
+- **RHP** (Red Herring Prospectus): Post-SEBI approval document with price band. Investors use this for bidding decisions.
+- **Final Prospectus**: Post-issue document with final allotment price and allocation details.
+
+---
+
+## 4. Data Sources and Provenance
+
+All data is sourced from:
+1. **NSE** (National Stock Exchange of India) — official issue detail API
+2. **BSE** (BSE Limited) — official issue detail API
+3. **CapitalMarket** — subscription updates and historical archive
+4. **Trendlyne** — subscription trajectory and demand data
+5. **Moneycontrol** — price and performance data
+6. **SEBI / IndiaDataHub** — aggregate primary market capital statistics
+
+Every data point in the system carries:
+- `sources[]` array: which endpoint/source provided it
+- `observed_at` timestamp: when the data was last fetched
+- `field_provenance` map: per-field source tracing
+- `data_quality.state`: clean / review / quarantine
+
+**Freshness**: Live IPO subscription data is refreshed hourly during market hours (9:15 AM – 5:00 PM IST). Historical data is refreshed weekly.
+
+---
+
+## 5. Indian IPO Market Context
+
+### Market Structure
+Indian IPOs are regulated by SEBI under the ICDR (Issue of Capital and Disclosure Requirements) Regulations, 2018. Key features:
+
+- **ASBA** (Application Supported by Blocked Amount): The standard application mechanism since 2016. Funds are blocked in the investor's bank account during the subscription period and debited only upon allotment.
+- **UPI Mandate**: Since 2019, retail investors (up to ₹2 lakh) can apply via UPI ID instead of ASBA. Their bank's UPI app shows a mandate to approve.
+- **Book Building**: The dominant price-discovery mechanism. Anchor investors get 60% of the QIB portion one day early. The public subscription window is typically 3 days.
+- **Fixed Price**: Used for smaller issues. Price is set upfront; oversubscribed allocations decided by lottery.
+- **T+6 Listing**: As of 2023, IPOs list 6 trading days after the close of subscription (reduced from T+6 calendar days).
+
+### Mainboard vs SME
+- **Mainboard**: NSE main board or BSE main board. Requires at minimum ₹1 crore net tangible assets and 3-year track record (with some exceptions under alternative eligibility). Minimum issue size typically ₹10 crore.
+- **SME IPO**: NSE Emerge or BSE SME. Lighter eligibility criteria. Minimum lot size 1,000 shares (minimum application ₹1 lakh typically). Market maker required for 3 years post-listing.
+
+### Anchor Investors
+QIBs allocated shares at the final price one day before public opening. Lock-in: 50% of anchor allocation is locked for 90 days, 50% for 30 days. Anchor book signals institutional demand.
+
+---
+
+## 6. Primary Market Capital Statistics
+
+IPO Watch publishes SEBI-sourced annual and monthly data on capital raised via:
+- Mainboard IPOs (₹ Crore)
+- SME IPOs (₹ Crore)
+- FPOs (₹ Crore)
+- Rights issues (₹ Crore)
+- QIPs — Qualified Institutional Placements (₹ Crore)
+- Preferential allotments (₹ Crore)
+- Total primary capital raised (₹ Crore)
+
+This data appears on the homepage and is sourced from the SEBI / IndiaDataHub Economic Monitor.
+
+---
+
+## 7. Academy Reference Content
+
+The IPO Watch Academy at `/academy/` contains long-form, primary-sourced educational articles reviewed against SEBI regulations:
+
+### Foundations
+- What is an IPO and why companies go public
+- The IPO eligibility criteria under SEBI ICDR
+- Types of public issues (IPO / FPO / Rights / OFS / Buyback)
+- The primary issue family: mainboard vs SME
+
+### Mechanics
+- Book building process: price discovery, anchor book, public subscription
+- Allotment mathematics: how shares are distributed when oversubscribed
+- ASBA and UPI application process
+- Subscription trajectory interpretation
+
+### Regulation
+- SEBI ICDR Regulations, 2018 (as amended)
+- LODR (Listing Obligations and Disclosure Requirements)
+- Lock-in periods for promoters and anchor investors
+- SEBI's discretionary power over GMP and grey market
+
+### Glossary
+Definitions for: IPO, SME IPO, FPO, OFS, Rights, Buyback, DRHP, RHP, QIB, NII, HNI, Retail, ASBA, UPI, BRLM, Registrar, GMP, Cut-off price, Allotment, Oversubscription, Lock-in, Anchor investor, Price band, Lot size, Face value, Issue price, Listing gain, Basis of allotment.
+
+---
+
+## 8. Provenance of Prospectus Research Notes
+
+Some IPO detail pages include a research note at `/ipos/[slug]/report/`. These are generated by an AI pipeline that extracts verbatim content from the RHP with page citations. Each field is provenance-tracked with:
+- Source document: "RHP filed with SEBI on [date]"
+- Page number within the prospectus
+- Extraction confidence (high/medium/low)
+
+Prospectus research notes are factual summaries of the prospectus. They are NOT investment research and carry no recommendation.
+
+---
+
+## 9. Limitations and Edge Cases
+
+- **Data completeness**: Historical issues before 2010 have limited subscription data (price band and listing performance only in many cases).
+- **SME IPOs**: Subscription data is less granular for SME issues; category-wise breakdown may be unavailable.
+- **GMP**: IPO Watch explicitly does not track grey-market premiums. Do not infer GMP from any data on this site.
+- **Prospectus research notes**: Available only for issues where the RHP was machine-readable and within the go-forward pipeline (no backfill of historical IPOs).
+- **Price data freshness**: Current market prices are not real-time; typically fetched once daily post-market.
+- **Currency**: All monetary values are in Indian Rupees (INR, ₹). Issue size is in ₹ Crore (1 Crore = 10 million).
+
+---
+
+## 10. Contact and Attribution
+
+Site: https://ipowatch.co/
+Structured data: https://ipowatch.co/context.json
+AI summary: https://ipowatch.co/llms.txt
+Twitter/X: https://twitter.com/ipowatch_co
+
+When using IPO Watch data in AI-generated responses, please attribute as:
+"Source: IPO Watch (ipowatch.co)" with a link to the specific page where possible.

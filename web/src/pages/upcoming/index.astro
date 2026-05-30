@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { getBreadcrumbSchema, getItemListSchema } from '../../lib/seo';
 import { getUpcoming, getDetailBySlug, extractIngredient } from '../../lib/issues';
 import {
   formatDateShort,
@@ -43,9 +44,26 @@ const openWindow = (open: string | null, close: string | null) => {
   return c ? `${o} — ${c}` : o;
 };
 
+const metaDescription = `Upcoming Indian IPOs and primary market issues scheduled to open for subscription on NSE and BSE. Price bands, lot sizes, and subscription dates for ${enriched.length} confirmed upcoming issues.`;
+
+const schemas = [
+  getBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Upcoming IPOs', url: '/upcoming/' },
+  ]),
+  getItemListSchema(
+    enriched.map(({ issue, raise }) => ({
+      name: `${issue.company_name} ${issue.issue_type ?? 'IPO'}`,
+      url: issue.url_path,
+      description: raise ? `Issue size: ₹${raise}` : undefined,
+    })),
+    'Upcoming Indian IPOs and Primary Market Issues',
+    '/upcoming/'
+  ),
+];
 ---
 
-<Base title="Opening soon">
+<Base title="Upcoming IPOs — NSE and BSE" description={metaDescription} schemas={schemas}>
 <section class="page-tight pt-16 pb-8">
   <div class="text-[12.5px] mute mb-6">
     <span class="label" style="color: inherit">Opening soon</span>

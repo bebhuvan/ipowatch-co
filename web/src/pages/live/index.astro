@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getBreadcrumbSchema } from '../../lib/seo';
+import { getBreadcrumbSchema, getItemListSchema } from '../../lib/seo';
 import { getCurrent, getDetailBySlug, extractIngredient } from '../../lib/issues';
 import {
   formatLakhCr,
@@ -51,7 +51,16 @@ const schemas = [
   getBreadcrumbSchema([
     { name: "Home", url: "/" },
     { name: "Open Issues", url: "/live/" }
-  ])
+  ]),
+  getItemListSchema(
+    enriched.map(({ issue, raise }) => ({
+      name: `${issue.company_name} ${issue.issue_type ?? 'IPO'}`,
+      url: issue.url_path,
+      description: raise ? `Issue size: ₹${raise}` : undefined,
+    })),
+    `Indian IPOs Currently Open for Subscription`,
+    '/live/'
+  ),
 ];
 const metaDescription = `Track all ${enriched.length} Indian public IPOs currently open for subscription on the NSE & BSE. Get up-to-date subscription multiples, price bands, minimum lot sizes, retail investment values, and key book running lead managers (BRLM).`;
 ---

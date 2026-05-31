@@ -1,10 +1,37 @@
-/* Self-hosted variable fonts — eliminates Google Fonts CDN round-trip.
-   Source Serif 4 (opsz + italic) replaces Newsreader; richer optical size
-   axis, more refined at display and text sizes.
-   Inter Tight replaces Inter; same family, tighter metrics for dense UI. */
-@import "@fontsource-variable/source-serif-4/opsz.css";
-@import "@fontsource-variable/source-serif-4/opsz-italic.css";
-@import "@fontsource-variable/inter-tight/wght.css";
+/* Self-hosted variable fonts — latin subset only.
+   Skipping cyrillic/greek/vietnamese reduces @font-face declarations from ~14 to 3.
+   Browsers with unicode-range would never fetch the other subsets anyway on
+   English-only content, but omitting them trims the CSS payload. */
+
+/* Source Serif 4 — upright, opsz axis */
+@font-face {
+  font-family: 'Source Serif 4 Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 900;
+  src: url('@fontsource-variable/source-serif-4/files/source-serif-4-latin-opsz-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* Source Serif 4 — italic, opsz axis */
+@font-face {
+  font-family: 'Source Serif 4 Variable';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 200 900;
+  src: url('@fontsource-variable/source-serif-4/files/source-serif-4-latin-opsz-italic.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* Inter Tight — upright, weight axis */
+@font-face {
+  font-family: 'Inter Tight Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('@fontsource-variable/inter-tight/files/inter-tight-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
 
 @import "tailwindcss";
 
@@ -58,7 +85,12 @@
     line-height: 1.6;
     letter-spacing: -0.002em;
     overflow-x: hidden;
+    /* iOS home-indicator clearance — no layout impact on non-notched devices */
+    padding-bottom: env(safe-area-inset-bottom);
   }
+
+  /* Eliminate 300ms tap delay on all interactive elements */
+  a, button, input, select, textarea, label { touch-action: manipulation; }
 
   ::selection {
     background: var(--color-ink);
@@ -227,6 +259,15 @@
   @keyframes live-pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50%       { opacity: 0.35; transform: scale(0.8); }
+  }
+
+  /* ── Below-fold rendering optimisation ───────────────────────────── */
+  /* content-visibility:auto tells the browser to skip layout+paint for off-screen
+     sections until they approach the viewport. contain-intrinsic-size gives a
+     reasonable phantom height so the scrollbar doesn't jump on first render. */
+  .cv-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 600px;
   }
 
   /* ── Site header ─────────────────────────────────────────────────── */
@@ -490,15 +531,19 @@
     .site-nav {
       width: 100%;
       flex-wrap: nowrap;
-      justify-content: center;
-      gap: 0 12px;
+      justify-content: flex-start;
+      gap: 0 2px;
       font-size: 12px;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding-bottom: 2px;
+      /* Fade at right edge to signal more content */
+      -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+      mask-image: linear-gradient(to right, black 80%, transparent 100%);
     }
     .site-nav::-webkit-scrollbar { display: none; }
+    /* Larger tap targets for nav links on mobile */
+    .site-nav a { padding: 8px 10px; }
 
     .site-status {
       align-items: flex-start;

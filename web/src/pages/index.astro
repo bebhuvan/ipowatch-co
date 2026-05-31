@@ -349,7 +349,7 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
 
 <!-- ════════════  LEAD  ════════════ -->
 {lead && (
-  <section class="page-tight pt-24 pb-24 border-b border-[color:var(--color-rule)]">
+  <section class="page-tight pt-14 pb-14 md:pt-24 md:pb-24 border-b border-[color:var(--color-rule)]">
     <a href={lead.url_path} class="block">
       <div class="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-y-10 md:gap-x-8">
         <div>
@@ -413,7 +413,7 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
 
 <!-- ════════════  BANNER  ════════════ -->
 {(closingToday > 0 || hottest) && (
-  <section class="page-tight py-12 border-b border-[color:var(--color-rule)]">
+  <section class="page-tight py-8 md:py-12 border-b border-[color:var(--color-rule)]">
     <p class="mx-auto max-w-[72ch] border-y border-[color:var(--color-rule)] py-6 text-center serif text-[24px] leading-[1.4] text-[color:var(--color-ink-soft)]">
       {closingToday > 0 && (
         <><span class="num text-[color:var(--color-ink)]">{closingToday}</span> of <span class="num text-[color:var(--color-ink)]">{open.length}</span> open issues close today.</>
@@ -427,7 +427,7 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
 
 <!-- ════════════  CURRENTLY OPEN  ════════════ -->
 {otherOpen.length > 0 && (
-  <section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+  <section class="page-tight py-14 md:py-24 border-b border-[color:var(--color-rule)]">
     <header class="flex items-baseline justify-between mb-10">
       <h2 class="section-title">Currently open for subscription</h2>
       <a href="/live/" class="label hover:text-[color:var(--color-accent)]">All {open.length} open →</a>
@@ -491,7 +491,7 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
 )}
 
 <!-- ════════════  PIPELINE  ════════════ -->
-<section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+<section class="cv-section page-tight py-14 md:py-24 border-b border-[color:var(--color-rule)]">
   <header class="flex flex-wrap items-baseline justify-between gap-5 mb-12">
     <div>
       <h2 class="section-title">The week ahead</h2>
@@ -549,7 +549,7 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
 </section>
 
 <!-- ════════════  YEAR IN CAPITAL MARKETS  ════════════ -->
-<section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+<section class="cv-section page-tight py-14 md:py-24 border-b border-[color:var(--color-rule)]">
   <header class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-7 md:gap-12 items-end mb-12">
     <div>
       <h2 class="section-title mb-3">Primary market in {todayYear}</h2>
@@ -754,7 +754,7 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
 
 <!-- ════════════  RECENTLY LISTED  ════════════ -->
 {recent.length > 0 && (
-  <section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+  <section class="cv-section page-tight py-14 md:py-24 border-b border-[color:var(--color-rule)]">
     <header class="flex items-baseline justify-between mb-10">
       <h2 class="section-title">Recently listed</h2>
       <a href="/archive/" class="label hover:text-[color:var(--color-accent)]">All listings →</a>
@@ -795,7 +795,7 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
 )}
 
 <!-- ════════════  OTHER PUBLIC ISSUES (Buybacks · OFS · Rights)  ════════════ -->
-<section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+<section class="cv-section page-tight py-14 md:py-24 border-b border-[color:var(--color-rule)]">
   <header class="flex items-baseline justify-between mb-10">
     <h2 class="section-title">Other public issues</h2>
     <span class="label">{formatInt(countBuyback + countOFS + countRights + countTender)} since 2001</span>
@@ -886,7 +886,7 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
 
 <!-- ════════════  ALL-TIME BEST LISTING DAYS  ════════════ -->
 {topGainersAllTime.length > 0 && (
-  <section class="page-tight py-24 border-b border-[color:var(--color-rule)]">
+  <section class="cv-section page-tight py-14 md:py-24 border-b border-[color:var(--color-rule)]">
     <header class="flex items-baseline justify-between mb-10">
       <h2 class="section-title">Best listing days, all-time</h2>
       <span class="label">Top {topGainersAllTime.length} by day-one gain</span>
@@ -912,7 +912,7 @@ const metaDescription = "Track live and upcoming Indian public IPOs (NSE and BSE
 )}
 
 <!-- ════════════  ARCHIVE  ════════════ -->
-<section class="page-tight py-24 pb-12">
+<section class="cv-section page-tight py-14 pb-8 md:py-24 md:pb-12">
   <header class="flex items-baseline justify-between mb-10">
     <h2 class="section-title">Public issue archive</h2>
     <a href="/archive/" class="label hover:text-[color:var(--color-accent)]">All years →</a>

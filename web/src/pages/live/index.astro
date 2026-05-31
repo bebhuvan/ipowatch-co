@@ -95,6 +95,17 @@ const metaDescription = `Track all ${enriched.length} Indian public IPOs current
                 <span class="ipo-row-type">{typeTag(issue)}</span>
               </div>
               <div class="ipo-row-company">{issue.company_name}</div>
+              {/* Mobile-only: show the single most valuable stat inline */}
+              <div class="sm:hidden mt-1 flex items-center gap-3">
+                {subscriptionTimes != null
+                  ? <span class="serif font-medium text-[14px] acc num">{formatTimes(subscriptionTimes)} subscribed</span>
+                  : raise
+                    ? <span class="text-[12px] mute">{raise}</span>
+                    : null}
+                {issue.price_band.max != null && (
+                  <span class="text-[12px] mute num">₹{issue.price_band.max}</span>
+                )}
+              </div>
             </div>
             <div class="ipo-row-stats">
               <div class="ipo-row-stat">

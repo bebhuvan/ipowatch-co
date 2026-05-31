@@ -3,6 +3,14 @@ import '../styles/global.css';
 import { getManifest, getCurrent, getUpcoming } from '../lib/issues';
 import { daysFromNow } from '../lib/format';
 
+/* Font file URLs — resolved to hashed paths by Vite so preload href stays
+   in sync with the actual asset served. Only the latin subset is needed for
+   English content; preloading these three files covers every text weight and
+   style used above the fold, eliminating the CSS-parse → font-request gap. */
+import interTightUrl from '@fontsource-variable/inter-tight/files/inter-tight-latin-wght-normal.woff2?url';
+import sourceSerifUrl from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-opsz-normal.woff2?url';
+import sourceSerifItalicUrl from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-opsz-italic.woff2?url';
+
 type Props = {
   title?: string;
   description?: string;
@@ -77,14 +85,18 @@ const todayLong = today.toLocaleDateString('en-IN', {
 <html lang="en-IN">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- Font preloads: start fetching before CSS is parsed → LCP improvement.
+         crossorigin is required for same-origin font requests per spec. -->
+    <link rel="preload" href={interTightUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={sourceSerifUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={sourceSerifItalicUrl} as="font" type="font/woff2" crossorigin />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
     <meta name="application-name" content={siteName} />
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="/favicon.svg" />
-    <!-- Fonts self-hosted via @fontsource-variable — no external CDN round-trip -->
     <title>{displayTitle}</title>
 
     <!-- Canonical + hreflang (en-IN is the sole locale; x-default → same URL) -->
@@ -151,7 +163,7 @@ const todayLong = today.toLocaleDateString('en-IN', {
     <header class="page site-header">
       <div class="site-header-main">
         <a href="/" class="site-brand" aria-label={`${siteName} home`}>
-          <img src="/logo.svg" alt="" width="26" height="26" class="w-[26px] h-[26px] text-[color:var(--color-ink)]" />
+          <img src="/logo.svg" alt="" width="26" height="26" fetchpriority="high" class="w-[26px] h-[26px] text-[color:var(--color-ink)]" />
           <span class="site-brand-wordmark">
             <span class="font-light tracking-[0.01em]">IPO</span><span class="font-normal tracking-[-0.01em]"> Watch</span>
           </span>

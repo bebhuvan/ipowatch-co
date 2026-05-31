@@ -4,6 +4,18 @@
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
 
+# HTML pages — site rebuilds hourly; stale-while-revalidate lets Cloudflare
+# serve the cached page instantly while fetching the fresh version in the
+# background. max-age=0 ensures the CDN always checks; SWR=3600 covers the gap.
+/
+  Cache-Control: public, max-age=0, must-revalidate, stale-while-revalidate=3600
+/*/
+  Cache-Control: public, max-age=0, must-revalidate, stale-while-revalidate=3600
+/*/*/
+  Cache-Control: public, max-age=0, must-revalidate, stale-while-revalidate=3600
+/*/*/*/
+  Cache-Control: public, max-age=0, must-revalidate, stale-while-revalidate=3600
+
 # LLM context files — allow unrestricted access, no cache restriction
 /llms.txt
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400

@@ -14,6 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    # Hoisted to job level so it can be referenced from a step `if:` — the
+    # `secrets` context is not allowed inside `if:` expressions (doing so is a
+    # workflow startup error that fails the run on every event, including push).
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
 
     steps:
       - name: Check out repository
@@ -65,10 +70,9 @@ jobs:
       # refresh or deploy). Reports that clear the fact-check gate render as
       # status=published; the rest land as status=review and stay unlisted.
       - name: Generate pending IPO research reports
-        if: ${{ secrets.DEEPSEEK_API_KEY != '' }}
+        if: env.DEEPSEEK_API_KEY != ''
         continue-on-error: true
         env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           DEEPSEEK_BASE_URL: ${{ secrets.DEEPSEEK_BASE_URL }}
         run: python -m ipo_portal.orchestrator.ipo_report --pending
 

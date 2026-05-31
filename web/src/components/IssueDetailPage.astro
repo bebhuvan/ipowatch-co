@@ -1232,158 +1232,207 @@ const metaDescription = `Indian Primary Market Analysis for ${company} ${issueTy
 <!-- TIJORI ENRICHMENT -->
 {hasTijoriResearch && (
   <section id="research" class="page-tight py-20 border-t border-[color:var(--color-rule)]">
-    <header class="flex flex-wrap items-baseline justify-between gap-4 mb-12">
-      <h2 class="section-title">Company research</h2>
-      <span class="text-[11px] mute tracking-[0.06em] uppercase font-semibold">
-        Source: Tijori Finance · third-party enrichment
-      </span>
-    </header>
 
-    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-16">
-      <!-- Left: description + financials + revenue mix -->
-      <div class="space-y-16">
+    {/* ── Company description — full width lede ── */}
+    {tijori?.business_description && (
+      <div class="mb-14 pb-14 border-b border-[color:var(--color-rule)]">
+        <div class="flex items-baseline justify-between gap-6 mb-5">
+          <h2 class="section-title">Company research</h2>
+          <span class="label text-right shrink-0">Tijori Finance</span>
+        </div>
+        <p class="serif text-[21px] leading-[1.58] text-[color:var(--color-ink-soft)] max-w-[70ch]">
+          {tijori.business_description}
+        </p>
+      </div>
+    )}
 
-        {tijori?.business_description && (
-          <div>
-            <div class="label mb-4">About the company</div>
-            <p class="serif text-[18px] leading-[1.6] text-[color:var(--color-ink-soft)] max-w-[62ch]">{tijori.business_description}</p>
-          </div>
-        )}
+    {!tijori?.business_description && (
+      <div class="flex items-baseline justify-between gap-6 mb-14">
+        <h2 class="section-title">Company research</h2>
+        <span class="label text-right shrink-0">Tijori Finance</span>
+      </div>
+    )}
 
-        {tijoriFinancialRows.length > 0 && (
-          <div>
-            <div class="label mb-4">Financials (₹ crore)</div>
-            <table class="w-full text-[13.5px]">
-              <thead>
-                <tr class="border-b-2 border-[color:var(--color-ink)]">
-                  <th class="text-left pb-3 pr-6 label">Period</th>
-                  <th class="text-right pb-3 pr-6 label">Revenue</th>
-                  <th class="text-right pb-3 pr-6 label">PAT</th>
-                  <th class="text-right pb-3 label">Debt</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tijoriFinancialRows.map((row) => (
-                  <tr class="border-b border-[color:var(--color-rule)]">
-                    <td class="py-3 pr-6 mute">{row.period ?? '—'}</td>
-                    <td class="py-3 pr-6 text-right num serif">{fmtCr(row.net_sales_cr)}</td>
-                    <td class="py-3 pr-6 text-right num serif">{fmtCr(row.pat_cr)}</td>
-                    <td class="py-3 text-right num serif">{fmtCr(row.debt_cr)}</td>
+    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-16">
+
+      {/* ── LEFT: financials + revenue mix + peers ── */}
+      <div class="space-y-14">
+
+        {tijoriFinancialRows.length > 0 && (() => {
+          const revMax = Math.max(...tijoriFinancialRows.map(r => r.net_sales_cr ?? 0), 1);
+          return (
+            <div>
+              <div class="stat-label mb-5">Financials — ₹ crore</div>
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b-2 border-[color:var(--color-ink)]">
+                    <th class="text-left pb-3 pr-4 label text-[10px]">Period</th>
+                    <th class="text-right pb-3 pr-4 label text-[10px]">Revenue</th>
+                    <th class="text-right pb-3 pr-4 label text-[10px]">PAT</th>
+                    <th class="text-right pb-3 label text-[10px]">Debt</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+                </thead>
+                <tbody>
+                  {tijoriFinancialRows.map((row, i) => {
+                    const isLatest = i === tijoriFinancialRows.length - 1;
+                    const revPct = revMax > 0 ? Math.max(3, (row.net_sales_cr ?? 0) / revMax * 100) : 0;
+                    return (
+                      <tr class={`border-b border-[color:var(--color-rule)] ${isLatest ? 'bg-[color:var(--color-paper-soft)]' : ''}`}>
+                        <td class="py-4 pr-4 align-top">
+                          <span class={`text-[13px] ${isLatest ? 'font-semibold text-[color:var(--color-ink)]' : 'mute'}`}>{row.period ?? '—'}</span>
+                        </td>
+                        {/* Revenue — number + a right-aligned bar that lengthens year over year */}
+                        <td class="py-4 pr-4 align-top">
+                          <div class={`text-right num serif ${isLatest ? 'text-[18px] text-[color:var(--color-ink)]' : 'text-[15px] mute'}`}>{fmtCr(row.net_sales_cr)}</div>
+                          <div class="mt-2 ml-auto h-[4px] w-full max-w-[120px] bg-[color:var(--color-rule)]">
+                            <div class={`h-full ml-auto ${isLatest ? 'bg-[color:var(--color-accent)]' : 'bg-[color:var(--color-mute-2)]'}`} style={`width: ${revPct.toFixed(1)}%`}></div>
+                          </div>
+                        </td>
+                        <td class={`py-4 pr-4 text-right num serif align-top ${isLatest ? 'text-[18px] text-[color:var(--color-ink)]' : 'text-[15px] mute'}`}>{fmtCr(row.pat_cr)}</td>
+                        <td class={`py-4 text-right num serif align-top ${isLatest ? 'text-[18px] text-[color:var(--color-ink)]' : 'text-[15px] mute'}`}>{fmtCr(row.debt_cr)}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          );
+        })()}
 
         {tijoriRevenueRows.length > 0 && (
           <div>
-            <div class="label mb-5">Revenue mix</div>
-            <div class="space-y-3">
-              {tijoriRevenueRows.map((row) => (
-                <div class="flex items-center gap-4">
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-baseline justify-between gap-4 mb-1">
-                      <span class="text-[13px] truncate">{row.segment}</span>
-                      <span class="text-[13px] num serif font-medium shrink-0">{row.percent?.toFixed(1)}%</span>
+            <div class="stat-label mb-6">Revenue mix</div>
+            <div class="space-y-0 border-t border-[color:var(--color-rule)]">
+              {tijoriRevenueRows.map((row, i) => {
+                const pct = Math.min(100, row.percent ?? 0);
+                const isTop = i === 0;
+                return (
+                  <div class="grid grid-cols-[minmax(0,1fr)_56px] gap-4 items-center py-3 border-b border-[color:var(--color-rule)]">
+                    <div class="min-w-0">
+                      <span class={`block text-[13px] leading-[1.3] mb-2 ${isTop ? 'font-medium text-[color:var(--color-ink)]' : 'mute'}`}>{row.segment}</span>
+                      {/* Fill only — no full-width track, so a 0% segment reads as empty, not full */}
+                      <div class="h-[8px] border-b border-[color:var(--color-rule)]">
+                        <div
+                          class={`h-[8px] ${isTop ? 'bg-[color:var(--color-accent)]' : 'bg-[color:var(--color-mute-2)]'}`}
+                          style={`width: ${pct.toFixed(1)}%`}
+                        ></div>
+                      </div>
                     </div>
-                    <div class="h-[3px] bg-[color:var(--color-rule)]">
-                      <div class="h-full bg-[color:var(--color-accent)]" style={`width: ${Math.min(100, row.percent ?? 0)}%`}></div>
+                    <div class={`text-right num serif shrink-0 ${isTop ? 'text-[20px] font-light text-[color:var(--color-ink)]' : 'text-[15px] mute'}`}>
+                      {pct.toFixed(pct < 10 ? 1 : 0)}%
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
 
         {tijoriPeerRows.length > 0 && (
           <div>
-            <div class="label mb-4">Peer comparison</div>
-            <table class="w-full text-[13.5px]">
-              <thead>
-                <tr class="border-b-2 border-[color:var(--color-ink)]">
-                  <th class="text-left pb-3 pr-6 label">Company</th>
-                  <th class="text-right pb-3 pr-6 label">Mkt cap (Cr)</th>
-                  <th class="text-right pb-3 pr-6 label">Revenue</th>
-                  <th class="text-right pb-3 pr-6 label">PAT</th>
-                  <th class="text-right pb-3 pr-6 label">P/E</th>
-                  <th class="text-right pb-3 label">P/B</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tijoriPeerRows.map((row) => (
-                  <tr class="border-b border-[color:var(--color-rule)]">
-                    <td class="py-3 pr-6 font-semibold">{row.company_name}</td>
-                    <td class="py-3 pr-6 text-right num serif">{row.market_cap ?? '—'}</td>
-                    <td class="py-3 pr-6 text-right num serif">{fmtCr(row.net_sales_cr)}</td>
-                    <td class="py-3 pr-6 text-right num serif">{fmtCr(row.pat_cr)}</td>
-                    <td class="py-3 pr-6 text-right num serif">{fmtMultiple(row.pe)}</td>
-                    <td class="py-3 text-right num serif">{fmtMultiple(row.pb)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div class="stat-label mb-5">Peer comparison</div>
+            <div class="border-t-2 border-[color:var(--color-ink)]">
+              {/* Column headers */}
+              <div class="grid grid-cols-[minmax(0,1fr)_72px_80px_60px_50px] gap-x-4 py-3 border-b border-[color:var(--color-rule)]">
+                <span class="label text-[10px]">Company</span>
+                <span class="label text-[10px] text-right">Mkt cap</span>
+                <span class="label text-[10px] text-right">Revenue</span>
+                <span class="label text-[10px] text-right">P/E</span>
+                <span class="label text-[10px] text-right">P/B</span>
+              </div>
+              {tijoriPeerRows.map((row, i) => {
+                const isSubject = i === 0;
+                return (
+                  <div class={`relative grid grid-cols-[minmax(0,1fr)_72px_80px_60px_50px] gap-x-4 py-3.5 border-b border-[color:var(--color-rule)] items-center ${isSubject ? 'bg-[color:var(--color-paper-soft)]' : ''}`}>
+                    {isSubject && <span class="absolute left-0 top-0 bottom-0 w-[2px] bg-[color:var(--color-accent)]" aria-hidden="true"></span>}
+                    <span class={`min-w-0 block text-[13px] font-semibold leading-[1.2] truncate ${isSubject ? 'text-[color:var(--color-accent-deep)] pl-3' : 'text-[color:var(--color-ink)]'}`}>{row.company_name}</span>
+                    <span class="text-right num serif text-[13px]">{row.market_cap ?? '—'}</span>
+                    <span class="text-right num serif text-[13px] mute">{fmtCr(row.net_sales_cr)}</span>
+                    <span class="text-right num serif text-[13px]">{fmtMultiple(row.pe)}</span>
+                    <span class="text-right num serif text-[13px] mute">{fmtMultiple(row.pb)}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
 
-      <!-- Right sidebar: valuation + offer split + shareholding -->
+      {/* ── RIGHT SIDEBAR ── */}
       <aside class="space-y-10">
 
-        {tijoriValuationRows.filter(r => r.value != null && r.value !== '').length > 0 && (
+        {/* Valuation — 2×3 tile grid */}
+        {tijoriValuationRows.length > 0 && (
           <div class="border-t-2 border-[color:var(--color-ink)] pt-5">
-            <div class="label mb-4">Valuation</div>
-            <dl>
-              {tijoriValuationRows.filter(r => r.value != null && r.value !== '').map((row) => (
-                <div class="flex justify-between items-baseline gap-4 py-[13px] border-b border-[color:var(--color-rule)]">
-                  <dt class="stat-label">{row.label}</dt>
-                  <dd class="num serif text-[20px] font-light">{String(row.value)}</dd>
+            <div class="label mb-5">Valuation</div>
+            <div class="grid grid-cols-2 gap-px bg-[color:var(--color-rule)]">
+              {tijoriValuationRows.map((row) => (
+                <div class="bg-[color:var(--color-paper)] py-4 px-3">
+                  <div class="stat-label mb-2">{row.label}</div>
+                  <div class="num serif text-[22px] font-light leading-none">{String(row.value)}</div>
                 </div>
               ))}
-            </dl>
+            </div>
           </div>
         )}
 
+        {/* Offer structure */}
         {tijoriOfferRows.filter(r => r.value).length > 0 && (
           <div class="border-t border-[color:var(--color-rule)] pt-5">
-            <div class="label mb-4">Offer structure</div>
-            <dl>
+            <div class="label mb-5">Offer structure</div>
+            <dl class="space-y-0">
               {tijoriOfferRows.filter(r => r.value).map((row) => (
                 <div class="flex justify-between items-baseline gap-4 py-[13px] border-b border-[color:var(--color-rule)]">
                   <dt class="stat-label">{row.label}</dt>
-                  <dd class="num serif text-[18px]">{row.value}</dd>
+                  <dd class="num serif text-[18px] font-light">{row.value}</dd>
                 </div>
               ))}
             </dl>
           </div>
         )}
 
+        {/* Shareholding — stacked bar showing dilution */}
         {tijoriHoldingRows.length > 0 && (
           <div class="border-t border-[color:var(--color-rule)] pt-5">
-            <div class="label mb-4">Shareholding</div>
-            <dl>
-              {tijoriHoldingRows.map((row) => (
-                <div class="py-4 border-b border-[color:var(--color-rule)]">
-                  <div class="stat-label mb-3">{row.label}</div>
-                  <div class="flex items-baseline gap-5">
-                    {row.pre != null && (
-                      <div>
-                        <div class="num serif text-[22px] font-light">{row.pre}%</div>
-                        <div class="label mt-1">Pre-IPO</div>
+            <div class="label mb-5">Shareholding change</div>
+            <div class="space-y-6">
+              {tijoriHoldingRows.map((row) => {
+                const pre = row.pre ?? 0;
+                const post = row.post ?? 0;
+                const isPromoter = row.label.toLowerCase().includes('promoter');
+                return (
+                  <div>
+                    <div class="stat-label mb-3">{row.label}</div>
+                    {/* Pre-IPO bar */}
+                    <div class="mb-1">
+                      <div class="flex items-center gap-3">
+                        <span class="label w-[46px] shrink-0">Pre</span>
+                        <div class="flex-1 h-[10px] bg-[color:var(--color-rule)] overflow-hidden">
+                          <div
+                            class={`h-full ${isPromoter ? 'bg-[color:var(--color-ink)]' : 'bg-[color:var(--color-accent)]'}`}
+                            style={`width: ${pre}%; opacity: 0.45;`}
+                          ></div>
+                        </div>
+                        <span class="num serif text-[16px] font-light w-[42px] text-right shrink-0">{pre}%</span>
                       </div>
-                    )}
-                    {row.pre != null && row.post != null && <span class="text-[15px] text-[color:var(--color-mute-2)] pb-1">→</span>}
-                    {row.post != null && (
-                      <div>
-                        <div class="num serif text-[22px] font-light text-[color:var(--color-ink)]">{row.post}%</div>
-                        <div class="label mt-1">Post-IPO</div>
+                    </div>
+                    {/* Post-IPO bar */}
+                    <div>
+                      <div class="flex items-center gap-3">
+                        <span class="label w-[46px] shrink-0">Post</span>
+                        <div class="flex-1 h-[10px] bg-[color:var(--color-rule)] overflow-hidden">
+                          <div
+                            class={`h-full ${isPromoter ? 'bg-[color:var(--color-ink)]' : 'bg-[color:var(--color-accent)]'}`}
+                            style={`width: ${post}%;`}
+                          ></div>
+                        </div>
+                        <span class="num serif text-[16px] font-light w-[42px] text-right shrink-0 text-[color:var(--color-ink)]">{post}%</span>
                       </div>
-                    )}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </dl>
+                );
+              })}
+            </div>
           </div>
         )}
       </aside>

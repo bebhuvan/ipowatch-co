@@ -9,6 +9,12 @@ export default defineConfig({
   site: 'https://ipowatch.co',
   output: 'static',
   trailingSlash: 'always',
+  build: {
+    // Inline all CSS into HTML — eliminates the render-blocking stylesheet
+    // request entirely. The CSS is ~44KB uncompressed but compresses to ~10KB
+    // with brotli. One fewer round trip on slow 4G cuts FCP by 1–3 seconds.
+    inlineStylesheets: 'always',
+  },
   integrations: [
     sitemap({
       serialize(item) {

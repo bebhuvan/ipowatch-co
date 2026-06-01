@@ -19,19 +19,24 @@
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
   "notes": "Hourly subscription (bid-book) observations during the active issue window.",
-  "observation_count": 1,
+  "observation_count": 2,
   "observations": [
     {
       "categories": {
-        "nii": {
+        "employee": {
           "shares_bid": 0,
           "shares_offered": null,
           "times": null
         },
+        "nii": {
+          "shares_bid": 9842000,
+          "shares_offered": 908000,
+          "times": 10.8392
+        },
         "qib": {
           "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_offered": 892000,
+          "times": 0.0
         },
         "qib_dfi": {
           "shares_bid": null,
@@ -54,18 +59,95 @@
           "times": null
         },
         "retail": {
+          "shares_bid": 26090000,
+          "shares_offered": 1564000,
+          "times": 16.6816
+        },
+        "shareholder": {
           "shares_bid": 0,
           "shares_offered": null,
           "times": null
         }
       },
-      "observed_at": "2026-05-30T05:11:23+00:00",
+      "observed_at": "2026-06-01T09:23:07+00:00",
       "source": "bse",
-      "source_updated_at": null,
+      "source_updated_at": "6/1/2026 14:49:58",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 35932000,
+        "shares_offered": 3364000,
+        "times": 10.6813
+      }
+    },
+    {
+      "categories": {
+        "employee": {
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times": null
+        },
+        "nii": {
+          "shares_bid": 9842000,
+          "shares_offered": 908000,
+          "times": 10.8392
+        },
+        "nii_gt_10l": {
+          "shares_bid": 6931000,
+          "shares_offered": 448000,
+          "times": 15.471
+        },
+        "nii_lte_10l": {
+          "shares_bid": 2911000,
+          "shares_offered": 224000,
+          "times": 12.9955
+        },
+        "policyholder": {
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib": {
+          "shares_bid": 0,
+          "shares_offered": 892000,
+          "times": 0.0
+        },
+        "qib_dfi": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib_fii": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib_mf": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib_other": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "retail": {
+          "shares_bid": 26090000,
+          "shares_offered": 1564000,
+          "times": 16.6816
+        },
+        "shareholder": {
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times": null
+        }
+      },
+      "observed_at": "2026-06-01T09:23:09+00:00",
+      "source": "bse",
+      "source_updated_at": "6/1/2026 14:49:58",
+      "total": {
+        "shares_bid": 35932000,
+        "shares_offered": 3364000,
+        "times": 10.6813
       }
     }
   ],
@@ -74,6 +156,20 @@
   "schema_version": "3.0.0",
   "source_dataset_version": "v2026.05.30-0511",
   "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_7740",
+      "snapshot_at": "",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_new_7740",
+      "snapshot_at": "",
+      "source": "bse",
+      "url": null
+    },
     {
       "confidence": "primary",
       "endpoint": "demand_schedule_7740",

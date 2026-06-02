@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.30-0511",
+  "dataset_version": "v3.2026.06.02-0617",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -45,6 +45,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -63,7 +67,7 @@
     }
   },
   "filings_path": "issues/avg-logistics-5c82c4/filings.json",
-  "generated_at": "2026-05-30T05:11:32+00:00",
+  "generated_at": "2026-06-02T06:17:54+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -74,7 +78,7 @@
     "company_name": "AVG Logistics Limited",
     "issue_type": "Rights",
     "slug": "avg-logistics-5c82c4",
-    "status": "Upcoming",
+    "status": "Open",
     "symbol": "AVGR"
   },
   "listing_performance": {},
@@ -82,6 +86,7 @@
   "parties": {},
   "pricing": {
     "face_value_paise": 1000,
+    "issue_size_shares": 1891734,
     "price_band_lower_paise": 14500,
     "price_band_upper_paise": 14500
   },
@@ -92,31 +97,54 @@
   "public_slug": "avg-logistics",
   "schema_version": "3.0.0",
   "slug": "avg-logistics-5c82c4",
-  "source_dataset_version": "v2026.05.30-0511",
+  "source_dataset_version": "v2026.06.02-0617",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-05-30T05:06:41+00:00",
+      "snapshot_at": "2026-06-02T06:13:22+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-05-30T05:06:41+00:00",
+      "snapshot_at": "2026-06-02T06:13:22+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "rights_forthcoming",
-      "snapshot_at": "2026-05-30T05:06:35+00:00",
+      "endpoint": "rights_active",
+      "snapshot_at": "2026-06-02T06:13:16+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "data_availability": {
+      "expected_product_feed": "nse.rights_active_or_forthcoming",
+      "reason": "NSE rights issue feed currently provides identity and offer-window fields only for this row; subscription/demand fields are null.",
+      "source_refs": [
+        {
+          "endpoint": "public_issue",
+          "snapshot_at": "2026-06-02T06:13:22+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue_details",
+          "snapshot_at": "2026-06-02T06:13:22+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "rights_active",
+          "snapshot_at": "2026-06-02T06:13:16+00:00",
+          "source": "nse"
+        }
+      ],
+      "state": "exchange_not_provided"
+    }
+  },
   "subscription_path": "issues/avg-logistics-5c82c4/subscription.json",
   "timeline": {
     "close_date": "2026-06-09",

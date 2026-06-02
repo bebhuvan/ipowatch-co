@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.30-0511",
+  "dataset_version": "v3.2026.06.02-0617",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/MOSUtilityLtd.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/MOSUtility_PROSP.pdf"
@@ -58,11 +58,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -98,7 +106,7 @@
     }
   },
   "filings_path": "issues/mos-utility-79c8e2/filings.json",
-  "generated_at": "2026-05-30T05:11:32+00:00",
+  "generated_at": "2026-06-02T06:17:54+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -113,9 +121,11 @@
     "symbol": "MOS"
   },
   "listing_performance": {
-    "current_gain_bps": -8132,
-    "current_price_paise": 1420,
-    "listing_gain_bps": -8493
+    "current_gain_bps": 14730,
+    "current_price_paise": 18795,
+    "listing_close_price_paise": 9450,
+    "listing_gain_bps": 2434,
+    "listing_open_price_paise": 9000
   },
   "market_path": "issues/mos-utility-79c8e2/market.json",
   "parties": {},
@@ -132,27 +142,34 @@
   "public_slug": "mos-utility",
   "schema_version": "3.0.0",
   "slug": "mos-utility-79c8e2",
-  "source_dataset_version": "v2026.05.30-0511",
+  "source_dataset_version": "v2026.06.02-0617",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000980",
-      "snapshot_at": "2026-05-30T05:10:12+00:00",
+      "snapshot_at": "2026-06-02T06:16:44+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-05-30T05:06:30+00:00",
+      "snapshot_at": "2026-06-02T06:13:11+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-05-30T05:06:39+00:00",
+      "snapshot_at": "2026-06-02T06:13:20+00:00",
       "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-06-01T18:27:34+00:00",
+      "source": "yahoo",
       "url": null
     }
   ],

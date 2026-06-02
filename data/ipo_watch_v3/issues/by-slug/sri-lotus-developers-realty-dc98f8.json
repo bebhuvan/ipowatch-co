@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.05.30-0511",
+  "dataset_version": "v3.2026.06.02-0617",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0V9Q01010_05AUG2025.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Sri_Lotus_Developers_And_Realty_Limited_DRHP.zip",
@@ -72,7 +72,7 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
@@ -81,6 +81,10 @@
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -116,7 +120,7 @@
     }
   },
   "filings_path": "issues/sri-lotus-developers-realty-dc98f8/filings.json",
-  "generated_at": "2026-05-30T05:11:32+00:00",
+  "generated_at": "2026-06-02T06:17:54+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -131,10 +135,11 @@
     "symbol": "LOTUSDEV"
   },
   "listing_performance": {
-    "current_gain_bps": -813,
-    "current_price_paise": 13780,
+    "current_gain_bps": -723,
+    "current_price_paise": 13916,
     "listing_close_price_paise": 19685,
-    "listing_gain_bps": 3123
+    "listing_gain_bps": 3123,
+    "listing_open_price_paise": 17800
   },
   "market_path": "issues/sri-lotus-developers-realty-dc98f8/market.json",
   "parties": {},
@@ -188,43 +193,43 @@
       "peers": [
         {
           "company_name": "LOTUSDEV",
-          "market_cap": "6,659",
+          "market_cap": "6,805",
           "net_sales_cr": 549,
           "pat_cr": 227,
-          "pb": 3.48,
-          "pe": 28.09
+          "pb": 3.56,
+          "pe": 67.73
         },
         {
           "company_name": "ARKADE",
-          "market_cap": "2,279",
+          "market_cap": "2,115",
           "net_sales_cr": 683,
           "pat_cr": 156,
-          "pb": 2.58,
-          "pe": 15.39
+          "pb": 2.4,
+          "pe": 396.09
         },
         {
           "company_name": "RUSTOMJEE",
-          "market_cap": "5,026",
+          "market_cap": "4,950",
           "net_sales_cr": 2004,
           "pat_cr": 171,
-          "pb": 1.76,
-          "pe": 63.73
+          "pb": 1.73,
+          "pe": 121.56
         },
         {
           "company_name": "MAHLIFE",
-          "market_cap": "7,293",
+          "market_cap": "7,150",
           "net_sales_cr": 372,
           "pat_cr": 61.29,
-          "pb": 2.01,
-          "pe": 24.46
+          "pb": 1.97,
+          "pe": 99.17
         },
         {
           "company_name": "HUBTOWN",
-          "market_cap": "2,939",
+          "market_cap": "2,963",
           "net_sales_cr": 408,
           "pat_cr": 46.58,
-          "pb": 1.12,
-          "pe": 19.79
+          "pb": 1.13,
+          "pe": 27.13
         }
       ],
       "revenue_mix": {
@@ -295,55 +300,62 @@
         "market_cap": "₹7,330",
         "pb": 7.86,
         "pe": 32.17,
-        "sector_pb": 1.48,
-        "sector_pe": 23.94
+        "sector_pb": 1.5,
+        "sector_pe": 28.18
       }
     }
   },
   "research_path": "issues/sri-lotus-developers-realty-dc98f8/research.json",
   "schema_version": "3.0.0",
   "slug": "sri-lotus-developers-realty-dc98f8",
-  "source_dataset_version": "v2026.05.30-0511",
+  "source_dataset_version": "v2026.06.02-0617",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-05-30T05:06:42+00:00",
+      "snapshot_at": "2026-06-02T06:13:24+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2025",
-      "snapshot_at": "2026-05-30T05:06:53+00:00",
+      "snapshot_at": "2026-06-02T06:13:34+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000280",
-      "snapshot_at": "2026-05-30T05:10:12+00:00",
+      "snapshot_at": "2026-06-02T06:16:44+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-05-30T05:06:30+00:00",
+      "snapshot_at": "2026-06-02T06:13:11+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-06-01T18:27:34+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_equity",
+      "snapshot_at": "2026-06-02T06:13:19+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-05-30T05:06:38+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-05-30T05:06:38+00:00",
+      "snapshot_at": "2026-06-02T06:13:19+00:00",
       "source": "nse",
       "url": null
     }

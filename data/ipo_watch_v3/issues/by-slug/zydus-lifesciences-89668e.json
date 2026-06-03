@@ -9,10 +9,18 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.02-0617",
+  "dataset_version": "v3.2026.06.03-0632",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "identity.board_type": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -32,6 +40,10 @@
     "identity.symbol": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -63,9 +75,14 @@
     }
   },
   "filings_path": "issues/zydus-lifesciences-89668e/filings.json",
-  "generated_at": "2026-06-02T06:17:54+00:00",
+  "generated_at": "2026-06-03T06:32:33+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "bse:ipo_no:7755",
+      "bse:scrip_code:532321"
+    ],
+    "board_type": "Main Board",
     "company_name": "Zydus Lifesciences Limited",
     "issue_type": "Buyback",
     "slug": "zydus-lifesciences-89668e",
@@ -76,6 +93,7 @@
   "market_path": "issues/zydus-lifesciences-89668e/market.json",
   "parties": {},
   "pricing": {
+    "face_value_paise": 1000,
     "issue_price_paise": 100500,
     "issue_size_shares": 5970149,
     "price_band_lower_paise": 100500,
@@ -88,24 +106,65 @@
   "public_slug": "zydus-lifesciences",
   "schema_version": "3.0.0",
   "slug": "zydus-lifesciences-89668e",
-  "source_dataset_version": "v2026.06.02-0617",
+  "source_dataset_version": "v2026.06.03-0632",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-06-03T06:26:54+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-06-03T06:26:55+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "tender_past",
-      "snapshot_at": "2026-06-02T06:13:15+00:00",
+      "snapshot_at": "2026-06-03T06:26:48+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "tender_past",
-      "snapshot_at": "2026-06-02T06:13:15+00:00",
+      "snapshot_at": "2026-06-03T06:26:48+00:00",
       "source": "nse",
       "url": null
     }
   ],
   "subscription": {
+    "data_availability": {
+      "expected_product_feed": "bse.buyback_tender_detail",
+      "reason": "BSE classifies this row as OTB/buyback. IPO/FPO bid-book category endpoints are not applicable; buyback tender acceptance/demand needs a separate product-specific parser.",
+      "source_refs": [
+        {
+          "endpoint": "public_issue",
+          "snapshot_at": "2026-06-03T06:26:54+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue_details",
+          "snapshot_at": "2026-06-03T06:26:55+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "tender_past",
+          "snapshot_at": "2026-06-03T06:26:48+00:00",
+          "source": "nse"
+        },
+        {
+          "endpoint": "tender_past",
+          "snapshot_at": "2026-06-03T06:26:48+00:00",
+          "source": "nse"
+        }
+      ],
+      "state": "not_applicable_to_ipo_subscription_book"
+    },
     "overall_times_x": "8.6600"
   },
   "subscription_path": "issues/zydus-lifesciences-89668e/subscription.json",

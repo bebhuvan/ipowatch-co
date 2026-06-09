@@ -8,8 +8,57 @@
   },
   "dataset": "ipo-watch.trajectory.schema",
   "dataset_version": "v3.2026.06.03-0632",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-06-09T07:43:18+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 383889726,
+          "price_paise": 4500
+        },
+        {
+          "cumulative_quantity": 384006609,
+          "price_paise": 4400
+        },
+        {
+          "cumulative_quantity": 384309639,
+          "price_paise": 4300
+        },
+        {
+          "cumulative_quantity": 384981633,
+          "price_paise": 4200
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "09-Jun-2026 13:10:12"
+    },
+    {
+      "observed_at": "2026-06-09T07:43:19+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 527923881,
+          "price_paise": 4500
+        },
+        {
+          "cumulative_quantity": 528096375,
+          "price_paise": 4400
+        },
+        {
+          "cumulative_quantity": 528458679,
+          "price_paise": 4300
+        },
+        {
+          "cumulative_quantity": 529235235,
+          "price_paise": 4200
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "09-Jun-2026 13:09:00"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
@@ -24,48 +73,33 @@
     {
       "categories": {
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 314682336,
+          "shares_offered": 4628956,
+          "times": 67.98127612360109
+        },
+        "nii_gt_10l": {
+          "shares_bid": 96310260,
+          "shares_offered": 1542985,
+          "times": 62.41814405195125
         },
         "qib": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 20809836,
+          "shares_offered": 6172155,
+          "times": 3.3715673050984623
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 193827312,
+          "shares_offered": 10800897,
+          "times": 17.945482861284578
         }
       },
-      "observed_at": "2026-06-03T13:13:59+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-06-09T07:43:18+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 09-Jun-2026 13:09:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 5,
+        "shares_offered": 2,
+        "times": 24.503253771593826
       }
     }
   ],
@@ -76,9 +110,23 @@
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7752",
+      "endpoint": "consolidated_bid_details_hexagon",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_hexagon",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_hexagon",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

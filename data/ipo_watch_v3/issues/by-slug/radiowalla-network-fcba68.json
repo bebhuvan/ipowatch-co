@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.03-0632",
+  "dataset_version": "v3.2026.06.10-0602",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/RadiowallaNetwork_DRHP.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/RadiowallaNetwork_PROSP.pdf",
@@ -31,7 +31,7 @@
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "yahoo"
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -59,7 +59,7 @@
     },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
-      "source": "yahoo"
+      "source": "moneycontrol"
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
@@ -71,7 +71,7 @@
     },
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
-      "source": "yahoo"
+      "source": "moneycontrol"
     },
     "listing_performance.listing_open_price_paise": {
       "rule_id": "E.SRC.002",
@@ -81,6 +81,10 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -88,6 +92,10 @@
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -103,11 +111,12 @@
     }
   },
   "filings_path": "issues/radiowalla-network-fcba68/filings.json",
-  "generated_at": "2026-06-03T06:32:33+00:00",
+  "generated_at": "2026-06-10T06:03:27+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "yahoo:RADIOWALLA.NS"
+      "moneycontrol:slug:miscellaneous/radiowallanetwork/RNL01",
+      "moneycontrol:company_code:17041193"
     ],
     "board_type": "SME Board",
     "company_name": "Radiowalla Network Limited",
@@ -127,6 +136,7 @@
   "parties": {},
   "pricing": {
     "issue_price_paise": 7600,
+    "issue_size_paise": 14251520000,
     "price_band_lower_paise": 7200,
     "price_band_upper_paise": 7600
   },
@@ -137,31 +147,40 @@
   "public_slug": "radiowalla-network",
   "schema_version": "3.0.0",
   "slug": "radiowalla-network-fcba68",
-  "source_dataset_version": "v2026.06.03-0632",
+  "source_dataset_version": "v2026.06.10-0602",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000720",
+      "snapshot_at": "2026-06-10T06:01:54+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-06-03T06:26:44+00:00",
+      "snapshot_at": "2026-06-10T05:58:30+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "performance",
-      "snapshot_at": "2026-06-02T17:07:34+00:00",
+      "snapshot_at": "2026-06-09T15:41:32+00:00",
       "source": "yahoo",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-06-03T06:26:52+00:00",
+      "snapshot_at": "2026-06-10T05:58:39+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "282.0800"
+  },
   "subscription_path": "issues/radiowalla-network-fcba68/subscription.json",
   "timeline": {
     "close_date": "2024-04-02",

@@ -1,20 +1,25 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/subscription.schema.json",
-  "dataset_version": "v3.2026.06.10-0602",
-  "generated_at": "2026-06-10T06:03:27+00:00",
+  "dataset_version": "v3.2026.06.12-0617",
+  "generated_at": "2026-06-12T06:17:15+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "oxford-fa69ba",
-  "source_dataset_version": "v2026.06.10-0602",
+  "source_dataset_version": "v2026.06.12-0617",
   "subscription": {
     "data_availability": {
       "expected_product_feed": "bse.buyback_tender_detail",
       "reason": "BSE classifies this row as OTB/buyback. IPO/FPO bid-book category endpoints are not applicable; buyback tender acceptance/demand needs a separate product-specific parser.",
       "source_refs": [
         {
+          "endpoint": "public_issue",
+          "snapshot_at": "2026-06-12T06:12:22+00:00",
+          "source": "bse"
+        },
+        {
           "endpoint": "public_issue_details",
-          "snapshot_at": "2026-06-11T12:32:19+00:00",
+          "snapshot_at": "2026-06-12T06:12:23+00:00",
           "source": "bse"
         }
       ],

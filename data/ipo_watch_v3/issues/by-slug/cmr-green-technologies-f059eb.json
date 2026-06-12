@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.10-0602",
+  "dataset_version": "v3.2026.06.12-0617",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE00WV01027_09JUN2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/d_CMRGreen.zip",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +120,7 @@
     }
   },
   "filings_path": "issues/cmr-green-technologies-f059eb/filings.json",
-  "generated_at": "2026-06-10T06:03:27+00:00",
+  "generated_at": "2026-06-12T06:17:15+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,8 +135,11 @@
     "symbol": "CMRGREEN"
   },
   "listing_performance": {
-    "current_gain_bps": 3318,
-    "current_price_paise": 25570
+    "current_gain_bps": 2703,
+    "current_price_paise": 24389,
+    "listing_close_price_paise": 24790,
+    "listing_gain_bps": 2911,
+    "listing_open_price_paise": 26800
   },
   "market_path": "issues/cmr-green-technologies-f059eb/market.json",
   "parties": {},
@@ -178,43 +193,43 @@
       "peers": [
         {
           "company_name": "CMRGREEN",
-          "market_cap": "0",
+          "market_cap": "5,436",
           "net_sales_cr": 6666,
           "pat_cr": 142,
           "pb": null,
-          "pe": null
+          "pe": 37.48
         },
         {
           "company_name": "POCL",
-          "market_cap": "3,813",
+          "market_cap": "3,721",
           "net_sales_cr": 2056,
           "pat_cr": 58.05,
-          "pb": 4.84,
-          "pe": 28.92
+          "pb": 4.65,
+          "pe": 27.8
         },
         {
           "company_name": "GRAVITA",
-          "market_cap": "11,717",
+          "market_cap": "11,517",
           "net_sales_cr": 3868,
           "pat_cr": 312,
-          "pb": 4.78,
-          "pe": 30.93
+          "pb": 4.73,
+          "pe": 30.62
         },
         {
           "company_name": "BAHETI",
-          "market_cap": "624",
+          "market_cap": "626",
           "net_sales_cr": 524,
           "pat_cr": 18.01,
           "pb": null,
-          "pe": 23.05
+          "pe": 23.1
         },
         {
           "company_name": "JAINREC",
-          "market_cap": "12,725",
+          "market_cap": "11,214",
           "net_sales_cr": 7125,
           "pat_cr": 224,
-          "pb": 8.15,
-          "pe": 36.48
+          "pb": 6.75,
+          "pe": 30.21
         }
       ],
       "revenue_mix": {
@@ -294,69 +309,76 @@
         "market_cap": "₹4,205",
         "pb": 2.79,
         "pe": 27.13,
-        "sector_pb": 3.59,
-        "sector_pe": 27.57
+        "sector_pb": 3.71,
+        "sector_pe": 28.8
       }
     }
   },
   "research_path": "issues/cmr-green-technologies-f059eb/research.json",
   "schema_version": "3.0.0",
   "slug": "cmr-green-technologies-f059eb",
-  "source_dataset_version": "v2026.06.10-0602",
+  "source_dataset_version": "v2026.06.12-0617",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-06-10T05:58:42+00:00",
+      "snapshot_at": "2026-06-12T06:12:24+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-06-10T05:58:53+00:00",
+      "snapshot_at": "2026-06-12T06:12:45+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-06-10T06:01:54+00:00",
+      "snapshot_at": "2026-06-12T06:16:02+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-06-10T05:58:30+00:00",
+      "snapshot_at": "2026-06-12T06:12:13+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-06-11T16:40:07+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-06-10T05:58:42+00:00",
+      "snapshot_at": "2026-06-12T06:12:24+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-06-10T05:58:38+00:00",
+      "snapshot_at": "2026-06-12T06:12:20+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-06-10T05:58:38+00:00",
+      "snapshot_at": "2026-06-12T06:12:20+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-06-10T05:58:40+00:00",
+      "snapshot_at": "2026-06-12T06:12:22+00:00",
       "source": "nse",
       "url": null
     }

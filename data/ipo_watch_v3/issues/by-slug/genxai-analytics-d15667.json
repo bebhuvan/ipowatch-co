@@ -9,15 +9,24 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.10-0602",
+  "dataset_version": "v3.2026.06.12-0617",
   "documents": {
-    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6661_24032026173836.zip"
+    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6661_24032026173836.zip",
+    "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/GenXAIAnalyticsLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "documents.rhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -43,6 +52,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -51,7 +72,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -61,20 +90,29 @@
     }
   },
   "filings_path": "issues/genxai-analytics-d15667/filings.json",
-  "generated_at": "2026-06-10T06:03:27+00:00",
+  "generated_at": "2026-06-12T06:17:15+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:it-servicesconsulting/genxaianalytics/GAL01",
+      "moneycontrol:company_code:13193430"
+    ],
     "board_type": "SME Board",
     "company_name": "GenXAI Analytics Limited",
     "issue_type": "IPO",
     "slug": "genxai-analytics-d15667",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "GENXAI"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -1603,
+    "current_price_paise": 9740
+  },
   "market_path": "issues/genxai-analytics-d15667/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 11600,
+    "issue_size_paise": 54844800000,
     "price_band_lower_paise": 11000,
     "price_band_upper_paise": 11600
   },
@@ -130,19 +168,19 @@
         },
         {
           "company_name": "GOLDTECH",
-          "market_cap": "223",
+          "market_cap": "225",
           "net_sales_cr": 88.9,
           "pat_cr": 9.9,
-          "pb": 0.73,
-          "pe": 27.8
+          "pb": 0.71,
+          "pe": 26.99
         },
         {
           "company_name": "LATENTVIEW",
-          "market_cap": "6,299",
+          "market_cap": "5,986",
           "net_sales_cr": 847,
           "pat_cr": 174,
-          "pb": 3.59,
-          "pe": 31.79
+          "pb": 3.36,
+          "pe": 29.8
         }
       ],
       "revenue_mix": {
@@ -260,42 +298,52 @@
         "market_cap": "₹208",
         "pb": 6.42,
         "pe": 31.78,
-        "sector_pb": 2.47,
-        "sector_pe": 18.85
+        "sector_pb": 2.3,
+        "sector_pe": 17.8
       }
     }
   },
   "research_path": "issues/genxai-analytics-d15667/research.json",
   "schema_version": "3.0.0",
   "slug": "genxai-analytics-d15667",
-  "source_dataset_version": "v2026.06.10-0602",
+  "source_dataset_version": "v2026.06.12-0617",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-06-12T06:16:02+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-06-10T05:58:30+00:00",
+      "snapshot_at": "2026-06-12T06:12:13+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-06-10T05:58:39+00:00",
+      "snapshot_at": "2026-06-12T06:12:21+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-06-10T05:58:40+00:00",
+      "endpoint": "offer_documents_sme",
+      "snapshot_at": "2026-06-12T06:12:21+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "15.8800"
+  },
   "subscription_path": "issues/genxai-analytics-d15667/subscription.json",
   "timeline": {
     "close_date": "2026-06-09",
+    "listing_date": "2026-06-12",
     "open_date": "2026-06-05"
   },
   "url_path": "/ipos/genxai-analytics/"

@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.06.12-0646",
-  "estimated_cost_usd": 0.00081956,
+  "dataset_version": "v2026.06.13-0633",
+  "estimated_cost_usd": 0.00087234,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-06-12T06:46:21+00:00",
+  "generated_at": "2026-06-13T06:33:15+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,116 +24,106 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules between table rows; no vertical borders.",
-      "Accent colour: a muted blue (#2C5F8A) for table headers and pull-quote rule.",
-      "Pull-quote: set in larger serif italic, with a thin left rule in accent colour.",
-      "Sidebar: box with a thin border, light grey background tint (5% black).",
-      "All tables: serif body text, right-aligned numbers, left-aligned text columns."
+      "Use a single accent colour (e.g., #003366) for table headers and pull-quote rule.",
+      "Tables: hairline rules, left-aligned text in first column, right-aligned numbers.",
+      "Pull-quote: set in larger serif italic, with a thin rule above and below, centred or left-aligned.",
+      "Sidebar: box with a thin border, background tint (e.g., 5% of accent colour), compact type.",
+      "No icons, no imagery, no decorative elements."
     ],
     "formulas": [],
     "industry_snapshot": null,
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration is the defining feature of this business.",
-        "quote": "Western Railway alone contributed 52% of the orders on hand.",
-        "rationale": "Single most important risk factor; stark number that prose cannot amplify."
+        "after_paragraph": "This client base is not evenly balanced.",
+        "quote": "Western Railway alone contributed 52% of the orders on hand as of the filing date.",
+        "rationale": "Customer concentration is the single most important risk; this number crystallises it."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Issue size:** 44,28,000 equity shares of ₹10 each [^drhp-p29].\n**Price:** To be determined.\n**Lead manager:** Mark Corporate Advisors Private Limited [^drhp-p31].\n**Registrar:** Bigshare Services Private Limited [^drhp-p31].\n**Use of proceeds:** ₹1,130 lakhs for working capital; balance for general corporate purposes (undisclosed) [^drhp-p48].\n**Monitoring agency:** None; Audit Committee will monitor [^drhp-p18].",
-        "rationale": "Sidebar collects all offer details in one scannable block, freeing prose for analysis.",
+        "body_markdown": "**Fresh issue:** 44,28,000 equity shares of ₹10 each [^drhp-p29]\n**Issue price:** To be determined [^drhp-p55]\n**Lead manager:** Mark Corporate Advisors Private Limited [^drhp-p31]\n**Registrar:** Bigshare Services Private Limited [^drhp-p31]\n**Use of proceeds:** Working capital (₹1,130 lakhs) and general corporate purposes (undisclosed) [^drhp-p48]\n**Monitoring agency:** None; Audit Committee will monitor [^drhp-p18]",
+        "rationale": "Sidebar condenses offer structure and fund use into a scannable reference, freeing prose for analysis.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "Revenue declined over the five years, with a sharp profit recovery in FY2018.",
+        "after_paragraph": "A B Infrabuild's financials over the five reported years",
         "columns": [
           "Period",
-          "Revenue",
-          "EBITDA",
+          "Revenue from operations",
           "Net profit",
-          "Total assets",
-          "Long-term borrowings",
-          "Short-term borrowings"
+          "EBITDA"
         ],
-        "footnote": "Source: DRHP pages 26, 27, 111 [^drhp-p26] [^drhp-p27] [^drhp-p111]",
-        "rationale": "Core financials table is essential for any IPO report; shows revenue decline and profit spike.",
+        "footnote": "Source: DRHP pp.27, 111 [^drhp-p27] [^drhp-p111]",
+        "rationale": "Revenue decline and profit volatility are central to the investment case; a table shows the trend at a glance.",
         "rows": [
           [
             "FY2014",
-            "8,661.35",
-            "784.46",
+            "Not disclosed",
             "95.95",
-            "7,062.34",
-            "586.63",
-            "3,082.27"
+            "Not disclosed"
           ],
           [
             "FY2015",
             "9,021.12",
-            "945.78",
             "78.36",
-            "7,266.50",
-            "672.72",
-            "3,227.89"
+            "945.78"
           ],
           [
             "FY2016",
             "7,452.76",
-            "783.31",
             "32.63",
-            "6,295.21",
-            "188.77",
-            "3,020.55"
+            "Not disclosed"
           ],
           [
             "FY2017",
             "7,344.47",
-            "676.19",
             "15.86",
-            "7,536.93",
-            "131.51",
-            "3,312.08"
+            "676.19"
           ],
           [
             "FY2018",
             "6,053.05",
-            "928.80",
             "314.66",
-            "8,232.15",
-            "133.09",
-            "3,537.35"
+            "928.80"
           ]
         ],
-        "title": "Restated financial summary (₹ in lakhs)"
+        "title": "Financial performance (₹ in lakhs)"
       },
       {
-        "after_paragraph": "The DRHP provides accounting ratios for FY2018:",
+        "after_paragraph": "The company's accounting ratios for the most recent three fiscal years",
         "columns": [
-          "Metric",
-          "Value"
+          "Period",
+          "EPS (₹)",
+          "NAV per share (₹)",
+          "RoNW (%)"
         ],
-        "footnote": "Source: DRHP page 55 [^drhp-p55]",
-        "rationale": "Valuation ratios are standard for IPO analysis; compact table replaces prose.",
+        "footnote": "Source: DRHP pp.54-55 [^drhp-p54] [^drhp-p55]",
+        "rationale": "Ratios show the dramatic improvement in FY2018; essential for valuation context.",
         "rows": [
           [
-            "Earnings Per Share (basic)",
-            "₹12.39"
+            "FY2016",
+            "1.31",
+            "Not disclosed",
+            "4.14"
           ],
           [
-            "Net Asset Value per share",
-            "₹44.71"
+            "FY2017",
+            "0.63",
+            "Not disclosed",
+            "1.97"
           ],
           [
-            "Return on Net Worth",
-            "28.14%"
+            "FY2018",
+            "12.59",
+            "44.71",
+            "28.14"
           ]
         ],
-        "title": "Key accounting ratios (FY2018)"
+        "title": "Key ratios"
       }
     ],
     "timeline": null

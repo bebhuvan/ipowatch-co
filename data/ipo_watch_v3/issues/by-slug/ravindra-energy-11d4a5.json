@@ -5,19 +5,22 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.13-0600",
+  "dataset_version": "v3.2026.06.16-0704",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "identity.board_type": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -38,6 +41,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -48,19 +67,29 @@
     }
   },
   "filings_path": "issues/ravindra-energy-11d4a5/filings.json",
-  "generated_at": "2026-06-13T06:00:32+00:00",
+  "generated_at": "2026-06-16T07:04:22+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "bse:ipo_no:7773",
+      "bse:scrip_code:4629"
+    ],
+    "board_type": "Main Board",
     "company_name": "Ravindra Energy Limited",
     "issue_type": "Rights",
     "slug": "ravindra-energy-11d4a5",
-    "status": "Upcoming",
+    "status": "Open",
     "symbol": "RELTDR"
   },
   "listing_performance": {},
   "market_path": "issues/ravindra-energy-11d4a5/market.json",
   "parties": {},
-  "pricing": {},
+  "pricing": {
+    "face_value_paise": 1000,
+    "issue_size_shares": 34958,
+    "price_band_lower_paise": 10100,
+    "price_band_upper_paise": 10100
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/ravindra-energy-11d4a5/prospectus_facts.json",
   "provenance_path": "issues/ravindra-energy-11d4a5/provenance.json",
@@ -68,17 +97,54 @@
   "public_slug": "ravindra-energy",
   "schema_version": "3.0.0",
   "slug": "ravindra-energy-11d4a5",
-  "source_dataset_version": "v2026.06.13-0600",
+  "source_dataset_version": "v2026.06.16-0704",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "rights_forthcoming",
-      "snapshot_at": "2026-06-13T05:55:56+00:00",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-06-16T07:00:10+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-06-16T07:00:10+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "rights_active",
+      "snapshot_at": "2026-06-16T07:00:04+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "data_availability": {
+      "expected_product_feed": "nse.rights_active_or_forthcoming",
+      "reason": "NSE rights issue feed currently provides identity and offer-window fields only for this row; subscription/demand fields are null.",
+      "source_refs": [
+        {
+          "endpoint": "public_issue",
+          "snapshot_at": "2026-06-16T07:00:10+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue_details",
+          "snapshot_at": "2026-06-16T07:00:10+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "rights_active",
+          "snapshot_at": "2026-06-16T07:00:04+00:00",
+          "source": "nse"
+        }
+      ],
+      "state": "exchange_not_provided"
+    }
+  },
   "subscription_path": "issues/ravindra-energy-11d4a5/subscription.json",
   "timeline": {
     "close_date": "2026-06-24",

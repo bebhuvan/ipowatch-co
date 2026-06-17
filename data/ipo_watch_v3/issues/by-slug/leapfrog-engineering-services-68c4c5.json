@@ -1,6 +1,39 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 2100,
+        "quantity": 10212000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 2200,
+        "quantity": 8154000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 2300,
+        "quantity": 8142000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 2100,
+        "quantity": 9990000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 2200,
+        "quantity": 7932000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 2300,
+        "quantity": 7920000
+      }
+    ]
+  },
   "core_path": "issues/leapfrog-engineering-services-68c4c5/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +42,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.16-0704",
+  "dataset_version": "v3.2026.06.17-0641",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -97,6 +134,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -107,7 +148,7 @@
     }
   },
   "filings_path": "issues/leapfrog-engineering-services-68c4c5/filings.json",
-  "generated_at": "2026-06-16T07:04:22+00:00",
+  "generated_at": "2026-06-17T06:41:56+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -118,7 +159,7 @@
     "company_name": "Leapfrog Engineering Services Limited",
     "issue_type": "IPO",
     "slug": "leapfrog-engineering-services-68c4c5",
-    "status": "Upcoming",
+    "status": "Open",
     "symbol": "LES02"
   },
   "listing_performance": {},
@@ -193,19 +234,19 @@
         },
         {
           "company_name": "ENGINERSIN",
-          "market_cap": "13,289",
+          "market_cap": "13,197",
           "net_sales_cr": 3087,
           "pat_cr": 579,
-          "pb": 4.22,
-          "pe": 19.22
+          "pb": 4.14,
+          "pe": 18.84
         },
         {
           "company_name": "KONSTELEC",
-          "market_cap": "67",
+          "market_cap": "70",
           "net_sales_cr": 193,
           "pat_cr": 4.75,
           "pb": null,
-          "pe": 9.16
+          "pe": 9.62
         }
       ],
       "revenue_mix": {
@@ -248,61 +289,61 @@
         "pb": 4.42,
         "pe": 18.35,
         "sector_pb": 1.42,
-        "sector_pe": 15.09
+        "sector_pe": 15.28
       }
     }
   },
   "research_path": "issues/leapfrog-engineering-services-68c4c5/research.json",
   "schema_version": "3.0.0",
   "slug": "leapfrog-engineering-services-68c4c5",
-  "source_dataset_version": "v2026.06.16-0704",
+  "source_dataset_version": "v2026.06.17-0641",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7776",
-      "snapshot_at": "2026-06-16T07:04:15+00:00",
+      "snapshot_at": "2026-06-17T06:41:34+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7776",
-      "snapshot_at": "2026-06-16T07:04:16+00:00",
+      "snapshot_at": "2026-06-17T06:41:35+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7776",
-      "snapshot_at": "2026-06-16T07:04:16+00:00",
+      "snapshot_at": "2026-06-17T06:41:35+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7776",
-      "snapshot_at": "2026-06-16T07:04:15+00:00",
+      "snapshot_at": "2026-06-17T06:41:34+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-06-16T07:00:10+00:00",
+      "snapshot_at": "2026-06-17T06:37:06+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-06-16T07:00:10+00:00",
+      "snapshot_at": "2026-06-17T06:37:07+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000020",
-      "snapshot_at": "2026-06-16T07:03:29+00:00",
+      "snapshot_at": "2026-06-17T06:40:40+00:00",
       "source": "moneycontrol",
       "url": null
     }
@@ -343,15 +384,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
+            "shares_bid": 8136000,
             "shares_offered": 16146000,
-            "times_x": "0.0000"
+            "times_x": "0.5039"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
+            "shares_bid": 2076000,
             "shares_offered": 21960000,
-            "times_x": "0.0000"
+            "times_x": "0.0945"
           },
           {
             "category": "employee",
@@ -366,7 +407,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": "0.0000"
+        "total_times_x": "0.2654"
       }
     },
     "consolidated": {
@@ -404,27 +445,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
+          "shares_bid": 8136000,
           "shares_offered": 16146000,
-          "times_x": "0.0000"
+          "times_x": "0.5039"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
+          "shares_bid": 2022000,
           "shares_offered": 9480000,
-          "times_x": "0.0000"
+          "times_x": "0.2133"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
+          "shares_bid": 6114000,
           "shares_offered": 4740000,
-          "times_x": "0.0000"
+          "times_x": "1.2899"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
+          "shares_bid": 2076000,
           "shares_offered": 21960000,
-          "times_x": "0.0000"
+          "times_x": "0.0945"
         },
         {
           "category": "employee",
@@ -445,9 +486,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": "0.0000"
+      "total_times_x": "0.2654"
     },
-    "overall_times_x": "0.0000"
+    "overall_times_x": "0.2654"
   },
   "subscription_path": "issues/leapfrog-engineering-services-68c4c5/subscription.json",
   "timeline": {

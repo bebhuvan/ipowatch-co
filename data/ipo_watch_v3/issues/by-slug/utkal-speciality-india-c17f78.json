@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.16-0704",
+  "dataset_version": "v3.2026.06.17-0641",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6323_24122025134749.zip"
   },
@@ -18,6 +18,10 @@
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -43,6 +47,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -51,7 +67,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -61,20 +85,29 @@
     }
   },
   "filings_path": "issues/utkal-speciality-india-c17f78/filings.json",
-  "generated_at": "2026-06-16T07:04:22+00:00",
+  "generated_at": "2026-06-17T06:41:56+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:miscellaneous/utkalspecialityindustriesindia/USIIL",
+      "moneycontrol:company_code:14620280"
+    ],
     "board_type": "SME Board",
     "company_name": "Utkal Speciality Industries India Limited",
     "issue_type": "IPO",
     "slug": "utkal-speciality-india-c17f78",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "UTKAL"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -500,
+    "current_price_paise": 6270
+  },
   "market_path": "issues/utkal-speciality-india-c17f78/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 6600,
+    "issue_size_paise": 34544400000,
     "price_band_lower_paise": 6200,
     "price_band_upper_paise": 6600
   },
@@ -122,11 +155,11 @@
       "peers": [
         {
           "company_name": "UTKAL",
-          "market_cap": "129",
+          "market_cap": "0",
           "net_sales_cr": 48.62,
           "pat_cr": 6.68,
-          "pb": 4.76,
-          "pe": 19.3
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "SPINAROO",
@@ -226,35 +259,52 @@
         "market_cap": "₹128",
         "pb": 4.75,
         "pe": 19.29,
-        "sector_pb": 0.72,
-        "sector_pe": 15.52
+        "sector_pb": 0.7,
+        "sector_pe": 14.97
       }
     }
   },
   "research_path": "issues/utkal-speciality-india-c17f78/research.json",
   "schema_version": "3.0.0",
   "slug": "utkal-speciality-india-c17f78",
-  "source_dataset_version": "v2026.06.16-0704",
+  "source_dataset_version": "v2026.06.17-0641",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-06-17T06:40:40+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-06-16T07:00:00+00:00",
+      "snapshot_at": "2026-06-17T06:36:57+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-06-16T07:00:08+00:00",
+      "snapshot_at": "2026-06-17T06:37:05+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-06-17T06:37:06+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.6000"
+  },
   "subscription_path": "issues/utkal-speciality-india-c17f78/subscription.json",
   "timeline": {
     "close_date": "2026-06-12",
+    "listing_date": "2026-06-17",
     "open_date": "2026-06-10"
   },
   "url_path": "/ipos/utkal-speciality-india/"

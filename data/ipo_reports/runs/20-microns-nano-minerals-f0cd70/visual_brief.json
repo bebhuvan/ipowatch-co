@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.06.13-0610",
-  "estimated_cost_usd": 0.0008086400000000001,
+  "dataset_version": "v2026.06.17-0658",
+  "estimated_cost_usd": 0.00092792,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-06-13T06:10:47+00:00",
+  "generated_at": "2026-06-17T06:58:32+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,47 +24,49 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif font throughout; single accent colour (e.g., deep blue).",
-      "Hairline rules between sections; two rule weights for hierarchy.",
-      "No decorative imagery or icons; tables and pull-quote are the only visual elements."
+      "Use a single accent colour (e.g., IPO Watch blue) for table headers, pull-quote rule, and industry-snapshot stat values.",
+      "Financials table: right-align all numeric columns; use parentheses for negative values.",
+      "Industry snapshot: stat values in large serif (e.g., 24pt), descriptions in smaller serif (10pt); growth bars proportional to value; split bar with a hairline rule dividing the two segments.",
+      "Pull-quote: set in a larger serif italic, with a thin rule above and below, no quotation marks.",
+      "Sidebar: set in a box with a thin border, background tint of 5% of accent colour.",
+      "No decorative imagery, icons, or stock photos."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The specialty chemicals segment (excluding agrochemicals and dyestuff) was",
+      "after_paragraph": "The specialty chemicals segment (excluding agrochemicals and dyestuff) was estimated at roughly ₹1,000 billion in FY2017",
       "growth_bars": [
         {
-          "value": "₹1,000B",
-          "width_pct": 71,
-          "year": "FY17"
+          "value": "₹750B",
+          "width_pct": 75,
+          "year": "FY14"
         },
         {
-          "projected": true,
-          "value": "₹1,120–1,140B",
+          "value": "₹1,000B",
           "width_pct": 100,
-          "year": "Projected"
+          "year": "FY17"
         }
       ],
-      "growth_bars_label": "Specialty chemicals segment growth",
-      "growth_bars_source": "DRHP industry report, pp.92,94",
-      "rationale": "Industry snapshot provides scannable market size, growth, and fragmentation data.",
+      "growth_bars_label": "Specialty chemicals market size (estimated)",
+      "growth_bars_source": "DRHP industry report, p.92, p.94",
+      "rationale": "Three headline numbers, a growth bar, and a split bar convey the industry context faster than prose.",
       "split_bar": {
         "left_label": "Organised",
-        "left_pct": 25,
+        "left_pct": 28,
         "right_label": "Unorganised"
       },
-      "split_bar_label": "Market structure",
-      "split_bar_note": "SMEs hold 70–75% market share. [^drhp-p94]",
+      "split_bar_label": "Market structure (FY17)",
+      "split_bar_note": "SMEs hold 70–75% market share, indicating fragmentation.",
       "stats": [
         {
-          "desc": "Specialty chemicals segment\n(excl. agro & dyestuff), FY17",
+          "desc": "Specialty chemicals market\n(excl. agro & dyestuff), FY17",
           "val": "₹1,000B"
         },
         {
-          "desc": "CAGR FY14–FY17",
+          "desc": "CAGR FY14–FY17\nspecialty chemicals",
           "val": "10–12%"
         },
         {
-          "desc": "Projected CAGR going forward",
+          "desc": "Projected CAGR\nspecialty chemicals",
           "val": "12–14%"
         }
       ]
@@ -72,69 +74,76 @@
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "The company reported net losses in FY2013 and FY2014, then turned",
-        "quote": "In FY2017, despite reporting a profit of ₹174.82 lakh, operating cash flow turned sharply negative at ₹(349.75) lakh.",
-        "rationale": "Highlights a critical red flag: profit without cash generation."
+        "after_paragraph": "The company has not obtained certain statutory and regulatory licenses",
+        "quote": "The company has not obtained certain statutory and regulatory licenses, registrations, and approvals required to operate its manufacturing facility at Plot 9–10, GIDC Waghodia, Vadodara, Gujarat.",
+        "rationale": "A single concrete compliance failure that crystallises governance risk."
       }
     ],
     "sidebars": [
       {
-        "after_section_slug": "the-ipo",
-        "body_markdown": "The issue is being made on the SME Platform of NSE (NSE EMERGE). [^drhp-p75] The objects are: (i) capital expenditure for a new facility at GIDC Waghodia, Vadodara, Gujarat; (ii) general corporate purposes; and (iii) creating a public market for shares. [^drhp-p75] The DRHP does not disclose the breakdown between fresh issue and offer for sale, the selling shareholders, the price band, or the total issue size.",
-        "rationale": "Summarises key IPO details that are scattered in the prose.",
+        "after_section_slug": "offer",
+        "body_markdown": "**Issue type:** Fresh issue of equity shares to be listed on NSE EMERGE (SME Board).[^drhp-p75]  \n**Lead manager:** Vivro Financial Services Private Limited.[^drhp-p54]  \n**Registrar:** Link Intime India Private Limited.[^drhp-p55]  \n**Use of proceeds:** Capital expenditure for a new manufacturing facility at GIDC Waghodia, Vadodara, and general corporate purposes.[^drhp-p75]  \n**Offer size, price band, and minimum lot:** Not disclosed in the provided filing excerpts.",
+        "rationale": "Pulls together all offer-related facts scattered across the draft into one compact reference.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The company reported net losses in FY2013 and FY2014, then turned",
+        "after_paragraph": "All figures below are converted from lakhs to crore (divide by 100).",
         "columns": [
           "Period",
-          "PAT (₹ lakh)",
-          "Basic EPS (₹)",
-          "Operating Cash Flow (₹ lakh)"
+          "Total Assets (₹ cr)",
+          "PAT (₹ cr)",
+          "Operating Cash Flow (₹ cr)",
+          "Basic EPS (₹)"
         ],
-        "footnote": "Source: DRHP pages 49, 50, 177. Figures in ₹ lakh; negative values in parentheses.",
-        "rationale": "Financials table is mandatory for IPO reports; shows six periods of PAT, EPS, and cash flow.",
+        "footnote": "Source: DRHP pages 49, 50, 175, 177.",
+        "rationale": "Core financial data in one scannable table; prose cannot convey the trend across five years and a stub period.",
         "rows": [
           [
             "FY2013",
-            "(27.40)",
-            "(0.45)",
-            "200.97"
+            "30.19",
+            "(0.27)",
+            "2.01",
+            "(0.45)"
           ],
           [
             "FY2014",
-            "(12.17)",
-            "(0.20)",
-            "127.73"
+            "26.79",
+            "(0.12)",
+            "1.28",
+            "(0.20)"
           ],
           [
             "FY2015",
-            "149.58",
-            "2.47",
-            "422.36"
+            "25.93",
+            "1.50",
+            "4.22",
+            "2.47"
           ],
           [
             "FY2016",
-            "90.18",
-            "1.46",
-            "802.59"
+            "27.67",
+            "0.90",
+            "8.03",
+            "1.46"
           ],
           [
             "FY2017",
-            "174.82",
-            "2.43",
-            "(349.75)"
+            "32.74",
+            "1.75",
+            "(3.50)",
+            "2.43"
           ],
           [
-            "6m ended Sep 2017",
-            "132.75",
-            "1.48",
-            "124.86"
+            "6M Sep 2017",
+            "34.25",
+            "1.33",
+            "1.25",
+            "1.48"
           ]
         ],
-        "title": "Key financial metrics"
+        "title": "Restated financial summary"
       }
     ],
     "timeline": null

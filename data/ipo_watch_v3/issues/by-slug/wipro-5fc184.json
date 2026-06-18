@@ -9,29 +9,21 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.17-0641",
+  "dataset_version": "v3.2026.06.18-0625",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
-    "identity.aliases": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "identity.board_type": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -39,49 +31,53 @@
     },
     "identity.symbol": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
-    "pricing.face_value_paise": {
+    "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
     },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "timeline.open_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     }
   },
   "filings_path": "issues/wipro-5fc184/filings.json",
-  "generated_at": "2026-06-17T06:41:56+00:00",
+  "generated_at": "2026-06-18T06:25:20+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "bse:ipo_no:7768",
-      "bse:scrip_code:507685"
-    ],
-    "board_type": "Main Board",
-    "company_name": "Wipro Ltd",
+    "company_name": "Wipro Limited",
     "issue_type": "Buyback",
     "slug": "wipro-5fc184",
-    "status": "Open",
-    "symbol": "WIPRO LTD."
+    "status": "Closed",
+    "symbol": "wipro"
   },
   "listing_performance": {},
   "market_path": "issues/wipro-5fc184/market.json",
   "parties": {},
   "pricing": {
-    "face_value_paise": 200,
+    "issue_price_paise": 25000,
+    "issue_size_shares": 600000000,
     "price_band_lower_paise": 25000,
     "price_band_upper_paise": 25000
   },
@@ -89,44 +85,61 @@
   "prospectus_facts_path": "issues/wipro-5fc184/prospectus_facts.json",
   "provenance_path": "issues/wipro-5fc184/provenance.json",
   "public_contract": "ipo-watch.site_v3",
-  "public_slug": "wipro-2026",
+  "public_slug": "wipro",
   "schema_version": "3.0.0",
   "slug": "wipro-5fc184",
-  "source_dataset_version": "v2026.06.17-0641",
+  "source_dataset_version": "v2026.06.18-0625",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "public_issue",
-      "snapshot_at": "2026-06-17T06:37:06+00:00",
-      "source": "bse",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-06-18T06:19:55+00:00",
+      "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "public_issue_details",
-      "snapshot_at": "2026-06-17T06:37:07+00:00",
-      "source": "bse",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-06-18T06:19:55+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-06-18T06:19:55+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-06-18T06:19:55+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-06-18T06:19:55+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-06-18T06:19:55+00:00",
+      "source": "nse",
       "url": null
     }
   ],
   "subscription": {
-    "data_availability": {
-      "expected_product_feed": "bse.buyback_tender_detail",
-      "reason": "BSE classifies this row as OTB/buyback. IPO/FPO bid-book category endpoints are not applicable; buyback tender acceptance/demand needs a separate product-specific parser.",
-      "source_refs": [
-        {
-          "endpoint": "public_issue_details",
-          "snapshot_at": "2026-06-17T12:55:36+00:00",
-          "source": "bse"
-        }
-      ],
-      "state": "not_applicable_to_ipo_subscription_book"
-    }
+    "overall_times_x": "13.7400"
   },
   "subscription_path": "issues/wipro-5fc184/subscription.json",
   "timeline": {
     "close_date": "2026-06-17",
     "open_date": "2026-06-11"
   },
-  "url_path": "/buybacks/wipro-2026/"
+  "url_path": "/buybacks/wipro/"
 }

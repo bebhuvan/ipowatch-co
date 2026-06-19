@@ -1,6 +1,29 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 7700,
+        "quantity": 547200
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 8000,
+        "quantity": 544000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 7700,
+        "quantity": 540800
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 8000,
+        "quantity": 537600
+      }
+    ]
+  },
   "core_path": "issues/anubhav-plast-a8ecbb/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +32,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.18-0625",
+  "dataset_version": "v3.2026.06.19-0645",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -89,6 +116,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -99,7 +130,7 @@
     }
   },
   "filings_path": "issues/anubhav-plast-a8ecbb/filings.json",
-  "generated_at": "2026-06-18T06:25:20+00:00",
+  "generated_at": "2026-06-19T06:45:44+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -110,7 +141,7 @@
     "company_name": "Anubhav Plast Limited",
     "issue_type": "IPO",
     "slug": "anubhav-plast-a8ecbb",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/anubhav-plast-a8ecbb/market.json",
@@ -126,7 +157,7 @@
   },
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 3000000,
+    "issue_size_shares": 2152000,
     "market_lot": 1600,
     "min_bid_qty": 3200,
     "price_band_lower_paise": 7700,
@@ -138,49 +169,198 @@
   "provenance_path": "issues/anubhav-plast-a8ecbb/provenance.json",
   "public_contract": "ipo-watch.site_v3",
   "public_slug": "anubhav-plast",
+  "research": {
+    "tijori": {
+      "business_description": "Anubhav Plast is in the Steel & Iron Products sector with a M.cap of ₹88 Cr and a PE ratio of 14.53.",
+      "company_name": "Anubhav Plast Ltd.",
+      "financials": {
+        "unit": "INR crore",
+        "yearly_results": [
+          {
+            "debt_cr": 27.801,
+            "net_sales_cr": 87.1369,
+            "pat_cr": 0.7642,
+            "period": "Mar 2023"
+          },
+          {
+            "debt_cr": 28.9941,
+            "net_sales_cr": 87.3269,
+            "pat_cr": 2.0787,
+            "period": "Mar 2024"
+          },
+          {
+            "debt_cr": 32.6359,
+            "net_sales_cr": 98.1674,
+            "pat_cr": 6.0573,
+            "period": "Mar 2025"
+          }
+        ]
+      },
+      "isin": "INE1O7201010",
+      "matched_on": "normalized_company_name",
+      "normalized_name": "anubhav plast",
+      "offer_split": {
+        "fresh_issue_percent": "100%",
+        "fresh_issue_value": "24 Cr",
+        "ofs_percent": "0%",
+        "ofs_value": "0 Cr"
+      },
+      "peers": [
+        {
+          "company_name": "ANUBHAV",
+          "market_cap": "88",
+          "net_sales_cr": 98.17,
+          "pat_cr": 6.06,
+          "pb": 4.22,
+          "pe": 14.53
+        },
+        {
+          "company_name": "NMSTEEL",
+          "market_cap": "41",
+          "net_sales_cr": 304,
+          "pat_cr": 4.41,
+          "pb": null,
+          "pe": 5.86
+        },
+        {
+          "company_name": "PSRAJ",
+          "market_cap": "323",
+          "net_sales_cr": 266,
+          "pat_cr": 7.41,
+          "pb": null,
+          "pe": 37.59
+        }
+      ],
+      "revenue_mix": {
+        "historical": [
+          {
+            "points": [
+              {
+                "percent": 47.43,
+                "timestamp_ms": 1764547200000.0
+              },
+              {
+                "percent": 45.59,
+                "timestamp_ms": 1740787200000.0
+              }
+            ],
+            "segment": "Steel Tubular Poles"
+          },
+          {
+            "points": [
+              {
+                "percent": 31.91,
+                "timestamp_ms": 1764547200000.0
+              },
+              {
+                "percent": 43.9,
+                "timestamp_ms": 1740787200000.0
+              }
+            ],
+            "segment": "Steel Tubes"
+          },
+          {
+            "points": [
+              {
+                "percent": 19.61,
+                "timestamp_ms": 1764547200000.0
+              },
+              {
+                "percent": 9.85,
+                "timestamp_ms": 1740787200000.0
+              }
+            ],
+            "segment": "HR Coils/Slit"
+          }
+        ],
+        "latest": [
+          {
+            "percent": 47.43,
+            "segment": "Steel Tubular Poles"
+          },
+          {
+            "percent": 31.91,
+            "segment": "Steel Tubes"
+          },
+          {
+            "percent": 19.61,
+            "segment": "HR Coils/Slit"
+          },
+          {
+            "percent": 1.05,
+            "segment": "Others"
+          }
+        ]
+      },
+      "sector": "Steel & Iron Products",
+      "shareholding": {
+        "promoter": {
+          "post_ipo": "73",
+          "pre_ipo": "100"
+        },
+        "public": {
+          "post_ipo": "27",
+          "pre_ipo": null
+        }
+      },
+      "source": "tijori",
+      "source_quality": "third_party_enrichment_not_primary_filing",
+      "source_url": "https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/",
+      "symbol": "ANUBHAV",
+      "valuation": {
+        "ipo_size": "24 Cr",
+        "market_cap": "₹88",
+        "pb": 4.22,
+        "pe": 14.53,
+        "sector_pb": 1.48,
+        "sector_pe": 21.68
+      }
+    }
+  },
+  "research_path": "issues/anubhav-plast-a8ecbb/research.json",
   "schema_version": "3.0.0",
   "slug": "anubhav-plast-a8ecbb",
-  "source_dataset_version": "v2026.06.18-0625",
+  "source_dataset_version": "v2026.06.19-0645",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7780",
-      "snapshot_at": "2026-06-18T06:25:09+00:00",
+      "snapshot_at": "2026-06-19T06:45:18+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7780",
-      "snapshot_at": "2026-06-18T06:25:10+00:00",
+      "snapshot_at": "2026-06-19T06:45:18+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7780",
-      "snapshot_at": "2026-06-18T06:25:10+00:00",
+      "snapshot_at": "2026-06-19T06:45:19+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7780",
-      "snapshot_at": "2026-06-18T06:25:09+00:00",
+      "snapshot_at": "2026-06-19T06:45:18+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-06-18T06:20:03+00:00",
+      "snapshot_at": "2026-06-19T06:40:24+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-06-18T06:20:05+00:00",
+      "snapshot_at": "2026-06-19T06:40:24+00:00",
       "source": "bse",
       "url": null
     }
@@ -192,8 +372,8 @@
           {
             "category": "qib",
             "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_offered": 571200,
+            "times_x": "0.0000"
           },
           {
             "category": "qib_fii",
@@ -221,15 +401,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 19200,
+            "shares_offered": 582400,
+            "times_x": "0.0330"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 537600,
+            "shares_offered": 998400,
+            "times_x": "0.5385"
           },
           {
             "category": "employee",
@@ -244,7 +424,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": null
+        "total_times_x": "0.2587"
       }
     },
     "consolidated": {
@@ -253,8 +433,8 @@
         {
           "category": "qib",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 571200,
+          "times_x": "0.0000"
         },
         {
           "category": "qib_fii",
@@ -282,27 +462,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 9600,
+          "shares_offered": 582400,
+          "times_x": "0.0165"
         },
         {
           "category": "nii_gt_10l",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 288000,
+          "times_x": "0.0000"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 9600,
+          "shares_offered": 144000,
+          "times_x": "0.0667"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 537600,
+          "shares_offered": 998400,
+          "times_x": "0.5385"
         },
         {
           "category": "employee",
@@ -323,8 +503,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": null
-    }
+      "total_times_x": "0.2543"
+    },
+    "overall_times_x": "0.2543"
   },
   "subscription_path": "issues/anubhav-plast-a8ecbb/subscription.json",
   "timeline": {

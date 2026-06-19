@@ -7,13 +7,102 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.06.18-0625",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.06.19-0645",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-06-19T06:44:39+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 1007048,
+          "price_paise": 15200
+        },
+        {
+          "cumulative_quantity": 1007538,
+          "price_paise": 15100
+        },
+        {
+          "cumulative_quantity": 1011948,
+          "price_paise": 15000
+        },
+        {
+          "cumulative_quantity": 1012340,
+          "price_paise": 14900
+        },
+        {
+          "cumulative_quantity": 1013908,
+          "price_paise": 14800
+        },
+        {
+          "cumulative_quantity": 1014104,
+          "price_paise": 14700
+        },
+        {
+          "cumulative_quantity": 1015084,
+          "price_paise": 14600
+        },
+        {
+          "cumulative_quantity": 1019298,
+          "price_paise": 14500
+        },
+        {
+          "cumulative_quantity": 1032528,
+          "price_paise": 14400
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "19-Jun-2026 12:09:00"
+    },
+    {
+      "observed_at": "2026-06-19T06:44:39+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 584276,
+          "price_paise": 15200
+        },
+        {
+          "cumulative_quantity": 584374,
+          "price_paise": 15100
+        },
+        {
+          "cumulative_quantity": 585648,
+          "price_paise": 15000
+        },
+        {
+          "cumulative_quantity": 586040,
+          "price_paise": 14900
+        },
+        {
+          "cumulative_quantity": 586824,
+          "price_paise": 14800
+        },
+        {
+          "cumulative_quantity": 586922,
+          "price_paise": 14700
+        },
+        {
+          "cumulative_quantity": 587216,
+          "price_paise": 14600
+        },
+        {
+          "cumulative_quantity": 589960,
+          "price_paise": 14500
+        },
+        {
+          "cumulative_quantity": 597996,
+          "price_paise": 14400
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "19-Jun-2026 12:12:00"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-06-18T06:25:20+00:00",
+  "generated_at": "2026-06-19T06:45:44+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "turtlemint-fintech-solutions-597838",
   "language": "en-IN",
@@ -24,61 +113,60 @@
     {
       "categories": {
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 64190,
+          "shares_offered": 9072797,
+          "times": 0.0070749957262352505
+        },
+        "nii_gt_10l": {
+          "shares_bid": 44590,
+          "shares_offered": 3024265,
+          "times": 0.014744078313243052
         },
         "qib": {
           "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_offered": 17780550,
+          "times": 0.0
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 973532,
+          "shares_offered": 6048531,
+          "times": 0.16095346126191631
         }
       },
-      "observed_at": "2026-06-18T08:43:33+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-06-19T06:44:38+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 19-Jun-2026 12:12:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 1037722,
+        "shares_offered": 3,
+        "times": 0.03153990176487798
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/turtlemint-fintech-solutions-597838.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.06.18-0625",
+  "source_dataset_version": "v2026.06.19-0645",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7784",
+      "endpoint": "consolidated_bid_details_turtlemint",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_turtlemint",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_turtlemint",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

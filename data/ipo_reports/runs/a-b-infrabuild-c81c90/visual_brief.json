@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.06.19-0724",
-  "estimated_cost_usd": 0.0009657200000000001,
+  "dataset_version": "v2026.06.20-0632",
+  "estimated_cost_usd": 0.00085946,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-06-19T07:24:56+00:00",
+  "generated_at": "2026-06-20T06:32:29+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,141 +24,102 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif font throughout (e.g., Georgia or Chronicle).",
-      "Accent colour: a muted blue or steel grey (e.g., #2C3E50).",
-      "Tables: hairline rules, alternating row shading (very light grey).",
-      "Pull quote: larger serif italic, centred, with a thin rule above and below.",
-      "Sidebar: boxed with a thin border, background tint of the accent colour at 5% opacity.",
-      "Industry snapshot stats: three columns, each with a large number and a small label below.",
-      "No icons, no decorative imagery."
+      "Use serif fonts throughout; single accent colour (e.g., dark blue) for table headers and pull-quote border.",
+      "Hairline rules between table rows; bold header row with bottom rule.",
+      "Pull-quote: large serif italic, left-aligned with a vertical rule in accent colour.",
+      "Sidebar: light grey background, small serif, boxed with thin border.",
+      "No decorative imagery or icons."
     ],
     "formulas": [],
-    "industry_snapshot": {
-      "after_paragraph": "The infrastructure sector in India is highly fragmented and working-capital intensive, contributing about 8% to India's GDP at constant prices.",
-      "growth_bars": null,
-      "rationale": "Industry snapshot provides key market-size figures from the DRHP in a scannable format; no growth bars or split bar because the draft does not provide proportional data for those.",
-      "split_bar": null,
-      "stats": [
-        {
-          "desc": "Infrastructure sector contribution to India's GDP (constant prices)",
-          "val": "8%"
-        },
-        {
-          "desc": "Projected size of India's construction market by 2025",
-          "val": "US$ 1 trillion"
-        },
-        {
-          "desc": "Expected CAGR of logistics sector (2017-2020)",
-          "val": "10.5%"
-        }
-      ]
-    },
+    "industry_snapshot": null,
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "This is not a diversified customer base.",
-        "quote": "Western Railway alone accounted for 52% of the orders on hand.",
-        "rationale": "Customer concentration is the single most material risk; this number crystallises it."
+        "after_paragraph": "The order book is heavily weighted toward Western Railway, which contributed 52% of the orders on hand.",
+        "quote": "Western Railway alone accounting for 52% of the orders on hand.",
+        "rationale": "Highlights extreme customer concentration risk."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Issue size:** 44,28,000 equity shares of ₹10 each at a price to be determined. [^drhp-p29]\n\n**Lead manager:** Mark Corporate Advisors Private Limited. [^drhp-p31]\n\n**Registrar:** Bigshare Services Private Limited. [^drhp-p31]\n\n**Objects:** ₹1,130 lakhs for working capital; remainder for general corporate purposes (amount redacted). [^drhp-p48]\n\n**Monitoring agency:** None; Audit Committee will monitor. [^drhp-p18]",
-        "rationale": "Sidebar consolidates key issue details that are scattered across the draft; saves the reader from hunting.",
+        "body_markdown": "Fresh issue of 44,28,000 equity shares (face value ₹10 each) at a price to be determined. [^drhp-p29] Lead manager: Mark Corporate Advisors Private Limited. [^drhp-p31] Registrar: Bigshare Services Private Limited. [^drhp-p31] Proceeds: ₹1,130 lakhs for working capital; remainder for general corporate purposes (undisclosed). [^drhp-p48] No independent appraisal or monitoring agency appointed; Audit Committee to oversee deployment. [^drhp-p18]",
+        "rationale": "Condenses offer structure details into a scannable sidebar.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The restated financial statements cover five fiscal years from FY2014 to FY2018.",
+        "after_paragraph": "The company's financials over the five reported years (FY2014 through FY2018) show a business that has shrunk in revenue terms while becoming more profitable in its most recent year.",
         "columns": [
           "Period",
-          "Revenue",
-          "EBITDA",
-          "Net profit",
-          "Total assets",
-          "Long-term borrowings",
-          "Short-term borrowings"
+          "Revenue from Operations",
+          "Net Profit after adjustments",
+          "EBITDA"
         ],
-        "footnote": "Source: Restated financial statements, DRHP pages 26-27 and 111. [^drhp-p26] [^drhp-p27] [^drhp-p111]",
-        "rationale": "Core financials table is essential for any IPO report; shows revenue decline and profit recovery at a glance.",
+        "footnote": "Source: DRHP, pp.27, 111 [^drhp-p27] [^drhp-p111]",
+        "rationale": "Core financials table is mandatory for any IPO report; shows revenue decline and profit volatility.",
         "rows": [
           [
             "FY2014",
             "8,661.35",
-            "784.46",
             "95.95",
-            "7,062.34",
-            "586.63",
-            "3,082.27"
+            "784.46"
           ],
           [
             "FY2015",
             "9,021.12",
-            "945.78",
             "78.36",
-            "7,266.50",
-            "672.72",
-            "3,227.89"
+            "945.78"
           ],
           [
             "FY2016",
             "7,452.76",
-            "783.31",
             "32.63",
-            "6,295.21",
-            "188.77",
-            "3,020.55"
+            "783.31"
           ],
           [
             "FY2017",
             "7,344.47",
-            "676.19",
             "15.86",
-            "7,536.93",
-            "131.51",
-            "3,312.08"
+            "676.19"
           ],
           [
             "FY2018",
             "6,053.05",
-            "928.80",
             "314.66",
-            "8,232.15",
-            "133.09",
-            "3,537.35"
+            "928.80"
           ]
         ],
-        "title": "Restated financial summary (₹ in lakhs)"
+        "title": "Financial performance (₹ lakhs)"
       },
       {
-        "after_paragraph": "The company's own key ratios for FY2018, as disclosed in the Basis for Issue Price section, are:",
+        "after_paragraph": "The filing includes a \"Basis for Issue Price\" section that provides financial ratios for the company.",
         "columns": [
-          "Metric",
-          "Value"
+          "Financial Year",
+          "EPS (₹)",
+          "RoNW (%)"
         ],
-        "footnote": "Source: DRHP pages 54-55. [^drhp-p54] [^drhp-p55]",
-        "rationale": "Key ratios are standard for valuation reference; presented as a compact table for scannability.",
+        "footnote": "Source: DRHP, pp.54-55 [^drhp-p54] [^drhp-p55]",
+        "rationale": "Shows the dramatic EPS jump in FY2018, a key valuation metric.",
         "rows": [
           [
-            "Earnings Per Share (EPS)",
-            "₹12.59"
+            "FY2016",
+            "4.14",
+            "12.39"
           ],
           [
-            "Net Asset Value (NAV) per share",
-            "₹44.71"
+            "FY2017",
+            "1.97",
+            "12.39"
           ],
           [
-            "Return on Net Worth (RoNW)",
-            "28.14%"
-          ],
-          [
-            "Face value per share",
-            "₹10"
+            "FY2018",
+            "28.14",
+            "44.71"
           ]
         ],
-        "title": "Key financial ratios (FY2018)"
+        "title": "Key ratios"
       }
     ],
     "timeline": null

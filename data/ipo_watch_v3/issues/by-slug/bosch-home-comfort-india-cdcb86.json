@@ -9,29 +9,21 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.19-0645",
+  "dataset_version": "v3.2026.06.20-0602",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
-    "identity.aliases": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "identity.board_type": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -39,41 +31,50 @@
     },
     "identity.symbol": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
-    "pricing.face_value_paise": {
+    "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "timeline.open_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     }
   },
   "filings_path": "issues/bosch-home-comfort-india-cdcb86/filings.json",
-  "generated_at": "2026-06-19T06:45:44+00:00",
+  "generated_at": "2026-06-20T06:02:40+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "bse:ipo_no:7783",
-      "bse:scrip_code:523398"
-    ],
-    "board_type": "Main Board",
-    "company_name": "Bosch Home Comfort India Ltd",
+    "company_name": "Bosch Home Comfort India Limited",
     "issue_type": "OFS",
     "slug": "bosch-home-comfort-india-cdcb86",
-    "status": "Open",
-    "symbol": "BOSCH-HCIL"
+    "status": "Closed",
+    "symbol": "BOSCH-HCILCUMU"
   },
   "listing_performance": {},
   "market_path": "issues/bosch-home-comfort-india-cdcb86/market.json",
   "parties": {},
   "pricing": {
-    "face_value_paise": 1000
+    "issue_price_paise": 137700,
+    "issue_size_shares": 216664,
+    "price_band_lower_paise": 115000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/bosch-home-comfort-india-cdcb86/prospectus_facts.json",
@@ -82,28 +83,58 @@
   "public_slug": "bosch-home-comfort-india",
   "schema_version": "3.0.0",
   "slug": "bosch-home-comfort-india-cdcb86",
-  "source_dataset_version": "v2026.06.19-0645",
+  "source_dataset_version": "v2026.06.20-0602",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "public_issue",
-      "snapshot_at": "2026-06-19T06:40:24+00:00",
-      "source": "bse",
+      "endpoint": "ofs_past",
+      "snapshot_at": "2026-06-20T05:53:52+00:00",
+      "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "public_issue_details",
-      "snapshot_at": "2026-06-19T06:40:24+00:00",
-      "source": "bse",
+      "endpoint": "ofs_past",
+      "snapshot_at": "2026-06-20T05:53:52+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ofs_past",
+      "snapshot_at": "2026-06-20T05:53:52+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ofs_past_general",
+      "snapshot_at": "2026-06-20T05:53:53+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ofs_past_general",
+      "snapshot_at": "2026-06-20T05:53:53+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ofs_past_retail",
+      "snapshot_at": "2026-06-20T05:53:53+00:00",
+      "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "4.0400"
+  },
   "subscription_path": "issues/bosch-home-comfort-india-cdcb86/subscription.json",
   "timeline": {
     "close_date": "2026-06-19",
-    "open_date": "2026-06-18"
+    "open_date": "2026-06-19"
   },
   "url_path": "/ofs/bosch-home-comfort-india/"
 }

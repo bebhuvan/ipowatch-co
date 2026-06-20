@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.06.19-0705",
-  "estimated_cost_usd": 0.0006941200000000001,
+  "dataset_version": "v2026.06.20-0616",
+  "estimated_cost_usd": 0.0007228200000000001,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-06-19T07:05:52+00:00",
+  "generated_at": "2026-06-20T06:16:20+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,80 +24,85 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use a single accent colour (e.g., deep blue) for table headers and pull-quote rule.",
-      "Financial table: hairline rules between rows, bold header row, right-align numbers.",
-      "Pull-quote: set in larger serif italic, with a thin rule above and below, centred or left-aligned with a vertical bar.",
-      "Sidebar: box with a thin border, same accent colour for title, body in smaller serif.",
-      "No icons, no imagery, no bold beyond headers."
+      "Use a single accent colour (e.g., deep blue) for table headers, pull-quote rule, and sidebar border.",
+      "Set the financial table in a monospaced or tabular figure style for alignment; use hairline rules between rows.",
+      "Place the pull-quote in a larger serif font with a left rule, between the 'What the company does' and 'Industry and market' sections."
     ],
     "formulas": [],
     "industry_snapshot": null,
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration is moderate: the top ten customers accounted",
-        "quote": "the top ten customers accounted for 59%, 57%, and 59% of revenue in FY2015, FY2016, and FY2017 respectively",
-        "rationale": "A single sharp number that captures revenue dependency without long-term contracts."
+        "after_paragraph": "Customer concentration is notable. The top 10 customers",
+        "quote": "The top 10 customers accounted for about 59% of revenue in FY2015, 57% in FY2016, and 59% in FY2017.",
+        "rationale": "Highlights a sharp, specific risk that the prose already explains; a pull-quote makes it unavoidable."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Issue type:** Fresh issue of equity shares on NSE EMERGE (SME platform).\n**Use of proceeds:** Capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat, and general corporate purposes.[^drhp-p75]\n**Price band:** Not disclosed in the DRHP.\n**Pre-issue promoter holding:** 99.76%.[^drhp-p155]",
-        "rationale": "Pulls scattered offer details into one compact reference box; avoids repeating prose.",
+        "body_markdown": "**Issue type:** Fresh issue of equity shares (size not disclosed).\n**Lead manager:** Vivro Financial Services Private Limited [^drhp-p54]\n**Registrar:** Link Intime India Private Limited [^drhp-p55]\n**Listing:** NSE EMERGE (SME platform) [^drhp-p75]\n**Use of proceeds:** Capital expenditure for new manufacturing facility at GIDC Waghodia, Gujarat, and general corporate purposes [^drhp-p75]",
+        "rationale": "Pulls together offer details scattered across the draft into a single reference box; prose would be repetitive.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "Earnings per share (basic) mirrored the profit pattern: negative",
+        "after_paragraph": "Revenue from operations is not explicitly disclosed in the",
         "columns": [
           "Period",
-          "PAT (₹ lakh)",
+          "PAT (₹ crore)",
+          "Operating Cash Flow (₹ crore)",
           "Basic EPS (₹)",
-          "Operating Cash Flow (₹ lakh)"
+          "Total Assets (₹ crore)"
         ],
-        "footnote": "Source: DRHP, pp. 49, 50, 177 [^drhp-p49][^drhp-p50][^drhp-p177]",
-        "rationale": "Condenses volatile profit and cash flow history into scannable rows; prose cannot show the FY2016-to-FY2017 cash swing as clearly.",
+        "footnote": "Source: DRHP pages 49, 50, 175, 177.",
+        "rationale": "Condenses six periods of key financial data into a scannable table; prose cannot convey the trend of negative cash flow in FY2017 as clearly.",
         "rows": [
           [
             "FY2013",
-            "(27.40)",
+            "(0.27)",
+            "2.01",
             "(0.45)",
-            "200.97"
+            "26.79"
           ],
           [
             "FY2014",
-            "(12.17)",
+            "(0.12)",
+            "1.28",
             "(0.20)",
-            "127.73"
+            "25.93"
           ],
           [
             "FY2015",
-            "149.58",
+            "1.50",
+            "4.22",
             "2.47",
-            "422.36"
+            "27.67"
           ],
           [
             "FY2016",
-            "90.18",
+            "0.90",
+            "8.03",
             "1.46",
-            "802.59"
+            "32.74"
           ],
           [
             "FY2017",
-            "174.82",
+            "1.75",
+            "(3.50)",
             "2.43",
-            "(349.75)"
+            "34.25"
           ],
           [
-            "Six months ended Sep 2017",
-            "132.75",
+            "H1 FY2018 (6 months)",
+            "1.33",
+            "1.25",
             "1.48",
-            "124.86"
+            "30.19"
           ]
         ],
-        "title": "Financial performance summary"
+        "title": "Financial summary"
       }
     ],
     "timeline": null

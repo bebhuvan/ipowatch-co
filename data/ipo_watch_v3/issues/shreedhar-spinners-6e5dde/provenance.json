@@ -1,8 +1,16 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/provenance.schema.json",
-  "dataset_version": "v3.2026.06.20-0602",
+  "dataset_version": "v3.2026.06.23-0546",
   "field_provenance": {
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.rhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -30,6 +38,50 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "parties.lead_managers": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "parties.registrar": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "parties.sponsor_bank": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.market_lot": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.tick_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "subscription.by_exchange.nse": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -42,34 +94,50 @@
   "findings": {
     "blocking": [],
     "info": [],
-    "review": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "review": []
   },
-  "generated_at": "2026-06-20T06:02:40+00:00",
+  "generated_at": "2026-06-23T05:46:54+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "shreedhar-spinners-6e5dde",
-  "source_dataset_version": "v2026.06.20-0602",
+  "source_dataset_version": "v2026.06.23-0546",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-06-20T05:53:50+00:00",
+      "endpoint": "bid_details_shreedhar_sme",
+      "snapshot_at": "2026-06-23T05:45:48+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_shreedhar",
+      "snapshot_at": "2026-06-23T05:45:48+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "issue_detail_shreedhar_sme",
+      "snapshot_at": "2026-06-23T05:45:48+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_current_issue",
+      "snapshot_at": "2026-06-23T05:41:18+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-06-20T05:53:59+00:00",
+      "snapshot_at": "2026-06-23T05:41:28+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "validation_state": "review"
+  "validation_state": "clean"
 }

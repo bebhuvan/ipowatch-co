@@ -1,6 +1,24 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 7700,
+        "quantity": 3507200
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 7900,
+        "quantity": 3481600
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 8000,
+        "quantity": 3476800
+      }
+    ]
+  },
   "core_path": "issues/anubhav-plast-a8ecbb/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +27,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.20-0602",
+  "dataset_version": "v3.2026.06.23-0546",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -37,7 +59,35 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "parties.lead_managers": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "parties.registrar": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "parties.sponsor_bank": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "parties.syndicate_members": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.market_lot": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.min_bid_qty": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
@@ -46,6 +96,10 @@
       "source": "bse"
     },
     "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.tick_size_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
@@ -71,7 +125,7 @@
     }
   },
   "filings_path": "issues/anubhav-plast-a8ecbb/filings.json",
-  "generated_at": "2026-06-20T06:02:40+00:00",
+  "generated_at": "2026-06-23T05:46:54+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -86,11 +140,24 @@
   },
   "listing_performance": {},
   "market_path": "issues/anubhav-plast-a8ecbb/market.json",
-  "parties": {},
+  "parties": {
+    "lead_managers": [
+      "CapitalSquare Advisors Private Limited"
+    ],
+    "registrar": "BIGSHARE SERVICES PRIVATE LIMITED",
+    "sponsor_bank": "YES Bank",
+    "syndicate_members": [
+      "https://listing.bseindia.com/Download/E:\\inetpub\\LISTING\\RTA\\DocumentsSMEiPO\\271034\\Syndicate_Member_13._Syndicate_Member.xlsx"
+    ]
+  },
   "pricing": {
     "face_value_paise": 1000,
+    "issue_size_shares": 2152000,
+    "market_lot": 1600,
+    "min_bid_qty": 3200,
     "price_band_lower_paise": 7700,
-    "price_band_upper_paise": 8000
+    "price_band_upper_paise": 8000,
+    "tick_size_paise": 100
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/anubhav-plast-a8ecbb/prospectus_facts.json",
@@ -152,11 +219,11 @@
         },
         {
           "company_name": "PSRAJ",
-          "market_cap": "323",
+          "market_cap": "320",
           "net_sales_cr": 266,
           "pat_cr": 7.41,
           "pb": null,
-          "pe": 37.59
+          "pe": 37.33
         }
       ],
       "revenue_mix": {
@@ -240,48 +307,55 @@
         "market_cap": "₹88",
         "pb": 4.22,
         "pe": 14.53,
-        "sector_pb": 1.48,
-        "sector_pe": 21.68
+        "sector_pb": 1.49,
+        "sector_pe": 21.4
       }
     }
   },
   "research_path": "issues/anubhav-plast-a8ecbb/research.json",
   "schema_version": "3.0.0",
   "slug": "anubhav-plast-a8ecbb",
-  "source_dataset_version": "v2026.06.20-0602",
+  "source_dataset_version": "v2026.06.23-0546",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7780",
-      "snapshot_at": "2026-06-20T05:59:05+00:00",
+      "snapshot_at": "2026-06-23T05:46:21+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7780",
-      "snapshot_at": "2026-06-20T05:59:05+00:00",
+      "snapshot_at": "2026-06-23T05:46:22+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7780",
-      "snapshot_at": "2026-06-20T05:59:06+00:00",
+      "snapshot_at": "2026-06-23T05:46:22+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "issue_detail_7780",
+      "snapshot_at": "2026-06-23T05:46:21+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-06-20T05:54:01+00:00",
+      "snapshot_at": "2026-06-23T05:41:30+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-06-20T05:54:01+00:00",
+      "snapshot_at": "2026-06-23T05:41:31+00:00",
       "source": "bse",
       "url": null
     }
@@ -322,15 +396,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 889600,
+            "shares_bid": 964800,
             "shares_offered": 582400,
-            "times_x": "1.5275"
+            "times_x": "1.6566"
           },
           {
             "category": "retail",
-            "shares_bid": 1606400,
+            "shares_bid": 1840000,
             "shares_offered": 998400,
-            "times_x": "1.6090"
+            "times_x": "1.8429"
           },
           {
             "category": "employee",
@@ -345,7 +419,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": "1.4862"
+        "total_times_x": "1.6297"
       }
     },
     "consolidated": {
@@ -383,27 +457,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 889600,
+          "shares_bid": 964800,
           "shares_offered": 582400,
-          "times_x": "1.5275"
+          "times_x": "1.6566"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 585600,
+          "shares_bid": 636800,
           "shares_offered": 288000,
-          "times_x": "2.0333"
+          "times_x": "2.2111"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 304000,
+          "shares_bid": 328000,
           "shares_offered": 144000,
-          "times_x": "2.1111"
+          "times_x": "2.2778"
         },
         {
           "category": "retail",
-          "shares_bid": 1606400,
+          "shares_bid": 1840000,
           "shares_offered": 998400,
-          "times_x": "1.6090"
+          "times_x": "1.8429"
         },
         {
           "category": "employee",
@@ -424,9 +498,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": "1.4862"
+      "total_times_x": "1.6297"
     },
-    "overall_times_x": "1.4862"
+    "overall_times_x": "1.6297"
   },
   "subscription_path": "issues/anubhav-plast-a8ecbb/subscription.json",
   "timeline": {

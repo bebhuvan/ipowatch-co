@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.23-0546",
+  "dataset_version": "v3.2026.06.24-0544",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -37,6 +37,10 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -57,13 +61,21 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     }
   },
   "filings_path": "issues/systematic-7d4c05/filings.json",
-  "generated_at": "2026-06-23T05:46:54+00:00",
+  "generated_at": "2026-06-24T05:44:05+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -73,18 +85,20 @@
     "company_name": "SYSTEMATIC INDUSTRIES LIMITED",
     "issue_type": "IPO",
     "slug": "systematic-7d4c05",
-    "status": "Listed"
+    "status": "Listed",
+    "symbol": "SIL28"
   },
   "listing_performance": {
-    "current_gain_bps": -300,
-    "current_price_paise": 18915,
+    "current_gain_bps": -231,
+    "current_price_paise": 19050,
     "listing_close_price_paise": 19645,
     "listing_gain_bps": 74
   },
   "market_path": "issues/systematic-7d4c05/market.json",
   "parties": {},
   "pricing": {
-    "issue_price_paise": 19500
+    "issue_price_paise": 19500,
+    "issue_size_paise": 115596000000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/systematic-7d4c05/prospectus_facts.json",
@@ -134,23 +148,23 @@
           "net_sales_cr": 446,
           "pat_cr": 18.46,
           "pb": null,
-          "pe": 20.68
+          "pe": 20.24
         },
         {
           "company_name": "ADVAIT",
-          "market_cap": "2,679",
+          "market_cap": "2,694",
           "net_sales_cr": 399,
           "pat_cr": 30.95,
-          "pb": 9.63,
-          "pe": 51.79
+          "pb": 9.38,
+          "pe": 50.47
         },
         {
           "company_name": "BANSALWIRE",
-          "market_cap": "4,838",
+          "market_cap": "4,841",
           "net_sales_cr": 3507,
           "pat_cr": 144,
-          "pb": 3.38,
-          "pe": 30.06
+          "pb": 3.47,
+          "pe": 30.89
         }
       ],
       "revenue_mix": {
@@ -177,25 +191,34 @@
         "market_cap": "₹435",
         "pb": 5.39,
         "pe": 23.59,
-        "sector_pb": 1.49,
-        "sector_pe": 21.4
+        "sector_pb": 1.48,
+        "sector_pe": 20.99
       }
     }
   },
   "research_path": "issues/systematic-7d4c05/research.json",
   "schema_version": "3.0.0",
   "slug": "systematic-7d4c05",
-  "source_dataset_version": "v2026.06.23-0546",
+  "source_dataset_version": "v2026.06.24-0544",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_sme_2025",
-      "snapshot_at": "2026-06-23T05:41:51+00:00",
+      "snapshot_at": "2026-06-24T05:38:30+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000200",
+      "snapshot_at": "2026-06-24T05:42:00+00:00",
+      "source": "moneycontrol",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "5.8300"
+  },
   "subscription_path": "issues/systematic-7d4c05/subscription.json",
   "timeline": {
     "listing_date": "2025-09-30"

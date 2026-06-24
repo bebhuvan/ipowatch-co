@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.23-0546",
+  "dataset_version": "v3.2026.06.24-0544",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6172_18112025175959.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/ClayCraftIndiaLimited_PROSP.pdf",
@@ -28,6 +28,10 @@
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -53,6 +57,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,7 +77,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -71,20 +95,29 @@
     }
   },
   "filings_path": "issues/clay-craft-india-093e9a/filings.json",
-  "generated_at": "2026-06-23T05:46:54+00:00",
+  "generated_at": "2026-06-24T05:44:05+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:ceramicsmarblegranitesanitaryware/claycraftindia/CCI10",
+      "moneycontrol:company_code:11540303"
+    ],
     "board_type": "SME Board",
     "company_name": "Clay Craft India Limited",
     "issue_type": "IPO",
     "slug": "clay-craft-india-093e9a",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "CLAYCRAFT"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 914,
+    "current_price_paise": 22155
+  },
   "market_path": "issues/clay-craft-india-093e9a/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 20300,
+    "issue_size_paise": 110107200000,
     "price_band_lower_paise": 19300,
     "price_band_upper_paise": 20300
   },
@@ -132,35 +165,35 @@
       "peers": [
         {
           "company_name": "CLAYCRAFT",
-          "market_cap": "418",
+          "market_cap": "0",
           "net_sales_cr": 179,
           "pat_cr": 27.01,
-          "pb": 2.52,
-          "pe": 15.53
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "LAOPALA",
-          "market_cap": "2,034",
+          "market_cap": "2,079",
           "net_sales_cr": 331,
           "pat_cr": 96.59,
-          "pb": 2.46,
-          "pe": 21.84
+          "pb": 2.48,
+          "pe": 22.06
         },
         {
           "company_name": "BOROLTD",
-          "market_cap": "2,793",
+          "market_cap": "2,802",
           "net_sales_cr": 1107,
           "pat_cr": 74.23,
-          "pb": 3.15,
-          "pe": 37.41
+          "pb": 3.07,
+          "pe": 36.45
         },
         {
           "company_name": "CELLO",
-          "market_cap": "8,631",
+          "market_cap": "8,605",
           "net_sales_cr": 2136,
           "pat_cr": 338,
-          "pb": 3.18,
-          "pe": 25.91
+          "pb": 3.12,
+          "pe": 25.45
         }
       ],
       "revenue_mix": {
@@ -261,35 +294,45 @@
         "market_cap": "₹417",
         "pb": 2.51,
         "pe": 15.51,
-        "sector_pb": 1.15,
-        "sector_pe": 39.18
+        "sector_pb": 1.12,
+        "sector_pe": 40.67
       }
     }
   },
   "research_path": "issues/clay-craft-india-093e9a/research.json",
   "schema_version": "3.0.0",
   "slug": "clay-craft-india-093e9a",
-  "source_dataset_version": "v2026.06.23-0546",
+  "source_dataset_version": "v2026.06.24-0544",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-06-24T05:42:00+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-06-23T05:41:19+00:00",
+      "snapshot_at": "2026-06-24T05:38:04+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-06-23T05:41:28+00:00",
+      "snapshot_at": "2026-06-24T05:38:12+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "95.9000"
+  },
   "subscription_path": "issues/clay-craft-india-093e9a/subscription.json",
   "timeline": {
     "close_date": "2026-06-19",
+    "listing_date": "2026-06-24",
     "open_date": "2026-06-17"
   },
   "url_path": "/ipos/clay-craft-india/"

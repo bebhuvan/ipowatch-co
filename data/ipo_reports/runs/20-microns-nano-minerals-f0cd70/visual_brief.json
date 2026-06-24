@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.06.23-0611",
-  "estimated_cost_usd": 0.0008197000000000001,
+  "dataset_version": "v2026.06.24-0600",
+  "estimated_cost_usd": 0.00087248,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-06-23T06:11:42+00:00",
+  "generated_at": "2026-06-24T06:00:08+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,19 +24,19 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif throughout; single accent colour (e.g. #003366).",
-      "Financials table: hairline rules, right-aligned numbers, left-aligned period column.",
-      "Industry snapshot: stat strip with three boxes, growth bars proportional to value, split bar with percentage labels.",
-      "Pull quote: larger serif italic, centred, with a thin rule above and below.",
-      "Sidebar: light grey background, no border, compact type."
+      "Use a single accent colour (e.g., deep blue) for table headers, pull-quote rule, and industry snapshot borders.",
+      "Tables: hairline rules, left-aligned headers, serif font (e.g., Georgia).",
+      "Pull-quote: set in larger serif italic, with a thin rule above and below.",
+      "Industry snapshot: three stat boxes in a row, growth bars as proportional horizontal bars, split bar as a single bar with two colours.",
+      "No icons or decorative imagery; rely on typography and rules for visual hierarchy."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The Indian specialty chemicals market (excluding agrochemicals a",
+      "after_paragraph": "The company operates in the specialty chemicals segment of India's chemicals industry.",
       "growth_bars": [
         {
           "value": "10–12% CAGR",
-          "width_pct": 71,
+          "width_pct": 70,
           "year": "FY14–17"
         },
         {
@@ -47,96 +47,131 @@
         }
       ],
       "growth_bars_label": "Specialty chemicals growth trajectory",
-      "growth_bars_source": "DRHP industry report, pp.92-94 [^drhp-p92] [^drhp-p94]",
-      "rationale": "Three headline stats, growth bars, and a split bar convey industry context the prose cannot.",
+      "growth_bars_source": "DRHP p. 94 [^drhp-p94]",
+      "rationale": "Industry snapshot provides scannable context for the market size, growth, and fragmentation.",
       "split_bar": {
         "left_label": "Organised",
-        "left_pct": 25,
+        "left_pct": 28,
         "right_label": "Unorganised"
       },
       "split_bar_label": "Market structure",
       "split_bar_note": "Small and medium enterprises hold 70–75% market share. [^drhp-p94]",
       "stats": [
         {
-          "desc": "Indian specialty chemicals market\n(excl. agro & dyestuff), FY17",
-          "val": "₹1,00,000 cr"
+          "desc": "Indian chemicals industry\n(excl. pharma & fertilisers)\nFY17",
+          "val": "₹5,800–6,200B"
+        },
+        {
+          "desc": "Specialty chemicals segment\n(17% of total)",
+          "val": "~₹1,000B"
         },
         {
           "desc": "Projected CAGR\nspecialty chemicals",
           "val": "12–14%"
-        },
-        {
-          "desc": "SME market share\nhighly fragmented",
-          "val": "70–75%"
         }
       ]
     },
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration is high. The top 10 customers accounted",
-        "quote": "The top 10 customers accounted for 59% of revenue from operations in FY2017, 57% in FY2016, and 59% in FY2015.",
-        "rationale": "Sharp, quantified concentration risk that prose cannot carry as effectively."
+        "after_paragraph": "Customer concentration is high.",
+        "quote": "The top 10 customers accounted for approximately 59% of revenue from operations in fiscal 2015, 57% in fiscal 2016, and 59% in fiscal 2017.",
+        "rationale": "Highlights the key risk of customer concentration in a single sharp number."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Lead manager:** Vivro Financial Services Private Limited [^drhp-p54]\n\n**Registrar:** Link Intime India Private Limited [^drhp-p55]\n\n**Exchange:** NSE EMERGE (SME platform) [^drhp-p112]\n\n**Objects of the issue:** Capital expenditure for a new facility at GIDC Waghodia, Vadodara; general corporate purposes; listing on NSE EMERGE. [^drhp-p75]\n\n**Price band and number of shares:** Not disclosed in the DRHP.",
-        "rationale": "Condenses offer mechanics from scattered paragraphs into a scannable sidebar.",
+        "body_markdown": "The issue is an SME IPO on NSE EMERGE. The lead manager is Vivro Financial Services Private Limited; the registrar is Link Intime India Private Limited. The objects include funding a new manufacturing facility at GIDC Waghodia, Vadodara, and general corporate purposes. The number of shares, price band, and total amount are not disclosed in the DRHP. [^drhp-p75][^drhp-p54][^drhp-p55]",
+        "rationale": "Summarises the offer details in a scannable sidebar, since the draft has no dedicated offer table.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The company has reported net profit for the last three full fina",
+        "after_paragraph": "The company turned profitable from fiscal 2015 after losses in the two prior years.",
         "columns": [
           "Period",
-          "PAT (₹ lakh)",
+          "PAT (₹ cr)",
+          "Operating Cash Flow (₹ cr)",
           "Basic EPS (₹)",
-          "Operating Cash Flow (₹ lakh)"
+          "Total Assets (₹ cr)"
         ],
-        "footnote": "Source: DRHP pp.49-50, 177 [^drhp-p49] [^drhp-p50] [^drhp-p177]",
-        "rationale": "Core financial trajectory in one glance; shows turnaround and cash-flow volatility.",
+        "footnote": "Source: DRHP pp. 49, 50, 177, 175 [^drhp-p49][^drhp-p50][^drhp-p177][^drhp-p175]",
+        "rationale": "Financials table is mandatory for any IPO report; this one shows the profit turnaround and the cash-flow divergence.",
         "rows": [
           [
             "FY2013",
-            "(27.40)",
+            "(0.27)",
+            "2.01",
             "(0.45)",
-            "124.86"
+            "30.19"
           ],
           [
             "FY2014",
-            "(12.17)",
+            "(0.12)",
+            "1.28",
             "(0.20)",
-            "(349.75)"
+            "26.79"
           ],
           [
             "FY2015",
-            "149.58",
+            "1.50",
+            "4.22",
             "2.47",
-            "802.59"
+            "25.93"
           ],
           [
             "FY2016",
-            "90.18",
+            "0.90",
+            "8.03",
             "1.46",
-            "422.36"
+            "27.67"
           ],
           [
             "FY2017",
-            "174.82",
+            "1.75",
+            "(3.50)",
             "2.43",
-            "127.73"
+            "32.74"
           ],
           [
-            "6M Sep 2017",
-            "132.75",
+            "6 months Sep 2017",
+            "1.33",
+            "1.25",
             "1.48",
-            "200.97"
+            "34.25"
           ]
         ],
-        "title": "Restated financial summary"
+        "title": "Key financial metrics"
+      },
+      {
+        "after_paragraph": "Several sub-segments relevant to the company's products are growing even faster:",
+        "columns": [
+          "Sub-segment",
+          "Projected CAGR"
+        ],
+        "footnote": "Source: DRHP p. 94 [^drhp-p94]",
+        "rationale": "Compact display of sub-segment growth rates that would be clunky in prose.",
+        "rows": [
+          [
+            "Construction chemicals",
+            "15%"
+          ],
+          [
+            "Water chemicals",
+            "15%"
+          ],
+          [
+            "Personal care ingredients",
+            "15%"
+          ],
+          [
+            "Polymer additives",
+            "10%"
+          ]
+        ],
+        "title": "Sub-segment growth rates"
       }
     ],
     "timeline": null

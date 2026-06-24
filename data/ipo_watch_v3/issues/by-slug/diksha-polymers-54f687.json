@@ -5,16 +5,11 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.23-0546",
+  "dataset_version": "v3.2026.06.24-0544",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/Registration_12082025214028_Draft_Prospectus_Diksha_Polymers_Ltd_.pdf"
   },
@@ -23,6 +18,10 @@
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -43,22 +42,57 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
+    },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "timeline.listing_date": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     }
   },
   "filings_path": "issues/diksha-polymers-54f687/filings.json",
-  "generated_at": "2026-06-23T05:46:54+00:00",
+  "generated_at": "2026-06-24T05:44:05+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:plastics-pet-bottels-jarscontainers/dikshapolymers/DPL04",
+      "moneycontrol:company_code:12130143"
+    ],
     "board_type": "SME Board",
     "company_name": "Diksha Polymers Limited",
     "issue_type": "IPO",
     "slug": "diksha-polymers-54f687",
-    "status": "Filed"
+    "status": "Listed",
+    "symbol": "DPL04"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 732,
+    "current_price_paise": 12020
+  },
   "market_path": "issues/diksha-polymers-54f687/market.json",
   "parties": {},
-  "pricing": {},
+  "pricing": {
+    "issue_price_paise": 11200,
+    "issue_size_paise": 17902080000
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/diksha-polymers-54f687/prospectus_facts.json",
   "provenance_path": "issues/diksha-polymers-54f687/provenance.json",
@@ -103,27 +137,27 @@
       "peers": [
         {
           "company_name": "DIKSHA",
-          "market_cap": "58",
+          "market_cap": "0",
           "net_sales_cr": 51.27,
           "pat_cr": 4.12,
-          "pb": 6.81,
-          "pe": 14.09
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "TPLPLASTEH",
-          "market_cap": "564",
+          "market_cap": "572",
           "net_sales_cr": 349,
           "pat_cr": 23.59,
-          "pb": 3.34,
-          "pe": 19.41
+          "pb": 3.33,
+          "pe": 19.38
         },
         {
           "company_name": "MITSU",
-          "market_cap": "206",
+          "market_cap": "201",
           "net_sales_cr": 332,
           "pat_cr": 7.25,
-          "pb": 1.81,
-          "pe": 13.07
+          "pb": 1.78,
+          "pe": 12.8
         }
       ],
       "revenue_mix": {
@@ -207,26 +241,37 @@
         "market_cap": "₹58.2",
         "pb": 6.83,
         "pe": 14.14,
-        "sector_pb": 1.47,
-        "sector_pe": 18.56
+        "sector_pb": 1.49,
+        "sector_pe": 18.58
       }
     }
   },
   "research_path": "issues/diksha-polymers-54f687/research.json",
   "schema_version": "3.0.0",
   "slug": "diksha-polymers-54f687",
-  "source_dataset_version": "v2026.06.23-0546",
+  "source_dataset_version": "v2026.06.24-0544",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-06-24T05:42:00+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-06-23T05:41:28+00:00",
+      "snapshot_at": "2026-06-24T05:38:12+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "2.7900"
+  },
   "subscription_path": "issues/diksha-polymers-54f687/subscription.json",
-  "timeline": {},
+  "timeline": {
+    "listing_date": "2026-06-24"
+  },
   "url_path": "/ipos/diksha-polymers/"
 }

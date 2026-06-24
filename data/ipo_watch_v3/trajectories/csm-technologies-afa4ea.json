@@ -7,13 +7,78 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.06.23-0546",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.06.24-0544",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-06-24T05:42:33+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 794244,
+          "price_paise": 11300
+        },
+        {
+          "cumulative_quantity": 794508,
+          "price_paise": 11100
+        },
+        {
+          "cumulative_quantity": 797544,
+          "price_paise": 11000
+        },
+        {
+          "cumulative_quantity": 798468,
+          "price_paise": 10900
+        },
+        {
+          "cumulative_quantity": 859452,
+          "price_paise": 10800
+        },
+        {
+          "cumulative_quantity": 1334652,
+          "price_paise": 10700
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "24-Jun-2026 11:09:00"
+    },
+    {
+      "observed_at": "2026-06-24T05:42:33+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 531432,
+          "price_paise": 11300
+        },
+        {
+          "cumulative_quantity": 531564,
+          "price_paise": 11100
+        },
+        {
+          "cumulative_quantity": 533412,
+          "price_paise": 11000
+        },
+        {
+          "cumulative_quantity": 534072,
+          "price_paise": 10900
+        },
+        {
+          "cumulative_quantity": 534996,
+          "price_paise": 10800
+        },
+        {
+          "cumulative_quantity": 1008084,
+          "price_paise": 10700
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "24-Jun-2026 11:10:17"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-06-23T05:46:54+00:00",
+  "generated_at": "2026-06-24T05:44:05+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "csm-technologies-afa4ea",
   "language": "en-IN",
@@ -23,62 +88,66 @@
   "observations": [
     {
       "categories": {
+        "employee": {
+          "shares_bid": 16236,
+          "shares_offered": 130000,
+          "times": 0.12489230769230769
+        },
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 566808,
+          "shares_offered": 1915650,
+          "times": 0.29588285960378985
+        },
+        "nii_gt_10l": {
+          "shares_bid": 40128,
+          "shares_offered": 638550,
+          "times": 0.06284237726098191
         },
         "qib": {
           "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_offered": 4615380,
+          "times": 0.0
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 751476,
+          "shares_offered": 4469850,
+          "times": 0.16812107788851974
         }
       },
-      "observed_at": "2026-06-23T13:43:24+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-06-24T05:42:32+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 24-Jun-2026 11:09:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 1334520,
+        "shares_offered": 1,
+        "times": 0.11989348551057957
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/csm-technologies-afa4ea.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.06.23-0546",
+  "source_dataset_version": "v2026.06.24-0544",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7793",
+      "endpoint": "consolidated_bid_details_csm",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_csm",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_csm",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

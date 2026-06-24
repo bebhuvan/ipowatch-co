@@ -4,12 +4,12 @@ issue_slug: "20-microns-nano-minerals-f0cd70"
 company_name: "20 Microns Nano Minerals Limited"
 document_type: "DRHP"
 report_type: "ipo-research"
-kicker: "SME IPO"
-title: "20 Microns Nano Minerals Limited: What the DRHP reveals"
+kicker: "IPO Research Report"
+title: "20 Microns Nano Minerals: inside the DRHP"
 dek: "What the DRHP discloses about 20 Microns Nano Minerals Limited's business, offer, financials and risks — sourced to the filing, page by page."
 reading_time_minutes: 9
-published_at: "2026-06-23"
-status: "review"
+published_at: "2026-06-24"
+status: "published"
 sources:
   - source_id: "drhp"
     title: "DRHP"
@@ -20,110 +20,102 @@ sources:
 generated_by: "ipo_portal.orchestrator/0.1.0"
 ---
 
-20 Microns Nano Minerals Limited processes and sells specialty chemicals — specifically, Functional Additives, Chemically Modified Minerals, Soft Minerals, and Hard Minerals — to a range of industrial customers. It has a long-term arrangement with its corporate promoter, 20 Microns Limited, which handles marketing and sales through its network. The company is raising money through an IPO on the SME platform of NSE (NSE EMERGE) to fund capital expenditure and for general corporate purposes. The lead manager is Vivro Financial Services Private Limited. [^drhp-p54-113]
+20 Microns Nano Minerals Limited processes and sells specialty chemicals: the functional additives, modified minerals, and ground rocks that go into paints, plastics, construction materials, and personal-care products. It does not sell to end-users directly. Instead, it relies on a long-term arrangement with its corporate promoter, 20 Microns Limited, to market and sell its products through that entity's network.[^drhp-p112] The company is raising capital through an SME IPO on NSE EMERGE[^drhp-p75] to fund a new manufacturing facility and for general corporate purposes.
+
+Its core products fall into four categories: Functional Additives (FA), Chemically Modified Minerals (CMM), Soft Minerals (SM), and Hard Minerals (HM).[^drhp-p112] The filing lists six competitive strengths: a diversified product portfolio, diversified user industries, import substitution, support from the holding company, product innovation through R&D, and a strong management team.[^drhp-p45-113]
 
 ## What the company does
 
-The company's product portfolio covers four categories of specialty chemicals. Functional Additives and Chemically Modified Minerals are the primary segments, while Soft Minerals and Hard Minerals form a secondary line. [^drhp-p112]
+The business model is built around a single relationship. 20 Microns Nano Minerals processes minerals into specialty chemicals; 20 Microns Limited sells them. The company's revenue depends on the promoter's distribution network and its willingness to market the company's products, according to the filing.[^drhp-p113] This arrangement means the company's revenue depends on the promoter's distribution network and its willingness to push the company's products.
 
-What makes the business model unusual is how the company sells. Instead, it relies on a long-term arrangement with 20 Microns Limited, its corporate promoter, to market and sell through that company's network. The DRHP lists this relationship as a competitive strength, calling it "substantial." [^drhp-p112-113]
+Customer concentration is high. The top 10 customers accounted for approximately 59% of revenue from operations in fiscal 2015, 57% in fiscal 2016, and 59% in fiscal 2017.[^drhp-p128] Exports are limited to three countries — Nigeria, Saudi Arabia, and Sri Lanka — and totaled ₹10.68 crore over the past five years.[^drhp-p128] The company's geographic and customer base is narrow.
 
-Customer concentration is high. The top 10 customers accounted for 59% of revenue from operations in FY2017, 57% in FY2016, and 59% in FY2015. There are no long-term or definitive agreements with any of these customers. Business is conducted entirely through purchase orders, which means volumes and pricing can change without notice. [^drhp-p26-128]
-
-<aside class="pull-quote">The top 10 customers accounted for 59% of revenue from operations in FY2017, 57% in FY2016, and 59% in FY2015.</aside>
-
-The company has export revenue, though it is modest. Over the past five years, total exports amounted to ₹10.68 crore, with shipments to Nigeria, Saudi Arabia, and Sri Lanka. [^drhp-p128]
+<aside class="pull-quote">The top 10 customers accounted for approximately 59% of revenue from operations in fiscal 2015, 57% in fiscal 2016, and 59% in fiscal 2017.</aside>
 
 ## Industry and market
 
-The Indian specialty chemicals market (excluding agrochemicals and dyestuff) was estimated at ₹1,00,000 crore in fiscal 2017, according to CRISIL Research cited in the DRHP. The broader Indian chemicals industry (excluding pharmaceuticals and fertilisers) was estimated at ₹5,80,000–6,20,000 crore in the same period. [^drhp-p92]
+The company operates in the specialty chemicals segment of India's chemicals industry. CRISIL Research estimated the Indian chemicals industry (excluding pharmaceuticals and fertilisers) at ₹5,800–6,200 billion in fiscal 2017, with specialty chemicals (other than agrochemicals and dyestuff) accounting for roughly 17% of that, about ₹1,000 billion.[^drhp-p92] The specialty chemicals segment grew at 10–12% CAGR from fiscal 2014 to 2017, and CRISIL forecasts it to expand at 12–14% CAGR going forward.[^drhp-p94]
 
-<div class="industry-snapshot"><div class="industry-snapshot-label">Market at a glance</div><div class="industry-snapshot-stats"><div class="industry-stat"><div class="industry-stat-val">₹1,00,000 cr</div><div class="industry-stat-desc">Indian specialty chemicals market<br>(excl. agro & dyestuff), FY17</div></div><div class="industry-stat"><div class="industry-stat-val">12–14%</div><div class="industry-stat-desc">Projected CAGR<br>specialty chemicals</div></div><div class="industry-stat"><div class="industry-stat-val">70–75%</div><div class="industry-stat-desc">SME market share<br>highly fragmented</div></div></div></div>
+<div class="industry-snapshot"><div class="industry-snapshot-label">Market at a glance</div><div class="industry-snapshot-stats"><div class="industry-stat"><div class="industry-stat-val">₹5,800–6,200B</div><div class="industry-stat-desc">Indian chemicals industry<br>(excl. pharma & fertilisers)<br>FY17</div></div><div class="industry-stat"><div class="industry-stat-val">~₹1,000B</div><div class="industry-stat-desc">Specialty chemicals segment<br>(17% of total)</div></div><div class="industry-stat"><div class="industry-stat-val">12–14%</div><div class="industry-stat-desc">Projected CAGR<br>specialty chemicals</div></div></div></div>
 
-<div class="market-growth"><div class="market-growth-label">Specialty chemicals growth trajectory</div><div class="market-growth-item"><div class="market-growth-year">FY14–17</div><div class="market-growth-bar-wrap"><div class="market-growth-bar" style="width:71%"></div></div><div class="market-growth-val">10–12% CAGR</div></div><div class="market-growth-item"><div class="market-growth-year">Forward</div><div class="market-growth-bar-wrap"><div class="market-growth-bar market-growth-bar--proj" style="width:100%"></div></div><div class="market-growth-val">12–14% CAGR <span class="market-growth-tag">projected</span></div></div><p class="market-growth-note">Source: DRHP industry report, pp.92-94 [^drhp-p92-94]</p></div>
+<div class="market-growth"><div class="market-growth-label">Specialty chemicals growth trajectory</div><div class="market-growth-item"><div class="market-growth-year">FY14–17</div><div class="market-growth-bar-wrap"><div class="market-growth-bar" style="width:70%"></div></div><div class="market-growth-val">10–12% CAGR</div></div><div class="market-growth-item"><div class="market-growth-year">Forward</div><div class="market-growth-bar-wrap"><div class="market-growth-bar market-growth-bar--proj" style="width:100%"></div></div><div class="market-growth-val">12–14% CAGR <span class="market-growth-tag">projected</span></div></div><p class="market-growth-note">Source: DRHP p. 94 [^drhp-p94]</p></div>
 
-<div class="market-structure"><div class="market-structure-label">Market structure</div><div class="market-structure-bar"><div class="market-structure-seg market-structure-org" style="width:25.0%"><span class="market-structure-pct">25.0%</span><span class="market-structure-name">Organised</span></div><div class="market-structure-seg market-structure-unorg" style="width:75.0%"><span class="market-structure-pct">75.0%</span><span class="market-structure-name">Unorganised</span></div></div><p class="market-structure-note">Small and medium enterprises hold 70–75% market share. [^drhp-p94]</p></div>
+<div class="market-structure"><div class="market-structure-label">Market structure</div><div class="market-structure-bar"><div class="market-structure-seg market-structure-org" style="width:28.0%"><span class="market-structure-pct">28.0%</span><span class="market-structure-name">Organised</span></div><div class="market-structure-seg market-structure-unorg" style="width:72.0%"><span class="market-structure-pct">72.0%</span><span class="market-structure-name">Unorganised</span></div></div><p class="market-structure-note">Small and medium enterprises hold 70–75% market share. [^drhp-p94]</p></div>
 
-The specialty chemicals segment grew at 10–12% CAGR from fiscal 2014 to 2017, and CRISIL forecasts it to grow at 12–14% CAGR going forward. Within this, several sub-segments are expected to grow faster: construction chemicals, water chemicals, and personal care ingredients are each projected to grow at 15% CAGR over the next three to five years. [^drhp-p94]
+Several sub-segments relevant to the company's products are growing even faster:
 
-The industry is highly fragmented. Small and medium enterprises hold 70–75% market share. Only a few domestic players have the scale to compete globally, though global giants are present in the market. [^drhp-p94-95]
+| Sub-segment | Projected CAGR |
+|---|---|
+| Construction chemicals | 15% |
+| Water chemicals | 15% |
+| Personal care ingredients | 15% |
+| Polymer additives | 10% |
 
-Growth drivers cited in the DRHP include rising consumption and government support through a Draft National Chemical Policy[^drhp-p95], approval of 100% FDI in the sector and favourable global shifts as China tightens environmental norms on chemical manufacturing[^drhp-p96].
 
-Regulations impacting the industry include REACH compliance for exports to Europe, GST implementation from July 2017, and the establishment of Petroleum, Chemicals and Petrochemicals Investment Regions (PCPIRs) in four states — Gujarat, Andhra Pradesh, Tamil Nadu, and Odisha — with total proposed investments of about ₹9,00,000 crore. [^drhp-p110-111]
+The industry is highly fragmented, with small and medium enterprises holding 70–75% market share.[^drhp-p94] Only a few Indian players have the scale or capability to compete with global giants on product development and innovation.[^drhp-p95] Growth drivers cited in the filing include rising GDP, government initiatives such as the Draft National Chemical Policy (aimed at increasing the chemicals sector's share in GDP), and 100% FDI allowed in the sector.[^drhp-p95-96] The filing also notes that stricter environmental regulations in China, a major player in commodity chemicals, have impacted the output of its chemical manufacturing industry.[^drhp-p96]
 
-## The IPO offer
+## The offer
 
-The exact number of shares and the price band have not been disclosed in the draft red herring prospectus.
+The objects of the issue include: (i) funding capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; (ii) general corporate purposes; and (iii) creating a public trading market for the company's shares on the SME Platform of NSE (NSE EMERGE) to enhance visibility and brand.[^drhp-p75]
 
-The lead manager to the issue is Vivro Financial Services Private Limited. The registrar is Link Intime India Private Limited. [^drhp-p54-55]
+The lead manager for the issue is Vivro Financial Services Private Limited, and the registrar is Link Intime India Private Limited.[^drhp-p54-55]
 
-Proceeds from the fresh issue will be used for three purposes: capital expenditure to set up a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; general corporate purposes; and listing of equity shares on NSE EMERGE to create a public market and enhance visibility. The specific amounts allocated to each object are not disclosed. [^drhp-p75]
+The DRHP excerpts provided do not disclose the number of shares offered, the price band, or the exact amount to be raised. These details are typically filled in the later Red Herring Prospectus (RHP).
 
 ## Financial performance
 
-The company has reported net profit for the last three full financial years, after making losses in FY2013 and FY2014. Profit after tax (PAT) stood at ₹1.50 crore in FY2015, ₹0.90 crore in FY2016, and ₹1.75 crore in FY2017. For the six months ending September 30, 2017, PAT was ₹1.33 crore. [^drhp-p49]
+The company turned profitable from fiscal 2015 after losses in the two prior years.[^drhp-p49] The table below summarises the key financial metrics across all reported periods, converted from lakh to crore for readability.
 
-The DRHP presents cash flow numbers in the same period order as the restated profit/loss statement: six months ended Sep 2017, FY2017, FY2016, FY2015, FY2014, FY2013. [^drhp-p49-50] Basic earnings per share (EPS) followed the same trajectory: negative in the early years, positive thereafter:
-
-| Period | PAT (₹ lakh) | Basic EPS (₹) | Operating Cash Flow (₹ lakh) |
-|---|---|---|---|
-| FY2013 | (27.40) | (0.45) | 124.86 |
-| FY2014 | (12.17) | (0.20) | (349.75) |
-| FY2015 | 149.58 | 2.47 | 802.59 |
-| FY2016 | 90.18 | 1.46 | 422.36 |
-| FY2017 | 174.82 | 2.43 | 127.73 |
-| 6M Sep 2017 | 132.75 | 1.48 | 200.97 |
+| Period | PAT (₹ cr) | Operating Cash Flow (₹ cr) | Basic EPS (₹) | Total Assets (₹ cr) |
+|---|---|---|---|---|
+| FY2013 | (0.27) | 2.01 | (0.45) | 30.19 |
+| FY2014 | (0.12) | 1.28 | (0.20) | 26.79 |
+| FY2015 | 1.50 | 4.22 | 2.47 | 25.93 |
+| FY2016 | 0.90 | 8.03 | 1.46 | 27.67 |
+| FY2017 | 1.75 | (3.50) | 2.43 | 32.74 |
+| 6 months Sep 2017 | 1.33 | 1.25 | 1.48 | 34.25 |
 
 
-The turnaround in profitability is clear. The company went from a loss of ₹27.40 lakh in FY2013 to a profit of ₹1.50 crore in FY2015. That is a swing of nearly ₹1.77 crore in two years. [^drhp-p49] PAT has been positive in every period since.
+Profit after tax (PAT) turned positive from fiscal 2015 onwards, with a loss of ₹0.27 crore in fiscal 2013 and ₹0.12 crore in fiscal 2014, to a profit of ₹1.50 crore in fiscal 2015.[^drhp-p49] The company has been profitable in every full fiscal year since.
 
-Operating cash flow tells a different story. It was negative in only one of the six reported periods: FY2014, when it stood at minus ₹3.50 crore. That was the worst year, and it coincided with the company still being in losses. The recovery was sharp: operating cash flow surged to ₹8.03 crore in FY2015, the strongest inflow in any period. For the six months ending September 2017, operating cash flow was ₹2.01 crore. [^drhp-p50]
+Operating cash flow tells a different story. It was positive in fiscal 2013 (₹2.01 crore), fiscal 2014 (₹1.28 crore), and strongly positive in fiscal 2015 (₹4.22 crore) and fiscal 2016 (₹8.03 crore).[^drhp-p50] But in fiscal 2017, despite reporting a PAT of ₹1.75 crore, operating cash flow turned negative at ₹(3.50) crore: a divergence that signals potential working capital stress. The six-month period ended September 2017 showed a recovery to positive ₹1.25 crore.[^drhp-p50]
 
-FY2014 was the worst year. A company that burns cash while making losses is vulnerable if the trend persists. Here, it did not persist. But the filing itself flags the negative cash flow as a risk factor. [^drhp-p22-50]
+Basic earnings per share (EPS) followed the profit trajectory: ₹2.47 in fiscal 2015, ₹1.46 in fiscal 2016, ₹2.43 in fiscal 2017, and ₹1.48 for the six months ended September 2017.[^drhp-p177] Total assets grew from ₹25.93 crore in fiscal 2015 to ₹34.25 crore as of September 30, 2017.[^drhp-p175]
 
-As of September 30, 2017, total assets stood at ₹30.19 crore. [^drhp-p175] The company has contingent liabilities of ₹29.11 lakh as disclosed in the notes to the financial statements. [^drhp-p21]
+The filing does not disclose revenue from operations, EBITDA, or total debt figures in the digest excerpts provided. Contingent liabilities amounted to ₹0.29 crore as of September 30, 2017.[^drhp-p21]
 
-## Valuation and peers
+## Valuation and peer comparison
 
-Basic EPS for the most recent full financial year (FY2017) was ₹2.43. For the six months ending September 30, 2017, annualised EPS would be approximately ₹2.96 (₹1.48 × 2), but no price-to-earnings multiple can be calculated without the price band. [^drhp-p177]
+The DRHP excerpts provided do not include a peer comparison table or disclose valuation multiples of comparable companies. The only valuation cues available are the company's own EPS and the pre-issue share capital.
 
-The offer price, when set, will determine where the company is positioned relative to any comparable firms. Until then, the only financial metric available for valuation context is the EPS trajectory, and it has been improving.
+As of the filing, the pre-issue paid-up equity share capital is ₹8.97 crore (89,70,000 equity shares of ₹10 each).[^drhp-p190] Basic EPS for fiscal 2017 was ₹2.43.[^drhp-p177] Without a price band or peer multiples, no implied valuation range can be computed from the DRHP alone. The offer price, when set, will determine where the company is positioned relative to its earnings.
 
 ## Promoters and governance
 
-The company is promoted by Mr. Chandresh S. Parikh, Mr. Atil C. Parikh, Mr. Rajesh C. Parikh, and 20 Microns Limited (the corporate promoter). Together they hold 89,48,270 equity shares, representing 99.76% of the pre-issue paid-up capital. The remaining 0.24%, just 21,510 shares, is held by the promoter group excluding the promoters. [^drhp-p155-162]
+The company is promoted by four entities: 20 Microns Limited (corporate promoter), Mr. Chandresh S. Parikh, Mr. Atil C. Parikh, and Mr. Rajesh C. Parikh.[^drhp-p155-156] Collectively, they hold 89,48,270 equity shares, representing 99.76% of the pre-issue paid-up capital.[^drhp-p155] The remaining 0.24% is held by other promoter group members.[^drhp-p162] This is a concentrated ownership structure: the promoters control virtually every share before the IPO.
 
-That 99.76% figure is extreme. Post-issue, promoter holding will remain very high, giving them near-complete control and limited minority influence. It also means the public float will be tiny relative to the total equity.
+Related-party transactions have occurred in each of the last five financial years and the six-month period ended September 30, 2017, as per Accounting Standard 18.[^drhp-p166] The company also had instances of non-filing or delayed filing of statutory forms with the Registrar of Companies, and has not yet obtained certain statutory licenses for its manufacturing facility at Plot 9-10, GIDC Waghodia, Vadodara.[^drhp-p18-19]
 
-The company has entered into related-party transactions in each of the last five financial years and the six months ended September 30, 2017. Details are provided in the financial statements as per Accounting Standard 18. [^drhp-p166]
+The company, its promoters, group companies, and directors are parties to legal proceedings, the outcome of which could have a material adverse effect.[^drhp-p17]
 
-The DRHP acknowledges past instances of non-filing or incorrect filing of statutory forms with the Registrar of Companies (RoC), which were subsequently filed with additional fees. [^drhp-p18]
+## Key risks
 
-One of the company's manufacturing facilities, Plot 9-10, GIDC Waghodia, Vadodara, does not yet have all required statutory licenses and registrations. The company warns it could be penalised for non-compliance. [^drhp-p19]
+**No long-term customer or supplier agreements.** The company relies on purchase orders, not contracts, for both sales and raw material procurement. The filing states: "We have not entered into any long term or definitive agreements with our customers, and instead rely on purchase orders to govern the volume, pricing and other terms of sales of our products."[^drhp-p26] Similarly, there are no long-term agreements with raw material suppliers.[^drhp-p25] Any disruption in orders could hit revenue without contractual protection.
 
-The company has not obtained trademark registration for its corporate logo. [^drhp-p19]
+**Negative operating cash flow in fiscal 2017.** Despite reporting a profit of ₹1.75 crore, the company's cash flow from operations was negative ₹3.50 crore in fiscal 2017.[^drhp-p22-50] This divergence between profit and cash generation indicates potential working capital stress: the company may be funding growth by stretching payables or accumulating receivables, neither of which is sustainable indefinitely.
 
-## Top material risks
+**Missing statutory licenses.** The company has not yet obtained required licenses for one of its manufacturing facilities (Plot 9-10, GIDC Waghodia, Vadodara, Gujarat), exposing it to potential penalties or shutdown.[^drhp-p19] The filing acknowledges this risk explicitly: "we cannot assure that we will not be penalized for such non-compliance under the relevant laws which could adversely affect our business operations and financial condition."
 
-**No long-term customer or supplier agreements.** The company operates entirely on purchase orders. It has no guaranteed volumes or pricing from customers, and no guaranteed supply of raw materials. This exposes revenue and margins to sudden changes in demand or input costs. [^drhp-p25-26]
+**Related-party transactions.** Past and likely future transactions with related parties, especially the corporate promoter 20 Microns Limited, may not be on arm's-length terms and could divert value from minority shareholders.[^drhp-p24] Given that the promoter also controls the company's primary sales channel, the potential for conflicts of interest is structural.
 
-**Missing statutory licenses for one manufacturing facility.** The facility at Plot 9-10, GIDC Waghodia, Vadodara, does not have all required licenses. If penalised or forced to halt operations, it could disrupt a significant part of production. [^drhp-p19]
+**Legal proceedings.** The company, promoters, and group entities face litigation that, if decided adversely, could materially affect financials.[^drhp-p17] The filing does not quantify the potential exposure, but the risk is flagged as material.
 
-**Past regulatory non-compliance.** Instances of late or incorrect filings with the RoC suggest weak compliance processes. While the filings were eventually made with additional fees, the pattern could attract penalties or regulatory scrutiny. [^drhp-p18]
-
-**Negative operating cash flow in FY2014.** The company burned ₹3.50 crore in operating cash during FY2014[^drhp-p50], its worst year. While later years were positive, the earlier cash crunch indicates vulnerability during periods of low demand or high working capital needs. [^drhp-p22]
-
-**Extreme promoter concentration.** At 99.76% pre-issue, promoter holding is near-total. Post-issue, it will remain very high, giving promoters near-complete control and limited minority influence. [^drhp-p155]
-
----
-
-*This report is based solely on the draft red herring prospectus filed by 20 Microns Nano Minerals Limited with the Registrar of Companies. The offer price and the final number of shares have not yet been set. All currency figures are in Indian rupees. The report does not constitute investment advice.*
-
-[^drhp-p18]: [DRHP, page 18](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
+[^drhp-p17]: [DRHP, page 17](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p19]: [DRHP, page 19](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p21]: [DRHP, page 21](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
-[^drhp-p22]: [DRHP, page 22](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
+[^drhp-p24]: [DRHP, page 24](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
+[^drhp-p25]: [DRHP, page 25](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
+[^drhp-p26]: [DRHP, page 26](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p49]: [DRHP, page 49](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p50]: [DRHP, page 50](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p75]: [DRHP, page 75](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
@@ -132,19 +124,17 @@ The company has not obtained trademark registration for its corporate logo. [^dr
 [^drhp-p95]: [DRHP, page 95](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p96]: [DRHP, page 96](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p112]: [DRHP, page 112](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
+[^drhp-p113]: [DRHP, page 113](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p128]: [DRHP, page 128](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p155]: [DRHP, page 155](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
+[^drhp-p162]: [DRHP, page 162](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p166]: [DRHP, page 166](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p175]: [DRHP, page 175](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p177]: [DRHP, page 177](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
+[^drhp-p190]: [DRHP, page 190](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
+[^drhp-p18-19]: [DRHP, pp.18–19](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p22-50]: [DRHP, pp.22–50](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
-[^drhp-p25-26]: [DRHP, pp.25–26](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
-[^drhp-p49-50]: [DRHP, pp.49–50](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
 [^drhp-p54-55]: [DRHP, pp.54–55](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
-[^drhp-p92-94]: [DRHP, pp.92–94](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
-[^drhp-p94-95]: [DRHP, pp.94–95](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
-[^drhp-p26-128]: [DRHP, pp.26–128](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
-[^drhp-p54-113]: [DRHP, pp.54–113](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
-[^drhp-p110-111]: [DRHP, pp.110–111](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
-[^drhp-p112-113]: [DRHP, pp.112–113](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
-[^drhp-p155-162]: [DRHP, pp.155–162](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
+[^drhp-p95-96]: [DRHP, pp.95–96](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
+[^drhp-p45-113]: [DRHP, pp.45–113](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)
+[^drhp-p155-156]: [DRHP, pp.155–156](https://nsearchives.nseindia.com/emerge/corporates/content/2MNML_DRHP.pdf)

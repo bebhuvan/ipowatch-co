@@ -9,9 +9,10 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.24-0544",
+  "dataset_version": "v3.2026.06.25-0547",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_5922_17092025175759.zip",
+    "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AvienceBiomedicalsLimited_PROSP.pdf",
     "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AvienceBiomedicalsLimited_RHP.zip"
   },
   "exchange_details": {},
@@ -20,9 +21,17 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -48,6 +57,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -56,7 +77,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -66,20 +95,29 @@
     }
   },
   "filings_path": "issues/avience-biomedicals-c4a59a/filings.json",
-  "generated_at": "2026-06-24T05:44:05+00:00",
+  "generated_at": "2026-06-25T05:47:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:medical-equipmentsuppliesaccessories/aviencebiomedicals/ABL08",
+      "moneycontrol:company_code:12542099"
+    ],
     "board_type": "SME Board",
     "company_name": "Avience Biomedicals Limited",
     "issue_type": "IPO",
     "slug": "avience-biomedicals-c4a59a",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "AVIENCE"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 9950,
+    "current_price_paise": 41495
+  },
   "market_path": "issues/avience-biomedicals-c4a59a/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 20800,
+    "issue_size_paise": 30239040000,
     "price_band_lower_paise": 19600,
     "price_band_upper_paise": 20800
   },
@@ -127,19 +165,19 @@
       "peers": [
         {
           "company_name": "AVIENCE",
-          "market_cap": "114",
+          "market_cap": "0",
           "net_sales_cr": 45.24,
           "pat_cr": 7.29,
-          "pb": 4.0,
-          "pe": 15.64
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "MOREPENLAB",
-          "market_cap": "2,839",
+          "market_cap": "2,853",
           "net_sales_cr": 1811,
           "pat_cr": 118,
-          "pb": 2.3,
-          "pe": 30.21
+          "pb": 2.29,
+          "pe": 30.07
         }
       ],
       "revenue_mix": {
@@ -182,41 +220,58 @@
         "pb": 4.0,
         "pe": 15.65,
         "sector_pb": 2.86,
-        "sector_pe": 29.17
+        "sector_pe": 28.62
       }
     }
   },
   "research_path": "issues/avience-biomedicals-c4a59a/research.json",
   "schema_version": "3.0.0",
   "slug": "avience-biomedicals-c4a59a",
-  "source_dataset_version": "v2026.06.24-0544",
+  "source_dataset_version": "v2026.06.25-0547",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-06-25T05:44:34+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-06-24T05:38:04+00:00",
+      "snapshot_at": "2026-06-25T05:41:15+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-06-24T05:38:12+00:00",
+      "snapshot_at": "2026-06-25T05:41:22+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-06-24T05:38:12+00:00",
+      "snapshot_at": "2026-06-25T05:41:22+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-06-25T05:41:23+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "355.0600"
+  },
   "subscription_path": "issues/avience-biomedicals-c4a59a/subscription.json",
   "timeline": {
     "close_date": "2026-06-22",
+    "listing_date": "2026-06-25",
     "open_date": "2026-06-18"
   },
   "url_path": "/ipos/avience-biomedicals/"

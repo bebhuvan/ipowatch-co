@@ -9,29 +9,29 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.24-0544",
+  "dataset_version": "v3.2026.06.25-0547",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -41,13 +41,25 @@
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
@@ -59,27 +71,28 @@
     },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     }
   },
   "filings_path": "issues/horizon-reclaim-india-24baf4/filings.json",
-  "generated_at": "2026-06-24T05:44:05+00:00",
+  "generated_at": "2026-06-25T05:47:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "moneycontrol:slug:auto-ancillaries-tyresrubber-products/horizonreclaimindia/HRIL",
-      "moneycontrol:company_code:14610183"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/horizon-reclaim-(india)-ltd/horizon/544794/"
     ],
     "board_type": "SME Board",
-    "company_name": "Horizon Reclaim India",
+    "company_name": "HORIZON RECLAIM (INDIA) LIMITED",
     "issue_type": "IPO",
     "slug": "horizon-reclaim-india-24baf4",
     "status": "Listed",
     "symbol": "HRIL"
   },
   "listing_performance": {
-    "current_gain_bps": 3689,
-    "current_price_paise": 14100
+    "current_gain_bps": 3573,
+    "current_price_paise": 13980,
+    "listing_close_price_paise": 14730,
+    "listing_gain_bps": 4301
   },
   "market_path": "issues/horizon-reclaim-india-24baf4/market.json",
   "parties": {},
@@ -131,19 +144,19 @@
       "peers": [
         {
           "company_name": "HORIZON",
-          "market_cap": "268",
+          "market_cap": "276",
           "net_sales_cr": 49.42,
           "pat_cr": 10.5,
-          "pb": 10.79,
-          "pe": 25.48
+          "pb": 11.12,
+          "pe": 26.32
         },
         {
           "company_name": "LRRPL",
-          "market_cap": "80",
+          "market_cap": "79",
           "net_sales_cr": 31.12,
           "pat_cr": 1.46,
           "pb": null,
-          "pe": 20.07
+          "pe": 19.44
         }
       ],
       "revenue_mix": {
@@ -240,20 +253,27 @@
         "market_cap": "₹201",
         "pb": 8.1,
         "pe": 19.14,
-        "sector_pb": 3.09,
-        "sector_pe": 23.18
+        "sector_pb": 3.14,
+        "sector_pe": 22.86
       }
     }
   },
   "research_path": "issues/horizon-reclaim-india-24baf4/research.json",
   "schema_version": "3.0.0",
   "slug": "horizon-reclaim-india-24baf4",
-  "source_dataset_version": "v2026.06.24-0544",
+  "source_dataset_version": "v2026.06.25-0547",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_sme_2026",
+      "snapshot_at": "2026-06-25T05:41:44+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-06-24T05:42:00+00:00",
+      "snapshot_at": "2026-06-25T05:44:34+00:00",
       "source": "moneycontrol",
       "url": null
     }
@@ -263,7 +283,7 @@
   },
   "subscription_path": "issues/horizon-reclaim-india-24baf4/subscription.json",
   "timeline": {
-    "listing_date": "2026-06-19"
+    "listing_date": "2026-06-18"
   },
   "url_path": "/ipos/horizon-reclaim-india/"
 }

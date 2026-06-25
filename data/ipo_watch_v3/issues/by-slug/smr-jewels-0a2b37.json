@@ -9,29 +9,29 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.24-0544",
+  "dataset_version": "v3.2026.06.25-0547",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -41,13 +41,25 @@
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
@@ -59,27 +71,28 @@
     },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     }
   },
   "filings_path": "issues/smr-jewels-0a2b37/filings.json",
-  "generated_at": "2026-06-24T05:44:05+00:00",
+  "generated_at": "2026-06-25T05:47:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "moneycontrol:slug:diamondjewellery/smrjewels/SJL",
-      "moneycontrol:company_code:15070619"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/smr-jewels-ltd/smr/544774/"
     ],
     "board_type": "SME Board",
-    "company_name": "SMR Jewels",
+    "company_name": "SMR Jewels Limited",
     "issue_type": "IPO",
     "slug": "smr-jewels-0a2b37",
     "status": "Listed",
     "symbol": "SJL"
   },
   "listing_performance": {
-    "current_gain_bps": -2145,
-    "current_price_paise": 10055
+    "current_gain_bps": -1879,
+    "current_price_paise": 10395,
+    "listing_close_price_paise": 10305,
+    "listing_gain_bps": -1949
   },
   "market_path": "issues/smr-jewels-0a2b37/market.json",
   "parties": {},
@@ -131,35 +144,35 @@
       "peers": [
         {
           "company_name": "SMR",
-          "market_cap": "206",
+          "market_cap": "196",
           "net_sales_cr": 263,
           "pat_cr": 10.41,
           "pb": null,
-          "pe": 18.01
+          "pe": 18.78
         },
         {
           "company_name": "PUSHPA",
-          "market_cap": "257",
+          "market_cap": "258",
           "net_sales_cr": 281,
           "pat_cr": 22.29,
           "pb": null,
-          "pe": 9.94
+          "pe": 9.97
         },
         {
           "company_name": "KHAZANCHI",
-          "market_cap": "1,552",
+          "market_cap": "1,558",
           "net_sales_cr": 1771,
           "pat_cr": 44.92,
           "pb": 4.88,
-          "pe": 17.45
+          "pe": 17.42
         },
         {
           "company_name": "SKYGOLD",
-          "market_cap": "7,776",
+          "market_cap": "7,788",
           "net_sales_cr": 3548,
           "pat_cr": 132,
-          "pb": 6.44,
-          "pe": 28.03
+          "pb": 6.5,
+          "pe": 28.29
         }
       ],
       "revenue_mix": {
@@ -222,20 +235,27 @@
         "market_cap": "₹251",
         "pb": 5.9,
         "pe": 24.19,
-        "sector_pb": 1.81,
-        "sector_pe": 17.2
+        "sector_pb": 1.79,
+        "sector_pe": 17.26
       }
     }
   },
   "research_path": "issues/smr-jewels-0a2b37/research.json",
   "schema_version": "3.0.0",
   "slug": "smr-jewels-0a2b37",
-  "source_dataset_version": "v2026.06.24-0544",
+  "source_dataset_version": "v2026.06.25-0547",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_sme_2026",
+      "snapshot_at": "2026-06-25T05:41:44+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-06-24T05:42:00+00:00",
+      "snapshot_at": "2026-06-25T05:44:34+00:00",
       "source": "moneycontrol",
       "url": null
     }
@@ -245,7 +265,7 @@
   },
   "subscription_path": "issues/smr-jewels-0a2b37/subscription.json",
   "timeline": {
-    "listing_date": "2026-06-08"
+    "listing_date": "2026-06-07"
   },
   "url_path": "/ipos/smr-jewels/"
 }

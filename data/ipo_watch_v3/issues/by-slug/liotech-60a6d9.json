@@ -9,29 +9,29 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.24-0544",
+  "dataset_version": "v3.2026.06.25-0547",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -41,13 +41,25 @@
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
@@ -59,27 +71,28 @@
     },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     }
   },
   "filings_path": "issues/liotech-60a6d9/filings.json",
-  "generated_at": "2026-06-24T05:44:05+00:00",
+  "generated_at": "2026-06-25T05:47:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "moneycontrol:slug:engineering/liotechindustries/LIL06",
-      "moneycontrol:company_code:15510862"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/liotech-industries-ltd/liotech/544796/"
     ],
     "board_type": "SME Board",
-    "company_name": "Liotech Industries",
+    "company_name": "LIOTECH INDUSTRIES LIMITED",
     "issue_type": "IPO",
     "slug": "liotech-60a6d9",
     "status": "Listed",
     "symbol": "LIL06"
   },
   "listing_performance": {
-    "current_gain_bps": -2394,
-    "current_price_paise": 24415
+    "current_gain_bps": -2774,
+    "current_price_paise": 23195,
+    "listing_close_price_paise": 24415,
+    "listing_gain_bps": -2394
   },
   "market_path": "issues/liotech-60a6d9/market.json",
   "parties": {},
@@ -131,7 +144,7 @@
       "peers": [
         {
           "company_name": "LIOTECH",
-          "market_cap": "0",
+          "market_cap": "95",
           "net_sales_cr": 40.68,
           "pat_cr": 4.16,
           "pb": null,
@@ -139,11 +152,11 @@
         },
         {
           "company_name": "HARDWYN",
-          "market_cap": "1,236",
+          "market_cap": "1,230",
           "net_sales_cr": 184,
           "pat_cr": 11.23,
-          "pb": 2.96,
-          "pe": 90.95
+          "pb": 3.03,
+          "pe": 93.17
         },
         {
           "company_name": "AHLADA",
@@ -151,7 +164,7 @@
           "net_sales_cr": 131,
           "pat_cr": 3.71,
           "pb": 0.38,
-          "pe": 292.22
+          "pe": 291.56
         }
       ],
       "revenue_mix": {
@@ -197,20 +210,27 @@
         "market_cap": "₹125",
         "pb": 7.86,
         "pe": 30.07,
-        "sector_pb": 1.95,
-        "sector_pe": 15.56
+        "sector_pb": 1.94,
+        "sector_pe": 15.23
       }
     }
   },
   "research_path": "issues/liotech-60a6d9/research.json",
   "schema_version": "3.0.0",
   "slug": "liotech-60a6d9",
-  "source_dataset_version": "v2026.06.24-0544",
+  "source_dataset_version": "v2026.06.25-0547",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_sme_2026",
+      "snapshot_at": "2026-06-25T05:41:44+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-06-24T05:42:00+00:00",
+      "snapshot_at": "2026-06-25T05:44:34+00:00",
       "source": "moneycontrol",
       "url": null
     }
@@ -220,7 +240,7 @@
   },
   "subscription_path": "issues/liotech-60a6d9/subscription.json",
   "timeline": {
-    "listing_date": "2026-06-08"
+    "listing_date": "2026-06-23"
   },
   "url_path": "/ipos/liotech/"
 }

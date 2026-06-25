@@ -9,29 +9,29 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.24-0544",
+  "dataset_version": "v3.2026.06.25-0547",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -41,13 +41,25 @@
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
@@ -59,27 +71,28 @@
     },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     }
   },
   "filings_path": "issues/uhm-vacation-4740ea/filings.json",
-  "generated_at": "2026-06-24T05:44:05+00:00",
+  "generated_at": "2026-06-25T05:47:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "moneycontrol:slug:travel-services/uhmvacation/UVL",
-      "moneycontrol:company_code:16620817"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/uhm-vacation-ltd/uhmvl/544779/"
     ],
     "board_type": "SME Board",
-    "company_name": "UHM Vacation",
+    "company_name": "UHM Vacation Limited",
     "issue_type": "IPO",
     "slug": "uhm-vacation-4740ea",
     "status": "Listed",
     "symbol": "UVL"
   },
   "listing_performance": {
-    "current_gain_bps": -4401,
-    "current_price_paise": 9295
+    "current_gain_bps": -5741,
+    "current_price_paise": 7070,
+    "listing_close_price_paise": 12620,
+    "listing_gain_bps": -2398
   },
   "market_path": "issues/uhm-vacation-4740ea/market.json",
   "parties": {},
@@ -131,19 +144,19 @@
       "peers": [
         {
           "company_name": "UHMVL",
-          "market_cap": "62",
+          "market_cap": "59",
           "net_sales_cr": 40.14,
           "pat_cr": 7.18,
           "pb": null,
-          "pe": 8.6
+          "pe": 8.17
         },
         {
           "company_name": "LGT",
-          "market_cap": "39",
+          "market_cap": "40",
           "net_sales_cr": 100,
           "pat_cr": 5.22,
           "pb": null,
-          "pe": 8.58
+          "pe": 8.69
         },
         {
           "company_name": "HELLOJI",
@@ -155,11 +168,11 @@
         },
         {
           "company_name": "INTLTRAVHS",
-          "market_cap": "260",
+          "market_cap": "258",
           "net_sales_cr": 235,
           "pat_cr": 27.15,
-          "pb": 1.42,
-          "pe": 13.77
+          "pb": 1.44,
+          "pe": 13.96
         }
       ],
       "revenue_mix": {
@@ -231,20 +244,27 @@
         "market_cap": "₹110",
         "pb": 3.67,
         "pe": 15.36,
-        "sector_pb": 2.21,
-        "sector_pe": 21.3
+        "sector_pb": 2.18,
+        "sector_pe": 21.25
       }
     }
   },
   "research_path": "issues/uhm-vacation-4740ea/research.json",
   "schema_version": "3.0.0",
   "slug": "uhm-vacation-4740ea",
-  "source_dataset_version": "v2026.06.24-0544",
+  "source_dataset_version": "v2026.06.25-0547",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_sme_2026",
+      "snapshot_at": "2026-06-25T05:41:44+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-06-24T05:42:00+00:00",
+      "snapshot_at": "2026-06-25T05:44:34+00:00",
       "source": "moneycontrol",
       "url": null
     }
@@ -254,7 +274,7 @@
   },
   "subscription_path": "issues/uhm-vacation-4740ea/subscription.json",
   "timeline": {
-    "listing_date": "2026-06-11"
+    "listing_date": "2026-06-10"
   },
   "url_path": "/ipos/uhm-vacation/"
 }

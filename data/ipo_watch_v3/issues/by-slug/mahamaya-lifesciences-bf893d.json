@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.24-0544",
+  "dataset_version": "v3.2026.06.25-0547",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -37,6 +37,10 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -57,13 +61,21 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     }
   },
   "filings_path": "issues/mahamaya-lifesciences-bf893d/filings.json",
-  "generated_at": "2026-06-24T05:44:05+00:00",
+  "generated_at": "2026-06-25T05:47:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -73,18 +85,20 @@
     "company_name": "MAHAMAYA LIFESCIENCES LIMITED",
     "issue_type": "IPO",
     "slug": "mahamaya-lifesciences-bf893d",
-    "status": "Listed"
+    "status": "Listed",
+    "symbol": "MLL02"
   },
   "listing_performance": {
-    "current_gain_bps": 4680,
-    "current_price_paise": 16735,
+    "current_gain_bps": 4846,
+    "current_price_paise": 16925,
     "listing_close_price_paise": 11600,
     "listing_gain_bps": 175
   },
   "market_path": "issues/mahamaya-lifesciences-bf893d/market.json",
   "parties": {},
   "pricing": {
-    "issue_price_paise": 11400
+    "issue_price_paise": 11400,
+    "issue_size_paise": 70438320000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/mahamaya-lifesciences-bf893d/prospectus_facts.json",
@@ -130,43 +144,43 @@
       "peers": [
         {
           "company_name": "MAHALIFE",
-          "market_cap": "392",
+          "market_cap": "396",
           "net_sales_cr": 264,
           "pat_cr": 12.94,
           "pb": null,
-          "pe": 23.71
+          "pe": 23.97
         },
         {
           "company_name": "NOVAAGRI",
-          "market_cap": "232",
+          "market_cap": "228",
           "net_sales_cr": 294,
           "pat_cr": 27.42,
-          "pb": 1.0,
-          "pe": 18.04
+          "pb": 0.98,
+          "pe": 17.76
         },
         {
           "company_name": "BHAGCHEM",
-          "market_cap": "3,720",
+          "market_cap": "3,714",
           "net_sales_cr": 440,
           "pat_cr": 13.86,
-          "pb": 5.25,
-          "pe": 201.86
+          "pb": 5.32,
+          "pe": 204.39
         },
         {
           "company_name": "DHARMAJ",
-          "market_cap": "894",
+          "market_cap": "900",
           "net_sales_cr": 951,
           "pat_cr": 34.83,
           "pb": 2.0,
-          "pe": 16.42
+          "pe": 16.46
         },
         {
           "company_name": "BAYERCROP",
-          "market_cap": "18,949",
+          "market_cap": "18,876",
           "net_sales_cr": 5473,
           "pat_cr": 568,
-          "pb": 6.35,
-          "pe": 27.34
+          "pb": 6.36,
+          "pe": 27.39
         }
       ],
       "revenue_mix": {
@@ -208,25 +222,34 @@
         "market_cap": "₹266",
         "pb": 4.99,
         "pe": 20.61,
-        "sector_pb": 2.25,
-        "sector_pe": 31.11
+        "sector_pb": 2.2,
+        "sector_pe": 33.63
       }
     }
   },
   "research_path": "issues/mahamaya-lifesciences-bf893d/research.json",
   "schema_version": "3.0.0",
   "slug": "mahamaya-lifesciences-bf893d",
-  "source_dataset_version": "v2026.06.24-0544",
+  "source_dataset_version": "v2026.06.25-0547",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_sme_2025",
-      "snapshot_at": "2026-06-24T05:38:30+00:00",
+      "snapshot_at": "2026-06-25T05:41:43+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000160",
+      "snapshot_at": "2026-06-25T05:44:34+00:00",
+      "source": "moneycontrol",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.5900"
+  },
   "subscription_path": "issues/mahamaya-lifesciences-bf893d/subscription.json",
   "timeline": {
     "listing_date": "2025-11-17"

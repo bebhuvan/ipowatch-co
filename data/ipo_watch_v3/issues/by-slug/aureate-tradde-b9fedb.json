@@ -9,29 +9,29 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.24-0544",
+  "dataset_version": "v3.2026.06.25-0547",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -41,13 +41,25 @@
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
@@ -59,27 +71,28 @@
     },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     }
   },
   "filings_path": "issues/aureate-tradde-b9fedb/filings.json",
-  "generated_at": "2026-06-24T05:44:05+00:00",
+  "generated_at": "2026-06-25T05:47:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "moneycontrol:slug:trading/aureatetradde/ATL05",
-      "moneycontrol:company_code:11251337"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/aureate-tradde-ltd/aureate/544772/"
     ],
     "board_type": "SME Board",
-    "company_name": "Aureate Tradde",
+    "company_name": "AUREATE TRADDE LIMITED",
     "issue_type": "IPO",
     "slug": "aureate-tradde-b9fedb",
     "status": "Listed",
     "symbol": "ATL06"
   },
   "listing_performance": {
-    "current_gain_bps": -5407,
-    "current_price_paise": 3215
+    "current_gain_bps": -5499,
+    "current_price_paise": 3151,
+    "listing_close_price_paise": 6650,
+    "listing_gain_bps": -500
   },
   "market_path": "issues/aureate-tradde-b9fedb/market.json",
   "parties": {},
@@ -131,19 +144,19 @@
       "peers": [
         {
           "company_name": "AUREATE",
-          "market_cap": "43",
+          "market_cap": "42",
           "net_sales_cr": 174,
           "pat_cr": 2.57,
           "pb": null,
-          "pe": 16.36
+          "pe": 16.13
         },
         {
           "company_name": "BHAVIK",
-          "market_cap": "316",
+          "market_cap": "314",
           "net_sales_cr": 527,
           "pat_cr": 5.68,
           "pb": null,
-          "pe": 23.26
+          "pe": 23.13
         }
       ],
       "revenue_mix": {
@@ -228,19 +241,26 @@
         "pb": 5.27,
         "pe": 35.31,
         "sector_pb": 1.15,
-        "sector_pe": 25.7
+        "sector_pe": 25.34
       }
     }
   },
   "research_path": "issues/aureate-tradde-b9fedb/research.json",
   "schema_version": "3.0.0",
   "slug": "aureate-tradde-b9fedb",
-  "source_dataset_version": "v2026.06.24-0544",
+  "source_dataset_version": "v2026.06.25-0547",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_sme_2026",
+      "snapshot_at": "2026-06-25T05:41:44+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-06-24T05:42:00+00:00",
+      "snapshot_at": "2026-06-25T05:44:34+00:00",
       "source": "moneycontrol",
       "url": null
     }
@@ -250,7 +270,7 @@
   },
   "subscription_path": "issues/aureate-tradde-b9fedb/subscription.json",
   "timeline": {
-    "listing_date": "2026-06-05"
+    "listing_date": "2026-06-04"
   },
   "url_path": "/ipos/aureate-tradde/"
 }

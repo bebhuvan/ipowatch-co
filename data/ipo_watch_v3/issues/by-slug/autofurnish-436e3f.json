@@ -9,29 +9,29 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.24-0544",
+  "dataset_version": "v3.2026.06.25-0547",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -41,13 +41,25 @@
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
@@ -59,27 +71,28 @@
     },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     }
   },
   "filings_path": "issues/autofurnish-436e3f/filings.json",
-  "generated_at": "2026-06-24T05:44:05+00:00",
+  "generated_at": "2026-06-25T05:47:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "moneycontrol:slug:auto-ancillaries-spare-partsaccessories/autofurnish/AL17",
-      "moneycontrol:company_code:17270032"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/autofurnish-ltd/afltd/544767/"
     ],
     "board_type": "SME Board",
-    "company_name": "Autofurnish",
+    "company_name": "Autofurnish Limited",
     "issue_type": "IPO",
     "slug": "autofurnish-436e3f",
     "status": "Listed",
     "symbol": "AL21"
   },
   "listing_performance": {
-    "current_gain_bps": 1085,
-    "current_price_paise": 4545
+    "current_gain_bps": 1073,
+    "current_price_paise": 4540,
+    "listing_close_price_paise": 4515,
+    "listing_gain_bps": 1012
   },
   "market_path": "issues/autofurnish-436e3f/market.json",
   "parties": {},
@@ -131,35 +144,35 @@
       "peers": [
         {
           "company_name": "AFLTD",
-          "market_cap": "60",
+          "market_cap": "61",
           "net_sales_cr": 33.36,
           "pat_cr": 3.46,
           "pb": null,
-          "pe": 16.65
+          "pe": 16.89
         },
         {
           "company_name": "SELLOWRAP",
-          "market_cap": "100",
+          "market_cap": "98",
           "net_sales_cr": 162,
           "pat_cr": 9.97,
-          "pb": 1.16,
-          "pe": 9.43
+          "pb": 1.21,
+          "pe": 9.79
         },
         {
           "company_name": "JAYUSH",
-          "market_cap": "334",
+          "market_cap": "337",
           "net_sales_cr": 855,
           "pat_cr": 12.26,
-          "pb": 2.44,
-          "pe": 18.71
+          "pb": 2.47,
+          "pe": 18.95
         },
         {
           "company_name": "REMSONSIND",
-          "market_cap": "299",
+          "market_cap": "296",
           "net_sales_cr": 376,
           "pat_cr": 14.37,
-          "pb": 1.97,
-          "pe": 16.25
+          "pb": 1.99,
+          "pe": 16.38
         }
       ],
       "revenue_mix": {
@@ -260,20 +273,27 @@
         "market_cap": "₹55.41",
         "pb": 3.15,
         "pe": 15.81,
-        "sector_pb": 2.79,
-        "sector_pe": 27.6
+        "sector_pb": 2.81,
+        "sector_pe": 27.41
       }
     }
   },
   "research_path": "issues/autofurnish-436e3f/research.json",
   "schema_version": "3.0.0",
   "slug": "autofurnish-436e3f",
-  "source_dataset_version": "v2026.06.24-0544",
+  "source_dataset_version": "v2026.06.25-0547",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-06-24T05:42:00+00:00",
+      "endpoint": "ipo_performance_sme_2026",
+      "snapshot_at": "2026-06-25T05:41:44+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000020",
+      "snapshot_at": "2026-06-25T05:44:34+00:00",
       "source": "moneycontrol",
       "url": null
     }
@@ -283,7 +303,7 @@
   },
   "subscription_path": "issues/autofurnish-436e3f/subscription.json",
   "timeline": {
-    "listing_date": "2026-05-29"
+    "listing_date": "2026-05-28"
   },
   "url_path": "/ipos/autofurnish/"
 }

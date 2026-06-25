@@ -9,29 +9,29 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.24-0544",
+  "dataset_version": "v3.2026.06.25-0547",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -41,13 +41,25 @@
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
@@ -59,27 +71,28 @@
     },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     }
   },
   "filings_path": "issues/yaashvi-jewellers-56dd10/filings.json",
-  "generated_at": "2026-06-24T05:44:05+00:00",
+  "generated_at": "2026-06-25T05:47:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "moneycontrol:slug:diamondjewellery/yaashvijewellers/Y",
-      "moneycontrol:company_code:15070618"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/yaashvi-jewellers-ltd/yaashvi/544770/"
     ],
     "board_type": "SME Board",
-    "company_name": "Yaashvi Jewellers",
+    "company_name": "YAASHVI JEWELLERS LIMITED",
     "issue_type": "IPO",
     "slug": "yaashvi-jewellers-56dd10",
     "status": "Listed",
     "symbol": "Y"
   },
   "listing_performance": {
-    "current_gain_bps": 1464,
-    "current_price_paise": 9515
+    "current_gain_bps": 964,
+    "current_price_paise": 9100,
+    "listing_close_price_paise": 8705,
+    "listing_gain_bps": 488
   },
   "market_path": "issues/yaashvi-jewellers-56dd10/market.json",
   "parties": {},
@@ -131,15 +144,15 @@
       "peers": [
         {
           "company_name": "YAASHVI",
-          "market_cap": "162",
+          "market_cap": "164",
           "net_sales_cr": 448,
           "pat_cr": 18.28,
-          "pb": 3.73,
-          "pe": 8.87
+          "pb": 3.77,
+          "pe": 8.96
         },
         {
           "company_name": "AGOL",
-          "market_cap": "138",
+          "market_cap": "136",
           "net_sales_cr": 317,
           "pat_cr": 12.04,
           "pb": 0.82,
@@ -147,11 +160,11 @@
         },
         {
           "company_name": "MOKSH",
-          "market_cap": "103",
+          "market_cap": "109",
           "net_sales_cr": 579,
           "pat_cr": 8.43,
-          "pb": 0.86,
-          "pe": 11.27
+          "pb": 0.84,
+          "pe": 11.03
         },
         {
           "company_name": "AJCJEWEL",
@@ -260,20 +273,27 @@
         "market_cap": "₹146",
         "pb": 3.36,
         "pe": 8.0,
-        "sector_pb": 1.81,
-        "sector_pe": 17.2
+        "sector_pb": 1.79,
+        "sector_pe": 17.42
       }
     }
   },
   "research_path": "issues/yaashvi-jewellers-56dd10/research.json",
   "schema_version": "3.0.0",
   "slug": "yaashvi-jewellers-56dd10",
-  "source_dataset_version": "v2026.06.24-0544",
+  "source_dataset_version": "v2026.06.25-0547",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_sme_2026",
+      "snapshot_at": "2026-06-25T05:41:44+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-06-24T05:42:00+00:00",
+      "snapshot_at": "2026-06-25T05:44:34+00:00",
       "source": "moneycontrol",
       "url": null
     }
@@ -283,7 +303,7 @@
   },
   "subscription_path": "issues/yaashvi-jewellers-56dd10/subscription.json",
   "timeline": {
-    "listing_date": "2026-06-02"
+    "listing_date": "2026-06-01"
   },
   "url_path": "/ipos/yaashvi-jewellers/"
 }

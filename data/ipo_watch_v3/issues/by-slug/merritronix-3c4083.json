@@ -9,29 +9,29 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.24-0544",
+  "dataset_version": "v3.2026.06.25-0547",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -41,13 +41,25 @@
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     },
     "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
@@ -59,27 +71,28 @@
     },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "bse"
     }
   },
   "filings_path": "issues/merritronix-3c4083/filings.json",
-  "generated_at": "2026-06-24T05:44:05+00:00",
+  "generated_at": "2026-06-25T05:47:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "moneycontrol:slug:electronics-components/merritronix/ML14",
-      "moneycontrol:company_code:13110372"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/merritronix-ltd/mrtx/544773/"
     ],
     "board_type": "SME Board",
-    "company_name": "Merritronix",
+    "company_name": "Merritronix Limited",
     "issue_type": "IPO",
     "slug": "merritronix-3c4083",
     "status": "Listed",
     "symbol": "ML16"
   },
   "listing_performance": {
-    "current_gain_bps": 20671,
-    "current_price_paise": 45700
+    "current_gain_bps": 22477,
+    "current_price_paise": 48390,
+    "listing_close_price_paise": 29725,
+    "listing_gain_bps": 9950
   },
   "market_path": "issues/merritronix-3c4083/market.json",
   "parties": {},
@@ -131,27 +144,27 @@
       "peers": [
         {
           "company_name": "MRTX",
-          "market_cap": "782",
+          "market_cap": "794",
           "net_sales_cr": 155,
           "pat_cr": 16.1,
-          "pb": 14.72,
-          "pe": 48.55
+          "pb": 14.94,
+          "pe": 49.3
         },
         {
           "company_name": "CENTUM",
-          "market_cap": "5,442",
+          "market_cap": "5,370",
           "net_sales_cr": 1155,
           "pat_cr": 2.46,
-          "pb": 15.76,
+          "pb": 15.65,
           "pe": null
         },
         {
           "company_name": "VINYAS",
-          "market_cap": "1,855",
+          "market_cap": "1,768",
           "net_sales_cr": 396,
           "pat_cr": 19.42,
           "pb": null,
-          "pe": 58.61
+          "pe": 57.29
         }
       ],
       "revenue_mix": {
@@ -235,20 +248,27 @@
         "market_cap": "₹260",
         "pb": 4.9,
         "pe": 16.18,
-        "sector_pb": 5.85,
-        "sector_pe": 81.67
+        "sector_pb": 5.78,
+        "sector_pe": 80.43
       }
     }
   },
   "research_path": "issues/merritronix-3c4083/research.json",
   "schema_version": "3.0.0",
   "slug": "merritronix-3c4083",
-  "source_dataset_version": "v2026.06.24-0544",
+  "source_dataset_version": "v2026.06.25-0547",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_sme_2026",
+      "snapshot_at": "2026-06-25T05:41:44+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-06-24T05:42:00+00:00",
+      "snapshot_at": "2026-06-25T05:44:34+00:00",
       "source": "moneycontrol",
       "url": null
     }
@@ -258,7 +278,7 @@
   },
   "subscription_path": "issues/merritronix-3c4083/subscription.json",
   "timeline": {
-    "listing_date": "2026-06-08"
+    "listing_date": "2026-06-07"
   },
   "url_path": "/ipos/merritronix/"
 }

@@ -5,11 +5,16 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "clean",
-    "warnings": []
+    "state": "review",
+    "warnings": [
+      {
+        "class": "thin.no_pricing",
+        "message": "No pricing"
+      }
+    ]
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.25-0547",
+  "dataset_version": "v3.2026.06.26-0552",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/JivialIndustriesLimited_DP.zip"
   },
@@ -18,10 +23,6 @@
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
-    },
-    "identity.aliases": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -42,96 +43,22 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
-    },
-    "parties.lead_managers": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.registrar": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "parties.sponsor_bank": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.face_value_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.issue_size_shares": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_upper_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "timeline.close_date": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "timeline.open_date": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
     }
   },
   "filings_path": "issues/jivial-773ea0/filings.json",
-  "generated_at": "2026-06-25T05:47:09+00:00",
+  "generated_at": "2026-06-26T05:52:43+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
-    "aliases": [
-      "bse:ipo_no:7791",
-      "bse:scrip_code:4647"
-    ],
     "board_type": "SME Board",
     "company_name": "Jivial Industries Limited",
     "issue_type": "IPO",
     "slug": "jivial-773ea0",
-    "status": "Open"
+    "status": "Filed"
   },
   "listing_performance": {},
   "market_path": "issues/jivial-773ea0/market.json",
-  "parties": {
-    "lead_managers": [
-      "Corporate Makers Capital Limited"
-    ],
-    "registrar": "BIGSHARE SERVICES PRIVATE LTD",
-    "sponsor_bank": "ICICI Bank Limited"
-  },
-  "pricing": {
-    "face_value_paise": 1000,
-    "issue_size_shares": 1632400,
-    "market_lot": 600,
-    "min_bid_qty": 1200,
-    "price_band_lower_paise": 19600,
-    "price_band_upper_paise": 19600,
-    "tick_size_paise": 100
-  },
+  "parties": {},
+  "pricing": {},
   "prospectus_available": true,
   "prospectus_facts_path": "issues/jivial-773ea0/prospectus_facts.json",
   "provenance_path": "issues/jivial-773ea0/provenance.json",
@@ -184,19 +111,19 @@
         },
         {
           "company_name": "AMCL",
-          "market_cap": "586",
+          "market_cap": "566",
           "net_sales_cr": 162,
           "pat_cr": 10.25,
           "pb": null,
-          "pe": 27.29
+          "pe": 26.4
         },
         {
           "company_name": "EUROBOND",
           "market_cap": "417",
           "net_sales_cr": 423,
           "pat_cr": 18.43,
-          "pb": 2.6,
-          "pe": 15.32
+          "pb": 2.62,
+          "pe": 15.4
         },
         {
           "company_name": "SUDAI",
@@ -271,211 +198,26 @@
         "market_cap": "₹91.52",
         "pb": 7.85,
         "pe": 30.8,
-        "sector_pb": 1.94,
-        "sector_pe": 15.46
+        "sector_pb": 1.92,
+        "sector_pe": 15.32
       }
     }
   },
   "research_path": "issues/jivial-773ea0/research.json",
   "schema_version": "3.0.0",
   "slug": "jivial-773ea0",
-  "source_dataset_version": "v2026.06.25-0547",
+  "source_dataset_version": "v2026.06.26-0552",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_7791",
-      "snapshot_at": "2026-06-25T05:46:27+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_7791",
-      "snapshot_at": "2026-06-25T05:46:28+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_new_7791",
-      "snapshot_at": "2026-06-25T05:46:28+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_7791",
-      "snapshot_at": "2026-06-25T05:46:27+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue",
-      "snapshot_at": "2026-06-25T05:41:23+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue_details",
-      "snapshot_at": "2026-06-25T05:41:26+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-06-25T05:41:22+00:00",
+      "snapshot_at": "2026-06-26T05:47:33+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 546000,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "retail",
-            "shares_bid": 100800,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "employee",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": null
-      }
-    },
-    "consolidated": {
-      "basis": "exchange_published",
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 546000,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 389400,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 156600,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "retail",
-          "shares_bid": 100800,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "employee",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "policyholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": null
-    }
-  },
+  "subscription": {},
   "subscription_path": "issues/jivial-773ea0/subscription.json",
-  "timeline": {
-    "close_date": "2026-06-25",
-    "open_date": "2026-06-23"
-  },
+  "timeline": {},
   "url_path": "/ipos/jivial/"
 }

@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.06.26-0615",
-  "estimated_cost_usd": 0.0009662800000000001,
+  "dataset_version": "v2026.06.27-0536",
+  "estimated_cost_usd": 0.0008633800000000002,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-06-26T06:15:07+00:00",
+  "generated_at": "2026-06-27T05:36:09+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,41 +24,29 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif throughout; single accent colour (e.g. deep blue).",
-      "Tables: hairline rules, alternating row shading optional.",
-      "Pull quote: larger serif italic, centred, with a thin rule above and below.",
-      "Industry snapshot: stat strip with three numbers, growth bars proportional to value, split bar for organised vs unorganised.",
-      "Sidebar: boxed with light background, no icon."
+      "Use serif font throughout; single accent colour (e.g., deep blue) for table headers and pull-quote border.",
+      "Financial table: hairline rules, alternating row shading for readability.",
+      "Industry snapshot: stat strip with three numbers, split bar below; no icons.",
+      "Pull-quote: left-aligned with a vertical rule in accent colour.",
+      "Sidebar: boxed with thin border, placed after the 'offer' section."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The Indian specialty chemicals market (excluding agrochemicals and dyestuff) was estimated",
-      "growth_bars": [
-        {
-          "value": "10–12% CAGR",
-          "width_pct": 83,
-          "year": "FY14–FY17"
-        },
-        {
-          "projected": true,
-          "value": "12–14% CAGR",
-          "width_pct": 100,
-          "year": "Forward"
-        }
-      ],
-      "growth_bars_label": "Specialty chemicals market growth",
-      "growth_bars_source": "DRHP p.94 [^drhp-p94]",
-      "rationale": "Industry snapshot provides context for the company's competitive position.",
+      "after_paragraph": "The specialty chemicals industry in India (excluding agrochemicals and dyestuff) was estimated at about ₹1,000 billion in fiscal 2017.",
+      "growth_bars": null,
+      "growth_bars_label": null,
+      "growth_bars_source": null,
+      "rationale": "Provides market size, growth rates, and fragmentation data from the industry section.",
       "split_bar": {
         "left_label": "Organised",
-        "left_pct": 30,
+        "left_pct": 25,
         "right_label": "Unorganised"
       },
-      "split_bar_label": "Market structure",
-      "split_bar_note": "SMEs hold 70–75% share; global giants also compete. [^drhp-p94]",
+      "split_bar_label": "Market structure (FY17)",
+      "split_bar_note": "SMEs account for 70-75% of market share. [^drhp-p94]",
       "stats": [
         {
-          "desc": "Indian specialty chemicals market\n(excl. agro & dyestuff), FY17",
+          "desc": "Specialty chemicals market size\nIndia, FY17",
           "val": "₹1,000B"
         },
         {
@@ -66,7 +54,7 @@
           "val": "10–12%"
         },
         {
-          "desc": "Projected CAGR\nforward",
+          "desc": "Projected CAGR\nforward-looking",
           "val": "12–14%"
         }
       ]
@@ -74,104 +62,76 @@
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Revenue is concentrated in another dimension. The top ten customers accounted",
-        "quote": "The company does not have long-term or definitive agreements with its customers or raw material suppliers.",
-        "rationale": "Highlights a structural vulnerability that prose explains but the quote makes stark."
+        "after_paragraph": "Customer concentration is high. In FY2015, FY2016, and FY2017, the top 10 customers accounted for around 59%, 57%, and 59% of revenue from operations, respectively.",
+        "quote": "the company's entire sales and marketing function is handled by its corporate promoter, related party transactions are not just incidental; they are central to the business model.",
+        "rationale": "Highlights the structural dependency on the promoter for revenue generation."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Exchange:** NSE EMERGE (SME platform) [^drhp-p75]\n**Lead Manager:** Vivro Financial Services Private Limited [^drhp-p54]\n**Registrar:** Link Intime India Private Limited [^drhp-p55]\n**Use of proceeds:** Capital expenditure for new facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat, and general corporate purposes [^drhp-p75]",
-        "rationale": "Condenses offer details into a scannable sidebar; avoids breaking prose flow.",
+        "body_markdown": "**Issue type:** Fresh issue of equity shares on NSE EMERGE (SME platform). [^drhp-p54] [^drhp-p55]  \n**Lead manager:** Vivro Financial Services Private Limited. [^drhp-p75]  \n**Registrar:** Link Intime India Private Limited. [^drhp-p75]  \n**Price band:** Not yet disclosed.  \n**Offer for sale:** None.  \n**Pre-issue promoter holding:** 99.76% (including corporate promoter 20 Microns Limited). [^drhp-p155]  \n**Objects:** Capital expenditure for new facility at Plot 336, GIDC Waghodia, Vadodara; general corporate purposes; listing benefits. [^drhp-p75]",
+        "rationale": "Condenses key offer details from the draft into a scannable sidebar.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The DRHP includes restated financial statements for the six months ended",
+        "after_paragraph": "The restated summary statements cover six periods: five full fiscal years",
         "columns": [
           "Period",
           "PAT (₹ lakh)",
           "Basic EPS (₹)",
-          "Total Assets (₹ lakh)",
-          "Operating Cash Flow (₹ lakh)"
+          "Net Cash from Operations (₹ lakh)",
+          "Total Assets (₹ lakh)"
         ],
-        "footnote": "Source: DRHP pp.49-50, 175, 177 [^drhp-p49] [^drhp-p50] [^drhp-p175] [^drhp-p177]",
-        "rationale": "Core financials table is essential for any IPO report; shows profit turnaround and cash flow volatility.",
+        "footnote": "Source: DRHP restated financial statements [^drhp-p49] [^drhp-p177] [^drhp-p50] [^drhp-p175]",
+        "rationale": "Core financial data across six periods; table allows quick comparison of profitability, EPS, cash flow, and asset growth.",
         "rows": [
           [
             "FY2013",
             "(27.40)",
             "(0.45)",
-            "3,018.66",
-            "200.97"
+            "200.97",
+            "3,018.66"
           ],
           [
             "FY2014",
             "(12.17)",
             "(0.20)",
-            "2,679.38",
-            "127.73"
+            "127.73",
+            "2,679.38"
           ],
           [
             "FY2015",
             "149.58",
             "2.47",
-            "2,592.53",
-            "422.36"
+            "422.36",
+            "2,592.53"
           ],
           [
             "FY2016",
             "90.18",
             "1.46",
-            "2,767.21",
-            "802.59"
+            "802.59",
+            "2,767.21"
           ],
           [
             "FY2017",
             "174.82",
             "2.43",
-            "3,273.96",
-            "(349.75)"
+            "(349.75)",
+            "3,273.96"
           ],
           [
-            "6M Sep 2017",
+            "H1 FY2018",
             "132.75",
             "1.48",
-            "3,424.96",
-            "124.86"
+            "124.86",
+            "3,424.96"
           ]
         ],
-        "title": "Restated financial summary"
-      },
-      {
-        "after_paragraph": "The promoters are Mr. Chandresh S. Parikh, Mr. Atil C. Parikh, Mr. Rajesh C. Parikh",
-        "columns": [
-          "Category",
-          "Shares Held",
-          "% of Pre-Issue Capital"
-        ],
-        "footnote": "Source: DRHP pp.155, 162 [^drhp-p155] [^drhp-p162]",
-        "rationale": "Shows extreme promoter concentration, a key governance fact.",
-        "rows": [
-          [
-            "Promoters",
-            "89,48,270",
-            "99.76%"
-          ],
-          [
-            "Promoter Group (excluding Promoters)",
-            "21,510",
-            "0.24%"
-          ],
-          [
-            "Public",
-            "0",
-            "0%"
-          ]
-        ],
-        "title": "Pre-issue shareholding pattern"
+        "title": "Restated financial summary (₹ lakh)"
       }
     ],
     "timeline": null

@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.27-0519",
+  "dataset_version": "v3.2026.06.30-0550",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -37,6 +37,10 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -57,13 +61,21 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     }
   },
   "filings_path": "issues/autofurnish-436e3f/filings.json",
-  "generated_at": "2026-06-27T05:19:16+00:00",
+  "generated_at": "2026-06-30T05:50:25+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -73,18 +85,20 @@
     "company_name": "Autofurnish Limited",
     "issue_type": "IPO",
     "slug": "autofurnish-436e3f",
-    "status": "Listed"
+    "status": "Listed",
+    "symbol": "AL21"
   },
   "listing_performance": {
-    "current_gain_bps": 978,
-    "current_price_paise": 4501,
+    "current_gain_bps": 1220,
+    "current_price_paise": 4600,
     "listing_close_price_paise": 4515,
     "listing_gain_bps": 1012
   },
   "market_path": "issues/autofurnish-436e3f/market.json",
   "parties": {},
   "pricing": {
-    "issue_price_paise": 4100
+    "issue_price_paise": 4100,
+    "issue_size_paise": 14600100000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/autofurnish-436e3f/prospectus_facts.json",
@@ -130,11 +144,11 @@
       "peers": [
         {
           "company_name": "AFLTD",
-          "market_cap": "61",
+          "market_cap": "59",
           "net_sales_cr": 33.36,
           "pat_cr": 3.46,
           "pb": null,
-          "pe": 16.74
+          "pe": 16.38
         },
         {
           "company_name": "SELLOWRAP",
@@ -146,19 +160,19 @@
         },
         {
           "company_name": "JAYUSH",
-          "market_cap": "337",
+          "market_cap": "345",
           "net_sales_cr": 855,
           "pat_cr": 12.26,
-          "pb": 2.47,
-          "pe": 18.96
+          "pb": 2.53,
+          "pe": 19.44
         },
         {
           "company_name": "REMSONSIND",
-          "market_cap": "296",
+          "market_cap": "285",
           "net_sales_cr": 376,
           "pat_cr": 14.37,
           "pb": 1.92,
-          "pe": 15.84
+          "pe": 24.1
         }
       ],
       "revenue_mix": {
@@ -259,25 +273,34 @@
         "market_cap": "₹55.41",
         "pb": 3.15,
         "pe": 15.81,
-        "sector_pb": 2.79,
-        "sector_pe": 27.32
+        "sector_pb": 2.82,
+        "sector_pe": 27.93
       }
     }
   },
   "research_path": "issues/autofurnish-436e3f/research.json",
   "schema_version": "3.0.0",
   "slug": "autofurnish-436e3f",
-  "source_dataset_version": "v2026.06.27-0519",
+  "source_dataset_version": "v2026.06.30-0550",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_sme_2026",
-      "snapshot_at": "2026-06-27T05:13:58+00:00",
+      "snapshot_at": "2026-06-30T05:45:22+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000020",
+      "snapshot_at": "2026-06-30T05:48:38+00:00",
+      "source": "moneycontrol",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.2000"
+  },
   "subscription_path": "issues/autofurnish-436e3f/subscription.json",
   "timeline": {
     "listing_date": "2026-05-28"

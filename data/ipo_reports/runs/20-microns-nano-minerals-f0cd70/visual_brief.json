@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.06.27-0536",
-  "estimated_cost_usd": 0.0008633800000000002,
+  "dataset_version": "v2026.06.30-0602",
+  "estimated_cost_usd": 0.0008334200000000001,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-06-27T05:36:09+00:00",
+  "generated_at": "2026-06-30T06:02:20+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,33 +24,45 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif font throughout; single accent colour (e.g., deep blue) for table headers and pull-quote border.",
-      "Financial table: hairline rules, alternating row shading for readability.",
-      "Industry snapshot: stat strip with three numbers, split bar below; no icons.",
-      "Pull-quote: left-aligned with a vertical rule in accent colour.",
-      "Sidebar: boxed with thin border, placed after the 'offer' section."
+      "Use a single accent colour (e.g., #003366) for table headers, pull-quote border, and industry snapshot stat values.",
+      "Tables: hairline rules, left-aligned text in first column, right-aligned numbers in data columns.",
+      "Pull-quote: set in a larger serif font, italic, with a left rule in accent colour.",
+      "Industry snapshot: three stat boxes in a row, growth bars as proportional horizontal bars, split bar as a single bar with two colours.",
+      "No icons, no decorative imagery."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The specialty chemicals industry in India (excluding agrochemicals and dyestuff) was estimated at about ₹1,000 billion in fiscal 2017.",
-      "growth_bars": null,
-      "growth_bars_label": null,
-      "growth_bars_source": null,
-      "rationale": "Provides market size, growth rates, and fragmentation data from the industry section.",
+      "after_paragraph": "Specialty chemicals (excluding agrochemicals and dyestuff) account for about 17%",
+      "growth_bars": [
+        {
+          "value": "₹1,000B",
+          "width_pct": 71,
+          "year": "FY2017"
+        },
+        {
+          "projected": true,
+          "value": "₹1,400B+",
+          "width_pct": 100,
+          "year": "Projected"
+        }
+      ],
+      "growth_bars_label": "Specialty chemicals market size (₹ billion)",
+      "growth_bars_source": "DRHP industry report, p.92, p.94",
+      "rationale": "Gives the reader a quick visual of market size, growth trajectory, and fragmentation — data that prose would bury.",
       "split_bar": {
         "left_label": "Organised",
         "left_pct": 25,
         "right_label": "Unorganised"
       },
-      "split_bar_label": "Market structure (FY17)",
-      "split_bar_note": "SMEs account for 70-75% of market share. [^drhp-p94]",
+      "split_bar_label": "Market structure",
+      "split_bar_note": "Small and medium enterprises hold 70–75% of the market. [^drhp-p94]",
       "stats": [
         {
-          "desc": "Specialty chemicals market size\nIndia, FY17",
+          "desc": "Estimated market size\nFY2017",
           "val": "₹1,000B"
         },
         {
-          "desc": "Historical CAGR\nFY14–FY17",
+          "desc": "Historical CAGR\nFY2014–FY2017",
           "val": "10–12%"
         },
         {
@@ -62,76 +74,76 @@
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration is high. In FY2015, FY2016, and FY2017, the top 10 customers accounted for around 59%, 57%, and 59% of revenue from operations, respectively.",
-        "quote": "the company's entire sales and marketing function is handled by its corporate promoter, related party transactions are not just incidental; they are central to the business model.",
-        "rationale": "Highlights the structural dependency on the promoter for revenue generation."
+        "after_paragraph": "Customer concentration is high. The top ten customers",
+        "quote": "The top ten customers accounted for around 59% of revenue from operations in each of the three financial years through March 2017",
+        "rationale": "Highlights extreme customer concentration, a material risk that the prose explains but the quote makes stark."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Issue type:** Fresh issue of equity shares on NSE EMERGE (SME platform). [^drhp-p54] [^drhp-p55]  \n**Lead manager:** Vivro Financial Services Private Limited. [^drhp-p75]  \n**Registrar:** Link Intime India Private Limited. [^drhp-p75]  \n**Price band:** Not yet disclosed.  \n**Offer for sale:** None.  \n**Pre-issue promoter holding:** 99.76% (including corporate promoter 20 Microns Limited). [^drhp-p155]  \n**Objects:** Capital expenditure for new facility at Plot 336, GIDC Waghodia, Vadodara; general corporate purposes; listing benefits. [^drhp-p75]",
-        "rationale": "Condenses key offer details from the draft into a scannable sidebar.",
+        "body_markdown": "**Lead manager:** Vivro Financial Services Private Limited [^drhp-p54]\n\n**Registrar:** Link Intime India Private Limited [^drhp-p55]\n\n**Exchange:** NSE EMERGE (SME platform) [^drhp-p75]\n\n**Issue type:** Fresh issue (proceeds for capex at new Gujarat facility) [^drhp-p75]\n\n**Price band, issue size, and selling shareholders:** Not disclosed in the DRHP excerpts.",
+        "rationale": "Pulls key offer details into a compact sidebar for quick reference; avoids cluttering the prose.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The restated summary statements cover six periods: five full fiscal years",
+        "after_paragraph": "Basic earnings per share improved from negative to positive:",
         "columns": [
           "Period",
           "PAT (₹ lakh)",
-          "Basic EPS (₹)",
-          "Net Cash from Operations (₹ lakh)",
-          "Total Assets (₹ lakh)"
+          "Operating cash flow (₹ lakh)",
+          "Total assets (₹ lakh)",
+          "Basic EPS (₹)"
         ],
-        "footnote": "Source: DRHP restated financial statements [^drhp-p49] [^drhp-p177] [^drhp-p50] [^drhp-p175]",
-        "rationale": "Core financial data across six periods; table allows quick comparison of profitability, EPS, cash flow, and asset growth.",
+        "footnote": "Source: DRHP pages 49, 50, 175, 177",
+        "rationale": "Consolidates six periods of key financial data into a scannable table; prose cannot convey the trend of profitability and cash flow volatility as clearly.",
         "rows": [
           [
             "FY2013",
             "(27.40)",
-            "(0.45)",
             "200.97",
-            "3,018.66"
+            "2,679.38",
+            "(0.45)"
           ],
           [
             "FY2014",
             "(12.17)",
-            "(0.20)",
             "127.73",
-            "2,679.38"
+            "2,592.53",
+            "(0.20)"
           ],
           [
             "FY2015",
             "149.58",
-            "2.47",
             "422.36",
-            "2,592.53"
+            "2,767.21",
+            "2.47"
           ],
           [
             "FY2016",
             "90.18",
-            "1.46",
             "802.59",
-            "2,767.21"
+            "3,273.96",
+            "1.46"
           ],
           [
             "FY2017",
             "174.82",
-            "2.43",
             "(349.75)",
-            "3,273.96"
+            "3,424.96",
+            "2.43"
           ],
           [
             "H1 FY2018",
             "132.75",
-            "1.48",
             "124.86",
-            "3,424.96"
+            "3,018.66",
+            "1.48"
           ]
         ],
-        "title": "Restated financial summary (₹ lakh)"
+        "title": "Financial summary"
       }
     ],
     "timeline": null

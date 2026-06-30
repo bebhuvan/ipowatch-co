@@ -1,6 +1,29 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 5500,
+        "quantity": 898000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 6000,
+        "quantity": 894000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 5500,
+        "quantity": 856000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 6000,
+        "quantity": 852000
+      }
+    ]
+  },
   "core_path": "issues/atharva-poly-plast-3aac1c/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +32,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.27-0519",
+  "dataset_version": "v3.2026.06.30-0550",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -85,6 +112,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -95,7 +126,7 @@
     }
   },
   "filings_path": "issues/atharva-poly-plast-3aac1c/filings.json",
-  "generated_at": "2026-06-27T05:19:16+00:00",
+  "generated_at": "2026-06-30T05:50:25+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -106,7 +137,7 @@
     "company_name": "ATHARVA POLY-PLAST LIMITED",
     "issue_type": "IPO",
     "slug": "atharva-poly-plast-3aac1c",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/atharva-poly-plast-3aac1c/market.json",
@@ -119,7 +150,7 @@
   },
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 4500000,
+    "issue_size_shares": 3226000,
     "market_lot": 2000,
     "min_bid_qty": 4000,
     "price_band_lower_paise": 5500,
@@ -266,55 +297,55 @@
         "market_cap": "₹101",
         "pb": 5.7,
         "pe": 19.13,
-        "sector_pb": 1.49,
-        "sector_pe": 18.6
+        "sector_pb": 1.51,
+        "sector_pe": 19.06
       }
     }
   },
   "research_path": "issues/atharva-poly-plast-3aac1c/research.json",
   "schema_version": "3.0.0",
   "slug": "atharva-poly-plast-3aac1c",
-  "source_dataset_version": "v2026.06.27-0519",
+  "source_dataset_version": "v2026.06.30-0550",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7801",
-      "snapshot_at": "2026-06-27T05:19:04+00:00",
+      "snapshot_at": "2026-06-30T05:50:12+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7801",
-      "snapshot_at": "2026-06-27T05:19:04+00:00",
+      "snapshot_at": "2026-06-30T05:50:12+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7801",
-      "snapshot_at": "2026-06-27T05:19:05+00:00",
+      "snapshot_at": "2026-06-30T05:50:13+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7801",
-      "snapshot_at": "2026-06-27T05:19:04+00:00",
+      "snapshot_at": "2026-06-30T05:50:12+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-06-27T05:13:45+00:00",
+      "snapshot_at": "2026-06-30T05:45:05+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-06-27T05:13:45+00:00",
+      "snapshot_at": "2026-06-30T05:45:06+00:00",
       "source": "bse",
       "url": null
     }
@@ -326,8 +357,8 @@
           {
             "category": "qib",
             "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_offered": 856000,
+            "times_x": "0.0000"
           },
           {
             "category": "qib_fii",
@@ -355,15 +386,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 314000,
+            "shares_offered": 868000,
+            "times_x": "0.3618"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 584000,
+            "shares_offered": 1502000,
+            "times_x": "0.3888"
           },
           {
             "category": "employee",
@@ -378,7 +409,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": null
+        "total_times_x": "0.2784"
       }
     },
     "consolidated": {
@@ -387,8 +418,8 @@
         {
           "category": "qib",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 856000,
+          "times_x": "0.0000"
         },
         {
           "category": "qib_fii",
@@ -416,27 +447,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 314000,
+          "shares_offered": 868000,
+          "times_x": "0.3618"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 198000,
+          "shares_offered": 428000,
+          "times_x": "0.4626"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 116000,
+          "shares_offered": 214000,
+          "times_x": "0.5421"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 584000,
+          "shares_offered": 1502000,
+          "times_x": "0.3888"
         },
         {
           "category": "employee",
@@ -457,8 +488,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": null
-    }
+      "total_times_x": "0.2784"
+    },
+    "overall_times_x": "0.2784"
   },
   "subscription_path": "issues/atharva-poly-plast-3aac1c/subscription.json",
   "timeline": {

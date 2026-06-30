@@ -7,20 +7,92 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.06.27-0519",
+  "dataset_version": "v3.2026.06.30-0550",
   "demand_curve_count": 0,
   "demand_curves": [],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-06-27T05:19:16+00:00",
+  "generated_at": "2026-06-30T05:50:25+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "sampark-india-logistics-b80f4c",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
   "notes": "Hourly subscription (bid-book) observations during the active issue window.",
-  "observation_count": 1,
+  "observation_count": 2,
   "observations": [
+    {
+      "categories": {
+        "employee": {
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times": null
+        },
+        "nii": {
+          "shares_bid": 305600,
+          "shares_offered": 628800,
+          "times": 0.486
+        },
+        "nii_gt_10l": {
+          "shares_bid": 289600,
+          "shares_offered": 155200,
+          "times": 1.866
+        },
+        "nii_lte_10l": {
+          "shares_bid": 16000,
+          "shares_offered": 310400,
+          "times": 0.0515
+        },
+        "policyholder": {
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib": {
+          "shares_bid": 0,
+          "shares_offered": 614400,
+          "times": 0.0
+        },
+        "qib_dfi": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib_fii": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib_mf": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib_other": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "retail": {
+          "shares_bid": 224000,
+          "shares_offered": 1078400,
+          "times": 0.2077
+        },
+        "shareholder": {
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times": null
+        }
+      },
+      "observed_at": "2026-06-30T05:50:19+00:00",
+      "source": "bse",
+      "source_updated_at": "6/30/2026 11:19:07",
+      "total": {
+        "shares_bid": 529600,
+        "shares_offered": 2321600,
+        "times": 0.2281
+      }
+    },
     {
       "categories": {
         "nii": {
@@ -59,7 +131,7 @@
           "times": null
         }
       },
-      "observed_at": "2026-06-29T13:04:12+00:00",
+      "observed_at": "2026-06-30T05:50:20+00:00",
       "source": "bse",
       "source_updated_at": null,
       "total": {
@@ -72,8 +144,22 @@
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/sampark-india-logistics-b80f4c.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.06.27-0519",
+  "source_dataset_version": "v2026.06.30-0550",
   "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_7806",
+      "snapshot_at": "",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_new_7806",
+      "snapshot_at": "",
+      "source": "bse",
+      "url": null
+    },
     {
       "confidence": "primary",
       "endpoint": "demand_schedule_7806",

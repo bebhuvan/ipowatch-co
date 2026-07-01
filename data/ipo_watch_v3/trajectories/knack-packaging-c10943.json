@@ -7,13 +7,110 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.06.30-0550",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.07.01-0609",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-07-01T06:07:59+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 11071984,
+          "price_paise": 17000
+        },
+        {
+          "cumulative_quantity": 11072600,
+          "price_paise": 16900
+        },
+        {
+          "cumulative_quantity": 11073392,
+          "price_paise": 16800
+        },
+        {
+          "cumulative_quantity": 11074184,
+          "price_paise": 16700
+        },
+        {
+          "cumulative_quantity": 11074624,
+          "price_paise": 16600
+        },
+        {
+          "cumulative_quantity": 11079816,
+          "price_paise": 16500
+        },
+        {
+          "cumulative_quantity": 11080080,
+          "price_paise": 16400
+        },
+        {
+          "cumulative_quantity": 11081576,
+          "price_paise": 16300
+        },
+        {
+          "cumulative_quantity": 11083424,
+          "price_paise": 16200
+        },
+        {
+          "cumulative_quantity": 11103576,
+          "price_paise": 16100
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "01-Jul-2026 11:33:00"
+    },
+    {
+      "observed_at": "2026-07-01T06:07:59+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 10070984,
+          "price_paise": 17000
+        },
+        {
+          "cumulative_quantity": 10071512,
+          "price_paise": 16900
+        },
+        {
+          "cumulative_quantity": 10071952,
+          "price_paise": 16800
+        },
+        {
+          "cumulative_quantity": 10072656,
+          "price_paise": 16700
+        },
+        {
+          "cumulative_quantity": 10072920,
+          "price_paise": 16600
+        },
+        {
+          "cumulative_quantity": 10075648,
+          "price_paise": 16500
+        },
+        {
+          "cumulative_quantity": 10075736,
+          "price_paise": 16400
+        },
+        {
+          "cumulative_quantity": 10077056,
+          "price_paise": 16300
+        },
+        {
+          "cumulative_quantity": 10078288,
+          "price_paise": 16200
+        },
+        {
+          "cumulative_quantity": 10087264,
+          "price_paise": 16100
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "01-Jul-2026 11:36:01"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-06-30T05:50:25+00:00",
+  "generated_at": "2026-07-01T06:09:07+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "knack-packaging-c10943",
   "language": "en-IN",
@@ -23,62 +120,66 @@
   "observations": [
     {
       "categories": {
+        "employee": {
+          "shares_bid": 166232,
+          "shares_offered": 137931,
+          "times": 1.2051823012955754
+        },
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 4226288,
+          "shares_offered": 4046739,
+          "times": 1.044368811529481
+        },
+        "nii_gt_10l": {
+          "shares_bid": 1150336,
+          "shares_offered": 1348913,
+          "times": 0.8527873925153068
         },
         "qib": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 3163160,
+          "shares_offered": 5336957,
+          "times": 0.5926898043210767
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 3764024,
+          "shares_offered": 9442391,
+          "times": 0.3986303892732254
         }
       },
-      "observed_at": "2026-06-30T13:09:25+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-07-01T06:07:59+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 01-Jul-2026 11:36:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 1,
+        "shares_offered": 1,
+        "times": 0.596904305828016
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/knack-packaging-c10943.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.06.30-0550",
+  "source_dataset_version": "v2026.07.01-0609",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7805",
+      "endpoint": "consolidated_bid_details_knack",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_knack",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_knack",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

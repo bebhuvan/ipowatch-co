@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.06.30-0624",
-  "estimated_cost_usd": 0.0008681400000000002,
+  "dataset_version": "v2026.07.01-0634",
+  "estimated_cost_usd": 0.0009696400000000001,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-06-30T06:24:11+00:00",
+  "generated_at": "2026-07-01T06:34:44+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,137 +24,124 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif font throughout (e.g., Georgia or Chronicle).",
-      "Accent colour: a muted blue or steel grey for table headers and pull-quote rule.",
-      "Hairline rules between table rows and after pull-quote.",
-      "No icons or decorative imagery; keep clean and text-driven."
+      "Use a single accent colour (e.g., #003366) for table headers and pull-quote rule.",
+      "Tables should have hairline borders, left-aligned text in first column, right-aligned numbers in data columns.",
+      "Pull-quote should be set in a larger serif font, with a thin rule above and below, and the accent colour for the rule.",
+      "Sidebar should be boxed with a thin rule, background tinted lightly (e.g., #f5f5f5), and set in a slightly smaller serif font.",
+      "No decorative imagery or icons; use only typographic hierarchy and rules."
     ],
     "formulas": [],
     "industry_snapshot": null,
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Western Railway alone contributed 52% of the orders on hand as of the filing date.[^drhp-p65]",
-        "quote": "Western Railway alone contributed 52% of the orders on hand as of the filing date.",
-        "rationale": "Single most important risk: customer concentration."
+        "after_paragraph": "The company's business model is built entirely around government tenders.",
+        "quote": "Western Railway contributed 52% of the order book as of the filing date.",
+        "rationale": "Customer concentration is the single most important risk; this number is stark and memorable."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "Fresh issue of 44,28,000 equity shares of face value ₹10 each.[^drhp-p29] Lead manager: Mark Corporate Advisors Private Limited. Registrar: Bigshare Services Private Limited.[^drhp-p31] Proceeds: ₹1,130 lakhs for working capital; remainder for general corporate purposes (undisclosed).[^drhp-p48] No independent appraisal or monitoring agency appointed.[^drhp-p18]",
-        "rationale": "Summarises offer details in one scannable block; prose already covers but sidebar saves reader from hunting.",
+        "body_markdown": "**Fresh issue:** 44,28,000 equity shares of ₹10 each[^drhp-p29]  \n**Issue price:** To be determined[^drhp-p29]  \n**Lead manager:** Mark Corporate Advisors Private Limited[^drhp-p31]  \n**Registrar:** Bigshare Services Private Limited[^drhp-p31]  \n**Use of proceeds:** Working capital (₹1,130 lakhs) and general corporate purposes[^drhp-p48]  \n**Monitoring agency:** None; audit committee will monitor[^drhp-p18]",
+        "rationale": "Sidebar consolidates key offer details that are scattered across the prose; saves the reader from hunting for them.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "Revenue from operations fell from ₹90.21 crore in fiscal 2015 to ₹60.53 crore in fiscal 2018 — a decline of roughly one-third.[^drhp-p27]",
+        "after_paragraph": "A B Infrabuild's financials over the five-year period from Fiscal 2014 to Fiscal 2018 show a company whose revenue has declined significantly while profitability has been erratic.",
         "columns": [
           "Period",
-          "Revenue from operations (₹ crore)"
+          "Revenue",
+          "EBITDA",
+          "Net profit",
+          "Total assets",
+          "Long-term borrowings",
+          "Short-term borrowings"
         ],
-        "footnote": "Source: DRHP, p.27",
-        "rationale": "Shows revenue decline over five years; prose describes it but table makes the trend scannable.",
+        "footnote": "Source: Restated financial statements, pages 26-27 and 111 of the DRHP.[^drhp-p26][^drhp-p27][^drhp-p111]",
+        "rationale": "Core financial data over five years; prose cannot convey the trend of declining revenue and erratic profitability as clearly as a table.",
         "rows": [
           [
             "FY2014",
-            "86.61"
-          ],
-          [
-            "FY2015",
-            "90.21"
-          ],
-          [
-            "FY2016",
-            "74.53"
-          ],
-          [
-            "FY2017",
-            "73.44"
-          ],
-          [
-            "FY2018",
-            "60.53"
-          ]
-        ],
-        "title": "Revenue from operations (₹ crore)"
-      },
-      {
-        "after_paragraph": "Net profit after adjustments has been volatile. It stood at ₹0.96 crore in FY2014, dipped to ₹0.16 crore in FY2017 (the worst year of the five), and then jumped to ₹3.15 crore in FY2018.[^drhp-p27]",
-        "columns": [
-          "Period",
-          "Net profit after adjustments (₹ crore)"
-        ],
-        "footnote": "Source: DRHP, p.27",
-        "rationale": "Shows volatility and the jump in FY2018; complements revenue table.",
-        "rows": [
-          [
-            "FY2014",
-            "0.96"
-          ],
-          [
-            "FY2015",
-            "0.78"
-          ],
-          [
-            "FY2016",
-            "0.33"
-          ],
-          [
-            "FY2017",
-            "0.16"
-          ],
-          [
-            "FY2018",
-            "3.15"
-          ]
-        ],
-        "title": "Net profit after adjustments (₹ crore)"
-      },
-      {
-        "after_paragraph": "Short-term borrowings increased from ₹30.82 crore in FY2014 to ₹35.37 crore in FY2018.[^drhp-p26] Long-term borrowings decreased from ₹5.87 crore to ₹1.33 crore over the same period.[^drhp-p26]",
-        "columns": [
-          "Period",
-          "Short-term borrowings (₹ crore)",
-          "Long-term borrowings (₹ crore)",
-          "Total assets (₹ crore)"
-        ],
-        "footnote": "Source: DRHP, p.26",
-        "rationale": "Shows shift from long-term to short-term debt and asset growth; key risk data.",
-        "rows": [
-          [
-            "FY2014",
-            "30.82",
+            "86.61",
+            "7.84",
+            "0.96",
+            "70.62",
             "5.87",
-            "70.62"
+            "30.82"
           ],
           [
             "FY2015",
-            "32.28",
+            "90.21",
+            "9.46",
+            "0.78",
+            "72.67",
             "6.73",
-            "72.67"
+            "32.28"
           ],
           [
             "FY2016",
-            "30.21",
+            "74.53",
+            "7.83",
+            "0.33",
+            "62.95",
             "1.89",
-            "62.95"
+            "30.21"
           ],
           [
             "FY2017",
-            "33.12",
+            "73.44",
+            "6.76",
+            "0.16",
+            "75.37",
             "1.32",
-            "75.37"
+            "33.12"
           ],
           [
             "FY2018",
-            "35.37",
+            "60.53",
+            "9.29",
+            "3.15",
+            "82.32",
             "1.33",
-            "82.32"
+            "35.37"
           ]
         ],
-        "title": "Borrowings and total assets (₹ crore)"
+        "title": "Financial performance (₹ in crore)"
+      },
+      {
+        "after_paragraph": "The DRHP discloses the company's key accounting ratios for the three most recent financial years:",
+        "columns": [
+          "Metric",
+          "FY2016",
+          "FY2017",
+          "FY2018"
+        ],
+        "footnote": "Source: Basis for Issue Price, page 54 of the DRHP.[^drhp-p54]",
+        "rationale": "Valuation ratios are best presented in a compact table; the dramatic jump in EPS and NAV in FY2018 is immediately visible.",
+        "rows": [
+          [
+            "Basic EPS (₹ per share)",
+            "1.31",
+            "0.63",
+            "12.59"
+          ],
+          [
+            "Net asset value per share (₹)",
+            "4.14",
+            "1.97",
+            "28.14"
+          ],
+          [
+            "Return on net worth (RoNW)",
+            "1%",
+            "2%",
+            "3.82%"
+          ]
+        ],
+        "title": "Key accounting ratios"
       }
     ],
     "timeline": null

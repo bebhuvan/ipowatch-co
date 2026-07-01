@@ -9,20 +9,30 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.30-0550",
+  "dataset_version": "v3.2026.07.01-0609",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE1SJO01012_30JUN2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_30092025193050_DRHP.pdf",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/389212/IPO%20Open/AdvitRHP_20260616172338.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE1SJO01012_30JUN2026.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/AdvitJewelsLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -33,6 +43,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -52,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -60,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,25 +108,29 @@
     }
   },
   "filings_path": "issues/advit-jewels-c81f5b/filings.json",
-  "generated_at": "2026-06-30T05:50:25+00:00",
+  "generated_at": "2026-07-01T06:09:07+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:71281880",
-      "bse:prior_id:247684",
-      "bse:createdby:389212"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/advit-jewels-ltd/rambhajo/544803/"
     ],
     "board_type": "Main Board",
     "company_name": "Advit Jewels Limited",
+    "isin": "INE1SJO01012",
     "issue_type": "IPO",
     "slug": "advit-jewels-c81f5b",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "RAMBHAJO"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 2877,
+    "current_price_paise": 17770
+  },
   "market_path": "issues/advit-jewels-c81f5b/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 13800,
+    "issue_size_paise": 165158400000,
     "price_band_lower_paise": 13000,
     "price_band_upper_paise": 13800
   },
@@ -125,7 +167,7 @@
         ]
       },
       "isin": "INE1SJO01012",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "advit jewels",
       "offer_split": {
         "fresh_issue_percent": "100%",
@@ -136,43 +178,43 @@
       "peers": [
         {
           "company_name": "RAMBHAJO",
-          "market_cap": "632",
+          "market_cap": "0",
           "net_sales_cr": 124,
           "pat_cr": 25.37,
-          "pb": 7.56,
-          "pe": 24.91
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "BLUESTONE",
-          "market_cap": "8,129",
+          "market_cap": "8,230",
           "net_sales_cr": 1770,
           "pat_cr": -221.67,
-          "pb": 4.55,
-          "pe": 315.35
+          "pb": 4.62,
+          "pe": 560.37
         },
         {
           "company_name": "RBZJEWEL",
-          "market_cap": "511",
+          "market_cap": "532",
           "net_sales_cr": 530,
           "pat_cr": 38.8,
-          "pb": 1.78,
-          "pe": 9.76
+          "pb": 1.84,
+          "pe": 10.06
         },
         {
           "company_name": "RADHIKAJWE",
-          "market_cap": "639",
+          "market_cap": "645",
           "net_sales_cr": 587,
           "pat_cr": 60.12,
-          "pb": 1.61,
-          "pe": 8.55
+          "pb": 1.64,
+          "pe": 8.74
         },
         {
           "company_name": "EIGHTY",
-          "market_cap": "39",
+          "market_cap": "41",
           "net_sales_cr": 109,
           "pat_cr": 1.85,
           "pb": null,
-          "pe": 3.98
+          "pe": 4.18
         }
       ],
       "revenue_mix": {
@@ -240,41 +282,65 @@
         "pb": 7.56,
         "pe": 24.92,
         "sector_pb": 1.77,
-        "sector_pe": 17.48
+        "sector_pe": 14.38
       }
     }
   },
   "research_path": "issues/advit-jewels-c81f5b/research.json",
   "schema_version": "3.0.0",
   "slug": "advit-jewels-c81f5b",
-  "source_dataset_version": "v2026.06.30-0550",
+  "source_dataset_version": "v2026.07.01-0609",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-06-30T05:45:10+00:00",
+      "snapshot_at": "2026-07-01T06:03:59+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-07-01T06:04:15+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-01T06:07:22+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-06-30T05:44:57+00:00",
+      "snapshot_at": "2026-07-01T06:03:46+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-06-30T05:45:03+00:00",
+      "snapshot_at": "2026-07-01T06:03:54+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-07-01T06:03:56+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "212.6300"
+  },
   "subscription_path": "issues/advit-jewels-c81f5b/subscription.json",
   "timeline": {
     "close_date": "2026-06-25",
+    "listing_date": "2026-07-01",
     "open_date": "2026-06-23"
   },
   "url_path": "/ipos/advit-jewels/"

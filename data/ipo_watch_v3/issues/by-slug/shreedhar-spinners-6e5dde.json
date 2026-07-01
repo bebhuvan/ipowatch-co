@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.06.30-0550",
+  "dataset_version": "v3.2026.07.01-0609",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6815_17032026161959.zip"
   },
@@ -18,6 +18,10 @@
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -43,6 +47,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -51,7 +67,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -61,20 +85,29 @@
     }
   },
   "filings_path": "issues/shreedhar-spinners-6e5dde/filings.json",
-  "generated_at": "2026-06-30T05:50:25+00:00",
+  "generated_at": "2026-07-01T06:09:07+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:textile-spinning/shreedharspinners/SSL21",
+      "moneycontrol:company_code:16030611"
+    ],
     "board_type": "SME Board",
     "company_name": "Shreedhar Spinners Limited",
     "issue_type": "IPO",
     "slug": "shreedhar-spinners-6e5dde",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "SHREEDHAR"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 774,
+    "current_price_paise": 5710
+  },
   "market_path": "issues/shreedhar-spinners-6e5dde/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 5300,
+    "issue_size_paise": 30676400000,
     "price_band_lower_paise": 5100,
     "price_band_upper_paise": 5300
   },
@@ -122,27 +155,27 @@
       "peers": [
         {
           "company_name": "SHREEDHAR",
-          "market_cap": "114",
+          "market_cap": "0",
           "net_sales_cr": 146,
           "pat_cr": 6.17,
-          "pb": 3.83,
-          "pe": 18.47
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "ABCOTS",
-          "market_cap": "493",
+          "market_cap": "488",
           "net_sales_cr": 298,
           "pat_cr": 10.21,
-          "pb": 3.22,
-          "pe": 37.81
+          "pb": 3.19,
+          "pe": 37.43
         },
         {
           "company_name": "SIDDHICOTS",
-          "market_cap": "71",
+          "market_cap": "73",
           "net_sales_cr": 724,
           "pat_cr": 13.08,
           "pb": null,
-          "pe": 7.34
+          "pe": 7.54
         }
       ],
       "revenue_mix": {
@@ -184,35 +217,45 @@
         "market_cap": "₹113",
         "pb": 3.82,
         "pe": 18.41,
-        "sector_pb": 1.25,
-        "sector_pe": 19.38
+        "sector_pb": 1.21,
+        "sector_pe": 19.13
       }
     }
   },
   "research_path": "issues/shreedhar-spinners-6e5dde/research.json",
   "schema_version": "3.0.0",
   "slug": "shreedhar-spinners-6e5dde",
-  "source_dataset_version": "v2026.06.30-0550",
+  "source_dataset_version": "v2026.07.01-0609",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-01T06:07:22+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-06-30T05:44:57+00:00",
+      "snapshot_at": "2026-07-01T06:03:46+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-06-30T05:45:04+00:00",
+      "snapshot_at": "2026-07-01T06:03:55+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "6.1700"
+  },
   "subscription_path": "issues/shreedhar-spinners-6e5dde/subscription.json",
   "timeline": {
     "close_date": "2026-06-25",
+    "listing_date": "2026-07-01",
     "open_date": "2026-06-23"
   },
   "url_path": "/ipos/shreedhar-spinners/"

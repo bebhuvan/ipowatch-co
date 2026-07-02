@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.01-0609",
+  "dataset_version": "v3.2026.07.02-0537",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE1SJO01012_30JUN2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_30092025193050_DRHP.pdf",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +120,7 @@
     }
   },
   "filings_path": "issues/advit-jewels-c81f5b/filings.json",
-  "generated_at": "2026-07-01T06:09:07+00:00",
+  "generated_at": "2026-07-02T05:37:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,8 +135,11 @@
     "symbol": "RAMBHAJO"
   },
   "listing_performance": {
-    "current_gain_bps": 2877,
-    "current_price_paise": 17770
+    "current_gain_bps": 3004,
+    "current_price_paise": 17946,
+    "listing_close_price_paise": 17815,
+    "listing_gain_bps": 2909,
+    "listing_open_price_paise": 18890
   },
   "market_path": "issues/advit-jewels-c81f5b/market.json",
   "parties": {},
@@ -178,39 +193,39 @@
       "peers": [
         {
           "company_name": "RAMBHAJO",
-          "market_cap": "0",
+          "market_cap": "816",
           "net_sales_cr": 124,
           "pat_cr": 25.37,
           "pb": null,
-          "pe": null
+          "pe": 32.17
         },
         {
           "company_name": "BLUESTONE",
-          "market_cap": "8,230",
+          "market_cap": "8,644",
           "net_sales_cr": 1770,
           "pat_cr": -221.67,
-          "pb": 4.62,
-          "pe": 560.37
+          "pb": 4.8,
+          "pe": 582.61
         },
         {
           "company_name": "RBZJEWEL",
-          "market_cap": "532",
+          "market_cap": "546",
           "net_sales_cr": 530,
           "pat_cr": 38.8,
-          "pb": 1.84,
-          "pe": 10.06
+          "pb": 1.82,
+          "pe": 9.96
         },
         {
           "company_name": "RADHIKAJWE",
-          "market_cap": "645",
+          "market_cap": "647",
           "net_sales_cr": 587,
           "pat_cr": 60.12,
-          "pb": 1.64,
-          "pe": 8.74
+          "pb": 1.63,
+          "pe": 8.65
         },
         {
           "company_name": "EIGHTY",
-          "market_cap": "41",
+          "market_cap": "43",
           "net_sales_cr": 109,
           "pat_cr": 1.85,
           "pb": null,
@@ -281,7 +296,7 @@
         "market_cap": "₹632",
         "pb": 7.56,
         "pe": 24.92,
-        "sector_pb": 1.77,
+        "sector_pb": 1.78,
         "sector_pe": 14.38
       }
     }
@@ -289,47 +304,54 @@
   "research_path": "issues/advit-jewels-c81f5b/research.json",
   "schema_version": "3.0.0",
   "slug": "advit-jewels-c81f5b",
-  "source_dataset_version": "v2026.07.01-0609",
+  "source_dataset_version": "v2026.07.02-0537",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-01T06:03:59+00:00",
+      "snapshot_at": "2026-07-02T05:31:55+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-07-01T06:04:15+00:00",
+      "snapshot_at": "2026-07-02T05:32:10+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-07-01T06:07:22+00:00",
+      "snapshot_at": "2026-07-02T05:35:29+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-01T06:03:46+00:00",
+      "snapshot_at": "2026-07-02T05:31:39+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-07-01T15:22:47+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-01T06:03:54+00:00",
+      "snapshot_at": "2026-07-02T05:31:47+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-07-01T06:03:56+00:00",
+      "snapshot_at": "2026-07-02T05:31:49+00:00",
       "source": "nse",
       "url": null
     }

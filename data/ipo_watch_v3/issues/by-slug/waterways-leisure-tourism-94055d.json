@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.01-0609",
+  "dataset_version": "v3.2026.07.02-0537",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0LZF01013_30JUN2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_14062025231659_Annexure1DRHP.pdf",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +120,7 @@
     }
   },
   "filings_path": "issues/waterways-leisure-tourism-94055d/filings.json",
-  "generated_at": "2026-07-01T06:09:07+00:00",
+  "generated_at": "2026-07-02T05:37:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,8 +135,11 @@
     "symbol": "CORDELIA"
   },
   "listing_performance": {
-    "current_gain_bps": -1226,
-    "current_price_paise": 70895
+    "current_gain_bps": -1731,
+    "current_price_paise": 66810,
+    "listing_close_price_paise": 66735,
+    "listing_gain_bps": -1741,
+    "listing_open_price_paise": 68100
   },
   "market_path": "issues/waterways-leisure-tourism-94055d/market.json",
   "parties": {},
@@ -178,43 +193,43 @@
       "peers": [
         {
           "company_name": "CORDELIA",
-          "market_cap": "0",
+          "market_cap": "4,831",
           "net_sales_cr": 579,
           "pat_cr": 52.14,
-          "pb": null,
-          "pe": null
+          "pb": 60.23,
+          "pe": 92.65
         },
         {
           "company_name": "CHALET",
-          "market_cap": "17,721",
+          "market_cap": "17,935",
           "net_sales_cr": 1717,
           "pat_cr": 142,
-          "pb": 4.82,
-          "pe": 27.65
+          "pb": 4.85,
+          "pe": 27.8
         },
         {
           "company_name": "LEMONTREE",
-          "market_cap": "9,170",
+          "market_cap": "9,376",
           "net_sales_cr": 1286,
           "pat_cr": 196,
-          "pb": 6.64,
-          "pe": 40.69
+          "pb": 6.74,
+          "pe": 41.29
         },
         {
           "company_name": "JUNIPER",
-          "market_cap": "4,315",
+          "market_cap": "4,317",
           "net_sales_cr": 944,
           "pat_cr": 71.29,
-          "pb": 1.5,
-          "pe": 30.45
+          "pb": 1.51,
+          "pe": 30.48
         },
         {
           "company_name": "SAMHI",
-          "market_cap": "3,876",
+          "market_cap": "3,856",
           "net_sales_cr": 1130,
           "pat_cr": 85.5,
-          "pb": 1.78,
-          "pe": 7.72
+          "pb": 1.77,
+          "pe": 7.67
         }
       ],
       "revenue_mix": {
@@ -311,55 +326,62 @@
         "market_cap": "₹5,849",
         "pb": 72.93,
         "pe": 112.18,
-        "sector_pb": 2.19,
-        "sector_pe": 20.85
+        "sector_pb": 2.21,
+        "sector_pe": 20.64
       }
     }
   },
   "research_path": "issues/waterways-leisure-tourism-94055d/research.json",
   "schema_version": "3.0.0",
   "slug": "waterways-leisure-tourism-94055d",
-  "source_dataset_version": "v2026.07.01-0609",
+  "source_dataset_version": "v2026.07.02-0537",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-01T06:03:59+00:00",
+      "snapshot_at": "2026-07-02T05:31:55+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-07-01T06:04:15+00:00",
+      "snapshot_at": "2026-07-02T05:32:10+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-07-01T06:07:22+00:00",
+      "snapshot_at": "2026-07-02T05:35:29+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-01T06:03:46+00:00",
+      "snapshot_at": "2026-07-02T05:31:39+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-07-01T15:22:47+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-01T06:03:54+00:00",
+      "snapshot_at": "2026-07-02T05:31:47+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-07-01T06:03:56+00:00",
+      "snapshot_at": "2026-07-02T05:31:49+00:00",
       "source": "nse",
       "url": null
     }

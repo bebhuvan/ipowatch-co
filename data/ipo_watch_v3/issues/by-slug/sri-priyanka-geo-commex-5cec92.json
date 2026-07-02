@@ -5,16 +5,11 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.01-0609",
+  "dataset_version": "v3.2026.07.02-0537",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6098_06012026185806.zip"
   },
@@ -23,6 +18,10 @@
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -43,22 +42,50 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
+    },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "timeline.listing_date": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     }
   },
   "filings_path": "issues/sri-priyanka-geo-commex-5cec92/filings.json",
-  "generated_at": "2026-07-01T06:09:07+00:00",
+  "generated_at": "2026-07-02T05:37:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:specialty-miningmetals/sripriyankageocommex/SPGCL",
+      "moneycontrol:company_code:15110531"
+    ],
     "board_type": "SME Board",
     "company_name": "Sri Priyanka Geo Commex Limited",
     "issue_type": "IPO",
     "slug": "sri-priyanka-geo-commex-5cec92",
-    "status": "Filed"
+    "status": "Listed",
+    "symbol": "SPGCL"
   },
   "listing_performance": {},
   "market_path": "issues/sri-priyanka-geo-commex-5cec92/market.json",
   "parties": {},
-  "pricing": {},
+  "pricing": {
+    "issue_price_paise": 21200,
+    "issue_size_paise": 94509600000
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/sri-priyanka-geo-commex-5cec92/prospectus_facts.json",
   "provenance_path": "issues/sri-priyanka-geo-commex-5cec92/provenance.json",
@@ -111,11 +138,11 @@
         },
         {
           "company_name": "GMDCLTD",
-          "market_cap": "18,563",
+          "market_cap": "19,419",
           "net_sales_cr": 2850,
           "pat_cr": 685,
-          "pb": 2.62,
-          "pe": 19.4
+          "pb": 2.75,
+          "pe": 20.3
         }
       ],
       "revenue_mix": {
@@ -238,25 +265,36 @@
         "pb": 6.74,
         "pe": 35.05,
         "sector_pb": 1.15,
-        "sector_pe": 24.94
+        "sector_pe": 25.22
       }
     }
   },
   "research_path": "issues/sri-priyanka-geo-commex-5cec92/research.json",
   "schema_version": "3.0.0",
   "slug": "sri-priyanka-geo-commex-5cec92",
-  "source_dataset_version": "v2026.07.01-0609",
+  "source_dataset_version": "v2026.07.02-0537",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-02T05:35:29+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-07-01T06:03:55+00:00",
+      "snapshot_at": "2026-07-02T05:31:48+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "0.3200"
+  },
   "subscription_path": "issues/sri-priyanka-geo-commex-5cec92/subscription.json",
-  "timeline": {},
+  "timeline": {
+    "listing_date": "2026-07-02"
+  },
   "url_path": "/ipos/sri-priyanka-geo-commex/"
 }

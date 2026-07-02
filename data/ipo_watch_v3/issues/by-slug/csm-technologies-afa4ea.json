@@ -9,20 +9,30 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.01-0609",
+  "dataset_version": "v3.2026.07.02-0537",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0ZK601013_01JUL2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_26092025060120_CSMTechLtdDRHP.pdf",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/358989/IPO%20Open/RedHerringProspectussigned_20260622135803.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE0ZK601013_01JUL2026.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/CSMTechnologiesLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -33,6 +43,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -52,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -60,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,25 +108,29 @@
     }
   },
   "filings_path": "issues/csm-technologies-afa4ea/filings.json",
-  "generated_at": "2026-07-01T06:09:07+00:00",
+  "generated_at": "2026-07-02T05:37:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:12166095",
-      "bse:prior_id:247156",
-      "bse:createdby:358989"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/csm-technologies-ltd/csm/544806/"
     ],
     "board_type": "Main Board",
     "company_name": "CSM Technologies Limited",
+    "isin": "INE0ZK601013",
     "issue_type": "IPO",
     "slug": "csm-technologies-afa4ea",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "CSM"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -500,
+    "current_price_paise": 10735
+  },
   "market_path": "issues/csm-technologies-afa4ea/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 11300,
+    "issue_size_paise": 145781300000,
     "price_band_lower_paise": 10700,
     "price_band_upper_paise": 11300
   },
@@ -125,7 +167,7 @@
         ]
       },
       "isin": "INE0ZK601013",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "csm technologies",
       "offer_split": {
         "fresh_issue_percent": "100%",
@@ -136,43 +178,43 @@
       "peers": [
         {
           "company_name": "CSM",
-          "market_cap": "583",
+          "market_cap": "0",
           "net_sales_cr": 199,
           "pat_cr": 14.09,
-          "pb": 6.32,
-          "pe": 41.39
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "TRIGYN",
-          "market_cap": "157",
+          "market_cap": "159",
           "net_sales_cr": 898,
           "pat_cr": 11.77,
           "pb": 0.2,
-          "pe": 79.47
+          "pe": 80.26
         },
         {
           "company_name": "ADSL",
-          "market_cap": "706",
+          "market_cap": "711",
           "net_sales_cr": 807,
           "pat_cr": 32.11,
-          "pb": 1.18,
-          "pe": 25.09
+          "pb": 1.16,
+          "pe": 24.67
         },
         {
           "company_name": "DEVIT",
-          "market_cap": "145",
+          "market_cap": "160",
           "net_sales_cr": 170,
           "pat_cr": 14.87,
-          "pb": 1.47,
-          "pe": 2.12
+          "pb": 1.46,
+          "pe": 2.11
         },
         {
           "company_name": "SILVERTUC",
-          "market_cap": "2,295",
+          "market_cap": "2,280",
           "net_sales_cr": 288,
           "pat_cr": 22.2,
-          "pb": 13.84,
-          "pe": 65.72
+          "pb": 13.44,
+          "pe": 63.82
         }
       ],
       "revenue_mix": {
@@ -215,41 +257,72 @@
         "pb": 6.32,
         "pe": 41.4,
         "sector_pb": 2.49,
-        "sector_pe": 22.4
+        "sector_pe": 23.53
       }
     }
   },
   "research_path": "issues/csm-technologies-afa4ea/research.json",
   "schema_version": "3.0.0",
   "slug": "csm-technologies-afa4ea",
-  "source_dataset_version": "v2026.07.01-0609",
+  "source_dataset_version": "v2026.07.02-0537",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-01T06:03:59+00:00",
+      "snapshot_at": "2026-07-02T05:31:55+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-07-02T05:32:10+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-02T05:35:29+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-01T06:03:46+00:00",
+      "snapshot_at": "2026-07-02T05:31:39+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-01T06:03:54+00:00",
+      "snapshot_at": "2026-07-02T05:31:47+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_equity",
+      "snapshot_at": "2026-07-02T05:31:47+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-07-02T05:31:49+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.3600"
+  },
   "subscription_path": "issues/csm-technologies-afa4ea/subscription.json",
   "timeline": {
     "close_date": "2026-06-29",
+    "listing_date": "2026-07-02",
     "open_date": "2026-06-24"
   },
   "url_path": "/ipos/csm-technologies/"

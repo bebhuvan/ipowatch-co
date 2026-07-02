@@ -9,13 +9,23 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.01-0609",
+  "dataset_version": "v3.2026.07.02-0537",
   "documents": {
-    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6815_17032026161959.zip"
+    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6815_17032026161959.zip",
+    "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/ShreedharSpinnersLimited_PROSP.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/ShreedharSpinnersLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -47,7 +57,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
     },
@@ -85,7 +103,7 @@
     }
   },
   "filings_path": "issues/shreedhar-spinners-6e5dde/filings.json",
-  "generated_at": "2026-07-01T06:09:07+00:00",
+  "generated_at": "2026-07-02T05:37:09+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -100,8 +118,9 @@
     "symbol": "SHREEDHAR"
   },
   "listing_performance": {
-    "current_gain_bps": 774,
-    "current_price_paise": 5710
+    "current_gain_bps": 1311,
+    "current_price_paise": 5995,
+    "listing_gain_bps": 264
   },
   "market_path": "issues/shreedhar-spinners-6e5dde/market.json",
   "parties": {},
@@ -155,27 +174,27 @@
       "peers": [
         {
           "company_name": "SHREEDHAR",
-          "market_cap": "0",
+          "market_cap": "122",
           "net_sales_cr": 146,
           "pat_cr": 6.17,
-          "pb": null,
-          "pe": null
+          "pb": 4.1,
+          "pe": 19.84
         },
         {
           "company_name": "ABCOTS",
-          "market_cap": "488",
+          "market_cap": "483",
           "net_sales_cr": 298,
           "pat_cr": 10.21,
-          "pb": 3.19,
-          "pe": 37.43
+          "pb": 3.15,
+          "pe": 37.08
         },
         {
           "company_name": "SIDDHICOTS",
-          "market_cap": "73",
+          "market_cap": "71",
           "net_sales_cr": 724,
           "pat_cr": 13.08,
           "pb": null,
-          "pe": 7.54
+          "pe": 7.34
         }
       ],
       "revenue_mix": {
@@ -217,34 +236,41 @@
         "market_cap": "₹113",
         "pb": 3.82,
         "pe": 18.41,
-        "sector_pb": 1.21,
-        "sector_pe": 19.13
+        "sector_pb": 1.2,
+        "sector_pe": 18.64
       }
     }
   },
   "research_path": "issues/shreedhar-spinners-6e5dde/research.json",
   "schema_version": "3.0.0",
   "slug": "shreedhar-spinners-6e5dde",
-  "source_dataset_version": "v2026.07.01-0609",
+  "source_dataset_version": "v2026.07.02-0537",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-07-01T06:07:22+00:00",
+      "snapshot_at": "2026-07-02T05:35:29+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-01T06:03:46+00:00",
+      "snapshot_at": "2026-07-02T05:31:39+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-07-02T05:31:49+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-07-01T06:03:55+00:00",
+      "snapshot_at": "2026-07-02T05:31:48+00:00",
       "source": "nse",
       "url": null
     }

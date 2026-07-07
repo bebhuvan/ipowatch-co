@@ -1,24 +1,6 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {
-    "demand_schedule": [
-      {
-        "cumulative_quantity": null,
-        "price_paise": 13400,
-        "quantity": 4523000
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 13500,
-        "quantity": 4519000
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 14100,
-        "quantity": 4517000
-      }
-    ]
-  },
+  "book_building": {},
   "core_path": "issues/seemax-resources-14a54b/core.json",
   "data_quality": {
     "errors": [],
@@ -27,14 +9,10 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.02-0537",
+  "dataset_version": "v3.2026.07.07-0543",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
-    "book_building.demand_schedule": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -59,98 +37,58 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
-    "parties.lead_managers": {
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "parties.registrar": {
+    "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "parties.sponsor_bank": {
+    "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "pricing.face_value_paise": {
+    "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.issue_size_shares": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_upper_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "moneycontrol"
     },
     "subscription.overall_times_x": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "moneycontrol"
     },
-    "timeline.close_date": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "timeline.open_date": {
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     }
   },
   "filings_path": "issues/seemax-resources-14a54b/filings.json",
-  "generated_at": "2026-07-02T05:37:09+00:00",
+  "generated_at": "2026-07-07T05:43:15+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:ipo_no:7808",
-      "bse:scrip_code:4662"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/seemax-resources-ltd/seemax/544813/"
     ],
     "board_type": "SME Board",
     "company_name": "Seemax Resources Limited",
     "issue_type": "IPO",
     "slug": "seemax-resources-14a54b",
-    "status": "Open"
+    "status": "Listed",
+    "symbol": "SRL02"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -2397,
+    "current_price_paise": 10720
+  },
   "market_path": "issues/seemax-resources-14a54b/market.json",
-  "parties": {
-    "lead_managers": [
-      "Wealth Mine Networks Limited"
-    ],
-    "registrar": "Cameo Corporate Services Limited",
-    "sponsor_bank": "AXIS BANK"
-  },
+  "parties": {},
   "pricing": {
-    "face_value_paise": 1000,
-    "issue_size_shares": 1400000,
-    "market_lot": 1000,
-    "min_bid_qty": 2000,
-    "price_band_lower_paise": 13400,
-    "price_band_upper_paise": 14100,
-    "tick_size_paise": 100
+    "issue_price_paise": 14100,
+    "issue_size_paise": 19740000000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/seemax-resources-14a54b/prospectus_facts.json",
@@ -196,19 +134,19 @@
       "peers": [
         {
           "company_name": "SEEMAX",
-          "market_cap": "62",
+          "market_cap": "0",
           "net_sales_cr": 14.42,
           "pat_cr": 2.24,
-          "pb": 7.79,
-          "pe": 27.71
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "SANGHVIMOV",
-          "market_cap": "3,832",
+          "market_cap": "3,953",
           "net_sales_cr": 782,
           "pat_cr": 156,
-          "pb": 2.92,
-          "pe": 20.8
+          "pb": 3.02,
+          "pe": 21.45
         }
       ],
       "revenue_mix": {
@@ -287,205 +225,37 @@
         "market_cap": "₹62.04",
         "pb": 7.79,
         "pe": 27.73,
-        "sector_pb": 2.95,
-        "sector_pe": 27.51
+        "sector_pb": 2.9,
+        "sector_pe": 27.91
       }
     }
   },
   "research_path": "issues/seemax-resources-14a54b/research.json",
   "schema_version": "3.0.0",
   "slug": "seemax-resources-14a54b",
-  "source_dataset_version": "v2026.07.02-0537",
+  "source_dataset_version": "v2026.07.07-0543",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_7808",
-      "snapshot_at": "2026-07-02T05:37:00+00:00",
+      "endpoint": "ipo_performance_sme_2026",
+      "snapshot_at": "2026-07-07T05:38:04+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "consolidated_bid_details_7808",
-      "snapshot_at": "2026-07-02T05:37:01+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_new_7808",
-      "snapshot_at": "2026-07-02T05:37:01+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_7808",
-      "snapshot_at": "2026-07-02T05:37:00+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue",
-      "snapshot_at": "2026-07-02T05:31:50+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue_details",
-      "snapshot_at": "2026-07-02T05:31:51+00:00",
-      "source": "bse",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-07T05:41:21+00:00",
+      "source": "moneycontrol",
       "url": null
     }
   ],
   "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 1203000,
-            "shares_offered": 70000,
-            "times_x": "17.1857"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": 1203000,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 2765000,
-            "shares_offered": 730000,
-            "times_x": "3.7877"
-          },
-          {
-            "category": "retail",
-            "shares_bid": 910000,
-            "shares_offered": 600000,
-            "times_x": "1.5167"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "3.4843"
-      }
-    },
-    "consolidated": {
-      "basis": "exchange_published",
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 1203000,
-          "shares_offered": 70000,
-          "times_x": "17.1857"
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": 1203000,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 2765000,
-          "shares_offered": 730000,
-          "times_x": "3.7877"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 1662000,
-          "shares_offered": 440000,
-          "times_x": "3.7773"
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 1103000,
-          "shares_offered": 220000,
-          "times_x": "5.0136"
-        },
-        {
-          "category": "retail",
-          "shares_bid": 910000,
-          "shares_offered": 600000,
-          "times_x": "1.5167"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "policyholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": "3.4843"
-    },
-    "overall_times_x": "3.4843"
+    "overall_times_x": "3.4800"
   },
   "subscription_path": "issues/seemax-resources-14a54b/subscription.json",
   "timeline": {
-    "close_date": "2026-07-02",
-    "open_date": "2026-06-30"
+    "listing_date": "2026-07-06"
   },
   "url_path": "/ipos/seemax-resources/"
 }

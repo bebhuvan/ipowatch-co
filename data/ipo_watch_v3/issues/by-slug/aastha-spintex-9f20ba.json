@@ -9,20 +9,30 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.02-0537",
+  "dataset_version": "v3.2026.07.07-0543",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE2FMX01012_03JUL2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_30092025233301_AasthaSpintexDRHP.pdf",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/374702/IPO%20Open/6RHP_20260624183127.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE2FMX01012_03JUL2026.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/AasthaSpintexLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -33,6 +43,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -52,6 +66,30 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -60,7 +98,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,25 +116,31 @@
     }
   },
   "filings_path": "issues/aastha-spintex-9f20ba/filings.json",
-  "generated_at": "2026-07-02T05:37:09+00:00",
+  "generated_at": "2026-07-07T05:43:15+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:75829491",
-      "bse:prior_id:247663",
-      "bse:createdby:374702"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/aastha-spintex-ltd/aastha/544808/"
     ],
     "board_type": "Main Board",
     "company_name": "Aastha Spintex Limited",
+    "isin": "INE2FMX01012",
     "issue_type": "IPO",
     "slug": "aastha-spintex-9f20ba",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "AASTHA"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -467,
+    "current_price_paise": 12965,
+    "listing_close_price_paise": 13645,
+    "listing_gain_bps": 33
+  },
   "market_path": "issues/aastha-spintex-9f20ba/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 13600,
+    "issue_size_paise": 221000000000,
     "price_band_lower_paise": 12500,
     "price_band_upper_paise": 13600
   },
@@ -125,7 +177,7 @@
         ]
       },
       "isin": "INE2FMX01012",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "aastha spintex",
       "offer_split": {
         "fresh_issue_percent": "100%",
@@ -136,35 +188,35 @@
       "peers": [
         {
           "company_name": "AASTHA",
-          "market_cap": "600",
+          "market_cap": "602",
           "net_sales_cr": 351,
           "pat_cr": 23.5,
-          "pb": 3.92,
-          "pe": 25.53
+          "pb": null,
+          "pe": 25.63
         },
         {
           "company_name": "AMBIKCO",
-          "market_cap": "994",
+          "market_cap": "987",
           "net_sales_cr": 702,
           "pat_cr": 65.2,
-          "pb": 1.04,
-          "pe": 13.89
+          "pb": 1.03,
+          "pe": 13.79
         },
         {
           "company_name": "LAGNAM",
-          "market_cap": "141",
+          "market_cap": "139",
           "net_sales_cr": 605,
           "pat_cr": 12.85,
-          "pb": 1.04,
-          "pe": 9.81
+          "pb": 1.03,
+          "pe": 9.66
         },
         {
           "company_name": "PASHUPATI",
-          "market_cap": "1,413",
+          "market_cap": "1,385",
           "net_sales_cr": 637,
           "pat_cr": 12.88,
-          "pb": 8.61,
-          "pe": 136.01
+          "pb": 8.44,
+          "pe": 133.27
         }
       ],
       "revenue_mix": {
@@ -240,49 +292,66 @@
         "market_cap": "₹600",
         "pb": 3.92,
         "pe": 25.55,
-        "sector_pb": 1.2,
-        "sector_pe": 18.64
+        "sector_pb": 1.23,
+        "sector_pe": 19.41
       }
     }
   },
   "research_path": "issues/aastha-spintex-9f20ba/research.json",
   "schema_version": "3.0.0",
   "slug": "aastha-spintex-9f20ba",
-  "source_dataset_version": "v2026.07.02-0537",
+  "source_dataset_version": "v2026.07.07-0543",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-02T05:31:55+00:00",
+      "snapshot_at": "2026-07-07T05:37:50+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-02T05:31:39+00:00",
-      "source": "nse",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-07-07T05:38:04+00:00",
+      "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-07-02T05:31:38+00:00",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-07T05:41:21+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_public_past_issues",
+      "snapshot_at": "2026-07-07T05:37:37+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-02T05:31:47+00:00",
+      "snapshot_at": "2026-07-07T05:37:45+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-07-07T05:37:47+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "4.6400"
+  },
   "subscription_path": "issues/aastha-spintex-9f20ba/subscription.json",
   "timeline": {
     "close_date": "2026-07-01",
+    "listing_date": "2026-07-06",
     "open_date": "2026-06-29"
   },
   "url_path": "/ipos/aastha-spintex/"

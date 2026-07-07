@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.07.02-0552",
-  "estimated_cost_usd": 0.0009486400000000002,
+  "dataset_version": "v2026.07.07-0552",
+  "estimated_cost_usd": 0.0009051,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-02T05:52:02+00:00",
+  "generated_at": "2026-07-07T05:52:43+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,49 +24,35 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif font throughout; single accent colour (e.g., deep blue).",
-      "Tables: hairline rules, alternating row shading optional.",
-      "Pull-quote: larger serif italic, accent colour left border.",
-      "Industry snapshot: stat strip with three numbers, growth bars proportional to value, split bar for organised/unorganised.",
-      "Sidebar: boxed with light background, no icon."
+      "Use a single accent colour (e.g., #003366) for table headers, pull-quote rule, and sidebar border.",
+      "Financials table: right-align all number columns; use parentheses for negative values.",
+      "Industry snapshot: render as a three-stat strip with a proportion split bar below; no growth bars since only two CAGR figures are available.",
+      "Pull-quote: set in a larger serif size (e.g., 18pt) with a hairline rule above and below, centred or left-aligned with a vertical rule.",
+      "Sidebar: box with a thin border, background tint at 5% of accent colour, body text at 10pt."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "India's specialty chemicals industry was worth about ₹1,00,000 crore in FY2017, and it is growing.",
-      "growth_bars": [
-        {
-          "value": "₹1,00,000 cr",
-          "width_pct": 80,
-          "year": "FY2017"
-        },
-        {
-          "projected": true,
-          "value": "₹1,40,000 cr (approx)",
-          "width_pct": 100,
-          "year": "Projected"
-        }
-      ],
-      "growth_bars_label": "Specialty chemicals market growth",
-      "growth_bars_source": "DRHP industry report, p.92-94",
-      "rationale": "Provides scannable industry context: size, growth, fragmentation.",
+      "after_paragraph": "The Indian specialty chemicals market (excluding agrochemicals and dyestuff) was estimated at approximately ₹1,000 billion in FY2017",
+      "growth_bars": null,
+      "rationale": "Gives the reader a quick, visual sense of the market size, growth trajectory, and fragmentation — the three most important industry facts for evaluating a small-cap specialty chemicals IPO.",
       "split_bar": {
         "left_label": "Organised",
-        "left_pct": 25,
+        "left_pct": 28,
         "right_label": "Unorganised"
       },
       "split_bar_label": "Market structure (FY2017)",
-      "split_bar_note": "Small and medium enterprises hold 70–75% of the market. [^drhp-p94]",
+      "split_bar_note": "Small and medium enterprises hold 70–75% market share. [^drhp-p94]",
       "stats": [
         {
-          "desc": "Specialty chemicals market size (FY2017)",
-          "val": "₹1,00,000 cr"
+          "desc": "Indian specialty chemicals market\nFY2017",
+          "val": "₹1,000B"
         },
         {
-          "desc": "Historical CAGR (FY2014–FY2017)",
+          "desc": "Historical CAGR\nFY2014–FY2017",
           "val": "10–12%"
         },
         {
-          "desc": "Projected CAGR (next few years)",
+          "desc": "Projected CAGR\nnext few years",
           "val": "12–14%"
         }
       ]
@@ -74,97 +60,76 @@
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration is high.",
-        "quote": "In FY2015, FY2016, and FY2017, the top 10 customers accounted for approximately 59%, 57%, and 59% of revenue from operations, respectively.",
-        "rationale": "Highlights customer concentration risk with specific percentages."
+        "after_paragraph": "The company has not entered into long-term or definitive agreements with its customers",
+        "quote": "The company reported negative cash flows from operations of ₹349.75 lakh in FY2017, a year when it reported a profit of ₹174.82 lakh.",
+        "rationale": "The single most striking number in the filing — profit without cash — and the report's strongest risk signal."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The DRHP does not disclose the number of shares, price band, or whether the issue includes a fresh issue or offer for sale. The primary object is to fund a new manufacturing facility at GIDC Waghodia, Vadodara, Gujarat. [^drhp-p75] Secondary objects include general corporate purposes and listing on NSE EMERGE. [^drhp-p75] Lead manager: Vivro Financial Services Private Limited. [^drhp-p54] Registrar: Link Intime India Private Limited. [^drhp-p55]",
-        "rationale": "Summarises key offer details that are scattered in the draft.",
+        "body_markdown": "**Issue type:** Fresh issue of equity shares (no offer for sale disclosed). [^drhp-p75]\n\n**Listing:** NSE EMERGE (SME platform). [^drhp-p75]\n\n**Objects:** Capital expenditure for a new manufacturing facility at GIDC Waghodia, Vadodara; general corporate purposes; listing benefits. [^drhp-p75]\n\n**Lead manager:** Vivro Financial Services Private Limited. [^drhp-p54]\n\n**Registrar:** Link Intime India Private Limited. [^drhp-p55]\n\n**Price band and number of shares:** Not yet disclosed; will appear in the RHP.",
+        "rationale": "Pulls together all offer-related facts from the draft into a single reference box, saving the reader from hunting through paragraphs.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The company's financial statements, restated for the DRHP, cover five full financial years",
+        "after_paragraph": "The company turned profitable from FY2015. Restated profit after tax (PAT)",
         "columns": [
           "Period",
-          "PAT (₹ crore)",
-          "Basic EPS (₹)",
-          "Operating Cash Flow (₹ crore)"
+          "PAT (₹ lakh)",
+          "Cash Flow from Operations (₹ lakh)",
+          "Total Assets (₹ lakh)",
+          "Basic EPS (₹)"
         ],
-        "footnote": "Source: DRHP pages 49, 177, 50. [^drhp-p49] [^drhp-p177] [^drhp-p50]",
-        "rationale": "Core financials table; shows profitability turnaround and cash flow volatility.",
+        "footnote": "Source: DRHP pages 49, 50, 175, 177",
+        "rationale": "Consolidates the five key financial series into one scannable table; the cash-flow divergence in FY2017 is the report's central financial risk.",
         "rows": [
           [
             "FY2013",
-            "(0.27)",
-            "(0.45)",
-            "2.01"
+            "(27.40)",
+            "200.97",
+            "3,018.66",
+            "(0.45)"
           ],
           [
             "FY2014",
-            "(0.12)",
-            "(0.20)",
-            "1.28"
+            "(12.17)",
+            "127.73",
+            "2,679.38",
+            "(0.20)"
           ],
           [
             "FY2015",
-            "1.50",
-            "2.47",
-            "4.22"
+            "149.58",
+            "422.36",
+            "2,592.53",
+            "2.47"
           ],
           [
             "FY2016",
-            "0.90",
-            "1.46",
-            "8.03"
+            "90.18",
+            "802.59",
+            "2,767.21",
+            "1.46"
           ],
           [
             "FY2017",
-            "1.75",
-            "2.43",
-            "(3.50)"
+            "174.82",
+            "(349.75)",
+            "3,273.96",
+            "2.43"
           ],
           [
-            "H1 FY2018",
-            "1.33",
-            "1.48",
-            "1.25"
+            "Sep 2017 (6 months)",
+            "132.75",
+            "124.86",
+            "3,424.96",
+            "1.48"
           ]
         ],
         "title": "Key financial metrics"
-      },
-      {
-        "after_paragraph": "The company's shareholding structure is extremely concentrated.",
-        "columns": [
-          "Shareholder Category",
-          "Shares Held",
-          "% of Pre-Issue Capital"
-        ],
-        "footnote": "Source: DRHP pages 155 and 162. [^drhp-p155] [^drhp-p162]",
-        "rationale": "Shows extreme concentration; public holds zero pre-issue shares.",
-        "rows": [
-          [
-            "Promoters",
-            "89,48,270",
-            "99.76%"
-          ],
-          [
-            "Promoter Group (excluding Promoters)",
-            "21,510",
-            "0.24%"
-          ],
-          [
-            "Public",
-            "0",
-            "0.00%"
-          ]
-        ],
-        "title": "Pre-issue shareholding pattern"
       }
     ],
     "timeline": null

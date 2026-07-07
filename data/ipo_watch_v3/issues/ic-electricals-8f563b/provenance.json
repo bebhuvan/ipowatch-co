@@ -1,8 +1,16 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/provenance.schema.json",
-  "dataset_version": "v3.2026.07.02-0537",
+  "dataset_version": "v3.2026.07.07-0543",
   "field_provenance": {
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.rhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -30,6 +38,58 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "parties.lead_managers": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "parties.registrar": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "parties.sponsor_bank": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.market_lot": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.tick_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "subscription.by_exchange.nse": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -42,34 +102,57 @@
   "findings": {
     "blocking": [],
     "info": [],
-    "review": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "review": []
   },
-  "generated_at": "2026-07-02T05:37:09+00:00",
+  "generated_at": "2026-07-07T05:43:15+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "ic-electricals-8f563b",
-  "source_dataset_version": "v2026.07.02-0537",
+  "source_dataset_version": "v2026.07.07-0543",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-07-02T05:31:38+00:00",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-07T05:41:21+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_current_issue",
+      "snapshot_at": "2026-07-07T05:37:36+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "bid_details_icelco_sme",
+      "snapshot_at": "2026-07-07T05:41:57+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_icelco",
+      "snapshot_at": "2026-07-07T05:41:58+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "issue_detail_icelco_sme",
+      "snapshot_at": "2026-07-07T05:41:57+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-07-02T05:31:48+00:00",
+      "snapshot_at": "2026-07-07T05:37:46+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "validation_state": "review"
+  "validation_state": "clean"
 }

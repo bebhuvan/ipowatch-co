@@ -1,24 +1,6 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {
-    "demand_schedule": [
-      {
-        "cumulative_quantity": null,
-        "price_paise": 8000,
-        "quantity": 6372800
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 8200,
-        "quantity": 6366400
-      },
-      {
-        "cumulative_quantity": null,
-        "price_paise": 8400,
-        "quantity": 6363200
-      }
-    ]
-  },
+  "book_building": {},
   "core_path": "issues/sampark-india-logistics-b80f4c/core.json",
   "data_quality": {
     "errors": [],
@@ -27,14 +9,10 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.02-0537",
+  "dataset_version": "v3.2026.07.07-0543",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
-    "book_building.demand_schedule": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -59,98 +37,58 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
-    "parties.lead_managers": {
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "parties.registrar": {
+    "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "parties.sponsor_bank": {
+    "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
-    "pricing.face_value_paise": {
+    "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.issue_size_shares": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.market_lot": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.min_bid_qty": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_lower_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.price_band_upper_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "pricing.tick_size_paise": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.by_exchange.bse": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "subscription.consolidated": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "moneycontrol"
     },
     "subscription.overall_times_x": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "moneycontrol"
     },
-    "timeline.close_date": {
-      "rule_id": "E.SRC.002",
-      "source": "bse"
-    },
-    "timeline.open_date": {
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     }
   },
   "filings_path": "issues/sampark-india-logistics-b80f4c/filings.json",
-  "generated_at": "2026-07-02T05:37:09+00:00",
+  "generated_at": "2026-07-07T05:43:15+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:ipo_no:7806",
-      "bse:scrip_code:4660"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/sampark-india-logistics-ltd/sill/544810/"
     ],
     "board_type": "SME Board",
     "company_name": "Sampark India Logistics Limited",
     "issue_type": "IPO",
     "slug": "sampark-india-logistics-b80f4c",
-    "status": "Open"
+    "status": "Listed",
+    "symbol": "SILL"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 1125,
+    "current_price_paise": 9345
+  },
   "market_path": "issues/sampark-india-logistics-b80f4c/market.json",
-  "parties": {
-    "lead_managers": [
-      "Finshore Management Services Limited"
-    ],
-    "registrar": "Maashitla Securities Private Limited",
-    "sponsor_bank": "KOTAK BANK"
-  },
+  "parties": {},
   "pricing": {
-    "face_value_paise": 1000,
-    "issue_size_shares": 3240000,
-    "market_lot": 1600,
-    "min_bid_qty": 3200,
-    "price_band_lower_paise": 8000,
-    "price_band_upper_paise": 8400,
-    "tick_size_paise": 100
+    "issue_price_paise": 8400,
+    "issue_size_paise": 27216000000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/sampark-india-logistics-b80f4c/prospectus_facts.json",
@@ -196,35 +134,35 @@
       "peers": [
         {
           "company_name": "SILL",
-          "market_cap": "103",
+          "market_cap": "0",
           "net_sales_cr": 200,
           "pat_cr": 8.76,
-          "pb": 2.34,
-          "pe": 11.76
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "OBCL",
-          "market_cap": "118",
+          "market_cap": "117",
           "net_sales_cr": 338,
           "pat_cr": 2.31,
-          "pb": 1.41,
+          "pb": 1.39,
           "pe": null
         },
         {
           "company_name": "GBLOGISTIC",
-          "market_cap": "25",
+          "market_cap": "24",
           "net_sales_cr": 205,
           "pat_cr": 8.81,
           "pb": null,
-          "pe": 2.77
+          "pe": 2.64
         },
         {
           "company_name": "VRLLOG",
-          "market_cap": "4,176",
+          "market_cap": "4,193",
           "net_sales_cr": 3160,
           "pat_cr": 182,
-          "pb": 3.66,
-          "pe": 17.63
+          "pb": 3.67,
+          "pe": 17.71
         },
         {
           "company_name": "DRSCARGO",
@@ -350,205 +288,37 @@
         "market_cap": "₹102",
         "pb": 2.34,
         "pe": 11.76,
-        "sector_pb": 1.53,
-        "sector_pe": 15.73
+        "sector_pb": 1.55,
+        "sector_pe": 15.75
       }
     }
   },
   "research_path": "issues/sampark-india-logistics-b80f4c/research.json",
   "schema_version": "3.0.0",
   "slug": "sampark-india-logistics-b80f4c",
-  "source_dataset_version": "v2026.07.02-0537",
+  "source_dataset_version": "v2026.07.07-0543",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "bid_details_7806",
-      "snapshot_at": "2026-07-02T05:36:56+00:00",
+      "endpoint": "ipo_performance_sme_2026",
+      "snapshot_at": "2026-07-07T05:38:04+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "consolidated_bid_details_7806",
-      "snapshot_at": "2026-07-02T05:36:57+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "consolidated_bid_details_new_7806",
-      "snapshot_at": "2026-07-02T05:36:58+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "issue_detail_7806",
-      "snapshot_at": "2026-07-02T05:36:56+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue",
-      "snapshot_at": "2026-07-02T05:31:50+00:00",
-      "source": "bse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue_details",
-      "snapshot_at": "2026-07-02T05:31:51+00:00",
-      "source": "bse",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-07T05:41:21+00:00",
+      "source": "moneycontrol",
       "url": null
     }
   ],
   "subscription": {
-    "by_exchange": {
-      "bse": {
-        "categories": [
-          {
-            "category": "qib",
-            "shares_bid": 955200,
-            "shares_offered": 614400,
-            "times_x": "1.5547"
-          },
-          {
-            "category": "qib_fii",
-            "shares_bid": 640000,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_dfi",
-            "shares_bid": 76800,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_mf",
-            "shares_bid": null,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "qib_other",
-            "shares_bid": 238400,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "nii",
-            "shares_bid": 4870400,
-            "shares_offered": 628800,
-            "times_x": "7.7455"
-          },
-          {
-            "category": "retail",
-            "shares_bid": 5011200,
-            "shares_offered": 1078400,
-            "times_x": "4.6469"
-          },
-          {
-            "category": "employee",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          },
-          {
-            "category": "shareholder",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
-          }
-        ],
-        "total_times_x": "4.6678"
-      }
-    },
-    "consolidated": {
-      "basis": "exchange_published",
-      "categories": [
-        {
-          "category": "qib",
-          "shares_bid": 955200,
-          "shares_offered": 614400,
-          "times_x": "1.5547"
-        },
-        {
-          "category": "qib_fii",
-          "shares_bid": 640000,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_dfi",
-          "shares_bid": 76800,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_mf",
-          "shares_bid": null,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "qib_other",
-          "shares_bid": 238400,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "nii",
-          "shares_bid": 4870400,
-          "shares_offered": 628800,
-          "times_x": "7.7455"
-        },
-        {
-          "category": "nii_gt_10l",
-          "shares_bid": 3336000,
-          "shares_offered": 310400,
-          "times_x": "10.7474"
-        },
-        {
-          "category": "nii_lte_10l",
-          "shares_bid": 1534400,
-          "shares_offered": 155200,
-          "times_x": "9.8866"
-        },
-        {
-          "category": "retail",
-          "shares_bid": 5011200,
-          "shares_offered": 1078400,
-          "times_x": "4.6469"
-        },
-        {
-          "category": "employee",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "shareholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        },
-        {
-          "category": "policyholder",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
-        }
-      ],
-      "total_times_x": "4.6678"
-    },
-    "overall_times_x": "4.6678"
+    "overall_times_x": "4.6700"
   },
   "subscription_path": "issues/sampark-india-logistics-b80f4c/subscription.json",
   "timeline": {
-    "close_date": "2026-07-02",
-    "open_date": "2026-06-30"
+    "listing_date": "2026-07-06"
   },
   "url_path": "/ipos/sampark-india-logistics/"
 }

@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.07.02-0602",
-  "estimated_cost_usd": 0.0008869,
+  "dataset_version": "v2026.07.07-0613",
+  "estimated_cost_usd": 0.0010280200000000001,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-02T06:02:25+00:00",
+  "generated_at": "2026-07-07T06:13:47+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,102 +24,116 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif font throughout; single accent colour (e.g., deep blue) for table headers and pull-quote rule.",
-      "Financials table: hairline rules between rows, bold header row, right-align numbers.",
-      "Pull-quote: set in larger serif italic, with a thin rule above and below, accent colour for the rule.",
-      "Sidebar: box with thin border, light background tint, compact type."
+      "Use serif font throughout (e.g., Georgia or Chronicle).",
+      "Accent colour: a muted blue or steel grey for table headers and rules.",
+      "Hairline rules between table rows; a slightly thicker rule above the header.",
+      "Pull-quote: set in a larger italic serif, with a vertical rule in accent colour on the left.",
+      "Sidebar: boxed with a thin border, background tint of 5% accent colour.",
+      "No icons, no decorative imagery."
     ],
     "formulas": [],
     "industry_snapshot": null,
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration. Indian Railways, the company's largest customer, contributed 57% of revenue in FY2018.",
-        "quote": "Majority of our revenues will be dependent on one customer, Indian Railways, which is our largest customer, contributing to 57% of our revenue in Fiscal 2018.",
-        "rationale": "Single most important risk factor; a sharp, damning number that prose cannot carry."
+        "after_paragraph": "The company's major clients are almost entirely government entities: Western Railway, Central Railway, Mumbai Railway Vikas Corporation Ltd (MRVCL), Municipal Corporation of Greater Mumbai (MCGM), Mumbai Metropolitan Region Development Authority (MMRDA), and Dedicated Freight Corridor Corporation of India Ltd (DFCCIL), along with a few private firms such as Sky Way Infrastructure Private Limited, Dev Engineers, GCC Hotel Private Ltd, and Krypton Corp.",
+        "quote": "Western Railway contributed 57% of total revenue in the year ended March 2018 and makes up 52% of the orders on hand.",
+        "rationale": "Customer concentration is the single most important risk; this number is sharp and damning."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Issue size:** 44,28,000 equity shares of ₹10 each, fresh issue only.[^drhp-p29]\n**Lead manager:** Mark Corporate Advisors Private Limited.[^drhp-p31]\n**Registrar:** Bigshare Services Private Limited.[^drhp-p31]\n**Use of proceeds:** ₹1,130 lakhs for working capital; balance for general corporate purposes (amount not disclosed).[^drhp-p48]\n**No monitoring agency appointed.**[^drhp-p18]",
-        "rationale": "Condenses key offer details into a scannable sidebar, freeing prose for analysis.",
+        "body_markdown": "**Fresh issue:** 44,28,000 equity shares of face value ₹10 each [^drhp-p29].\n**Issue price:** To be determined [^drhp-p55].\n**Use of proceeds:** ₹1,130 lakhs for working capital; balance for general corporate purposes [^drhp-p48].\n**Lead manager:** Mark Corporate Advisors Private Limited [^drhp-p31].\n**Registrar:** Bigshare Services Private Limited [^drhp-p31].",
+        "rationale": "Condenses offer structure into a scannable sidebar, freeing prose for analysis.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "Revenue from operations fell from ₹90.21 crore in FY2015 to ₹60.53 crore in FY2018, a decline of about 33% over three years.",
+        "after_paragraph": "The restated financial statements cover five fiscal years, from FY2014 through FY2018.",
         "columns": [
-          "Metric",
-          "FY2014",
-          "FY2015",
-          "FY2016",
-          "FY2017",
-          "FY2018"
+          "Period",
+          "Revenue from operations",
+          "EBITDA",
+          "Net profit after adjustments",
+          "Total assets",
+          "Long-term borrowings",
+          "Short-term borrowings"
         ],
-        "footnote": "Source: DRHP pages 26, 27, and 111.[^drhp-p26][^drhp-p27][^drhp-p111]",
-        "rationale": "Core financials table is mandatory for any IPO report; shows revenue decline and profit recovery at a glance.",
+        "footnote": "Source: DRHP pages 26, 27, 111 [^drhp-p26] [^drhp-p27] [^drhp-p111]",
+        "rationale": "Core financial trends — revenue decline, profit swing, debt shift — are best seen in a single table.",
         "rows": [
           [
-            "Revenue from operations",
+            "FY2014",
             "8,661.35",
-            "9,021.12",
-            "7,452.76",
-            "7,344.47",
-            "6,053.05"
-          ],
-          [
-            "Net profit after adjustments",
-            "95.95",
-            "78.36",
-            "32.63",
-            "15.86",
-            "314.66"
-          ],
-          [
-            "EBITDA",
             "784.46",
-            "945.78",
-            "783.31",
-            "676.19",
-            "928.80"
-          ],
-          [
-            "Short-term borrowings",
-            "3,082.27",
-            "3,227.89",
-            "3,020.55",
-            "3,312.08",
-            "3,537.35"
-          ],
-          [
-            "Long-term borrowings",
+            "95.95",
+            "7,062.34",
             "586.63",
+            "3,082.27"
+          ],
+          [
+            "FY2015",
+            "9,021.12",
+            "945.78",
+            "78.36",
+            "7,266.50",
             "672.72",
+            "3,227.89"
+          ],
+          [
+            "FY2016",
+            "7,452.76",
+            "783.31",
+            "32.63",
+            "6,295.21",
             "188.77",
+            "3,020.55"
+          ],
+          [
+            "FY2017",
+            "7,344.47",
+            "676.19",
+            "15.86",
+            "7,536.93",
             "131.51",
-            "133.09"
+            "3,312.08"
+          ],
+          [
+            "FY2018",
+            "6,053.05",
+            "928.80",
+            "314.66",
+            "8,232.15",
+            "133.09",
+            "3,537.35"
           ]
         ],
-        "title": "Financial performance (₹ in lakhs)"
+        "title": "Restated financial summary (₹ in lakhs)"
       },
       {
-        "after_paragraph": "The company's key financial ratios for the three most recent fiscal years show a dramatic improvement in FY2018:",
+        "after_paragraph": "Key ratios from the filing show the volatility in the company's financial performance:",
         "columns": [
           "Ratio",
           "FY2016",
           "FY2017",
           "FY2018"
         ],
-        "footnote": "Source: DRHP page 54.[^drhp-p54]",
-        "rationale": "Highlights the dramatic EPS and RoNW jump in FY2018, central to valuation discussion.",
+        "footnote": "Source: DRHP pages 54, 55 [^drhp-p54] [^drhp-p55]",
+        "rationale": "EPS and RoNW swings are extreme; a table isolates the volatility from the prose.",
         "rows": [
           [
-            "Basic EPS (₹)",
+            "Earnings per share (basic, ₹)",
             "1.31",
             "0.63",
             "12.59"
+          ],
+          [
+            "Net Asset Value per share (₹)",
+            "—",
+            "—",
+            "44.71"
           ],
           [
             "Return on Net Worth (%)",

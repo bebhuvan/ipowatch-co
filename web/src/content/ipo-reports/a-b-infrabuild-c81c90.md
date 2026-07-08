@@ -4,11 +4,11 @@ issue_slug: "a-b-infrabuild-c81c90"
 company_name: "A B Infrabuild Limited"
 document_type: "DRHP"
 report_type: "ipo-research"
-kicker: "IPO deep dive"
-title: "A B Infrabuild Limited: inside the DRHP"
+kicker: "SME IPO"
+title: "A B Infrabuild Limited: What the DRHP Reveals"
 dek: "What the DRHP discloses about A B Infrabuild Limited's business, offer, financials and risks — sourced to the filing, page by page."
 reading_time_minutes: 12
-published_at: "2026-07-07"
+published_at: "2026-07-08"
 status: "review"
 sources:
   - source_id: "basis-of-allotment"
@@ -32,151 +32,107 @@ sources:
 generated_by: "ipo_portal.orchestrator/0.1.0"
 ---
 
-A B Infrabuild is an infrastructure company that builds railway platforms, station buildings, bridges, and roads [^drhp-p71] and operates a ready-mix concrete plant at Thane. [^drhp-p63] It is raising capital through an SME IPO — a fresh issue of 44.28 lakh equity shares — with the proceeds earmarked primarily to fund working capital. [^drhp-p29-48] The company's Draft Red Herring Prospectus (DRHP) reveals a business heavily dependent on a single customer, Indian Railways, which contributed 57% of revenue in the most recent fiscal year. [^drhp-p12] Western Railway accounts for 52% of the orders on hand. [^drhp-p65] The filing also shows a revenue decline over four years, a sharp swing in profitability, and negative cash flows that the company acknowledges as a risk factor.
+A B Infrabuild Limited builds the physical skeleton of Mumbai and its surrounding region — railway tracks, bridges, roads, and the concrete that goes into them. The company operates in two distinct but related businesses: infrastructure construction and a ready-mix concrete (RMC) plant at Thane that supplies the material for those projects.[^drhp-p63] It is now seeking a listing through a fresh issue of 44,28,000 equity shares of ₹10 each, at a price yet to be determined.[^drhp-p29]
 
-## What the company does
+The company's sole promoter, Amit Bholanath Mishra, holds 90.949% of the pre-issue capital.[^drhp-p100] The IPO will dilute his holding and raise funds primarily for working capital — ₹1,130 lakhs of the proceeds are earmarked for that purpose, with the remainder allocated to general corporate purposes (the amount is not disclosed).[^drhp-p48] The lead manager is Mark Corporate Advisors Private Limited; the registrar is Bigshare Services Private Limited.[^drhp-p31]
 
-A B Infrabuild operates in two distinct segments: infrastructure creation and ready-mix concrete manufacturing. [^drhp-p63] On the infrastructure side, the company executes contracts for railways — designing and constructing platforms, station buildings, gauge conversion, and laying railway tracks — as well as bridge works (beam, cantilever, arch, suspension, cable-stayed, and truss bridges) and road construction (bituminous and concrete roads connecting highways and district roads within Maharashtra). [^drhp-p71] Separately, it runs a ready-mix concrete (RMC) plant at Kashimira in Thane district. [^drhp-p67]
+## What the Company Does
 
-Contracts are won through a competitive bidding process. The client floats a tender, a pre-bid meeting is held to resolve queries, contractors bid based on eligibility, and the job is awarded to the lowest quote. The winning contractor then deposits a performance guarantee, receives the drawings, and takes site handover for execution. [^drhp-p72] This means the company's revenue depends entirely on its ability to win bids — and on the government's willingness to float them.
+Infrastructure contracting in India follows a predictable rhythm. A government body or public-sector undertaking floats a tender. Contractors bid. The lowest quote typically wins, and the winner deposits a performance guarantee before work begins.[^drhp-p72] A B Infrabuild lives inside this cycle. Its projects span railway work (designing and constructing platforms, station buildings, gauge conversion, and laying tracks) along with bridge construction (beam, cantilever, arch, suspension, cable-stayed, and truss bridges) and road construction (bituminous and concrete roads connecting highways and district road).[^drhp-p71]
 
-The company's major clients are almost entirely government entities: Western Railway, Central Railway, Mumbai Railway Vikas Corporation Ltd (MRVCL), Municipal Corporation of Greater Mumbai (MCGM), Mumbai Metropolitan Region Development Authority (MMRDA), and Dedicated Freight Corridor Corporation of India Ltd (DFCCIL), along with a few private firms such as Sky Way Infrastructure Private Limited, Dev Engineers, GCC Hotel Private Ltd, and Krypton Corp. [^drhp-p63] Western Railway has been a client since 2006 and contributed 57% of total revenue in the year ended March 2018. [^drhp-p67] It makes up 52% of the orders on hand. [^drhp-p65]
+The company's client list reads like a who's-who of Mumbai's infrastructure agencies: Municipal Corporation of Greater Mumbai, Western Railway, Central Railway, Mumbai Railway Vikas Corporation Ltd, Mumbai Metropolitan Region Development Authority, Dedicated Freight Corridor Corporation of India Ltd, and several private firms including Sky Way Infrastructure Private Limited, Dev Engineers, GCC Hotel Private Ltd, and Krypton Corp.[^drhp-p63] Western Railway has been a client since 2006 and alone accounts for 52% of the orders on hand.[^drhp-p65-67]
 
-<aside class="pull-quote">Western Railway contributed 57% of total revenue in the year ended March 2018 and makes up 52% of the orders on hand.</aside>
+This concentration is the single most important fact about the business. In FY2018, the company's top customers contributed 57% of total revenue.[^drhp-p67] The company describes this as a competitive strength — a long-standing relationship with a marquee client — but it is also a structural vulnerability. If Western Railway were to reduce its awarding of contracts, or if the competitive bidding process consistently favoured lower bids, the revenue impact would be immediate and severe.
 
-The company describes itself as a major player in developing infrastructure in Mumbai, with a stated aim of consolidating its position in Maharashtra. It emphasises the use of modern techniques such as box pushing for bridge work, and says it has invested heavily in machinery and quality control systems at its RMC facility. [^drhp-p67]
+<aside class="pull-quote">Western Railway alone accounts for 52% of the orders on hand.</aside>
 
-## Industry and market
+The company cites several other competitive advantages: cost efficiency and timely delivery, transparency in dealings, use of modern techniques such as box pushing, its RMC facility at Kashimira in Thane district, and an experienced management team with over 20 years in the infrastructure industry.[^drhp-p66-67] It describes itself as "a major player in developing infrastructure in the city of Mumbai" that is slowly consolidating its position across Maharashtra.[^drhp-p67]
 
-The Indian infrastructure sector contributes roughly 8% to the country's GDP and is highly fragmented [^drhp-p58], with competition from both organised and unorganised players. [^drhp-p76] The filing cites government flagship programmes including the 100 Smart Cities Mission, Atal Mission for Urban Rejuvenation and Transformation (AMRUT), Make in India, and Power for All. [^drhp-p58] It also notes eased FDI norms in 15 sectors including real estate and construction development, and rising industrialisation, urbanisation, disposable income, and population growth. [^drhp-p59] The 12th Five-Year Plan targeted infrastructure spending at 9% of GDP. [^drhp-p60]
+## Industry and Market
 
-The filing also acknowledges headwinds. It lists the slow pace of government projects, working capital crunches that may affect profitability, and changes in government policies as threats to the business. [^drhp-p76] These are not abstract risks for A B Infrabuild: they are the daily reality of a company whose revenues depend on government contract awards and timely payments.
+The Indian construction sector is highly fragmented and working-capital intensive, contributing roughly 8% to India's GDP.[^drhp-p58] The market was projected to reach US$ 1,000 billion by 2025.[^drhp-p59] Foreign direct investment in construction development (townships, housing, built-up infrastructure) from April 2000 to December 2017 stood at US$ 24.67 billion.[^drhp-p59]
 
-## Offer structure and use of proceeds
+<div class="industry-snapshot"><div class="industry-snapshot-label">Market at a glance</div><div class="industry-snapshot-stats"><div class="industry-stat"><div class="industry-stat-val">8%</div><div class="industry-stat-desc">Construction sector contribution<br>to India's GDP</div></div><div class="industry-stat"><div class="industry-stat-val">US$ 1,000B</div><div class="industry-stat-desc">Projected market size<br>by 2025</div></div><div class="industry-stat"><div class="industry-stat-val">US$ 24.67B</div><div class="industry-stat-desc">FDI in construction development<br>(Apr 2000 – Dec 2017)</div></div></div></div>
 
-The IPO is a fresh issue of 44,28,000 equity shares of face value ₹10 each. [^drhp-p29] The issue price has not yet been set; it will be determined by the company in consultation with the lead manager. [^drhp-p55]
+<div class="market-growth"><div class="market-growth-label">Logistics sector — projected growth</div><div class="market-growth-item"><div class="market-growth-year">2017</div><div class="market-growth-bar-wrap"><div class="market-growth-bar" style="width:74%"></div></div><div class="market-growth-val">US$ 160B</div></div><div class="market-growth-item"><div class="market-growth-year">2020</div><div class="market-growth-bar-wrap"><div class="market-growth-bar market-growth-bar--proj" style="width:100%"></div></div><div class="market-growth-val">US$ 215B <span class="market-growth-tag">projected</span></div></div><p class="market-growth-note">Source: DRHP industry report, p.59</p></div>
 
-The proceeds are allocated as follows: ₹1,130 lakhs (₹11.30 crore) to meet working capital requirements, and the residual amount to general corporate purposes. [^drhp-p48] The lead manager to the issue is Mark Corporate Advisors Private Limited; the registrar is Bigshare Services Private Limited. [^drhp-p31]
+Growth is driven by government flagship programs including the 100 Smart Cities Mission, Atal Mission for Urban Rejuvenation and Transformation (AMRUT), Make in India, and Power for All.[^drhp-p58] Eased FDI norms across 15 sectors including real estate and construction development have also contributed.[^drhp-p59] Rising industrialization, urbanization, disposable income, and population growth underpin demand.[^drhp-p59] The logistics sector, closely tied to infrastructure, is expected to grow at a CAGR of 10.5% from US$ 160 billion in 2017 to US$ 215 billion by 2020.[^drhp-p59]
 
-## Financial trends
+The filing also acknowledges headwinds: the slow pace of government projects, working capital crunches that can affect profitability, and changes in government policies.[^drhp-p76] Competition comes from both organized and unorganized players.[^drhp-p76]
 
-The restated financial statements cover five fiscal years, from FY2014 through FY2018. [^drhp-p27] The numbers tell a story of a business that has shrunk in revenue terms but swung sharply in profitability.
+## The IPO Offer
+
+The company will issue 44,28,000 equity shares of ₹10 each at a price to be determined.[^drhp-p29] The face value is ₹10 per share; the issue price multiple over face value has not been fixed.[^drhp-p55]
+
+The objects of the issue are straightforward. ₹1,130 lakhs will go toward working capital requirements. The amount allocated to general corporate purposes is redacted in the filing.[^drhp-p48] The company has not appointed an independent agency to appraise the proposed project, and no monitoring agency has been appointed; deployment of funds will be at the discretion of management and the Board, monitored by the Audit Committee.[^drhp-p18]
+
+## Financial Performance
+
+A B Infrabuild's financials over the five years from FY2014 to FY2018 tell a story of a business under pressure, with a dramatic recovery in the final year that warrants scrutiny.
 
 | (₹ in lakhs) | FY2014 | FY2015 | FY2016 | FY2017 | FY2018 |
 |---|---|---|---|---|---|
 | Revenue from operations | 8,661.35 | 9,021.12 | 7,452.76 | 7,344.47 | 6,053.05 |
-| EBITDA (Profit Before Interest, Depreciation and Tax) | 784.46 | 945.78 | 783.31 | 676.19 | 928.80 |
+| EBITDA | 784.46 | 945.78 | 783.31 | 676.19 | 928.80 |
 | Net profit after adjustments | 95.95 | 78.36 | 32.63 | 15.86 | 314.66 |
 | Total assets | 7,062.34 | 7,266.50 | 6,295.21 | 7,536.93 | 8,232.15 |
 | Long-term borrowings | 586.63 | 672.72 | 188.77 | 131.51 | 133.09 |
 | Short-term borrowings | 3,082.27 | 3,227.89 | 3,020.55 | 3,312.08 | 3,537.35 |
 
-*Source: DRHP pages 26, 27, 111* [^drhp-p26-111]
+*Source: Restated financial statements, DRHP pages 26, 27, and 111.*[^drhp-p26-111]
 
-Revenue declined from ₹9,021.12 lakhs in FY2015 to ₹6,053.05 lakhs in FY2018, a drop of about 33% over four years. [^drhp-p27] The company does not explain this decline in the excerpted portions of the filing, but the trend is clear: the business has been getting smaller in top-line terms.
+Revenue declined steadily from ₹9,021.12 lakhs in FY2015 to ₹6,053.05 lakhs in FY2018 — a drop of roughly one-third over three years.[^drhp-p27] The company was doing less business, not more, in the period leading up to the IPO.
 
-Net profit tells a different story. After falling from ₹95.95 lakhs in FY2014 to a low of ₹15.86 lakhs in FY2017, it surged to ₹314.66 lakhs in FY2018 — a nearly 20-fold increase from the previous year. [^drhp-p27] This dramatic swing is not explained by a corresponding jump in revenue, which actually fell in FY2018. The improvement appears to come from cost-side factors: EBITDA rose from ₹676.19 lakhs in FY2017 to ₹928.80 lakhs in FY2018, suggesting tighter cost control or a shift in project mix. [^drhp-p111]
+EBITDA, which strips out interest, depreciation, and tax, fluctuated without a clear trend: ₹784.46 lakhs in FY2014, peaking at ₹945.78 lakhs in FY2015, falling to ₹676.19 lakhs in FY2017, then recovering to ₹928.80 lakhs in FY2018.[^drhp-p111] The recovery in the final year is notable but does not reverse the revenue decline; it suggests the company improved its margins on a smaller base.
 
-The balance sheet shows a company that funds itself heavily through short-term debt. Short-term borrowings rose from ₹3,082.27 lakhs in FY2014 to ₹3,537.35 lakhs in FY2018, while long-term borrowings fell sharply from ₹672.72 lakhs to ₹133.09 lakhs over the same period. [^drhp-p26] Total assets grew from ₹7,062.34 lakhs to ₹8,232.15 lakhs, but the composition shifted: the company is increasingly reliant on short-term financing, which typically carries higher rollover risk. [^drhp-p26]
+Net profit tells a more extreme version of the same story. After falling from ₹95.95 lakhs in FY2014 to just ₹15.86 lakhs in FY2017 (a decline of 83%), profit surged to ₹314.66 lakhs in FY2018, a twenty-fold jump from the prior year.[^drhp-p27] The filing does not provide a segment-level breakdown that would explain whether this came from the infrastructure business, the RMC plant, or a one-time event.
 
-The company acknowledges that it has had negative cash flows in recent financial years, and warns that sustained negative cash flow could adversely impact its business. [^drhp-p16] It also notes that it has ₹405.02 lakhs in unsecured loans outstanding as of March 31, 2018, which are repayable on demand, meaning lenders could call in these loans at any time, putting pressure on liquidity. [^drhp-p16]
+The balance sheet shows a company that has been funding itself through debt. Total assets grew from ₹7,062.34 lakhs in FY2014 to ₹8,232.15 lakhs in FY2018.[^drhp-p26] Long-term borrowings were reduced from ₹672.72 lakhs in FY2015 to ₹133.09 lakhs in FY2018, while short-term borrowings rose from ₹3,227.89 lakhs to ₹3,537.35 lakhs over the same period.[^drhp-p26] The company is increasingly reliant on short-term debt — borrowings that must be repaid or rolled over frequently — to finance its operations. Total borrowings (long-term plus short-term) stood at ₹3,670.44 lakhs in FY2018, roughly 45% of total assets.[^drhp-p26]
 
-Key ratios from the filing show the volatility in the company's financial performance:
+The filing flags that the company has experienced negative cash flows in recent financial years, though the specific cash flow figures are not provided in the extracted data.[^drhp-p16] This is a significant risk for a working-capital-intensive business: if cash from operations does not cover the gap between paying suppliers and collecting from clients, the company must borrow more or delay payments. The ₹405.02 lakhs in unsecured loans outstanding as of March 31, 2018, which are repayable on demand, add another layer of liquidity pressure.[^drhp-p16]
 
-| Ratio | FY2016 | FY2017 | FY2018 |
+## Valuation and Peer Comparison
+
+The DRHP includes a section on accounting ratios and peer comparison, but the names and financials of peer companies are not available in the extracted data. Only the company's own ratios are disclosed.
+
+| Metric | FY2016 | FY2017 | FY2018 |
 |---|---|---|---|
-| Earnings per share (basic, ₹) | 1.31 | 0.63 | 12.59 |
-| Net Asset Value per share (₹) | — | — | 44.71 |
-| Return on Net Worth (%) | 4.14 | 1.97 | 28.14 |
+| Earnings per share (₹) | 1.31 | 0.63 | 12.59 |
+| Net asset value per share (₹) | — | — | 44.71 |
+| Return on net worth (%) | 4.14 | 1.97 | 28.14 |
 
-*Source: DRHP pages 54, 55* [^drhp-p54-55]
+*Source: DRHP pages 54-55.*[^drhp-p54-55]
 
-The EPS swing from ₹0.63 in FY2017 to ₹12.59 in FY2018 is extreme. [^drhp-p54] The RoNW improvement from 1.97% to 28.14% over the same period is equally dramatic. [^drhp-p54] These numbers reflect the profit surge in FY2018, but a single year's data does not establish a trend, especially when the preceding three years showed declining profitability.
+The EPS figures mirror the profit trajectory: ₹1.31 in FY2016, falling to ₹0.63 in FY2017, then jumping to ₹12.59 in FY2018.[^drhp-p54] Return on net worth followed the same pattern — 4.14%, then 1.97%, then 28.14%.[^drhp-p54] The NAV per share as of FY2018 was ₹44.71.[^drhp-p55]
 
-## Valuation and peer comparison
+Without peer data, it is impossible to say whether these ratios are attractive relative to comparable companies. The issue price has not been set, so no price-to-earnings multiple can be computed. The filing states that the issue price will be determined by the company in consultation with the lead manager and justified based on the above accounting ratios.[^drhp-p55]
 
-The DRHP provides a comparison of accounting ratios with peer group companies, but the excerpted filing does not disclose the names of those peers or their financial metrics. Only the company's own ratios are available. [^drhp-p55]
+## Governance and Shareholding
 
-The face value of the equity shares is ₹10. The issue price will be determined by the company in consultation with the lead manager, and the filing states that the issue price will be justified based on the accounting ratios presented. [^drhp-p55] Since the issue price is not yet set, no price-to-earnings comparison can be computed from the filing alone.
+Amit Bholanath Mishra is the sole promoter, holding 74,95,476 equity shares — 90.949% of the pre-issue capital.[^drhp-p100] The directors' shareholding reflects this concentration: Mishra holds 74,95,476 shares as Managing Director, while three other directors (Bharat Kumar Parmar, Shree Prakash Singh, and Mukesh Pandey) each hold just 300 shares as Whole Time Directors.[^drhp-p93]
 
-What is available: for FY2018, the company's basic EPS is ₹12.39, its NAV per share is ₹44.71, and its RoNW is 28.14%. [^drhp-p55] These are the metrics that prospective investors would compare against peer companies once the issue price is announced.
+Key management personnel include Ms. Anchal Pachori, aged 28, a Chartered Accountant serving as Chief Financial Officer, and Mr. Mohit Soni, aged 26, an Associate Member of the Institute of Company Secretaries of India serving as Company Secretary and Compliance Officer.[^drhp-p97] Mr. Hatim Sakerwala holds 9% of the equity shares as a Key Management Personnel.[^drhp-p98]
 
-## Governance and shareholding
+Related party transactions are material. In FY2018, the company took loans of ₹68.4 lakhs from KMP and Board members, paid director remuneration of ₹57.7 lakhs, and had outstanding payables to related parties of ₹324.3 lakhs as of March 31, 2018.[^drhp-p129-130] The filing acknowledges that the company has entered into related party transactions in the past and may continue to do so.[^drhp-p15]
 
-The company is promoted by Amit Bholanath Mishra, who holds 74,95,476 equity shares, representing 90.949% of the pre-issue capital. [^drhp-p100] Other directors hold only token shares: Bharat Kumar Parmar, Shree Prakash Singh, and Mukesh Pandey each hold 300 equity shares. [^drhp-p93] Hatim Sakerwala, a key management personnel, holds 9% of the equity shares. [^drhp-p98]
+On governance compliance, none of the directors are on the RBI list of willful defaulters, and no criminal cases have been filed against any director.[^drhp-p90] However, two promoter-group companies (Al-Noor Chickens Private Limited and A B Magma Automobiles Private Limited) were struck off by the Registrar of Companies on March 12, 2016 and March 11, 2016 respectively, due to non-operation of business.[^drhp-p18] This is a governance flag: the promoter has previously incorporated companies that were allowed to become defunct.
 
-Key management includes Anchal Pachori, aged 28, a Chartered Accountant who serves as Chief Financial Officer, and Mohit Soni, aged 26, an Associate Member of the Institute of Company Secretaries of India who serves as Company Secretary and Compliance Officer. [^drhp-p97]
+## Key Risks
 
-Related-party transactions for FY2018 include loans taken from key management personnel and directors amounting to ₹68.4 lakhs. [^drhp-p129] They also include director remuneration of ₹57.7 lakhs and outstanding payables to related parties of ₹324.3 lakhs as of March 31, 2018. [^drhp-p130] The filing notes that the company has entered into related-party transactions in the past and may continue to do so in the future, which it identifies as a risk factor. [^drhp-p15]
+**Extreme client concentration.** Indian Railways, primarily through Western Railway, contributed 57% of the company's revenue in FY2018.[^drhp-p12] Western Railway alone accounts for 52% of the order book.[^drhp-p65] The loss of this customer, or a significant reduction in contract awards, would cause a severe revenue decline. The company's long-standing relationship since 2006 is an asset, but it is also a single point of failure.
 
-The filing also discloses that two companies promoted by Mr. Mishra, Al-Noor Chickens Private Limited and A B Magma Automobiles Private Limited, were struck off by the Registrar of Companies (ROC) on March 12, 2016 and March 11, 2016 respectively, due to non-operation of business. [^drhp-p18] The company has also issued equity shares in the last 12 months at a price which may be lower than the IPO price. [^drhp-p16] Neither of these disclosures is necessarily disqualifying, but they are flags that a reader should weigh.
+**Dependence on government tender awards.** The company's revenues depend on winning bids submitted to government and government departments. If bids are not accepted, financial performance will suffer.[^drhp-p12] The competitive bidding process — where the lowest quote wins — creates a race to the bottom on pricing.[^drhp-p72]
 
-The company has not appointed any independent agency to appraise the proposed use of proceeds, and no monitoring agency has been appointed: fund deployment is at the discretion of management and the board, subject to audit committee oversight. [^drhp-p18]
+**Liquidity pressure from debt and working capital needs.** Short-term borrowings stood at ₹3,537.35 lakhs in FY2018, more than 26 times the long-term borrowings of ₹133.09 lakhs.[^drhp-p26] The company has experienced negative cash flows in recent years.[^drhp-p16] An additional ₹405.02 lakhs in unsecured loans are repayable on demand.[^drhp-p16] In a working-capital-intensive business where payments from government clients can be slow, this debt structure creates refinancing risk.
 
-## Top risks
+**Recent equity issuances at lower prices.** The company has issued equity shares in the last 12 months at a price that may be lower than the IPO issue price.[^drhp-p16] This means earlier investors acquired shares at a discount, and the IPO price — when set — will need to be evaluated against those transactions.
 
-**Customer concentration.** Indian Railways, primarily through Western Railway, contributed 57% of revenue in FY2018. [^drhp-p12] Western Railway accounts for 52% of the order book. [^drhp-p65] The loss of this customer, whether through contract non-renewal, policy changes, or a shift in procurement patterns, would cause a significant and immediate revenue drop. The company has been working with Western Railway since 2006, but long relationships do not guarantee continuity.
+**Past governance issues with promoter-group companies.** Two companies promoted by the promoter were struck off by the ROC for non-operation.[^drhp-p18] While these entities are separate from the company seeking listing, the pattern raises questions about the promoter's track record in maintaining corporate compliance. The company has also not appointed an independent agency to appraise the proposed project or a monitoring agency for fund deployment.[^drhp-p18]
 
-**Dependence on government contract bidding.** The company's revenues depend on winning bids submitted to government departments. If bids are not accepted, or are accepted at lower values, performance is materially affected. [^drhp-p12] The company also notes that contracts in its order book may be adjusted, cancelled, or suspended by clients, meaning the order book is not necessarily indicative of future revenues. [^drhp-p14]
-
-**Negative cash flows and working capital strain.** The company acknowledges negative cash flows in recent financial years. [^drhp-p16] It has ₹405.02 lakhs in unsecured loans repayable on demand, which could be called in at any time, putting pressure on liquidity. [^drhp-p16] The filing also warns that failure to recover amounts from trade receivables on a timely basis could affect financial condition. [^drhp-p16] For a company that is raising capital specifically to meet working capital requirements, this is a material concern.
-
-**Promoter-related red flags.** Two companies previously promoted by Amit Bholanath Mishra were struck off by the ROC for non-operation. [^drhp-p18] While these were unrelated businesses (a chicken processing company and an automobile company), the fact that the promoter had companies struck off raises governance questions. Also, the company issued equity shares in the last 12 months at a price that may be lower than the IPO price, which could indicate that the IPO price is at a premium to recent transactions. [^drhp-p16]
-
-**No independent appraisal of fund use.** The company has not appointed any independent agency to appraise the proposed project, and no monitoring agency has been appointed for fund deployment. [^drhp-p18] While the audit committee will monitor fund use, the absence of external oversight means that the ₹1,130 lakhs allocated to working capital will be deployed solely at management's discretion.
-
-[^drhp-p11]: DRHP, page 11
-[^drhp-p12]: DRHP, page 12
-[^drhp-p13]: DRHP, page 13
-[^drhp-p14]: DRHP, page 14
-[^drhp-p15]: DRHP, page 15
-[^drhp-p16]: DRHP, page 16
-[^drhp-p17]: DRHP, page 17
-[^drhp-p18]: DRHP, page 18
-[^drhp-p19]: DRHP, page 19
-[^drhp-p20]: DRHP, page 20
-[^drhp-p22]: DRHP, page 22
-[^drhp-p26]: DRHP, page 26
-[^drhp-p27]: DRHP, page 27
-[^drhp-p29]: DRHP, page 29
-[^drhp-p31]: DRHP, page 31
-[^drhp-p48]: DRHP, page 48
-[^drhp-p54]: DRHP, page 54
-[^drhp-p55]: DRHP, page 55
-[^drhp-p58]: DRHP, page 58
-[^drhp-p59]: DRHP, page 59
-[^drhp-p60]: DRHP, page 60
-[^drhp-p62]: DRHP, page 62
-[^drhp-p63]: DRHP, page 63
-[^drhp-p65]: DRHP, page 65
-[^drhp-p66]: DRHP, page 66
-[^drhp-p67]: DRHP, page 67
-[^drhp-p71]: DRHP, page 71
-[^drhp-p72]: DRHP, page 72
-[^drhp-p76]: DRHP, page 76
-[^drhp-p78]: DRHP, page 78
-[^drhp-p79]: DRHP, page 79
-[^drhp-p82]: DRHP, page 82
-[^drhp-p90]: DRHP, page 90
-[^drhp-p93]: DRHP, page 93
-[^drhp-p97]: DRHP, page 97
-[^drhp-p98]: DRHP, page 98
-[^drhp-p100]: DRHP, page 100
-[^drhp-p111]: DRHP, page 111
-[^drhp-p129]: DRHP, page 129
-[^drhp-p130]: DRHP, page 130
-
-[^drhp-p11]: [DRHP, page 11](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p12]: [DRHP, page 12](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p13]: [DRHP, page 13](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p14]: [DRHP, page 14](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p15]: [DRHP, page 15](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p16]: [DRHP, page 16](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p17]: [DRHP, page 17](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p18]: [DRHP, page 18](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p19]: [DRHP, page 19](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p20]: [DRHP, page 20](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p22]: [DRHP, page 22](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p26]: [DRHP, page 26](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p27]: [DRHP, page 27](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p29]: [DRHP, page 29](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
@@ -186,26 +142,20 @@ The company has not appointed any independent agency to appraise the proposed us
 [^drhp-p55]: [DRHP, page 55](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p58]: [DRHP, page 58](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p59]: [DRHP, page 59](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p60]: [DRHP, page 60](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p62]: [DRHP, page 62](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p63]: [DRHP, page 63](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p65]: [DRHP, page 65](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p66]: [DRHP, page 66](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p67]: [DRHP, page 67](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p71]: [DRHP, page 71](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p72]: [DRHP, page 72](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p76]: [DRHP, page 76](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p78]: [DRHP, page 78](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p79]: [DRHP, page 79](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p82]: [DRHP, page 82](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p90]: [DRHP, page 90](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p93]: [DRHP, page 93](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p97]: [DRHP, page 97](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p98]: [DRHP, page 98](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p100]: [DRHP, page 100](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p111]: [DRHP, page 111](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p129]: [DRHP, page 129](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p130]: [DRHP, page 130](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
-[^drhp-p29-48]: [DRHP, pp.29–48](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p54-55]: [DRHP, pp.54–55](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
+[^drhp-p65-67]: [DRHP, pp.65–67](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
+[^drhp-p66-67]: [DRHP, pp.66–67](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
 [^drhp-p26-111]: [DRHP, pp.26–111](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)
+[^drhp-p129-130]: [DRHP, pp.129–130](https://nsearchives.nseindia.com/emerge/corporates/content/AB_Infrabuild_DP.pdf)

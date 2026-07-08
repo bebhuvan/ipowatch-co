@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.outline.schema",
-  "dataset_version": "v2026.07.07-0553",
-  "estimated_cost_usd": 0.0036786400000000004,
+  "dataset_version": "v2026.07.08-0508",
+  "estimated_cost_usd": 0.00396928,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-07T05:53:16+00:00",
+  "generated_at": "2026-07-08T05:08:08+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -20,29 +20,36 @@
   "outline": {
     "dek_candidates": [
       "What the DRHP discloses about A B Infrabuild Limited's business, offer, financials and risks — sourced to the filing, page by page.",
-      "A B Infrabuild's IPO filing: business model, financial trends, client concentration, and what it means for investors."
+      "A plain-language walkthrough of A B Infrabuild Limited's DRHP: business model, client concentration, financial trends, and offer details.",
+      "Everything you need to know about A B Infrabuild Limited's IPO, straight from the DRHP."
     ],
     "design_notes": [
-      "Use a table in financials to show all five fiscal years in one glance. Keep numbers in ₹ lakhs as in the filing.",
-      "The risks section should avoid generic IPO risks; stick to the specific ones listed. Depth over breadth.",
-      "Since the peer table is incomplete, note the gap and use only the company's own ratios for valuation context."
+      "Start the intro with a plain-language summary: 'A B Infrabuild Limited builds railways, bridges, and roads in and around Mumbai, and runs a ready-mix concrete plant.'",
+      "Use tables for financial data to avoid dense prose; present all five years side-by-side.",
+      "Risk section should avoid generic IPO risks; focus on client concentration, government contract dependency, and cash flow issues.",
+      "Since peer data is missing, acknowledge that the valuation context is incomplete; no implied price range can be computed."
     ],
     "gaps": [
       {
         "blocking": false,
-        "reason": "The digest does not extract names of peer companies or their P/E, EPS, NAV, RoNW figures. Only the company's own ratios are available.",
-        "topic": "Peer company names and their valuation multiples"
+        "reason": "The extracted facts mention a peer comparison table on page 55 but do not include the names or financials of any peer companies. Only the company's own ratios are provided.",
+        "topic": "Peer comparison table details"
       },
       {
         "blocking": false,
-        "reason": "The filing mentions negative cash flows but the extracted facts do not include the statement of cash flows with annual numbers.",
-        "topic": "Exact cash flow figures for each year"
+        "reason": "The issue price is to be determined; no range or band is disclosed in the digest.",
+        "topic": "Exact issue price and price band"
+      },
+      {
+        "blocking": false,
+        "reason": "The filing states the amount is [●] (redacted); not disclosed.",
+        "topic": "Amount for general corporate purposes"
       }
     ],
     "kicker_candidates": [
-      "IPO deep dive",
-      "DRHP analysis",
-      "primary market report"
+      "SME IPO",
+      "Infrastructure SME Listing",
+      "Mumbai-based Infrastructure Contractor"
     ],
     "section_order": [
       "intro",
@@ -58,7 +65,7 @@
       "business": {
         "beats": [
           {
-            "beat": "A B Infrabuild operates in two segments: infrastructure creation (railways, bridges, roads) and running a ready-mix concrete plant in Thane.",
+            "beat": "The company operates in two segments: infrastructure creation (railways, bridges, roads) and a ready-mix concrete (RMC) plant at Thane.",
             "kind": "definition",
             "source_ids": [
               "drhp-p63",
@@ -66,100 +73,113 @@
             ]
           },
           {
-            "beat": "Contracts are won through a competitive bidding process: the client floats a tender, pre-bid meetings are held, the lowest bidder wins a letter of acceptance, and a performance guarantee is deposited.",
+            "beat": "Contracts are won through a competitive bidding process where the lowest quote typically wins, followed by a letter of acceptance and performance guarantee deposit.",
             "kind": "narrative",
             "source_ids": [
               "drhp-p72"
             ]
           },
           {
-            "beat": "Its major clients are government entities: Western Railway, Central Railway, MRVCL, MCGM, MMRDA, DFCCIL, and private firms. Western Railway alone contributed 57% of revenue in FY2018 and makes up 52% of the order book.",
+            "beat": "Major clients include government entities: Western Railway, Central Railway, MCGM, MMRDA, and others; Western Railway alone contributed 52% of the order book.",
             "kind": "number",
             "source_ids": [
               "drhp-p63",
-              "drhp-p65",
+              "drhp-p65"
+            ]
+          },
+          {
+            "beat": "Revenue is heavily concentrated: top customers accounted for 57% of total revenue in FY2018.",
+            "kind": "number",
+            "source_ids": [
               "drhp-p67"
             ]
           },
           {
-            "beat": "The company has a focused presence in Mumbai and Maharashtra, with a stated aim to consolidate its position in the state. It emphasises modern techniques like box pushing for bridge work.",
-            "kind": "narrative",
+            "beat": "The company cites competitive strengths such as long-standing client relationships (since 2006 with Western Railway), modern techniques like box pushing, and a healthy order book.",
+            "kind": "claim",
             "source_ids": [
+              "drhp-p66",
               "drhp-p67"
             ]
           }
         ],
-        "heading": "What the company does",
-        "purpose": "Explain the two revenue segments, how contracts are won, key clients, and the order book."
+        "heading": "What the Company Does",
+        "purpose": "Explain the business model, revenue streams, clients, and competitive position."
       },
       "financials": {
         "beats": [
           {
-            "beat": "Revenue from operations declined from ₹9,021.12 lakhs in FY2015 to ₹6,053.05 lakhs in FY2018, a drop of about 33% over four years.",
+            "beat": "Revenue from operations has declined from ₹9,021.12 lakhs in FY2015 to ₹6,053.05 lakhs in FY2018, a decrease of about 33%.",
             "kind": "number",
             "source_ids": [
               "drhp-p27"
             ]
           },
           {
-            "beat": "Net profit after adjustments swung: it was ₹95.95 lakhs in FY2014, dropped to ₹15.86 lakhs in FY2017, then surged to ₹314.66 lakhs in FY2018.",
+            "beat": "Net profit after adjustments fell from ₹95.95 lakhs in FY2014 to ₹15.86 lakhs in FY2017, then surged to ₹314.66 lakhs in FY2018.",
             "kind": "number",
             "source_ids": [
               "drhp-p27"
             ]
           },
           {
-            "beat": "EBITDA (Profit Before Interest, Depreciation and Tax) stood at ₹928.80 lakhs in FY2018, up from ₹676.19 lakhs in FY2017, but below the FY2015 level of ₹945.78 lakhs.",
+            "beat": "EBITDA (Profit before interest, depreciation, and tax) fluctuated: ₹784.46 lakhs (FY2014), ₹945.78 (FY2015), ₹783.31 (FY2016), ₹676.19 (FY2017), ₹928.80 (FY2018).",
             "kind": "number",
             "source_ids": [
               "drhp-p111"
             ]
           },
           {
-            "beat": "Short-term borrowings rose from ₹3,082.27 lakhs (FY2014) to ₹3,537.35 lakhs (FY2018), while long-term borrowings fell sharply from ₹672.72 lakhs to ₹133.09 lakhs over the same period.",
+            "beat": "Total assets rose from ₹7,062.34 lakhs in FY2014 to ₹8,232.15 lakhs in FY2018.",
             "kind": "number",
             "source_ids": [
               "drhp-p26"
             ]
           },
           {
-            "beat": "The company has reported negative cash flows in recent years, a risk factor it acknowledges. Total assets grew from ₹7,062.34 lakhs (FY2014) to ₹8,232.15 lakhs (FY2018).",
+            "beat": "Total borrowings (long-term + short-term) increased from ₹3,668.90 lakhs in FY2014 to ₹3,670.44 lakhs in FY2018, with short-term borrowings rising steadily.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p26"
+            ]
+          },
+          {
+            "beat": "The company has reported negative cash flows in recent years, a risk factor highlighted in the DRHP.",
             "kind": "claim",
             "source_ids": [
-              "drhp-p16",
-              "drhp-p26"
-            ]
-          },
-          {
-            "beat": "Key ratios: EPS was ₹1.31 (FY2016), ₹0.63 (FY2017), ₹12.59 (FY2018); RoNW was 4.14%, 1.97%, and 28.14% respectively.",
-            "kind": "number",
-            "source_ids": [
-              "drhp-p54"
+              "drhp-p16"
             ]
           }
         ],
-        "heading": "Financial trends",
-        "purpose": "Present revenue, profit, EBITDA, debt, cash flow, and ratios across all reported periods (FY2014-FY2018)."
+        "heading": "Financial Performance",
+        "purpose": "Present key financial metrics across all reported periods (FY2014–FY2018) in ₹ lakhs, highlighting trends.",
+        "visual_targets": [
+          {
+            "kind": "table",
+            "purpose": "Multi-year summary of revenue, PAT, EBITDA, assets, and borrowings with ₹ lakhs figures.",
+            "where": "financials"
+          }
+        ]
       },
       "governance": {
         "beats": [
           {
-            "beat": "Promoter Amit Bholanath Mishra holds 74,95,476 equity shares, representing 90.949% of the pre-issue capital.",
+            "beat": "Sole promoter Amit Bholanath Mishra holds 74,95,476 equity shares, representing 90.949% of pre-issue capital.",
             "kind": "number",
             "source_ids": [
               "drhp-p100"
             ]
           },
           {
-            "beat": "Other directors hold 300 shares each. Key management includes CFO Anchal Pachori (CA) and CS Mohit Soni (ACS).",
+            "beat": "Key management: CFO Anchal Pachori (CA), Company Secretary Mohit Soni (ACS). Hatim Sakerwala holds 9% equity shares as KMP.",
             "kind": "definition",
             "source_ids": [
-              "drhp-p93",
-              "drhp-p97"
+              "drhp-p97",
+              "drhp-p98"
             ]
           },
           {
-            "beat": "Related-party transactions: loans from KMP/ directors of ₹68.4 lakhs, director remuneration of ₹57.7 lakhs, and outstanding payables to related parties of ₹324.3 lakhs as of FY2018.",
+            "beat": "Related party transactions include loans from KMP/Board of ₹68.4 lakhs and director remuneration of ₹57.7 lakhs in FY2018; outstanding payables to related parties stood at ₹324.3 lakhs.",
             "kind": "number",
             "source_ids": [
               "drhp-p129",
@@ -167,82 +187,88 @@
             ]
           },
           {
-            "beat": "The filing notes that two companies promoted by Mr. Mishra (Al-Noor Chickens Private Limited and A B Magma Automobiles Private Limited) were struck off by the ROC in 2016 for non-operation. The company has also issued shares in the past 12 months at a price that may be lower than the issue price.",
-            "kind": "narrative",
+            "beat": "No directors are on the RBI willful defaulter list, and no criminal cases have been filed against directors. However, two promoter group companies were struck off by ROC for non-operation.",
+            "kind": "claim",
             "source_ids": [
-              "drhp-p18",
-              "drhp-p16"
+              "drhp-p90",
+              "drhp-p18"
             ]
           }
         ],
-        "heading": "Governance and shareholding",
-        "purpose": "List promoters, pre-issue shareholding, key management, and any governance flags from the filing."
+        "heading": "Governance and Shareholding",
+        "purpose": "Detail the promoter, management, shareholding pattern, and any governance flags."
       },
       "industry": {
         "beats": [
           {
-            "beat": "The Indian infrastructure sector contributes about 8% to GDP and is highly fragmented with intense competition from organised and unorganised players.",
+            "beat": "The Indian construction sector is highly fragmented, working-capital intensive, and contributes about 8% to India's GDP.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p58"
+            ]
+          },
+          {
+            "beat": "Market size was estimated at US$ 400 billion in 2015, projected to reach US$ 1,000 billion by 2025, with FDI in construction development at US$ 24.67 billion (April 2000 – December 2017).",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p59"
+            ]
+          },
+          {
+            "beat": "Growth is driven by government initiatives like 100 Smart Cities, AMRUT, Make in India, rising urbanization, and eased FDI norms.",
             "kind": "claim",
             "source_ids": [
               "drhp-p58",
-              "drhp-p76"
+              "drhp-p59"
             ]
           },
           {
-            "beat": "Growth drivers include government flagship programmes (Smart Cities, AMRUT, Make in India), eased FDI norms, and rising urbanisation. The 12th Five-Year Plan targeted infrastructure spending at 9% of GDP.",
-            "kind": "narrative",
-            "source_ids": [
-              "drhp-p58",
-              "drhp-p59",
-              "drhp-p60"
-            ]
-          },
-          {
-            "beat": "The filing notes headwinds: slow pace of government projects, working capital crunches, and changes in government policies that could affect profitability.",
+            "beat": "The filing acknowledges headwinds: slow pace of government projects, working capital crunches, and changes in government policies.",
             "kind": "claim",
             "source_ids": [
               "drhp-p76"
             ]
           }
         ],
-        "heading": "Industry and market",
-        "purpose": "Describe the infrastructure sector context: size, growth, drivers, competition, and acknowledged headwinds from the filing."
+        "heading": "Industry and Market",
+        "purpose": "Describe the infrastructure construction sector in India, its size, growth drivers, and headwinds."
       },
       "intro": {
         "beats": [
           {
-            "beat": "A B Infrabuild is a Mumbai-based infrastructure and construction company that executes government contracts and operates a ready-mix concrete plant.",
+            "beat": "A B Infrabuild Limited is a Mumbai-based infrastructure contractor focused on railway, bridge, and road construction, also operating a ready-mix concrete plant.",
             "kind": "narrative",
             "source_ids": [
-              "drhp-p63"
+              "drhp-p63",
+              "drhp-p71"
             ]
           },
           {
-            "beat": "It is raising ₹[●] crore through a fresh issue of 44.28 lakh equity shares on the SME Board, with proceeds earmarked primarily for working capital.",
-            "kind": "number",
-            "source_ids": [
-              "drhp-p29",
-              "drhp-p48"
-            ]
-          }
-        ],
-        "heading": null,
-        "purpose": "Orient the reader: who the company is, what it does, what it is raising and why it might matter."
-      },
-      "offer": {
-        "beats": [
-          {
-            "beat": "The IPO is a fresh issue of 44,28,000 equity shares of ₹10 each; there is no offer for sale. The issue price is to be determined.",
+            "beat": "The company is seeking a listing on the SME Board of BSE/NSE via a fresh issue of 44,28,000 equity shares of ₹10 each at a price to be determined.",
             "kind": "number",
             "source_ids": [
               "drhp-p29"
             ]
           },
           {
-            "beat": "Proceeds of ₹1,130 lakhs are allocated to meet working capital requirements; a residual amount will go towards general corporate purposes.",
+            "beat": "Proceeds will be used primarily for working capital (₹1,130 lakhs) and general corporate purposes, with the company's sole promoter holding 90.9% pre-issue.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p48",
+              "drhp-p100"
+            ]
+          }
+        ],
+        "heading": null,
+        "purpose": "Orient the reader: who the company is, what it does, what it is raising and why it matters."
+      },
+      "offer": {
+        "beats": [
+          {
+            "beat": "The issue is a fresh issue of 44,28,000 equity shares of ₹10 each; the issue price will be determined later. There is no offer for sale component.",
             "kind": "number",
             "source_ids": [
-              "drhp-p48"
+              "drhp-p29"
             ]
           },
           {
@@ -251,101 +277,118 @@
             "source_ids": [
               "drhp-p31"
             ]
+          },
+          {
+            "beat": "Proceeds: ₹1,130 lakhs for working capital requirements; the amount for general corporate purposes is not disclosed.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p48"
+            ]
+          },
+          {
+            "beat": "The face value is ₹10 per share; the issue price multiple over face value has not been fixed.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p55"
+            ]
           }
         ],
-        "heading": "Offer structure and use of proceeds",
-        "purpose": "Detail the fresh issue, objects, and lead manager."
+        "heading": "The IPO Offer",
+        "purpose": "Detail the issue structure, use of proceeds, and key intermediaries."
       },
       "risks": {
         "beats": [
           {
-            "beat": "Customer concentration: 57% of FY2018 revenue came from Indian Railways (mainly Western Railway). Loss of this customer would cause a significant revenue drop.",
+            "beat": "Extreme client concentration: Indian Railways (Western Railway primarily) contributed 57% of FY2018 revenue. Loss of this customer would severely impact revenues.",
             "kind": "claim",
             "source_ids": [
               "drhp-p12"
             ]
           },
           {
-            "beat": "Negative cash flows and working capital strain: the company reports negative cash flows in recent years and has ₹405.02 lakhs in unsecured loans repayable on demand, which could pressure liquidity.",
+            "beat": "Revenue dependence on government tender awards: failure to win bids or acceptance of lower bid values could materially affect performance.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p12"
+            ]
+          },
+          {
+            "beat": "Negative cash flows in recent years and high working capital requirements pose liquidity risks, especially given short-term borrowings of ₹3,537.35 lakhs (FY2018).",
             "kind": "number",
             "source_ids": [
-              "drhp-p16"
+              "drhp-p16",
+              "drhp-p26"
             ]
           },
           {
-            "beat": "Dependence on government contract bidding: revenues depend on winning bids from government departments. Non-acceptance or lower bid values can materially affect performance.",
+            "beat": "The company has issued equity shares at prices lower than the issue price within the last 12 months, potentially diluting earlier investors.",
             "kind": "claim",
             "source_ids": [
-              "drhp-p12"
-            ]
-          },
-          {
-            "beat": "Promoter-related red flags: two struck-off companies previously promoted by the promoter raise governance concerns, and equity shares were issued in the last 12 months at a price possibly below the IPO price.",
-            "kind": "narrative",
-            "source_ids": [
-              "drhp-p18",
               "drhp-p16"
             ]
           },
           {
-            "beat": "No independent appraisal: the company has not appointed any independent agency to appraise the use of proceeds, and no monitoring agency has been appointed, so fund deployment is solely at management discretion.",
+            "beat": "Two promoter-group companies were struck off by the ROC for non-operation, indicating past governance issues.",
             "kind": "claim",
             "source_ids": [
               "drhp-p18"
             ]
           }
         ],
-        "heading": "Top risks",
-        "purpose": "List 3-5 material risks specific to this company, not generic IPO boilerplate."
+        "heading": "Key Risks",
+        "purpose": "Highlight the most material risks specific to the company, not generic IPO boilerplate."
       },
       "valuation-and-peers": {
         "beats": [
           {
-            "beat": "The DRHP provides a comparison of accounting ratios with peer group companies, but specific peer names are not disclosed in the excerpt. The company's EPS for FY2018 is ₹12.39 (basic) and ₹12.39 (diluted); NAV per share is ₹44.71; RoNW is 28.14%.",
+            "beat": "The DRHP includes a peer comparison table, but the names and financials of peer companies are not disclosed in the extracted data. Only the company's own ratios are provided: EPS ₹12.39 (FY2018), NAV per share ₹44.71, RoNW 28.14% (FY2018).",
             "kind": "number",
             "source_ids": [
+              "drhp-p54",
               "drhp-p55"
             ]
           },
           {
-            "beat": "The face value is ₹10 per share. The issue price will be [●] times the face value, determined by the company in consultation with the lead manager.",
-            "kind": "definition",
+            "beat": "Historical EPS: ₹1.31 (FY2016), ₹0.63 (FY2017), ₹12.59 (FY2018). RoNW: 4.14%, 1.97%, 28.14% respectively.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p54"
+            ]
+          },
+          {
+            "beat": "The issue price will be determined in consultation with the lead manager; no multiple or implied price range can be computed without peer data.",
+            "kind": "claim",
             "source_ids": [
               "drhp-p55"
             ]
           }
         ],
-        "gaps": [
+        "heading": "Valuation and Peer Comparison",
+        "purpose": "Present the company's own accounting ratios and the peer comparison table from the DRHP, if available.",
+        "visual_targets": [
           {
-            "blocking": false,
-            "reason": "The digest does not include the names of the peer group companies or their financial metrics. Only the company's own ratios are provided.",
-            "topic": "Peer company names and their P/E, EPS, NAV, RoNW"
+            "kind": "table",
+            "purpose": "Company's own key ratios (EPS, NAV, RoNW) across FY2016-2018. Peer data unavailable.",
+            "where": "valuation-and-peers"
           }
-        ],
-        "heading": "Valuation and peer comparison",
-        "purpose": "Present the peer comparison table from the DRHP and compute an implied price range."
+        ]
       }
     },
     "title_candidates": [
-      "A B Infrabuild Limited: inside the DRHP",
-      "A B Infrabuild IPO: the filing unpacked",
-      "A B Infrabuild: a rail-dependent infrastructure play"
+      "A B Infrabuild Limited: What the DRHP Reveals",
+      "Inside the DRHP: A B Infrabuild Limited IPO",
+      "A B Infrabuild Limited: DRHP Deep Dive"
     ],
     "visual_targets": [
       {
         "kind": "table",
-        "purpose": "Display revenue, PAT, EBITDA, borrowings, total assets across FY2014-FY2018 in ₹ lakhs.",
+        "purpose": "Multi-year summary of revenue, PAT, EBITDA, assets, and borrowings in ₹ lakhs.",
         "where": "financials"
       },
       {
         "kind": "table",
-        "purpose": "Show EPS, NAV, RoNW for three fiscal years (FY2016-FY2018) as disclosed, and note peer names missing.",
+        "purpose": "Company's EPS, NAV, RoNW for FY2016-FY2018. (Peer data unavailable in digest.)",
         "where": "valuation-and-peers"
-      },
-      {
-        "kind": "pull_quote",
-        "purpose": "Highlight that Western Railway accounts for 52% of the order book.",
-        "where": "business"
       }
     ]
   },

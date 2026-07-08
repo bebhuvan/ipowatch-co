@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.07-0543",
+  "dataset_version": "v3.2026.07.08-0450",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE17QZ01016_07JUL2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_05092025002523_DRHP.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE17QZ01016_06JUL2026.pdf",
     "rhp_url": "https://nsearchives.nseindia.com/corporate/KnackPackagingLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +108,29 @@
     }
   },
   "filings_path": "issues/knack-packaging-c10943/filings.json",
-  "generated_at": "2026-07-07T05:43:15+00:00",
+  "generated_at": "2026-07-08T04:50:53+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:66884670",
-      "bse:prior_id:244755",
-      "bse:createdby:366930"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/knack-packaging-ltd/knack/544814/"
     ],
     "board_type": "Main Board",
     "company_name": "Knack Packaging Limited",
     "isin": "INE17QZ01016",
     "issue_type": "IPO",
     "slug": "knack-packaging-c10943",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "KNACK"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 912,
+    "current_price_paise": 18550
+  },
   "market_path": "issues/knack-packaging-c10943/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 17000,
+    "issue_size_paise": 439499997000,
     "price_band_lower_paise": 16100,
     "price_band_upper_paise": 17000
   },
@@ -146,35 +178,35 @@
       "peers": [
         {
           "company_name": "KNACK",
-          "market_cap": "2,080",
+          "market_cap": "0",
           "net_sales_cr": 823,
           "pat_cr": 92.72,
-          "pb": 6.75,
-          "pe": 22.43
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "TIMETECHNO",
           "market_cap": "8,826",
           "net_sales_cr": 5457,
           "pat_cr": 387,
-          "pb": 2.16,
-          "pe": 18.83
+          "pb": 2.13,
+          "pe": 18.55
         },
         {
           "company_name": "TCPLPACK",
           "market_cap": "2,643",
           "net_sales_cr": 1770,
           "pat_cr": 143,
-          "pb": 3.68,
-          "pe": 27.02
+          "pb": 3.59,
+          "pe": 26.35
         },
         {
           "company_name": "MOLDTKPAC",
           "market_cap": "2,264",
           "net_sales_cr": 781,
           "pat_cr": 60.55,
-          "pb": 4.95,
-          "pe": 31.06
+          "pb": 5.06,
+          "pe": 31.72
         }
       ],
       "revenue_mix": {
@@ -250,41 +282,65 @@
         "pb": 6.75,
         "pe": 22.43,
         "sector_pb": 1.9,
-        "sector_pe": 19.83
+        "sector_pe": 20.63
       }
     }
   },
   "research_path": "issues/knack-packaging-c10943/research.json",
   "schema_version": "3.0.0",
   "slug": "knack-packaging-c10943",
-  "source_dataset_version": "v2026.07.07-0543",
+  "source_dataset_version": "v2026.07.08-0450",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-07T05:37:50+00:00",
+      "snapshot_at": "2026-07-08T04:46:10+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-07-08T04:46:20+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-08T04:49:21+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-07T05:37:37+00:00",
+      "snapshot_at": "2026-07-08T04:45:58+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-07T05:37:45+00:00",
+      "snapshot_at": "2026-07-08T04:46:05+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-07-08T04:46:07+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "83.3300"
+  },
   "subscription_path": "issues/knack-packaging-c10943/subscription.json",
   "timeline": {
     "close_date": "2026-07-03",
+    "listing_date": "2026-07-08",
     "open_date": "2026-07-01"
   },
   "url_path": "/ipos/knack-packaging/"

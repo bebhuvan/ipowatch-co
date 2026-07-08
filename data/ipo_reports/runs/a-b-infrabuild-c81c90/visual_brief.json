@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.07.07-0613",
-  "estimated_cost_usd": 0.0010280200000000001,
+  "dataset_version": "v2026.07.08-0528",
+  "estimated_cost_usd": 0.00102228,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-07T06:13:47+00:00",
+  "generated_at": "2026-07-08T05:28:19+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,125 +24,161 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif font throughout (e.g., Georgia or Chronicle).",
-      "Accent colour: a muted blue or steel grey for table headers and rules.",
-      "Hairline rules between table rows; a slightly thicker rule above the header.",
-      "Pull-quote: set in a larger italic serif, with a vertical rule in accent colour on the left.",
-      "Sidebar: boxed with a thin border, background tint of 5% accent colour.",
-      "No icons, no decorative imagery."
+      "Use a single accent colour (e.g., #003366) for table headers, pull-quote rule, and sidebar border.",
+      "Tables: hairline rules, left-aligned text in first column, right-aligned numbers in data columns.",
+      "Pull-quote: set in a larger serif italic, with a thick left rule in accent colour.",
+      "Sidebar: box with a thin border, background tint at 5% of accent colour.",
+      "Industry snapshot: stat strip with three numbers in large bold serif, growth bars as proportional horizontal bars."
     ],
     "formulas": [],
-    "industry_snapshot": null,
+    "industry_snapshot": {
+      "after_paragraph": "The Indian construction sector is highly fragmented and working-capital intensive, contributing roughly 8% to India's GDP.",
+      "growth_bars": [
+        {
+          "value": "US$ 160B",
+          "width_pct": 74,
+          "year": "2017"
+        },
+        {
+          "projected": true,
+          "value": "US$ 215B",
+          "width_pct": 100,
+          "year": "2020"
+        }
+      ],
+      "growth_bars_label": "Logistics sector — projected growth",
+      "growth_bars_source": "DRHP industry report, p.59",
+      "rationale": "Three headline numbers and a growth bar give the reader the industry context without a paragraph of prose.",
+      "split_bar": null,
+      "split_bar_label": null,
+      "split_bar_note": null,
+      "stats": [
+        {
+          "desc": "Construction sector contribution\nto India's GDP",
+          "val": "8%"
+        },
+        {
+          "desc": "Projected market size\nby 2025",
+          "val": "US$ 1,000B"
+        },
+        {
+          "desc": "FDI in construction development\n(Apr 2000 – Dec 2017)",
+          "val": "US$ 24.67B"
+        }
+      ]
+    },
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "The company's major clients are almost entirely government entities: Western Railway, Central Railway, Mumbai Railway Vikas Corporation Ltd (MRVCL), Municipal Corporation of Greater Mumbai (MCGM), Mumbai Metropolitan Region Development Authority (MMRDA), and Dedicated Freight Corridor Corporation of India Ltd (DFCCIL), along with a few private firms such as Sky Way Infrastructure Private Limited, Dev Engineers, GCC Hotel Private Ltd, and Krypton Corp.",
-        "quote": "Western Railway contributed 57% of total revenue in the year ended March 2018 and makes up 52% of the orders on hand.",
-        "rationale": "Customer concentration is the single most important risk; this number is sharp and damning."
+        "after_paragraph": "This concentration is the single most important fact about the business.",
+        "quote": "Western Railway alone accounts for 52% of the orders on hand.",
+        "rationale": "Client concentration is the defining risk; this single number crystallises it."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Fresh issue:** 44,28,000 equity shares of face value ₹10 each [^drhp-p29].\n**Issue price:** To be determined [^drhp-p55].\n**Use of proceeds:** ₹1,130 lakhs for working capital; balance for general corporate purposes [^drhp-p48].\n**Lead manager:** Mark Corporate Advisors Private Limited [^drhp-p31].\n**Registrar:** Bigshare Services Private Limited [^drhp-p31].",
-        "rationale": "Condenses offer structure into a scannable sidebar, freeing prose for analysis.",
+        "body_markdown": "**Fresh issue:** 44,28,000 equity shares of ₹10 each at a price to be determined.[^drhp-p29] **Use of proceeds:** ₹1,130 lakhs for working capital; remainder for general corporate purposes (amount not disclosed).[^drhp-p48] **Lead manager:** Mark Corporate Advisors Private Limited.[^drhp-p31] **Registrar:** Bigshare Services Private Limited.[^drhp-p31] **Pre-issue promoter holding:** 90.949%.[^drhp-p100]",
+        "rationale": "Condenses the key offer terms into a scannable box, freeing the prose for analysis.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The restated financial statements cover five fiscal years, from FY2014 through FY2018.",
+        "after_paragraph": "A B Infrabuild's financials over the five years from FY2014 to FY2018 tell a story of a business under pressure, with a dramatic recovery in the final year that warrants scrutiny.",
         "columns": [
-          "Period",
-          "Revenue from operations",
-          "EBITDA",
-          "Net profit after adjustments",
-          "Total assets",
-          "Long-term borrowings",
-          "Short-term borrowings"
+          "Metric",
+          "FY2014",
+          "FY2015",
+          "FY2016",
+          "FY2017",
+          "FY2018"
         ],
-        "footnote": "Source: DRHP pages 26, 27, 111 [^drhp-p26] [^drhp-p27] [^drhp-p111]",
-        "rationale": "Core financial trends — revenue decline, profit swing, debt shift — are best seen in a single table.",
+        "footnote": "Source: Restated financial statements, DRHP pages 26, 27, and 111.[^drhp-p26][^drhp-p27][^drhp-p111]",
+        "rationale": "Five-year trend of revenue decline and profit spike is the core financial story; a table lets the reader see the pattern at a glance.",
         "rows": [
           [
-            "FY2014",
+            "Revenue from operations",
             "8,661.35",
-            "784.46",
-            "95.95",
-            "7,062.34",
-            "586.63",
-            "3,082.27"
-          ],
-          [
-            "FY2015",
             "9,021.12",
-            "945.78",
-            "78.36",
-            "7,266.50",
-            "672.72",
-            "3,227.89"
-          ],
-          [
-            "FY2016",
             "7,452.76",
-            "783.31",
-            "32.63",
-            "6,295.21",
-            "188.77",
-            "3,020.55"
-          ],
-          [
-            "FY2017",
             "7,344.47",
-            "676.19",
-            "15.86",
-            "7,536.93",
-            "131.51",
-            "3,312.08"
+            "6,053.05"
           ],
           [
-            "FY2018",
-            "6,053.05",
-            "928.80",
-            "314.66",
-            "8,232.15",
-            "133.09",
+            "EBITDA",
+            "784.46",
+            "945.78",
+            "783.31",
+            "676.19",
+            "928.80"
+          ],
+          [
+            "Net profit after adjustments",
+            "95.95",
+            "78.36",
+            "32.63",
+            "15.86",
+            "314.66"
+          ],
+          [
+            "Total assets",
+            "7,062.34",
+            "7,266.50",
+            "6,295.21",
+            "7,536.93",
+            "8,232.15"
+          ],
+          [
+            "Long-term borrowings",
+            "586.63",
+            "672.72",
+            "188.77",
+            "131.51",
+            "133.09"
+          ],
+          [
+            "Short-term borrowings",
+            "3,082.27",
+            "3,227.89",
+            "3,020.55",
+            "3,312.08",
             "3,537.35"
           ]
         ],
         "title": "Restated financial summary (₹ in lakhs)"
       },
       {
-        "after_paragraph": "Key ratios from the filing show the volatility in the company's financial performance:",
+        "after_paragraph": "The DRHP includes a section on accounting ratios and peer comparison, but the names and financials of peer companies are not available in the extracted data.",
         "columns": [
-          "Ratio",
+          "Metric",
           "FY2016",
           "FY2017",
           "FY2018"
         ],
-        "footnote": "Source: DRHP pages 54, 55 [^drhp-p54] [^drhp-p55]",
-        "rationale": "EPS and RoNW swings are extreme; a table isolates the volatility from the prose.",
+        "footnote": "Source: DRHP pages 54-55.[^drhp-p54][^drhp-p55]",
+        "rationale": "EPS and RoNW mirror the profit trajectory; NAV provides a book-value anchor for valuation when the issue price is set.",
         "rows": [
           [
-            "Earnings per share (basic, ₹)",
+            "Earnings per share (₹)",
             "1.31",
             "0.63",
             "12.59"
           ],
           [
-            "Net Asset Value per share (₹)",
+            "Net asset value per share (₹)",
             "—",
             "—",
             "44.71"
           ],
           [
-            "Return on Net Worth (%)",
+            "Return on net worth (%)",
             "4.14",
             "1.97",
             "28.14"
           ]
         ],
-        "title": "Key financial ratios"
+        "title": "Key ratios (per share and return)"
       }
     ],
     "timeline": null

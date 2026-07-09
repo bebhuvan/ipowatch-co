@@ -1,6 +1,34 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 11200,
+        "quantity": 3159600
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 11500,
+        "quantity": 3152400
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 11600,
+        "quantity": 3150000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 11700,
+        "quantity": 3146400
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 11800,
+        "quantity": 3144000
+      }
+    ]
+  },
   "core_path": "issues/devson-catalyst-d2acd3/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +37,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.08-0450",
+  "dataset_version": "v3.2026.07.09-0543",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -85,6 +117,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -95,7 +131,7 @@
     }
   },
   "filings_path": "issues/devson-catalyst-d2acd3/filings.json",
-  "generated_at": "2026-07-08T04:50:53+00:00",
+  "generated_at": "2026-07-09T05:43:39+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -106,7 +142,7 @@
     "company_name": "DEVSON CATALYST LIMITED",
     "issue_type": "IPO",
     "slug": "devson-catalyst-d2acd3",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/devson-catalyst-d2acd3/market.json",
@@ -119,7 +155,7 @@
   },
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 3588000,
+    "issue_size_shares": 2587200,
     "market_lot": 1200,
     "min_bid_qty": 2400,
     "price_band_lower_paise": 11200,
@@ -178,19 +214,19 @@
         },
         {
           "company_name": "ORIENTCER",
-          "market_cap": "500",
+          "market_cap": "499",
           "net_sales_cr": 327,
           "pat_cr": 9.93,
-          "pb": 1.6,
-          "pe": 22.15
+          "pb": 1.65,
+          "pe": 22.82
         },
         {
           "company_name": "CARBORUNIV",
-          "market_cap": "21,053",
+          "market_cap": "20,582",
           "net_sales_cr": 4894,
           "pat_cr": 292,
-          "pb": 5.4,
-          "pe": 108.12
+          "pb": 5.28,
+          "pe": 105.69
         }
       ],
       "revenue_mix": {
@@ -283,54 +319,54 @@
         "pb": 4.79,
         "pe": 12.81,
         "sector_pb": 1.89,
-        "sector_pe": 26.84
+        "sector_pe": 26.36
       }
     }
   },
   "research_path": "issues/devson-catalyst-d2acd3/research.json",
   "schema_version": "3.0.0",
   "slug": "devson-catalyst-d2acd3",
-  "source_dataset_version": "v2026.07.08-0450",
+  "source_dataset_version": "v2026.07.09-0543",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7819",
-      "snapshot_at": "2026-07-08T04:50:46+00:00",
+      "snapshot_at": "2026-07-09T05:43:37+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7819",
-      "snapshot_at": "2026-07-08T04:50:46+00:00",
+      "snapshot_at": "2026-07-09T05:43:38+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7819",
-      "snapshot_at": "2026-07-08T04:50:46+00:00",
+      "snapshot_at": "2026-07-09T05:43:38+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7819",
-      "snapshot_at": "2026-07-08T04:50:46+00:00",
+      "snapshot_at": "2026-07-09T05:43:37+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-07-08T04:46:08+00:00",
+      "snapshot_at": "2026-07-09T05:38:46+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-07-08T04:46:09+00:00",
+      "snapshot_at": "2026-07-09T05:38:47+00:00",
       "source": "bse",
       "url": null
     }
@@ -341,9 +377,9 @@
         "categories": [
           {
             "category": "qib",
-            "shares_bid": 0,
+            "shares_bid": 423600,
             "shares_offered": 662400,
-            "times_x": "0.0000"
+            "times_x": "0.6395"
           },
           {
             "category": "qib_fii",
@@ -365,27 +401,27 @@
           },
           {
             "category": "qib_other",
-            "shares_bid": null,
+            "shares_bid": 423600,
             "shares_offered": null,
             "times_x": null
           },
           {
             "category": "nii",
-            "shares_bid": 0,
+            "shares_bid": 796800,
             "shares_offered": 684000,
-            "times_x": "0.0000"
+            "times_x": "1.1649"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
+            "shares_bid": 1982400,
             "shares_offered": 1176000,
-            "times_x": "0.0000"
+            "times_x": "1.6857"
           },
           {
             "category": "employee",
-            "shares_bid": 0,
+            "shares_bid": 21600,
             "shares_offered": 64800,
-            "times_x": "0.0000"
+            "times_x": "0.3333"
           },
           {
             "category": "shareholder",
@@ -394,7 +430,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": "0.0000"
+        "total_times_x": "1.2463"
       }
     },
     "consolidated": {
@@ -402,9 +438,9 @@
       "categories": [
         {
           "category": "qib",
-          "shares_bid": 0,
+          "shares_bid": 423600,
           "shares_offered": 662400,
-          "times_x": "0.0000"
+          "times_x": "0.6395"
         },
         {
           "category": "qib_fii",
@@ -426,39 +462,39 @@
         },
         {
           "category": "qib_other",
-          "shares_bid": null,
+          "shares_bid": 423600,
           "shares_offered": null,
           "times_x": null
         },
         {
           "category": "nii",
-          "shares_bid": 0,
+          "shares_bid": 796800,
           "shares_offered": 684000,
-          "times_x": "0.0000"
+          "times_x": "1.1649"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
+          "shares_bid": 601200,
           "shares_offered": 334800,
-          "times_x": "0.0000"
+          "times_x": "1.7957"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
+          "shares_bid": 195600,
           "shares_offered": 169200,
-          "times_x": "0.0000"
+          "times_x": "1.1560"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
+          "shares_bid": 1982400,
           "shares_offered": 1176000,
-          "times_x": "0.0000"
+          "times_x": "1.6857"
         },
         {
           "category": "employee",
-          "shares_bid": 0,
+          "shares_bid": 21600,
           "shares_offered": 64800,
-          "times_x": "0.0000"
+          "times_x": "0.3333"
         },
         {
           "category": "shareholder",
@@ -473,9 +509,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": "0.0000"
+      "total_times_x": "1.2463"
     },
-    "overall_times_x": "0.0000"
+    "overall_times_x": "1.2463"
   },
   "subscription_path": "issues/devson-catalyst-d2acd3/subscription.json",
   "timeline": {

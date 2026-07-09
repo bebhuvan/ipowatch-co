@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.factcheck.schema",
-  "dataset_version": "v2026.07.08-0506",
-  "estimated_cost_usd": 0.006784400000000001,
+  "dataset_version": "v2026.07.09-0559",
+  "estimated_cost_usd": 0.0092659,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-08T05:06:25+00:00",
+  "generated_at": "2026-07-09T05:59:35+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -21,368 +21,319 @@
     "blocking_count": 0,
     "checks": [
       {
-        "note": "Source confirms primary product categories and marketing arrangement.",
-        "sentence": "20 Microns Nano Minerals Limited processes and sells specialty chemicals — functional additives and chemically modified minerals — and relies on a long-term marketing arrangement with its corporate promoter, 20 Microns Limited, to reach customers.",
-        "source_id": "drhp-p112",
-        "supporting_excerpt_quote": "Our Company is engaged in processing and selling of a wide range of Specialty Chemicals which primarily include (i) Functional Additives (FA) & (ii) Chemically Modified Minerals (CMM). ... We have a long term arrangement with our Corporate Promoter to market and sell our products through their network.",
+        "note": "drhp-p112 supports the claim; drhp-p75 is not directly relevant but does not contradict.",
+        "sentence": "The company relies heavily on its corporate promoter, 20 Microns Limited, for marketing and sales through its network.",
+        "source_id": "drhp-p112, drhp-p75",
+        "supporting_excerpt_quote": "We have a long term arrangement with our Corporate Promoter to market and sell our products through their network.",
         "tag_index": 1,
         "verdict": "supported"
       },
       {
-        "note": "Lead manager name matches.",
-        "sentence": "The company is raising capital through a fresh issue of equity shares on the SME platform of NSE (NSE EMERGE), managed by Vivro Financial Services Private Limited, with proceeds earmarked for a new manufacturing facility at GIDC Waghodia, Vadodara, and other corporate purposes.",
-        "source_id": "drhp-p54",
-        "supporting_excerpt_quote": "Vivro Financial Services Private Limited",
+        "note": "PAT shows losses in FY2013 and FY2014, profits from FY2015; FY2017 operating cash flow is negative (349.75).",
+        "sentence": "The draft red herring prospectus (DRHP) filed with SEBI reveals a business that turned profitable from FY2015 after two years of losses, but whose operating cash flow remains volatile — negative in the most recent full financial year.",
+        "source_id": "drhp-p49, drhp-p50",
+        "supporting_excerpt_quote": "Restated Profit/(Loss) after tax: (27.40), (12.17), 149.58, 90.18, 174.82, 132.75; Net Cash Inflow/(Outflow) in Operating Activities: 200.97, 127.73, 422.36, 802.59, (349.75), 124.86",
         "tag_index": 2,
         "verdict": "supported"
       },
       {
-        "note": "Object of the issue includes capital expenditure and general corporate purposes.",
-        "sentence": "The company is raising capital through a fresh issue of equity shares on the SME platform of NSE (NSE EMERGE), managed by Vivro Financial Services Private Limited, with proceeds earmarked for a new manufacturing facility at GIDC Waghodia, Vadodara, and other corporate purposes.",
-        "source_id": "drhp-p75",
-        "supporting_excerpt_quote": "To fund the capital expenditure for setting up new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat ... General Corporate Purposes",
-        "tag_index": 3,
-        "verdict": "supported"
-      },
-      {
-        "note": "Source lists all four categories.",
-        "sentence": "The company sells four categories of specialty chemicals: Functional Additives (FA), Chemically Modified Minerals (CMM), Soft Minerals (SM) and Hard Minerals (HM).",
+        "note": "Product categories are supported; the list of industries (paints, plastics, rubber, adhesives, construction, personal care) is not mentioned in the cited excerpt.",
+        "sentence": "20 Microns Nano Minerals sells four product categories: Functional Additives (FA), Chemically Modified Minerals (CMM), Soft Minerals (SM), and Hard Minerals (HM). These are specialty chemicals — substances formulated for specific performance rather than sold as commodities — and they find use in industries as varied as paints, plastics, rubber, adhesives, construction, and personal care.",
         "source_id": "drhp-p112",
         "supporting_excerpt_quote": "Our Company is engaged in processing and selling of a wide range of Specialty Chemicals which primarily include (i) Functional Additives (FA) & (ii) Chemically Modified Minerals (CMM). Our Company is also engaged in processing and selling of (i) Soft Minerals (SM) & (ii) Hard Minerals (HM).",
-        "tag_index": 4,
-        "verdict": "supported"
+        "tag_index": 3,
+        "verdict": "partial"
       },
       {
-        "note": "Competitive strengths include diversified product portfolio and user industries.",
-        "sentence": "The company lists a diversified product portfolio and diversified user industries among its competitive strengths.",
-        "source_id": "drhp-p113",
-        "supporting_excerpt_quote": "(1) Diversified product portfolio (2) Diversified user industries ...",
+        "note": "The long-term arrangement and synergies are supported; the claim of dependency and severe revenue impact from disruption is not explicitly stated in the cited pages.",
+        "sentence": "The company does not market its products independently. It has a long-term arrangement with its corporate promoter, 20 Microns Limited, to market and sell through that company's network. This is both a strength — the promoter's established distribution reach — and a dependency: any disruption in that relationship could severely impact revenue.",
+        "source_id": "drhp-p112, drhp-p113",
+        "supporting_excerpt_quote": "We have a long term arrangement with our Corporate Promoter to market and sell our products through their network. We derive substantial synergies from our Corporate Promoter, 20 Microns Limited.",
+        "tag_index": 4,
+        "verdict": "partial"
+      },
+      {
+        "note": null,
+        "sentence": "In FY2015, FY2016, and FY2017, the top 10 customers accounted for roughly 59%, 57%, and 59% of revenue from operations, respectively. The company also exports, having shipped ₹1,068.18 lakh worth of products to Nigeria, Saudi Arabia, and Sri Lanka over the past five years.",
+        "source_id": "drhp-p128",
+        "supporting_excerpt_quote": "In FY 2015, FY 2016 and FY 2017, our top 10 customers have accounted for around 59%, 57%, and 59%, respectively, of our revenue from operations. For the past five years, we have achieved exports of ` 1068.18 Lakh, wherein we have exported to Nigeria, Saudi Arabia & Sri Lanka.",
         "tag_index": 5,
         "verdict": "supported"
       },
       {
-        "note": "Source confirms long-term marketing arrangement.",
-        "sentence": "It has a long-term arrangement with its corporate promoter, 20 Microns Limited, to sell through the promoter's network.",
-        "source_id": "drhp-p112",
-        "supporting_excerpt_quote": "We have a long term arrangement with our Corporate Promoter to market and sell our products through their network.",
+        "note": null,
+        "sentence": "The DRHP lists six competitive strengths: a diversified product portfolio, diversified user industries, import substitution (replacing chemicals that India currently buys from abroad), the support of the holding company (20 Microns Limited), product innovation through continuous R&D, and a strong management team.",
+        "source_id": "drhp-p113, drhp-p45",
+        "supporting_excerpt_quote": "(1) Diversified product portfolio, (2) Diversified user industries, (3) Import Substitution, (4) Support of our holding company (from drhp-p113); (5) Product innovation and continuous R&D, (6) Strong management team (from drhp-p45).",
         "tag_index": 6,
         "verdict": "supported"
       },
       {
-        "note": "Synergy from holding company is stated.",
-        "sentence": "The company describes this as a source of synergy and support from its holding company.",
-        "source_id": "drhp-p113",
-        "supporting_excerpt_quote": "We derive substantial synergies from our Corporate Promoter, 20 Microns Limited.",
+        "note": null,
+        "sentence": "The specialty chemicals segment in India was estimated at roughly ₹1,000 billion in fiscal 2017, accounting for about 17% of the broader chemicals industry (excluding pharmaceuticals and fertilisers), which CRISIL Research estimated at ₹5,800–6,200 billion.",
+        "source_id": "drhp-p92",
+        "supporting_excerpt_quote": "specialty chemicals (other than agrochemicals and dyestuff) accounted for ~17% share of the Indian chemicals industry at ~Rs 1,000 billion; CRISIL Research estimated the Indian chemicals industry (excluding pharmaceuticals and fertilisers) at Rs 5,800 - 6,200 billion in fiscal 2017",
         "tag_index": 7,
         "verdict": "supported"
       },
       {
-        "note": "All percentages match exactly.",
-        "sentence": "The top 10 customers accounted for roughly 59% of revenue from operations in each of the last three fiscal years — 59% in FY2015, 57% in FY2016, and 59% in FY2017.",
-        "source_id": "drhp-p128",
-        "supporting_excerpt_quote": "In FY 2015, FY 2016 and FY 2017, our top 10 customers have accounted for around 59%, 57%, and 59%, respectively, of our revenue from operations.",
+        "note": null,
+        "sentence": "The segment grew at 10–12% CAGR from fiscal 2014 to 2017, and CRISIL forecasts 12–14% CAGR going forward. Within specialty chemicals, certain sub-segments are expected to grow faster: construction chemicals and water chemicals at 15% CAGR each, personal care ingredients also at 15% CAGR, surfactants at 13% CAGR, and textile chemicals at 12% CAGR.",
+        "source_id": "drhp-p94",
+        "supporting_excerpt_quote": "specialty chemicals segment, which grew at 10-12% CAGR from fiscal 2014 to 2017; CRISIL Research forecasts specialty chemicals to grow at 12-14% CAGR; construction chemicals segment is expected to grow at 15% CAGR; water chemicals segment is expected to grow at 15% CAGR; personal care ingredients segment is expected to grow at 15% CAGR; surfactants segment is projected to increase at 13% CAGR; textile chemicals segment is expected to grow at 12% CAGR.",
         "tag_index": 8,
         "verdict": "supported"
       },
       {
-        "note": "Export value and countries match.",
-        "sentence": "Over the past five years, the company achieved total exports of ₹1,068.18 lakh, shipping to Nigeria, Saudi Arabia and Sri Lanka.",
-        "source_id": "drhp-p128",
-        "supporting_excerpt_quote": "For the past five years, we have achieved exports of ` 1068.18 Lakh, wherein we have exported to Nigeria, Saudi Arabia & Sri Lanka.",
+        "note": null,
+        "sentence": "The industry is highly fragmented, with small and medium enterprises (SMEs) holding 70–75% market share. Only a few Indian players have the scale or capability to compete with global giants on product development and innovation.",
+        "source_id": "drhp-p94, drhp-p95",
+        "supporting_excerpt_quote": "the industry is highly fragmented, with SMEs comprising 70-75% market share (drhp-p94); Only a few Indian players have the scale or capability to compete with global giants on product development and innovation (drhp-p95).",
         "tag_index": 9,
         "verdict": "supported"
       },
       {
-        "note": "CAGR and segment size in billions are supported.",
-        "sentence": "The Indian specialty chemicals segment — excluding agrochemicals and dyestuff — was estimated at ₹1,443 billion in fiscal 2017, having grown at 10-12% CAGR from fiscal 2014 to 2017.",
-        "source_id": "drhp-p94",
-        "supporting_excerpt_quote": "specialty chemicals segment, which grew at 10-12% CAGR from fiscal 2014 to 2017 ... specialty chemicals segment 1,443",
+        "note": null,
+        "sentence": "Key demand drivers include rising consumption, urbanisation (India's urban population was 31% in 2011), GDP growth (7.1% in fiscal 2017), and government initiatives such as the Draft National Chemical Policy, which aims to increase the chemicals sector's share of GDP.",
+        "source_id": "drhp-p95, drhp-p90, drhp-p87",
+        "supporting_excerpt_quote": "Increased intensity of consumption; The Government of India has released a Draft National Chemical Policy, aimed at increasing the share of chemicals sector in the country’s GDP (drhp-p95); Share of urban population in relation to the total population has been consistently rising over the years and was about 31% in 2011 (drhp-p90); India’s GDP grew 7.1% in fiscal 2017 (drhp-p87).",
         "tag_index": 10,
         "verdict": "supported"
       },
       {
-        "note": "Exact forecast matches.",
-        "sentence": "CRISIL Research forecasts the segment to grow at 12-14% CAGR going forward.",
-        "source_id": "drhp-p94",
-        "supporting_excerpt_quote": "CRISIL Research forecasts specialty chemicals to grow at 12-14% CAGR",
+        "note": null,
+        "sentence": "Foreign direct investment of up to 100% is allowed in the sector.",
+        "source_id": "drhp-p96",
+        "supporting_excerpt_quote": "Approval has been granted for foreign direct investment (FDI) of up to 100% in the sector.",
         "tag_index": 11,
         "verdict": "supported"
       },
       {
-        "note": "All sub-segments have 15% CAGR as stated.",
-        "sentence": "Within this broad category, several sub-segments relevant to the company's product range are expected to grow faster: construction chemicals, water chemicals and personal care ingredients are each forecast to grow at 15% CAGR over the next three to five years.",
-        "source_id": "drhp-p94",
-        "supporting_excerpt_quote": "construction chemicals segment is expected to grow at 15% CAGR over the next three years ... water chemicals segment is expected to grow at 15% CAGR over the next five years ... personal care ingredients segment is expected to grow at 15% CAGR over the next three years",
+        "note": "The impact on China's output is supported; the claim that this potentially pushes buyers toward Indian suppliers is not in the excerpt.",
+        "sentence": "A favourable global factor: China, a major player in commodity chemicals, has seen stricter environmental regulations since 2015 that have impacted its chemical manufacturing output, potentially pushing buyers toward Indian suppliers.",
+        "source_id": "drhp-p96",
+        "supporting_excerpt_quote": "China, which is a major player in commodity chemicals, has seen lower focus on specialty chemicals because of low volume and high-value nature of the segment. Additionally, stricter environmental regulations introduced in 2015 have impacted the output of its chemical manufacturing industry.",
         "tag_index": 12,
-        "verdict": "supported"
+        "verdict": "partial"
       },
       {
-        "note": "SME market share is on page 94; global competition claim is on page 95.",
-        "sentence": "Small and medium enterprises hold 70-75% market share, and only a few Indian players have the scale to compete with global giants on product development and innovation.",
-        "source_id": "drhp-p94",
-        "supporting_excerpt_quote": "the industry is highly fragmented, with SMEs comprising 70-75% market share",
+        "note": null,
+        "sentence": "The Goods and Services Tax (GST) came into effect in India from July 1, 2017, replacing multiple indirect taxes with a single tax.",
+        "source_id": "drhp-p111",
+        "supporting_excerpt_quote": "GST is an indirect tax, which came into effect in India from July 1, 2017, replacing existing multiple indirect taxes with a single tax.",
         "tag_index": 13,
         "verdict": "supported"
       },
       {
-        "note": "Global competition claim is on page 95.",
-        "sentence": "Small and medium enterprises hold 70-75% market share, and only a few Indian players have the scale to compete with global giants on product development and innovation.",
-        "source_id": "drhp-p95",
-        "supporting_excerpt_quote": "Only a few Indian players have the scale or capability to compete with global giants on product development and innovation.",
+        "note": null,
+        "sentence": "Exports to the European Union must comply with the Registration, Evaluation, Authorisation and Restriction of Chemicals (REACH) regulation.",
+        "source_id": "drhp-p110",
+        "supporting_excerpt_quote": "The chemical industry catering to the export market, especially to the European markets, is governed under strict regulations like Registration, Evaluation, Authorisation and Restriction of Chemicals (REACH)",
         "tag_index": 14,
         "verdict": "supported"
       },
       {
-        "note": "Middle-class consumption is supported on page 95; FDI on page 96.",
-        "sentence": "Rising middle-class consumption and 100% FDI allowance in chemicals are cited as growth drivers.",
-        "source_id": "drhp-p95",
-        "supporting_excerpt_quote": "Increased intensity of consumption ... Improved consumption standards",
+        "note": null,
+        "sentence": "The central government has approved four Petroleum, Chemicals and Petrochemicals Investment Regions (PCPIRs) — in Gujarat, Andhra Pradesh, Tamil Nadu, and Odisha — with total proposed investments of about ₹9 trillion.",
+        "source_id": "drhp-p111",
+        "supporting_excerpt_quote": "the central government has approved four PCPIRs: Gujarat, Andhra Pradesh, Tamil Nadu and Odisha. Total proposed investments in these four regions is about Rs 9 trillion",
         "tag_index": 15,
         "verdict": "supported"
       },
       {
-        "note": "FDI allowance is on page 96.",
-        "sentence": "Rising middle-class consumption and 100% FDI allowance in chemicals are cited as growth drivers.",
-        "source_id": "drhp-p96",
-        "supporting_excerpt_quote": "Approval has been granted for foreign direct investment (FDI) of up to 100% in the sector.",
+        "note": null,
+        "sentence": "The DRHP states that the issue is being made to fund capital expenditure for setting up a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat, and for general corporate purposes.",
+        "source_id": "drhp-p75",
+        "supporting_excerpt_quote": "To fund the capital expenditure for setting up new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; General Corporate Purposes;",
         "tag_index": 16,
         "verdict": "supported"
       },
       {
-        "note": "Exact statement matches.",
-        "sentence": "The Government of India has released a Draft National Chemical Policy aimed at increasing the chemicals sector's share of GDP.",
-        "source_id": "drhp-p95",
-        "supporting_excerpt_quote": "The Government of India has released a Draft National Chemical Policy, aimed at increasing the share of chemicals sector in the country’s GDP",
+        "note": null,
+        "sentence": "A further objective is creating a public trading market for the company's equity shares by listing them on the SME Platform of NSE (NSE EMERGE), to enhance visibility and brand.",
+        "source_id": "drhp-p75",
+        "supporting_excerpt_quote": "The other Objects of the Issue also include creating a public trading market for the Equity Shares of our Company by listing them on the SME Platform of NSE (“NSE EMERGE”) to enhance our visibility and brand.",
         "tag_index": 17,
         "verdict": "supported"
       },
       {
-        "note": "CAGRs match exactly.",
-        "sentence": "India's chemicals imports (growing at 6.4% CAGR) have outpaced exports (6% CAGR) over the five years to 2016-17, meaning domestic producers have room to replace foreign supply.",
-        "source_id": "drhp-p92",
-        "supporting_excerpt_quote": "Over the 5-year period from 2012-13 to 2016-17... imports (at 6.4% CAGR) have grown at a higher pace compared to exports (at 6% CAGR).",
+        "note": null,
+        "sentence": "The lead manager to the issue is Vivro Financial Services Private Limited.",
+        "source_id": "drhp-p54",
+        "supporting_excerpt_quote": "Vivro Financial Services Private Limited",
         "tag_index": 18,
         "verdict": "supported"
       },
       {
-        "note": "Lead manager name on page 54.",
-        "sentence": "The lead manager to the issue is Vivro Financial Services Private Limited, and the registrar is Link Intime India Private Limited.",
-        "source_id": "drhp-p54",
-        "supporting_excerpt_quote": "Vivro Financial Services Private Limited",
+        "note": null,
+        "sentence": "The registrar is Link Intime India Private Limited.",
+        "source_id": "drhp-p55",
+        "supporting_excerpt_quote": "Link Intime India Private Limited",
         "tag_index": 19,
         "verdict": "supported"
       },
       {
-        "note": "Registrar name on page 55.",
-        "sentence": "The lead manager to the issue is Vivro Financial Services Private Limited, and the registrar is Link Intime India Private Limited.",
-        "source_id": "drhp-p55",
-        "supporting_excerpt_quote": "Link Intime India Private Limited",
+        "note": "The table shows figures in the same order: FY2013, FY2014, FY2015, FY2016, FY2017, six months to Sep 2017.",
+        "sentence": "It reported losses of ₹27.40 lakh in FY2013 and ₹12.17 lakh in FY2014, then profits of ₹149.58 lakh in FY2015, ₹90.18 lakh in FY2016, and ₹174.82 lakh in FY2017. For the six months to September 2017, PAT was ₹132.75 lakh.",
+        "source_id": "drhp-p49",
+        "supporting_excerpt_quote": "Restated Profit/(Loss) after tax (V-VI) 132.75 174.82 90.18 149.58 (12.17) (27.40)",
         "tag_index": 20,
         "verdict": "supported"
       },
       {
-        "note": "All three objects are supported.",
-        "sentence": "Proceeds will be used to (1) fund capital expenditure for setting up a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; (2) general corporate purposes; and (3) create a public trading market for the company's equity shares by listing on NSE EMERGE, which the company says will enhance its visibility and brand.",
-        "source_id": "drhp-p75",
-        "supporting_excerpt_quote": "To fund the capital expenditure for setting up new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat ... General Corporate Purposes ... the other Objects of the Issue also include creating a public trading market for the Equity Shares of our Company by listing them on the SME Platform of NSE (“NSE EMERGE”) to enhance our visibility and brand.",
+        "note": "Order from latest to earliest? The excerpt shows: six months, FY2017, FY2016, FY2015, FY2014, FY2013.",
+        "sentence": "Basic EPS (in ₹) tracks the PAT trajectory: negative ₹0.45 in FY2013, negative ₹0.20 in FY2014, then positive ₹2.47 in FY2015, ₹1.46 in FY2016, ₹2.43 in FY2017, and ₹1.48 for the six months to September 2017.",
+        "source_id": "drhp-p177",
+        "supporting_excerpt_quote": "(a) Basic Earnings Per Share 1.48 2.43 1.46 2.47 (0.20) (0.45)",
         "tag_index": 21,
         "verdict": "supported"
       },
       {
-        "note": "Promoter shareholding percentage matches.",
-        "sentence": "That liquidity has value for the promoters themselves, who hold 99.76% of the pre-issue capital.",
-        "source_id": "drhp-p155",
-        "supporting_excerpt_quote": "Our Promoters hold... 99.76 % of the pre-Issue paid-up equity share capital",
+        "note": "The excerpt is from the risk factors section, thus the negative cash flow is presented as a risk.",
+        "sentence": "The negative cash flow in FY2017 is flagged as a risk in the DRHP itself.",
+        "source_id": "drhp-p22",
+        "supporting_excerpt_quote": "Our Company had negative cash flows in the previous financial years as per the Restated Financial Statements and the same are summarized as under:",
         "tag_index": 22,
         "verdict": "supported"
       },
       {
-        "note": "Column headers confirm period coverage.",
-        "sentence": "The restated financial statements cover five full fiscal years (FY2013 through FY2017) and the six-month period ended September 30, 2017.",
-        "source_id": "drhp-p49",
-        "supporting_excerpt_quote": "For Six Months Period ended September 30, 2017, For the year ended March 31, 2017, 2016, 2015, 2014, 2013",
+        "note": "The first number is likely FY2017 total assets, the last number for six months ended Sep 2017.",
+        "sentence": "Total assets stood at ₹3,424.96 lakh as at March 31, 2017, and ₹3,018.66 lakh as at September 30, 2017.",
+        "source_id": "drhp-p175",
+        "supporting_excerpt_quote": "TOTAL 3,424.96 3,273.96 2,767.21 2,592.53 2,679.38 3,018.66",
         "tag_index": 23,
         "verdict": "supported"
       },
       {
-        "note": "All PAT figures match the source order (six months FY2017, FY2017, FY2016, FY2015, FY2014, FY2013).",
-        "sentence": "Profit after tax tells a clear turnaround story. The company was loss-making in FY2013 and FY2014, with losses of ₹27.40 lakh and ₹12.17 lakh respectively. It turned profitable in FY2015, posting a PAT of ₹149.58 lakh. Profitability has been sustained since: ₹90.18 lakh in FY2016, ₹174.82 lakh in FY2017, and ₹132.75 lakh in the six months ended September 2017.",
-        "source_id": "drhp-p49",
-        "supporting_excerpt_quote": "Restated Profit/(Loss) after tax (V-VI) 132.75 174.82 90.18 149.58 (12.17) (27.40)",
+        "note": "Share counts are derived: 2,000 lakh / 10 = 20,00,000 shares; 897 lakh / 10 = 89,70,000 shares.",
+        "sentence": "Authorised share capital is ₹2,000 lakh (20,00,000 equity shares of ₹10 each). Issued, subscribed, and paid-up share capital is ₹897 lakh (89,70,000 equity shares of ₹10 each) as at September 30, 2017.",
+        "source_id": "drhp-p190",
+        "supporting_excerpt_quote": "Authorised Share Capital: Equity Shares of `10/- each 2,000.00; Issued, Subscribed and Paid-up: Equity Shares of `10/- each 897.00",
         "tag_index": 24,
         "verdict": "supported"
       },
       {
-        "note": "All EPS figures match the source order.",
-        "sentence": "Earnings per share follows the same pattern. Basic EPS was negative in FY2013 (₹(0.45)) and FY2014 (₹(0.20)), then turned positive: ₹2.47 in FY2015, ₹1.46 in FY2016, ₹2.43 in FY2017, and ₹1.48 for the six months to September 2017.",
-        "source_id": "drhp-p177",
-        "supporting_excerpt_quote": "(a) Basic Earnings Per Share 1.48 2.43 1.46 2.47 (0.20) (0.45)",
+        "note": null,
+        "sentence": "The promoters are Mr. Chandresh S. Parikh, Mr. Atil C. Parikh, Mr. Rajesh C. Parikh, and 20 Microns Limited (the corporate promoter).",
+        "source_id": "drhp-p155, drhp-p156",
+        "supporting_excerpt_quote": "Mr. Chandresh S. Parikh, Mr. Atil C. Parikh, 20 Microns Limited (drhp-p155); Mr. Rajesh C. Parikh (drhp-p156)",
         "tag_index": 25,
         "verdict": "supported"
       },
       {
-        "note": "All presented cash flow numbers (124.86, -349.75, 802.59, 422.36, 127.73) match the source (in different order but values correct).",
-        "sentence": "Cash flow from operations is more volatile than the PAT trend suggests. The numbers, in ₹ lakh: [table]",
-        "source_id": "drhp-p50",
-        "supporting_excerpt_quote": "Net Cash Inflow / (Outflow) in the course of Operating Activities 124.86 (349.75) 802.59 422.36 127.73 200.97",
+        "note": null,
+        "sentence": "Pre-issue shareholding is heavily concentrated: Promoters 89,48,270 99.76% ; Promoter Group (excluding promoters) 21,510 0.24%.",
+        "source_id": "drhp-p155, drhp-p162",
+        "supporting_excerpt_quote": "Our Promoters hold, in aggregate 89,48,270 Equity Shares, representing 99.76 % of the pre-Issue paid-up equity share capital of our Company (drhp-p155); Our Promoter Group (excluding our Promoters) hold in aggregate 21,510 Equity Shares constituting 0.24 % of pre- Issue paid up equity share capital of our Company (drhp-p162).",
         "tag_index": 26,
         "verdict": "supported"
       },
       {
-        "note": "Specific cash outflow number is confirmed.",
-        "sentence": "The FY2014 operating cash outflow of ₹349.75 lakh occurred while the company was also reporting a modest PAT loss — meaning working capital was consuming cash beyond the operating loss.",
-        "source_id": "drhp-p50",
-        "supporting_excerpt_quote": "(349.75)",
+        "note": null,
+        "sentence": "The company has entered into related party transactions in each of the last five financial years and the six months ended September 30, 2017, as per Accounting Standard 18. Details are referenced to page 223 of the DRHP.",
+        "source_id": "drhp-p166",
+        "supporting_excerpt_quote": "For details of the related party transactions during the last five financial years and for the six months period ended September 30, 2017, as per the requirement under Accounting Standard 18 “Related Party Disclosures”, kindly refer “Financial Statements - Related Party disclosures” on page 223 of this DRHP.",
         "tag_index": 27,
         "verdict": "supported"
       },
       {
-        "note": "Cash inflow number confirmed.",
-        "sentence": "The FY2015 cash inflow of ₹802.59 lakh is the strongest in the series, coinciding with the turnaround year.",
-        "source_id": "drhp-p50",
-        "supporting_excerpt_quote": "802.59",
+        "note": null,
+        "sentence": "Governance flags from the filing include instances of non-filing or delayed filings with the Registrar of Companies (RoC), which in certain cases were subsequently filed along with additional fees.",
+        "source_id": "drhp-p18",
+        "supporting_excerpt_quote": "In the past, there have been some instances of non-filings or incorrect filings or delays in filing statutory forms with the RoC, which in certain instances have subsequently been filed along with the payment of additional fees, as specified by RoC.",
         "tag_index": 28,
         "verdict": "supported"
       },
       {
-        "note": "FY2017 cash flow number confirmed.",
-        "sentence": "But cash generation has tapered since: FY2017's ₹127.73 lakh is less than one-sixth of FY2015's level, even though PAT was higher in FY2017.",
-        "source_id": "drhp-p50",
-        "supporting_excerpt_quote": "127.73",
+        "note": null,
+        "sentence": "The company has not yet obtained certain statutory and regulatory licenses required to operate its manufacturing facility at Plot 9–10, GIDC Waghodia, Vadodara, Gujarat, and cannot assure that it will not be penalised for such non-compliance.",
+        "source_id": "drhp-p19",
+        "supporting_excerpt_quote": "Our Company has not yet obtained certain statutory and regulatory licenses, registrations and approvals required to operate our manufacturing facility located at Plot 9 - 10, GIDC Waghodia, Vadodara, Gujarat and we cannot assure that we will not be penalized for such non-compliance under the relevant laws which could adversely affect our business operations and financial condition.",
         "tag_index": 29,
         "verdict": "supported"
       },
       {
-        "note": "Page 155 supports Chandresh, Atil, and 20 Microns Limited, but not Mr. Rajesh C. Parikh (supported on page 156).",
-        "sentence": "The promoters are Mr. Chandresh S. Parikh, Mr. Atil C. Parikh, Mr. Rajesh C. Parikh, and the corporate entity 20 Microns Limited.",
-        "source_id": "drhp-p155",
-        "supporting_excerpt_quote": "Mr. Chandresh S. Parikh ... Mr. Atil C. Parikh ... 20 Microns Limited",
+        "note": null,
+        "sentence": "The company does not own the premises for its manufacturing facilities at Plot 347, GIDC Waghodia, Vadodara, and Plot 104/3, Thenkasi Road, Pathur Village, Alangulam, Tirunelveli, Tamil Nadu, nor for its administrative offices in Bhuj and Udaipur.",
+        "source_id": "drhp-p20",
+        "supporting_excerpt_quote": "Our Company does not own the premises where our manufacturing facilities of Plot 347, GIDC Waghodia, Vadodara, Gujarat and Plot 104/3, Thenkasi Road, Pathur Village, Alangulam, Tirunelveli, Tamil Nadu as well as our administrative offices in Bhuj and Udaipur are located.",
         "tag_index": 30,
-        "verdict": "partial"
+        "verdict": "supported"
       },
       {
-        "note": "Page 156 supports inclusion of Mr. Rajesh C. Parikh.",
-        "sentence": "The promoters are Mr. Chandresh S. Parikh, Mr. Atil C. Parikh, Mr. Rajesh C. Parikh, and the corporate entity 20 Microns Limited.",
-        "source_id": "drhp-p156",
-        "supporting_excerpt_quote": "Mr. Rajesh C. Parikh",
+        "note": null,
+        "sentence": "No long-term customer or supplier agreements. The company operates entirely on purchase orders, with no long-term or definitive agreements governing volume, pricing, or other terms of sale with customers. Similarly, it has no long-term agreements with raw material suppliers.",
+        "source_id": "drhp-p25, drhp-p26",
+        "supporting_excerpt_quote": "We have not entered into any long term or definitive agreements with our raw material suppliers (drhp-p25); We have not entered into any long term or definitive agreements with our customers, and instead rely on purchase orders to govern the volume, pricing and other terms of sales of our products (drhp-p26).",
         "tag_index": 31,
         "verdict": "supported"
       },
       {
-        "note": "Share count and percentage match exactly.",
-        "sentence": "The promoter shareholding is extraordinarily concentrated: the four promoters together hold 89,48,270 equity shares, representing 99.76% of the pre-issue paid-up equity share capital.",
-        "source_id": "drhp-p155",
-        "supporting_excerpt_quote": "Our Promoters hold, in aggregate 89,48,270 Equity Shares, representing 99.76 % of the pre-Issue paid-up equity share capital of our Company.",
+        "note": "The specific figures for FY2017 (349.75) and FY2016 (802.59) are present. The negative cash flow is flagged as a risk in the DRHP.",
+        "sentence": "Negative operating cash flow in FY2017. The company generated ₹(349.75) lakh from operations in FY2017, a dramatic reversal from ₹802.59 lakh in FY2016. Sustained negative cash flow could constrain growth and debt servicing. The filing itself flags this risk.",
+        "source_id": "drhp-p22, drhp-p50",
+        "supporting_excerpt_quote": "Our Company had negative cash flows in the previous financial years (drhp-p22); Net Cash Inflow/(Outflow) in the course of Operating Activities: 124.86 (349.75) 802.59 422.36 127.73 200.97 (drhp-p50).",
         "tag_index": 32,
         "verdict": "supported"
       },
       {
-        "note": "Shares and percentage match exactly.",
-        "sentence": "The promoter group (excluding the promoters themselves) holds only 21,510 shares, or 0.24%.",
-        "source_id": "drhp-p162",
-        "supporting_excerpt_quote": "Our Promoter Group (excluding our Promoters) hold in aggregate 21,510 Equity Shares constituting 0.24 % of pre- Issue paid up equity share capital of our Company.",
+        "note": null,
+        "sentence": "Missing statutory licenses for one manufacturing facility. The company has not obtained certain statutory and regulatory licenses required to operate its facility at Plot 9–10, GIDC Waghodia, Vadodara, Gujarat. It cannot assure that it will not be penalised, which could disrupt operations.",
+        "source_id": "drhp-p19",
+        "supporting_excerpt_quote": "Our Company has not yet obtained certain statutory and regulatory licenses, registrations and approvals required to operate our manufacturing facility located at Plot 9 - 10, GIDC Waghodia, Vadodara, Gujarat and we cannot assure that we will not be penalized for such non-compliance under the relevant laws which could adversely affect our business operations and financial condition.",
         "tag_index": 33,
         "verdict": "supported"
       },
       {
-        "note": "Capital amounts and share counts match.",
-        "sentence": "The authorised share capital is ₹2,000 lakh (20,00,00,000 equity shares of ₹10 each), and the issued, subscribed and paid-up capital is ₹897 lakh (89,70,000 equity shares of ₹10 each) as at September 30, 2017.",
-        "source_id": "drhp-p190",
-        "supporting_excerpt_quote": "Authorised Share Capital: Equity Shares of `10/- each 2,000.00 ... Issued, Subscribed and Paid-up: Equity Shares of `10/- each 897.00",
+        "note": "The arrangement and synergies are supported; the claim of core dependency and severe revenue impact from disruption is not explicitly stated.",
+        "sentence": "Heavy reliance on corporate promoter for marketing and sales. The company's long-term arrangement with 20 Microns Limited to market and sell its products through that company's network is a core dependency. Any disruption in that relationship could severely impact revenue.",
+        "source_id": "drhp-p112, drhp-p113",
+        "supporting_excerpt_quote": "We have a long term arrangement with our Corporate Promoter to market and sell our products through their network (drhp-p112); We derive substantial synergies from our Corporate Promoter, 20 Microns Limited (drhp-p113).",
         "tag_index": 34,
-        "verdict": "supported"
+        "verdict": "partial"
       },
       {
-        "note": "Exact wording matches.",
-        "sentence": "Related party transactions have occurred over the last five financial years and the six months ended September 30, 2017, as per Accounting Standard 18.",
-        "source_id": "drhp-p166",
-        "supporting_excerpt_quote": "For details of the related party transactions during the last five financial years and for the six months period ended September 30, 2017, as per the requirement under Accounting Standard 18",
+        "note": null,
+        "sentence": "Legal proceedings. The company, its promoters, group companies, and directors are parties to certain legal proceedings. Any adverse decision could materially affect financial condition and results of operations.",
+        "source_id": "drhp-p17",
+        "supporting_excerpt_quote": "Our Company, our Promoters, our Group Company and our Directors are parties to certain legal proceedings. Any adverse decision in such proceedings may have a material adverse effect on our business, results of operations and financial condition.",
         "tag_index": 35,
-        "verdict": "supported"
-      },
-      {
-        "note": "Exact statement matches.",
-        "sentence": "The company, its promoters, group companies and directors are parties to certain legal proceedings.",
-        "source_id": "drhp-p17",
-        "supporting_excerpt_quote": "Our Company, our Promoters, our Group Company and our Directors are parties to certain legal proceedings.",
-        "tag_index": 36,
-        "verdict": "supported"
-      },
-      {
-        "note": "Risk statement matches.",
-        "sentence": "The filing warns that any adverse outcome could materially affect business, results of operations and financial condition.",
-        "source_id": "drhp-p17",
-        "supporting_excerpt_quote": "Any adverse decision in such proceedings may have a material adverse effect on our business, results of operations and financial condition.",
-        "tag_index": 37,
-        "verdict": "supported"
-      },
-      {
-        "note": "Exact statement matches.",
-        "sentence": "There have been instances of non-filing or incorrect or delayed filings with the Registrar of Companies.",
-        "source_id": "drhp-p18",
-        "supporting_excerpt_quote": "In the past, there have been some instances of non-filings or incorrect filings or delays in filing statutory forms with the RoC",
-        "tag_index": 38,
-        "verdict": "supported"
-      },
-      {
-        "note": "Plot and location match.",
-        "sentence": "the company has not yet obtained all statutory licenses and registrations required to operate one of its manufacturing facilities — Plot 9-10, GIDC Waghodia, Vadodara, Gujarat.",
-        "source_id": "drhp-p19",
-        "supporting_excerpt_quote": "Our Company has not yet obtained certain statutory and regulatory licenses, registrations and approvals required to operate our manufacturing facility located at Plot 9 - 10, GIDC Waghodia, Vadodara, Gujarat",
-        "tag_index": 39,
-        "verdict": "supported"
-      },
-      {
-        "note": "Exact statement matches.",
-        "sentence": "The filing states that the company cannot assure it will not be penalised for such non-compliance under relevant laws.",
-        "source_id": "drhp-p19",
-        "supporting_excerpt_quote": "we cannot assure that we will not be penalized for such non-compliance under the relevant laws",
-        "tag_index": 40,
-        "verdict": "supported"
-      },
-      {
-        "note": "Claim matches source.",
-        "sentence": "it has not entered into any long-term or definitive agreements with customers to govern volume, pricing or other terms of sales.",
-        "source_id": "drhp-p26",
-        "supporting_excerpt_quote": "We have not entered into any long term or definitive agreements with our customers, and instead rely on purchase orders to govern the volume, pricing and other terms of sales of our products.",
-        "tag_index": 41,
-        "verdict": "supported"
-      },
-      {
-        "note": "Claim matches source.",
-        "sentence": "it has no long-term agreements with raw material suppliers.",
-        "source_id": "drhp-p25",
-        "supporting_excerpt_quote": "We have not entered into any long term or definitive agreements with our raw material suppliers.",
-        "tag_index": 42,
-        "verdict": "supported"
-      },
-      {
-        "note": "Number confirmed.",
-        "sentence": "The company had a significant operating cash outflow of ₹349.75 lakh in FY2014.",
-        "source_id": "drhp-p50",
-        "supporting_excerpt_quote": "(349.75)",
-        "tag_index": 43,
-        "verdict": "supported"
-      },
-      {
-        "note": "Percentage matches.",
-        "sentence": "Promoters hold 99.76% of pre-issue equity.",
-        "source_id": "drhp-p155",
-        "supporting_excerpt_quote": "99.76 % of the pre-Issue paid-up equity share capital",
-        "tag_index": 44,
-        "verdict": "supported"
-      },
-      {
-        "note": "Risk statement matches.",
-        "sentence": "An adverse outcome could have a material adverse effect on business, results of operations and financial condition.",
-        "source_id": "drhp-p17",
-        "supporting_excerpt_quote": "Any adverse decision in such proceedings may have a material adverse effect on our business, results of operations and financial condition.",
-        "tag_index": 45,
         "verdict": "supported"
       }
     ],
-    "summary": "The report is well-sourced, with all cited claims directly supported by the DRHP excerpts. A minor partial verdict arises for the promoter listing on page 155 (Rajesh C. Parikh is on page 156, not 155), but the overall sentence is correctly sourced via the second tag. No untagged specific claims were found.",
-    "untagged_claims": []
+    "summary": "The report generally sources its claims accurately, with most tagged sentences supported by the cited DRHP excerpts. Three partial verdicts arise where the cited pages do not fully cover the claim (e.g., missing industry list, unstated dependency inference, unsupported buyer shift inference). Several untagged factual assertions—such as the industries served, the offer price status, and absence of peer data—need citation to meet sourcing standards. No unsupported or wrong-source tags were found. The report's overall sourcing is sound but requires minor supplementation for completeness.",
+    "untagged_claims": [
+      {
+        "kind": "segment",
+        "sentence": "20 Microns Nano Minerals Limited processes and sells specialty chemicals — functional additives, chemically modified minerals, soft minerals, and hard minerals — used across industries from paints to plastics to personal care.",
+        "suggestion": "The product categories are tagged later in [^drhp-p112] but the list of industries is not supported; add a citation for the industries or cut the claim."
+      },
+      {
+        "kind": "other",
+        "sentence": "It is a small company listing on the SME platform of NSE (NSE EMERGE) to raise capital for a new manufacturing plant and to create a public market for its shares.",
+        "suggestion": "This claim is tagged later in [^drhp-p75] but is untagged in the first paragraph; either add tag or rely on later citation."
+      },
+      {
+        "kind": "other",
+        "sentence": "The offer price has not yet been set.",
+        "suggestion": "Factual claim about the filing; provide a citation from the DRHP stating that the price will be determined later, e.g., in the 'Basis of Issue Price' section."
+      },
+      {
+        "kind": "other",
+        "sentence": "The filing discloses no peer comparison data, making relative valuation impossible from the document alone.",
+        "suggestion": "Factual claim about absence; cite a page showing no such data, or rephrase as an observation."
+      },
+      {
+        "kind": "other",
+        "sentence": "The DRHP does not disclose a split between fresh issue and offer for sale in the extracted facts. No selling shareholders are named.",
+        "suggestion": "Factual claim about the filing; provide citation from the DRHP that lacks this information, e.g., the 'Objects of the Issue' section."
+      },
+      {
+        "kind": "other",
+        "sentence": "The DRHP does not disclose a peer comparison table or valuation multiples in the extracted facts.",
+        "suggestion": "Same as above; cite relevant pages."
+      }
+    ]
   },
   "schema_url_self": null,
   "schema_version": "1.0.0",

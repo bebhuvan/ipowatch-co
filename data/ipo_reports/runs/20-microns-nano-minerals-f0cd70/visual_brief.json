@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.07.08-0507",
-  "estimated_cost_usd": 0.0008079400000000002,
+  "dataset_version": "v2026.07.09-0600",
+  "estimated_cost_usd": 0.0008288000000000002,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-08T05:07:31+00:00",
+  "generated_at": "2026-07-09T06:00:52+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,89 +24,103 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules and serif font throughout.",
-      "Accent colour: a muted teal or slate blue for table headers and pull-quote border.",
-      "Pull-quote: set in larger serif italic, with a left rule in accent colour.",
-      "Industry snapshot: stat strip with three numbers in bold, split bar below.",
-      "Sidebar: boxed with thin border, no icon."
+      "Use hairline rules to separate table rows; accent colour for table headers and pull-quote border.",
+      "Industry snapshot: stat strip with three numbers, growth bars proportional to value, split bar for organised vs unorganised.",
+      "Sidebar: boxed with light background, no icon."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The Indian specialty chemicals segment — excluding agrochemicals and dyestuff — was estimated at ₹1,443 billion in fiscal 2017",
-      "growth_bars": null,
-      "growth_bars_label": null,
-      "growth_bars_source": null,
-      "rationale": "Provides scannable context for the fragmented industry.",
+      "after_paragraph": "The specialty chemicals segment in India was estimated at roughly ₹1,000 billion in fiscal 2017, accounting for about 17% of the broader chemicals industry (excluding pharmaceuticals and fertilisers), which CRISIL Research estimated at ₹5,800–6,200 billion. [^drhp-p92]",
+      "growth_bars": [
+        {
+          "value": "₹750B",
+          "width_pct": 75,
+          "year": "FY14"
+        },
+        {
+          "projected": false,
+          "value": "₹1,000B",
+          "width_pct": 100,
+          "year": "FY17"
+        }
+      ],
+      "growth_bars_label": "Specialty chemicals market — historical growth",
+      "growth_bars_source": "DRHP, p.92 [^drhp-p92]",
+      "rationale": "Industry data is rich; a snapshot conveys scale, growth, and fragmentation at a glance.",
       "split_bar": {
         "left_label": "Organised",
-        "left_pct": 30,
+        "left_pct": 28,
         "right_label": "Unorganised"
       },
-      "split_bar_label": "Market structure (SME share)",
-      "split_bar_note": "Small and medium enterprises hold 70-75% market share. [^drhp-p94]",
+      "split_bar_label": "Market structure (FY17)",
+      "split_bar_note": "SMEs hold 70–75% market share. [^drhp-p94]",
       "stats": [
         {
-          "desc": "Indian specialty chemicals market\n(excl. agro & dyestuff), FY17",
-          "val": "₹1,443B"
+          "desc": "Specialty chemicals market size\nIndia, FY17",
+          "val": "₹1,000B"
         },
         {
-          "desc": "Historical CAGR\nFY14-FY17",
-          "val": "10-12%"
+          "desc": "Historical CAGR\nFY14–FY17",
+          "val": "10–12%"
         },
         {
-          "desc": "Forecast CAGR\nnext period",
-          "val": "12-14%"
+          "desc": "Projected CAGR\nGoing forward",
+          "val": "12–14%"
         }
       ]
     },
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration is high. The top 10 customers accounted for 59% of revenue from operations in each of the last three fiscal years",
-        "quote": "The top 10 customers accounted for 59% of revenue from operations in each of the last three fiscal years.",
-        "rationale": "Highlights a material dependency that prose alone may not emphasise enough."
+        "after_paragraph": "The company does not market its products independently. It has a long-term arrangement with its corporate promoter, 20 Microns Limited, to market and sell through that company's network.",
+        "quote": "The company operates entirely on purchase orders, with no long-term or definitive agreements governing volume, pricing, or other terms of sale with customers.",
+        "rationale": "Highlights a critical risk: lack of contractual revenue visibility."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Issue type:** Fresh issue of equity shares on NSE EMERGE (SME platform).\n**Lead manager:** Vivro Financial Services Private Limited [^drhp-p54]\n**Registrar:** Link Intime India Private Limited [^drhp-p55]\n**Objects:** New manufacturing facility at GIDC Waghodia, Vadodara; general corporate purposes; listing benefits [^drhp-p75]\n**Pre-issue promoter holding:** 99.76% [^drhp-p155]",
-        "rationale": "Condenses offer structure details into a scannable reference.",
+        "body_markdown": "**Purpose:** Fund capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat, and general corporate purposes. [^drhp-p75] **Listing:** SME Platform of NSE (NSE EMERGE). [^drhp-p75] **Lead manager:** Vivro Financial Services Private Limited. [^drhp-p54] **Registrar:** Link Intime India Private Limited. [^drhp-p55] **Offer price:** Not yet disclosed.",
+        "rationale": "Consolidates key offer details scattered in the draft into a scannable sidebar.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The restated financial statements cover five full fiscal years (FY2013 through FY2017) and the six-month period ended September 30, 2017.",
+        "after_paragraph": "Cash flow from operations has been volatile — and turned negative in the most recent full year. The figures:",
         "columns": [
           "Period",
-          "Operating cash flow"
+          "Operating cash flow (₹ lakh)"
         ],
         "footnote": "Source: DRHP, p.50 [^drhp-p50]",
-        "rationale": "Shows the divergence between profit and cash generation, a key risk.",
+        "rationale": "Cash flow volatility is a key risk; a table shows the swing more clearly than prose.",
         "rows": [
           [
+            "FY2013",
+            "200.97"
+          ],
+          [
             "FY2014",
-            "(349.75)"
+            "127.73"
           ],
           [
             "FY2015",
-            "802.59"
-          ],
-          [
-            "FY2016",
             "422.36"
           ],
           [
+            "FY2016",
+            "802.59"
+          ],
+          [
             "FY2017",
-            "127.73"
+            "(349.75)"
           ],
           [
             "Six months to Sep 2017",
             "124.86"
           ]
         ],
-        "title": "Cash flow from operations (₹ lakh)"
+        "title": "Operating cash flow (₹ lakh)"
       }
     ],
     "timeline": null

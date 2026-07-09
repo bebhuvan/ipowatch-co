@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.08-0450",
+  "dataset_version": "v3.2026.07.09-0543",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/d_TeamLease.zip",
     "prospectus_url": "https://www.bseindia.com/downloads/ipo/PRO_TSL.pdf",
@@ -31,7 +31,7 @@
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "yahoo"
+      "source": "bse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -81,6 +81,10 @@
       "rule_id": "E.SRC.002",
       "source": "yahoo"
     },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -107,11 +111,12 @@
     }
   },
   "filings_path": "issues/teamlease-services-18a3f0/filings.json",
-  "generated_at": "2026-07-08T04:50:53+00:00",
+  "generated_at": "2026-07-09T05:43:39+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "yahoo:TEAMLEASE.NS"
+      "bse:ipo_no:7822",
+      "bse:scrip_code:539658"
     ],
     "board_type": "Main Board",
     "company_name": "TeamLease Services Limited",
@@ -122,8 +127,8 @@
     "symbol": "TEAMLEASE"
   },
   "listing_performance": {
-    "current_gain_bps": 6499,
-    "current_price_paise": 140240,
+    "current_gain_bps": 6238,
+    "current_price_paise": 138020,
     "listing_close_price_paise": 102285,
     "listing_gain_bps": 2034,
     "listing_open_price_paise": 86000
@@ -131,6 +136,7 @@
   "market_path": "issues/teamlease-services-18a3f0/market.json",
   "parties": {},
   "pricing": {
+    "face_value_paise": 1000,
     "issue_price_paise": 85000,
     "price_band_lower_paise": 78500,
     "price_band_upper_paise": 85000
@@ -142,33 +148,47 @@
   "public_slug": "teamlease-services",
   "schema_version": "3.0.0",
   "slug": "teamlease-services-18a3f0",
-  "source_dataset_version": "v2026.07.08-0450",
+  "source_dataset_version": "v2026.07.09-0543",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-08T04:46:10+00:00",
+      "snapshot_at": "2026-07-09T05:38:48+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-07-09T05:38:46+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-07-09T05:38:47+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-08T04:45:58+00:00",
+      "snapshot_at": "2026-07-09T05:38:36+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "performance",
-      "snapshot_at": "2026-07-07T15:29:15+00:00",
+      "snapshot_at": "2026-07-08T14:52:50+00:00",
       "source": "yahoo",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-08T04:46:05+00:00",
+      "snapshot_at": "2026-07-09T05:38:44+00:00",
       "source": "nse",
       "url": null
     }

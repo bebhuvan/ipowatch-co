@@ -7,13 +7,13 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.07.08-0450",
+  "dataset_version": "v3.2026.07.09-0543",
   "demand_curve_count": 0,
   "demand_curves": [],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-07-08T04:50:53+00:00",
+  "generated_at": "2026-07-09T05:43:39+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "devson-catalyst-d2acd3",
   "language": "en-IN",
@@ -23,15 +23,35 @@
   "observations": [
     {
       "categories": {
+        "employee": {
+          "shares_bid": 21600,
+          "shares_offered": 64800,
+          "times": 0.3333
+        },
         "nii": {
+          "shares_bid": 796800,
+          "shares_offered": 684000,
+          "times": 1.1649
+        },
+        "nii_gt_10l": {
+          "shares_bid": 601200,
+          "shares_offered": 334800,
+          "times": 1.7957
+        },
+        "nii_lte_10l": {
+          "shares_bid": 195600,
+          "shares_offered": 169200,
+          "times": 1.156
+        },
+        "policyholder": {
           "shares_bid": 0,
           "shares_offered": null,
           "times": null
         },
         "qib": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 423600,
+          "shares_offered": 662400,
+          "times": 0.6395
         },
         "qib_dfi": {
           "shares_bid": null,
@@ -49,31 +69,50 @@
           "times": null
         },
         "qib_other": {
-          "shares_bid": null,
+          "shares_bid": 423600,
           "shares_offered": null,
           "times": null
         },
         "retail": {
+          "shares_bid": 1982400,
+          "shares_offered": 1176000,
+          "times": 1.6857
+        },
+        "shareholder": {
           "shares_bid": 0,
           "shares_offered": null,
           "times": null
         }
       },
-      "observed_at": "2026-07-08T12:59:51+00:00",
+      "observed_at": "2026-07-09T05:43:38+00:00",
       "source": "bse",
-      "source_updated_at": null,
+      "source_updated_at": "7/9/2026 11:13:26",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 3224400,
+        "shares_offered": 2587200,
+        "times": 1.2463
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/devson-catalyst-d2acd3.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.07.08-0450",
+  "source_dataset_version": "v2026.07.09-0543",
   "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_7819",
+      "snapshot_at": "",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_new_7819",
+      "snapshot_at": "",
+      "source": "bse",
+      "url": null
+    },
     {
       "confidence": "primary",
       "endpoint": "demand_schedule_7819",

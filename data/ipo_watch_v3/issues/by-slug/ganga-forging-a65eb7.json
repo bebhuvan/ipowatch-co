@@ -5,16 +5,11 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.09-0543",
+  "dataset_version": "v3.2026.07.10-0540",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -38,6 +33,10 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -48,19 +47,21 @@
     }
   },
   "filings_path": "issues/ganga-forging-a65eb7/filings.json",
-  "generated_at": "2026-07-09T05:43:39+00:00",
+  "generated_at": "2026-07-10T05:40:21+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "company_name": "Ganga Forging Limited",
     "issue_type": "Rights",
     "slug": "ganga-forging-a65eb7",
-    "status": "Upcoming",
+    "status": "Open",
     "symbol": "GANGAR"
   },
   "listing_performance": {},
   "market_path": "issues/ganga-forging-a65eb7/market.json",
   "parties": {},
-  "pricing": {},
+  "pricing": {
+    "issue_size_shares": 126369
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/ganga-forging-a65eb7/prospectus_facts.json",
   "provenance_path": "issues/ganga-forging-a65eb7/provenance.json",
@@ -68,12 +69,12 @@
   "public_slug": "ganga-forging",
   "schema_version": "3.0.0",
   "slug": "ganga-forging-a65eb7",
-  "source_dataset_version": "v2026.07.09-0543",
+  "source_dataset_version": "v2026.07.10-0540",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "rights_forthcoming",
-      "snapshot_at": "2026-07-09T05:38:40+00:00",
+      "endpoint": "rights_active",
+      "snapshot_at": "2026-07-10T05:35:10+00:00",
       "source": "nse",
       "url": null
     }
@@ -84,8 +85,8 @@
       "reason": "NSE rights issue feed currently provides identity and offer-window fields only for this row; subscription/demand fields are null.",
       "source_refs": [
         {
-          "endpoint": "rights_forthcoming",
-          "snapshot_at": "2026-07-09T05:38:40+00:00",
+          "endpoint": "rights_active",
+          "snapshot_at": "2026-07-10T05:35:10+00:00",
           "source": "nse"
         }
       ],

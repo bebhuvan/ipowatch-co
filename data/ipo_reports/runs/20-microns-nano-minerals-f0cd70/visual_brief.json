@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.07.09-0600",
-  "estimated_cost_usd": 0.0008288000000000002,
+  "dataset_version": "v2026.07.11-0500",
+  "estimated_cost_usd": 0.00103278,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-09T06:00:52+00:00",
+  "generated_at": "2026-07-11T05:00:27+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,76 +24,94 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules to separate table rows; accent colour for table headers and pull-quote border.",
-      "Industry snapshot: stat strip with three numbers, growth bars proportional to value, split bar for organised vs unorganised.",
-      "Sidebar: boxed with light background, no icon."
+      "Use serif font throughout, single accent colour (e.g., deep blue), hairline rules between sections.",
+      "Tables should have minimal borders, alternating row shading for readability.",
+      "Pull quote should be set in a larger serif italic, with a thin rule above and below.",
+      "Sidebar should be boxed with a light background tint, placed alongside the offer section.",
+      "Industry snapshot stats should be displayed as a horizontal strip of three cards with bold numbers and small descriptors."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The specialty chemicals segment in India was estimated at roughly ₹1,000 billion in fiscal 2017, accounting for about 17% of the broader chemicals industry (excluding pharmaceuticals and fertilisers), which CRISIL Research estimated at ₹5,800–6,200 billion. [^drhp-p92]",
-      "growth_bars": [
-        {
-          "value": "₹750B",
-          "width_pct": 75,
-          "year": "FY14"
-        },
-        {
-          "projected": false,
-          "value": "₹1,000B",
-          "width_pct": 100,
-          "year": "FY17"
-        }
-      ],
-      "growth_bars_label": "Specialty chemicals market — historical growth",
-      "growth_bars_source": "DRHP, p.92 [^drhp-p92]",
-      "rationale": "Industry data is rich; a snapshot conveys scale, growth, and fragmentation at a glance.",
-      "split_bar": {
-        "left_label": "Organised",
-        "left_pct": 28,
-        "right_label": "Unorganised"
-      },
-      "split_bar_label": "Market structure (FY17)",
-      "split_bar_note": "SMEs hold 70–75% market share. [^drhp-p94]",
+      "after_paragraph": "The Indian specialty chemicals market (excluding agrochemicals and",
+      "growth_bars": null,
+      "rationale": "Provides a quick snapshot of the market size, growth, and fragmentation.",
+      "split_bar": null,
       "stats": [
         {
-          "desc": "Specialty chemicals market size\nIndia, FY17",
+          "desc": "Indian specialty chemicals market\n(FY17 estimate)",
           "val": "₹1,000B"
         },
         {
-          "desc": "Historical CAGR\nFY14–FY17",
-          "val": "10–12%"
+          "desc": "Projected CAGR\n(FY17–FY22)",
+          "val": "12–14%"
         },
         {
-          "desc": "Projected CAGR\nGoing forward",
-          "val": "12–14%"
+          "desc": "SME market share\n(highly fragmented)",
+          "val": "70–75%"
         }
       ]
     },
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "The company does not market its products independently. It has a long-term arrangement with its corporate promoter, 20 Microns Limited, to market and sell through that company's network.",
-        "quote": "The company operates entirely on purchase orders, with no long-term or definitive agreements governing volume, pricing, or other terms of sale with customers.",
-        "rationale": "Highlights a critical risk: lack of contractual revenue visibility."
+        "after_paragraph": "Customer concentration is high. In FY2015, FY2016, and FY2017, t",
+        "quote": "the top 10 customers accounted for around 59%, 57%, and 59% of revenue from operations, respectively.",
+        "rationale": "Highlights a critical risk: revenue dependence on a small number of customers."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Purpose:** Fund capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat, and general corporate purposes. [^drhp-p75] **Listing:** SME Platform of NSE (NSE EMERGE). [^drhp-p75] **Lead manager:** Vivro Financial Services Private Limited. [^drhp-p54] **Registrar:** Link Intime India Private Limited. [^drhp-p55] **Offer price:** Not yet disclosed.",
-        "rationale": "Consolidates key offer details scattered in the draft into a scannable sidebar.",
+        "body_markdown": "**Offer size:** Not yet disclosed (price band and number of shares to be determined).\n\n**Use of proceeds:** Capital expenditure for a new manufacturing facility at GIDC Waghodia, Vadodara, and general corporate purposes. [^drhp-p75]\n\n**Lead manager:** Vivro Financial Services Private Limited. [^drhp-p54]\n\n**Registrar:** Link Intime India Private Limited. [^drhp-p55]\n\n**Listing:** NSE EMERGE (SME platform). [^drhp-p75]",
+        "rationale": "Summarises key offer details that are scattered across the draft.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "Cash flow from operations has been volatile — and turned negative in the most recent full year. The figures:",
+        "after_paragraph": "The DRHP contains restated financial statements for five full fina",
+        "columns": [
+          "Period",
+          "PAT (₹ lakh)"
+        ],
+        "footnote": "Source: DRHP, p.49 [^drhp-p49]",
+        "rationale": "Shows the turnaround from losses to profitability, a key financial narrative.",
+        "rows": [
+          [
+            "FY2013",
+            "(27.40)"
+          ],
+          [
+            "FY2014",
+            "(12.17)"
+          ],
+          [
+            "FY2015",
+            "149.58"
+          ],
+          [
+            "FY2016",
+            "90.18"
+          ],
+          [
+            "FY2017",
+            "174.82"
+          ],
+          [
+            "Six months ended Sep 2017",
+            "132.75"
+          ]
+        ],
+        "title": "Profit after tax (PAT)"
+      },
+      {
+        "after_paragraph": "The DRHP contains restated financial statements for five full fina",
         "columns": [
           "Period",
           "Operating cash flow (₹ lakh)"
         ],
         "footnote": "Source: DRHP, p.50 [^drhp-p50]",
-        "rationale": "Cash flow volatility is a key risk; a table shows the swing more clearly than prose.",
+        "rationale": "Highlights the divergence between profit and cash flow in FY2017, a material risk.",
         "rows": [
           [
             "FY2013",
@@ -116,11 +134,68 @@
             "(349.75)"
           ],
           [
-            "Six months to Sep 2017",
+            "Six months ended Sep 2017",
             "124.86"
           ]
         ],
-        "title": "Operating cash flow (₹ lakh)"
+        "title": "Cash flow from operations"
+      },
+      {
+        "after_paragraph": "The DRHP contains restated financial statements for five full fina",
+        "columns": [
+          "Period",
+          "PAT (₹ lakh)",
+          "Operating cash flow (₹ lakh)",
+          "Total assets (₹ lakh)",
+          "Basic EPS (₹)"
+        ],
+        "footnote": "Source: DRHP, pp.49-50, 175, 177 [^drhp-p49] [^drhp-p50] [^drhp-p175] [^drhp-p177]",
+        "rationale": "Consolidates all key financial metrics in one place for quick reference.",
+        "rows": [
+          [
+            "FY2013",
+            "(27.40)",
+            "200.97",
+            "3,018.66",
+            "(0.45)"
+          ],
+          [
+            "FY2014",
+            "(12.17)",
+            "127.73",
+            "2,679.38",
+            "(0.20)"
+          ],
+          [
+            "FY2015",
+            "149.58",
+            "422.36",
+            "2,592.53",
+            "2.47"
+          ],
+          [
+            "FY2016",
+            "90.18",
+            "802.59",
+            "2,767.21",
+            "1.46"
+          ],
+          [
+            "FY2017",
+            "174.82",
+            "(349.75)",
+            "3,273.96",
+            "2.43"
+          ],
+          [
+            "Six months ended Sep 2017",
+            "132.75",
+            "124.86",
+            "3,424.96",
+            "1.48"
+          ]
+        ],
+        "title": "Summary of key financial data"
       }
     ],
     "timeline": null

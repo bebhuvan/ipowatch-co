@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.10-0540",
+  "dataset_version": "v3.2026.07.11-0446",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -37,6 +37,10 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -57,13 +61,21 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     }
   },
   "filings_path": "issues/gujarat-peanut-agri-products-ac063c/filings.json",
-  "generated_at": "2026-07-10T05:40:21+00:00",
+  "generated_at": "2026-07-11T04:46:40+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -73,7 +85,8 @@
     "company_name": "GUJARAT PEANUT AND AGRI PRODUCTS LIMITED",
     "issue_type": "IPO",
     "slug": "gujarat-peanut-agri-products-ac063c",
-    "status": "Listed"
+    "status": "Listed",
+    "symbol": "GPA01"
   },
   "listing_performance": {
     "current_gain_bps": -626,
@@ -84,7 +97,8 @@
   "market_path": "issues/gujarat-peanut-agri-products-ac063c/market.json",
   "parties": {},
   "pricing": {
-    "issue_price_paise": 8000
+    "issue_price_paise": 8000,
+    "issue_size_paise": 23808000000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/gujarat-peanut-agri-products-ac063c/prospectus_facts.json",
@@ -332,17 +346,33 @@
   "research_path": "issues/gujarat-peanut-agri-products-ac063c/research.json",
   "schema_version": "3.0.0",
   "slug": "gujarat-peanut-agri-products-ac063c",
-  "source_dataset_version": "v2026.07.10-0540",
+  "source_dataset_version": "v2026.07.11-0446",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_sme_2025",
-      "snapshot_at": "2026-07-10T05:35:45+00:00",
+      "snapshot_at": "2026-07-11T04:42:06+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000220",
+      "snapshot_at": "2026-07-11T04:45:13+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000240",
+      "snapshot_at": "2026-07-11T04:45:13+00:00",
+      "source": "moneycontrol",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "7.6000"
+  },
   "subscription_path": "issues/gujarat-peanut-agri-products-ac063c/subscription.json",
   "timeline": {
     "listing_date": "2025-10-02"

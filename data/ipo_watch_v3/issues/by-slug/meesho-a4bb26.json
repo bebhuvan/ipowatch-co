@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.11-0446",
+  "dataset_version": "v3.2026.07.14-0432",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0VDM01015_09DEC2025.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/MeeshoLimited_UDRHP1.pdf",
@@ -90,6 +90,10 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -97,6 +101,10 @@
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -112,7 +120,7 @@
     }
   },
   "filings_path": "issues/meesho-a4bb26/filings.json",
-  "generated_at": "2026-07-11T04:46:40+00:00",
+  "generated_at": "2026-07-14T04:32:26+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -127,8 +135,8 @@
     "symbol": "MEESHO"
   },
   "listing_performance": {
-    "current_gain_bps": 7487,
-    "current_price_paise": 19411,
+    "current_gain_bps": 7095,
+    "current_price_paise": 18976,
     "listing_close_price_paise": 17020,
     "listing_gain_bps": 5333,
     "listing_open_price_paise": 16250
@@ -137,6 +145,7 @@
   "parties": {},
   "pricing": {
     "issue_price_paise": 11100,
+    "issue_size_paise": 5421203603100,
     "price_band_lower_paise": 10500,
     "price_band_upper_paise": 11100
   },
@@ -184,35 +193,27 @@
       "peers": [
         {
           "company_name": "MEESHO",
-          "market_cap": "87,589",
+          "market_cap": "87,751",
           "net_sales_cr": 9389,
           "pat_cr": -3941.7,
-          "pb": 19.97,
+          "pb": 20.01,
           "pe": null
         },
         {
           "company_name": "FIRSTCRY",
-          "market_cap": "10,794",
+          "market_cap": "11,277",
           "net_sales_cr": 7659,
           "pat_cr": -191.47,
-          "pb": 2.24,
+          "pb": 2.34,
           "pe": null
         },
         {
-          "company_name": "ETERNAL",
-          "market_cap": "2,76,531",
-          "net_sales_cr": 20243,
-          "pat_cr": 527,
-          "pb": 8.93,
-          "pe": 755.55
-        },
-        {
-          "company_name": "SWIGGY",
-          "market_cap": "72,251",
-          "net_sales_cr": 15226,
-          "pat_cr": -3116.8,
-          "pb": 3.95,
-          "pe": null
+          "company_name": "NYKAA",
+          "market_cap": "94,079",
+          "net_sales_cr": 7949,
+          "pat_cr": 66.08,
+          "pb": 65.42,
+          "pe": 471.71
         }
       ],
       "revenue_mix": {
@@ -307,53 +308,62 @@
         "market_cap": "₹50,095",
         "pb": 58.91,
         "pe": 0,
-        "sector_pb": 2.47,
-        "sector_pe": 20.27
+        "sector_pb": 2.42,
+        "sector_pe": 20.39
       }
     }
   },
   "research_path": "issues/meesho-a4bb26/research.json",
   "schema_version": "3.0.0",
   "slug": "meesho-a4bb26",
-  "source_dataset_version": "v2026.07.11-0446",
+  "source_dataset_version": "v2026.07.14-0432",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-11T04:41:55+00:00",
+      "snapshot_at": "2026-07-14T04:27:17+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2025",
-      "snapshot_at": "2026-07-11T04:42:06+00:00",
+      "snapshot_at": "2026-07-14T04:27:27+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000140",
+      "snapshot_at": "2026-07-14T04:30:57+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-11T04:41:44+00:00",
+      "snapshot_at": "2026-07-14T04:27:05+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "performance",
-      "snapshot_at": "2026-07-10T15:16:40+00:00",
+      "snapshot_at": "2026-07-13T15:27:16+00:00",
       "source": "yahoo",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-11T04:41:51+00:00",
+      "snapshot_at": "2026-07-14T04:27:13+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "79.0300"
+  },
   "subscription_path": "issues/meesho-a4bb26/subscription.json",
   "timeline": {
     "close_date": "2025-12-05",

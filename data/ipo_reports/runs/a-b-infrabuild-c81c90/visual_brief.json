@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.07.10-0600",
-  "estimated_cost_usd": 0.0008397200000000001,
+  "dataset_version": "v2026.07.14-0452",
+  "estimated_cost_usd": 0.0008598800000000001,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-10T06:00:40+00:00",
+  "generated_at": "2026-07-14T04:52:40+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,93 +24,121 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use a single accent colour (e.g., #003366) for table headers, pull-quote border, and sidebar background.",
-      "Financials table: right-align numbers, use hairline rules between rows, bold the first column.",
-      "Pull-quote: set in a larger serif font (e.g., 18pt), with a left rule in accent colour, no quotation marks.",
-      "Sidebar: box with a thin border, light tint background, compact prose."
+      "Use a single accent colour (e.g., #003366) for table headers, pull-quote rule, and sidebar border.",
+      "Tables: hairline rules, left-aligned headers, numbers right-aligned. No vertical rules.",
+      "Pull-quote: set in a larger serif size, italic, with a thin rule above and below, centred or left-aligned with indent.",
+      "Sidebar: box with a thin border, background tint at 5% of accent colour, serif body text."
     ],
     "formulas": [],
     "industry_snapshot": null,
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "The company's revenues depend heavily on a single client: Indian Railways, which contributed 57% of revenue in Fiscal 2018.",
-        "quote": "Indian Railways contributed 57% of revenue in Fiscal 2018. Western Railway, a major client, accounts for 52% of the orders on hand.",
-        "rationale": "Customer concentration is the defining risk; this single fact encapsulates the business's vulnerability."
+        "after_paragraph": "The company's major clients read like a who's who of Mumbai and Maharashtra infrastructure authorities",
+        "quote": "Western Railway contributed 52% of the company's orders on hand and 57% of total revenue in fiscal 2018.",
+        "rationale": "Customer concentration is the single most important risk; this number is sharper than any prose summary."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "Fresh issue of 44,28,000 equity shares of ₹10 each.[^drhp-p29] Issue price not yet set. Entire proceeds go to the company. Net proceeds: ₹1,130 lakhs for working capital; remainder for general corporate purposes (undisclosed).[^drhp-p48] No independent appraisal or monitoring agency for fund deployment.[^drhp-p18] Lead manager: Mark Corporate Advisors Private Limited. Registrar: Bigshare Services Private Limited.[^drhp-p31]",
-        "rationale": "Sidebar distills offer structure, use of proceeds, and governance flags into a scannable reference.",
+        "body_markdown": "**Issue size:** 44,28,000 equity shares of ₹10 each (fresh issue, no offer for sale). [^drhp-p29]  \n**Price:** Not yet set (shown as ₹[●] in the filing). [^drhp-p55]  \n**Net proceeds use:** ₹1,130 lakhs for working capital; remainder for general corporate purposes (amount undisclosed). [^drhp-p48]  \n**Lead manager:** Mark Corporate Advisors Private Limited. [^drhp-p31]  \n**Registrar:** Bigshare Services Private Limited. [^drhp-p31]  \n**No independent appraisal or monitoring agency appointed.** [^drhp-p18]",
+        "rationale": "Key offer details are scattered across the draft; a sidebar collects them in one scannable block.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "A B Infrabuild's financials over the five reported fiscal years (FY2014 through FY2018) show a company whose revenue has been shrinking while its profit has been volatile.",
+        "after_paragraph": "The company's financials over the five reported fiscal years (2014 through 2018) show revenue declining and short-term debt rising.",
         "columns": [
-          "Metric",
+          "(₹ in crore)",
           "FY2014",
           "FY2015",
           "FY2016",
           "FY2017",
           "FY2018"
         ],
-        "footnote": "Source: DRHP pages 26, 27, and 111.[^drhp-p26][^drhp-p27][^drhp-p111]",
-        "rationale": "Five-year trend of revenue decline and volatile profit is the core financial story; a table shows the pattern at a glance.",
+        "footnote": "Source: Restated financial statements [^drhp-p26] [^drhp-p27] [^drhp-p111]",
+        "rationale": "Five-year trend of declining revenue and rising short-term debt is the core financial story; a table shows the pattern at a glance.",
         "rows": [
           [
             "Revenue from operations",
-            "8,661.35",
-            "9,021.12",
-            "7,452.76",
-            "7,344.47",
-            "6,053.05"
-          ],
-          [
-            "Net profit after adjustments",
-            "95.95",
-            "78.36",
-            "32.63",
-            "15.86",
-            "314.66"
+            "86.61",
+            "90.21",
+            "74.53",
+            "73.44",
+            "60.53"
           ],
           [
             "EBITDA",
-            "784.46",
-            "945.78",
-            "783.31",
-            "676.19",
-            "928.80"
+            "7.84",
+            "9.46",
+            "7.83",
+            "6.76",
+            "9.29"
+          ],
+          [
+            "Net profit after adjustments",
+            "0.96",
+            "0.78",
+            "0.33",
+            "0.16",
+            "3.15"
           ],
           [
             "Total assets",
-            "7,062.34",
-            "7,266.50",
-            "6,295.21",
-            "7,536.93",
-            "8,232.15"
+            "70.62",
+            "72.67",
+            "62.95",
+            "75.37",
+            "82.32"
           ],
           [
             "Long-term borrowings",
-            "586.63",
-            "672.72",
-            "188.77",
-            "131.51",
-            "133.09"
+            "5.87",
+            "6.73",
+            "1.89",
+            "1.32",
+            "1.33"
           ],
           [
             "Short-term borrowings",
-            "3,082.27",
-            "3,227.89",
-            "3,020.55",
-            "3,312.08",
-            "3,537.35"
+            "30.82",
+            "32.28",
+            "30.21",
+            "33.12",
+            "35.37"
           ]
         ],
-        "title": "Key financials (₹ in lakhs)"
+        "title": "Restated financial summary"
+      },
+      {
+        "after_paragraph": "The DRHP provides accounting ratios for the company and one peer company, though the peer is not named in the available excerpts.",
+        "columns": [
+          "Metric",
+          "A B Infrabuild (FY2018)",
+          "Peer (FY2018)"
+        ],
+        "footnote": "Source: DRHP basis for issue price [^drhp-p54] [^drhp-p55]",
+        "rationale": "The only peer data in the filing; a table makes the EPS gap and missing RoNW immediately visible.",
+        "rows": [
+          [
+            "EPS (₹)",
+            "12.39",
+            "44.71"
+          ],
+          [
+            "RoNW (%)",
+            "28.14",
+            "Not disclosed"
+          ],
+          [
+            "Face value (₹)",
+            "10",
+            "—"
+          ]
+        ],
+        "title": "Peer comparison"
       }
     ],
     "timeline": null

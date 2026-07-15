@@ -1,7 +1,11 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/provenance.schema.json",
-  "dataset_version": "v3.2026.07.14-0432",
+  "dataset_version": "v3.2026.07.15-0432",
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -60,7 +64,7 @@
     },
     "pricing.issue_size_shares": {
       "rule_id": "E.SRC.002",
-      "source": "nse"
+      "source": "bse"
     },
     "pricing.market_lot": {
       "rule_id": "E.SRC.002",
@@ -86,6 +90,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.by_exchange.nse": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "subscription.consolidated": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -108,87 +116,101 @@
     "info": [],
     "review": []
   },
-  "generated_at": "2026-07-14T04:32:26+00:00",
+  "generated_at": "2026-07-15T04:32:25+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "sbi-funds-management-a2cd28",
-  "source_dataset_version": "v2026.07.14-0432",
+  "source_dataset_version": "v2026.07.15-0432",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7829",
-      "snapshot_at": "2026-07-14T04:32:22+00:00",
+      "snapshot_at": "2026-07-15T04:32:16+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7829",
-      "snapshot_at": "2026-07-14T04:32:23+00:00",
+      "snapshot_at": "2026-07-15T04:32:16+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7829",
-      "snapshot_at": "2026-07-14T04:32:22+00:00",
+      "snapshot_at": "2026-07-15T04:32:16+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-14T04:27:17+00:00",
+      "snapshot_at": "2026-07-15T04:27:40+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-07-14T04:27:16+00:00",
+      "snapshot_at": "2026-07-15T04:27:35+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-07-14T04:27:16+00:00",
+      "snapshot_at": "2026-07-15T04:27:36+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_current_issue",
-      "snapshot_at": "2026-07-14T04:27:04+00:00",
+      "snapshot_at": "2026-07-15T04:27:25+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-07-14T04:27:04+00:00",
+      "snapshot_at": "2026-07-15T04:27:25+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-07-14T04:27:15+00:00",
+      "snapshot_at": "2026-07-15T04:27:34+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "bid_details_sbifunds_eq",
+      "snapshot_at": "2026-07-15T04:31:46+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_sbifunds",
+      "snapshot_at": "2026-07-15T04:31:46+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_sbifunds_eq",
-      "snapshot_at": "2026-07-14T04:31:53+00:00",
+      "snapshot_at": "2026-07-15T04:31:46+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-14T04:27:13+00:00",
+      "snapshot_at": "2026-07-15T04:27:33+00:00",
       "source": "nse",
       "url": null
     }

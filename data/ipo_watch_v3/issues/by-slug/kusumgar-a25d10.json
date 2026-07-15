@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.14-0432",
+  "dataset_version": "v3.2026.07.15-0432",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0ISX01025_14JUL2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_27092025140310_Kusumgardrhp.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE0ISX01025_13JUL2026.pdf",
     "rhp_url": "https://nsearchives.nseindia.com/corporate/KusumgarLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,9 +66,17 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "nse"
     },
     "pricing.issue_size_paise": {
       "rule_id": "E.SRC.002",
@@ -87,7 +100,7 @@
     },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "nse"
     },
     "timeline.open_date": {
       "rule_id": "E.SRC.002",
@@ -95,13 +108,11 @@
     }
   },
   "filings_path": "issues/kusumgar-a25d10/filings.json",
-  "generated_at": "2026-07-14T04:32:26+00:00",
+  "generated_at": "2026-07-15T04:32:25+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:56792616",
-      "bse:prior_id:247314",
-      "bse:createdby:300557"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/kusumgar-ltd/kusumgar/544821/"
     ],
     "board_type": "Main Board",
     "company_name": "Kusumgar Limited",
@@ -111,7 +122,10 @@
     "status": "Listed",
     "symbol": "KUSUMGAR"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 3699,
+    "current_price_paise": 57400
+  },
   "market_path": "issues/kusumgar-a25d10/market.json",
   "parties": {},
   "pricing": {
@@ -164,35 +178,35 @@
       "peers": [
         {
           "company_name": "KUSUMGAR",
-          "market_cap": "4,399",
+          "market_cap": "0",
           "net_sales_cr": 692,
           "pat_cr": 98.2,
-          "pb": 8.75,
-          "pe": 44.8
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "GARFIBRES",
-          "market_cap": "7,065",
+          "market_cap": "7,160",
           "net_sales_cr": 1540,
           "pat_cr": 231,
-          "pb": 5.34,
-          "pe": 36.37
+          "pb": 5.45,
+          "pe": 37.13
         },
         {
           "company_name": "ARVIND",
-          "market_cap": "13,791",
+          "market_cap": "14,322",
           "net_sales_cr": 8328,
           "pat_cr": 353,
-          "pb": 3.53,
-          "pe": 34.46
+          "pb": 3.5,
+          "pe": 34.21
         },
         {
           "company_name": "SRF",
-          "market_cap": "81,232",
+          "market_cap": "80,902",
           "net_sales_cr": 15786,
           "pat_cr": 1835,
-          "pb": 5.78,
-          "pe": 44.26
+          "pb": 5.8,
+          "pe": 44.36
         }
       ],
       "revenue_mix": {
@@ -309,41 +323,55 @@
         "market_cap": "₹4,399",
         "pb": 8.75,
         "pe": 44.8,
-        "sector_pb": 1.2,
-        "sector_pe": 19.42
+        "sector_pb": 1.19,
+        "sector_pe": 19.35
       }
     }
   },
   "research_path": "issues/kusumgar-a25d10/research.json",
   "schema_version": "3.0.0",
   "slug": "kusumgar-a25d10",
-  "source_dataset_version": "v2026.07.14-0432",
+  "source_dataset_version": "v2026.07.15-0432",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-14T04:27:17+00:00",
+      "snapshot_at": "2026-07-15T04:27:40+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-07-15T04:27:52+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-07-14T04:30:57+00:00",
+      "snapshot_at": "2026-07-15T04:31:05+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-14T04:27:05+00:00",
+      "snapshot_at": "2026-07-15T04:27:26+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-14T04:27:13+00:00",
+      "snapshot_at": "2026-07-15T04:27:33+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-07-15T04:27:34+00:00",
       "source": "nse",
       "url": null
     }
@@ -354,7 +382,7 @@
   "subscription_path": "issues/kusumgar-a25d10/subscription.json",
   "timeline": {
     "close_date": "2026-07-10",
-    "listing_date": "2026-07-13",
+    "listing_date": "2026-07-15",
     "open_date": "2026-07-08"
   },
   "url_path": "/ipos/kusumgar/"

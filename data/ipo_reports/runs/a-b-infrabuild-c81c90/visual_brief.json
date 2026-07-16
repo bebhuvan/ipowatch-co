@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.07.15-0511",
-  "estimated_cost_usd": 0.0008745800000000001,
+  "dataset_version": "v2026.07.16-0501",
+  "estimated_cost_usd": 0.0008975400000000001,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-15T05:11:18+00:00",
+  "generated_at": "2026-07-16T05:01:24+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,125 +24,115 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use a single accent colour (e.g., #003366) for table headers, pull-quote rule, and sidebar border.",
-      "Tables: hairline rules, left-aligned headers, serif font (e.g., Georgia), alternating row shading optional.",
-      "Pull-quote: set in larger serif italic, with a thick left rule in accent colour, no quotation marks.",
-      "Sidebar: box with thin border, light background tint, compact prose."
+      "Use a single accent colour (e.g., #003366) for table headers and pull-quote rule.",
+      "Financials table: right-align numbers, left-align first column; use hairline rules between rows.",
+      "Peer comparison table: same styling as financials table; place side by side if space allows.",
+      "Pull quote: set in a larger serif font, with a thin rule above and below, centred or left-aligned.",
+      "Sidebar: box with a thin border, background tint (e.g., 2% of accent colour), no icon.",
+      "No images or decorative elements; rely on typographic hierarchy and rules."
     ],
     "formulas": [],
     "industry_snapshot": null,
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Revenue is heavily concentrated. In Fiscal 2018, key customers contributed 57% of total revenue.",
-        "quote": "Losing Indian Railways — its largest customer — would result in a sharp dip in revenues and adversely affect profitability.",
-        "rationale": "Customer concentration is the single most important risk; the company's own warning is more vivid than any paraphrase."
+        "after_paragraph": "This client base creates a concentration risk. Western Railway alone contributed 52% of the orders on hand, and the company's revenue from its top customers amounted to 57% of total revenue for the year ended March 31, 2018.",
+        "quote": "Western Railway alone contributed 52% of the orders on hand, and the company's revenue from its top customers amounted to 57% of total revenue for the year ended March 31, 2018.",
+        "rationale": "Customer concentration is a material risk; the pull quote isolates the single most damning number."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Issue type:** Fresh issue of 44,28,000 equity shares (face value ₹10 each). [^drhp-p29]\n\n**Issue price:** Not yet disclosed (shown as [●]). [^drhp-p29]\n\n**Lead manager:** Mark Corporate Advisors Private Limited. [^drhp-p31]\n\n**Registrar:** Bigshare Services Private Limited. [^drhp-p31]\n\n**Use of proceeds:** ₹1,130 lakhs (₹11.30 crore) for working capital; balance for general corporate purposes (amount undisclosed). [^drhp-p48]",
-        "rationale": "Sidebar collects all offer-structure details in one scannable block, freeing the prose for analysis.",
+        "body_markdown": "**Fresh issue:** 44,28,000 equity shares of ₹10 each. No offer for sale. [^drhp-p29] [^drhp-p31]\n\n**Lead manager:** Mark Corporate Advisors Private Limited. [^drhp-p29]\n\n**Registrar:** Bigshare Services Private Limited. [^drhp-p31]\n\n**Use of proceeds:** ₹1,130 lakhs for working capital; remainder for general corporate purposes (amount not disclosed). [^drhp-p48]\n\n**Monitoring agency:** None; fund deployment monitored by Audit Committee. [^drhp-p18]",
+        "rationale": "Key offer details are scattered across the draft; a sidebar collects them in one scannable block.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The company's financials over the five reported fiscal years (FY2014 through FY2018) show a declining revenue trend, volatile profitability, and rising short-term debt. All figures below are in ₹ crore, converted from the lakhs used in the filing.",
+        "after_paragraph": "The restated financial statements cover five financial years, from FY2014 through FY2018. All figures below are in ₹ lakhs (₹1 lakh = ₹0.01 crore).",
         "columns": [
-          "Metric",
+          "Particulars",
           "FY2014",
           "FY2015",
           "FY2016",
           "FY2017",
           "FY2018"
         ],
-        "footnote": "Source: DRHP pp. 26-27, 111 [^drhp-p26] [^drhp-p27] [^drhp-p111]",
-        "rationale": "Five-year trend of revenue decline, volatile profit, and rising short-term debt is the core financial story; a table shows the pattern at a glance.",
+        "footnote": "Source: Restated financial statements, DRHP pages 26, 27, 111 [^drhp-p26] [^drhp-p27] [^drhp-p111]",
+        "rationale": "Core financial data over five years; a table is the only way to show the trend of declining revenue and volatile profit.",
         "rows": [
           [
             "Revenue from operations",
-            "86.61",
-            "90.21",
-            "74.53",
-            "73.44",
-            "60.53"
+            "8,661.35",
+            "9,021.12",
+            "7,452.76",
+            "7,344.47",
+            "6,053.05"
           ],
           [
             "Net profit after adjustments",
-            "0.96",
-            "0.78",
-            "0.33",
-            "0.16",
-            "3.15"
+            "95.95",
+            "78.36",
+            "32.63",
+            "15.86",
+            "314.66"
           ],
           [
             "EBITDA",
-            "7.84",
-            "9.46",
-            "7.83",
-            "6.76",
-            "9.29"
-          ],
-          [
-            "Short-term borrowings",
-            "30.82",
-            "32.28",
-            "30.21",
-            "33.12",
-            "35.37"
+            "784.46",
+            "945.78",
+            "783.31",
+            "676.19",
+            "928.80"
           ],
           [
             "Long-term borrowings",
-            "5.87",
-            "6.73",
-            "1.89",
-            "1.32",
-            "1.33"
+            "586.63",
+            "672.72",
+            "188.77",
+            "131.51",
+            "133.09"
           ],
           [
-            "Total assets",
-            "70.62",
-            "72.67",
-            "62.95",
-            "75.37",
-            "82.32"
+            "Short-term borrowings",
+            "3,082.27",
+            "3,227.89",
+            "3,020.55",
+            "3,312.08",
+            "3,537.35"
           ]
         ],
-        "title": "Key financials (₹ crore)"
+        "title": "Summary financials (₹ in lakhs)"
       },
       {
-        "after_paragraph": "The DRHP includes a \"Basis for Issue Price\" page that discloses the company's own accounting ratios for the three most recent fiscal years. The table below shows earnings per share (EPS), net asset value (NAV) per share, and return on net worth (RoNW) as reported:",
+        "after_paragraph": "The DRHP provides a comparison with one peer company, but does not name the peer. The key ratios disclosed are:",
         "columns": [
-          "Financial Year",
-          "Basic EPS (₹)",
-          "NAV per share (₹)",
-          "RoNW (%)"
+          "Metric",
+          "A B Infrabuild (FY2018)",
+          "Peer (unnamed)"
         ],
-        "footnote": "Source: DRHP p. 54 [^drhp-p54]",
-        "rationale": "EPS and NAV volatility is a key valuation input; a compact table makes the year-on-year swings scannable.",
+        "footnote": "Source: DRHP page 55 [^drhp-p55]",
+        "rationale": "Only peer data in the filing; a table makes the comparison scannable and highlights the unnamed peer.",
         "rows": [
           [
-            "FY2016",
-            "1.31",
-            "1.31",
-            "1"
+            "Earnings per share (EPS)",
+            "₹28.14",
+            "₹44.71"
           ],
           [
-            "FY2017",
-            "0.63",
-            "0.63",
-            "2"
-          ],
-          [
-            "FY2018",
+            "Price-to-earnings ratio (P/E)",
             "12.59",
-            "3.82",
-            "3"
+            "Not disclosed"
+          ],
+          [
+            "Return on net worth (RoNW)",
+            "12.39%",
+            "12.39%"
           ]
         ],
-        "title": "Key ratios (as per DRHP)"
+        "title": "Peer comparison"
       }
     ],
     "timeline": null

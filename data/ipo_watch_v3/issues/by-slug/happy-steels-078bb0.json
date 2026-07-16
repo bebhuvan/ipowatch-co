@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.15-0432",
+  "dataset_version": "v3.2026.07.16-0444",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6894_16042026203359.zip",
     "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_RHP.zip"
@@ -23,6 +23,10 @@
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -48,6 +52,14 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -56,7 +68,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -66,20 +86,26 @@
     }
   },
   "filings_path": "issues/happy-steels-078bb0/filings.json",
-  "generated_at": "2026-07-15T04:32:25+00:00",
+  "generated_at": "2026-07-16T04:44:32+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:auto-ancillaries-axle-shafts/happysteels/HSL02",
+      "moneycontrol:company_code:17270040"
+    ],
     "board_type": "SME Board",
     "company_name": "Happy Steels Limited",
     "issue_type": "IPO",
     "slug": "happy-steels-078bb0",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "HAPPY"
   },
   "listing_performance": {},
   "market_path": "issues/happy-steels-078bb0/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 6600,
+    "issue_size_paise": 25000800000,
     "price_band_lower_paise": 6200,
     "price_band_upper_paise": 6600
   },
@@ -127,35 +153,35 @@
       "peers": [
         {
           "company_name": "HAPPY",
-          "market_cap": "94",
+          "market_cap": "0",
           "net_sales_cr": 94.64,
           "pat_cr": 7.1,
-          "pb": 2.35,
-          "pe": 13.24
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "EMMFORCE",
-          "market_cap": "373",
+          "market_cap": "364",
           "net_sales_cr": 87.54,
           "pat_cr": 8.06,
           "pb": null,
-          "pe": 45.23
+          "pe": 44.17
         },
         {
           "company_name": "KROSS",
-          "market_cap": "1,200",
+          "market_cap": "1,190",
           "net_sales_cr": 620,
           "pat_cr": 48.03,
-          "pb": 2.43,
-          "pe": 21.56
+          "pb": 2.45,
+          "pe": 21.78
         },
         {
           "company_name": "GNA",
-          "market_cap": "2,286",
+          "market_cap": "2,390",
           "net_sales_cr": 1478,
           "pat_cr": 116,
-          "pb": 2.38,
-          "pe": 20.43
+          "pb": 2.35,
+          "pe": 20.19
         }
       ],
       "revenue_mix": {
@@ -297,42 +323,52 @@
         "market_cap": "₹94.29",
         "pb": 2.36,
         "pe": 13.28,
-        "sector_pb": 3.02,
-        "sector_pe": 28.0
+        "sector_pb": 2.92,
+        "sector_pe": 27.93
       }
     }
   },
   "research_path": "issues/happy-steels-078bb0/research.json",
   "schema_version": "3.0.0",
   "slug": "happy-steels-078bb0",
-  "source_dataset_version": "v2026.07.15-0432",
+  "source_dataset_version": "v2026.07.16-0444",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-16T04:43:08+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-15T04:27:26+00:00",
+      "snapshot_at": "2026-07-16T04:38:34+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-07-15T04:27:34+00:00",
+      "snapshot_at": "2026-07-16T04:38:46+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-07-15T04:27:34+00:00",
+      "snapshot_at": "2026-07-16T04:38:45+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "72.4300"
+  },
   "subscription_path": "issues/happy-steels-078bb0/subscription.json",
   "timeline": {
     "close_date": "2026-07-13",
+    "listing_date": "2026-07-16",
     "open_date": "2026-07-09"
   },
   "url_path": "/ipos/happy-steels/"

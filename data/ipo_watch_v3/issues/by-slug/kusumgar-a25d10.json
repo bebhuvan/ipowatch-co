@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.15-0432",
+  "dataset_version": "v3.2026.07.16-0444",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0ISX01025_14JUL2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_27092025140310_Kusumgardrhp.pdf",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +120,7 @@
     }
   },
   "filings_path": "issues/kusumgar-a25d10/filings.json",
-  "generated_at": "2026-07-15T04:32:25+00:00",
+  "generated_at": "2026-07-16T04:44:32+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,8 +135,11 @@
     "symbol": "KUSUMGAR"
   },
   "listing_performance": {
-    "current_gain_bps": 3699,
-    "current_price_paise": 57400
+    "current_gain_bps": 4387,
+    "current_price_paise": 60280,
+    "listing_close_price_paise": 60445,
+    "listing_gain_bps": 4426,
+    "listing_open_price_paise": 56900
   },
   "market_path": "issues/kusumgar-a25d10/market.json",
   "parties": {},
@@ -178,35 +193,35 @@
       "peers": [
         {
           "company_name": "KUSUMGAR",
-          "market_cap": "0",
+          "market_cap": "6,346",
           "net_sales_cr": 692,
           "pat_cr": 98.2,
-          "pb": null,
-          "pe": null
+          "pb": 12.62,
+          "pe": 64.63
         },
         {
           "company_name": "GARFIBRES",
-          "market_cap": "7,160",
+          "market_cap": "7,521",
           "net_sales_cr": 1540,
           "pat_cr": 231,
-          "pb": 5.45,
-          "pe": 37.13
+          "pb": 5.55,
+          "pe": 37.86
         },
         {
           "company_name": "ARVIND",
-          "market_cap": "14,322",
+          "market_cap": "14,178",
           "net_sales_cr": 8328,
           "pat_cr": 353,
-          "pb": 3.5,
-          "pe": 34.21
+          "pb": 3.51,
+          "pe": 34.25
         },
         {
           "company_name": "SRF",
-          "market_cap": "80,902",
+          "market_cap": "81,412",
           "net_sales_cr": 15786,
           "pat_cr": 1835,
-          "pb": 5.8,
-          "pe": 44.36
+          "pb": 5.86,
+          "pe": 44.82
         }
       ],
       "revenue_mix": {
@@ -324,54 +339,61 @@
         "pb": 8.75,
         "pe": 44.8,
         "sector_pb": 1.19,
-        "sector_pe": 19.35
+        "sector_pe": 19.18
       }
     }
   },
   "research_path": "issues/kusumgar-a25d10/research.json",
   "schema_version": "3.0.0",
   "slug": "kusumgar-a25d10",
-  "source_dataset_version": "v2026.07.15-0432",
+  "source_dataset_version": "v2026.07.16-0444",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-15T04:27:40+00:00",
+      "snapshot_at": "2026-07-16T04:38:49+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-07-15T04:27:52+00:00",
+      "snapshot_at": "2026-07-16T04:39:02+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-07-15T04:31:05+00:00",
+      "snapshot_at": "2026-07-16T04:43:08+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-15T04:27:26+00:00",
+      "snapshot_at": "2026-07-16T04:38:34+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-07-15T14:27:24+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-15T04:27:33+00:00",
+      "snapshot_at": "2026-07-16T04:38:44+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-07-15T04:27:34+00:00",
+      "snapshot_at": "2026-07-16T04:38:46+00:00",
       "source": "nse",
       "url": null
     }

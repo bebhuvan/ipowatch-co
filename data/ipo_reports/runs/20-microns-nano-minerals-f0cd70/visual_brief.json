@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.07.15-0451",
-  "estimated_cost_usd": 0.0009094400000000002,
+  "dataset_version": "v2026.07.16-0455",
+  "estimated_cost_usd": 0.00093436,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-15T04:51:29+00:00",
+  "generated_at": "2026-07-16T04:55:11+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,131 +24,114 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif font throughout; single accent colour (e.g., dark blue) for table headers and pull-quote border.",
-      "Hairline rules between sections; two rule weights for hierarchy.",
-      "No decorative imagery or icons."
+      "Use a single accent colour (e.g., deep blue) for table headers, pull-quote rule, and sidebar border.",
+      "Financials table: right-align all numeric columns; use parentheses for negative values.",
+      "Industry snapshot: render as a three-stat strip with a proportion split bar below; no icons.",
+      "Pull-quote: set in a larger serif size, with a hairline rule above and below, centred or left-aligned.",
+      "Sidebar: box with a thin border, same accent colour, placed after the 'The IPO offer' section."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The Indian specialty chemicals market (excluding agrochemicals and dyestuff) was estimated at about ₹1,000 billion in fiscal 2017, accounting for roughly 17% of the country's total chemicals industry [^drhp-p92]. CRISIL Research reports that the segment grew at 10–12% CAGR from fiscal 2014 to 2017 and forecasts it to grow at 12–14% CAGR going forward [^drhp-p94].",
-      "growth_bars": [
-        {
-          "value": "10–12% CAGR",
-          "width_pct": 71,
-          "year": "FY14–17"
-        },
-        {
-          "projected": true,
-          "value": "12–14% CAGR",
-          "width_pct": 100,
-          "year": "FY17–22"
-        }
-      ],
-      "growth_bars_label": "Market growth rate",
-      "growth_bars_source": "CRISIL Research [^drhp-p94]",
-      "rationale": "Industry snapshot provides scannable context for the fragmented market.",
+      "after_paragraph": "The Indian specialty chemicals segment was estimated at ₹1,443 billion in FY2017, having grown at 10-12% CAGR from FY2014 to FY2017.",
+      "growth_bars": null,
+      "growth_bars_label": null,
+      "growth_bars_source": null,
+      "rationale": "Summarises the industry size, growth, and fragmentation in a scannable block.",
       "split_bar": {
         "left_label": "Organised",
         "left_pct": 25,
         "right_label": "Unorganised"
       },
-      "split_bar_label": "Market structure",
-      "split_bar_note": "SMEs (unorganised) hold 70–75% market share [^drhp-p94].",
+      "split_bar_label": "Market structure (SME share)",
+      "split_bar_note": "SMEs comprise 70-75% of the market [^drhp-p94]",
       "stats": [
         {
-          "desc": "Indian specialty chemicals market\nFY17",
-          "val": "₹1,000B"
+          "desc": "Indian specialty chemicals\nsegment, FY2017",
+          "val": "₹1,443B"
         },
         {
-          "desc": "Share of total chemicals industry",
-          "val": "17%"
+          "desc": "CAGR (FY2014–FY2017)",
+          "val": "10–12%"
         },
         {
-          "desc": "SME market share",
-          "val": "70–75%"
+          "desc": "Forecast CAGR\n(forward)",
+          "val": "12–14%"
         }
       ]
     },
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration is moderate. The top 10 customers accounted for around 59%, 57%, and 59% of revenue from operations in fiscal 2015, 2016, and 2017, respectively [^drhp-p128]. No single customer dominates, but the top decile accounts for more than half the business. The company also exports, though the scale is modest: over the past five years, total exports amounted to ₹1,068.18 lakh (₹10.68 crore), with shipments to Nigeria, Saudi Arabia, and Sri Lanka [^drhp-p128].",
-        "quote": "The top 10 customers accounted for around 59%, 57%, and 59% of revenue from operations in fiscal 2015, 2016, and 2017, respectively.",
-        "rationale": "Customer concentration is a key risk; this single number captures it sharply."
+        "after_paragraph": "One number captures the governance reality: the promoters hold 89,48,270 equity shares, representing 99.76% of the pre-issue paid-up capital.",
+        "quote": "the promoters hold 89,48,270 equity shares, representing 99.76% of the pre-issue paid-up capital",
+        "rationale": "The single most striking governance fact — near-total promoter ownership — that defines the IPO's context."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Lead manager:** Vivro Financial Services Private Limited [^drhp-p54]\n\n**Registrar:** Link Intime India Private Limited [^drhp-p55]\n\n**Platform:** NSE EMERGE (SME) [^drhp-p75]\n\n**Use of proceeds:** Capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; general corporate purposes; listing costs [^drhp-p75].",
-        "rationale": "Sidebar consolidates key offer details that are scattered in prose.",
+        "body_markdown": "**Exchange:** NSE EMERGE (SME platform) [^drhp-p75]\n**Lead manager:** Vivro Financial Services Private Limited [^drhp-p54]\n**Registrar:** Link Intime India Private Limited [^drhp-p55]\n**Objects:** Funding capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; general corporate purposes; creating a public market for shares [^drhp-p75]\n**Issue size, number of shares, and price band:** Not disclosed in the available DRHP excerpts.",
+        "rationale": "Pulls key offer details into a compact sidebar for quick reference.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The company has reported restated financials for six periods: fiscal 2013, 2014, 2015, 2016, 2017, and the six months ended September 30, 2017. All figures below are converted from the filing's lakhs to crore for readability.",
+        "after_paragraph": "The company's financial history shows a clear turning point.",
         "columns": [
           "Period",
-          "Revenue from Operations (₹ cr)",
-          "PAT (₹ cr)",
-          "Operating Cash Flow (₹ cr)",
-          "Total Assets (₹ cr)",
-          "Basic EPS (₹)"
+          "PAT (₹ lakh)",
+          "Basic EPS (₹)",
+          "Operating Cash Flow (₹ lakh)",
+          "Total Assets (₹ lakh)"
         ],
-        "footnote": "Source: [^drhp-p49] [^drhp-p50] [^drhp-p175] [^drhp-p177]",
-        "rationale": "Financials table is always required; this one shows profitability turnaround and volatile cash flow.",
+        "footnote": "Source: DRHP pages 49, 50, 175, 177",
+        "rationale": "Consolidates the five-year financial trajectory and cash-flow volatility into a scannable table.",
         "rows": [
           [
             "FY2013",
-            "Not available",
-            "(0.27)",
-            "2.01",
-            "30.19",
-            "(0.45)"
+            "(27.40)",
+            "(0.45)",
+            "200.97",
+            "2,679.38"
           ],
           [
             "FY2014",
-            "Not available",
-            "(0.12)",
-            "1.28",
-            "26.79",
-            "(0.20)"
+            "(12.17)",
+            "(0.20)",
+            "127.73",
+            "2,592.53"
           ],
           [
             "FY2015",
-            "Not available",
-            "1.50",
-            "4.22",
-            "25.93",
-            "2.47"
+            "149.58",
+            "2.47",
+            "422.36",
+            "2,767.21"
           ],
           [
             "FY2016",
-            "Not available",
-            "0.90",
-            "8.03",
-            "27.67",
-            "1.46"
+            "90.18",
+            "1.46",
+            "802.59",
+            "3,273.96"
           ],
           [
             "FY2017",
-            "Not available",
-            "1.75",
-            "(3.50)",
-            "32.74",
-            "2.43"
+            "174.82",
+            "2.43",
+            "(349.75)",
+            "3,424.96"
           ],
           [
             "H1 FY2018",
-            "Not available",
-            "1.33",
-            "1.25",
-            "34.25",
-            "1.48"
+            "132.75",
+            "1.48",
+            "124.86",
+            "3,018.66"
           ]
         ],
-        "title": "Financial performance summary"
+        "title": "Key financial metrics"
       }
     ],
     "timeline": null

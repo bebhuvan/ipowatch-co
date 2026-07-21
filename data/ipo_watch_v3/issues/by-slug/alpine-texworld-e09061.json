@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.17-0445",
+  "dataset_version": "v3.2026.07.21-0504",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_26092025192615_AlpineTexworldLimited_DRHP.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/364403/IPO%20Open/RHPSignedALPINEIPO_20260710180539.pdf"
@@ -52,6 +52,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -60,7 +76,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,25 +94,28 @@
     }
   },
   "filings_path": "issues/alpine-texworld-e09061/filings.json",
-  "generated_at": "2026-07-17T04:46:00+00:00",
+  "generated_at": "2026-07-21T05:04:03+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:74616370",
-      "bse:prior_id:247104",
-      "bse:createdby:364403"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/alpine-texworld-ltd/alpinetex/544825/"
     ],
     "board_type": "Main Board",
     "company_name": "Alpine Texworld Limited",
     "issue_type": "IPO",
     "slug": "alpine-texworld-e09061",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "ALPINETEX"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -500,
+    "current_price_paise": 9975
+  },
   "market_path": "issues/alpine-texworld-e09061/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 10500,
+    "issue_size_paise": 126252000000,
     "price_band_lower_paise": 10000,
     "price_band_upper_paise": 10500
   },
@@ -136,35 +163,35 @@
       "peers": [
         {
           "company_name": "ALPINETEX",
-          "market_cap": "402",
+          "market_cap": "0",
           "net_sales_cr": 342,
           "pat_cr": 21.46,
-          "pb": 5.52,
-          "pe": 18.51
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "UNITEDPOLY",
-          "market_cap": "677",
+          "market_cap": "681",
           "net_sales_cr": 602,
           "pat_cr": 17.69,
-          "pb": 5.1,
-          "pe": 27.87
+          "pb": 5.13,
+          "pe": 28.04
         },
         {
           "company_name": "KEN",
-          "market_cap": "83",
+          "market_cap": "89",
           "net_sales_cr": 482,
           "pat_cr": 12.32,
           "pb": null,
-          "pe": 5.37
+          "pe": 5.75
         },
         {
           "company_name": "PASHUPATI",
-          "market_cap": "1,382",
+          "market_cap": "1,380",
           "net_sales_cr": 637,
           "pat_cr": 12.88,
-          "pb": 8.42,
-          "pe": 132.98
+          "pb": 8.41,
+          "pe": 132.82
         }
       ],
       "revenue_mix": {
@@ -261,48 +288,72 @@
         "pb": 5.51,
         "pe": 18.49,
         "sector_pb": 0.6,
-        "sector_pe": 18.24
+        "sector_pe": 17.79
       }
     }
   },
   "research_path": "issues/alpine-texworld-e09061/research.json",
   "schema_version": "3.0.0",
   "slug": "alpine-texworld-e09061",
-  "source_dataset_version": "v2026.07.17-0445",
+  "source_dataset_version": "v2026.07.21-0504",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-17T04:41:20+00:00",
+      "snapshot_at": "2026-07-21T04:57:25+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-07-21T04:57:43+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-21T05:02:03+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-17T04:40:59+00:00",
+      "snapshot_at": "2026-07-21T04:47:42+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-07-17T04:40:59+00:00",
+      "snapshot_at": "2026-07-21T04:47:21+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-17T04:41:07+00:00",
+      "snapshot_at": "2026-07-21T04:55:40+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-07-21T04:57:02+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.4000"
+  },
   "subscription_path": "issues/alpine-texworld-e09061/subscription.json",
   "timeline": {
     "close_date": "2026-07-16",
+    "listing_date": "2026-07-21",
     "open_date": "2026-07-14"
   },
   "url_path": "/ipos/alpine-texworld/"

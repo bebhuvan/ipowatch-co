@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.17-0445",
+  "dataset_version": "v3.2026.07.21-0504",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -37,6 +37,10 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -57,13 +61,21 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     }
   },
   "filings_path": "issues/valplast-technologies-f343da/filings.json",
-  "generated_at": "2026-07-17T04:46:00+00:00",
+  "generated_at": "2026-07-21T05:04:03+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -73,18 +85,20 @@
     "company_name": "Valplast Technologies Limited",
     "issue_type": "IPO",
     "slug": "valplast-technologies-f343da",
-    "status": "Listed"
+    "status": "Listed",
+    "symbol": "VTL05"
   },
   "listing_performance": {
-    "current_gain_bps": -2094,
-    "current_price_paise": 4269,
+    "current_gain_bps": -2769,
+    "current_price_paise": 3905,
     "listing_close_price_paise": 5863,
     "listing_gain_bps": 857
   },
   "market_path": "issues/valplast-technologies-f343da/market.json",
   "parties": {},
   "pricing": {
-    "issue_price_paise": 5400
+    "issue_price_paise": 5400,
+    "issue_size_paise": 28090800000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/valplast-technologies-f343da/prospectus_facts.json",
@@ -134,15 +148,15 @@
           "net_sales_cr": 63.25,
           "pat_cr": 6.11,
           "pb": null,
-          "pe": 12.53
+          "pe": 12.54
         },
         {
           "company_name": "SRM",
-          "market_cap": "1,138",
+          "market_cap": "1,145",
           "net_sales_cr": 528,
           "pat_cr": 55.0,
-          "pb": 3.07,
-          "pe": 10.25
+          "pb": 3.09,
+          "pe": 10.32
         }
       ],
       "revenue_mix": {
@@ -280,25 +294,34 @@
         "market_cap": "₹105",
         "pb": 3.49,
         "pe": 17.34,
-        "sector_pb": 1.46,
-        "sector_pe": 15.58
+        "sector_pb": 1.42,
+        "sector_pe": 15.06
       }
     }
   },
   "research_path": "issues/valplast-technologies-f343da/research.json",
   "schema_version": "3.0.0",
   "slug": "valplast-technologies-f343da",
-  "source_dataset_version": "v2026.07.17-0445",
+  "source_dataset_version": "v2026.07.21-0504",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_sme_2025",
-      "snapshot_at": "2026-07-17T04:41:35+00:00",
+      "snapshot_at": "2026-07-21T04:57:43+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000220",
+      "snapshot_at": "2026-07-21T05:02:03+00:00",
+      "source": "moneycontrol",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.1700"
+  },
   "subscription_path": "issues/valplast-technologies-f343da/subscription.json",
   "timeline": {
     "listing_date": "2025-10-07"

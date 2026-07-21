@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.07.17-0501",
-  "estimated_cost_usd": 0.0008073800000000001,
+  "dataset_version": "v2026.07.21-0535",
+  "estimated_cost_usd": 0.0008100400000000002,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-17T05:01:11+00:00",
+  "generated_at": "2026-07-21T05:35:26+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,42 +24,43 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif font throughout; single accent colour (e.g., dark blue) for table headers and pull-quote border.",
-      "Tables should have hairline rules, no vertical lines; header row bold with bottom rule.",
-      "Pull-quote styled as a blockquote with left border in accent colour, italic text.",
-      "Sidebar box with light background tint and hairline border."
+      "Use a single accent colour (e.g., #003366) for table headers, pull-quote border, and sidebar title.",
+      "Financials table: align numbers right, use hairline rules between rows, bold the revenue row.",
+      "Pull-quote: set in a larger serif font, italic, with a left hairline rule in accent colour.",
+      "Sidebar: box with a thin border, light background tint (e.g., #f5f5f5), compact prose.",
+      "No decorative imagery or icons; maintain newspaper aesthetic throughout."
     ],
     "formulas": [],
     "industry_snapshot": null,
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "The company's client list reads like a who's who of Mumbai-area infrastructure agencies",
-        "quote": "Western Railway alone contributes 52% of the orders on hand, and the top clients collectively accounted for 57% of revenue in FY2018.",
-        "rationale": "Highlights extreme customer concentration, a critical risk."
+        "after_paragraph": "Revenue is heavily concentrated. Western Railway alone contributed 52% of the orders on hand.",
+        "quote": "Majority of the company's revenue is dependent on one customer, Indian Railways, which contributed 57% of revenue in fiscal 2018.",
+        "rationale": "Single most important risk: customer concentration on Indian Railways."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Issue size:** 44,28,000 equity shares of face value ₹10 each. Price not yet set. [^drhp-p29]\n\n**Objects:** Working capital ₹1,130 lakhs; balance for general corporate purposes (undisclosed). [^drhp-p48]\n\n**Lead manager:** Mark Corporate Advisors Private Limited [^drhp-p31]\n\n**Registrar:** Bigshare Services Private Limited [^drhp-p31]",
-        "rationale": "Summarises key offer details in a scannable sidebar.",
+        "body_markdown": "**Issue size:** 44,28,000 equity shares of ₹10 each (fresh issue only; no offer for sale). [^drhp-p29]\n\n**Use of proceeds:** ₹11.30 crore for working capital; remainder for general corporate purposes (undisclosed). [^drhp-p48]\n\n**Lead manager:** Mark Corporate Advisors Private Limited. [^drhp-p31]\n\n**Registrar:** Bigshare Services Private Limited. [^drhp-p31]\n\n**Pre-issue promoter holding:** 90.949% (Mr. Amit Bholanath Mishra). [^drhp-p100]",
+        "rationale": "Essential offer details in one scannable block; avoids cluttering the narrative.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "A B Infrabuild's revenue has declined over the five-year period from FY2014 to FY2018.",
+        "after_paragraph": "The company's revenue has declined steadily over the five-year period from fiscal 2014 to fiscal 2018.",
         "columns": [
-          "Metric",
+          "Metric (₹ crore)",
           "FY2014",
           "FY2015",
           "FY2016",
           "FY2017",
           "FY2018"
         ],
-        "footnote": "Source: DRHP pages 26, 27, 111. Figures converted from lakhs to crore by dividing by 100.",
-        "rationale": "Core financials table is essential for any IPO report; shows revenue decline and profit spike.",
+        "footnote": "Source: Restated financial statements. [^drhp-p27][^drhp-p111][^drhp-p26]",
+        "rationale": "Central financial data; five-year trend of declining revenue and volatile profit is the core financial story.",
         "rows": [
           [
             "Revenue from operations",
@@ -78,7 +79,7 @@
             "3.15"
           ],
           [
-            "PBDIT (EBITDA)",
+            "EBITDA",
             "7.84",
             "9.46",
             "7.83",
@@ -100,49 +101,9 @@
             "1.89",
             "1.32",
             "1.33"
-          ],
-          [
-            "Total assets",
-            "70.62",
-            "72.67",
-            "62.95",
-            "75.37",
-            "82.32"
           ]
         ],
-        "title": "Financial performance (₹ crore)"
-      },
-      {
-        "after_paragraph": "The DRHP provides financial ratios for the company but does not name any peer companies for comparison.",
-        "columns": [
-          "Metric",
-          "FY2016",
-          "FY2017",
-          "FY2018"
-        ],
-        "footnote": "Source: DRHP pages 54, 55. EPS and NAV for FY2016 and FY2017 from page 54; FY2018 figures from page 55.",
-        "rationale": "Shows the dramatic improvement in EPS and RoNW in FY2018, a key point for valuation.",
-        "rows": [
-          [
-            "EPS (₹)",
-            "1.31",
-            "0.63",
-            "12.59"
-          ],
-          [
-            "NAV per share (₹)",
-            "4.14",
-            "1.97",
-            "44.71"
-          ],
-          [
-            "RoNW (%)",
-            "—",
-            "—",
-            "28.14"
-          ]
-        ],
-        "title": "Key ratios"
+        "title": "Financial performance across five years"
       }
     ],
     "timeline": null

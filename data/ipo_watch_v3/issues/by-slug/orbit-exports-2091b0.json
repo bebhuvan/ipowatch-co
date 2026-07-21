@@ -9,10 +9,18 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.17-0445",
+  "dataset_version": "v3.2026.07.21-0504",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "identity.board_type": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -32,6 +40,10 @@
     "identity.symbol": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -59,9 +71,14 @@
     }
   },
   "filings_path": "issues/orbit-exports-2091b0/filings.json",
-  "generated_at": "2026-07-17T04:46:00+00:00",
+  "generated_at": "2026-07-21T05:04:03+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "bse:ipo_no:7838",
+      "bse:scrip_code:512626"
+    ],
+    "board_type": "Main Board",
     "company_name": "Orbit Exports Limited",
     "issue_type": "Buyback",
     "slug": "orbit-exports-2091b0",
@@ -72,6 +89,7 @@
   "market_path": "issues/orbit-exports-2091b0/market.json",
   "parties": {},
   "pricing": {
+    "face_value_paise": 1000,
     "issue_price_paise": 25000,
     "issue_size_shares": 600000,
     "price_band_lower_paise": 25000,
@@ -84,17 +102,54 @@
   "public_slug": "orbit-exports",
   "schema_version": "3.0.0",
   "slug": "orbit-exports-2091b0",
-  "source_dataset_version": "v2026.07.17-0445",
+  "source_dataset_version": "v2026.07.21-0504",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-07-21T04:57:23+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-07-21T04:57:23+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "tender_past",
-      "snapshot_at": "2026-07-17T04:41:03+00:00",
+      "snapshot_at": "2026-07-21T04:51:25+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "data_availability": {
+      "expected_product_feed": "bse.buyback_tender_detail",
+      "reason": "BSE classifies this row as OTB/buyback. IPO/FPO bid-book category endpoints are not applicable; buyback tender acceptance/demand needs a separate product-specific parser.",
+      "source_refs": [
+        {
+          "endpoint": "public_issue",
+          "snapshot_at": "2026-07-21T04:57:23+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue_details",
+          "snapshot_at": "2026-07-21T04:57:23+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "tender_past",
+          "snapshot_at": "2026-07-21T04:51:25+00:00",
+          "source": "nse"
+        }
+      ],
+      "state": "not_applicable_to_ipo_subscription_book"
+    }
+  },
   "subscription_path": "issues/orbit-exports-2091b0/subscription.json",
   "timeline": {
     "close_date": "2024-02-26",

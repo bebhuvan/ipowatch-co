@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.17-0445",
+  "dataset_version": "v3.2026.07.21-0504",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Sbifunds_DRHP.zip",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/307025/IPO%20Open/6RHPSignedSBIFundsIPO_20260711145958.pdf"
@@ -52,6 +52,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -60,7 +76,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,25 +94,28 @@
     }
   },
   "filings_path": "issues/sbi-funds-management-a2cd28/filings.json",
-  "generated_at": "2026-07-17T04:46:00+00:00",
+  "generated_at": "2026-07-21T05:04:03+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:83673103",
-      "bse:prior_id:262401",
-      "bse:createdby:307025"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/sbi-funds-management-ltd/sbifunds/544829/"
     ],
     "board_type": "Main Board",
     "company_name": "SBI Funds Management Limited",
     "issue_type": "IPO",
     "slug": "sbi-funds-management-a2cd28",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "SBIFUNDS"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 752,
+    "current_price_paise": 61715
+  },
   "market_path": "issues/sbi-funds-management-a2cd28/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 57400,
+    "issue_size_paise": 11692910318600,
     "price_band_lower_paise": 54500,
     "price_band_upper_paise": 57400
   },
@@ -136,43 +163,43 @@
       "peers": [
         {
           "company_name": "SBIFUNDS",
-          "market_cap": "1,16,914",
+          "market_cap": "0",
           "net_sales_cr": 4389,
           "pat_cr": 3067,
-          "pb": 19.61,
-          "pe": 38.12
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "ICICIAMC",
-          "market_cap": "1,52,029",
+          "market_cap": "1,57,673",
           "net_sales_cr": 5764,
           "pat_cr": 3298,
-          "pb": 36.84,
-          "pe": 46.58
+          "pb": 36.94,
+          "pe": 46.72
         },
         {
           "company_name": "HDFCAMC",
-          "market_cap": "1,12,326",
+          "market_cap": "1,13,825",
           "net_sales_cr": 4122,
           "pat_cr": 2858,
-          "pb": 12.09,
-          "pe": 37.86
+          "pb": 12.28,
+          "pe": 38.46
         },
         {
           "company_name": "NAM-INDIA",
-          "market_cap": "74,865",
+          "market_cap": "75,693",
           "net_sales_cr": 2708,
           "pat_cr": 1529,
-          "pb": 15.79,
-          "pe": 48.12
+          "pb": 16.23,
+          "pe": 49.43
         },
         {
           "company_name": "ABSLAMC",
-          "market_cap": "32,976",
+          "market_cap": "33,121",
           "net_sales_cr": 1845,
           "pat_cr": 975,
-          "pb": 8.11,
-          "pe": 33.62
+          "pb": 8.01,
+          "pe": 33.2
         }
       ],
       "revenue_mix": {
@@ -243,56 +270,73 @@
         "market_cap": "₹1,16,913",
         "pb": 19.61,
         "pe": 38.12,
-        "sector_pb": 6.63,
-        "sector_pe": 33.62
+        "sector_pb": 6.56,
+        "sector_pe": 33.2
       }
     }
   },
   "research_path": "issues/sbi-funds-management-a2cd28/research.json",
   "schema_version": "3.0.0",
   "slug": "sbi-funds-management-a2cd28",
-  "source_dataset_version": "v2026.07.17-0445",
+  "source_dataset_version": "v2026.07.21-0504",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-17T04:41:20+00:00",
+      "snapshot_at": "2026-07-21T04:57:25+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-07-21T04:57:43+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-21T05:02:03+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-17T04:40:59+00:00",
+      "snapshot_at": "2026-07-21T04:47:42+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-07-17T04:40:59+00:00",
+      "snapshot_at": "2026-07-21T04:47:21+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-07-17T04:41:09+00:00",
+      "snapshot_at": "2026-07-21T04:57:02+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-17T04:41:07+00:00",
+      "snapshot_at": "2026-07-21T04:55:40+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "41.6600"
+  },
   "subscription_path": "issues/sbi-funds-management-a2cd28/subscription.json",
   "timeline": {
     "close_date": "2026-07-16",
+    "listing_date": "2026-07-21",
     "open_date": "2026-07-14"
   },
   "url_path": "/ipos/sbi-funds-management/"

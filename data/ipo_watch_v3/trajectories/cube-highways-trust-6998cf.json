@@ -8,23 +8,39 @@
   },
   "dataset": "ipo-watch.trajectory.schema",
   "dataset_version": "v3.2026.07.22-0451",
-  "demand_curve_count": 1,
+  "demand_curve_count": 2,
   "demand_curves": [
     {
-      "observed_at": "2026-07-22T06:24:46+00:00",
+      "observed_at": "2026-07-22T09:07:59+00:00",
       "points": [
         {
-          "cumulative_quantity": 1382155,
+          "cumulative_quantity": 2681660,
           "price_paise": 15200
         },
         {
-          "cumulative_quantity": 1386715,
+          "cumulative_quantity": 2690875,
           "price_paise": 15100
         }
       ],
       "scope": "nse",
       "source": "nse",
-      "source_updated_at": "22-Jul-2026 11:45:00"
+      "source_updated_at": "22-Jul-2026 14:30:01"
+    },
+    {
+      "observed_at": "2026-07-22T09:08:00+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 3858140,
+          "price_paise": 15200
+        },
+        {
+          "cumulative_quantity": 3875905,
+          "price_paise": 15100
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "22-Jul-2026 14:30:00"
     }
   ],
   "field_provenance": {},
@@ -36,13 +52,39 @@
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
   "notes": "Hourly subscription (bid-book) observations during the active issue window.",
-  "observation_count": 0,
-  "observations": [],
+  "observation_count": 1,
+  "observations": [
+    {
+      "categories": {},
+      "observed_at": "2026-07-22T09:07:59+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 22nd July 2026 at 12.00 hrs",
+      "total": {
+        "shares_bid": 2495270,
+        "shares_offered": 136589480,
+        "times": 0.02
+      }
+    }
+  ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/cube-highways-trust-6998cf.json",
   "schema_version": "3.0.0",
   "source_dataset_version": "v2026.07.22-0451",
   "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_cubeinvit",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_cubeinvit",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
     {
       "confidence": "primary",
       "endpoint": "demand_data_nse_cubeinvit",

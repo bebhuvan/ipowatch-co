@@ -9,20 +9,30 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.21-0504",
+  "dataset_version": "v3.2026.07.22-0451",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE640G01020_20JUL2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Sbifunds_DRHP.zip",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/307025/IPO%20Open/6RHPSignedSBIFundsIPO_20260711145958.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE640G01020_17JUL2026.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/SBIFundsManagementLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -33,6 +43,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -58,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -94,7 +120,7 @@
     }
   },
   "filings_path": "issues/sbi-funds-management-a2cd28/filings.json",
-  "generated_at": "2026-07-21T05:04:03+00:00",
+  "generated_at": "2026-07-22T04:51:59+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -102,14 +128,18 @@
     ],
     "board_type": "Main Board",
     "company_name": "SBI Funds Management Limited",
+    "isin": "INE640G01020",
     "issue_type": "IPO",
     "slug": "sbi-funds-management-a2cd28",
     "status": "Listed",
     "symbol": "SBIFUNDS"
   },
   "listing_performance": {
-    "current_gain_bps": 752,
-    "current_price_paise": 61715
+    "current_gain_bps": 623,
+    "current_price_paise": 60975,
+    "listing_close_price_paise": 60990,
+    "listing_gain_bps": 625,
+    "listing_open_price_paise": 61330
   },
   "market_path": "issues/sbi-funds-management-a2cd28/market.json",
   "parties": {},
@@ -152,7 +182,7 @@
         ]
       },
       "isin": "INE640G01020",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "sbi funds management",
       "offer_split": {
         "fresh_issue_percent": "0%",
@@ -163,43 +193,43 @@
       "peers": [
         {
           "company_name": "SBIFUNDS",
-          "market_cap": "0",
+          "market_cap": "1,24,226",
           "net_sales_cr": 4389,
           "pat_cr": 3067,
-          "pb": null,
-          "pe": null
+          "pb": 20.83,
+          "pe": 40.5
         },
         {
           "company_name": "ICICIAMC",
-          "market_cap": "1,57,673",
+          "market_cap": "1,54,095",
           "net_sales_cr": 5764,
           "pat_cr": 3298,
-          "pb": 36.94,
-          "pe": 46.72
+          "pb": 37.32,
+          "pe": 47.2
         },
         {
           "company_name": "HDFCAMC",
-          "market_cap": "1,13,825",
+          "market_cap": "1,13,353",
           "net_sales_cr": 4122,
           "pat_cr": 2858,
-          "pb": 12.28,
-          "pe": 38.46
+          "pb": 11.99,
+          "pe": 37.55
         },
         {
           "company_name": "NAM-INDIA",
-          "market_cap": "75,693",
+          "market_cap": "75,597",
           "net_sales_cr": 2708,
           "pat_cr": 1529,
-          "pb": 16.23,
-          "pe": 49.43
+          "pb": 16.02,
+          "pe": 48.8
         },
         {
           "company_name": "ABSLAMC",
-          "market_cap": "33,121",
+          "market_cap": "32,372",
           "net_sales_cr": 1845,
           "pat_cr": 975,
-          "pb": 8.01,
-          "pe": 33.2
+          "pb": 7.46,
+          "pe": 29.94
         }
       ],
       "revenue_mix": {
@@ -270,62 +300,62 @@
         "market_cap": "₹1,16,913",
         "pb": 19.61,
         "pe": 38.12,
-        "sector_pb": 6.56,
-        "sector_pe": 33.2
+        "sector_pb": 6.52,
+        "sector_pe": 33.16
       }
     }
   },
   "research_path": "issues/sbi-funds-management-a2cd28/research.json",
   "schema_version": "3.0.0",
   "slug": "sbi-funds-management-a2cd28",
-  "source_dataset_version": "v2026.07.21-0504",
+  "source_dataset_version": "v2026.07.22-0451",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-21T04:57:25+00:00",
+      "snapshot_at": "2026-07-22T04:46:42+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-07-21T04:57:43+00:00",
+      "snapshot_at": "2026-07-22T04:46:58+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-07-21T05:02:03+00:00",
+      "snapshot_at": "2026-07-22T04:50:29+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-21T04:47:42+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-07-21T04:47:21+00:00",
+      "snapshot_at": "2026-07-22T04:46:26+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-07-21T04:57:02+00:00",
+      "snapshot_at": "2026-07-22T04:46:35+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-07-21T14:39:35+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-21T04:55:40+00:00",
+      "snapshot_at": "2026-07-22T04:46:34+00:00",
       "source": "nse",
       "url": null
     }

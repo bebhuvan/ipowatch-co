@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.22-0451",
+  "dataset_version": "v3.2026.07.23-0457",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/MaheshwariLogistics_Limited.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/MLL_PROSP.pdf"
@@ -23,6 +23,10 @@
     "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -52,6 +56,26 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -70,9 +94,12 @@
     }
   },
   "filings_path": "issues/maheshwari-logistics-a235e4/filings.json",
-  "generated_at": "2026-07-22T04:51:59+00:00",
+  "generated_at": "2026-07-23T04:57:33+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "yahoo:MAHESHWARI.NS"
+    ],
     "board_type": "SME Board",
     "company_name": "Maheshwari Logistics Limited",
     "isin": "INE263W01010",
@@ -81,7 +108,13 @@
     "status": "Listed",
     "symbol": "MAHESHWARI"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 735,
+    "current_price_paise": 7300,
+    "listing_close_price_paise": 4142,
+    "listing_gain_bps": -3909,
+    "listing_open_price_paise": 3985
+  },
   "market_path": "issues/maheshwari-logistics-a235e4/market.json",
   "parties": {},
   "pricing": {
@@ -94,19 +127,26 @@
   "public_slug": "maheshwari-logistics",
   "schema_version": "3.0.0",
   "slug": "maheshwari-logistics-a235e4",
-  "source_dataset_version": "v2026.07.22-0451",
+  "source_dataset_version": "v2026.07.23-0457",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-22T04:46:26+00:00",
+      "snapshot_at": "2026-07-23T04:51:00+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-07-22T14:40:54+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-07-22T04:46:34+00:00",
+      "snapshot_at": "2026-07-23T04:51:09+00:00",
       "source": "nse",
       "url": null
     }

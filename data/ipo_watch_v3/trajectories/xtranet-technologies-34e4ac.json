@@ -7,13 +7,94 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.07.22-0451",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.07.23-0457",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-07-23T04:56:29+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 1079320,
+          "price_paise": 12700
+        },
+        {
+          "cumulative_quantity": 1079430,
+          "price_paise": 12600
+        },
+        {
+          "cumulative_quantity": 1080750,
+          "price_paise": 12500
+        },
+        {
+          "cumulative_quantity": 1081190,
+          "price_paise": 12400
+        },
+        {
+          "cumulative_quantity": 1081630,
+          "price_paise": 12300
+        },
+        {
+          "cumulative_quantity": 1082290,
+          "price_paise": 12200
+        },
+        {
+          "cumulative_quantity": 1083280,
+          "price_paise": 12100
+        },
+        {
+          "cumulative_quantity": 1086250,
+          "price_paise": 12000
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "23-Jul-2026 10:21:00"
+    },
+    {
+      "observed_at": "2026-07-23T04:56:29+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 868780,
+          "price_paise": 12700
+        },
+        {
+          "cumulative_quantity": 868890,
+          "price_paise": 12600
+        },
+        {
+          "cumulative_quantity": 870100,
+          "price_paise": 12500
+        },
+        {
+          "cumulative_quantity": 870320,
+          "price_paise": 12400
+        },
+        {
+          "cumulative_quantity": 870760,
+          "price_paise": 12300
+        },
+        {
+          "cumulative_quantity": 871420,
+          "price_paise": 12200
+        },
+        {
+          "cumulative_quantity": 872190,
+          "price_paise": 12100
+        },
+        {
+          "cumulative_quantity": 876040,
+          "price_paise": 12000
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "23-Jul-2026 10:24:01"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-07-22T04:51:59+00:00",
+  "generated_at": "2026-07-23T04:57:33+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "xtranet-technologies-34e4ac",
   "language": "en-IN",
@@ -24,61 +105,60 @@
     {
       "categories": {
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 121440,
+          "shares_offered": 1970100,
+          "times": 0.06164154103852596
+        },
+        "nii_gt_10l": {
+          "shares_bid": 96140,
+          "shares_offered": 656700,
+          "times": 0.14639865996649917
         },
         "qib": {
           "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_offered": 2626800,
+          "times": 0.0
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 1034110,
+          "shares_offered": 4596900,
+          "times": 0.22495812395309883
         }
       },
-      "observed_at": "2026-07-22T12:56:23+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-07-23T04:56:28+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 23-Jul-2026 10:21:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 1155550,
+        "shares_offered": 9193800,
+        "times": 0.12568796362766213
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/xtranet-technologies-34e4ac.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.07.22-0451",
+  "source_dataset_version": "v2026.07.23-0457",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7841",
+      "endpoint": "consolidated_bid_details_xtranet",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_xtranet",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_xtranet",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

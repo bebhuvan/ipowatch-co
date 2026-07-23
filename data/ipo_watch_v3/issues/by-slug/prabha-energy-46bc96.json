@@ -9,10 +9,18 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.22-0451",
+  "dataset_version": "v3.2026.07.23-0457",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "identity.board_type": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -33,9 +41,33 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "parties.registrar": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "pricing.issue_size_shares": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "pricing.market_lot": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.tick_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "subscription.by_exchange.bse": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "subscription.consolidated": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -47,9 +79,14 @@
     }
   },
   "filings_path": "issues/prabha-energy-46bc96/filings.json",
-  "generated_at": "2026-07-22T04:51:59+00:00",
+  "generated_at": "2026-07-23T04:57:33+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "bse:ipo_no:7843",
+      "bse:scrip_code:4687"
+    ],
+    "board_type": "Main Board",
     "company_name": "Prabha Energy Limited",
     "issue_type": "Rights",
     "slug": "prabha-energy-46bc96",
@@ -58,9 +95,14 @@
   },
   "listing_performance": {},
   "market_path": "issues/prabha-energy-46bc96/market.json",
-  "parties": {},
+  "parties": {
+    "registrar": "MUFG Intime India Private Limited(formerly “Link Intime India Private Limited”)"
+  },
   "pricing": {
-    "issue_size_shares": 2577142
+    "face_value_paise": 33,
+    "issue_size_shares": 2577142,
+    "market_lot": 1,
+    "tick_size_paise": 100
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/prabha-energy-46bc96/prospectus_facts.json",
@@ -69,28 +111,196 @@
   "public_slug": "prabha-energy",
   "schema_version": "3.0.0",
   "slug": "prabha-energy-46bc96",
-  "source_dataset_version": "v2026.07.22-0451",
+  "source_dataset_version": "v2026.07.23-0457",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "bid_details_7843",
+      "snapshot_at": "2026-07-23T04:57:29+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_7843",
+      "snapshot_at": "2026-07-23T04:57:29+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "issue_detail_7843",
+      "snapshot_at": "2026-07-23T04:57:28+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-07-23T04:51:11+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-07-23T04:51:12+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "rights_past",
-      "snapshot_at": "2026-07-22T04:46:31+00:00",
+      "snapshot_at": "2026-07-23T04:51:06+00:00",
       "source": "nse",
       "url": null
     }
   ],
   "subscription": {
-    "data_availability": {
-      "expected_product_feed": "nse.rights_active_or_forthcoming",
-      "reason": "NSE rights issue feed currently provides identity and offer-window fields only for this row; subscription/demand fields are null.",
-      "source_refs": [
+    "by_exchange": {
+      "bse": {
+        "categories": [
+          {
+            "category": "qib",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "qib_fii",
+            "shares_bid": null,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "qib_dfi",
+            "shares_bid": null,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "qib_mf",
+            "shares_bid": null,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "qib_other",
+            "shares_bid": null,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "nii",
+            "shares_bid": 0,
+            "shares_offered": 0,
+            "times_x": null
+          },
+          {
+            "category": "nii_gt_10l",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "nii_lte_10l",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "retail",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "employee",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "shareholder",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          }
+        ],
+        "total_times_x": null
+      }
+    },
+    "consolidated": {
+      "basis": "exchange_published",
+      "categories": [
         {
-          "endpoint": "rights_past",
-          "snapshot_at": "2026-07-22T04:46:31+00:00",
-          "source": "nse"
+          "category": "qib",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "qib_fii",
+          "shares_bid": null,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "qib_dfi",
+          "shares_bid": null,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "qib_mf",
+          "shares_bid": null,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "qib_other",
+          "shares_bid": null,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "nii",
+          "shares_bid": 0,
+          "shares_offered": 0,
+          "times_x": null
+        },
+        {
+          "category": "nii_gt_10l",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "nii_lte_10l",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "retail",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "employee",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "shareholder",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
         }
       ],
-      "state": "exchange_not_provided"
+      "total_times_x": null
     }
   },
   "subscription_path": "issues/prabha-energy-46bc96/subscription.json",

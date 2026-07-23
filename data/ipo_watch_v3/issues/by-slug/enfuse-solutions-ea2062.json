@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.22-0451",
+  "dataset_version": "v3.2026.07.23-0457",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/EnfuseSolutions_DRHP.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/EnfuseSolutions_PROSP.pdf",
@@ -63,11 +63,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -103,7 +111,7 @@
     }
   },
   "filings_path": "issues/enfuse-solutions-ea2062/filings.json",
-  "generated_at": "2026-07-22T04:51:59+00:00",
+  "generated_at": "2026-07-23T04:57:33+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -118,9 +126,11 @@
     "symbol": "ENFUSE"
   },
   "listing_performance": {
-    "current_gain_bps": 7188,
-    "current_price_paise": 16500,
-    "listing_gain_bps": 1771
+    "current_gain_bps": 9167,
+    "current_price_paise": 18400,
+    "listing_close_price_paise": 11545,
+    "listing_gain_bps": 2026,
+    "listing_open_price_paise": 11500
   },
   "market_path": "issues/enfuse-solutions-ea2062/market.json",
   "parties": {},
@@ -137,33 +147,40 @@
   "public_slug": "enfuse-solutions",
   "schema_version": "3.0.0",
   "slug": "enfuse-solutions-ea2062",
-  "source_dataset_version": "v2026.07.22-0451",
+  "source_dataset_version": "v2026.07.23-0457",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000760",
-      "snapshot_at": "2026-07-22T04:50:29+00:00",
+      "snapshot_at": "2026-07-23T04:55:48+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-22T04:46:26+00:00",
+      "snapshot_at": "2026-07-23T04:51:00+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-07-22T14:40:54+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_sme",
+      "snapshot_at": "2026-07-23T04:51:09+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-07-22T04:46:34+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-07-22T04:46:34+00:00",
+      "snapshot_at": "2026-07-23T04:51:09+00:00",
       "source": "nse",
       "url": null
     }

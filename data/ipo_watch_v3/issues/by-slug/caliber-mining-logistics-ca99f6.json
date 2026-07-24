@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.23-0457",
+  "dataset_version": "v3.2026.07.24-0453",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE11XY01018_23JUL2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Caliber_Mining_And_Logistics_Limited_DRHP.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE11XY01018_22JUL2026.pdf",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/321189/IPO%20Open/RHPSignedCALIBERIPO_20260714191348.pdf"
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/CaliberMiningAndLogisticsLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -27,7 +32,7 @@
     },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -61,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +108,29 @@
     }
   },
   "filings_path": "issues/caliber-mining-logistics-ca99f6/filings.json",
-  "generated_at": "2026-07-23T04:57:33+00:00",
+  "generated_at": "2026-07-24T04:53:35+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:57419016",
-      "bse:prior_id:219993",
-      "bse:createdby:321189"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/caliber-mining-and-logistics-ltd/cmll/544833/"
     ],
     "board_type": "Main Board",
     "company_name": "Caliber Mining and Logistics Limited",
     "isin": "INE11XY01018",
     "issue_type": "IPO",
     "slug": "caliber-mining-logistics-ca99f6",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "CMLL"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 1192,
+    "current_price_paise": 47455
+  },
   "market_path": "issues/caliber-mining-logistics-ca99f6/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 42400,
+    "issue_size_paise": 450000019200,
     "price_band_lower_paise": 40200,
     "price_band_upper_paise": 42400
   },
@@ -146,43 +178,43 @@
       "peers": [
         {
           "company_name": "CMLL",
-          "market_cap": "2,772",
+          "market_cap": "0",
           "net_sales_cr": 1677,
           "pat_cr": 157,
-          "pb": 4.28,
-          "pe": 17.56
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "POWERMECH",
           "market_cap": "8,023",
           "net_sales_cr": 5234,
           "pat_cr": 326,
-          "pb": 3.19,
-          "pe": 22.04
+          "pb": 3.2,
+          "pe": 22.16
         },
         {
           "company_name": "NCC",
           "market_cap": "8,642",
           "net_sales_cr": 22199,
           "pat_cr": 819,
-          "pb": 1.1,
-          "pe": 12.8
+          "pb": 1.09,
+          "pe": 12.68
         },
         {
           "company_name": "SINDHUTRAD",
-          "market_cap": "3,869",
+          "market_cap": "3,826",
           "net_sales_cr": 1731,
           "pat_cr": 25.66,
-          "pb": 2.21,
-          "pe": 67.35
+          "pb": 2.18,
+          "pe": 66.6
         },
         {
           "company_name": "DBL",
-          "market_cap": "6,520",
+          "market_cap": "6,287",
           "net_sales_cr": 11316,
           "pat_cr": 640,
-          "pb": 0.95,
-          "pe": 5.01
+          "pb": 0.92,
+          "pe": 4.83
         }
       ],
       "revenue_mix": {
@@ -316,49 +348,80 @@
         "market_cap": "₹2,771",
         "pb": 4.28,
         "pe": 17.55,
-        "sector_pb": 2.96,
-        "sector_pe": 18.64
+        "sector_pb": 2.81,
+        "sector_pe": 19.04
       }
     }
   },
   "research_path": "issues/caliber-mining-logistics-ca99f6/research.json",
   "schema_version": "3.0.0",
   "slug": "caliber-mining-logistics-ca99f6",
-  "source_dataset_version": "v2026.07.23-0457",
+  "source_dataset_version": "v2026.07.24-0453",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-23T04:51:15+00:00",
+      "snapshot_at": "2026-07-24T04:48:51+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-07-24T04:49:03+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-24T04:52:17+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-23T04:51:00+00:00",
+      "snapshot_at": "2026-07-24T04:48:35+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-23T04:51:09+00:00",
+      "snapshot_at": "2026-07-24T04:48:43+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-23T04:51:09+00:00",
+      "snapshot_at": "2026-07-24T04:48:43+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_equity",
+      "snapshot_at": "2026-07-24T04:48:43+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-07-24T04:48:46+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "146.6400"
+  },
   "subscription_path": "issues/caliber-mining-logistics-ca99f6/subscription.json",
   "timeline": {
     "close_date": "2026-07-21",
+    "listing_date": "2026-07-24",
     "open_date": "2026-07-17"
   },
   "url_path": "/ipos/caliber-mining-logistics/"

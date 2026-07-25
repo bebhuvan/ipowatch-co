@@ -14,7 +14,7 @@
     ]
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.24-0453",
+  "dataset_version": "v3.2026.07.25-0448",
   "documents": {
     "drhp_url": "https://www.bseindia.com/downloads/ipo/318346/IPO%20Prior/IFL_Finance_Limited_DRHP_20260722194106.pdf"
   },
@@ -28,17 +28,21 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "identity.board_type": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -46,7 +50,7 @@
     }
   },
   "filings_path": "issues/ifl-finance-2628c3/filings.json",
-  "generated_at": "2026-07-24T04:53:35+00:00",
+  "generated_at": "2026-07-25T04:48:29+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -54,7 +58,8 @@
       "bse:prior_id:274928",
       "bse:createdby:318346"
     ],
-    "company_name": "IFL FINANCE LIMITED",
+    "board_type": "Main Board",
+    "company_name": "IFL Finance Limited",
     "issue_type": "IPO",
     "slug": "ifl-finance-2628c3",
     "status": "Filed"
@@ -70,13 +75,20 @@
   "public_slug": "ifl-finance",
   "schema_version": "3.0.0",
   "slug": "ifl-finance-2628c3",
-  "source_dataset_version": "v2026.07.24-0453",
+  "source_dataset_version": "v2026.07.25-0448",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-24T04:48:51+00:00",
+      "snapshot_at": "2026-07-25T04:43:28+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-07-25T04:43:25+00:00",
+      "source": "nse",
       "url": null
     }
   ],

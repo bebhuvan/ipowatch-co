@@ -5,22 +5,734 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.25-0448",
+  "dataset_version": "v3.2026.07.28-0447",
   "documents": {
-    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6361_31122025191247.zip"
+    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6361_31122025191247.zip",
+    "rhp_url": "https://nsearchives.nseindia.com/content/ipo/RHP_PROPSHOP.zip"
   },
-  "exchange_details": {},
+  "exchange_details": {
+    "nse": {
+      "bid_details": {
+        "data": {
+          "data": [
+            {
+              "category": "Category",
+              "noOfshareBid": "No. of shares bid for",
+              "noofapplication": "No. of applications received",
+              "srNo": "Sr.No."
+            },
+            {
+              "category": "Qualified Institutional Buyers(QIBs)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1"
+            },
+            {
+              "category": "Foreign Institutional Investors(FIIs)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(a)"
+            },
+            {
+              "category": "Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(b)"
+            },
+            {
+              "category": "Mutual funds",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(c)"
+            },
+            {
+              "category": "Others",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(d)"
+            },
+            {
+              "category": "Non Institutional Investors",
+              "noOfshareBid": "14000",
+              "noofapplication": "1",
+              "srNo": "2"
+            },
+            {
+              "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.1"
+            },
+            {
+              "category": "Corporates",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.1(a)"
+            },
+            {
+              "category": "Individuals(IND category bidding for more than 2 Lots)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.1(b)"
+            },
+            {
+              "category": "Others",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.1(c)"
+            },
+            {
+              "category": "Non Institutional Investors(Bid amount of more than Two Lakh Rupees upto Ten Lakh Rupees)",
+              "noOfshareBid": "14000",
+              "noofapplication": "1",
+              "srNo": "2.2"
+            },
+            {
+              "category": "Corporates",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.2(a)"
+            },
+            {
+              "category": "Individuals(IND category bidding for more than 2 Lots)",
+              "noOfshareBid": "14000",
+              "noofapplication": "1",
+              "srNo": "2.2(b)"
+            },
+            {
+              "category": "Others",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.2(c)"
+            },
+            {
+              "category": "Individual Investors (IND category bidding for 2 Lots)",
+              "noOfshareBid": "204000",
+              "noofapplication": "51",
+              "srNo": "3"
+            },
+            {
+              "category": "Total",
+              "noOfshareBid": "218000",
+              "noofapplication": "52",
+              "srNo": null
+            }
+          ],
+          "updateTime": "Updated as on 28-Jul-2026 10:14:00 hrs"
+        },
+        "snapshot_at": "2026-07-28T04:47:04+00:00",
+        "url": "https://www.nseindia.com/api/ipo-bid-details?symbol=PROPSHOP&series=SME"
+      },
+      "consolidated_bid_details": {
+        "data": {
+          "dataList": [
+            {
+              "category": "Category",
+              "noOfShareOffered": "No.of shares offered/reserved",
+              "noOfSharesBid": "No. of shares bid for",
+              "noOfTotalMeant": "No. of times of total meant for the category",
+              "srNo": "Sr.No."
+            },
+            {
+              "category": "Qualified Institutional Buyers(QIBs)",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "0.00",
+              "srNo": "1"
+            },
+            {
+              "category": "Foreign Institutional Investors(FIIs)",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "1(a)"
+            },
+            {
+              "category": "Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "1(b)"
+            },
+            {
+              "category": "Mutual funds",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "1(c)"
+            },
+            {
+              "category": "Others",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "1(d)"
+            },
+            {
+              "category": "Non Institutional Investors",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "0.00",
+              "srNo": "2"
+            },
+            {
+              "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "0.00",
+              "srNo": "2.1"
+            },
+            {
+              "category": "Corporates",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "2.1(a)"
+            },
+            {
+              "category": "Individuals(Other than RIIs)",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "2.1(b)"
+            },
+            {
+              "category": "Others",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "2.1(c)"
+            },
+            {
+              "category": "Non Institutional Investors(Bid amount of more than Two Lakh Rupees upto Ten Lakh Rupees)",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "0.00",
+              "srNo": "2.2"
+            },
+            {
+              "category": "Corporates",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "2.2(a)"
+            },
+            {
+              "category": "Individuals(Other than RIIs)",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "2.2(b)"
+            },
+            {
+              "category": "Others",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "2.2(c)"
+            },
+            {
+              "category": "Total",
+              "noOfShareOffered": "0.0",
+              "noOfSharesBid": "0.0",
+              "noOfTotalMeant": "0.00",
+              "srNo": null
+            }
+          ],
+          "heading": null,
+          "symbol": null,
+          "updateTime": "Updated as on 27-Jul-2026 17:00:00"
+        },
+        "snapshot_at": "2026-07-28T04:47:05+00:00",
+        "url": "https://www.nseindia.com/api/ipo-active-category?symbol=PROPSHOP"
+      },
+      "demand_data": {
+        "all": {
+          "data": [
+            {
+              "company": "Propshop Events and Exhibitions Limited",
+              "cumQty": "1,32,000",
+              "price": "69",
+              "symbol": "PROPSHOP",
+              "timestamp": "27-JUL-2026 17:00:00"
+            },
+            {
+              "company": "Propshop Events and Exhibitions Limited",
+              "cumQty": "1,36,000",
+              "price": "65",
+              "symbol": "PROPSHOP",
+              "timestamp": "27-JUL-2026 17:00:00"
+            }
+          ],
+          "snapshot_at": "2026-07-28T04:47:05+00:00",
+          "url": "https://www.nseindia.com/api/ipo-chart-demand?symbol=PROPSHOP&exchange=ALL"
+        },
+        "nse": {
+          "data": [
+            {
+              "company": "Propshop Events and Exhibitions Limited",
+              "cumQty": "2,14,000",
+              "price": "69",
+              "symbol": "PROPSHOP",
+              "timestamp": "28-Jul-2026 10:14:00"
+            },
+            {
+              "company": "Propshop Events and Exhibitions Limited",
+              "cumQty": "2,18,000",
+              "price": "65",
+              "symbol": "PROPSHOP",
+              "timestamp": "28-Jul-2026 10:14:00"
+            }
+          ],
+          "snapshot_at": "2026-07-28T04:47:05+00:00",
+          "url": "https://www.nseindia.com/api/ipo-chart-demand?symbol=PROPSHOP&exchange=NSE"
+        }
+      },
+      "issue_detail": {
+        "data": {
+          "activeCat": {
+            "dataList": [
+              {
+                "category": "Category",
+                "noOfShareOffered": "No.of shares offered/reserved",
+                "noOfSharesBid": "No. of shares bid for",
+                "noOfTotalMeant": "No. of times of total meant for the category",
+                "srNo": "Sr.No."
+              },
+              {
+                "category": "Qualified Institutional Buyers(QIBs)",
+                "noOfShareOffered": "0",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "0.00",
+                "srNo": "1"
+              },
+              {
+                "category": "Foreign Institutional Investors(FIIs)",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "1(a)"
+              },
+              {
+                "category": "Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "1(b)"
+              },
+              {
+                "category": "Mutual funds",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "1(c)"
+              },
+              {
+                "category": "Others",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "1(d)"
+              },
+              {
+                "category": "Non Institutional Investors",
+                "noOfShareOffered": "0",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "0.00",
+                "srNo": "2"
+              },
+              {
+                "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+                "noOfShareOffered": "0",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "0.00",
+                "srNo": "2.1"
+              },
+              {
+                "category": "Corporates",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "2.1(a)"
+              },
+              {
+                "category": "Individuals(Other than RIIs)",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "2.1(b)"
+              },
+              {
+                "category": "Others",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "2.1(c)"
+              },
+              {
+                "category": "Non Institutional Investors(Bid amount of more than Two Lakh Rupees upto Ten Lakh Rupees)",
+                "noOfShareOffered": "0",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "0.00",
+                "srNo": "2.2"
+              },
+              {
+                "category": "Corporates",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "2.2(a)"
+              },
+              {
+                "category": "Individuals(Other than RIIs)",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "2.2(b)"
+              },
+              {
+                "category": "Others",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "2.2(c)"
+              },
+              {
+                "category": "Total",
+                "noOfShareOffered": "0.0",
+                "noOfSharesBid": "0.0",
+                "noOfTotalMeant": "0.00",
+                "srNo": null
+              }
+            ],
+            "heading": null,
+            "symbol": null,
+            "updateTime": "Updated as on 27-Jul-2026 17:00:00"
+          },
+          "bidDetails": [
+            {
+              "category": "Qualified Institutional Buyers(QIBs)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1"
+            },
+            {
+              "category": "Foreign Institutional Investors(FIIs)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(a)"
+            },
+            {
+              "category": "Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(b)"
+            },
+            {
+              "category": "Mutual funds",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(c)"
+            },
+            {
+              "category": "Others",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(d)"
+            },
+            {
+              "category": "Non Institutional Investors",
+              "noOfshareBid": "14000",
+              "noofapplication": "1",
+              "srNo": "2"
+            },
+            {
+              "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.1"
+            },
+            {
+              "category": "Corporates",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.1(a)"
+            },
+            {
+              "category": "Individuals(IND category bidding for more than 2 Lots)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.1(b)"
+            },
+            {
+              "category": "Others",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.1(c)"
+            },
+            {
+              "category": "Non Institutional Investors(Bid amount of more than Two Lakh Rupees upto Ten Lakh Rupees)",
+              "noOfshareBid": "14000",
+              "noofapplication": "1",
+              "srNo": "2.2"
+            },
+            {
+              "category": "Corporates",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.2(a)"
+            },
+            {
+              "category": "Individuals(IND category bidding for more than 2 Lots)",
+              "noOfshareBid": "14000",
+              "noofapplication": "1",
+              "srNo": "2.2(b)"
+            },
+            {
+              "category": "Others",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2.2(c)"
+            },
+            {
+              "category": "Individual Investors (IND category bidding for 2 Lots)",
+              "noOfshareBid": "204000",
+              "noofapplication": "51",
+              "srNo": "3"
+            },
+            {
+              "category": "Total",
+              "noOfshareBid": "218000",
+              "noofapplication": "52",
+              "srNo": null
+            }
+          ],
+          "companyName": "PROPSHOP",
+          "demandDataBSE": [
+            {
+              "company": "Propshop Events and Exhibitions Limited",
+              "cumQty": "1,32,000",
+              "price": "69",
+              "symbol": "PROPSHOP",
+              "timestamp": "27-JUL-2026 17:00:00"
+            },
+            {
+              "company": "Propshop Events and Exhibitions Limited",
+              "cumQty": "1,36,000",
+              "price": "65",
+              "symbol": "PROPSHOP",
+              "timestamp": "27-JUL-2026 17:00:00"
+            }
+          ],
+          "demandDataNSE": [
+            {
+              "company": "Propshop Events and Exhibitions Limited",
+              "cumQty": "2,14,000",
+              "price": "69",
+              "symbol": "PROPSHOP",
+              "timestamp": "28-Jul-2026 10:14:00"
+            },
+            {
+              "company": "Propshop Events and Exhibitions Limited",
+              "cumQty": "2,18,000",
+              "price": "65",
+              "symbol": "PROPSHOP",
+              "timestamp": "28-Jul-2026 10:14:00"
+            }
+          ],
+          "demandGraph": {
+            "TOTAL_BIDS": "136000",
+            "graphData": [
+              {
+                "type": "65",
+                "value": "0.04"
+              },
+              {
+                "type": "69",
+                "value": "2.14"
+              }
+            ],
+            "graphLogic": "https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf",
+            "heading1": "Propshop Events and Exhibitions Limited- Graphical display of bids received *",
+            "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+            "noOfShare": "Cumulative Demand(no. of shares in lakhs)",
+            "noOfTimesIssueSubscribed": "0.05",
+            "note": " Cumulative (NSE) bid quantity at each price point includes the quantity (NSE) bidded at that relevant price point and all valid bids above that price point.",
+            "plotData": {
+              "65": "2,18,000",
+              "69": "2,14,000"
+            },
+            "timestamp": "As on 28-Jul-2026 10:14:00 IST",
+            "totalBidAtCutOff": "-",
+            "totalBidRecieved": "218000",
+            "totalIssueSize": "4140000"
+          },
+          "demandGraphALL": {
+            "TOTAL_BIDS": "136000",
+            "graphData": [
+              {
+                "type": "65",
+                "value": "0.04"
+              },
+              {
+                "type": "69",
+                "value": "1.32"
+              }
+            ],
+            "graphLogic": "https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf",
+            "heading1": "Propshop Events and Exhibitions Limited- Graphical display of bids received *",
+            "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+            "noOfShare": "Cumulative Demand(no. of shares in lakhs)",
+            "noOfTimesIssueSubscribed": "0.03",
+            "note": "Cumulative bid quantity at each price point includes the quantity bid at that relevant price point and all valid bids at the next higher price point.  The graph is updated every hour.",
+            "plotData": {
+              "65": "1,36,000",
+              "69": "1,32,000"
+            },
+            "timestamp": "As on 27-Jul-2026 17:00:00 IST",
+            "totalBidAtCutOff": "-",
+            "totalBidRecieved": "136000",
+            "totalIssueSize": "4140000"
+          },
+          "issueInfo": {
+            "dataList": [
+              {
+                "title": null,
+                "value": "\"*As per SEBI circular no SEBI/HO/CFD/DIL2/CIR/P/2019/76 dated 28 June 2019 all are requested to comply with the provisions of the aforementioned circular which states as below: Intermediaries shall retain physical application forms submitted by retail individual investors with UPI as a payment mechanism, for a period of six months and thereafter forward the same to the issuer/ Registrar to Issue. However in case of Electronic forms printouts of such applications need not be retained or sent to the issuer. Intermediaries shall, at all times, maintain the electronic records relating to such forms for a minimum period of three years.\""
+              },
+              {
+                "title": "Symbol",
+                "value": "PROPSHOP"
+              },
+              {
+                "title": "Issue Period",
+                "value": "27-July-2026 to 29-July-2026"
+              },
+              {
+                "title": "Cut-off time for UPI Mandate Confirmation",
+                "value": "29-July-2026 (upto 5:00 PM) The cut-off time for UPI mandate acceptance is 05:00 PM on last day of IPO bidding. Further bids with confirmed status of mandate amount blocked (RC100) shall be considered as valid applications and hence investors are advised to submit their UPI applications in IPO well in advance to avoid any last minute technical/systemic constraints that may hamper their ability to participate in IPOs by successfully accepting the mandate."
+              },
+              {
+                "title": "Issue Size",
+                "value": "\"Initial public offer of Fresh issue up to 33,40,000 equity shares and Offer for Sale Up to 8,00,000 Equity Shares (Including Market Maker Reservation Portion of 2,16,000 Equity Shares)\""
+              },
+              {
+                "title": "Issue Type",
+                "value": "100 % Book Building"
+              },
+              {
+                "title": "Price Range",
+                "value": "Rs.65 to Rs.69 per equity share"
+              },
+              {
+                "title": "Lot Size",
+                "value": "2000 Equity Shares and in multiples of lot size thereof"
+              },
+              {
+                "title": "Face Value",
+                "value": "Rs.10 per equity share"
+              },
+              {
+                "title": "Tick Size",
+                "value": "Re.1"
+              },
+              {
+                "title": "IPO Market Timings",
+                "value": "10.00 a.m. to 5.00 p.m. (Bidding Timings on Issue Closure upto 4:00 P.M.)"
+              },
+              {
+                "title": "Book Running Lead Managers",
+                "value": "Unistone Capital Private Limited"
+              },
+              {
+                "title": "Sponsor Bank",
+                "value": "Kotak Mahindra Bank Limited"
+              },
+              {
+                "title": "Categories",
+                "value": "\"FI, IC, MF, FII, OTH, CO, IND and NOH\""
+              },
+              {
+                "title": "Sub-Categories applicable for UPI",
+                "value": "\"IND (upto 5,00,000)\""
+              },
+              {
+                "title": "Name of the Registrar",
+                "value": "MUFG Intime India Private Limited"
+              },
+              {
+                "title": "Address of the Registrar",
+                "value": "\"C-101, 247 Park, 1st Floor, L B S Marg, Vikhroli (West), Mumbai 400083, (Maharashtra), India\""
+              },
+              {
+                "title": "Contact person name number and Email id",
+                "value": "\"Shanti Gopalkrishnan,+91 810 811 4949, propshopevents.smeipo@in.mpms.mufg.com    \""
+              },
+              {
+                "title": "e-form link",
+                "value": "<a href=https://ipoforms.nseindia.com/issueforms/html/index.jsp target=new>e-Forms</a>"
+              },
+              {
+                "title": "Branches of Self Certified Syndicate Banks (SCSBs) where syndicate / sub syndicate member to submit ASBA form",
+                "value": "<a href=http://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=35 target=new>SCSB List</a>"
+              },
+              {
+                "title": "Red Herring Prospectus",
+                "value": "https://nsearchives.nseindia.com/content/ipo/RHP_PROPSHOP.zip"
+              },
+              {
+                "title": "Ratios / Basis of Issue Price",
+                "value": "https://nsearchives.nseindia.com/content/ipo/RATIOS_PROPSHOP.zip"
+              },
+              {
+                "title": "Sample Application Forms",
+                "value": "https://nsearchives.nseindia.com/content/ipo/FORMS_PROPSHOP.zip"
+              },
+              {
+                "title": "Security Parameters ",
+                "value": "https://nsearchives.nseindia.com/content/ipo/LIVE_PARAMETERS_PROPSHOP.zip"
+              },
+              {
+                "title": "Processing of ASBA Applications",
+                "value": "<a href=https://archives.nseindia.com/content/circulars/IPO53197.pdf target=new>NSE Circular on ASBA Application Processing</a>"
+              },
+              {
+                "title": "List of mobile applications accepting UPI as Payment Option",
+                "value": "<a href=https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=43 target=new>Mobile APP for UPI</a>"
+              },
+              {
+                "title": "Video link  for UPI based ASBA process",
+                "value": "<a href=https://youtu.be/UJ394m2Q3rg target=new>UPI Based ASBA Process</a>"
+              },
+              {
+                "title": "Video link  for BHIM UPI Registration",
+                "value": "<a href=https://youtu.be/cIUJOIH0x4c target=new>BHIM UPI Registration</a>"
+              }
+            ],
+            "heading": "Propshop Events and Exhibitions Limited",
+            "symbol": "PROPSHOP"
+          },
+          "metaInfo": {}
+        },
+        "snapshot_at": "2026-07-28T04:47:04+00:00",
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=PROPSHOP&series=SME"
+      }
+    }
+  },
   "field_provenance": {
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.rhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -48,6 +760,50 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "parties.lead_managers": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "parties.registrar": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "parties.sponsor_bank": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.market_lot": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.tick_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "subscription.by_exchange.nse": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -58,20 +814,36 @@
     }
   },
   "filings_path": "issues/propshop-events-exhibitions-87e33b/filings.json",
-  "generated_at": "2026-07-25T04:48:29+00:00",
+  "generated_at": "2026-07-28T04:47:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "bse:cross_listed:PROPSHOP"
+    ],
     "board_type": "SME Board",
     "company_name": "Propshop Events and Exhibitions Limited",
     "issue_type": "IPO",
     "slug": "propshop-events-exhibitions-87e33b",
-    "status": "Upcoming",
+    "status": "Open",
     "symbol": "PROPSHOP"
   },
   "listing_performance": {},
   "market_path": "issues/propshop-events-exhibitions-87e33b/market.json",
-  "parties": {},
-  "pricing": {},
+  "parties": {
+    "lead_managers": [
+      "Unistone Capital Private Limited"
+    ],
+    "registrar": "MUFG Intime India Private Limited",
+    "sponsor_bank": "Kotak Mahindra Bank Limited"
+  },
+  "pricing": {
+    "face_value_paise": 1000,
+    "issue_size_shares": 4140000,
+    "market_lot": 2000,
+    "price_band_lower_paise": 6500,
+    "price_band_upper_paise": 6900,
+    "tick_size_paise": 100
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/propshop-events-exhibitions-87e33b/prospectus_facts.json",
   "provenance_path": "issues/propshop-events-exhibitions-87e33b/provenance.json",
@@ -115,12 +887,20 @@
       },
       "peers": [
         {
+          "company_name": "PROPSHOP",
+          "market_cap": "101",
+          "net_sales_cr": 51.52,
+          "pat_cr": 6.32,
+          "pb": 5.68,
+          "pe": 15.97
+        },
+        {
           "company_name": "EXHICON",
-          "market_cap": "816",
+          "market_cap": "806",
           "net_sales_cr": 143,
           "pat_cr": 26.0,
           "pb": null,
-          "pe": 20.04
+          "pe": 19.61
         }
       ],
       "revenue_mix": {
@@ -252,45 +1032,261 @@
       "source": "tijori",
       "source_quality": "third_party_enrichment_not_primary_filing",
       "source_url": "https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/",
-      "symbol": null,
+      "symbol": "PROPSHOP",
       "valuation": {
         "ipo_size": "28 Cr",
         "market_cap": "₹100",
         "pb": 5.68,
         "pe": 15.97,
-        "sector_pb": 2.19,
-        "sector_pe": 18.4
+        "sector_pb": 2.16,
+        "sector_pe": 18.34
       }
     }
   },
   "research_path": "issues/propshop-events-exhibitions-87e33b/research.json",
   "schema_version": "3.0.0",
   "slug": "propshop-events-exhibitions-87e33b",
-  "source_dataset_version": "v2026.07.25-0448",
+  "source_dataset_version": "v2026.07.28-0447",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-07-25T04:43:15+00:00",
+      "endpoint": "bid_details_propshop_sme",
+      "snapshot_at": "2026-07-28T04:47:04+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_propshop",
+      "snapshot_at": "2026-07-28T04:47:05+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "issue_detail_propshop_sme",
+      "snapshot_at": "2026-07-28T04:47:04+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_current_issue",
+      "snapshot_at": "2026-07-28T04:42:37+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-07-25T04:43:24+00:00",
+      "snapshot_at": "2026-07-28T04:42:46+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-07-25T04:43:25+00:00",
+      "snapshot_at": "2026-07-28T04:42:47+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "by_exchange": {
+      "nse": {
+        "categories": [
+          {
+            "applications": 0,
+            "category": "qib",
+            "shares_bid": 0,
+            "shares_offered": 0,
+            "times_x": "0.0000"
+          },
+          {
+            "applications": 0,
+            "category": "qib_fii",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "applications": 0,
+            "category": "qib_dfi",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "applications": 0,
+            "category": "qib_mf",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "applications": 0,
+            "category": "qib_other",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "applications": 1,
+            "category": "nii",
+            "shares_bid": 0,
+            "shares_offered": 0,
+            "times_x": "0.0000"
+          },
+          {
+            "applications": 0,
+            "category": "nii_gt_10l",
+            "shares_bid": 0,
+            "shares_offered": 0,
+            "times_x": "0.0000"
+          },
+          {
+            "applications": 51,
+            "category": "retail",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "applications": 1,
+            "category": "nii_lte_10l",
+            "shares_bid": 0,
+            "shares_offered": 0,
+            "times_x": "0.0000"
+          }
+        ],
+        "total_times_x": null
+      }
+    },
+    "consolidated": {
+      "basis": "computed_nse_bse",
+      "categories": [
+        {
+          "applications": 0,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": "0.0000"
+            }
+          },
+          "category": "qib",
+          "shares_bid": 0,
+          "shares_offered": 0,
+          "times_x": "0.0000"
+        },
+        {
+          "applications": 0,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": null
+            }
+          },
+          "category": "qib_fii",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "applications": 0,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": null
+            }
+          },
+          "category": "qib_dfi",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "applications": 0,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": null
+            }
+          },
+          "category": "qib_mf",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "applications": 0,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": null
+            }
+          },
+          "category": "qib_other",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "applications": 1,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": "0.0000"
+            }
+          },
+          "category": "nii",
+          "shares_bid": 0,
+          "shares_offered": 0,
+          "times_x": "0.0000"
+        },
+        {
+          "applications": 0,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": "0.0000"
+            }
+          },
+          "category": "nii_gt_10l",
+          "shares_bid": 0,
+          "shares_offered": 0,
+          "times_x": "0.0000"
+        },
+        {
+          "applications": 51,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": null
+            }
+          },
+          "category": "retail",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "applications": 1,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": "0.0000"
+            }
+          },
+          "category": "nii_lte_10l",
+          "shares_bid": 0,
+          "shares_offered": 0,
+          "times_x": "0.0000"
+        }
+      ],
+      "total_times_x": null
+    },
+    "overall_times_x": "0.0500"
+  },
   "subscription_path": "issues/propshop-events-exhibitions-87e33b/subscription.json",
   "timeline": {
     "close_date": "2026-07-29",

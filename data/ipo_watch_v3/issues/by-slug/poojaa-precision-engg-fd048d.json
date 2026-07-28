@@ -1,6 +1,34 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 29000,
+        "quantity": 1534000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 30000,
+        "quantity": 1533200
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 30100,
+        "quantity": 1532400
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 30000,
+        "quantity": 999600
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 30100,
+        "quantity": 998800
+      }
+    ]
+  },
   "core_path": "issues/poojaa-precision-engg-fd048d/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +37,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.25-0448",
+  "dataset_version": "v3.2026.07.28-0447",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -85,6 +117,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -95,7 +131,7 @@
     }
   },
   "filings_path": "issues/poojaa-precision-engg-fd048d/filings.json",
-  "generated_at": "2026-07-25T04:48:29+00:00",
+  "generated_at": "2026-07-28T04:47:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -106,7 +142,7 @@
     "company_name": "POOJAA PRECISION ENGG LIMITED",
     "issue_type": "IPO",
     "slug": "poojaa-precision-engg-fd048d",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/poojaa-precision-engg-fd048d/market.json",
@@ -151,7 +187,7 @@
             "period": "Mar 2025"
           },
           {
-            "debt_cr": null,
+            "debt_cr": 41.1586,
             "net_sales_cr": 293.8554,
             "pat_cr": 30.9028,
             "period": "Mar 2026"
@@ -169,28 +205,36 @@
       },
       "peers": [
         {
+          "company_name": "PPEL",
+          "market_cap": "600",
+          "net_sales_cr": 293,
+          "pat_cr": 30.9,
+          "pb": 4.51,
+          "pe": 19.42
+        },
+        {
           "company_name": "ALICON",
-          "market_cap": "1,062",
+          "market_cap": "1,065",
           "net_sales_cr": 1720,
           "pat_cr": 46.06,
-          "pb": 1.66,
-          "pe": 30.26
+          "pb": 1.77,
+          "pe": 32.34
         },
         {
           "company_name": "RICOAUTO",
-          "market_cap": "1,836",
+          "market_cap": "1,884",
           "net_sales_cr": 2212,
           "pat_cr": 21.41,
-          "pb": 2.36,
-          "pe": 36.35
+          "pb": 2.53,
+          "pe": 39.04
         },
         {
           "company_name": "ENDURANCE",
-          "market_cap": "38,331",
+          "market_cap": "37,278",
           "net_sales_cr": 14595,
           "pat_cr": 951,
-          "pb": 5.59,
-          "pe": 40.2
+          "pb": 5.61,
+          "pe": 40.36
         }
       ],
       "revenue_mix": {
@@ -330,61 +374,61 @@
       "source": "tijori",
       "source_quality": "third_party_enrichment_not_primary_filing",
       "source_url": "https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/",
-      "symbol": null,
+      "symbol": "PPEL",
       "valuation": {
         "ipo_size": "159 Cr",
         "market_cap": "₹600",
         "pb": 4.51,
         "pe": 19.43,
-        "sector_pb": 2.8,
-        "sector_pe": 21.76
+        "sector_pb": 3.09,
+        "sector_pe": 21.87
       }
     }
   },
   "research_path": "issues/poojaa-precision-engg-fd048d/research.json",
   "schema_version": "3.0.0",
   "slug": "poojaa-precision-engg-fd048d",
-  "source_dataset_version": "v2026.07.25-0448",
+  "source_dataset_version": "v2026.07.28-0447",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7846",
-      "snapshot_at": "2026-07-25T04:48:23+00:00",
+      "snapshot_at": "2026-07-28T04:47:36+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7846",
-      "snapshot_at": "2026-07-25T04:48:23+00:00",
+      "snapshot_at": "2026-07-28T04:47:36+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7846",
-      "snapshot_at": "2026-07-25T04:48:24+00:00",
+      "snapshot_at": "2026-07-28T04:47:37+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7846",
-      "snapshot_at": "2026-07-25T04:48:23+00:00",
+      "snapshot_at": "2026-07-28T04:47:35+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-07-25T04:43:26+00:00",
+      "snapshot_at": "2026-07-28T04:42:47+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-07-25T04:43:27+00:00",
+      "snapshot_at": "2026-07-28T04:42:48+00:00",
       "source": "bse",
       "url": null
     }
@@ -395,9 +439,9 @@
         "categories": [
           {
             "category": "qib",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 1200,
+            "shares_offered": 1000400,
+            "times_x": "0.0012"
           },
           {
             "category": "qib_fii",
@@ -419,27 +463,27 @@
           },
           {
             "category": "qib_other",
-            "shares_bid": null,
+            "shares_bid": 1200,
             "shares_offered": null,
             "times_x": null
           },
           {
             "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 440800,
+            "shares_offered": 1017200,
+            "times_x": "0.4333"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 1096800,
+            "shares_offered": 1751200,
+            "times_x": "0.6263"
           },
           {
             "category": "employee",
             "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_offered": 41600,
+            "times_x": "0.0000"
           },
           {
             "category": "shareholder",
@@ -448,7 +492,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": null
+        "total_times_x": "0.4038"
       }
     },
     "consolidated": {
@@ -456,9 +500,9 @@
       "categories": [
         {
           "category": "qib",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 1200,
+          "shares_offered": 1000400,
+          "times_x": "0.0012"
         },
         {
           "category": "qib_fii",
@@ -480,39 +524,39 @@
         },
         {
           "category": "qib_other",
-          "shares_bid": null,
+          "shares_bid": 1200,
           "shares_offered": null,
           "times_x": null
         },
         {
           "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 440800,
+          "shares_offered": 1017200,
+          "times_x": "0.4333"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 263600,
+          "shares_offered": 501600,
+          "times_x": "0.5255"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 177200,
+          "shares_offered": 249600,
+          "times_x": "0.7099"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 1096800,
+          "shares_offered": 1751200,
+          "times_x": "0.6263"
         },
         {
           "category": "employee",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 41600,
+          "times_x": "0.0000"
         },
         {
           "category": "shareholder",
@@ -527,8 +571,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": null
-    }
+      "total_times_x": "0.4038"
+    },
+    "overall_times_x": "0.4038"
   },
   "subscription_path": "issues/poojaa-precision-engg-fd048d/subscription.json",
   "timeline": {

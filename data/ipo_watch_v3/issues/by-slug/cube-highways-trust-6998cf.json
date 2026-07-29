@@ -9,10 +9,18 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.28-0447",
+  "dataset_version": "v3.2026.07.29-0452",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "identity.board_type": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -33,6 +41,14 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -41,9 +57,17 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "timeline.listing_date": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "timeline.open_date": {
       "rule_id": "E.SRC.002",
@@ -51,19 +75,28 @@
     }
   },
   "filings_path": "issues/cube-highways-trust-6998cf/filings.json",
-  "generated_at": "2026-07-28T04:47:49+00:00",
+  "generated_at": "2026-07-29T04:52:36+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:miscellaneous/cubehighwaystrust/CHT",
+      "moneycontrol:company_code:17200016"
+    ],
+    "board_type": "Main Board",
     "company_name": "Cube Highways Trust",
     "issue_type": "InvIT",
     "slug": "cube-highways-trust-6998cf",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "CUBEINVIT"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 49,
+    "current_price_paise": 15275
+  },
   "market_path": "issues/cube-highways-trust-6998cf/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 15200,
     "price_band_lower_paise": 15100,
     "price_band_upper_paise": 15200
   },
@@ -130,34 +163,44 @@
         "pb": 0,
         "pe": 0,
         "sector_pb": 1.38,
-        "sector_pe": 14.46
+        "sector_pe": 14.65
       }
     }
   },
   "research_path": "issues/cube-highways-trust-6998cf/research.json",
   "schema_version": "3.0.0",
   "slug": "cube-highways-trust-6998cf",
-  "source_dataset_version": "v2026.07.28-0447",
+  "source_dataset_version": "v2026.07.29-0452",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-29T04:50:44+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "invits_past",
-      "snapshot_at": "2026-07-28T04:42:44+00:00",
+      "snapshot_at": "2026-07-29T04:46:40+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-28T04:42:38+00:00",
+      "snapshot_at": "2026-07-29T04:46:34+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "9.3500"
+  },
   "subscription_path": "issues/cube-highways-trust-6998cf/subscription.json",
   "timeline": {
     "close_date": "2026-07-24",
+    "listing_date": "2026-07-29",
     "open_date": "2026-07-22"
   },
   "url_path": "/invits/cube-highways-trust/"

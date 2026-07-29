@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.07.28-0512",
-  "estimated_cost_usd": 0.0009322600000000001,
+  "dataset_version": "v2026.07.29-0513",
+  "estimated_cost_usd": 0.00084406,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-28T05:12:18+00:00",
+  "generated_at": "2026-07-29T05:13:45+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,114 +24,103 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use a single accent colour (e.g., #003366) for table headers, pull-quote border, and sidebar title.",
-      "Financials table: align numbers right, use parentheses for negatives, italicise 'Not separately disclosed'.",
-      "Industry snapshot: stat strip with three boxes; split bar below with proportional widths (27.5% vs 72.5%).",
-      "Pull-quote: set in larger serif italic, with a hairline rule left border in accent colour.",
-      "Sidebar: box with light background tint (e.g., #f5f5f5) and thin border."
+      "Use hairline rules and serif font throughout; accent colour for table headers and pull-quote border.",
+      "Industry snapshot: stat strip with three numbers, split bar below; no growth bars.",
+      "Sidebar: boxed with light background, placed after the IPO offer section."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The specialty chemicals segment in India — excluding agrochemicals and dyestuff — accounted for ~17% of the Indian chemicals industry, placing it at approximately ₹1,000 billion in fiscal 2017.",
+      "after_paragraph": "The Indian specialty chemicals market, excluding agrochemicals and dyestuff, was estimated at roughly ₹1,000 billion (₹1,00,000 crore) in fiscal 2017.",
       "growth_bars": null,
-      "growth_bars_label": null,
-      "growth_bars_source": null,
-      "rationale": "Industry snapshot provides scannable context: market size, growth, and fragmentation.",
+      "rationale": "Shows market size, growth, and fragmentation at a glance.",
       "split_bar": {
         "left_label": "Organised",
-        "left_pct": 27.5,
+        "left_pct": 25,
         "right_label": "Unorganised"
       },
-      "split_bar_label": "Market structure (FY17)",
-      "split_bar_note": "Small and medium enterprises hold 70–75% of the market [^drhp-p94].",
+      "split_bar_label": "Market structure",
+      "split_bar_note": "Small and medium enterprises hold 70-75% of the market share. [^drhp-p94]",
       "stats": [
         {
-          "desc": "Specialty chemicals market\nIndia, FY17",
+          "desc": "Indian specialty chemicals market\nFY17",
           "val": "₹1,000B"
         },
         {
-          "desc": "Projected CAGR\nFY17–FY22",
-          "val": "12–14%"
+          "desc": "Historical CAGR\nFY14-FY17",
+          "val": "10-12%"
         },
         {
-          "desc": "Unorganised share\nof industry",
-          "val": "70–75%"
+          "desc": "Projected CAGR\nnext period",
+          "val": "12-14%"
         }
       ]
     },
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration is high. The top 10 customers accounted for approximately 59% of revenue in FY2015, 57% in FY2016, and 59% in FY2017.",
-        "quote": "The top 10 customers accounted for approximately 59% of revenue in FY2015, 57% in FY2016, and 59% in FY2017.",
-        "rationale": "Customer concentration is a key risk; the pull-quote highlights the lack of diversification."
+        "after_paragraph": "The company turned profitable from FY2015 onwards after two years of losses.",
+        "quote": "In FY2017, the company reported its highest-ever PAT of ₹174.82 lakh but generated negative operating cash flow of ₹349.75 lakh.",
+        "rationale": "Highlights the critical divergence between profit and cash flow."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Lead manager:** Vivro Financial Services Private Limited [^drhp-p54]  \n**Registrar:** Link Intime India Private Limited [^drhp-p55]  \n**Listing:** NSE EMERGE (SME platform) [^drhp-p75]  \n**Objects:** Capital expenditure for new manufacturing facility at GIDC Waghodia, Vadodara, Gujarat, and general corporate purposes [^drhp-p75]  \n**Pre-issue capital:** ₹897 lakh (89,70,000 equity shares of ₹10 each) [^drhp-p190]  \n**Promoter holding (pre-issue):** 99.76% [^drhp-p155]",
-        "rationale": "Sidebar consolidates key offer details that are scattered across the draft, giving the reader a quick reference.",
+        "body_markdown": "**Issue type:** Fresh issue of equity shares on NSE EMERGE (SME platform). [^drhp-p75]\n\n**Objects:** Funding capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat, and general corporate purposes. [^drhp-p75]\n\n**Lead manager:** Vivro Financial Services Private Limited. [^drhp-p54]\n\n**Registrar:** Link Intime India Private Limited. [^drhp-p55]\n\n**Pre-issue promoter holding:** 99.76% (89,48,270 shares). [^drhp-p155] [^drhp-p156]",
+        "rationale": "Summarises key offer details in a scannable format.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The restated financial statements cover five full financial years (FY2013 through FY2017) and the six-month period ended September 30, 2017. All figures below are in ₹ lakh (divide by 100 to get ₹ crore).",
+        "after_paragraph": "The company turned profitable from FY2015 onwards after two years of losses.",
         "columns": [
           "Period",
-          "Revenue from Operations (₹ lakh)",
           "PAT (₹ lakh)",
-          "Basic EPS (₹)",
-          "Operating Cash Flow (₹ lakh)"
+          "Operating Cash Flow (₹ lakh)",
+          "Basic EPS (₹)"
         ],
-        "footnote": "Source: Revenue and PAT from [^drhp-p49]; EPS from [^drhp-p177]; Operating cash flow from [^drhp-p50].",
-        "rationale": "Financials table is mandatory for any IPO report; this one shows the turnaround from loss to profit and volatile cash flows.",
+        "footnote": "Source: DRHP pages 49, 50, 177 [^drhp-p49] [^drhp-p50] [^drhp-p177]",
+        "rationale": "Core financial data; shows profit-cash divergence and EPS trajectory.",
         "rows": [
           [
             "FY2013",
-            "Not separately disclosed",
             "(27.40)",
-            "(0.45)",
-            "124.86"
+            "200.97",
+            "(0.45)"
           ],
           [
             "FY2014",
-            "Not separately disclosed",
             "(12.17)",
-            "(0.20)",
-            "(349.75)"
+            "127.73",
+            "(0.20)"
           ],
           [
             "FY2015",
-            "Not separately disclosed",
             "149.58",
-            "2.47",
-            "802.59"
+            "422.36",
+            "2.47"
           ],
           [
             "FY2016",
-            "Not separately disclosed",
             "90.18",
-            "1.46",
-            "422.36"
+            "802.59",
+            "1.46"
           ],
           [
             "FY2017",
-            "Not separately disclosed",
             "174.82",
-            "2.43",
-            "127.73"
+            "(349.75)",
+            "2.43"
           ],
           [
             "Six months ended Sep 2017",
-            "Not separately disclosed",
             "132.75",
-            "1.48",
-            "200.97"
+            "124.86",
+            "1.48"
           ]
         ],
-        "title": "Restated financial summary"
+        "title": "Financial performance summary"
       }
     ],
     "timeline": null

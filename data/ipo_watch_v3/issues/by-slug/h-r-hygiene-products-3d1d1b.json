@@ -1,6 +1,14 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 8800,
+        "quantity": 163200
+      }
+    ]
+  },
   "core_path": "issues/h-r-hygiene-products-3d1d1b/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +17,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.28-0447",
+  "dataset_version": "v3.2026.07.29-0452",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -85,6 +97,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -95,7 +111,7 @@
     }
   },
   "filings_path": "issues/h-r-hygiene-products-3d1d1b/filings.json",
-  "generated_at": "2026-07-28T04:47:49+00:00",
+  "generated_at": "2026-07-29T04:52:36+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -106,7 +122,7 @@
     "company_name": "H. R. Hygiene Products Limited",
     "issue_type": "IPO",
     "slug": "h-r-hygiene-products-3d1d1b",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/h-r-hygiene-products-3d1d1b/market.json",
@@ -119,7 +135,7 @@
   },
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 6131200,
+    "issue_size_shares": 4444800,
     "market_lot": 1600,
     "min_bid_qty": 3200,
     "price_band_lower_paise": 8300,
@@ -131,49 +147,210 @@
   "provenance_path": "issues/h-r-hygiene-products-3d1d1b/provenance.json",
   "public_contract": "ipo-watch.site_v3",
   "public_slug": "h-r-hygiene-products",
+  "research": {
+    "tijori": {
+      "business_description": "H.R. Hygiene Products Limited, incorporated in 2016, manufactures and markets hygiene and personal care products. Its business operates across female care and baby & adult care segments, offering sanitary napkins, baby diapers, and adult diapers under its in-house brands, while also undertaking white-label manufacturing for select customers.",
+      "company_name": "H. R. Hygiene Products Ltd.",
+      "financials": {
+        "unit": "INR crore",
+        "yearly_results": [
+          {
+            "debt_cr": 24.7651,
+            "net_sales_cr": 84.3476,
+            "pat_cr": 4.6641,
+            "period": "Mar 2024"
+          },
+          {
+            "debt_cr": 21.2679,
+            "net_sales_cr": 114.6256,
+            "pat_cr": 9.081,
+            "period": "Mar 2025"
+          },
+          {
+            "debt_cr": 21.53,
+            "net_sales_cr": 130.72,
+            "pat_cr": 11.4066,
+            "period": "Mar 2026"
+          }
+        ]
+      },
+      "isin": "INE17DP01015",
+      "matched_on": "normalized_company_name",
+      "normalized_name": "h r hygiene products",
+      "offer_split": {
+        "fresh_issue_percent": "80%",
+        "fresh_issue_value": "43 Cr",
+        "ofs_percent": "20%",
+        "ofs_value": "10 Cr"
+      },
+      "peers": [
+        {
+          "company_name": "HRHYGIENE",
+          "market_cap": "200",
+          "net_sales_cr": 130,
+          "pat_cr": 11.41,
+          "pb": 4.72,
+          "pe": 17.53
+        },
+        {
+          "company_name": "PGHH",
+          "market_cap": "29,210",
+          "net_sales_cr": 3374,
+          "pat_cr": 636,
+          "pb": 38.63,
+          "pe": 33.98
+        },
+        {
+          "company_name": "AMRUTANJAN",
+          "market_cap": "1,478",
+          "net_sales_cr": 451,
+          "pat_cr": 50.83,
+          "pb": 3.99,
+          "pe": 25.53
+        }
+      ],
+      "revenue_mix": {
+        "historical": [
+          {
+            "points": [
+              {
+                "percent": 95.33,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 81.47,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 66.45,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Sanitary Napkins"
+          },
+          {
+            "points": [
+              {
+                "percent": 1.88,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 0.21,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 0.0,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Adult Diaper"
+          },
+          {
+            "points": [
+              {
+                "percent": 0.27,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 0.0,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 0.0,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Baby Diapers"
+          }
+        ],
+        "latest": [
+          {
+            "percent": 95.33,
+            "segment": "Sanitary Napkins"
+          },
+          {
+            "percent": 1.88,
+            "segment": "Adult Diaper"
+          },
+          {
+            "percent": 0.27,
+            "segment": "Baby Diapers"
+          },
+          {
+            "percent": 2.52,
+            "segment": "Others"
+          }
+        ]
+      },
+      "sector": "Pharmaceuticals",
+      "shareholding": {
+        "promoter": {
+          "post_ipo": "49",
+          "pre_ipo": "69"
+        },
+        "public": {
+          "post_ipo": "51",
+          "pre_ipo": "31"
+        }
+      },
+      "source": "tijori",
+      "source_quality": "third_party_enrichment_not_primary_filing",
+      "source_url": "https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/",
+      "symbol": "HRHYGIENE",
+      "valuation": {
+        "ipo_size": "53 Cr",
+        "market_cap": "₹199",
+        "pb": 4.72,
+        "pe": 17.52,
+        "sector_pb": 2.72,
+        "sector_pe": 30.59
+      }
+    }
+  },
+  "research_path": "issues/h-r-hygiene-products-3d1d1b/research.json",
   "schema_version": "3.0.0",
   "slug": "h-r-hygiene-products-3d1d1b",
-  "source_dataset_version": "v2026.07.28-0447",
+  "source_dataset_version": "v2026.07.29-0452",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7852",
-      "snapshot_at": "2026-07-28T04:47:33+00:00",
+      "snapshot_at": "2026-07-29T04:52:23+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7852",
-      "snapshot_at": "2026-07-28T04:47:33+00:00",
+      "snapshot_at": "2026-07-29T04:52:24+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7852",
-      "snapshot_at": "2026-07-28T04:47:34+00:00",
+      "snapshot_at": "2026-07-29T04:52:24+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7852",
-      "snapshot_at": "2026-07-28T04:47:33+00:00",
+      "snapshot_at": "2026-07-29T04:52:23+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-07-28T04:42:47+00:00",
+      "snapshot_at": "2026-07-29T04:46:43+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-07-28T04:42:48+00:00",
+      "snapshot_at": "2026-07-29T04:46:44+00:00",
       "source": "bse",
       "url": null
     }
@@ -185,8 +362,8 @@
           {
             "category": "qib",
             "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_offered": 1222400,
+            "times_x": "0.0000"
           },
           {
             "category": "qib_fii",
@@ -214,15 +391,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 19200,
+            "shares_offered": 1184000,
+            "times_x": "0.0162"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 144000,
+            "shares_offered": 2038400,
+            "times_x": "0.0706"
           },
           {
             "category": "employee",
@@ -237,7 +414,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": null
+        "total_times_x": "0.0367"
       }
     },
     "consolidated": {
@@ -246,8 +423,8 @@
         {
           "category": "qib",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 1222400,
+          "times_x": "0.0000"
         },
         {
           "category": "qib_fii",
@@ -275,27 +452,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 19200,
+          "shares_offered": 1184000,
+          "times_x": "0.0162"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 14400,
+          "shares_offered": 582400,
+          "times_x": "0.0247"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 4800,
+          "shares_offered": 291200,
+          "times_x": "0.0165"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 144000,
+          "shares_offered": 2038400,
+          "times_x": "0.0706"
         },
         {
           "category": "employee",
@@ -316,8 +493,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": null
-    }
+      "total_times_x": "0.0367"
+    },
+    "overall_times_x": "0.0367"
   },
   "subscription_path": "issues/h-r-hygiene-products-3d1d1b/subscription.json",
   "timeline": {

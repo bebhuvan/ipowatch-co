@@ -1,6 +1,14 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 9600,
+        "quantity": 2400
+      }
+    ]
+  },
   "core_path": "issues/oneindig-technologies-5188ff/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +17,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.29-0452",
+  "dataset_version": "v3.2026.07.30-0439",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -85,6 +97,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -95,7 +111,7 @@
     }
   },
   "filings_path": "issues/oneindig-technologies-5188ff/filings.json",
-  "generated_at": "2026-07-29T04:52:36+00:00",
+  "generated_at": "2026-07-30T04:39:58+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -106,7 +122,7 @@
     "company_name": "Oneindig Technologies Limited",
     "issue_type": "IPO",
     "slug": "oneindig-technologies-5188ff",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/oneindig-technologies-5188ff/market.json",
@@ -119,7 +135,7 @@
   },
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 2880000,
+    "issue_size_shares": 2064000,
     "market_lot": 1200,
     "min_bid_qty": 2400,
     "price_band_lower_paise": 9100,
@@ -178,27 +194,27 @@
         },
         {
           "company_name": "ZODIAC",
-          "market_cap": "374",
+          "market_cap": "368",
           "net_sales_cr": 407,
           "pat_cr": 19.97,
-          "pb": 3.2,
-          "pe": 17.75
+          "pb": 3.15,
+          "pe": 17.48
         },
         {
           "company_name": "SOLARIUM",
-          "market_cap": "356",
+          "market_cap": "371",
           "net_sales_cr": 230,
           "pat_cr": 18.59,
           "pb": null,
-          "pe": 17.39
+          "pe": 18.12
         },
         {
           "company_name": "GGBL",
-          "market_cap": "639",
+          "market_cap": "637",
           "net_sales_cr": 318,
           "pat_cr": 30.22,
           "pb": null,
-          "pe": 8.5
+          "pe": 8.47
         }
       ],
       "revenue_mix": {
@@ -240,55 +256,55 @@
         "market_cap": "₹104",
         "pb": 5.08,
         "pe": 25.18,
-        "sector_pb": 2.81,
-        "sector_pe": 26.77
+        "sector_pb": 2.79,
+        "sector_pe": 27.48
       }
     }
   },
   "research_path": "issues/oneindig-technologies-5188ff/research.json",
   "schema_version": "3.0.0",
   "slug": "oneindig-technologies-5188ff",
-  "source_dataset_version": "v2026.07.29-0452",
+  "source_dataset_version": "v2026.07.30-0439",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7851",
-      "snapshot_at": "2026-07-29T04:52:05+00:00",
+      "snapshot_at": "2026-07-30T04:39:51+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7851",
-      "snapshot_at": "2026-07-29T04:52:06+00:00",
+      "snapshot_at": "2026-07-30T04:39:51+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7851",
-      "snapshot_at": "2026-07-29T04:52:06+00:00",
+      "snapshot_at": "2026-07-30T04:39:51+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7851",
-      "snapshot_at": "2026-07-29T04:52:05+00:00",
+      "snapshot_at": "2026-07-30T04:39:50+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-07-29T04:46:43+00:00",
+      "snapshot_at": "2026-07-30T04:34:19+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-07-29T04:46:44+00:00",
+      "snapshot_at": "2026-07-30T04:34:19+00:00",
       "source": "bse",
       "url": null
     }
@@ -335,9 +351,9 @@
           },
           {
             "category": "retail",
-            "shares_bid": 0,
+            "shares_bid": 2400,
             "shares_offered": 960000,
-            "times_x": "0.0000"
+            "times_x": "0.0025"
           },
           {
             "category": "employee",
@@ -352,7 +368,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": "0.0000"
+        "total_times_x": "0.0012"
       }
     },
     "consolidated": {
@@ -408,9 +424,9 @@
         },
         {
           "category": "retail",
-          "shares_bid": 0,
+          "shares_bid": 2400,
           "shares_offered": 960000,
-          "times_x": "0.0000"
+          "times_x": "0.0025"
         },
         {
           "category": "employee",
@@ -431,9 +447,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": "0.0000"
+      "total_times_x": "0.0012"
     },
-    "overall_times_x": "0.0000"
+    "overall_times_x": "0.0012"
   },
   "subscription_path": "issues/oneindig-technologies-5188ff/subscription.json",
   "timeline": {

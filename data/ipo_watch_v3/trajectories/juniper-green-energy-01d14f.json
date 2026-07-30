@@ -7,13 +7,78 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.07.29-0452",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.07.30-0439",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-07-30T04:38:55+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 315084,
+          "price_paise": 22500
+        },
+        {
+          "cumulative_quantity": 315150,
+          "price_paise": 22300
+        },
+        {
+          "cumulative_quantity": 315216,
+          "price_paise": 22100
+        },
+        {
+          "cumulative_quantity": 316602,
+          "price_paise": 22000
+        },
+        {
+          "cumulative_quantity": 316800,
+          "price_paise": 21800
+        },
+        {
+          "cumulative_quantity": 317328,
+          "price_paise": 21500
+        },
+        {
+          "cumulative_quantity": 317592,
+          "price_paise": 21400
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "30-Jul-2026 10:06:01"
+    },
+    {
+      "observed_at": "2026-07-30T04:38:56+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 125136,
+          "price_paise": 22500
+        },
+        {
+          "cumulative_quantity": 125202,
+          "price_paise": 22300
+        },
+        {
+          "cumulative_quantity": 125268,
+          "price_paise": 22000
+        },
+        {
+          "cumulative_quantity": 125334,
+          "price_paise": 21500
+        },
+        {
+          "cumulative_quantity": 125466,
+          "price_paise": 21400
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "30-Jul-2026 10:03:00"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-07-29T04:52:36+00:00",
+  "generated_at": "2026-07-30T04:39:58+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "juniper-green-energy-01d14f",
   "language": "en-IN",
@@ -23,62 +88,66 @@
   "observations": [
     {
       "categories": {
+        "employee": {
+          "shares_bid": 11880,
+          "shares_offered": 103626,
+          "times": 0.1146430432516936
+        },
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 44154,
+          "shares_offered": 12602804,
+          "times": 0.003503506045162648
+        },
+        "nii_gt_10l": {
+          "shares_bid": 39666,
+          "shares_offered": 4200934,
+          "times": 0.009442185951981154
         },
         "qib": {
           "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_offered": 16803737,
+          "times": 0.0
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 320760,
+          "shares_offered": 29406542,
+          "times": 0.010907776915762486
         }
       },
-      "observed_at": "2026-07-29T13:23:13+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-07-30T04:38:55+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 30-Jul-2026 10:06:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 376794,
+        "shares_offered": 5,
+        "times": 0.006395367399085377
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/juniper-green-energy-01d14f.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.07.29-0452",
+  "source_dataset_version": "v2026.07.30-0439",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7856",
+      "endpoint": "consolidated_bid_details_jnpr",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_jnpr",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_jnpr",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

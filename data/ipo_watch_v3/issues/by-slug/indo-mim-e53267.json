@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.29-0452",
+  "dataset_version": "v3.2026.07.30-0439",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE084101034_29JUL2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_29092025115245_INDOMIMLimitedDRHP.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE084101034_28JUL2026.pdf",
     "rhp_url": "https://nsearchives.nseindia.com/corporate/INDO-MIMLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +108,29 @@
     }
   },
   "filings_path": "issues/indo-mim-e53267/filings.json",
-  "generated_at": "2026-07-29T04:52:36+00:00",
+  "generated_at": "2026-07-30T04:39:58+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:89573839",
-      "bse:prior_id:247263",
-      "bse:createdby:325306"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/indo-mim-ltd/indomim/544837/"
     ],
     "board_type": "Main Board",
     "company_name": "INDO-MIM Limited",
     "isin": "INE084101034",
     "issue_type": "IPO",
     "slug": "indo-mim-e53267",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "INDOMIM"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 4639,
+    "current_price_paise": 71000
+  },
   "market_path": "issues/indo-mim-e53267/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 48500,
+    "issue_size_paise": 3812114550000,
     "price_band_lower_paise": 46100,
     "price_band_upper_paise": 48500
   },
@@ -146,35 +178,35 @@
       "peers": [
         {
           "company_name": "INDOMIM",
-          "market_cap": "23,981",
+          "market_cap": "0",
           "net_sales_cr": 4192,
           "pat_cr": 533,
-          "pb": 8.51,
-          "pe": 44.95
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "DHARARAIL",
-          "market_cap": "199",
+          "market_cap": "191",
           "net_sales_cr": 44.48,
           "pat_cr": 6.53,
           "pb": null,
-          "pe": 12.89
+          "pe": 12.36
         },
         {
           "company_name": "FABCLEAN",
-          "market_cap": "472",
+          "market_cap": "476",
           "net_sales_cr": 150,
           "pat_cr": 13.3,
           "pb": null,
-          "pe": 29.85
+          "pe": 30.07
         },
         {
           "company_name": "JYOTICNC",
-          "market_cap": "18,330",
+          "market_cap": "18,717",
           "net_sales_cr": 1817,
           "pat_cr": 316,
-          "pb": 9.16,
-          "pe": 54.55
+          "pb": 9.35,
+          "pe": 55.71
         },
         {
           "company_name": "SHTL",
@@ -182,7 +214,7 @@
           "net_sales_cr": 14.73,
           "pat_cr": 2.93,
           "pb": null,
-          "pe": 11.05
+          "pe": 11.12
         }
       ],
       "revenue_mix": {
@@ -224,49 +256,73 @@
         "market_cap": "₹23,981",
         "pb": 8.51,
         "pe": 44.95,
-        "sector_pb": 2.81,
-        "sector_pe": 26.93
+        "sector_pb": 2.79,
+        "sector_pe": 27.78
       }
     }
   },
   "research_path": "issues/indo-mim-e53267/research.json",
   "schema_version": "3.0.0",
   "slug": "indo-mim-e53267",
-  "source_dataset_version": "v2026.07.29-0452",
+  "source_dataset_version": "v2026.07.30-0439",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-29T04:46:51+00:00",
+      "snapshot_at": "2026-07-30T04:34:21+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-07-30T04:34:44+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-07-30T04:38:08+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-29T04:46:34+00:00",
+      "snapshot_at": "2026-07-30T04:34:10+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-29T04:46:41+00:00",
+      "snapshot_at": "2026-07-30T04:34:17+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-29T04:46:41+00:00",
+      "snapshot_at": "2026-07-30T04:34:17+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-07-30T04:34:18+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "72.3400"
+  },
   "subscription_path": "issues/indo-mim-e53267/subscription.json",
   "timeline": {
     "close_date": "2026-07-27",
+    "listing_date": "2026-07-30",
     "open_date": "2026-07-23"
   },
   "url_path": "/ipos/indo-mim/"

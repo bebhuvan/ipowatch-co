@@ -1,6 +1,29 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 12500,
+        "quantity": 242000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 13000,
+        "quantity": 242000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 12500,
+        "quantity": 212000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 13000,
+        "quantity": 212000
+      }
+    ]
+  },
   "core_path": "issues/g-v-electricals-cf2564/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +32,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.30-0439",
+  "dataset_version": "v3.2026.07.31-0505",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -93,6 +120,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -103,7 +134,7 @@
     }
   },
   "filings_path": "issues/g-v-electricals-cf2564/filings.json",
-  "generated_at": "2026-07-30T04:39:58+00:00",
+  "generated_at": "2026-07-31T05:05:31+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -114,7 +145,7 @@
     "company_name": "G V Electricals Ltd",
     "issue_type": "IPO",
     "slug": "g-v-electricals-cf2564",
-    "status": "Upcoming",
+    "status": "Open",
     "symbol": "G V Electricals Ltd"
   },
   "listing_performance": {},
@@ -131,7 +162,7 @@
   },
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 3250000,
+    "issue_size_shares": 2362000,
     "market_lot": 1000,
     "min_bid_qty": 2000,
     "price_band_lower_paise": 12300,
@@ -145,47 +176,47 @@
   "public_slug": "g-v-electricals",
   "schema_version": "3.0.0",
   "slug": "g-v-electricals-cf2564",
-  "source_dataset_version": "v2026.07.30-0439",
+  "source_dataset_version": "v2026.07.31-0505",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7859",
-      "snapshot_at": "2026-07-30T04:39:39+00:00",
+      "snapshot_at": "2026-07-31T05:05:13+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7859",
-      "snapshot_at": "2026-07-30T04:39:40+00:00",
+      "snapshot_at": "2026-07-31T05:05:13+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7859",
-      "snapshot_at": "2026-07-30T04:39:40+00:00",
+      "snapshot_at": "2026-07-31T05:05:14+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7859",
-      "snapshot_at": "2026-07-30T04:39:39+00:00",
+      "snapshot_at": "2026-07-31T05:05:12+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-07-30T04:34:19+00:00",
+      "snapshot_at": "2026-07-31T04:59:36+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-07-30T04:34:19+00:00",
+      "snapshot_at": "2026-07-31T04:59:37+00:00",
       "source": "bse",
       "url": null
     }
@@ -197,8 +228,8 @@
           {
             "category": "qib",
             "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_offered": 592000,
+            "times_x": "0.0000"
           },
           {
             "category": "qib_fii",
@@ -226,15 +257,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 44000,
+            "shares_offered": 730000,
+            "times_x": "0.0603"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 198000,
+            "shares_offered": 1040000,
+            "times_x": "0.1904"
           },
           {
             "category": "employee",
@@ -249,7 +280,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": null
+        "total_times_x": "0.1025"
       }
     },
     "consolidated": {
@@ -258,8 +289,8 @@
         {
           "category": "qib",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 592000,
+          "times_x": "0.0000"
         },
         {
           "category": "qib_fii",
@@ -287,27 +318,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 44000,
+          "shares_offered": 730000,
+          "times_x": "0.0603"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 24000,
+          "shares_offered": 300000,
+          "times_x": "0.0800"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 20000,
+          "shares_offered": 150000,
+          "times_x": "0.1333"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 198000,
+          "shares_offered": 1040000,
+          "times_x": "0.1904"
         },
         {
           "category": "employee",
@@ -328,8 +359,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": null
-    }
+      "total_times_x": "0.1025"
+    },
+    "overall_times_x": "0.1025"
   },
   "subscription_path": "issues/g-v-electricals-cf2564/subscription.json",
   "timeline": {

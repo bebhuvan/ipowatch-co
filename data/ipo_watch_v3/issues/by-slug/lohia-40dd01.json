@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.30-0439",
+  "dataset_version": "v3.2026.07.31-0505",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0QJW01029_29JUL2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/d_LCL.zip",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +120,7 @@
     }
   },
   "filings_path": "issues/lohia-40dd01/filings.json",
-  "generated_at": "2026-07-30T04:39:58+00:00",
+  "generated_at": "2026-07-31T05:05:31+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,8 +135,11 @@
     "symbol": "LCL"
   },
   "listing_performance": {
-    "current_gain_bps": 966,
-    "current_price_paise": 46605
+    "current_gain_bps": 1638,
+    "current_price_paise": 49460,
+    "listing_close_price_paise": 49465,
+    "listing_gain_bps": 1639,
+    "listing_open_price_paise": 46100
   },
   "market_path": "issues/lohia-40dd01/market.json",
   "parties": {},
@@ -178,43 +193,43 @@
       "peers": [
         {
           "company_name": "LCL",
-          "market_cap": "0",
+          "market_cap": "5,226",
           "net_sales_cr": 1716,
           "pat_cr": 193,
-          "pb": null,
-          "pe": null
+          "pb": 10.02,
+          "pe": 27.03
         },
         {
           "company_name": "RAJOOENG",
-          "market_cap": "931",
+          "market_cap": "929",
           "net_sales_cr": 253,
           "pat_cr": 38.12,
-          "pb": 2.69,
-          "pe": 19.28
+          "pb": 2.68,
+          "pe": 19.21
         },
         {
           "company_name": "LMW",
-          "market_cap": "16,904",
+          "market_cap": "17,551",
           "net_sales_cr": 3207,
           "pat_cr": 130,
-          "pb": 6.12,
-          "pe": 100.41
+          "pb": 6.06,
+          "pe": 99.34
         },
         {
           "company_name": "MAMATA",
-          "market_cap": "950",
+          "market_cap": "954",
           "net_sales_cr": 233,
           "pat_cr": 15.05,
-          "pb": 5.13,
-          "pe": 63.12
+          "pb": 5.15,
+          "pe": 63.39
         },
         {
           "company_name": "JYOTICNC",
-          "market_cap": "18,717",
+          "market_cap": "18,493",
           "net_sales_cr": 1817,
           "pat_cr": 316,
-          "pb": 9.35,
-          "pe": 55.71
+          "pb": 9.24,
+          "pe": 55.04
         }
       ],
       "revenue_mix": {
@@ -353,68 +368,75 @@
         "pb": 8.54,
         "pe": 23.21,
         "sector_pb": 1.75,
-        "sector_pe": 36.09
+        "sector_pe": 35.14
       }
     }
   },
   "research_path": "issues/lohia-40dd01/research.json",
   "schema_version": "3.0.0",
   "slug": "lohia-40dd01",
-  "source_dataset_version": "v2026.07.30-0439",
+  "source_dataset_version": "v2026.07.31-0505",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-30T04:34:21+00:00",
+      "snapshot_at": "2026-07-31T04:59:38+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-07-30T04:34:44+00:00",
+      "snapshot_at": "2026-07-31T04:59:52+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-07-30T04:38:08+00:00",
+      "snapshot_at": "2026-07-31T05:03:37+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-30T04:34:10+00:00",
+      "snapshot_at": "2026-07-31T04:59:24+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-07-30T14:45:06+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-30T04:34:21+00:00",
+      "snapshot_at": "2026-07-31T04:59:38+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-30T04:34:17+00:00",
+      "snapshot_at": "2026-07-31T04:59:33+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-30T04:34:17+00:00",
+      "snapshot_at": "2026-07-31T04:59:33+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-07-30T04:34:18+00:00",
+      "snapshot_at": "2026-07-31T04:59:35+00:00",
       "source": "nse",
       "url": null
     }

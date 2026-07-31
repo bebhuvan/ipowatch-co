@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.07.30-0439",
+  "dataset_version": "v3.2026.07.31-0505",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0NG701011_29JUL2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_26092025205824_Xtranet_DRHP_Final.pdf",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +120,7 @@
     }
   },
   "filings_path": "issues/xtranet-technologies-34e4ac/filings.json",
-  "generated_at": "2026-07-30T04:39:58+00:00",
+  "generated_at": "2026-07-31T05:05:31+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,8 +135,11 @@
     "symbol": "XTRANET"
   },
   "listing_performance": {
-    "current_gain_bps": 79,
-    "current_price_paise": 12800
+    "current_gain_bps": 173,
+    "current_price_paise": 12920,
+    "listing_close_price_paise": 12480,
+    "listing_gain_bps": -173,
+    "listing_open_price_paise": 13600
   },
   "market_path": "issues/xtranet-technologies-34e4ac/market.json",
   "parties": {},
@@ -178,35 +193,35 @@
       "peers": [
         {
           "company_name": "XTRANET",
-          "market_cap": "0",
+          "market_cap": "653",
           "net_sales_cr": 365,
           "pat_cr": 40.26,
-          "pb": null,
-          "pe": null
+          "pb": 4.8,
+          "pe": 16.21
         },
         {
           "company_name": "SILVERTUC",
-          "market_cap": "2,598",
+          "market_cap": "2,660",
           "net_sales_cr": 288,
           "pat_cr": 22.2,
-          "pb": 15.68,
-          "pe": 74.46
+          "pb": 15.45,
+          "pe": 62.88
         },
         {
           "company_name": "DSSL",
           "market_cap": "1,582",
           "net_sales_cr": 1267,
           "pat_cr": 72.39,
-          "pb": 5.02,
-          "pe": 18.67
+          "pb": 4.89,
+          "pe": 18.18
         },
         {
           "company_name": "COFORGE",
-          "market_cap": "74,656",
+          "market_cap": "77,336",
           "net_sales_cr": 12050,
           "pat_cr": 812,
-          "pb": 7.97,
-          "pe": 43.28
+          "pb": 8.11,
+          "pe": 44.02
         }
       ],
       "revenue_mix": {
@@ -352,48 +367,55 @@
         "market_cap": "₹667",
         "pb": 4.91,
         "pe": 16.38,
-        "sector_pb": 2.08,
-        "sector_pe": 27.57
+        "sector_pb": 2.05,
+        "sector_pe": 27.07
       }
     }
   },
   "research_path": "issues/xtranet-technologies-34e4ac/research.json",
   "schema_version": "3.0.0",
   "slug": "xtranet-technologies-34e4ac",
-  "source_dataset_version": "v2026.07.30-0439",
+  "source_dataset_version": "v2026.07.31-0505",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-07-30T04:34:21+00:00",
+      "snapshot_at": "2026-07-31T04:59:38+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-07-30T04:34:44+00:00",
+      "snapshot_at": "2026-07-31T04:59:52+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-07-30T04:38:08+00:00",
+      "snapshot_at": "2026-07-31T05:03:37+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-07-30T04:34:10+00:00",
+      "snapshot_at": "2026-07-31T04:59:24+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-07-30T14:45:06+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-07-30T04:34:17+00:00",
+      "snapshot_at": "2026-07-31T04:59:33+00:00",
       "source": "nse",
       "url": null
     }

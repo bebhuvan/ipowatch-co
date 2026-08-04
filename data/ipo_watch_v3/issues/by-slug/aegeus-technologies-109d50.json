@@ -1,6 +1,59 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 10000,
+        "quantity": 86400
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 10200,
+        "quantity": 84000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 10300,
+        "quantity": 84000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 10400,
+        "quantity": 84000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 10500,
+        "quantity": 81600
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 10000,
+        "quantity": 76800
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 10200,
+        "quantity": 74400
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 10300,
+        "quantity": 74400
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 10400,
+        "quantity": 74400
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 10500,
+        "quantity": 72000
+      }
+    ]
+  },
   "core_path": "issues/aegeus-technologies-109d50/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +62,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.01-0537",
+  "dataset_version": "v3.2026.08.04-0449",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -85,6 +142,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -95,7 +156,7 @@
     }
   },
   "filings_path": "issues/aegeus-technologies-109d50/filings.json",
-  "generated_at": "2026-08-01T05:37:37+00:00",
+  "generated_at": "2026-08-04T04:50:01+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -106,7 +167,7 @@
     "company_name": "Aegeus Technologies Limited",
     "issue_type": "IPO",
     "slug": "aegeus-technologies-109d50",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/aegeus-technologies-109d50/market.json",
@@ -119,7 +180,7 @@
   },
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 2258400,
+    "issue_size_shares": 1686000,
     "market_lot": 1200,
     "min_bid_qty": 2400,
     "price_band_lower_paise": 10000,
@@ -131,49 +192,202 @@
   "provenance_path": "issues/aegeus-technologies-109d50/provenance.json",
   "public_contract": "ipo-watch.site_v3",
   "public_slug": "aegeus-technologies",
+  "research": {
+    "tijori": {
+      "business_description": "Aegeus Technologies Ltd. designs, manufactures, and deploys AI- and IoT-enabled robotic solutions for solar power plants. Its portfolio includes waterless solar panel cleaning, inspection, vegetation management, and asset monitoring systems that improve plant efficiency and reduce operating costs.",
+      "company_name": "Aegeus Technologies Ltd.",
+      "financials": {
+        "unit": "INR crore",
+        "yearly_results": [
+          {
+            "debt_cr": 4.1607,
+            "net_sales_cr": 15.2739,
+            "pat_cr": 0.9287,
+            "period": "Mar 2024"
+          },
+          {
+            "debt_cr": 4.0986,
+            "net_sales_cr": 21.8901,
+            "pat_cr": 1.3918,
+            "period": "Mar 2025"
+          },
+          {
+            "debt_cr": 11.9257,
+            "net_sales_cr": 40.9369,
+            "pat_cr": 4.0177,
+            "period": "Mar 2026"
+          }
+        ]
+      },
+      "isin": "INE0WR901013",
+      "matched_on": "normalized_company_name",
+      "normalized_name": "aegeus technologies",
+      "offer_split": {
+        "fresh_issue_percent": "100%",
+        "fresh_issue_value": "23 Cr",
+        "ofs_percent": "0%",
+        "ofs_value": "0 Cr"
+      },
+      "peers": [
+        {
+          "company_name": "AEGEUS",
+          "market_cap": "88",
+          "net_sales_cr": 40.94,
+          "pat_cr": 4.02,
+          "pb": 5.71,
+          "pe": 21.9
+        },
+        {
+          "company_name": "AFFORDABLE",
+          "market_cap": "215",
+          "net_sales_cr": 162,
+          "pat_cr": -11.65,
+          "pb": 1.95,
+          "pe": 30.85
+        }
+      ],
+      "revenue_mix": {
+        "historical": [
+          {
+            "points": [
+              {
+                "percent": 55.39,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 87.11,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 94.93,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Robots for Solar services"
+          },
+          {
+            "points": [
+              {
+                "percent": 39.37,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 7.09,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 0.0,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Complete Solar O&M"
+          },
+          {
+            "points": [
+              {
+                "percent": 4.53,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 5.77,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 4.93,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Module Cleaning as a Service"
+          }
+        ],
+        "latest": [
+          {
+            "percent": 55.39,
+            "segment": "Robots for Solar services"
+          },
+          {
+            "percent": 39.37,
+            "segment": "Complete Solar O&M"
+          },
+          {
+            "percent": 4.53,
+            "segment": "Module Cleaning as a Service"
+          },
+          {
+            "percent": 0.71,
+            "segment": "Others"
+          }
+        ]
+      },
+      "sector": "Engineering - Industrial Equipments",
+      "shareholding": {
+        "promoter": {
+          "post_ipo": "47",
+          "pre_ipo": "65"
+        },
+        "public": {
+          "post_ipo": "53",
+          "pre_ipo": "35"
+        }
+      },
+      "source": "tijori",
+      "source_quality": "third_party_enrichment_not_primary_filing",
+      "source_url": "https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/",
+      "symbol": "AEGEUS",
+      "valuation": {
+        "ipo_size": "23 Cr",
+        "market_cap": "₹87.93",
+        "pb": 5.71,
+        "pe": 21.89,
+        "sector_pb": 2.87,
+        "sector_pe": 27.62
+      }
+    }
+  },
+  "research_path": "issues/aegeus-technologies-109d50/research.json",
   "schema_version": "3.0.0",
   "slug": "aegeus-technologies-109d50",
-  "source_dataset_version": "v2026.08.01-0537",
+  "source_dataset_version": "v2026.08.04-0449",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7861",
-      "snapshot_at": "2026-08-01T05:37:20+00:00",
+      "snapshot_at": "2026-08-04T04:49:47+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7861",
-      "snapshot_at": "2026-08-01T05:37:21+00:00",
+      "snapshot_at": "2026-08-04T04:49:47+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7861",
-      "snapshot_at": "2026-08-01T05:37:21+00:00",
+      "snapshot_at": "2026-08-04T04:49:48+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7861",
-      "snapshot_at": "2026-08-01T05:37:19+00:00",
+      "snapshot_at": "2026-08-04T04:49:46+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-08-01T05:02:18+00:00",
+      "snapshot_at": "2026-08-04T04:43:29+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-08-01T05:02:20+00:00",
+      "snapshot_at": "2026-08-04T04:43:30+00:00",
       "source": "bse",
       "url": null
     }
@@ -185,8 +399,8 @@
           {
             "category": "qib",
             "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_offered": 392400,
+            "times_x": "0.0000"
           },
           {
             "category": "qib_fii",
@@ -214,15 +428,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 21600,
+            "shares_offered": 616800,
+            "times_x": "0.0350"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 64800,
+            "shares_offered": 676800,
+            "times_x": "0.0957"
           },
           {
             "category": "employee",
@@ -237,7 +451,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": null
+        "total_times_x": "0.0512"
       }
     },
     "consolidated": {
@@ -246,8 +460,8 @@
         {
           "category": "qib",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 392400,
+          "times_x": "0.0000"
         },
         {
           "category": "qib_fii",
@@ -275,27 +489,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 21600,
+          "shares_offered": 616800,
+          "times_x": "0.0350"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 21600,
+          "shares_offered": 194400,
+          "times_x": "0.1111"
         },
         {
           "category": "nii_lte_10l",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 97200,
+          "times_x": "0.0000"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 64800,
+          "shares_offered": 676800,
+          "times_x": "0.0957"
         },
         {
           "category": "employee",
@@ -316,8 +530,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": null
-    }
+      "total_times_x": "0.0512"
+    },
+    "overall_times_x": "0.0512"
   },
   "subscription_path": "issues/aegeus-technologies-109d50/subscription.json",
   "timeline": {

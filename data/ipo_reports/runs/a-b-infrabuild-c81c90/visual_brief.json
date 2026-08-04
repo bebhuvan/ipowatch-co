@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.07.30-0522",
-  "estimated_cost_usd": 0.0008013600000000001,
+  "dataset_version": "v2026.08.04-0609",
+  "estimated_cost_usd": 0.00092358,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-07-30T05:22:46+00:00",
+  "generated_at": "2026-08-04T06:09:06+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,43 +24,42 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use serif font throughout (e.g., Georgia or Chronicle).",
-      "Accent colour: a muted blue or teal for table headers and pull-quote rule.",
-      "Hairline rules between table rows and sections.",
-      "Pull-quote: set in larger italic serif, with a thin left rule in accent colour.",
-      "Sidebar: boxed with a thin border, background tint (light grey or accent at 10% opacity)."
+      "Use a single accent colour (e.g., deep blue) for table headers and pull-quote rules.",
+      "Render the financials table with hairline rules and right-aligned numbers.",
+      "Place the pull-quote as a large serif blockquote after the concentration paragraph.",
+      "Sidebar in a bordered box with a light background tint."
     ],
     "formulas": [],
     "industry_snapshot": null,
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Revenue concentration is high.",
-        "quote": "Western Railway alone contributed 52% of the orders on hand as of the filing date.",
-        "rationale": "Customer concentration is a key risk; this single number captures it sharply."
+        "after_paragraph": "The concentration is the story. Western Railway, the major client, accounts for 52% of the orders on hand, and Indian Railways as a whole brought in 57% of total revenue in the year ended 31 March 2018.[^drhp-p65][^drhp-p67]",
+        "quote": "Indian Railways contributed 57% of the company's revenue in the year ended 31 March 2018, and Western Railway alone accounts for 52% of the orders on hand.",
+        "rationale": "This single disclosed fact frames the entire risk profile; it is the sharpest number in the filing."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "**Issue size:** 44,28,000 equity shares of face value ₹10 each at a price to be determined. [^drhp-p29]\n\n**Use of proceeds:** Working capital (₹1,130 lakhs) and general corporate purposes (amount not disclosed). [^drhp-p48]\n\n**Lead manager:** Mark Corporate Advisors Private Limited. [^drhp-p31]\n\n**Registrar:** Bigshare Services Private Limited. [^drhp-p31]\n\n**No independent appraisal or monitoring agency** has been appointed for fund deployment. [^drhp-p18]",
-        "rationale": "Sidebar consolidates key offer details that are scattered in prose; quick reference for the reader.",
+        "body_markdown": "The issue comprises 44,28,000 equity shares of ₹10 each at a price to be determined.[^drhp-p29] The rupee size and price-to-face-value multiple are not disclosed in the extract.[^drhp-p55] The stated objects are working capital of ₹1,130.00 lakhs (₹11.30 crore) and general corporate purposes (amount redacted).[^drhp-p48] Lead manager: Mark Corporate Advisors Private Limited; registrar: Bigshare Services Private Limited.[^drhp-p31]",
+        "rationale": "A compact sidebar gives the reader the essential offer details without breaking the narrative flow.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The company's revenue has declined over the five reported years.",
+        "after_paragraph": "The restated financial statements in the DRHP are printed in lakhs; this report converts to crore by dividing by 100. The revenue picture is a decline in three of the past five years: ₹86.61 crore in FY2014, ₹90.21 crore in FY2015, ₹74.53 crore in FY2016, ₹73.44 crore in FY2017, and ₹60.53 crore in FY2018.[^drhp-p27] That is roughly a 33% fall from the FY2015 peak to the FY2018 trough.",
         "columns": [
-          "Metric",
+          "₹ crore",
           "FY2014",
           "FY2015",
           "FY2016",
           "FY2017",
           "FY2018"
         ],
-        "footnote": "Source: DRHP pages 26, 27, 111 [^drhp-p26] [^drhp-p27] [^drhp-p111]",
-        "rationale": "Core financials table is essential for any IPO report; shows revenue decline and PAT spike.",
+        "footnote": "Source: DRHP restated statements, pages 26, 27 and 111.[^drhp-p26][^drhp-p27][^drhp-p111]",
+        "rationale": "The five-year trend of revenue decline and the FY2018 profit spike are the core financial story; a table lets the reader see the pattern at a glance.",
         "rows": [
           [
             "Revenue from operations",
@@ -71,20 +70,20 @@
             "60.53"
           ],
           [
-            "PAT",
-            "0.96",
-            "0.78",
-            "0.33",
-            "0.16",
-            "3.15"
-          ],
-          [
-            "EBITDA",
+            "EBITDA (PBDIT)",
             "7.84",
             "9.46",
             "7.83",
             "6.76",
             "9.29"
+          ],
+          [
+            "Net profit after adjustments",
+            "0.96",
+            "0.78",
+            "0.33",
+            "0.16",
+            "3.15"
           ],
           [
             "Long-term borrowings",
@@ -101,38 +100,17 @@
             "30.21",
             "33.12",
             "35.37"
-          ]
-        ],
-        "title": "Financial performance (₹ crore)"
-      },
-      {
-        "after_paragraph": "The DRHP provides a comparison of accounting ratios with a peer group",
-        "columns": [
-          "Metric",
-          "FY2016",
-          "FY2017",
-          "FY2018",
-          "Peer avg."
-        ],
-        "footnote": "Source: DRHP pages 54, 55 [^drhp-p54] [^drhp-p55]",
-        "rationale": "Peer comparison table is standard for IPO reports; shows company's ratios vs. undisclosed peers.",
-        "rows": [
-          [
-            "EPS (₹)",
-            "1.31",
-            "0.63",
-            "12.59",
-            "12.39"
           ],
           [
-            "RoNW (%)",
-            "4.14",
-            "1.97",
-            "28.14",
-            "44.71"
+            "Total assets",
+            "70.62",
+            "72.67",
+            "62.95",
+            "75.37",
+            "82.32"
           ]
         ],
-        "title": "Key ratios vs. peer group"
+        "title": "Five-year restated financials (₹ crore)"
       }
     ],
     "timeline": null

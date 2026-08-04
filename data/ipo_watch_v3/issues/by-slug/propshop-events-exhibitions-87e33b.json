@@ -9,15 +9,29 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.01-0537",
+  "dataset_version": "v3.2026.08.04-0449",
   "documents": {
-    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6361_31122025191247.zip"
+    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6361_31122025191247.zip",
+    "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/PropshopEventsandExhibitionsLimited_PROSP.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/PropshopEventsandExhibitionsLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.rhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -43,6 +57,26 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -51,7 +85,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -61,20 +103,30 @@
     }
   },
   "filings_path": "issues/propshop-events-exhibitions-87e33b/filings.json",
-  "generated_at": "2026-08-01T05:37:37+00:00",
+  "generated_at": "2026-08-04T04:50:01+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:misc-commercial-services/propshopeventsexhibitions/PEEL",
+      "moneycontrol:company_code:17041245"
+    ],
     "board_type": "SME Board",
     "company_name": "Propshop Events and Exhibitions Limited",
     "issue_type": "IPO",
     "slug": "propshop-events-exhibitions-87e33b",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "PROPSHOP"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -1449,
+    "current_price_paise": 5900,
+    "listing_gain_bps": -2000
+  },
   "market_path": "issues/propshop-events-exhibitions-87e33b/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 6900,
+    "issue_size_paise": 28676400000,
     "price_band_lower_paise": 6500,
     "price_band_upper_paise": 6900
   },
@@ -122,19 +174,19 @@
       "peers": [
         {
           "company_name": "PROPSHOP",
-          "market_cap": "101",
+          "market_cap": "84",
           "net_sales_cr": 51.52,
           "pat_cr": 6.32,
-          "pb": 5.68,
-          "pe": 15.97
+          "pb": null,
+          "pe": 13.22
         },
         {
           "company_name": "EXHICON",
-          "market_cap": "800",
+          "market_cap": "770",
           "net_sales_cr": 143,
           "pat_cr": 26.0,
           "pb": null,
-          "pe": 19.17
+          "pe": 18.91
         }
       ],
       "revenue_mix": {
@@ -273,34 +325,65 @@
         "pb": 5.68,
         "pe": 15.97,
         "sector_pb": 2.19,
-        "sector_pe": 18.32
+        "sector_pe": 18.64
       }
     }
   },
   "research_path": "issues/propshop-events-exhibitions-87e33b/research.json",
   "schema_version": "3.0.0",
   "slug": "propshop-events-exhibitions-87e33b",
-  "source_dataset_version": "v2026.08.01-0537",
+  "source_dataset_version": "v2026.08.04-0449",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-08-04T04:47:58+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-01T04:52:53+00:00",
+      "snapshot_at": "2026-08-04T04:43:19+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-08-01T05:00:57+00:00",
+      "snapshot_at": "2026-08-04T04:43:27+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_sme",
+      "snapshot_at": "2026-08-04T04:43:27+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_sme",
+      "snapshot_at": "2026-08-04T04:43:27+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-08-04T04:43:28+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "0.8600"
+  },
   "subscription_path": "issues/propshop-events-exhibitions-87e33b/subscription.json",
   "timeline": {
     "close_date": "2026-07-29",
+    "listing_date": "2026-08-03",
     "open_date": "2026-07-27"
   },
   "url_path": "/ipos/propshop-events-exhibitions/"

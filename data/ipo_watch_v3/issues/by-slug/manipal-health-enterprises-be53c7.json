@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.04-0449",
+  "dataset_version": "v3.2026.08.05-0504",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE459N01021_04AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Manipal.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE459N01021_03AUG2026.pdf",
     "rhp_url": "https://nsearchives.nseindia.com/corporate/ManipalHealthEnterprisesLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +86,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,7 +104,7 @@
     }
   },
   "filings_path": "issues/manipal-health-enterprises-be53c7/filings.json",
-  "generated_at": "2026-08-04T04:50:01+00:00",
+  "generated_at": "2026-08-05T05:05:00+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -92,13 +117,18 @@
     "isin": "INE459N01021",
     "issue_type": "IPO",
     "slug": "manipal-health-enterprises-be53c7",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "MANIPALHOS"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 1075,
+    "current_price_paise": 65340
+  },
   "market_path": "issues/manipal-health-enterprises-be53c7/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 59000,
+    "issue_size_paise": 9275216245000,
     "price_band_lower_paise": 56000,
     "price_band_upper_paise": 59000
   },
@@ -146,35 +176,35 @@
       "peers": [
         {
           "company_name": "MANIPALHOS",
-          "market_cap": "77,606",
+          "market_cap": "0",
           "net_sales_cr": 10335,
           "pat_cr": 892,
-          "pb": 9.21,
-          "pe": 84.67
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "APOLLOHOSP",
-          "market_cap": "1,26,818",
+          "market_cap": "1,28,277",
           "net_sales_cr": 25228,
           "pat_cr": 1941,
-          "pb": 13.38,
-          "pe": 65.31
+          "pb": 13.53,
+          "pe": 66.06
         },
         {
           "company_name": "FORTIS",
-          "market_cap": "71,245",
+          "market_cap": "70,589",
           "net_sales_cr": 9127,
           "pat_cr": 1041,
-          "pb": 7.2,
-          "pe": 68.39
+          "pb": 7.13,
+          "pe": 67.76
         },
         {
           "company_name": "MAXHEALTH",
-          "market_cap": "1,06,087",
+          "market_cap": "1,04,043",
           "net_sales_cr": 8373,
           "pat_cr": 1442,
-          "pb": 9.87,
-          "pe": 73.55
+          "pb": 9.68,
+          "pe": 72.13
         }
       ],
       "revenue_mix": {
@@ -312,42 +342,59 @@
         "market_cap": "₹77,605",
         "pb": 9.21,
         "pe": 84.67,
-        "sector_pb": 3.02,
-        "sector_pe": 45.63
+        "sector_pb": 2.98,
+        "sector_pe": 46.98
       }
     }
   },
   "research_path": "issues/manipal-health-enterprises-be53c7/research.json",
   "schema_version": "3.0.0",
   "slug": "manipal-health-enterprises-be53c7",
-  "source_dataset_version": "v2026.08.04-0449",
+  "source_dataset_version": "v2026.08.05-0504",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-04T04:43:34+00:00",
+      "snapshot_at": "2026-08-05T04:44:09+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-08-05T04:54:15+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-04T04:43:19+00:00",
+      "snapshot_at": "2026-08-05T04:42:55+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-08-05T04:43:05+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-04T04:43:26+00:00",
+      "snapshot_at": "2026-08-05T04:43:03+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "4.9200"
+  },
   "subscription_path": "issues/manipal-health-enterprises-be53c7/subscription.json",
   "timeline": {
     "close_date": "2026-07-31",
+    "listing_date": "2026-08-05",
     "open_date": "2026-07-29"
   },
   "url_path": "/ipos/manipal-health-enterprises/"

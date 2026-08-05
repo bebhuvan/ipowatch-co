@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.04-0449",
+  "dataset_version": "v3.2026.08.05-0504",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_27112025232409_DRHP.pdf",
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE0OWZ01020_04AUG2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/395875/IPO%20Open/RHPMVIPO_20260728172734.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -33,6 +38,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,7 +79,7 @@
     }
   },
   "filings_path": "issues/mv-electrosystems-9424fa/filings.json",
-  "generated_at": "2026-08-04T04:50:01+00:00",
+  "generated_at": "2026-08-05T05:05:00+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -80,6 +89,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "MV Electrosystems Limited",
+    "isin": "INE0OWZ01020",
     "issue_type": "IPO",
     "slug": "mv-electrosystems-9424fa",
     "status": "Closed",
@@ -125,7 +135,7 @@
         ]
       },
       "isin": "INE0OWZ01020",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "mv electrosystems",
       "offer_split": {
         "fresh_issue_percent": "100%",
@@ -144,11 +154,11 @@
         },
         {
           "company_name": "HIRECT",
-          "market_cap": "4,744",
+          "market_cap": "4,686",
           "net_sales_cr": 999,
           "pat_cr": 45.01,
-          "pb": 22.75,
-          "pe": 105.4
+          "pb": 22.47,
+          "pe": 104.12
         }
       ],
       "revenue_mix": {
@@ -245,40 +255,40 @@
         "pb": 18.53,
         "pe": 0,
         "sector_pb": 3.38,
-        "sector_pe": 32.26
+        "sector_pe": 32.1
       }
     }
   },
   "research_path": "issues/mv-electrosystems-9424fa/research.json",
   "schema_version": "3.0.0",
   "slug": "mv-electrosystems-9424fa",
-  "source_dataset_version": "v2026.08.04-0449",
+  "source_dataset_version": "v2026.08.05-0504",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-04T04:43:34+00:00",
+      "snapshot_at": "2026-08-05T04:44:09+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-04T04:43:19+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-08-04T04:43:19+00:00",
+      "snapshot_at": "2026-08-05T04:42:55+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-04T04:43:26+00:00",
+      "snapshot_at": "2026-08-05T04:43:03+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_equity",
+      "snapshot_at": "2026-08-05T04:43:03+00:00",
       "source": "nse",
       "url": null
     }

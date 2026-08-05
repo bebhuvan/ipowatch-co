@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.08.04-0609",
-  "estimated_cost_usd": 0.00092358,
+  "dataset_version": "v2026.08.05-0623",
+  "estimated_cost_usd": 0.0009856,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-08-04T06:09:06+00:00",
+  "generated_at": "2026-08-05T06:23:46+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,42 +24,40 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use a single accent colour (e.g., deep blue) for table headers and pull-quote rules.",
-      "Render the financials table with hairline rules and right-aligned numbers.",
-      "Place the pull-quote as a large serif blockquote after the concentration paragraph.",
-      "Sidebar in a bordered box with a light background tint."
+      "Use hairline rules to separate the financial tables; keep the pull-quote in a larger serif with a left rule in the accent colour.",
+      "The sidebar can sit in a single column with a light background tint, but no icons or decorative imagery."
     ],
     "formulas": [],
     "industry_snapshot": null,
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "The concentration is the story. Western Railway, the major client, accounts for 52% of the orders on hand, and Indian Railways as a whole brought in 57% of total revenue in the year ended 31 March 2018.[^drhp-p65][^drhp-p67]",
-        "quote": "Indian Railways contributed 57% of the company's revenue in the year ended 31 March 2018, and Western Railway alone accounts for 52% of the orders on hand.",
-        "rationale": "This single disclosed fact frames the entire risk profile; it is the sharpest number in the filing."
+        "after_paragraph": "Revenue is concentrated geographically: the filing says the major portion of revenue comes from operations in certain regions, especially Mumbai.",
+        "quote": "Indian Railways contributed 57% of FY18 revenue, and Western Railway alone accounts for 52% of the orders on hand.",
+        "rationale": "This single disclosed fact captures the company's extreme customer concentration, the most important risk for a reader to weigh."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The issue comprises 44,28,000 equity shares of ₹10 each at a price to be determined.[^drhp-p29] The rupee size and price-to-face-value multiple are not disclosed in the extract.[^drhp-p55] The stated objects are working capital of ₹1,130.00 lakhs (₹11.30 crore) and general corporate purposes (amount redacted).[^drhp-p48] Lead manager: Mark Corporate Advisors Private Limited; registrar: Bigshare Services Private Limited.[^drhp-p31]",
-        "rationale": "A compact sidebar gives the reader the essential offer details without breaking the narrative flow.",
+        "body_markdown": "The issue is 44,28,000 equity shares of ₹10 each; the price is not yet set. [^drhp-p29] The stated use of proceeds is ₹11.30 crore for working capital, with the balance for general corporate purposes at an undisclosed amount. [^drhp-p48] The lead manager is Mark Corporate Advisors Private Limited; the registrar is Bigshare Services Private Limited. [^drhp-p31] The filing does not state whether the shares are a fresh issue or an offer for sale. No independent agency appraised the project, and no monitoring agency will oversee deployment of funds. [^drhp-p18]",
+        "rationale": "A compact sidebar lets the reader quickly grasp the offer's key terms without hunting through the prose.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The restated financial statements in the DRHP are printed in lakhs; this report converts to crore by dividing by 100. The revenue picture is a decline in three of the past five years: ₹86.61 crore in FY2014, ₹90.21 crore in FY2015, ₹74.53 crore in FY2016, ₹73.44 crore in FY2017, and ₹60.53 crore in FY2018.[^drhp-p27] That is roughly a 33% fall from the FY2015 peak to the FY2018 trough.",
+        "after_paragraph": "The restated numbers, converted from lakhs to crore, run from FY14 to FY18.",
         "columns": [
-          "₹ crore",
-          "FY2014",
-          "FY2015",
-          "FY2016",
-          "FY2017",
-          "FY2018"
+          "Particulars",
+          "FY14",
+          "FY15",
+          "FY16",
+          "FY17",
+          "FY18"
         ],
-        "footnote": "Source: DRHP restated statements, pages 26, 27 and 111.[^drhp-p26][^drhp-p27][^drhp-p111]",
-        "rationale": "The five-year trend of revenue decline and the FY2018 profit spike are the core financial story; a table lets the reader see the pattern at a glance.",
+        "footnote": "Source: DRHP pages 26, 27 and 111. [^drhp-p26] [^drhp-p27] [^drhp-p111]",
+        "rationale": "The five-year trend of shrinking revenue and recovering profit is the core financial story; a table makes the pattern visible at a glance.",
         "rows": [
           [
             "Revenue from operations",
@@ -70,7 +68,7 @@
             "60.53"
           ],
           [
-            "EBITDA (PBDIT)",
+            "Profit before interest, depreciation and tax",
             "7.84",
             "9.46",
             "7.83",
@@ -100,17 +98,41 @@
             "30.21",
             "33.12",
             "35.37"
-          ],
-          [
-            "Total assets",
-            "70.62",
-            "72.67",
-            "62.95",
-            "75.37",
-            "82.32"
           ]
         ],
-        "title": "Five-year restated financials (₹ crore)"
+        "title": "Restated financial summary (₹ crore)"
+      },
+      {
+        "after_paragraph": "The pricing-basis table in the DRHP carries earnings per share of ₹1.31 for FY16",
+        "columns": [
+          "Per-share metric",
+          "FY16",
+          "FY17",
+          "FY18"
+        ],
+        "footnote": "Source: DRHP page 54. [^drhp-p54]",
+        "rationale": "These are the only per-share figures disclosed; they anchor any valuation discussion and show the sharp jump in FY18.",
+        "rows": [
+          [
+            "EPS (basic)",
+            "₹1.31",
+            "₹0.63",
+            "₹12.59"
+          ],
+          [
+            "EPS (diluted)",
+            "₹1.31",
+            "₹0.63",
+            "₹3.82"
+          ],
+          [
+            "Net asset value per share",
+            "₹4.14",
+            "₹1.97",
+            "₹28.14"
+          ]
+        ],
+        "title": "Per-share metrics"
       }
     ],
     "timeline": null

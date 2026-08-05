@@ -7,13 +7,62 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.08.04-0449",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.08.05-0504",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-08-05T04:54:55+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 9886142,
+          "price_paise": 5300
+        },
+        {
+          "cumulative_quantity": 9906655,
+          "price_paise": 5200
+        },
+        {
+          "cumulative_quantity": 9922953,
+          "price_paise": 5100
+        },
+        {
+          "cumulative_quantity": 9962855,
+          "price_paise": 5000
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "05-Aug-2026 10:22:02"
+    },
+    {
+      "observed_at": "2026-08-05T04:54:56+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 12001510,
+          "price_paise": 5300
+        },
+        {
+          "cumulative_quantity": 12029048,
+          "price_paise": 5200
+        },
+        {
+          "cumulative_quantity": 12043660,
+          "price_paise": 5100
+        },
+        {
+          "cumulative_quantity": 12085810,
+          "price_paise": 5000
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "05-Aug-2026 10:21:00"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-08-04T04:50:01+00:00",
+  "generated_at": "2026-08-05T05:05:00+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "ardee-499b3c",
   "language": "en-IN",
@@ -24,61 +73,60 @@
     {
       "categories": {
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 2854117,
+          "shares_offered": 12596166,
+          "times": 0.22658616915655128
+        },
+        "nii_gt_10l": {
+          "shares_bid": 1423827,
+          "shares_offered": 4198722,
+          "times": 0.3391096147827839
         },
         "qib": {
           "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_offered": 16435297,
+          "times": 0.0
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 9222701,
+          "shares_offered": 29391053,
+          "times": 0.31379280626658734
         }
       },
-      "observed_at": "2026-08-04T13:23:55+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-08-05T04:54:55+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 05-Aug-2026 10:21:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 1,
+        "shares_offered": 5,
+        "times": 0.20671513017344204
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/ardee-499b3c.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.08.04-0449",
+  "source_dataset_version": "v2026.08.05-0504",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7862",
+      "endpoint": "consolidated_bid_details_ardee",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_ardee",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_ardee",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

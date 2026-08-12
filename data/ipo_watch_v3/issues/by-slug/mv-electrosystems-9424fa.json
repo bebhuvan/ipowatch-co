@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.05-0504",
+  "dataset_version": "v3.2026.08.12-0344",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0OWZ01020_05AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_27112025232409_DRHP.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE0OWZ01020_04AUG2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/395875/IPO%20Open/RHPMVIPO_20260728172734.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,30 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +98,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +116,31 @@
     }
   },
   "filings_path": "issues/mv-electrosystems-9424fa/filings.json",
-  "generated_at": "2026-08-05T05:05:00+00:00",
+  "generated_at": "2026-08-12T03:44:54+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:24684183",
-      "bse:prior_id:252828",
-      "bse:createdby:395875"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/mv-electrosystems-ltd/mvelectro/544851/"
     ],
     "board_type": "Main Board",
     "company_name": "MV Electrosystems Limited",
     "isin": "INE0OWZ01020",
     "issue_type": "IPO",
     "slug": "mv-electrosystems-9424fa",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "MVELECTRO"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 4119,
+    "current_price_paise": 60005,
+    "listing_close_price_paise": 62275,
+    "listing_gain_bps": 4653
+  },
   "market_path": "issues/mv-electrosystems-9424fa/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 42500,
+    "issue_size_paise": 289999982500,
     "price_band_lower_paise": 40000,
     "price_band_upper_paise": 42500
   },
@@ -146,19 +188,19 @@
       "peers": [
         {
           "company_name": "MVELECTRO",
-          "market_cap": "1,160",
+          "market_cap": "1,636",
           "net_sales_cr": 49.43,
           "pat_cr": -12.63,
-          "pb": 18.54,
-          "pe": 0
+          "pb": 26.15,
+          "pe": null
         },
         {
           "company_name": "HIRECT",
-          "market_cap": "4,686",
+          "market_cap": "4,617",
           "net_sales_cr": 999,
           "pat_cr": 45.01,
-          "pb": 22.47,
-          "pe": 104.12
+          "pb": 20.82,
+          "pe": 104.22
         }
       ],
       "revenue_mix": {
@@ -254,49 +296,66 @@
         "market_cap": "₹1,159",
         "pb": 18.53,
         "pe": 0,
-        "sector_pb": 3.38,
-        "sector_pe": 32.1
+        "sector_pb": 3.49,
+        "sector_pe": 32.8
       }
     }
   },
   "research_path": "issues/mv-electrosystems-9424fa/research.json",
   "schema_version": "3.0.0",
   "slug": "mv-electrosystems-9424fa",
-  "source_dataset_version": "v2026.08.05-0504",
+  "source_dataset_version": "v2026.08.12-0344",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-05T04:44:09+00:00",
+      "snapshot_at": "2026-08-12T03:38:14+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-08-12T03:38:25+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-08-12T03:42:24+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-05T04:42:55+00:00",
+      "snapshot_at": "2026-08-12T03:38:00+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-05T04:43:03+00:00",
+      "snapshot_at": "2026-08-12T03:38:07+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-05T04:43:03+00:00",
+      "snapshot_at": "2026-08-12T03:38:07+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "188.8500"
+  },
   "subscription_path": "issues/mv-electrosystems-9424fa/subscription.json",
   "timeline": {
     "close_date": "2026-08-03",
+    "listing_date": "2026-08-06",
     "open_date": "2026-07-30"
   },
   "url_path": "/ipos/mv-electrosystems/"

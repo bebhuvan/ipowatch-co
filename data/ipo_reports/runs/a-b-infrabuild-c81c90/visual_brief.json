@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.08.05-0623",
-  "estimated_cost_usd": 0.0009856,
+  "dataset_version": "v2026.08.12-0509",
+  "estimated_cost_usd": 0.0009359000000000001,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-08-05T06:23:46+00:00",
+  "generated_at": "2026-08-12T05:09:48+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,115 +24,145 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules to separate the financial tables; keep the pull-quote in a larger serif with a left rule in the accent colour.",
-      "The sidebar can sit in a single column with a light background tint, but no icons or decorative imagery."
+      "Use hairline rules to separate the financials table and the sidebar; accent colour for the pull-quote rule and the industry snapshot stat values.",
+      "Set the financials table in a serif face with right-aligned numerals; the sidebar in a slightly smaller serif with a light rule above.",
+      "The industry snapshot stat strip should sit between the market paragraph and the competition paragraph, with the three numbers in the accent colour."
     ],
     "formulas": [],
-    "industry_snapshot": null,
+    "industry_snapshot": {
+      "after_paragraph": "The market is the infrastructure and construction sector",
+      "growth_bars": null,
+      "growth_bars_label": null,
+      "growth_bars_source": null,
+      "rationale": "Three headline market figures from the filing give the reader a quick sense of the sector's scale and growth.",
+      "split_bar": null,
+      "split_bar_label": null,
+      "split_bar_note": null,
+      "stats": [
+        {
+          "desc": "Infrastructure investment needed by 2022",
+          "val": "₹50T"
+        },
+        {
+          "desc": "Share of India's GDP (constant prices)",
+          "val": "8%"
+        },
+        {
+          "desc": "CAGR of logistics sector, 2017–2020",
+          "val": "10.5%"
+        }
+      ]
+    },
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Revenue is concentrated geographically: the filing says the major portion of revenue comes from operations in certain regions, especially Mumbai.",
-        "quote": "Indian Railways contributed 57% of FY18 revenue, and Western Railway alone accounts for 52% of the orders on hand.",
-        "rationale": "This single disclosed fact captures the company's extreme customer concentration, the most important risk for a reader to weigh."
+        "after_paragraph": "Revenue is won through a disclosed tender process",
+        "quote": "Western Railway alone is 52% of the order book.",
+        "rationale": "A single, sharp concentration figure that the prose cannot carry as effectively."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The issue is 44,28,000 equity shares of ₹10 each; the price is not yet set. [^drhp-p29] The stated use of proceeds is ₹11.30 crore for working capital, with the balance for general corporate purposes at an undisclosed amount. [^drhp-p48] The lead manager is Mark Corporate Advisors Private Limited; the registrar is Bigshare Services Private Limited. [^drhp-p31] The filing does not state whether the shares are a fresh issue or an offer for sale. No independent agency appraised the project, and no monitoring agency will oversee deployment of funds. [^drhp-p18]",
-        "rationale": "A compact sidebar lets the reader quickly grasp the offer's key terms without hunting through the prose.",
+        "body_markdown": "The issue comprises 44,28,000 equity shares of ₹10 each at a price to be determined.[^drhp-p29] The lead manager is Mark Corporate Advisors Private Limited; the registrar is Bigshare Services Private Limited.[^drhp-p31] Proceeds are earmarked for working capital (₹1,130 lakh) and general corporate purposes.[^drhp-p48] No offer-for-sale is disclosed.[^drhp-p29]",
+        "rationale": "Condenses the offer mechanics into a scannable sidebar, freeing the prose for analysis.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The restated numbers, converted from lakhs to crore, run from FY14 to FY18.",
+        "after_paragraph": "The restated statements run from FY2014 to FY2018.",
         "columns": [
-          "Particulars",
-          "FY14",
-          "FY15",
-          "FY16",
-          "FY17",
-          "FY18"
+          "FY",
+          "Revenue (₹ cr)",
+          "PBDIT (₹ cr)",
+          "PAT (₹ cr)",
+          "Total assets (₹ cr)",
+          "Long-term borrowings (₹ cr)",
+          "Short-term borrowings (₹ cr)"
         ],
-        "footnote": "Source: DRHP pages 26, 27 and 111. [^drhp-p26] [^drhp-p27] [^drhp-p111]",
-        "rationale": "The five-year trend of shrinking revenue and recovering profit is the core financial story; a table makes the pattern visible at a glance.",
+        "footnote": "Source: DRHP pages 26, 27, 111.[^drhp-p26][^drhp-p27][^drhp-p111]",
+        "rationale": "The five-year restated financials are the core of the report; a table lets the reader see the revenue decline and profit spike at a glance.",
         "rows": [
           [
-            "Revenue from operations",
+            "FY2014",
             "86.61",
-            "90.21",
-            "74.53",
-            "73.44",
-            "60.53"
-          ],
-          [
-            "Profit before interest, depreciation and tax",
             "7.84",
-            "9.46",
-            "7.83",
-            "6.76",
-            "9.29"
-          ],
-          [
-            "Net profit after adjustments",
             "0.96",
-            "0.78",
-            "0.33",
-            "0.16",
-            "3.15"
-          ],
-          [
-            "Long-term borrowings",
+            "70.62",
             "5.87",
-            "6.73",
-            "1.89",
-            "1.32",
-            "1.33"
+            "30.82"
           ],
           [
-            "Short-term borrowings",
-            "30.82",
-            "32.28",
-            "30.21",
-            "33.12",
+            "FY2015",
+            "90.21",
+            "9.46",
+            "0.78",
+            "72.67",
+            "6.73",
+            "32.28"
+          ],
+          [
+            "FY2016",
+            "74.53",
+            "7.83",
+            "0.33",
+            "62.95",
+            "1.89",
+            "30.21"
+          ],
+          [
+            "FY2017",
+            "73.44",
+            "6.76",
+            "0.16",
+            "75.37",
+            "1.32",
+            "33.12"
+          ],
+          [
+            "FY2018",
+            "60.53",
+            "9.29",
+            "3.15",
+            "82.32",
+            "1.33",
             "35.37"
           ]
         ],
-        "title": "Restated financial summary (₹ crore)"
+        "title": "Restated financial summary, FY2014–FY2018"
       },
       {
-        "after_paragraph": "The pricing-basis table in the DRHP carries earnings per share of ₹1.31 for FY16",
+        "after_paragraph": "Because the labels for these values are not in the extract",
         "columns": [
-          "Per-share metric",
-          "FY16",
-          "FY17",
-          "FY18"
+          "Metric",
+          "FY2016",
+          "FY2017",
+          "FY2018"
         ],
-        "footnote": "Source: DRHP page 54. [^drhp-p54]",
-        "rationale": "These are the only per-share figures disclosed; they anchor any valuation discussion and show the sharp jump in FY18.",
+        "footnote": "Source: DRHP pages 54, 55. The row labels are not identified in the extract; the values cannot be attributed to a specific ratio.[^drhp-p54][^drhp-p55]",
+        "rationale": "The filing's own valuation metrics are unlabelled; a table presents them honestly without inventing labels.",
         "rows": [
           [
-            "EPS (basic)",
-            "₹1.31",
-            "₹0.63",
-            "₹12.59"
+            "Disclosed series 1",
+            "1.31",
+            "0.63",
+            "12.59"
           ],
           [
-            "EPS (diluted)",
-            "₹1.31",
-            "₹0.63",
-            "₹3.82"
+            "Disclosed series 2",
+            "4.14",
+            "1.97",
+            "28.14"
           ],
           [
-            "Net asset value per share",
-            "₹4.14",
-            "₹1.97",
-            "₹28.14"
+            "Disclosed series 3",
+            "—",
+            "—",
+            "12.39, 44.71"
           ]
         ],
-        "title": "Per-share metrics"
+        "title": "Disclosed basis-of-issue metrics, FY2016–FY2018"
       }
     ],
     "timeline": null

@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.08.05-0522",
-  "estimated_cost_usd": 0.0011453400000000001,
+  "dataset_version": "v2026.08.12-0414",
+  "estimated_cost_usd": 0.0009667000000000002,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-08-05T05:22:59+00:00",
+  "generated_at": "2026-08-12T04:14:49+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,15 +24,13 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules and two rule weights; serif throughout; single accent colour (e.g., deep blue).",
-      "Financial tables should use right-aligned numbers and clear column headers.",
-      "Industry snapshot: stat strip with three headline numbers, growth bars proportional to value, and a split bar for organised vs unorganised.",
-      "Pull quote set in larger serif italic with a left rule.",
-      "No decorative imagery or icons."
+      "Use hairline rules to separate the financials table and the industry snapshot; keep the accent colour for the pull-quote rule and the split-bar highlight.",
+      "Render the industry snapshot as a stat strip with three headline numbers, two proportional growth bars, and a 25/75 split bar.",
+      "Set the financials table in a serif face with right-aligned numerals; the objects table can be lighter, with a single rule under the header."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The company sits in India's specialty chemicals industry.",
+      "after_paragraph": "The market is large and growing. CRISIL Research estimated the Indian chemicals",
       "growth_bars": [
         {
           "value": "10–12% CAGR",
@@ -43,30 +41,30 @@
           "projected": true,
           "value": "12–14% CAGR",
           "width_pct": 100,
-          "year": "Forward"
+          "year": "FY17–FY20"
         }
       ],
-      "growth_bars_label": "Specialty chemicals growth",
+      "growth_bars_label": "Specialty chemicals segment — growth",
       "growth_bars_source": "DRHP industry report, p.94",
-      "rationale": "Industry data includes market size, growth rates, and fragmentation; a snapshot strip makes these scannable.",
+      "rationale": "The industry section contains market size, growth projections, and fragmentation data — ideal for a scannable snapshot.",
       "split_bar": {
         "left_label": "Organised",
         "left_pct": 25,
         "right_label": "Unorganised"
       },
       "split_bar_label": "Market structure (SME share)",
-      "split_bar_note": "SMEs hold 70–75% of the market, indicating fragmentation.",
+      "split_bar_note": "SMEs hold 70–75% of the market, leaving only a quarter to organised players.",
       "stats": [
         {
-          "desc": "Specialty chemicals segment size\n(approx. 17% of Indian chemicals industry)",
-          "val": "₹1,000B"
+          "desc": "Indian chemicals industry\n(excl. pharma & fertilisers), FY17",
+          "val": "₹5,800–6,200B"
         },
         {
-          "desc": "Historical CAGR (FY14–FY17)",
-          "val": "10–12%"
+          "desc": "Specialty chemicals segment\n(17% of industry)",
+          "val": "~₹1,000B"
         },
         {
-          "desc": "Projected CAGR (forward)",
+          "desc": "Projected CAGR for specialty chemicals\nFY17–FY20",
           "val": "12–14%"
         }
       ]
@@ -74,99 +72,100 @@
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration follows: the top ten customers produced about 59% of revenue from operations in FY2015, 57% in FY2016, and 59% in FY2017.",
-        "quote": "In FY 2015, FY 2016 and FY 2017, our top 10 customers have accounted for around 59%, 57%, and 59%, respectively, of our revenue from operations.",
-        "rationale": "A single damning number that crystallises the customer-concentration risk."
+        "after_paragraph": "Customer concentration is high. The top ten customers accounted",
+        "quote": "We have a long term arrangement with our Corporate Promoter to market and sell our products through their network.",
+        "rationale": "This single sentence captures the company's most distinctive dependency — its sales channel runs through its own parent."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The issue is managed by Vivro Financial Services Private Limited, with Link Intime India Private Limited as registrar. [^drhp-p54] [^drhp-p55] The money raised is earmarked for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; general corporate purposes; and creating a public trading market by listing on NSE EMERGE. [^drhp-p75] The total issue size, fresh-issue versus offer-for-sale split, price band, and any selling shareholder are not disclosed in the available excerpts.",
-        "rationale": "Sidebar consolidates the offer's key facts and explicitly flags what is not disclosed, aiding quick reference.",
+        "body_markdown": "The company is raising fresh capital to build a new plant at Plot 336, GIDC Waghodia, Vadodara, Gujarat, and for general corporate purposes, and will list on NSE Emerge.[^drhp-p75] The issue size, price band and any offer-for-sale are not disclosed in the reviewed pages. Lead manager: Vivro Financial Services Private Limited.[^drhp-p54] Registrar: Link Intime India Private Limited.[^drhp-p55]",
+        "rationale": "A sidebar gives the reader the essential offer facts in one place, without interrupting the narrative flow.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The restated statements cover six periods: the six months to September 30, 2017, and the fiscal years ended March 31, 2017, 2016, 2015, 2014, and 2013.",
+        "after_paragraph": "The restated financials cover six periods: the six months ended",
         "columns": [
           "Period",
-          "PAT (₹ crore)",
-          "Operating cash flow (₹ crore)",
-          "Total assets (₹ crore)",
-          "Basic EPS (₹)"
+          "PAT (₹ lakh)",
+          "Basic EPS (₹)",
+          "Operating cash flow (₹ lakh)",
+          "Total assets (₹ lakh)"
         ],
-        "footnote": "Source: DRHP pages 49, 50, 175, 177. Figures converted from ₹ lakh to ₹ crore. Revenue from operations, EBITDA, and debt are not disclosed in the available excerpts.",
-        "rationale": "The six-period financial history is the core data; a table lets readers compare trends at a glance.",
+        "footnote": "Source: DRHP restated financials — PAT and periods p.49, cash flow p.50, EPS p.177, total assets p.175.",
+        "rationale": "The core financial trend — profit turnaround vs. cash flow volatility — is best seen in a compact period-by-period table.",
         "rows": [
           [
-            "FY2013",
-            "(0.27)",
-            "2.01",
-            "30.19",
-            "(0.45)"
+            "H1 FY18 (Sep 30, 2017)",
+            "132.75",
+            "1.48",
+            "124.86",
+            "3,424.96"
           ],
           [
-            "FY2014",
-            "(0.12)",
-            "1.28",
-            "26.79",
-            "(0.20)"
+            "FY17",
+            "174.82",
+            "2.43",
+            "(349.75)",
+            "3,273.96"
           ],
           [
-            "FY2015",
-            "1.50",
-            "4.22",
-            "25.93",
-            "2.47"
+            "FY16",
+            "90.18",
+            "1.46",
+            "802.59",
+            "2,767.21"
           ],
           [
-            "FY2016",
-            "0.90",
-            "8.03",
-            "27.67",
-            "1.46"
+            "FY15",
+            "149.58",
+            "2.47",
+            "422.36",
+            "2,592.53"
           ],
           [
-            "FY2017",
-            "1.75",
-            "(3.50)",
-            "32.74",
-            "2.43"
+            "FY14",
+            "(12.17)",
+            "(0.20)",
+            "127.73",
+            "2,679.38"
           ],
           [
-            "H1 FY2018",
-            "1.33",
-            "1.25",
-            "34.25",
-            "1.48"
+            "FY13",
+            "(27.40)",
+            "(0.45)",
+            "200.97",
+            "3,018.66"
           ]
         ],
-        "title": "Financial summary across six periods"
+        "title": "Restated financial summary"
       },
       {
-        "after_paragraph": "Pre-issue, the promoters hold 89,48,270 equity shares (99.76% of the pre-issue paid-up equity capital).",
+        "after_paragraph": "The issue has three stated objects.",
         "columns": [
-          "Shareholder",
-          "Shares",
-          "% of pre-issue capital"
+          "Object",
+          "Purpose"
         ],
-        "footnote": "Source: DRHP pages 155, 162.",
-        "rationale": "Ownership concentration is a key governance fact; a compact table makes the near-total promoter control immediate.",
+        "footnote": "Source: DRHP p.75.",
+        "rationale": "A simple table crisply lays out the three stated uses of the fresh issue, which are otherwise buried in prose.",
         "rows": [
           [
-            "Promoters (3 individuals + 20 Microns Limited)",
-            "89,48,270",
-            "99.76%"
+            "Capital expenditure",
+            "New manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat"
           ],
           [
-            "Promoter group (excluding promoters)",
-            "21,510",
-            "0.24%"
+            "General corporate purposes",
+            "Unspecified corporate use"
+          ],
+          [
+            "Listing on NSE Emerge",
+            "Create a public trading market for the company's shares"
           ]
         ],
-        "title": "Pre-issue shareholding"
+        "title": "Objects of the issue"
       }
     ],
     "timeline": null

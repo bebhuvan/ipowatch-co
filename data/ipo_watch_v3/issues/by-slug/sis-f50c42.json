@@ -9,11 +9,39 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.12-0344",
-  "documents": {},
+  "dataset_version": "v3.2026.08.14-0345",
+  "documents": {
+    "drhp_url": "https://nsearchives.nseindia.com/corporate/advance_drhp.zip",
+    "prospectus_url": "https://www.bseindia.com/downloads/ipo/PRO_AETL.pdf",
+    "rhp_url": "https://www.bseindia.com/downloads/ipo/RHP_AETL.pdf"
+  },
   "exchange_details": {},
   "field_provenance": {
+    "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "documents.rhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "identity.board_type": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -32,6 +60,30 @@
     "identity.symbol": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -63,19 +115,32 @@
     }
   },
   "filings_path": "issues/sis-f50c42/filings.json",
-  "generated_at": "2026-08-12T03:44:54+00:00",
+  "generated_at": "2026-08-14T03:46:00+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "bse:ipo_no:1",
+      "bse:scrip_code:540025"
+    ],
+    "board_type": "Main Board",
     "company_name": "SIS Limited",
+    "isin": "INE837H01020",
     "issue_type": "Buyback",
     "slug": "sis-f50c42",
     "status": "Closed",
     "symbol": "sis"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -2553,
+    "current_price_paise": 30085,
+    "listing_close_price_paise": 23562,
+    "listing_gain_bps": -4168,
+    "listing_open_price_paise": 24200
+  },
   "market_path": "issues/sis-f50c42/market.json",
   "parties": {},
   "pricing": {
+    "face_value_paise": 200,
     "issue_price_paise": 40400,
     "issue_size_shares": 3712871,
     "price_band_lower_paise": 40400,
@@ -88,31 +153,149 @@
   "public_slug": "sis",
   "schema_version": "3.0.0",
   "slug": "sis-f50c42",
-  "source_dataset_version": "v2026.08.12-0344",
+  "source_dataset_version": "v2026.08.14-0345",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "tender_past",
-      "snapshot_at": "2026-08-12T03:38:04+00:00",
+      "endpoint": "ipo_documents",
+      "snapshot_at": "2026-08-14T03:39:05+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-08-14T03:38:51+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-08-14T03:38:54+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-08-14T03:38:51+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-08-14T03:38:54+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_public_past_issues",
+      "snapshot_at": "2026-08-14T03:38:42+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-08-13T14:01:51+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_equity",
+      "snapshot_at": "2026-08-14T03:38:49+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "tender_past",
-      "snapshot_at": "2026-08-12T03:38:04+00:00",
+      "snapshot_at": "2026-08-14T03:38:46+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "tender_past",
-      "snapshot_at": "2026-08-12T03:38:04+00:00",
+      "snapshot_at": "2026-08-14T03:38:46+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-08-14T03:38:46+00:00",
       "source": "nse",
       "url": null
     }
   ],
   "subscription": {
+    "data_availability": {
+      "expected_product_feed": "bse.buyback_tender_detail",
+      "reason": "BSE classifies this row as OTB/buyback. IPO/FPO bid-book category endpoints are not applicable; buyback tender acceptance/demand needs a separate product-specific parser.",
+      "source_refs": [
+        {
+          "endpoint": "ipo_documents",
+          "snapshot_at": "2026-08-14T03:39:05+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue",
+          "snapshot_at": "2026-08-14T03:38:51+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue_details",
+          "snapshot_at": "2026-08-14T03:38:54+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue",
+          "snapshot_at": "2026-08-14T03:38:51+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue_details",
+          "snapshot_at": "2026-08-14T03:38:54+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "ipo_public_past_issues",
+          "snapshot_at": "2026-08-14T03:38:42+00:00",
+          "source": "nse"
+        },
+        {
+          "endpoint": "performance",
+          "snapshot_at": "2026-08-13T14:01:51+00:00",
+          "source": "yahoo"
+        },
+        {
+          "endpoint": "offer_documents_equity",
+          "snapshot_at": "2026-08-14T03:38:49+00:00",
+          "source": "nse"
+        },
+        {
+          "endpoint": "tender_past",
+          "snapshot_at": "2026-08-14T03:38:46+00:00",
+          "source": "nse"
+        },
+        {
+          "endpoint": "tender_past",
+          "snapshot_at": "2026-08-14T03:38:46+00:00",
+          "source": "nse"
+        },
+        {
+          "endpoint": "tender_past",
+          "snapshot_at": "2026-08-14T03:38:46+00:00",
+          "source": "nse"
+        }
+      ],
+      "state": "not_applicable_to_ipo_subscription_book"
+    },
     "overall_times_x": "2.7900"
   },
   "subscription_path": "issues/sis-f50c42/subscription.json",

@@ -9,15 +9,29 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.12-0344",
+  "dataset_version": "v3.2026.08.14-0345",
   "documents": {
-    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6449_30122025190139.zip"
+    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6449_30122025190139.zip",
+    "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/OptimystixEntertainmentIndiaLimited_PROSP.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/OptimystixEntertainmentIndiaLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.rhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -43,6 +57,14 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -51,7 +73,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -61,20 +91,26 @@
     }
   },
   "filings_path": "issues/optimystix-entertainment-india-9c5916/filings.json",
-  "generated_at": "2026-08-12T03:44:54+00:00",
+  "generated_at": "2026-08-14T03:46:00+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:miscellaneous/optimystixentertainmentindia/OEIL",
+      "moneycontrol:company_code:17040894"
+    ],
     "board_type": "SME Board",
     "company_name": "Optimystix Entertainment India Limited",
     "issue_type": "IPO",
     "slug": "optimystix-entertainment-india-9c5916",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "OPTIMYSTIX"
   },
   "listing_performance": {},
   "market_path": "issues/optimystix-entertainment-india-9c5916/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 17500,
+    "issue_size_paise": 108500000000,
     "price_band_lower_paise": 16600,
     "price_band_upper_paise": 17500
   },
@@ -122,34 +158,34 @@
       "peers": [
         {
           "company_name": "OPTIMYSTIX",
-          "market_cap": "407",
+          "market_cap": "0",
           "net_sales_cr": 134,
           "pat_cr": 23.96,
-          "pb": 3.1,
-          "pe": 16.93
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "PANORAMA",
-          "market_cap": "1,225",
+          "market_cap": "1,222",
           "net_sales_cr": 364,
           "pat_cr": 41.87,
-          "pb": 5.55,
-          "pe": 78.14
+          "pb": 5.54,
+          "pe": 77.98
         },
         {
           "company_name": "CINEVISTA",
-          "market_cap": "87",
+          "market_cap": "85",
           "net_sales_cr": 23.97,
           "pat_cr": 6.1,
-          "pb": 1.54,
-          "pe": 14.23
+          "pb": 1.5,
+          "pe": 13.94
         },
         {
           "company_name": "BALAJITELE",
-          "market_cap": "1,105",
+          "market_cap": "1,127",
           "net_sales_cr": 453,
           "pat_cr": 87.08,
-          "pb": 1.77,
+          "pb": 1.81,
           "pe": null
         }
       ],
@@ -243,34 +279,51 @@
         "pb": 3.1,
         "pe": 16.94,
         "sector_pb": 1.06,
-        "sector_pe": 23.7
+        "sector_pe": 26.66
       }
     }
   },
   "research_path": "issues/optimystix-entertainment-india-9c5916/research.json",
   "schema_version": "3.0.0",
   "slug": "optimystix-entertainment-india-9c5916",
-  "source_dataset_version": "v2026.08.12-0344",
+  "source_dataset_version": "v2026.08.14-0345",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-08-14T03:43:04+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-12T03:38:00+00:00",
+      "snapshot_at": "2026-08-14T03:38:42+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-08-12T03:38:08+00:00",
+      "snapshot_at": "2026-08-14T03:38:50+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-08-14T03:38:51+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.9100"
+  },
   "subscription_path": "issues/optimystix-entertainment-india-9c5916/subscription.json",
   "timeline": {
     "close_date": "2026-08-11",
+    "listing_date": "2026-08-14",
     "open_date": "2026-08-07"
   },
   "url_path": "/ipos/optimystix-entertainment-india/"

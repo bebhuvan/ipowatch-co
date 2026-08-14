@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.08.12-0414",
-  "estimated_cost_usd": 0.0009667000000000002,
+  "dataset_version": "v2026.08.14-0434",
+  "estimated_cost_usd": 0.0009784600000000002,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-08-12T04:14:49+00:00",
+  "generated_at": "2026-08-14T04:34:56+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,47 +24,44 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules to separate the financials table and the industry snapshot; keep the accent colour for the pull-quote rule and the split-bar highlight.",
-      "Render the industry snapshot as a stat strip with three headline numbers, two proportional growth bars, and a 25/75 split bar.",
-      "Set the financials table in a serif face with right-aligned numerals; the objects table can be lighter, with a single rule under the header."
+      "Use hairline rules and two rule weights; serif throughout; single accent colour (e.g., deep blue) for table headers and pull-quote border; no decorative imagery."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The market is large and growing. CRISIL Research estimated the Indian chemicals",
+      "after_paragraph": "The specialty chemicals segment of India's chemicals industry was worth about",
       "growth_bars": [
         {
-          "value": "10–12% CAGR",
-          "width_pct": 80,
-          "year": "FY14–FY17"
+          "value": "₹~700B",
+          "width_pct": 70,
+          "year": "FY14"
         },
         {
-          "projected": true,
-          "value": "12–14% CAGR",
+          "value": "₹1,000B",
           "width_pct": 100,
-          "year": "FY17–FY20"
+          "year": "FY17"
         }
       ],
-      "growth_bars_label": "Specialty chemicals segment — growth",
-      "growth_bars_source": "DRHP industry report, p.94",
-      "rationale": "The industry section contains market size, growth projections, and fragmentation data — ideal for a scannable snapshot.",
+      "growth_bars_label": "Specialty chemicals market size — actual growth",
+      "growth_bars_source": "CRISIL Research via DRHP, p.92–94",
+      "rationale": "The industry section contains market size, growth projections, and fragmentation data; a snapshot strip makes these scannable and highlights the key numbers.",
       "split_bar": {
         "left_label": "Organised",
         "left_pct": 25,
         "right_label": "Unorganised"
       },
       "split_bar_label": "Market structure (SME share)",
-      "split_bar_note": "SMEs hold 70–75% of the market, leaving only a quarter to organised players.",
+      "split_bar_note": "SMEs hold 70–75% of the market, indicating fragmentation.",
       "stats": [
         {
-          "desc": "Indian chemicals industry\n(excl. pharma & fertilisers), FY17",
-          "val": "₹5,800–6,200B"
+          "desc": "Specialty chemicals segment\nIndia, FY17",
+          "val": "₹1,000B"
         },
         {
-          "desc": "Specialty chemicals segment\n(17% of industry)",
-          "val": "~₹1,000B"
+          "desc": "Share of total chemicals\nindustry",
+          "val": "17%"
         },
         {
-          "desc": "Projected CAGR for specialty chemicals\nFY17–FY20",
+          "desc": "Projected CAGR\nFY17–FY22",
           "val": "12–14%"
         }
       ]
@@ -72,100 +69,76 @@
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration is high. The top ten customers accounted",
-        "quote": "We have a long term arrangement with our Corporate Promoter to market and sell our products through their network.",
-        "rationale": "This single sentence captures the company's most distinctive dependency — its sales channel runs through its own parent."
+        "after_paragraph": "The cash flow story is more complicated, and it is the single most striking",
+        "quote": "In FY2017, the company reported a profit of ₹1.75 crore but generated a ₹3.50 crore *outflow* from operations.",
+        "rationale": "This single disclosed fact captures the central tension of the financials — profit on paper, cash leaving the business — and cannot be carried in prose alone."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The company is raising fresh capital to build a new plant at Plot 336, GIDC Waghodia, Vadodara, Gujarat, and for general corporate purposes, and will list on NSE Emerge.[^drhp-p75] The issue size, price band and any offer-for-sale are not disclosed in the reviewed pages. Lead manager: Vivro Financial Services Private Limited.[^drhp-p54] Registrar: Link Intime India Private Limited.[^drhp-p55]",
-        "rationale": "A sidebar gives the reader the essential offer facts in one place, without interrupting the narrative flow.",
+        "body_markdown": "The company plans to raise funds through an SME IPO on NSE EMERGE. The stated objects are: capital expenditure on a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; general corporate purposes; and creating a public market for the shares to enhance visibility and brand. [^drhp-p75] The lead manager is Vivro Financial Services Private Limited, and the registrar is Link Intime India Private Limited. [^drhp-p54] [^drhp-p55] The DRHP excerpts do not disclose the issue size, price band, or whether there is an offer-for-sale component. [^drhp-p75]",
+        "rationale": "A sidebar consolidates the offer's key facts (objects, service providers, undisclosed terms) in one scannable block, complementing the prose.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The restated financials cover six periods: the six months ended",
+        "after_paragraph": "The restated summary financial statements cover six periods: the six months",
         "columns": [
           "Period",
-          "PAT (₹ lakh)",
+          "Profit/(Loss) after tax (₹ cr)",
           "Basic EPS (₹)",
-          "Operating cash flow (₹ lakh)",
-          "Total assets (₹ lakh)"
+          "Cash flow from operations (₹ cr)",
+          "Total assets (₹ cr)"
         ],
-        "footnote": "Source: DRHP restated financials — PAT and periods p.49, cash flow p.50, EPS p.177, total assets p.175.",
-        "rationale": "The core financial trend — profit turnaround vs. cash flow volatility — is best seen in a compact period-by-period table.",
+        "footnote": "Sources: PAT and periods [^drhp-p49]; cash flow [^drhp-p50]; EPS [^drhp-p177]; total assets [^drhp-p175].",
+        "rationale": "The six-period restated financials are the core of the report; a table lets readers compare trends across profit, EPS, cash flow and assets at a glance.",
         "rows": [
           [
-            "H1 FY18 (Sep 30, 2017)",
-            "132.75",
+            "H1 FY2018 (6 months to Sep 30, 2017)",
+            "1.33",
             "1.48",
-            "124.86",
-            "3,424.96"
+            "+1.25",
+            "34.25"
           ],
           [
-            "FY17",
-            "174.82",
+            "FY2017",
+            "1.75",
             "2.43",
-            "(349.75)",
-            "3,273.96"
+            "−3.50",
+            "32.74"
           ],
           [
-            "FY16",
-            "90.18",
+            "FY2016",
+            "0.90",
             "1.46",
-            "802.59",
-            "2,767.21"
+            "+8.03",
+            "27.67"
           ],
           [
-            "FY15",
-            "149.58",
+            "FY2015",
+            "1.50",
             "2.47",
-            "422.36",
-            "2,592.53"
+            "+4.22",
+            "25.93"
           ],
           [
-            "FY14",
-            "(12.17)",
-            "(0.20)",
-            "127.73",
-            "2,679.38"
+            "FY2014",
+            "−0.12",
+            "−0.20",
+            "+1.28",
+            "26.79"
           ],
           [
-            "FY13",
-            "(27.40)",
-            "(0.45)",
-            "200.97",
-            "3,018.66"
+            "FY2013",
+            "−0.27",
+            "−0.45",
+            "+2.01",
+            "30.19"
           ]
         ],
-        "title": "Restated financial summary"
-      },
-      {
-        "after_paragraph": "The issue has three stated objects.",
-        "columns": [
-          "Object",
-          "Purpose"
-        ],
-        "footnote": "Source: DRHP p.75.",
-        "rationale": "A simple table crisply lays out the three stated uses of the fresh issue, which are otherwise buried in prose.",
-        "rows": [
-          [
-            "Capital expenditure",
-            "New manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat"
-          ],
-          [
-            "General corporate purposes",
-            "Unspecified corporate use"
-          ],
-          [
-            "Listing on NSE Emerge",
-            "Create a public trading market for the company's shares"
-          ]
-        ],
-        "title": "Objects of the issue"
+        "title": "Restated financial summary, six periods"
       }
     ],
     "timeline": null

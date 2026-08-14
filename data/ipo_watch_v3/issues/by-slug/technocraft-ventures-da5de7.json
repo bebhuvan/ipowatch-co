@@ -9,20 +9,30 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.12-0344",
+  "dataset_version": "v3.2026.08.14-0345",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE1D0W01018_13AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_08082025204719_DRHPTechnocraft.pdf",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/328724/IPO%20Open/RedHerringProspectusTechnocraftVenturesLimited_20260731130436.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE1D0W01018_13AUG2026.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/TechnocraftVenturesLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -33,6 +43,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -52,6 +66,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -60,7 +86,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,25 +104,29 @@
     }
   },
   "filings_path": "issues/technocraft-ventures-da5de7/filings.json",
-  "generated_at": "2026-08-12T03:44:54+00:00",
+  "generated_at": "2026-08-14T03:46:00+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:84385100",
-      "bse:prior_id:242486",
-      "bse:createdby:328724"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/technocraft-ventures-ltd/technocraf/544864/"
     ],
     "board_type": "Main Board",
     "company_name": "Technocraft Ventures Limited",
+    "isin": "INE1D0W01018",
     "issue_type": "IPO",
     "slug": "technocraft-ventures-da5de7",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "TECHNOCRAF"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 2264,
+    "current_price_paise": 26000
+  },
   "market_path": "issues/technocraft-ventures-da5de7/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 21200,
+    "issue_size_paise": 251877200000,
     "price_band_lower_paise": 20000,
     "price_band_upper_paise": 21200
   },
@@ -125,7 +163,7 @@
         ]
       },
       "isin": "INE1D0W01018",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "technocraft ventures",
       "offer_split": {
         "fresh_issue_percent": "80%",
@@ -136,31 +174,31 @@
       "peers": [
         {
           "company_name": "TECHNOCRAF",
-          "market_cap": "840",
+          "market_cap": "0",
           "net_sales_cr": 344,
           "pat_cr": 43.31,
-          "pb": 5.14,
-          "pe": 19.39
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "DENTA",
-          "market_cap": "889",
+          "market_cap": "847",
           "net_sales_cr": 203,
           "pat_cr": 52.88,
-          "pb": 1.94,
-          "pe": 14.6
+          "pb": 1.85,
+          "pe": 13.91
         },
         {
           "company_name": "IONEXCHANG",
-          "market_cap": "5,627",
+          "market_cap": "5,530",
           "net_sales_cr": 2737,
           "pat_cr": 207,
-          "pb": 4.17,
-          "pe": 56.93
+          "pb": 4.13,
+          "pe": 56.38
         },
         {
           "company_name": "JITFINFRA",
-          "market_cap": "899",
+          "market_cap": "859",
           "net_sales_cr": 2808,
           "pat_cr": -48.13,
           "pb": 0.0,
@@ -168,11 +206,11 @@
         },
         {
           "company_name": "APEXECO",
-          "market_cap": "363",
+          "market_cap": "373",
           "net_sales_cr": 70.96,
           "pat_cr": 8.56,
           "pb": null,
-          "pe": 21.34
+          "pe": 21.92
         }
       ],
       "revenue_mix": {
@@ -302,49 +340,66 @@
         "market_cap": "₹839",
         "pb": 5.14,
         "pe": 19.38,
-        "sector_pb": 2.09,
-        "sector_pe": 20.9
+        "sector_pb": 2.07,
+        "sector_pe": 20.82
       }
     }
   },
   "research_path": "issues/technocraft-ventures-da5de7/research.json",
   "schema_version": "3.0.0",
   "slug": "technocraft-ventures-da5de7",
-  "source_dataset_version": "v2026.08.12-0344",
+  "source_dataset_version": "v2026.08.14-0345",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-12T03:38:14+00:00",
+      "snapshot_at": "2026-08-14T03:39:05+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-12T03:38:00+00:00",
-      "source": "nse",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-08-14T03:39:18+00:00",
+      "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-08-12T03:37:59+00:00",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-08-14T03:43:04+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_public_past_issues",
+      "snapshot_at": "2026-08-14T03:38:42+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-12T03:38:07+00:00",
+      "snapshot_at": "2026-08-14T03:38:49+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-08-14T03:38:51+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "38.6900"
+  },
   "subscription_path": "issues/technocraft-ventures-da5de7/subscription.json",
   "timeline": {
     "close_date": "2026-08-11",
+    "listing_date": "2026-08-14",
     "open_date": "2026-08-07"
   },
   "url_path": "/ipos/technocraft-ventures/"

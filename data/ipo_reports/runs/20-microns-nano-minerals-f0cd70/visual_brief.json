@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.08.14-0434",
-  "estimated_cost_usd": 0.0009784600000000002,
+  "dataset_version": "v2026.08.15-0321",
+  "estimated_cost_usd": 0.0010754800000000002,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-08-14T04:34:56+00:00",
+  "generated_at": "2026-08-15T03:21:54+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,44 +24,48 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules and two rule weights; serif throughout; single accent colour (e.g., deep blue) for table headers and pull-quote border; no decorative imagery."
+      "Use hairline rules and two rule weights; serif throughout; single accent colour (e.g., deep blue).",
+      "Tables should have clear column headers and right-aligned numbers.",
+      "Pull quote should be set in larger serif with a left rule.",
+      "Industry snapshot as a stat strip with growth bars and a split bar, placed between paragraphs."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The specialty chemicals segment of India's chemicals industry was worth about",
+      "after_paragraph": "The company operates in India's specialty chemicals market, the segment of the chemicals industry that sells function-specific products rather than bulk commodities. CRISIL Research, cited in the filing, put this market at roughly ₹1,000 billion in fiscal 2017, about 17% of the Indian chemicals industry, which it estimated at ₹5,800–6,200 billion.[^drhp-p92] The segment grew at a 10–12% compound annual growth rate (CAGR) from fiscal 2014 to 2017, and CRISIL forecasts 12–14% CAGR ahead.[^drhp-p94]",
       "growth_bars": [
         {
-          "value": "₹~700B",
-          "width_pct": 70,
-          "year": "FY14"
+          "value": "10–12% CAGR",
+          "width_pct": 80,
+          "year": "FY14–17"
         },
         {
-          "value": "₹1,000B",
+          "projected": true,
+          "value": "12–14% CAGR",
           "width_pct": 100,
-          "year": "FY17"
+          "year": "FY17 onwards"
         }
       ],
-      "growth_bars_label": "Specialty chemicals market size — actual growth",
-      "growth_bars_source": "CRISIL Research via DRHP, p.92–94",
-      "rationale": "The industry section contains market size, growth projections, and fragmentation data; a snapshot strip makes these scannable and highlights the key numbers.",
+      "growth_bars_label": "Specialty chemicals market growth",
+      "growth_bars_source": "CRISIL Research, cited in DRHP [^drhp-p94]",
+      "rationale": "Industry snapshot conveys market size, growth, and fragmentation at a glance.",
       "split_bar": {
         "left_label": "Organised",
         "left_pct": 25,
         "right_label": "Unorganised"
       },
-      "split_bar_label": "Market structure (SME share)",
-      "split_bar_note": "SMEs hold 70–75% of the market, indicating fragmentation.",
+      "split_bar_label": "Market structure (FY17)",
+      "split_bar_note": "SMEs hold 70–75% market share, indicating a fragmented market.",
       "stats": [
         {
-          "desc": "Specialty chemicals segment\nIndia, FY17",
+          "desc": "Specialty chemicals market\nIndia, FY17",
           "val": "₹1,000B"
         },
         {
-          "desc": "Share of total chemicals\nindustry",
+          "desc": "Share of Indian\nchemicals industry",
           "val": "17%"
         },
         {
-          "desc": "Projected CAGR\nFY17–FY22",
+          "desc": "Projected CAGR\nFY17 onwards",
           "val": "12–14%"
         }
       ]
@@ -69,76 +73,100 @@
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "The cash flow story is more complicated, and it is the single most striking",
-        "quote": "In FY2017, the company reported a profit of ₹1.75 crore but generated a ₹3.50 crore *outflow* from operations.",
-        "rationale": "This single disclosed fact captures the central tension of the financials — profit on paper, cash leaving the business — and cannot be carried in prose alone."
+        "after_paragraph": "Customer concentration is high. The top 10 customers accounted for around 59% of revenue from operations in FY15, 57% in FY16, and 59% in FY17.[^drhp-p128] Exports over the past five years totalled ₹10.68 crore, going to Nigeria, Saudi Arabia and Sri Lanka.[^drhp-p128]",
+        "quote": "The top 10 customers accounted for around 59% of revenue from operations in FY15, 57% in FY16, and 59% in FY17.",
+        "rationale": "A single damning number that highlights the concentration risk without contractual protection."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The company plans to raise funds through an SME IPO on NSE EMERGE. The stated objects are: capital expenditure on a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; general corporate purposes; and creating a public market for the shares to enhance visibility and brand. [^drhp-p75] The lead manager is Vivro Financial Services Private Limited, and the registrar is Link Intime India Private Limited. [^drhp-p54] [^drhp-p55] The DRHP excerpts do not disclose the issue size, price band, or whether there is an offer-for-sale component. [^drhp-p75]",
-        "rationale": "A sidebar consolidates the offer's key facts (objects, service providers, undisclosed terms) in one scannable block, complementing the prose.",
+        "body_markdown": "The company is raising money through an IPO on NSE EMERGE, the SME platform, to fund a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, and for general corporate purposes.[^drhp-p75] The issue size and price band are not yet disclosed in the draft document. The offer documents name Vivro Financial Services Private Limited and Link Intime India Private Limited as intermediaries.[^drhp-p54][^drhp-p55] The company's promoters hold 99.76% of the paid-up capital pre-issue.[^drhp-p155][^drhp-p162]",
+        "rationale": "Sidebar consolidates the offer's key facts for quick reference, including the undisclosed issue size.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The restated summary financial statements cover six periods: the six months",
+        "after_paragraph": "The financial statements to read are the restated ones: the company's accounts reworked to common accounting standards for the offer document. The restated profit and loss account covers six periods: the six months to 30 September 2017, and the full years FY13 through FY17.[^drhp-p49] All figures below are in ₹ crore, converted from the filing's ₹ lakh figures. PAT is profit after tax; EPS is earnings per share.",
         "columns": [
           "Period",
-          "Profit/(Loss) after tax (₹ cr)",
-          "Basic EPS (₹)",
-          "Cash flow from operations (₹ cr)",
+          "PAT (₹ cr)",
+          "EPS (₹)",
+          "Operating cash flow (₹ cr)",
           "Total assets (₹ cr)"
         ],
-        "footnote": "Sources: PAT and periods [^drhp-p49]; cash flow [^drhp-p50]; EPS [^drhp-p177]; total assets [^drhp-p175].",
-        "rationale": "The six-period restated financials are the core of the report; a table lets readers compare trends across profit, EPS, cash flow and assets at a glance.",
+        "footnote": "Sources: PAT and periods [^drhp-p49]; EPS [^drhp-p177]; operating cash flow [^drhp-p50]; total assets [^drhp-p175].",
+        "rationale": "The core financials table lets readers compare profit, EPS, cash flow, and assets across periods at a glance.",
         "rows": [
           [
-            "H1 FY2018 (6 months to Sep 30, 2017)",
+            "H1 FY18 (6 mo to Sep 2017)",
             "1.33",
             "1.48",
-            "+1.25",
+            "1.25",
             "34.25"
           ],
           [
-            "FY2017",
+            "FY17",
             "1.75",
             "2.43",
-            "−3.50",
+            "(3.50)",
             "32.74"
           ],
           [
-            "FY2016",
+            "FY16",
             "0.90",
             "1.46",
-            "+8.03",
+            "8.03",
             "27.67"
           ],
           [
-            "FY2015",
+            "FY15",
             "1.50",
             "2.47",
-            "+4.22",
+            "4.22",
             "25.93"
           ],
           [
-            "FY2014",
-            "−0.12",
-            "−0.20",
-            "+1.28",
+            "FY14",
+            "(0.12)",
+            "(0.20)",
+            "1.28",
             "26.79"
           ],
           [
-            "FY2013",
-            "−0.27",
-            "−0.45",
-            "+2.01",
+            "FY13",
+            "(0.27)",
+            "(0.45)",
+            "2.01",
             "30.19"
           ]
         ],
-        "title": "Restated financial summary, six periods"
+        "title": "Restated financial summary"
+      },
+      {
+        "after_paragraph": "The offer documents name two companies: Vivro Financial Services Private Limited[^drhp-p54] and Link Intime India Private Limited.[^drhp-p55] The stated objects of the issue are threefold: capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; general corporate purposes; and a listing on the SME Platform of NSE (NSE EMERGE) to create a public trading market for the shares and enhance visibility and brand.[^drhp-p75]",
+        "columns": [
+          "Offer fact",
+          "Detail"
+        ],
+        "footnote": "Source: DRHP [^drhp-p54][^drhp-p55][^drhp-p75].",
+        "rationale": "Condenses the offer's key facts into a scannable table, including the undisclosed issue size.",
+        "rows": [
+          [
+            "Intermediaries named in the offer",
+            "Vivro Financial Services Private Limited; Link Intime India Private Limited [^drhp-p54][^drhp-p55]"
+          ],
+          [
+            "Objects",
+            "Capex for new facility at Plot 336, GIDC Waghodia; general corporate purposes; listing on NSE EMERGE [^drhp-p75]"
+          ],
+          [
+            "Issue size / price band",
+            "Not yet set (draft document)"
+          ]
+        ],
+        "title": "Offer at a glance"
       }
     ],
     "timeline": null

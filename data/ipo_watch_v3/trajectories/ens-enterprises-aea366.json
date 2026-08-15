@@ -7,20 +7,92 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.08.14-0345",
+  "dataset_version": "v3.2026.08.15-0238",
   "demand_curve_count": 0,
   "demand_curves": [],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-08-14T03:46:00+00:00",
+  "generated_at": "2026-08-15T02:38:07+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "ens-enterprises-aea366",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
   "notes": "Hourly subscription (bid-book) observations during the active issue window.",
-  "observation_count": 1,
+  "observation_count": 2,
   "observations": [
+    {
+      "categories": {
+        "employee": {
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times": null
+        },
+        "nii": {
+          "shares_bid": 1142400,
+          "shares_offered": 694800,
+          "times": 1.6442
+        },
+        "nii_gt_10l": {
+          "shares_bid": 814800,
+          "shares_offered": 342000,
+          "times": 2.3825
+        },
+        "nii_lte_10l": {
+          "shares_bid": 327600,
+          "shares_offered": 171600,
+          "times": 1.9091
+        },
+        "policyholder": {
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib": {
+          "shares_bid": 0,
+          "shares_offered": 684000,
+          "times": 0.0
+        },
+        "qib_dfi": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib_fii": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib_mf": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "qib_other": {
+          "shares_bid": null,
+          "shares_offered": null,
+          "times": null
+        },
+        "retail": {
+          "shares_bid": 367200,
+          "shares_offered": 1197600,
+          "times": 0.3066
+        },
+        "shareholder": {
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times": null
+        }
+      },
+      "observed_at": "2026-08-15T02:37:59+00:00",
+      "source": "bse",
+      "source_updated_at": "8/14/2026 16:45:01",
+      "total": {
+        "shares_bid": 1509600,
+        "shares_offered": 2576400,
+        "times": 0.5859
+      }
+    },
     {
       "categories": {
         "nii": {
@@ -59,7 +131,7 @@
           "times": null
         }
       },
-      "observed_at": "2026-08-14T03:44:59+00:00",
+      "observed_at": "2026-08-15T02:38:00+00:00",
       "source": "bse",
       "source_updated_at": null,
       "total": {
@@ -72,8 +144,22 @@
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/ens-enterprises-aea366.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.08.14-0345",
+  "source_dataset_version": "v2026.08.15-0238",
   "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_7885",
+      "snapshot_at": "",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_new_7885",
+      "snapshot_at": "",
+      "source": "bse",
+      "url": null
+    },
     {
       "confidence": "primary",
       "endpoint": "demand_schedule_7885",

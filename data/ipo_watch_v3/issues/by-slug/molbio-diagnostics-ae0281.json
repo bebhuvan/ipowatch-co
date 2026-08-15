@@ -9,20 +9,30 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.14-0345",
+  "dataset_version": "v3.2026.08.15-0238",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE869T01028_14AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_23082025155403_MolbioDiagnosticsLimitedDRHPFilingVersion.pdf",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/325712/IPO%20Open/RHPSigned_20260806193455.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE869T01028_14AUG2026.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/MolbioDiagnosticsLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -33,6 +43,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,7 +84,7 @@
     }
   },
   "filings_path": "issues/molbio-diagnostics-ae0281/filings.json",
-  "generated_at": "2026-08-14T03:46:00+00:00",
+  "generated_at": "2026-08-15T02:38:07+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -80,6 +94,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "Molbio Diagnostics Limited",
+    "isin": "INE869T01028",
     "issue_type": "IPO",
     "slug": "molbio-diagnostics-ae0281",
     "status": "Closed",
@@ -125,7 +140,7 @@
         ]
       },
       "isin": "INE869T01028",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "molbio diagnostics",
       "offer_split": {
         "fresh_issue_percent": "22%",
@@ -222,26 +237,33 @@
   "research_path": "issues/molbio-diagnostics-ae0281/research.json",
   "schema_version": "3.0.0",
   "slug": "molbio-diagnostics-ae0281",
-  "source_dataset_version": "v2026.08.14-0345",
+  "source_dataset_version": "v2026.08.15-0238",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-14T03:39:05+00:00",
+      "snapshot_at": "2026-08-15T02:33:20+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-14T03:38:42+00:00",
+      "snapshot_at": "2026-08-15T02:33:07+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-14T03:38:49+00:00",
+      "snapshot_at": "2026-08-15T02:33:15+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-08-15T02:33:17+00:00",
       "source": "nse",
       "url": null
     }

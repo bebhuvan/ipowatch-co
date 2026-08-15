@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.14-0345",
+  "dataset_version": "v3.2026.08.15-0238",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/Qualityfoils_DP.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/QualityFoils_PROSP.pdf"
@@ -58,11 +58,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "moneycontrol"
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "moneycontrol"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -90,7 +98,7 @@
     }
   },
   "filings_path": "issues/quality-foils-india-cae9b3/filings.json",
-  "generated_at": "2026-08-14T03:46:00+00:00",
+  "generated_at": "2026-08-15T02:38:07+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -105,9 +113,11 @@
     "symbol": "QFIL"
   },
   "listing_performance": {
-    "current_gain_bps": 467,
-    "current_price_paise": 6280,
-    "listing_gain_bps": 7625
+    "current_gain_bps": 8500,
+    "current_price_paise": 11100,
+    "listing_close_price_paise": 9770,
+    "listing_gain_bps": 6283,
+    "listing_open_price_paise": 10000
   },
   "market_path": "issues/quality-foils-india-cae9b3/market.json",
   "parties": {},
@@ -122,27 +132,34 @@
   "public_slug": "quality-foils-india",
   "schema_version": "3.0.0",
   "slug": "quality-foils-india-cae9b3",
-  "source_dataset_version": "v2026.08.14-0345",
+  "source_dataset_version": "v2026.08.15-0238",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_001080",
-      "snapshot_at": "2026-08-14T03:43:04+00:00",
+      "snapshot_at": "2026-08-15T02:36:15+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-14T03:38:42+00:00",
+      "snapshot_at": "2026-08-15T02:33:07+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-08-14T03:38:50+00:00",
+      "snapshot_at": "2026-08-15T02:33:16+00:00",
       "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-08-14T13:56:40+00:00",
+      "source": "yahoo",
       "url": null
     }
   ],

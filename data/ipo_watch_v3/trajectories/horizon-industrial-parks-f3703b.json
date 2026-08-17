@@ -8,8 +8,29 @@
   },
   "dataset": "ipo-watch.trajectory.schema",
   "dataset_version": "v3.2026.08.15-0238",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "demand_curve_count": 1,
+  "demand_curves": [
+    {
+      "observed_at": "2026-08-17T04:36:41+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 556500,
+          "price_paise": 6000
+        },
+        {
+          "cumulative_quantity": 557500,
+          "price_paise": 5800
+        },
+        {
+          "cumulative_quantity": 559500,
+          "price_paise": 5700
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "17-Aug-2026 10:04:03"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
@@ -23,49 +44,39 @@
   "observations": [
     {
       "categories": {
+        "employee": {
+          "shares_bid": 3500,
+          "shares_offered": 961538,
+          "times": 0.0036400017472008384
+        },
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 159500,
+          "shares_offered": 68289473,
+          "times": 0.002335645495463115
+        },
+        "nii_gt_10l": {
+          "shares_bid": 40250,
+          "shares_offered": 22763157,
+          "times": 0.0017682081619873728
         },
         "qib": {
           "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_offered": 136578947,
+          "times": 0.0
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 496750,
+          "shares_offered": 45526315,
+          "times": 0.010911271865513385
         }
       },
-      "observed_at": "2026-08-15T02:37:52+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-08-17T04:36:41+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 17-Aug-2026 10:03:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 659750,
+        "shares_offered": 2,
+        "times": 0.0026247604331720814
       }
     }
   ],
@@ -76,9 +87,16 @@
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7890",
+      "endpoint": "consolidated_bid_details_horizonind",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_horizonind",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

@@ -5,19 +5,15 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.15-0238",
+  "dataset_version": "v3.2026.08.18-0241",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_26092025180410_BehariLalEngineeringLimitedDRHP.pdf",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/306242/IPO%20Open/RHPSigned_20260807221340.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE1EEM01017_17AUG2026.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/BehariLalEngineeringLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
@@ -25,9 +21,13 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -38,6 +38,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -57,6 +61,14 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -67,7 +79,7 @@
     }
   },
   "filings_path": "issues/behari-lal-engineering-5f390e/filings.json",
-  "generated_at": "2026-08-15T02:38:07+00:00",
+  "generated_at": "2026-08-18T02:41:50+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -77,6 +89,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "Behari Lal Engineering Limited",
+    "isin": "INE1EEM01017",
     "issue_type": "IPO",
     "slug": "behari-lal-engineering-5f390e",
     "status": "Closed",
@@ -85,7 +98,10 @@
   "listing_performance": {},
   "market_path": "issues/behari-lal-engineering-5f390e/market.json",
   "parties": {},
-  "pricing": {},
+  "pricing": {
+    "price_band_lower_paise": 27100,
+    "price_band_upper_paise": 28500
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/behari-lal-engineering-5f390e/prospectus_facts.json",
   "provenance_path": "issues/behari-lal-engineering-5f390e/provenance.json",
@@ -119,7 +135,7 @@
         ]
       },
       "isin": "INE1EEM01017",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "behari lal engineering",
       "offer_split": {
         "fresh_issue_percent": "31%",
@@ -138,35 +154,35 @@
         },
         {
           "company_name": "JAYNECOIND",
-          "market_cap": "8,816",
+          "market_cap": "8,570",
           "net_sales_cr": 5999,
           "pat_cr": 112,
-          "pb": 3.1,
-          "pe": 15.63
+          "pb": 3.02,
+          "pe": 15.19
         },
         {
           "company_name": "AIAENG",
-          "market_cap": "41,397",
+          "market_cap": "40,886",
           "net_sales_cr": 4287,
           "pat_cr": 1060,
-          "pb": 5.16,
-          "pe": 32.69
+          "pb": 5.09,
+          "pe": 32.29
         },
         {
           "company_name": "STEELCAS",
-          "market_cap": "3,583",
+          "market_cap": "3,587",
           "net_sales_cr": 423,
           "pat_cr": 86.86,
-          "pb": 9.07,
-          "pe": 39.51
+          "pb": 9.08,
+          "pe": 39.55
         },
         {
           "company_name": "VSSL",
-          "market_cap": "3,174",
+          "market_cap": "3,496",
           "net_sales_cr": 1764,
           "pat_cr": 93.09,
-          "pb": 3.98,
-          "pe": 34.1
+          "pb": 4.38,
+          "pe": 37.55
         }
       ],
       "revenue_mix": {
@@ -283,34 +299,34 @@
         "market_cap": "₹1,205",
         "pb": 3.94,
         "pe": 18.65,
-        "sector_pb": 1.46,
-        "sector_pe": 19.84
+        "sector_pb": 1.48,
+        "sector_pe": 20.12
       }
     }
   },
   "research_path": "issues/behari-lal-engineering-5f390e/research.json",
   "schema_version": "3.0.0",
   "slug": "behari-lal-engineering-5f390e",
-  "source_dataset_version": "v2026.08.15-0238",
+  "source_dataset_version": "v2026.08.18-0241",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-15T02:33:20+00:00",
+      "snapshot_at": "2026-08-18T02:36:44+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-08-15T02:33:07+00:00",
+      "endpoint": "ipo_public_past_issues",
+      "snapshot_at": "2026-08-18T02:36:28+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-15T02:33:15+00:00",
+      "snapshot_at": "2026-08-18T02:36:36+00:00",
       "source": "nse",
       "url": null
     }

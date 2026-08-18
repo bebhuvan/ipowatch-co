@@ -1,14 +1,22 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/provenance.schema.json",
-  "dataset_version": "v3.2026.08.15-0238",
+  "dataset_version": "v3.2026.08.18-0241",
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -36,19 +44,19 @@
     },
     "parties.lead_managers": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "parties.registrar": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "parties.sponsor_bank": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "pricing.face_value_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "pricing.issue_size_shares": {
       "rule_id": "E.SRC.002",
@@ -64,19 +72,23 @@
     },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "pricing.tick_size_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "subscription.by_exchange.bse": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "subscription.by_exchange.nse": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
     },
     "subscription.consolidated": {
       "rule_id": "E.SRC.002",
@@ -84,7 +96,7 @@
     },
     "subscription.overall_times_x": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -100,73 +112,94 @@
     "info": [],
     "review": []
   },
-  "generated_at": "2026-08-15T02:38:07+00:00",
+  "generated_at": "2026-08-18T02:41:50+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "lalithaa-jewellery-mart-769ac1",
-  "source_dataset_version": "v2026.08.15-0238",
+  "source_dataset_version": "v2026.08.18-0241",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7886",
-      "snapshot_at": "2026-08-15T02:37:53+00:00",
+      "snapshot_at": "2026-08-18T02:41:37+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7886",
-      "snapshot_at": "2026-08-15T02:37:54+00:00",
+      "snapshot_at": "2026-08-18T02:41:37+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7886",
-      "snapshot_at": "2026-08-15T02:37:53+00:00",
+      "snapshot_at": "2026-08-18T02:41:36+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-15T02:33:20+00:00",
+      "snapshot_at": "2026-08-18T02:36:44+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-08-15T02:33:18+00:00",
+      "snapshot_at": "2026-08-18T02:36:39+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-08-15T02:33:19+00:00",
+      "snapshot_at": "2026-08-18T02:36:40+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_current_issue",
+      "snapshot_at": "2026-08-18T02:36:27+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-08-15T02:33:07+00:00",
+      "snapshot_at": "2026-08-18T02:36:28+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "bid_details_lalithaa_eq",
+      "snapshot_at": "2026-08-18T02:40:30+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_lalithaa",
+      "snapshot_at": "2026-08-18T02:40:31+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "issue_detail_lalithaa_eq",
+      "snapshot_at": "2026-08-18T02:40:30+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-15T02:33:15+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-08-15T02:33:17+00:00",
+      "snapshot_at": "2026-08-18T02:36:36+00:00",
       "source": "nse",
       "url": null
     }

@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.15-0238",
+  "dataset_version": "v3.2026.08.18-0241",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE01NH01023_14AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/UDRHP_DTL.zip",
@@ -66,6 +66,30 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -74,7 +98,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -84,26 +116,31 @@
     }
   },
   "filings_path": "issues/dhoot-transmission-8a900e/filings.json",
-  "generated_at": "2026-08-15T02:38:07+00:00",
+  "generated_at": "2026-08-18T02:41:50+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:73680101",
-      "bse:prior_id:258299",
-      "bse:createdby:325483"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/dhoot-transmission-ltd/dhoottrans/544867/"
     ],
     "board_type": "Main Board",
     "company_name": "Dhoot Transmission Limited",
     "isin": "INE01NH01023",
     "issue_type": "IPO",
     "slug": "dhoot-transmission-8a900e",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "DHOOTTRANS"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 3634,
+    "current_price_paise": 118750,
+    "listing_close_price_paise": 118750,
+    "listing_gain_bps": 3634
+  },
   "market_path": "issues/dhoot-transmission-8a900e/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 87100,
+    "issue_size_paise": 3066885068000,
     "price_band_lower_paise": 82900,
     "price_band_upper_paise": 87100
   },
@@ -151,43 +188,43 @@
       "peers": [
         {
           "company_name": "DHOOTTRANS",
-          "market_cap": "17,816",
+          "market_cap": "24,290",
           "net_sales_cr": 4524,
           "pat_cr": 396,
-          "pb": 7.32,
-          "pe": 44.89
+          "pb": 9.98,
+          "pe": 61.24
         },
         {
           "company_name": "MINDACORP",
-          "market_cap": "17,037",
+          "market_cap": "17,328",
           "net_sales_cr": 6185,
           "pat_cr": 360,
-          "pb": 6.44,
-          "pe": 34.01
+          "pb": 6.55,
+          "pe": 34.59
         },
         {
           "company_name": "UNOMINDA",
-          "market_cap": "71,779",
+          "market_cap": "73,338",
           "net_sales_cr": 19657,
           "pat_cr": 1197,
-          "pb": 10.51,
-          "pe": 59.7
+          "pb": 10.74,
+          "pe": 61.0
         },
         {
           "company_name": "MSUMI",
-          "market_cap": "26,832",
+          "market_cap": "26,726",
           "net_sales_cr": 11477,
           "pat_cr": 625,
-          "pb": 12.41,
-          "pe": 42.77
+          "pb": 12.36,
+          "pe": 42.6
         },
         {
           "company_name": "SONACOMS",
-          "market_cap": "49,572",
+          "market_cap": "50,223",
           "net_sales_cr": 4475,
           "pat_cr": 640,
-          "pb": 8.29,
-          "pe": 71.23
+          "pb": 8.39,
+          "pe": 72.17
         }
       ],
       "revenue_mix": {
@@ -258,49 +295,66 @@
         "market_cap": "₹17,815",
         "pb": 7.32,
         "pe": 44.89,
-        "sector_pb": 2.75,
-        "sector_pe": 24.86
+        "sector_pb": 2.87,
+        "sector_pe": 24.22
       }
     }
   },
   "research_path": "issues/dhoot-transmission-8a900e/research.json",
   "schema_version": "3.0.0",
   "slug": "dhoot-transmission-8a900e",
-  "source_dataset_version": "v2026.08.15-0238",
+  "source_dataset_version": "v2026.08.18-0241",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-15T02:33:20+00:00",
+      "snapshot_at": "2026-08-18T02:36:44+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-08-18T02:36:56+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-08-18T02:39:52+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-15T02:33:07+00:00",
+      "snapshot_at": "2026-08-18T02:36:28+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-08-15T02:33:17+00:00",
+      "snapshot_at": "2026-08-18T02:36:38+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-15T02:33:15+00:00",
+      "snapshot_at": "2026-08-18T02:36:36+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "74.2100"
+  },
   "subscription_path": "issues/dhoot-transmission-8a900e/subscription.json",
   "timeline": {
     "close_date": "2026-08-12",
+    "listing_date": "2026-08-17",
     "open_date": "2026-08-10"
   },
   "url_path": "/ipos/dhoot-transmission/"

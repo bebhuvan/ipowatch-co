@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.15-0238",
+  "dataset_version": "v3.2026.08.18-0241",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE869T01028_14AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_23082025155403_MolbioDiagnosticsLimitedDRHPFilingVersion.pdf",
@@ -66,6 +66,30 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -74,7 +98,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -84,26 +116,31 @@
     }
   },
   "filings_path": "issues/molbio-diagnostics-ae0281/filings.json",
-  "generated_at": "2026-08-15T02:38:07+00:00",
+  "generated_at": "2026-08-18T02:41:50+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:43393944",
-      "bse:prior_id:243665",
-      "bse:createdby:325712"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/molbio-diagnostics-ltd/molbio/544866/"
     ],
     "board_type": "Main Board",
     "company_name": "Molbio Diagnostics Limited",
     "isin": "INE869T01028",
     "issue_type": "IPO",
     "slug": "molbio-diagnostics-ae0281",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "MOLBIO"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 2841,
+    "current_price_paise": 103630,
+    "listing_close_price_paise": 103630,
+    "listing_gain_bps": 2841
+  },
   "market_path": "issues/molbio-diagnostics-ae0281/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 80700,
+    "issue_size_paise": 939696220500,
     "price_band_lower_paise": 76800,
     "price_band_upper_paise": 80700
   },
@@ -151,43 +188,43 @@
       "peers": [
         {
           "company_name": "MOLBIO",
-          "market_cap": "9,300",
+          "market_cap": "11,942",
           "net_sales_cr": 1445,
           "pat_cr": 166,
-          "pb": 7.95,
-          "pe": 56.66
+          "pb": 10.21,
+          "pe": 71.69
         },
         {
           "company_name": "POLYMED",
-          "market_cap": "18,390",
-          "net_sales_cr": 1669,
-          "pat_cr": 338,
-          "pb": 5.92,
-          "pe": 58.36
+          "market_cap": "17,519",
+          "net_sales_cr": 1875,
+          "pat_cr": 322,
+          "pb": 5.64,
+          "pe": 55.6
         },
         {
           "company_name": "LALPATHLAB",
-          "market_cap": "33,027",
+          "market_cap": "31,478",
           "net_sales_cr": 2762,
           "pat_cr": 504,
-          "pb": 13.17,
-          "pe": 60.95
+          "pb": 12.55,
+          "pe": 58.09
         },
         {
           "company_name": "METROPOLIS",
-          "market_cap": "11,589",
+          "market_cap": "11,445",
           "net_sales_cr": 1645,
           "pat_cr": 190,
-          "pb": 7.66,
-          "pe": 57.48
+          "pb": 7.56,
+          "pe": 56.76
         },
         {
           "company_name": "VIJAYA",
-          "market_cap": "15,304",
+          "market_cap": "15,512",
           "net_sales_cr": 681,
           "pat_cr": 143,
-          "pb": 15.99,
-          "pe": 81.63
+          "pb": 16.21,
+          "pe": 82.74
         }
       ],
       "revenue_mix": {
@@ -230,48 +267,65 @@
         "pb": 7.95,
         "pe": 56.66,
         "sector_pb": 2.86,
-        "sector_pe": 26.84
+        "sector_pe": 28.45
       }
     }
   },
   "research_path": "issues/molbio-diagnostics-ae0281/research.json",
   "schema_version": "3.0.0",
   "slug": "molbio-diagnostics-ae0281",
-  "source_dataset_version": "v2026.08.15-0238",
+  "source_dataset_version": "v2026.08.18-0241",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-15T02:33:20+00:00",
+      "snapshot_at": "2026-08-18T02:36:44+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-08-18T02:36:56+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-08-18T02:39:52+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-15T02:33:07+00:00",
+      "snapshot_at": "2026-08-18T02:36:28+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-15T02:33:15+00:00",
+      "snapshot_at": "2026-08-18T02:36:36+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-08-15T02:33:17+00:00",
+      "snapshot_at": "2026-08-18T02:36:38+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "70.2600"
+  },
   "subscription_path": "issues/molbio-diagnostics-ae0281/subscription.json",
   "timeline": {
     "close_date": "2026-08-12",
+    "listing_date": "2026-08-17",
     "open_date": "2026-08-10"
   },
   "url_path": "/ipos/molbio-diagnostics/"

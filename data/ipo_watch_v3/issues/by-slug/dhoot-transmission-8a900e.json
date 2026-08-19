@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.18-0241",
+  "dataset_version": "v3.2026.08.19-0244",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE01NH01023_14AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/UDRHP_DTL.zip",
@@ -72,7 +72,7 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
@@ -81,6 +81,10 @@
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -116,7 +120,7 @@
     }
   },
   "filings_path": "issues/dhoot-transmission-8a900e/filings.json",
-  "generated_at": "2026-08-18T02:41:50+00:00",
+  "generated_at": "2026-08-19T02:44:18+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -131,10 +135,11 @@
     "symbol": "DHOOTTRANS"
   },
   "listing_performance": {
-    "current_gain_bps": 3634,
-    "current_price_paise": 118750,
+    "current_gain_bps": 4991,
+    "current_price_paise": 130575,
     "listing_close_price_paise": 118750,
-    "listing_gain_bps": 3634
+    "listing_gain_bps": 3634,
+    "listing_open_price_paise": 120000
   },
   "market_path": "issues/dhoot-transmission-8a900e/market.json",
   "parties": {},
@@ -188,43 +193,43 @@
       "peers": [
         {
           "company_name": "DHOOTTRANS",
-          "market_cap": "24,290",
+          "market_cap": "26,719",
           "net_sales_cr": 4524,
           "pat_cr": 396,
-          "pb": 9.98,
-          "pe": 61.24
+          "pb": 10.98,
+          "pe": 67.36
         },
         {
           "company_name": "MINDACORP",
-          "market_cap": "17,328",
+          "market_cap": "17,804",
           "net_sales_cr": 6185,
           "pat_cr": 360,
-          "pb": 6.55,
-          "pe": 34.59
+          "pb": 6.74,
+          "pe": 35.54
         },
         {
           "company_name": "UNOMINDA",
-          "market_cap": "73,338",
+          "market_cap": "73,483",
           "net_sales_cr": 19657,
           "pat_cr": 1197,
-          "pb": 10.74,
-          "pe": 61.0
+          "pb": 10.76,
+          "pe": 61.12
         },
         {
           "company_name": "MSUMI",
-          "market_cap": "26,726",
+          "market_cap": "26,732",
           "net_sales_cr": 11477,
           "pat_cr": 625,
-          "pb": 12.36,
-          "pe": 42.6
+          "pb": 12.37,
+          "pe": 42.61
         },
         {
           "company_name": "SONACOMS",
-          "market_cap": "50,223",
+          "market_cap": "51,502",
           "net_sales_cr": 4475,
           "pat_cr": 640,
-          "pb": 8.39,
-          "pe": 72.17
+          "pb": 8.61,
+          "pe": 74.0
         }
       ],
       "revenue_mix": {
@@ -295,55 +300,62 @@
         "market_cap": "₹17,815",
         "pb": 7.32,
         "pe": 44.89,
-        "sector_pb": 2.87,
-        "sector_pe": 24.22
+        "sector_pb": 2.88,
+        "sector_pe": 25.27
       }
     }
   },
   "research_path": "issues/dhoot-transmission-8a900e/research.json",
   "schema_version": "3.0.0",
   "slug": "dhoot-transmission-8a900e",
-  "source_dataset_version": "v2026.08.18-0241",
+  "source_dataset_version": "v2026.08.19-0244",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-18T02:36:44+00:00",
+      "snapshot_at": "2026-08-19T02:39:07+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-08-18T02:36:56+00:00",
+      "snapshot_at": "2026-08-19T02:39:17+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-08-18T02:39:52+00:00",
+      "snapshot_at": "2026-08-19T02:41:59+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-18T02:36:28+00:00",
+      "snapshot_at": "2026-08-19T02:38:55+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-08-18T02:36:38+00:00",
+      "snapshot_at": "2026-08-19T02:39:04+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-08-18T13:22:38+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-18T02:36:36+00:00",
+      "snapshot_at": "2026-08-19T02:39:02+00:00",
       "source": "nse",
       "url": null
     }

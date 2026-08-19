@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.18-0241",
+  "dataset_version": "v3.2026.08.19-0244",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -67,7 +67,7 @@
     }
   },
   "filings_path": "issues/genesys-international-145858/filings.json",
-  "generated_at": "2026-08-18T02:41:50+00:00",
+  "generated_at": "2026-08-19T02:44:18+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -86,7 +86,7 @@
   "parties": {},
   "pricing": {
     "face_value_paise": 500,
-    "issue_size_shares": 4403443,
+    "issue_size_shares": 5844646,
     "price_band_lower_paise": 5000,
     "price_band_upper_paise": 5000
   },
@@ -97,31 +97,54 @@
   "public_slug": "genesys-international",
   "schema_version": "3.0.0",
   "slug": "genesys-international-145858",
-  "source_dataset_version": "v2026.08.18-0241",
+  "source_dataset_version": "v2026.08.19-0244",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-08-18T02:36:39+00:00",
+      "snapshot_at": "2026-08-19T02:39:05+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-08-18T02:36:40+00:00",
+      "snapshot_at": "2026-08-19T02:39:06+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "rights_active",
-      "snapshot_at": "2026-08-18T02:36:33+00:00",
+      "snapshot_at": "2026-08-19T02:38:59+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "data_availability": {
+      "expected_product_feed": "nse.rights_active_or_forthcoming",
+      "reason": "NSE rights issue feed currently provides identity and offer-window fields only for this row; subscription/demand fields are null.",
+      "source_refs": [
+        {
+          "endpoint": "public_issue",
+          "snapshot_at": "2026-08-19T02:39:05+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue_details",
+          "snapshot_at": "2026-08-19T02:39:06+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "rights_active",
+          "snapshot_at": "2026-08-19T02:38:59+00:00",
+          "source": "nse"
+        }
+      ],
+      "state": "exchange_not_provided"
+    }
+  },
   "subscription_path": "issues/genesys-international-145858/subscription.json",
   "timeline": {
     "close_date": "2026-08-21",

@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.18-0241",
+  "dataset_version": "v3.2026.08.19-0244",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0FOO01011_18AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Shiprocket_Limited_UDRHP_1.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE0FOO01011_17AUG2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/384619/IPO%20Open/RHP_20260810192321.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,14 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +82,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +100,26 @@
     }
   },
   "filings_path": "issues/shiprocket-ddcc51/filings.json",
-  "generated_at": "2026-08-18T02:41:50+00:00",
+  "generated_at": "2026-08-19T02:44:18+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:11817613",
-      "bse:prior_id:233080",
-      "bse:createdby:384619"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/shiprocket-ltd/shiprocket/544871/"
     ],
     "board_type": "Main Board",
     "company_name": "Shiprocket Limited",
     "isin": "INE0FOO01011",
     "issue_type": "IPO",
     "slug": "shiprocket-ddcc51",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "SHIPROCKET"
   },
   "listing_performance": {},
   "market_path": "issues/shiprocket-ddcc51/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 9700,
+    "issue_size_paise": 1617485010400,
     "price_band_lower_paise": 9200,
     "price_band_upper_paise": 9700
   },
@@ -146,27 +167,27 @@
       "peers": [
         {
           "company_name": "SHIPROCKET",
-          "market_cap": "7,057",
+          "market_cap": "0",
           "net_sales_cr": 2024,
           "pat_cr": -79.25,
-          "pb": 4.63,
-          "pe": 0
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "UNIECOM",
-          "market_cap": "954",
+          "market_cap": "992",
           "net_sales_cr": 134,
           "pat_cr": 17.68,
-          "pb": 4.94,
-          "pe": 44.93
+          "pb": 5.14,
+          "pe": 46.68
         },
         {
           "company_name": "BLACKBUCK",
-          "market_cap": "10,389",
+          "market_cap": "10,725",
           "net_sales_cr": 426,
           "pat_cr": -8.65,
-          "pb": 7.31,
-          "pe": 61.54
+          "pb": 7.54,
+          "pe": 63.53
         }
       ],
       "revenue_mix": {
@@ -283,42 +304,66 @@
         "market_cap": "₹7,057",
         "pb": 4.63,
         "pe": 0,
-        "sector_pb": 3.95,
-        "sector_pe": 54.94
+        "sector_pb": 3.93,
+        "sector_pe": 55.05
       }
     }
   },
   "research_path": "issues/shiprocket-ddcc51/research.json",
   "schema_version": "3.0.0",
   "slug": "shiprocket-ddcc51",
-  "source_dataset_version": "v2026.08.18-0241",
+  "source_dataset_version": "v2026.08.19-0244",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-18T02:36:44+00:00",
+      "snapshot_at": "2026-08-19T02:39:07+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-08-19T02:39:17+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-08-19T02:41:59+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-18T02:36:28+00:00",
+      "snapshot_at": "2026-08-19T02:38:55+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-18T02:36:36+00:00",
+      "snapshot_at": "2026-08-19T02:39:02+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-08-19T02:39:04+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "99.3800"
+  },
   "subscription_path": "issues/shiprocket-ddcc51/subscription.json",
   "timeline": {
     "close_date": "2026-08-14",
+    "listing_date": "2026-08-19",
     "open_date": "2026-08-12"
   },
   "url_path": "/ipos/shiprocket/"

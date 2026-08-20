@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ipo-watch.local/schema/v3/subscription.schema.json",
+  "dataset_version": "v3.2026.08.20-0243",
+  "generated_at": "2026-08-20T02:43:43+00:00",
+  "generated_by": "ipo_portal.site_v3.export/3.0.0",
+  "public_contract": "ipo-watch.site_v3",
+  "schema_version": "3.0.0",
+  "slug": "jai-mata-glass-abefeb",
+  "source_dataset_version": "v2026.08.20-0243",
+  "subscription": {
+    "data_availability": {
+      "expected_product_feed": "bse.buyback_tender_detail",
+      "reason": "BSE classifies this row as OTB/buyback. IPO/FPO bid-book category endpoints are not applicable; buyback tender acceptance/demand needs a separate product-specific parser.",
+      "source_refs": [
+        {
+          "endpoint": "public_issue",
+          "snapshot_at": "2026-08-20T02:38:12+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue_details",
+          "snapshot_at": "2026-08-20T02:38:13+00:00",
+          "source": "bse"
+        }
+      ],
+      "state": "not_applicable_to_ipo_subscription_book"
+    }
+  }
+}

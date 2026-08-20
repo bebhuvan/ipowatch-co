@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.08.15-0359",
-  "estimated_cost_usd": 0.00098784,
+  "dataset_version": "v2026.08.20-0358",
+  "estimated_cost_usd": 0.00103194,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-08-15T03:59:57+00:00",
+  "generated_at": "2026-08-20T03:58:40+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,112 +24,135 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules to separate the financial tables; the accent colour (e.g., deep blue) for the pull-quote rule and table headers.",
-      "Set the financial table in a serif face with tabular numerals; align numbers right.",
-      "The pull-quote should sit between the concentration paragraph and the tender-cycle section, with a left rule in the accent colour."
+      "Use hairline rules and two rule weights throughout; serif typeface; single accent colour (e.g., deep blue) for table headers and pull-quote border.",
+      "Render the financial table with right-aligned numbers and a clear header row; use a light rule between rows.",
+      "Place the pull-quote as a standalone block with a left border in the accent colour, positioned after the paragraph on client concentration.",
+      "No decorative imagery or icons; keep the layout clean and newspaper-like."
     ],
     "formulas": [],
     "industry_snapshot": null,
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "The concentration is the filing's central risk. Top customers contributed 57% of revenue in FY2018, and Western Railway, a client since 2006,[^drhp-p67] accounts for 52% of the orders on hand.[^drhp-p65] The filing itself flags the risk in plain terms:",
-        "quote": "Majority of our revenues will be dependent on one customer, Indian Railways, which is our largest customer, contributing to 57% of our revenue in Fiscal 2018.",
-        "rationale": "The single most damning disclosed fact — customer concentration — is best pulled out verbatim."
+        "after_paragraph": "The client list is also a dependency. Western Railway has been a client since 2006 and contributes 52% of the orders on hand",
+        "quote": "Western Railway alone accounts for 52% of the orders on hand.",
+        "rationale": "Highlights the extreme customer concentration that is a central risk."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The offer is 44,28,000 equity shares of ₹10 each, at a price to be determined.[^drhp-p29] The lead manager is Mark Corporate Advisors Private Limited; the registrar is Bigshare Services Private Limited.[^drhp-p31] Proceeds are earmarked for working capital (₹1,130 lakhs) and general corporate purposes (amount not disclosed).[^drhp-p48] No selling shareholder is named; the draft presents the issue only as equity shares offered.[^drhp-p29] No independent appraisal or monitoring agency has been appointed; deployment of funds is at the discretion of management and the board, monitored by the audit committee.[^drhp-p18]",
-        "rationale": "A sidebar gathers the offer's key facts in one place, saving the reader from hunting through the prose.",
+        "body_markdown": "The company is offering 44,28,000 equity shares of ₹10 each at a price not yet fixed [^drhp-p29]. The issue appears to be entirely fresh shares, with no offer-for-sale line [^drhp-p29]. Proceeds are earmarked for working capital (₹1,130 lakh) and general corporate purposes (amount not disclosed) [^drhp-p48]. No independent appraisal or monitoring agency has been appointed [^drhp-p18]. The lead manager is Mark Corporate Advisors Private Limited and the registrar is Bigshare Services Private Limited [^drhp-p31].",
+        "rationale": "Provides a compact summary of the offer's key terms, complementing the table and reinforcing the fresh-issue nature.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The financial figures in the filing are stated in ₹ lakhs. The tables below convert them to ₹ crore by dividing by 100, the unit an Indian reader expects for a company of this size.",
+        "after_paragraph": "The offer is 44,28,000 equity shares of ₹10 each at an issue price the DRHP has not yet set",
         "columns": [
-          "₹ crore",
-          "FY2014",
-          "FY2015",
-          "FY2016",
-          "FY2017",
-          "FY2018"
+          "Item",
+          "Detail"
         ],
-        "footnote": "Source: DRHP restated financials, pp. 26–27, 111 [^drhp-p26][^drhp-p27][^drhp-p111]",
-        "rationale": "The five-year trend of falling revenue, a profit spike, and heavy short-term debt is the core financial story; a table makes the contrast scannable.",
+        "footnote": "Source: DRHP pages 29, 31, 48, 18 [^drhp-p29] [^drhp-p31] [^drhp-p48] [^drhp-p18].",
+        "rationale": "Condenses the offer's key terms into a scannable reference, avoiding repetition in prose.",
         "rows": [
           [
-            "Revenue from operations",
-            "86.61",
-            "90.21",
-            "74.53",
-            "73.44",
-            "60.53"
+            "Equity shares offered",
+            "44,28,000 shares of ₹10 each [^drhp-p29]"
           ],
           [
-            "Net profit after adjustments",
-            "0.96",
-            "0.78",
-            "0.33",
-            "0.16",
-            "3.15"
+            "Issue price",
+            "Not yet determined [^drhp-p29]"
           ],
           [
-            "PBDIT",
-            "7.84",
-            "9.46",
-            "7.83",
-            "6.76",
-            "9.29"
+            "Lead manager",
+            "Mark Corporate Advisors Private Limited [^drhp-p31]"
           ],
           [
-            "Short-term borrowings",
-            "30.82",
-            "32.28",
-            "30.21",
-            "33.12",
-            "35.37"
+            "Registrar",
+            "Bigshare Services Private Limited [^drhp-p31]"
           ],
           [
-            "Long-term borrowings",
-            "5.87",
-            "6.73",
-            "1.89",
-            "1.32",
-            "1.33"
-          ],
-          [
-            "Total assets",
-            "70.62",
-            "72.67",
-            "62.95",
-            "75.37",
-            "82.32"
-          ]
-        ],
-        "title": "Financial summary (₹ crore)"
-      },
-      {
-        "after_paragraph": "The stated use of proceeds has two heads: working capital requirements and general corporate purposes. The draft does not disclose the amount for the second.[^drhp-p48]",
-        "columns": [
-          "Object of the issue",
-          "Amount"
-        ],
-        "footnote": "Source: DRHP, p.48 [^drhp-p48]",
-        "rationale": "The offer's purpose is a key decision input; a compact table shows the disclosed amount and the gap.",
-        "rows": [
-          [
-            "Working capital requirements",
-            "₹1,130 lakhs (₹11.30 crore)"
+            "Working capital requirement",
+            "₹1,130 lakh [^drhp-p48]"
           ],
           [
             "General corporate purposes",
-            "Not disclosed"
+            "Amount not disclosed [^drhp-p48]"
+          ],
+          [
+            "Independent appraisal",
+            "None appointed [^drhp-p18]"
+          ],
+          [
+            "Monitoring agency",
+            "None appointed [^drhp-p18]"
           ]
         ],
-        "title": "Use of proceeds"
+        "title": "Issue snapshot"
+      },
+      {
+        "after_paragraph": "The restated financials in the DRHP show a shrinking top line and a bottom line that recovered sharply in the latest year.",
+        "columns": [
+          "Financial year",
+          "Revenue from operations (₹ crore)",
+          "Net profit after adjustments (₹ crore)",
+          "PBDIT (₹ crore)",
+          "Long-term borrowings (₹ crore)",
+          "Short-term borrowings (₹ crore)",
+          "Total assets (₹ crore)"
+        ],
+        "footnote": "Source: DRHP pages 26, 27, 111 [^drhp-p26] [^drhp-p27] [^drhp-p111]. Figures converted from ₹ lakh to ₹ crore.",
+        "rationale": "Presents the five-year trend in revenue, profit, and debt at a glance, essential for evaluating the company's financial trajectory.",
+        "rows": [
+          [
+            "FY2014",
+            "86.61",
+            "0.96",
+            "7.84",
+            "5.87",
+            "30.82",
+            "70.62"
+          ],
+          [
+            "FY2015",
+            "90.21",
+            "0.78",
+            "9.46",
+            "6.73",
+            "32.28",
+            "72.67"
+          ],
+          [
+            "FY2016",
+            "74.53",
+            "0.33",
+            "7.83",
+            "1.89",
+            "30.21",
+            "62.95"
+          ],
+          [
+            "FY2017",
+            "73.44",
+            "0.16",
+            "6.76",
+            "1.32",
+            "33.12",
+            "75.37"
+          ],
+          [
+            "FY2018",
+            "60.53",
+            "3.15",
+            "9.29",
+            "1.33",
+            "35.37",
+            "82.32"
+          ]
+        ],
+        "title": "Five-year financial summary"
       }
     ],
     "timeline": null

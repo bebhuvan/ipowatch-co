@@ -1,6 +1,24 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 9500,
+        "quantity": 225600
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 9600,
+        "quantity": 218400
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 9900,
+        "quantity": 213600
+      }
+    ]
+  },
   "core_path": "issues/dhanwel-hybrid-seeds-af4a5c/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +27,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.19-0244",
+  "dataset_version": "v3.2026.08.20-0243",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -97,6 +119,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -107,7 +133,7 @@
     }
   },
   "filings_path": "issues/dhanwel-hybrid-seeds-af4a5c/filings.json",
-  "generated_at": "2026-08-19T02:44:18+00:00",
+  "generated_at": "2026-08-20T02:43:43+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -187,11 +213,11 @@
         },
         {
           "company_name": "BSHSL",
-          "market_cap": "920",
+          "market_cap": "931",
           "net_sales_cr": 358,
           "pat_cr": 26.4,
-          "pb": 7.02,
-          "pe": 32.07
+          "pb": 7.11,
+          "pe": 32.45
         },
         {
           "company_name": "USASEEDS",
@@ -321,62 +347,62 @@
         "market_cap": "₹90.12",
         "pb": 4.58,
         "pe": 14.74,
-        "sector_pb": 1.7,
-        "sector_pe": 14.24
+        "sector_pb": 1.69,
+        "sector_pe": 14.2
       }
     }
   },
   "research_path": "issues/dhanwel-hybrid-seeds-af4a5c/research.json",
   "schema_version": "3.0.0",
   "slug": "dhanwel-hybrid-seeds-af4a5c",
-  "source_dataset_version": "v2026.08.19-0244",
+  "source_dataset_version": "v2026.08.20-0243",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7900",
-      "snapshot_at": "2026-08-19T02:44:11+00:00",
+      "snapshot_at": "2026-08-20T02:43:32+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7900",
-      "snapshot_at": "2026-08-19T02:44:11+00:00",
+      "snapshot_at": "2026-08-20T02:43:32+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7900",
-      "snapshot_at": "2026-08-19T02:44:12+00:00",
+      "snapshot_at": "2026-08-20T02:43:32+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7900",
-      "snapshot_at": "2026-08-19T02:44:10+00:00",
+      "snapshot_at": "2026-08-20T02:43:31+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-08-19T02:39:05+00:00",
+      "snapshot_at": "2026-08-20T02:38:12+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-08-19T02:39:06+00:00",
+      "snapshot_at": "2026-08-20T02:38:13+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000040",
-      "snapshot_at": "2026-08-19T02:41:59+00:00",
+      "snapshot_at": "2026-08-20T02:41:20+00:00",
       "source": "moneycontrol",
       "url": null
     }
@@ -388,8 +414,8 @@
           {
             "category": "qib",
             "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_offered": 28800,
+            "times_x": "0.0000"
           },
           {
             "category": "qib_fii",
@@ -417,15 +443,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 24000,
+            "shares_offered": 1404000,
+            "times_x": "0.0171"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 206400,
+            "shares_offered": 1267200,
+            "times_x": "0.1629"
           },
           {
             "category": "employee",
@@ -440,7 +466,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": null
+        "total_times_x": "0.0853"
       }
     },
     "consolidated": {
@@ -449,8 +475,8 @@
         {
           "category": "qib",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 28800,
+          "times_x": "0.0000"
         },
         {
           "category": "qib_fii",
@@ -478,27 +504,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 24000,
+          "shares_offered": 1404000,
+          "times_x": "0.0171"
         },
         {
           "category": "nii_gt_10l",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 844800,
+          "times_x": "0.0000"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 24000,
+          "shares_offered": 422400,
+          "times_x": "0.0568"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 206400,
+          "shares_offered": 1267200,
+          "times_x": "0.1629"
         },
         {
           "category": "employee",
@@ -519,8 +545,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": null
-    }
+      "total_times_x": "0.0853"
+    },
+    "overall_times_x": "0.0853"
   },
   "subscription_path": "issues/dhanwel-hybrid-seeds-af4a5c/subscription.json",
   "timeline": {

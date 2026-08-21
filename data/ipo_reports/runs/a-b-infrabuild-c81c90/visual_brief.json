@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.08.20-0358",
-  "estimated_cost_usd": 0.00103194,
+  "dataset_version": "v2026.08.21-0437",
+  "estimated_cost_usd": 0.00108654,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-08-20T03:58:40+00:00",
+  "generated_at": "2026-08-21T04:37:18+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,135 +24,160 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules and two rule weights throughout; serif typeface; single accent colour (e.g., deep blue) for table headers and pull-quote border.",
-      "Render the financial table with right-aligned numbers and a clear header row; use a light rule between rows.",
-      "Place the pull-quote as a standalone block with a left border in the accent colour, positioned after the paragraph on client concentration.",
-      "No decorative imagery or icons; keep the layout clean and newspaper-like."
+      "Use hairline rules and two rule weights; serif throughout; single accent colour (e.g., deep blue).",
+      "Tables should be set with minimal borders, clear column headers, and right-aligned numbers.",
+      "Pull quote should be set in larger serif italic, with a hairline rule above and below.",
+      "Industry snapshot as a stat strip with three numbers, followed by a two-bar growth chart; no icons."
     ],
     "formulas": [],
-    "industry_snapshot": null,
+    "industry_snapshot": {
+      "after_paragraph": "The filing's industry section is the context the company wants investors to see.",
+      "growth_bars": [
+        {
+          "value": "US$160B",
+          "width_pct": 74,
+          "year": "2017"
+        },
+        {
+          "projected": true,
+          "value": "US$215B",
+          "width_pct": 100,
+          "year": "2020"
+        }
+      ],
+      "growth_bars_label": "Logistics sector — projected growth",
+      "growth_bars_source": "DRHP industry report, p.58-59",
+      "rationale": "Provides the three headline industry figures and a growth bar for the logistics projection, all traceable to the draft.",
+      "split_bar": null,
+      "split_bar_label": null,
+      "split_bar_note": null,
+      "stats": [
+        {
+          "desc": "Construction's contribution to India's GDP at constant prices",
+          "val": "8%"
+        },
+        {
+          "desc": "Growth of eight core industries, 2017-18",
+          "val": "4.2%"
+        },
+        {
+          "desc": "Infrastructure investment needed by 2022",
+          "val": "₹50 trillion"
+        }
+      ]
+    },
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "The client list is also a dependency. Western Railway has been a client since 2006 and contributes 52% of the orders on hand",
-        "quote": "Western Railway alone accounts for 52% of the orders on hand.",
-        "rationale": "Highlights the extreme customer concentration that is a central risk."
+        "after_paragraph": "The largest customer is Western Railway, a client since 2006",
+        "quote": "Western Railway alone contributes 52% of orders on hand",
+        "rationale": "A single, sharp number that captures the extreme customer concentration risk."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The company is offering 44,28,000 equity shares of ₹10 each at a price not yet fixed [^drhp-p29]. The issue appears to be entirely fresh shares, with no offer-for-sale line [^drhp-p29]. Proceeds are earmarked for working capital (₹1,130 lakh) and general corporate purposes (amount not disclosed) [^drhp-p48]. No independent appraisal or monitoring agency has been appointed [^drhp-p18]. The lead manager is Mark Corporate Advisors Private Limited and the registrar is Bigshare Services Private Limited [^drhp-p31].",
-        "rationale": "Provides a compact summary of the offer's key terms, complementing the table and reinforcing the fresh-issue nature.",
+        "body_markdown": "The offer comprises 44,28,000 equity shares of ₹10 each, at an issue price to be determined. [^drhp-p29] The lead manager is Mark Corporate Advisors Private Limited and the registrar is Bigshare Services Private Limited. [^drhp-p31] Proceeds are earmarked for working capital (₹1,130 lakhs) and general corporate purposes (amount not disclosed). [^drhp-p48] No independent appraisal or monitoring agency has been appointed. [^drhp-p18]",
+        "rationale": "Condenses the key offer terms into a scannable sidebar for quick reference.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The offer is 44,28,000 equity shares of ₹10 each at an issue price the DRHP has not yet set",
+        "after_paragraph": "The cash flow picture is the risk the filing itself flags.",
         "columns": [
-          "Item",
-          "Detail"
+          "Metric",
+          "FY2014",
+          "FY2015",
+          "FY2016",
+          "FY2017",
+          "FY2018"
         ],
-        "footnote": "Source: DRHP pages 29, 31, 48, 18 [^drhp-p29] [^drhp-p31] [^drhp-p48] [^drhp-p18].",
-        "rationale": "Condenses the offer's key terms into a scannable reference, avoiding repetition in prose.",
+        "footnote": "Source: DRHP, pages 26, 27 and 111. [^drhp-p26] [^drhp-p27] [^drhp-p111]",
+        "rationale": "The core financial trend — falling revenue with a profit spike — is best seen in a compact period-over-period table.",
         "rows": [
           [
-            "Equity shares offered",
-            "44,28,000 shares of ₹10 each [^drhp-p29]"
-          ],
-          [
-            "Issue price",
-            "Not yet determined [^drhp-p29]"
-          ],
-          [
-            "Lead manager",
-            "Mark Corporate Advisors Private Limited [^drhp-p31]"
-          ],
-          [
-            "Registrar",
-            "Bigshare Services Private Limited [^drhp-p31]"
-          ],
-          [
-            "Working capital requirement",
-            "₹1,130 lakh [^drhp-p48]"
-          ],
-          [
-            "General corporate purposes",
-            "Amount not disclosed [^drhp-p48]"
-          ],
-          [
-            "Independent appraisal",
-            "None appointed [^drhp-p18]"
-          ],
-          [
-            "Monitoring agency",
-            "None appointed [^drhp-p18]"
-          ]
-        ],
-        "title": "Issue snapshot"
-      },
-      {
-        "after_paragraph": "The restated financials in the DRHP show a shrinking top line and a bottom line that recovered sharply in the latest year.",
-        "columns": [
-          "Financial year",
-          "Revenue from operations (₹ crore)",
-          "Net profit after adjustments (₹ crore)",
-          "PBDIT (₹ crore)",
-          "Long-term borrowings (₹ crore)",
-          "Short-term borrowings (₹ crore)",
-          "Total assets (₹ crore)"
-        ],
-        "footnote": "Source: DRHP pages 26, 27, 111 [^drhp-p26] [^drhp-p27] [^drhp-p111]. Figures converted from ₹ lakh to ₹ crore.",
-        "rationale": "Presents the five-year trend in revenue, profit, and debt at a glance, essential for evaluating the company's financial trajectory.",
-        "rows": [
-          [
-            "FY2014",
+            "Revenue from operations (₹ crore)",
             "86.61",
-            "0.96",
-            "7.84",
-            "5.87",
-            "30.82",
-            "70.62"
-          ],
-          [
-            "FY2015",
             "90.21",
-            "0.78",
-            "9.46",
-            "6.73",
-            "32.28",
-            "72.67"
-          ],
-          [
-            "FY2016",
             "74.53",
-            "0.33",
-            "7.83",
-            "1.89",
-            "30.21",
-            "62.95"
-          ],
-          [
-            "FY2017",
             "73.44",
-            "0.16",
-            "6.76",
-            "1.32",
-            "33.12",
-            "75.37"
+            "60.53"
           ],
           [
-            "FY2018",
-            "60.53",
-            "3.15",
-            "9.29",
-            "1.33",
-            "35.37",
+            "Profit before interest, depreciation and tax (₹ crore)",
+            "7.84",
+            "9.46",
+            "7.83",
+            "6.76",
+            "9.29"
+          ],
+          [
+            "Net profit after adjustments (₹ crore)",
+            "0.96",
+            "0.78",
+            "0.33",
+            "0.16",
+            "3.15"
+          ],
+          [
+            "Long-term borrowings (₹ crore)",
+            "5.87",
+            "6.73",
+            "1.89",
+            "1.32",
+            "1.33"
+          ],
+          [
+            "Short-term borrowings (₹ crore)",
+            "30.82",
+            "32.28",
+            "30.21",
+            "33.12",
+            "35.37"
+          ],
+          [
+            "Total assets (₹ crore)",
+            "70.62",
+            "72.67",
+            "62.95",
+            "75.37",
             "82.32"
           ]
         ],
         "title": "Five-year financial summary"
+      },
+      {
+        "after_paragraph": "The excerpts from page 55 include two unlabelled values, 12.39 and 44.71",
+        "columns": [
+          "Metric",
+          "FY2016",
+          "FY2017",
+          "FY2018"
+        ],
+        "footnote": "Source: DRHP, pages 54 and 55. [^drhp-p54] [^drhp-p55]",
+        "rationale": "Presents the only valuation metrics the filing discloses, including the unexplained values, without implying a price.",
+        "rows": [
+          [
+            "EPS (₹)",
+            "1.31",
+            "0.63",
+            "12.59"
+          ],
+          [
+            "Return on net worth (%)",
+            "4.14",
+            "1.97",
+            "28.14"
+          ],
+          [
+            "Unlabelled value (from p55)",
+            "—",
+            "—",
+            "12.39 / 44.71"
+          ]
+        ],
+        "title": "Reported accounting ratios"
       }
     ],
     "timeline": null

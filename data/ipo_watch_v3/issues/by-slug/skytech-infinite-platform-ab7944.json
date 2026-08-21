@@ -9,10 +9,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.20-0243",
+  "dataset_version": "v3.2026.08.21-0249",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -37,6 +41,14 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -45,7 +57,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -55,20 +75,26 @@
     }
   },
   "filings_path": "issues/skytech-infinite-platform-ab7944/filings.json",
-  "generated_at": "2026-08-20T02:43:43+00:00",
+  "generated_at": "2026-08-21T02:49:58+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:electric-equipment/skytechinfiniteplatform/SIP08",
+      "moneycontrol:company_code:13130048"
+    ],
     "board_type": "SME Board",
     "company_name": "Skytech Infinite Platform Limited",
     "issue_type": "IPO",
     "slug": "skytech-infinite-platform-ab7944",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "SKYTECH"
   },
   "listing_performance": {},
   "market_path": "issues/skytech-infinite-platform-ab7944/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 7700,
+    "issue_size_paise": 22681120000,
     "price_band_lower_paise": 7300,
     "price_band_upper_paise": 7700
   },
@@ -116,43 +142,43 @@
       "peers": [
         {
           "company_name": "SKYTECH",
-          "market_cap": "76",
+          "market_cap": "0",
           "net_sales_cr": 51.65,
           "pat_cr": 4.2,
-          "pb": 4.0,
-          "pe": 18.08
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "HONAUT",
-          "market_cap": "31,950",
+          "market_cap": "32,507",
           "net_sales_cr": 4681,
           "pat_cr": 525,
-          "pb": 7.16,
-          "pe": 57.97
+          "pb": 7.28,
+          "pe": 58.99
         },
         {
           "company_name": "RISHABH",
-          "market_cap": "2,690",
+          "market_cap": "2,651",
           "net_sales_cr": 775,
           "pat_cr": 81.53,
-          "pb": 3.61,
-          "pe": 33.27
+          "pb": 3.56,
+          "pe": 32.78
         },
         {
           "company_name": "ENRIN",
-          "market_cap": "1,24,058",
+          "market_cap": "1,22,384",
           "net_sales_cr": 7826,
           "pat_cr": 1100,
-          "pb": 25.78,
-          "pe": 83.37
+          "pb": 25.43,
+          "pe": 82.25
         },
         {
           "company_name": "ABB",
-          "market_cap": "1,56,812",
+          "market_cap": "1,58,296",
           "net_sales_cr": 13202,
           "pat_cr": 1668,
-          "pb": 16.79,
-          "pe": 52.48
+          "pb": 16.95,
+          "pe": 52.98
         }
       ],
       "revenue_mix": {
@@ -244,35 +270,45 @@
         "market_cap": "₹75.62",
         "pb": 3.98,
         "pe": 17.98,
-        "sector_pb": 2.95,
-        "sector_pe": 28.36
+        "sector_pb": 2.93,
+        "sector_pe": 27.66
       }
     }
   },
   "research_path": "issues/skytech-infinite-platform-ab7944/research.json",
   "schema_version": "3.0.0",
   "slug": "skytech-infinite-platform-ab7944",
-  "source_dataset_version": "v2026.08.20-0243",
+  "source_dataset_version": "v2026.08.21-0249",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-08-21T02:47:57+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-20T02:38:01+00:00",
+      "snapshot_at": "2026-08-21T02:44:42+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-08-20T02:38:11+00:00",
+      "snapshot_at": "2026-08-21T02:44:52+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.9900"
+  },
   "subscription_path": "issues/skytech-infinite-platform-ab7944/subscription.json",
   "timeline": {
     "close_date": "2026-08-18",
+    "listing_date": "2026-08-21",
     "open_date": "2026-08-14"
   },
   "url_path": "/ipos/skytech-infinite-platform/"

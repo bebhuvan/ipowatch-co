@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.08.20-0312",
-  "estimated_cost_usd": 0.00118496,
+  "dataset_version": "v2026.08.21-0347",
+  "estimated_cost_usd": 0.0012244400000000003,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-08-20T03:12:21+00:00",
+  "generated_at": "2026-08-21T03:47:04+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,13 +24,13 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules to separate table rows; keep the accent colour for the pull-quote and industry snapshot highlights.",
-      "The industry snapshot should sit between the market paragraphs, not replace them.",
-      "Tables should be full-width with a light serif font; numbers right-aligned."
+      "Use hairline rules to separate table rows; keep the accent colour for the pull-quote and industry snapshot only.",
+      "Render the industry snapshot as a stat strip with three headline numbers, two growth bars, and a split bar.",
+      "Tables should be set in a serif face with right-aligned numerals for the financial table."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The DRHP positions specialty chemicals as a growth slice",
+      "after_paragraph": "The sector context matters here because the company's growth story is about the industry growing, not about the company taking share.",
       "growth_bars": [
         {
           "value": "10–12% CAGR",
@@ -41,27 +41,27 @@
           "projected": true,
           "value": "12–14% CAGR",
           "width_pct": 100,
-          "year": "Forward"
+          "year": "FY17–20"
         }
       ],
-      "growth_bars_label": "Specialty chemicals segment — growth",
-      "growth_bars_source": "DRHP, p.94 [^drhp-p94]",
-      "rationale": "The industry section contains market size, growth, and composition data that are best shown as a snapshot.",
+      "growth_bars_label": "Specialty chemicals growth — actual vs projected",
+      "growth_bars_source": "DRHP industry section, p.94",
+      "rationale": "The industry section is rich with market-size and growth figures; a snapshot makes the scale and fragmentation scannable.",
       "split_bar": {
         "left_label": "Organised",
-        "left_pct": 25,
+        "left_pct": 27.5,
         "right_label": "Unorganised"
       },
-      "split_bar_label": "Market structure (SME share)",
-      "split_bar_note": "SMEs hold 70–75% of the specialty chemicals market.",
+      "split_bar_label": "Industry structure — SME share",
+      "split_bar_note": "SMEs hold 70–75% of the market; only a few Indian players compete globally.",
       "stats": [
         {
-          "desc": "Indian chemicals industry\n(excl. pharma & fertilisers), FY17",
-          "val": "₹5,800–6,200B"
+          "desc": "Indian chemicals industry\nFY17 (ex-pharma & fertilisers)",
+          "val": "₹5.8–6.2 lakh cr"
         },
         {
-          "desc": "Specialty chemicals segment\n(17% of industry)",
-          "val": "~₹1,000B"
+          "desc": "Specialty chemicals segment\n(≈17% of industry)",
+          "val": "~₹1 lakh cr"
         },
         {
           "desc": "Projected CAGR\nspecialty chemicals",
@@ -72,128 +72,104 @@
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration is high. The top 10 customers",
-        "quote": "More than half of the company's revenue comes from ten buyers, none of whom are under contract.",
-        "rationale": "A single sentence that captures the core risk of the business model."
+        "after_paragraph": "The customer base is narrow. In FY15, FY16, and FY17, the top 10 customers accounted for around 59%, 57%, and 59% of revenue from operations, respectively.",
+        "quote": "We have not entered into any long term or definitive agreements with our customers.",
+        "rationale": "This single sentence from the DRHP crystallises the customer-concentration risk better than any paraphrase."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The company is listing on NSE EMERGE, the SME platform of the National Stock Exchange [^drhp-p75]. The stated objects are to fund capital expenditure for a new manufacturing facility at GIDC Waghodia, Vadodara, Gujarat, and general corporate purposes [^drhp-p75]. The DRHP names Vivro Financial Services Private Limited [^drhp-p54] and Link Intime India Private Limited [^drhp-p55], though their roles are not disclosed in the available pages. The offer size, price band, and whether the issue is a fresh issue or an offer for sale are not disclosed in the available excerpts.",
-        "rationale": "Sidebar gives a quick reference for the issue's key facts, including what is not disclosed.",
+        "body_markdown": "The company is seeking a listing on the SME Platform of NSE, called NSE EMERGE [^drhp-p75]. The lead manager is Vivro Financial Services Private Limited [^drhp-p54]; the registrar is Link Intime India Private Limited [^drhp-p55]. The stated objects of the issue are: funding capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; general corporate purposes; and creating a public trading market for the equity shares [^drhp-p75]. The DRHP does not disclose the issue size, the price band, or whether any existing shareholder plans to sell shares in the offer.",
+        "rationale": "A sidebar neatly summarises the offer mechanics and the key undisclosed items, which are scattered across the prose.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The profit story has a clear turning point. The company lost",
+        "after_paragraph": "The DRHP restates six periods: the six months ended September 30, 2017, and the five fiscal years ended March 31, 2017, 2016, 2015, 2014, and 2013.",
         "columns": [
           "Period",
           "PAT (₹ crore)",
-          "Basic EPS (₹)",
           "Operating cash flow (₹ crore)",
-          "Total assets (₹ crore)"
+          "Total assets (₹ crore)",
+          "Basic EPS (₹)"
         ],
-        "footnote": "Source: DRHP restated financials, pp.49–50, 175, 177 [^drhp-p49][^drhp-p50][^drhp-p175][^drhp-p177]",
-        "rationale": "The core financial trend — profit turning positive, cash flow volatility — is best read as a table.",
+        "footnote": "Sources: PAT and periods from the Restated Summary Statement of Profit and Loss [^drhp-p49]; operating cash flow from the Restated Summary Cash Flow Statement [^drhp-p50]; total assets from the Restated Summary Statement of Assets and Liabilities [^drhp-p175]; EPS from the ratios annexure [^drhp-p177].",
+        "rationale": "The six-period restated financials are the core of the report; a table lets the reader compare trends at a glance.",
         "rows": [
           [
-            "Six months ended 30 Sep 2017",
-            "1.33",
-            "1.48",
-            "1.25",
-            "34.25"
-          ],
-          [
-            "FY2017",
-            "1.75",
-            "2.43",
-            "(3.50)",
-            "32.74"
-          ],
-          [
-            "FY2016",
-            "0.90",
-            "1.46",
-            "8.03",
-            "27.67"
-          ],
-          [
-            "FY2015",
-            "1.50",
-            "2.47",
-            "4.22",
-            "25.93"
-          ],
-          [
-            "FY2014",
-            "(0.12)",
-            "(0.20)",
-            "1.28",
-            "26.79"
-          ],
-          [
-            "FY2013",
+            "FY13",
             "(0.27)",
-            "(0.45)",
             "2.01",
-            "30.19"
+            "30.19",
+            "(0.45)"
+          ],
+          [
+            "FY14",
+            "(0.12)",
+            "1.28",
+            "26.79",
+            "(0.20)"
+          ],
+          [
+            "FY15",
+            "1.50",
+            "4.22",
+            "25.93",
+            "2.47"
+          ],
+          [
+            "FY16",
+            "0.90",
+            "8.03",
+            "27.67",
+            "1.46"
+          ],
+          [
+            "FY17",
+            "1.75",
+            "(3.50)",
+            "32.74",
+            "2.43"
+          ],
+          [
+            "H1 FY18",
+            "1.33",
+            "1.25",
+            "34.25",
+            "1.48"
           ]
         ],
-        "title": "Restated financial summary"
+        "title": "Restated financial summary (₹ crore, except EPS)"
       },
       {
-        "after_paragraph": "The issue parties are named. The DRHP names Vivro",
+        "after_paragraph": "Ownership is the governance story. The promoter group is led by 20 Microns Limited and three individuals: Chandresh S. Parikh and Atil C. Parikh, and Rajesh C. Parikh.",
         "columns": [
-          "Issue fact",
-          "Detail"
+          "Shareholder class",
+          "Shares held",
+          "% of pre-issue paid-up capital"
         ],
-        "footnote": "Source: DRHP, pp.54–55, 75 [^drhp-p54][^drhp-p55][^drhp-p75]",
-        "rationale": "Consolidates the sparse issue details and explicitly flags what is not disclosed.",
+        "footnote": "Sources: promoter holding from page 155 [^drhp-p155]; promoter group holding from page 162 [^drhp-p162].",
+        "rationale": "The near-total promoter ownership is a defining governance fact; a compact table makes the concentration unmistakable.",
         "rows": [
           [
-            "Listing platform",
-            "SME Platform of NSE (NSE EMERGE) [^drhp-p75]"
+            "Promoters",
+            "89,48,270",
+            "99.76%"
           ],
           [
-            "Entity named in the DRHP",
-            "Vivro Financial Services Private Limited [^drhp-p54]"
+            "Promoter group (excluding promoters)",
+            "21,510",
+            "0.24%"
           ],
           [
-            "Entity named in the DRHP",
-            "Link Intime India Private Limited [^drhp-p55]"
-          ],
-          [
-            "Roles of named entities",
-            "Not disclosed in available pages"
-          ],
-          [
-            "Stated object 1",
-            "Fund capital expenditure for new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat [^drhp-p75]"
-          ],
-          [
-            "Stated object 2",
-            "General corporate purposes [^drhp-p75]"
-          ],
-          [
-            "Stated object 3",
-            "Create a public trading market on NSE EMERGE; enhance visibility and brand [^drhp-p75]"
-          ],
-          [
-            "Offer size",
-            "Not disclosed in available pages"
-          ],
-          [
-            "Price band",
-            "Not disclosed in available pages"
-          ],
-          [
-            "Fresh issue vs offer for sale",
-            "Not disclosed in available pages"
+            "Total",
+            "89,69,780",
+            "100.00%"
           ]
         ],
-        "title": "Issue facts at a glance"
+        "title": "Pre-issue shareholding"
       }
     ],
     "timeline": null

@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.outline.schema",
-  "dataset_version": "v2026.08.21-0255",
-  "estimated_cost_usd": 0.007774900000000001,
+  "dataset_version": "v2026.08.22-0246",
+  "estimated_cost_usd": 0.006386660000000001,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-08-21T02:55:23+00:00",
+  "generated_at": "2026-08-22T02:46:26+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -19,51 +19,47 @@
   "notes": "Stage-2 outline.",
   "outline": {
     "dek_candidates": [
-      "What the filing discloses about 20 Microns Nano Minerals' business, the NSE Emerge listing, the use of proceeds, six periods of restated financials, and the risks the company concedes — every number sourced to the DRHP.",
-      "A plain-language read of 20 Microns Nano Minerals' DRHP: what it does, how it is owned, what it is raising the money for, what the restated numbers show, and where the filing says the risks are."
+      "What the DRHP discloses about 20 Microns Nano Minerals Limited's business, offer, financials and risks — sourced to the filing, page by page.",
+      "A plain-language reading of the DRHP for 20 Microns Nano Minerals: specialty chemicals, a promoter-run sales network, and an SME listing."
     ],
     "design_notes": [
-      "Convert every lakh figure to ₹ crore by dividing by 100; if a number is not in the extracted facts, write 'not disclosed' rather than filling it in.",
-      "Each section should teach the concept before citing: for example, explain what it means to sell through a corporate promoter's network, then give the 99.76% promoter holding.",
-      "No valuation section — the filing excerpts contain no peer multiples; do not invent a price range or a listing outlook.",
-      "Use tables for the six-period financials, the objects of the issue, and pre-issue shareholding; avoid bullet-thickets elsewhere in the prose."
+      "Keep every financial figure in ₹ crore in the prose, with a short note that the DRHP reports in ₹ lakh.",
+      "Do not write a valuation section; state plainly in the gaps that no peer data is in the extracts.",
+      "Use exactly five risk items, each tied to a specific disclosure, not generic IPO risk factors.",
+      "Use the direct quote at page 112 as a pull quote — it captures the company's most distinctive dependency.",
+      "The financial table should show all six periods (H1 FY18, FY17, FY16, FY15, FY14, FY13) in one glance."
     ],
     "gaps": [
       {
-        "blocking": false,
-        "reason": "The extracted facts name only the lead manager, registrar and objects; they do not state the issue size, the OFS component, the price band or any selling shareholder.",
-        "topic": "Offer size, fresh issue vs OFS split, price band, and selling shareholder identity"
+        "blocking": true,
+        "reason": "The restated P&L in the digest includes PAT, EPS and cash flow but not revenue figures; the financial narrative cannot show a revenue trend.",
+        "topic": "Revenue from operations by period"
+      },
+      {
+        "blocking": true,
+        "reason": "No offer-structure figures appear in the extracted facts; the report must describe them as not disclosed rather than estimate them.",
+        "topic": "Offer size, fresh issue vs offer for sale split, selling shareholder, price band"
       },
       {
         "blocking": false,
-        "reason": "The extracted financial facts cover PAT, operating cash flow, total assets and EPS only; the full restated statements on pages 49 and 175 would be needed for the other lines.",
-        "topic": "Revenue from operations, EBITDA, debt and net worth across all periods"
-      },
-      {
-        "blocking": false,
-        "reason": "No named peers, P/E, EPS, NAV, RoNW or implied price range appear in the extracted facts; the valuation section must be dropped or replaced with an explicit 'not disclosed' note.",
+        "reason": "The digest contains no named peers, P/E, EPS, NAV or RoNW data; no peer table or implied price range can be built.",
         "topic": "Peer comparison and valuation multiples"
       },
       {
         "blocking": false,
-        "reason": "The industry section describes fragmentation and global competition but does not name specific competitors in the extracted facts.",
-        "topic": "Named competitors"
+        "reason": "The extracted restated statements provide PAT, cash flow, assets and EPS but not EBITDA or borrowings detail.",
+        "topic": "EBITDA and detailed debt schedule"
       },
       {
         "blocking": false,
-        "reason": "The DRHP names the four buckets but the extracted facts contain no segment-wise revenue split.",
-        "topic": "Revenue split by product bucket (FA, CMM, SM, HM)"
-      },
-      {
-        "blocking": false,
-        "reason": "The risk factors mention legal proceedings and non-compliances, but the extracted facts give no names, amounts, or case status.",
-        "topic": "Litigation particulars, auditor qualifications, and regulatory penalties"
+        "reason": "The filing names product groups but the digest does not disclose a revenue split across functional additives, chemically modified minerals, soft minerals or hard minerals.",
+        "topic": "Segment-wise revenue split by product vertical"
       }
     ],
     "kicker_candidates": [
-      "IPO Watch research report",
-      "DRHP teardown | SME IPO",
-      "Primary markets | SME listing"
+      "IPO Watch Research Report",
+      "DRHP Deep Read",
+      "Filing Report: 20 Microns Nano Minerals"
     ],
     "section_order": [
       "intro",
@@ -78,42 +74,53 @@
       "business": {
         "beats": [
           {
-            "beat": "The company is a processor, not a mine owner or a bare trader: it takes minerals and processes them into additives and chemically modified minerals that give materials particular properties.",
-            "kind": "definition",
-            "source_ids": [
-              "drhp-p112"
-            ]
-          },
-          {
-            "beat": "The DRHP groups its sales into four product buckets: Functional Additives (FA), Chemically Modified Minerals (CMM), Soft Minerals (SM) and Hard Minerals (HM).",
+            "beat": "The company's product range spans four groups: functional additives, chemically modified minerals, soft minerals and hard minerals; it calls its diversified product portfolio a competitive strength.",
             "kind": "claim",
             "source_ids": [
-              "drhp-p112"
+              "drhp-p112",
+              "drhp-p113"
             ]
           },
           {
-            "beat": "It does not run the sales function entirely on its own: a long-term arrangement lets its corporate promoter, 20 Microns Limited, market and sell these products through its network.",
+            "beat": "Sales run through a long-term arrangement with corporate promoter 20 Microns Limited, which markets and sells the company's products through its network — the filing describes deriving substantial synergies from this promoter.",
             "kind": "claim",
             "source_ids": [
-              "drhp-p112"
+              "drhp-p112",
+              "drhp-p113"
             ]
           },
           {
-            "beat": "Customer concentration is high enough to matter: the top 10 customers generated around 59%, 57% and 59% of revenue from operations in FY15, FY16 and FY17.",
+            "beat": "How contracts are won: there are no long-term or definitive customer agreements; volume, pricing and other terms are governed by purchase orders, and the same is true for raw-material suppliers.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p26",
+              "drhp-p25"
+            ]
+          },
+          {
+            "beat": "Customer concentration is high: the top 10 customers accounted for about 59% of revenue from operations in FY15, 57% in FY16 and 59% in FY17.",
             "kind": "number",
             "source_ids": [
               "drhp-p128"
             ]
           },
           {
-            "beat": "Exports are modest and concentrated: ₹10.68 crore in total over the past five years, to Nigeria, Saudi Arabia and Sri Lanka.",
+            "beat": "Exports over the past five years totalled ₹1,068.18 lakh (₹10.68 crore), going to Nigeria, Saudi Arabia and Sri Lanka.",
             "kind": "number",
             "source_ids": [
               "drhp-p128"
             ]
           },
           {
-            "beat": "The filing's own list of strengths is diversified product portfolio, diversified user industries, import substitution, support of the holding company, product innovation and R&D, and a strong management team.",
+            "beat": "The operating footprint disclosed in the filing includes manufacturing facilities at Plot 347, GIDC Waghodia, Vadodara and at Plot 104/3, Thenkasi Road, Pathur Village, Tirunelveli, Tamil Nadu, plus administrative offices in Bhuj and Udaipur; the new facility is planned at Plot 336, GIDC Waghodia.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p20",
+              "drhp-p75"
+            ]
+          },
+          {
+            "beat": "Other strengths the DRHP claims: diversified user industries, import substitution, product innovation and continuous R&D, and a strong management team.",
             "kind": "claim",
             "source_ids": [
               "drhp-p113",
@@ -121,70 +128,58 @@
             ]
           }
         ],
-        "heading": "What the company does",
-        "purpose": "Explain the business model in plain words, then ground it in the DRHP's own disclosures: product buckets, sales channel, customer concentration and exports."
+        "heading": "What the company does and how it earns",
+        "purpose": "Explain the product lines, sales model, customer concentration, exports and operating footprint in plain terms, backed by DRHP specifics."
       },
       "financials": {
         "beats": [
           {
-            "beat": "The DRHP restates six periods: the six months ended September 30, 2017, and the five fiscal years ended March 31, 2017, 2016, 2015, 2014 and 2013.",
-            "kind": "claim",
-            "source_ids": [
-              "drhp-p49"
-            ]
+            "beat": "The DRHP's restated financial statements are presented in ₹ lakh; this report converts them to ₹ crore for readability, using ₹100 lakh = ₹1 crore.",
+            "kind": "definition",
+            "source_ids": []
           },
           {
-            "beat": "Profit after tax: the company lost ₹0.27 crore in FY13 and ₹0.12 crore in FY14, then earned ₹1.50 crore in FY15, ₹0.90 crore in FY16, ₹1.75 crore in FY17, and ₹1.33 crore in the six months to September 30, 2017.",
+            "beat": "Profit after tax was ₹1.33 crore in the six months to September 2017, ₹1.75 crore in FY17, ₹0.90 crore in FY16 and ₹1.50 crore in FY15, against losses of ₹0.12 crore in FY14 and ₹0.27 crore in FY13.",
             "kind": "number",
             "source_ids": [
               "drhp-p49"
             ]
           },
           {
-            "beat": "Operating cash flow is lumpy: ₹2.01 crore in FY13, ₹1.28 crore in FY14, ₹4.22 crore in FY15, ₹8.03 crore in FY16, then a negative ₹3.50 crore in FY17; it was ₹1.25 crore in the first half of FY18.",
+            "beat": "Operating cash flow was negative in FY17 at -₹3.50 crore, after +₹8.03 crore in FY16 and +₹4.22 crore in FY15; the six months to September 2017 showed +₹1.25 crore.",
             "kind": "number",
             "source_ids": [
-              "drhp-p50"
+              "drhp-p50",
+              "drhp-p22"
             ]
           },
           {
-            "beat": "Total assets stood at ₹30.19 crore at FY13, dipped to ₹25.93 crore at FY15, and rose to ₹34.25 crore by September 30, 2017.",
+            "beat": "Total assets were ₹34.25 crore at September 30, 2017, compared with ₹32.74 crore at FY17 end and ₹30.19 crore at FY13 end.",
             "kind": "number",
             "source_ids": [
               "drhp-p175"
             ]
           },
           {
-            "beat": "Basic earnings per share: ₹(0.45) in FY13, ₹(0.20) in FY14, ₹2.47 in FY15, ₹1.46 in FY16, ₹2.43 in FY17, and ₹1.48 for the six months to September 30, 2017.",
+            "beat": "Basic earnings per share were ₹1.48 for the six months to September 2017, ₹2.43 for FY17, ₹1.46 for FY16 and ₹2.47 for FY15, and negative in FY13 and FY14.",
             "kind": "number",
             "source_ids": [
               "drhp-p177"
             ]
           },
           {
-            "beat": "Contingent liabilities stood at ₹29.11 lakh as at September 30, 2017, and the filing notes that unsecured loans taken by the company, promoters or group companies can be recalled by lenders at any time.",
-            "kind": "number",
-            "source_ids": [
-              "drhp-p21",
-              "drhp-p24"
-            ]
-          },
-          {
-            "beat": "Revenue from operations, EBITDA, debt and net worth line items are not in the extracted fact set; the writer must pull the full Restated P&L and Balance Sheet from pages 49 and 175 or explicitly say these are not available.",
-            "kind": "narrative",
-            "source_ids": [
-              "drhp-p49",
-              "drhp-p175"
-            ]
+            "beat": "Revenue from operations, EBITDA and a detailed debt schedule were not present in the extracts reviewed; those will be flagged as not disclosed rather than estimated.",
+            "kind": "claim",
+            "source_ids": []
           }
         ],
-        "heading": "Six periods of restated financials",
-        "purpose": "Walk through the restated financial statements period by period — profit, cash flow, assets, EPS — and flag what the extracted facts do not cover."
+        "heading": "The numbers: profit, cash and balance sheet",
+        "purpose": "Present the restated financial statements across all six reported periods in ₹ crore, with a clear note on what the extracted filing does not show."
       },
       "governance": {
         "beats": [
           {
-            "beat": "The promoter group is led by 20 Microns Limited — the same corporate promoter through whose network the company sells — and three individuals: Chandresh S. Parikh, Atil C. Parikh and Rajesh C. Parikh.",
+            "beat": "The promoters are corporate promoter 20 Microns Limited and individuals Mr. Chandresh S. Parikh, Mr. Atil C. Parikh and Mr. Rajesh C. Parikh.",
             "kind": "claim",
             "source_ids": [
               "drhp-p155",
@@ -192,7 +187,7 @@
             ]
           },
           {
-            "beat": "Pre-issue, the promoters hold 89,48,270 equity shares, or 99.76% of paid-up capital; the rest of the promoter group holds 21,510 shares, or 0.24%.",
+            "beat": "Promoters hold 89,48,270 equity shares, or 99.76% of the pre-issue paid-up equity share capital; the promoter group excluding promoters holds 21,510 shares, or 0.24%.",
             "kind": "number",
             "source_ids": [
               "drhp-p155",
@@ -200,68 +195,71 @@
             ]
           },
           {
-            "beat": "Issued, subscribed and paid-up capital as at September 30, 2017 was ₹897 lakh (89,70,000 shares of ₹10 each); authorised capital is ₹2,000 lakh.",
+            "beat": "At September 30, 2017, issued, subscribed and paid-up capital was 89,70,000 equity shares of ₹10 each (₹897 lakh), against authorised capital of ₹2,000 lakh.",
             "kind": "number",
             "source_ids": [
               "drhp-p190"
             ]
           },
           {
-            "beat": "Related-party transactions are structural: the DRHP discloses them for the last five financial years and the six months to September 30, 2017, and warns they may continue.",
+            "beat": "The company has entered into related-party transactions during each of the last five financial years and the six months ended September 30, 2017, as disclosed under Accounting Standard 18.",
             "kind": "claim",
             "source_ids": [
-              "drhp-p166",
+              "drhp-p166"
+            ]
+          },
+          {
+            "beat": "The filing admits past instances of non-filings, incorrect filings or delays in filing statutory forms with the RoC, and says the company has not yet obtained certain statutory and regulatory approvals for its manufacturing facility at Plot 9–10, GIDC Waghodia, Vadodara.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p18",
+              "drhp-p19"
+            ]
+          },
+          {
+            "beat": "Unsecured loans taken by the company, promoters, group companies or associates can be recalled by lenders at any time, and loan agreements carry restrictive covenants and unconditional rights in favour of lenders.",
+            "kind": "claim",
+            "source_ids": [
               "drhp-p24"
             ]
           },
           {
-            "beat": "The company concedes operational and compliance gaps: it does not own the premises of two manufacturing facilities and its Bhuj and Udaipur administrative offices, and there have been past instances of late or incorrect filings with the RoC.",
+            "beat": "The company, promoters, group company and directors are parties to certain legal proceedings, and contingent liabilities aggregated to ₹29.11 lakh at September 30, 2017.",
             "kind": "claim",
             "source_ids": [
-              "drhp-p20",
-              "drhp-p18"
+              "drhp-p17",
+              "drhp-p21"
             ]
-          },
-          {
-            "beat": "The extracted facts contain no particulars of litigation, auditor qualifications or regulatory penalties; that absence is a gap, not a clean bill of health.",
-            "kind": "narrative",
-            "source_ids": []
           }
         ],
-        "heading": "Ownership and governance",
-        "purpose": "Name the promoters, quantify pre-issue control, and surface the governance flags the filing itself discloses."
+        "heading": "Ownership and governance flags",
+        "purpose": "Name the promoters, quantify pre-issue control, and surface the disclosure red flags a reader should weigh."
       },
       "industry": {
         "beats": [
           {
-            "beat": "Specialty chemicals are high-value, lower-volume chemicals sold for a particular function; this is the space the company operates in.",
-            "kind": "definition",
-            "source_ids": []
-          },
-          {
-            "beat": "The Indian chemicals industry (excluding pharmaceuticals and fertilisers) was estimated at ₹5.8–6.2 lakh crore in FY17; specialty chemicals, excluding agrochemicals and dyestuff, were about 17% of that, or roughly ₹1 lakh crore.",
+            "beat": "The company operates in specialty chemicals, which the DRHP says made up about 17% of the Indian chemicals industry at roughly ₹1,000 billion; CRISIL Research estimated the whole Indian chemicals industry at ₹5,800–6,200 billion in fiscal 2017.",
             "kind": "number",
             "source_ids": [
               "drhp-p92"
             ]
           },
           {
-            "beat": "Another DRHP estimate puts the specialty chemicals segment at ₹1,44,300 crore, and the segment is said to have grown at 10–12% CAGR from fiscal 2014 to 2017.",
-            "kind": "number",
-            "source_ids": [
-              "drhp-p94",
-              "drhp-p92"
-            ]
-          },
-          {
-            "beat": "CRISIL Research forecasts specialty chemicals to grow at 12–14% CAGR; the DRHP also lists sub-segment forecasts of 10–15% CAGR for polymer additives, construction chemicals, water chemicals, personal care ingredients, textiles, surfactants and flavours & fragrances.",
+            "beat": "The specialty chemicals segment grew at 10–12% CAGR from fiscal 2014 to 2017 and is forecast to grow at 12–14% CAGR going forward; within it, construction chemicals, water chemicals and personal care ingredients are each expected to grow at 15% CAGR, surfactants at 13%, and polymer additives at 10%.",
             "kind": "number",
             "source_ids": [
               "drhp-p94"
             ]
           },
           {
-            "beat": "The market is highly fragmented — SMEs hold 70–75% share — and only a few Indian players have the scale or capability to compete with global giants on product development and innovation.",
+            "beat": "CRISIL Research expects polymer demand to grow at 9–10% CAGR between fiscals 2017 and 2020 and demand for plastic products at 11–13%.",
+            "kind": "number",
+            "source_ids": [
+              "drhp-p103"
+            ]
+          },
+          {
+            "beat": "Competition is highly fragmented — SMEs hold 70–75% market share — but only a few Indian players have the scale to compete with global giants on product development and innovation.",
             "kind": "claim",
             "source_ids": [
               "drhp-p94",
@@ -269,77 +267,54 @@
             ]
           },
           {
-            "beat": "Import substitution is a stated tailwind: chemicals imports have grown at 6.4% CAGR versus 6% for exports, and China's stricter environmental rules have constrained its chemical manufacturing output, turning buyers elsewhere.",
-            "kind": "number",
-            "source_ids": [
-              "drhp-p92",
-              "drhp-p96"
-            ]
-          },
-          {
-            "beat": "Policy context: a Draft National Chemical Policy aims to raise chemicals' share of GDP, FDI of up to 100% is allowed, four PCPIRs are approved, and GST came into effect on July 1, 2017.",
+            "beat": "The DRHP's macro story leans on rising private consumption (58% of GDP), urbanisation, 7.1% GDP growth in fiscal 2017, 100% FDI in chemicals, and a Draft National Chemical Policy aimed at raising the chemicals sector's share of GDP.",
             "kind": "claim",
             "source_ids": [
-              "drhp-p95",
+              "drhp-p88",
+              "drhp-p90",
+              "drhp-p87",
               "drhp-p96",
-              "drhp-p111"
+              "drhp-p95"
             ]
           },
           {
-            "beat": "Downstream demand that matters to this company: paints at ₹40,100 crore, organised cosmetics and toiletries at ₹43,000–46,000 crore, and polymer and plastic-product demand expected to grow at 9–10% and 11–13% CAGRs respectively.",
-            "kind": "number",
+            "beat": "It also acknowledges headwinds: chemicals imports have grown slightly faster than exports (6.4% CAGR vs 6% CAGR), and exports to Europe face strict REACH regulation.",
+            "kind": "claim",
             "source_ids": [
-              "drhp-p106",
-              "drhp-p108",
-              "drhp-p103"
+              "drhp-p92",
+              "drhp-p110"
+            ]
+          },
+          {
+            "beat": "Import substitution is one of the company's stated strengths — relevant because China, a major commodity-chemicals player, has seen stricter environmental regulations since 2015 curb its output.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p113",
+              "drhp-p96"
             ]
           }
         ],
-        "heading": "Industry and market",
-        "purpose": "Set the sector context: size, growth, competitive structure, demand drivers, and policy tailwinds, all as the DRHP describes them."
+        "heading": "The market: specialty chemicals",
+        "purpose": "Set out the size, growth, competition and headwinds of the specialty chemicals market as described in the DRHP's industry chapter."
       },
       "intro": {
         "beats": [
           {
-            "beat": "20 Microns Nano Minerals processes and sells specialty chemicals — functional additives, chemically modified minerals, and soft and hard minerals — used by industrial customers.",
+            "beat": "20 Microns Nano Minerals is an Indian processor and seller of specialty chemicals — functional additives, chemically modified minerals, soft minerals and hard minerals — with a long-term arrangement under which its corporate promoter, 20 Microns Limited, markets and sells the products through the promoter's network.",
             "kind": "definition",
             "source_ids": [
               "drhp-p112"
             ]
           },
           {
-            "beat": "The company is tightly held: 20 Microns Limited and three individuals — Chandresh S. Parikh, Atil C. Parikh and Rajesh C. Parikh — together own 99.76% of the pre-issue equity.",
-            "kind": "claim",
-            "source_ids": [
-              "drhp-p155",
-              "drhp-p156"
-            ]
-          },
-          {
-            "beat": "It sells largely through its corporate promoter's network and, by its own admission, works on purchase orders rather than long-term customer contracts.",
-            "kind": "claim",
-            "source_ids": [
-              "drhp-p112",
-              "drhp-p26"
-            ]
-          },
-          {
-            "beat": "This is an SME IPO headed for NSE Emerge; the stated use of proceeds is a new manufacturing facility at GIDC Waghodia, Vadodara, plus general corporate purposes.",
+            "beat": "The public issue is aimed at listing on NSE's SME platform and is intended partly to fund a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, and partly to create a public trading market for the shares.",
             "kind": "claim",
             "source_ids": [
               "drhp-p75"
             ]
           },
           {
-            "beat": "The restated numbers show profit in every year since FY15, but operating cash flow was negative ₹3.50 crore in FY17 despite a ₹1.75 crore profit.",
-            "kind": "number",
-            "source_ids": [
-              "drhp-p49",
-              "drhp-p50"
-            ]
-          },
-          {
-            "beat": "The lead manager is Vivro Financial Services Private Limited and the registrar is Link Intime India Private Limited.",
+            "beat": "The DRHP names Vivro Financial Services Pvt Ltd as lead manager and Link Intime India Pvt Ltd as registrar.",
             "kind": "claim",
             "source_ids": [
               "drhp-p54",
@@ -348,19 +323,12 @@
           }
         ],
         "heading": null,
-        "purpose": "Orient the reader in a few paragraphs: who this company is, what it does, who controls it, and what the issue is about."
+        "purpose": "Orient the reader in one or two paragraphs: who the company is, what it is selling, and what this IPO is for."
       },
       "offer": {
         "beats": [
           {
-            "beat": "This is an SME IPO; the DRHP says the shares will be listed on the SME Platform of NSE, called NSE EMERGE.",
-            "kind": "claim",
-            "source_ids": [
-              "drhp-p75"
-            ]
-          },
-          {
-            "beat": "The lead manager is Vivro Financial Services Private Limited and the registrar is Link Intime India Private Limited.",
+            "beat": "The lead manager named in the DRHP is Vivro Financial Services Private Limited; the registrar is Link Intime India Private Limited.",
             "kind": "claim",
             "source_ids": [
               "drhp-p54",
@@ -368,33 +336,32 @@
             ]
           },
           {
-            "beat": "The stated objects of the issue are: fund capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; general corporate purposes; and creating a public trading market for the shares to enhance visibility and brand.",
+            "beat": "The stated objects of the issue are: to fund capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara; general corporate purposes; and to create a public trading market for the equity shares by listing them on the SME Platform of NSE, called NSE EMERGE, to enhance visibility and brand.",
             "kind": "claim",
             "source_ids": [
               "drhp-p75"
             ]
           },
           {
-            "beat": "The extracted facts do not state the issue size, the fresh-issue versus offer-for-sale split, the price band, or the name of any selling shareholder; these must be reported as not disclosed rather than estimated.",
-            "kind": "narrative",
+            "beat": "The listing is on the SME platform of NSE, not the main board, per the stated object of the issue.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p75"
+            ]
+          },
+          {
+            "beat": "The extracted DRHP does not disclose the issue size, the split between fresh issue and offer for sale, any selling shareholder, or the price band; this report will describe those as not disclosed rather than estimate them.",
+            "kind": "claim",
             "source_ids": []
           }
         ],
         "heading": "The offer and what the money is for",
-        "purpose": "Describe the issue as far as the filing discloses it: listing platform, intermediaries, and the stated objects of the issue."
+        "purpose": "Describe the intermediaries, the stated objects of the issue, and what the filing does not disclose about the offer structure."
       },
       "risks": {
         "beats": [
           {
-            "beat": "Sales run on purchase orders, not contracts: the filing says there are no long-term or definitive agreements with customers, and the top 10 customers bring in around 59% of revenue each year — so losing even one relationship is visible quickly.",
-            "kind": "claim",
-            "source_ids": [
-              "drhp-p26",
-              "drhp-p128"
-            ]
-          },
-          {
-            "beat": "Distribution depends on a related party: products are marketed and sold through the corporate promoter 20 Microns Limited's network, so a disruption to that arrangement hits the sales channel directly.",
+            "beat": "Revenue is tied to the corporate promoter's sales network: the company relies on a long-term arrangement under which 20 Microns Limited markets and sells its products, so any disruption to that affiliate relationship would hit the top line directly.",
             "kind": "claim",
             "source_ids": [
               "drhp-p112",
@@ -402,60 +369,61 @@
             ]
           },
           {
-            "beat": "Some sites are on borrowed land and one plant is missing licences: the company does not own the premises of two manufacturing facilities and its administrative offices, and it has not yet obtained all statutory approvals for the Plot 9–10, GIDC Waghodia facility, leaving it open to penalties.",
+            "beat": "Customer concentration is high — top 10 customers produced roughly 59% of operating revenue in FY15 and FY17 and 57% in FY16 — and no customer is bound by a long-term agreement, leaving volume and price to purchase orders.",
             "kind": "claim",
             "source_ids": [
-              "drhp-p20",
-              "drhp-p19"
+              "drhp-p128",
+              "drhp-p26"
             ]
           },
           {
-            "beat": "Cash flow can turn negative even in a profitable year: FY17 produced ₹1.75 crore of profit but ₹3.50 crore of negative operating cash flow, and the filing itself flags negative cash flows in previous years as a risk.",
-            "kind": "number",
+            "beat": "Operating cash flow went negative in FY17 (-₹3.50 crore) even though the company was profitable; the DRHP itself flags negative cash flows in previous financial years as a risk factor.",
+            "kind": "claim",
             "source_ids": [
-              "drhp-p49",
               "drhp-p50",
               "drhp-p22"
             ]
           },
           {
-            "beat": "Related-party and promoter concentration are interlocked: related-party transactions have occurred over five years and may continue, and promoters control 99.76% pre-issue — minority investors are exposed to related-party pricing and governance choices.",
+            "beat": "The company does not yet hold all statutory and regulatory approvals for its Plot 9–10, GIDC Waghodia facility and has a history of delayed or incorrect RoC filings, creating exposure to penalties.",
             "kind": "claim",
             "source_ids": [
-              "drhp-p24",
-              "drhp-p155",
-              "drhp-p166"
+              "drhp-p19",
+              "drhp-p18"
+            ]
+          },
+          {
+            "beat": "Related-party transactions are recurring, and unsecured loans are recallable by lenders at any time; combined with restrictive loan covenants, these could constrain the company's ability to expand.",
+            "kind": "claim",
+            "source_ids": [
+              "drhp-p166",
+              "drhp-p24"
             ]
           }
         ],
-        "heading": "Five risks the DRHP itself concedes",
-        "purpose": "Give the reader the material, company-specific risks the filing flags, not generic IPO boilerplate."
+        "heading": "Five material risks from the filing",
+        "purpose": "Give the reader the specific, company-level risks that matter most, not generic IPO boilerplate."
       }
     },
     "title_candidates": [
-      "20 Microns Nano Minerals: inside the DRHP",
-      "What 20 Microns Nano Minerals' DRHP actually says",
-      "20 Microns Nano Minerals: a specialty-chemicals processor seeks an SME listing"
+      "20 Microns Nano Minerals: a specialty chemicals SME IPO, page by page",
+      "Inside the DRHP: 20 Microns Nano Minerals Limited",
+      "The DRHP for 20 Microns Nano Minerals: what the filing actually says"
     ],
     "visual_targets": [
       {
         "kind": "table",
-        "purpose": "Six-period restated summary: PAT, operating cash flow, total assets, EPS — every figure in ₹ crore, with ₹ per share for EPS, sourced to pages 49, 50, 175 and 177.",
+        "purpose": "Six-period restated profit, operating cash flow, total assets and EPS, presented in ₹ crore alongside the DRHP's ₹ lakh figures.",
         "where": "financials"
       },
       {
         "kind": "table",
-        "purpose": "Objects of the issue: the new manufacturing facility at GIDC Waghodia, general corporate purposes, and the NSE Emerge listing, as listed on page 75.",
-        "where": "offer"
-      },
-      {
-        "kind": "table",
-        "purpose": "Pre-issue shareholding: promoters at 99.76% and promoter group (excluding promoters) at 0.24%, sourced to pages 155 and 162.",
-        "where": "governance"
+        "purpose": "Specialty chemicals sub-segment growth forecasts named in the DRHP, with page citations.",
+        "where": "industry"
       },
       {
         "kind": "pull_quote",
-        "purpose": "Quote from page 26: 'We have not entered into any long term or definitive agreements with our customers' — the sentence that frames the customer-concentration risk.",
+        "purpose": "Direct quote from page 112: the long-term arrangement with the corporate promoter to market and sell products through its network.",
         "where": "business"
       }
     ]

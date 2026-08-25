@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.22-0240",
+  "dataset_version": "v3.2026.08.25-0244",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6347_31122025181005.zip",
     "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/Fascinate Textiles Limited_RHP.zip"
@@ -23,6 +23,10 @@
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -48,6 +52,26 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -56,7 +80,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -66,20 +98,30 @@
     }
   },
   "filings_path": "issues/fascinate-textiles-ad3c91/filings.json",
-  "generated_at": "2026-08-22T02:40:37+00:00",
+  "generated_at": "2026-08-25T02:44:44+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:textilesapparel/fascinatetextiles/FTL04",
+      "moneycontrol:company_code:16070402"
+    ],
     "board_type": "SME Board",
     "company_name": "Fascinate Textiles Limited",
     "issue_type": "IPO",
     "slug": "fascinate-textiles-ad3c91",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "FASCINATE"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -2397,
+    "current_price_paise": 11480,
+    "listing_gain_bps": -2000
+  },
   "market_path": "issues/fascinate-textiles-ad3c91/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 15100,
+    "issue_size_paise": 64833360000,
     "price_band_lower_paise": 14200,
     "price_band_upper_paise": 15100
   },
@@ -127,27 +169,27 @@
       "peers": [
         {
           "company_name": "FASCINATE",
-          "market_cap": "215",
+          "market_cap": "158",
           "net_sales_cr": 117,
           "pat_cr": 15.1,
-          "pb": 6.84,
-          "pe": 14.24
+          "pb": 5.03,
+          "pe": 10.46
         },
         {
           "company_name": "IRISDOREME",
-          "market_cap": "1,128",
+          "market_cap": "1,085",
           "net_sales_cr": 190,
           "pat_cr": 16.19,
-          "pb": 7.96,
-          "pe": 64.19
+          "pb": 7.73,
+          "pe": 62.39
         },
         {
           "company_name": "KKCL",
-          "market_cap": "3,196",
+          "market_cap": "3,191",
           "net_sales_cr": 1002,
           "pat_cr": 144,
-          "pb": 3.32,
-          "pe": 21.58
+          "pb": 3.31,
+          "pe": 21.56
         }
       ],
       "revenue_mix": {
@@ -293,42 +335,52 @@
         "market_cap": "₹214",
         "pb": 6.83,
         "pe": 14.22,
-        "sector_pb": 1.19,
-        "sector_pe": 16.71
+        "sector_pb": 1.18,
+        "sector_pe": 16.92
       }
     }
   },
   "research_path": "issues/fascinate-textiles-ad3c91/research.json",
   "schema_version": "3.0.0",
   "slug": "fascinate-textiles-ad3c91",
-  "source_dataset_version": "v2026.08.22-0240",
+  "source_dataset_version": "v2026.08.25-0244",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-08-25T02:42:10+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-22T02:35:07+00:00",
+      "snapshot_at": "2026-08-25T02:39:03+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-08-22T02:35:16+00:00",
+      "snapshot_at": "2026-08-25T02:39:11+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-08-22T02:35:17+00:00",
+      "snapshot_at": "2026-08-25T02:39:13+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.4500"
+  },
   "subscription_path": "issues/fascinate-textiles-ad3c91/subscription.json",
   "timeline": {
     "close_date": "2026-08-19",
+    "listing_date": "2026-08-24",
     "open_date": "2026-08-11"
   },
   "url_path": "/ipos/fascinate-textiles/"

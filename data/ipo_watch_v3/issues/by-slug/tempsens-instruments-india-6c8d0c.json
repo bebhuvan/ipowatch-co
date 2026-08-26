@@ -9,10 +9,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.25-0244",
+  "dataset_version": "v3.2026.08.26-0252",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_29092025235356_TIPLDRHP.pdf",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/363130/IPO%20Open/RedHerringProspectus_20260818164505.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE1KZI01025_25AUG2026.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/TempsensInstruments(India)Limited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
@@ -20,9 +21,13 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -33,6 +38,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,7 +79,7 @@
     }
   },
   "filings_path": "issues/tempsens-instruments-india-6c8d0c/filings.json",
-  "generated_at": "2026-08-25T02:44:44+00:00",
+  "generated_at": "2026-08-26T02:52:57+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -80,6 +89,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "Tempsens Instruments (India) Limited",
+    "isin": "INE1KZI01025",
     "issue_type": "IPO",
     "slug": "tempsens-instruments-india-6c8d0c",
     "status": "Closed",
@@ -125,7 +135,7 @@
         ]
       },
       "isin": "INE1KZI01025",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "tempsens instruments india",
       "offer_split": {
         "fresh_issue_percent": "15%",
@@ -144,35 +154,35 @@
         },
         {
           "company_name": "RISHABH",
-          "market_cap": "2,703",
+          "market_cap": "2,664",
           "net_sales_cr": 775,
           "pat_cr": 81.53,
-          "pb": 3.63,
-          "pe": 33.43
+          "pb": 3.58,
+          "pe": 32.94
         },
         {
           "company_name": "CORDSCABLE",
           "market_cap": "326",
           "net_sales_cr": 794,
           "pat_cr": 14.67,
-          "pb": 1.62,
-          "pe": 13.28
+          "pb": 1.6,
+          "pe": 13.15
         },
         {
           "company_name": "MMFL",
-          "market_cap": "3,065",
+          "market_cap": "3,052",
           "net_sales_cr": 1589,
           "pat_cr": 98.67,
-          "pb": 3.14,
-          "pe": 18.1
+          "pb": 3.13,
+          "pe": 18.02
         },
         {
           "company_name": "HPL",
           "market_cap": "2,024",
           "net_sales_cr": 1700,
           "pat_cr": 93.77,
-          "pb": 2.02,
-          "pe": 22.18
+          "pb": 2.0,
+          "pe": 21.88
         }
       ],
       "revenue_mix": {
@@ -264,41 +274,34 @@
         "market_cap": "₹2,514",
         "pb": 5.06,
         "pe": 35.39,
-        "sector_pb": 3.48,
-        "sector_pe": 32.73
+        "sector_pb": 3.63,
+        "sector_pe": 32.03
       }
     }
   },
   "research_path": "issues/tempsens-instruments-india-6c8d0c/research.json",
   "schema_version": "3.0.0",
   "slug": "tempsens-instruments-india-6c8d0c",
-  "source_dataset_version": "v2026.08.25-0244",
+  "source_dataset_version": "v2026.08.26-0252",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-25T02:39:16+00:00",
+      "snapshot_at": "2026-08-26T02:47:41+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-25T02:39:03+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-08-25T02:39:03+00:00",
+      "snapshot_at": "2026-08-26T02:47:28+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-25T02:39:11+00:00",
+      "snapshot_at": "2026-08-26T02:47:35+00:00",
       "source": "nse",
       "url": null
     }

@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.25-0244",
+  "dataset_version": "v3.2026.08.26-0252",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE685T01010_21AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_29122025155357_DRHP.pdf",
@@ -72,7 +72,7 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
@@ -81,6 +81,10 @@
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -116,7 +120,7 @@
     }
   },
   "filings_path": "issues/horizon-industrial-parks-f3703b/filings.json",
-  "generated_at": "2026-08-25T02:44:44+00:00",
+  "generated_at": "2026-08-26T02:52:57+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -131,10 +135,11 @@
     "symbol": "HORIZONIND"
   },
   "listing_performance": {
-    "current_gain_bps": -342,
-    "current_price_paise": 5795,
+    "current_gain_bps": -733,
+    "current_price_paise": 5560,
     "listing_close_price_paise": 5795,
-    "listing_gain_bps": -342
+    "listing_gain_bps": -342,
+    "listing_open_price_paise": 6025
   },
   "market_path": "issues/horizon-industrial-parks-f3703b/market.json",
   "parties": {},
@@ -188,27 +193,27 @@
       "peers": [
         {
           "company_name": "HORIZONIND",
-          "market_cap": "16,706",
+          "market_cap": "16,006",
           "net_sales_cr": 691,
           "pat_cr": -197.64,
-          "pb": 2.95,
+          "pb": 2.83,
           "pe": null
         },
         {
           "company_name": "NESCO",
-          "market_cap": "7,293",
+          "market_cap": "7,268",
           "net_sales_cr": 932,
           "pat_cr": 412,
           "pb": 2.43,
-          "pe": 17.67
+          "pe": 17.61
         },
         {
           "company_name": "ANANTRAJ",
-          "market_cap": "22,564",
+          "market_cap": "22,123",
           "net_sales_cr": 2511,
           "pat_cr": 557,
-          "pb": 3.82,
-          "pe": 38.24
+          "pb": 3.81,
+          "pe": 38.11
         }
       ],
       "revenue_mix": {
@@ -283,55 +288,62 @@
         "market_cap": "₹17,297",
         "pb": 3.05,
         "pe": 0,
-        "sector_pb": 1.41,
-        "sector_pe": 25.37
+        "sector_pb": 1.4,
+        "sector_pe": 26.05
       }
     }
   },
   "research_path": "issues/horizon-industrial-parks-f3703b/research.json",
   "schema_version": "3.0.0",
   "slug": "horizon-industrial-parks-f3703b",
-  "source_dataset_version": "v2026.08.25-0244",
+  "source_dataset_version": "v2026.08.26-0252",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-25T02:39:16+00:00",
+      "snapshot_at": "2026-08-26T02:47:41+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-08-25T02:39:28+00:00",
+      "snapshot_at": "2026-08-26T02:47:56+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-08-25T02:42:10+00:00",
+      "snapshot_at": "2026-08-26T02:50:52+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-25T02:39:03+00:00",
+      "snapshot_at": "2026-08-26T02:47:28+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-08-25T13:35:38+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-25T02:39:11+00:00",
+      "snapshot_at": "2026-08-26T02:47:35+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-08-25T02:39:13+00:00",
+      "snapshot_at": "2026-08-26T02:47:36+00:00",
       "source": "nse",
       "url": null
     }

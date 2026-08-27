@@ -7,13 +7,70 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.08.26-0252",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.08.27-1155",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-08-27T11:53:38+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 50272586,
+          "price_paise": 8200
+        },
+        {
+          "cumulative_quantity": 50300432,
+          "price_paise": 8100
+        },
+        {
+          "cumulative_quantity": 50324456,
+          "price_paise": 8000
+        },
+        {
+          "cumulative_quantity": 50326094,
+          "price_paise": 7900
+        },
+        {
+          "cumulative_quantity": 50352666,
+          "price_paise": 7800
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "27-Aug-2026 17:00:46"
+    },
+    {
+      "observed_at": "2026-08-27T11:53:39+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 89899264,
+          "price_paise": 8200
+        },
+        {
+          "cumulative_quantity": 89967332,
+          "price_paise": 8100
+        },
+        {
+          "cumulative_quantity": 90061062,
+          "price_paise": 8000
+        },
+        {
+          "cumulative_quantity": 90072710,
+          "price_paise": 7900
+        },
+        {
+          "cumulative_quantity": 90156066,
+          "price_paise": 7800
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "27-Aug-2026 17:00:00"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-08-26T02:52:57+00:00",
+  "generated_at": "2026-08-27T11:55:36+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "lumino-61ba1c",
   "language": "en-IN",
@@ -23,62 +80,66 @@
   "observations": [
     {
       "categories": {
+        "employee": {
+          "shares_bid": 903630,
+          "shares_offered": 1282051,
+          "times": 0.7048315550629421
+        },
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 27689298,
+          "shares_offered": 13269231,
+          "times": 2.086729668056875
+        },
+        "nii_gt_10l": {
+          "shares_bid": 16030014,
+          "shares_offered": 4423077,
+          "times": 3.624177015231704
         },
         "qib": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 718172,
+          "shares_offered": 17692307,
+          "times": 0.04059233202317821
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 60446022,
+          "shares_offered": 30961538,
+          "times": 1.9522939073633874
         }
       },
-      "observed_at": "2026-08-26T12:05:44+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-08-27T11:53:38+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 27-Aug-2026 17:00:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 8,
+        "shares_offered": 6,
+        "times": 1.4200924238313768
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/lumino-61ba1c.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.08.26-0252",
+  "source_dataset_version": "v2026.08.27-1155",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7910",
+      "endpoint": "consolidated_bid_details_lumino",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_lumino",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_lumino",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

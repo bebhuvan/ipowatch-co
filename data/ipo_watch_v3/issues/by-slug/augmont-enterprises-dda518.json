@@ -9,20 +9,30 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.27-1155",
+  "dataset_version": "v3.2026.08.28-1317",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE16W401027_28AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_30092025232853_AELDRHP.pdf",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/304464/IPO%20Open/RHP_20260819184825.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE16W401027_27AUG2026.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/AugmontEnterprisesLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -33,6 +43,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,7 +84,7 @@
     }
   },
   "filings_path": "issues/augmont-enterprises-dda518/filings.json",
-  "generated_at": "2026-08-27T11:55:36+00:00",
+  "generated_at": "2026-08-28T13:17:38+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -80,6 +94,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "Augmont Enterprises Limited",
+    "isin": "INE16W401027",
     "issue_type": "IPO",
     "slug": "augmont-enterprises-dda518",
     "status": "Closed",
@@ -125,7 +140,7 @@
         ]
       },
       "isin": "INE16W401027",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "augmont enterprises",
       "offer_split": {
         "fresh_issue_percent": "76%",
@@ -156,15 +171,15 @@
           "net_sales_cr": 220,
           "pat_cr": 2.86,
           "pb": 2.91,
-          "pe": 13.12
+          "pe": 13.06
         },
         {
           "company_name": "SHANTIGOLD",
-          "market_cap": "2,045",
+          "market_cap": "2,044",
           "net_sales_cr": 1106,
           "pat_cr": 55.84,
-          "pb": 3.42,
-          "pe": 10.97
+          "pb": 3.16,
+          "pe": 10.14
         },
         {
           "company_name": "RADHIKAJWE",
@@ -243,34 +258,41 @@
         "market_cap": "₹7,200",
         "pb": 7.72,
         "pe": 20.67,
-        "sector_pb": 1.91,
-        "sector_pe": 15.31
+        "sector_pb": 1.99,
+        "sector_pe": 17.41
       }
     }
   },
   "research_path": "issues/augmont-enterprises-dda518/research.json",
   "schema_version": "3.0.0",
   "slug": "augmont-enterprises-dda518",
-  "source_dataset_version": "v2026.08.27-1155",
+  "source_dataset_version": "v2026.08.28-1317",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-27T11:49:38+00:00",
+      "snapshot_at": "2026-08-28T13:12:07+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-27T11:49:24+00:00",
+      "snapshot_at": "2026-08-28T13:11:49+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-08-27T11:49:33+00:00",
+      "snapshot_at": "2026-08-28T13:11:58+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-08-28T13:12:00+00:00",
       "source": "nse",
       "url": null
     }

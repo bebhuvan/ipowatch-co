@@ -1,6 +1,24 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 12800,
+        "quantity": 482000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 12900,
+        "quantity": 480000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 13500,
+        "quantity": 478000
+      }
+    ]
+  },
   "core_path": "issues/complete-sports-management-india-3b5290/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +27,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.27-1155",
+  "dataset_version": "v3.2026.08.28-1317",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -89,6 +111,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -99,7 +125,7 @@
     }
   },
   "filings_path": "issues/complete-sports-management-india-3b5290/filings.json",
-  "generated_at": "2026-08-27T11:55:36+00:00",
+  "generated_at": "2026-08-28T13:17:38+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -110,7 +136,7 @@
     "company_name": "COMPLETE SPORTS AND MANAGEMENT INDIA LIMITED",
     "issue_type": "IPO",
     "slug": "complete-sports-management-india-3b5290",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/complete-sports-management-india-3b5290/market.json",
@@ -126,7 +152,7 @@
   },
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 5550000,
+    "issue_size_shares": 3971000,
     "market_lot": 1000,
     "min_bid_qty": 2000,
     "price_band_lower_paise": 12800,
@@ -188,8 +214,8 @@
           "market_cap": "2,840",
           "net_sales_cr": 410,
           "pat_cr": 77.17,
-          "pb": 2.26,
-          "pe": 204.34
+          "pb": 2.72,
+          "pe": 113.81
         }
       ],
       "revenue_mix": {
@@ -232,54 +258,54 @@
         "pb": 6.5,
         "pe": 15.26,
         "sector_pb": 1.06,
-        "sector_pe": 20.62
+        "sector_pe": 20.7
       }
     }
   },
   "research_path": "issues/complete-sports-management-india-3b5290/research.json",
   "schema_version": "3.0.0",
   "slug": "complete-sports-management-india-3b5290",
-  "source_dataset_version": "v2026.08.27-1155",
+  "source_dataset_version": "v2026.08.28-1317",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7915",
-      "snapshot_at": "2026-08-27T11:55:21+00:00",
+      "snapshot_at": "2026-08-28T13:17:28+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7915",
-      "snapshot_at": "2026-08-27T11:55:21+00:00",
+      "snapshot_at": "2026-08-28T13:17:29+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7915",
-      "snapshot_at": "2026-08-27T11:55:22+00:00",
+      "snapshot_at": "2026-08-28T13:17:29+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7915",
-      "snapshot_at": "2026-08-27T11:55:20+00:00",
+      "snapshot_at": "2026-08-28T13:17:27+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-08-27T11:49:36+00:00",
+      "snapshot_at": "2026-08-28T13:12:01+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-08-27T11:49:37+00:00",
+      "snapshot_at": "2026-08-28T13:12:03+00:00",
       "source": "bse",
       "url": null
     }
@@ -291,8 +317,8 @@
           {
             "category": "qib",
             "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_offered": 1053000,
+            "times_x": "0.0000"
           },
           {
             "category": "qib_fii",
@@ -320,15 +346,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 414000,
+            "shares_offered": 1072000,
+            "times_x": "0.3862"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 68000,
+            "shares_offered": 1846000,
+            "times_x": "0.0368"
           },
           {
             "category": "employee",
@@ -343,7 +369,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": null
+        "total_times_x": "0.1214"
       }
     },
     "consolidated": {
@@ -352,8 +378,8 @@
         {
           "category": "qib",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 1053000,
+          "times_x": "0.0000"
         },
         {
           "category": "qib_fii",
@@ -381,27 +407,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 414000,
+          "shares_offered": 1072000,
+          "times_x": "0.3862"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 408000,
+          "shares_offered": 528000,
+          "times_x": "0.7727"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 6000,
+          "shares_offered": 264000,
+          "times_x": "0.0227"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 68000,
+          "shares_offered": 1846000,
+          "times_x": "0.0368"
         },
         {
           "category": "employee",
@@ -422,8 +448,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": null
-    }
+      "total_times_x": "0.1214"
+    },
+    "overall_times_x": "0.1214"
   },
   "subscription_path": "issues/complete-sports-management-india-3b5290/subscription.json",
   "timeline": {

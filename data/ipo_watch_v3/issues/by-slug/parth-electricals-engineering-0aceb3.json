@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.27-1155",
+  "dataset_version": "v3.2026.08.28-1317",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_5539_04072025183401.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/ParthElectricals&EngineeringLimited_PROSP.pdf",
@@ -28,6 +28,10 @@
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -53,9 +57,25 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
@@ -64,6 +84,10 @@
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -79,9 +103,13 @@
     }
   },
   "filings_path": "issues/parth-electricals-engineering-0aceb3/filings.json",
-  "generated_at": "2026-08-27T11:55:36+00:00",
+  "generated_at": "2026-08-28T13:17:38+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:electric-equipment/parthelectricalsengineering/PEE01",
+      "moneycontrol:company_code:13150395"
+    ],
     "board_type": "SME Board",
     "company_name": "Parth Electricals & Engineering Limited",
     "issue_type": "IPO",
@@ -89,11 +117,16 @@
     "status": "Listed",
     "symbol": "PARTH"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 19350,
+    "current_price_paise": 49895,
+    "listing_gain_bps": 235
+  },
   "market_path": "issues/parth-electricals-engineering-0aceb3/market.json",
   "parties": {},
   "pricing": {
     "issue_price_paise": 17000,
+    "issue_size_paise": 49721600000,
     "price_band_lower_paise": 16000,
     "price_band_upper_paise": 17000
   },
@@ -141,11 +174,11 @@
       "peers": [
         {
           "company_name": "PARTH",
-          "market_cap": "670",
+          "market_cap": "653",
           "net_sales_cr": 174,
           "pat_cr": 10.12,
           "pb": null,
-          "pe": 47.03
+          "pe": 45.88
         },
         {
           "company_name": "SUPREMEPWR",
@@ -153,23 +186,23 @@
           "net_sales_cr": 148,
           "pat_cr": 18.6,
           "pb": null,
-          "pe": 28.23
+          "pe": 27.8
         },
         {
           "company_name": "SPCL",
-          "market_cap": "155",
+          "market_cap": "149",
           "net_sales_cr": 132,
           "pat_cr": 12.42,
           "pb": null,
-          "pe": 14.98
+          "pe": 14.44
         },
         {
           "company_name": "RMC",
           "market_cap": "270",
           "net_sales_cr": 318,
           "pat_cr": 31.45,
-          "pb": 2.07,
-          "pe": 12.12
+          "pb": 2.03,
+          "pe": 16.78
         }
       ],
       "revenue_mix": {
@@ -307,39 +340,48 @@
         "market_cap": "₹232",
         "pb": 5.72,
         "pe": 22.97,
-        "sector_pb": 3.58,
-        "sector_pe": 31.87
+        "sector_pb": 3.57,
+        "sector_pe": 33.08
       }
     }
   },
   "research_path": "issues/parth-electricals-engineering-0aceb3/research.json",
   "schema_version": "3.0.0",
   "slug": "parth-electricals-engineering-0aceb3",
-  "source_dataset_version": "v2026.08.27-1155",
+  "source_dataset_version": "v2026.08.28-1317",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000380",
+      "snapshot_at": "2026-08-28T13:15:17+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-27T11:49:24+00:00",
+      "snapshot_at": "2026-08-28T13:11:49+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-08-27T11:49:34+00:00",
+      "snapshot_at": "2026-08-28T13:11:59+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-08-27T11:49:34+00:00",
+      "snapshot_at": "2026-08-28T13:11:59+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "22.2000"
+  },
   "subscription_path": "issues/parth-electricals-engineering-0aceb3/subscription.json",
   "timeline": {
     "close_date": "2025-08-06",

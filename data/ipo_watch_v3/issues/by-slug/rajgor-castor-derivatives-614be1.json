@@ -5,16 +5,11 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.29-0814",
+  "dataset_version": "v3.2026.09.01-0641",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -38,6 +33,10 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -48,19 +47,21 @@
     }
   },
   "filings_path": "issues/rajgor-castor-derivatives-614be1/filings.json",
-  "generated_at": "2026-08-29T08:14:38+00:00",
+  "generated_at": "2026-09-01T06:41:17+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "company_name": "Rajgor Castor Derivatives Limited",
     "issue_type": "Rights",
     "slug": "rajgor-castor-derivatives-614be1",
-    "status": "Upcoming",
+    "status": "Open",
     "symbol": "RCDLR"
   },
   "listing_performance": {},
   "market_path": "issues/rajgor-castor-derivatives-614be1/market.json",
   "parties": {},
-  "pricing": {},
+  "pricing": {
+    "issue_size_shares": 117000
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/rajgor-castor-derivatives-614be1/prospectus_facts.json",
   "provenance_path": "issues/rajgor-castor-derivatives-614be1/provenance.json",
@@ -68,12 +69,12 @@
   "public_slug": "rajgor-castor-derivatives",
   "schema_version": "3.0.0",
   "slug": "rajgor-castor-derivatives-614be1",
-  "source_dataset_version": "v2026.08.29-0814",
+  "source_dataset_version": "v2026.09.01-0641",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "rights_forthcoming",
-      "snapshot_at": "2026-08-29T08:08:00+00:00",
+      "endpoint": "rights_active",
+      "snapshot_at": "2026-09-01T06:34:56+00:00",
       "source": "nse",
       "url": null
     }
@@ -84,8 +85,8 @@
       "reason": "NSE rights issue feed currently provides identity and offer-window fields only for this row; subscription/demand fields are null.",
       "source_refs": [
         {
-          "endpoint": "rights_forthcoming",
-          "snapshot_at": "2026-08-29T08:08:00+00:00",
+          "endpoint": "rights_active",
+          "snapshot_at": "2026-09-01T06:34:56+00:00",
           "source": "nse"
         }
       ],

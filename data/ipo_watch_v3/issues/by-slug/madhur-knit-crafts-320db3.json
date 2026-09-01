@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.29-0814",
+  "dataset_version": "v3.2026.09.01-0641",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6561_03022026150742.zip",
     "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/MadhurKnitCraftsLimited_RHP.zip"
@@ -23,6 +23,10 @@
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -48,6 +52,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -56,7 +72,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -66,20 +90,29 @@
     }
   },
   "filings_path": "issues/madhur-knit-crafts-320db3/filings.json",
-  "generated_at": "2026-08-29T08:14:38+00:00",
+  "generated_at": "2026-09-01T06:41:17+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:textilesapparel/madhurknitcrafts/MKCL",
+      "moneycontrol:company_code:16070403"
+    ],
     "board_type": "SME Board",
     "company_name": "Madhur Knit Crafts Limited",
     "issue_type": "IPO",
     "slug": "madhur-knit-crafts-320db3",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "MADHURKNIT"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -500,
+    "current_price_paise": 9500
+  },
   "market_path": "issues/madhur-knit-crafts-320db3/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 10000,
+    "issue_size_paise": 53268000000,
     "price_band_lower_paise": 9500,
     "price_band_upper_paise": 10000
   },
@@ -127,19 +160,19 @@
       "peers": [
         {
           "company_name": "MADHURKNIT",
-          "market_cap": "190",
+          "market_cap": "0",
           "net_sales_cr": 171,
           "pat_cr": 11.03,
-          "pb": 4.36,
-          "pe": 17.22
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "KAYTEX",
-          "market_cap": "83",
+          "market_cap": "84",
           "net_sales_cr": 161,
           "pat_cr": 17.43,
-          "pb": 0.71,
-          "pe": 4.78
+          "pb": 0.7,
+          "pe": 4.67
         }
       ],
       "revenue_mix": {
@@ -294,34 +327,44 @@
         "pb": 4.36,
         "pe": 17.23,
         "sector_pb": 1.23,
-        "sector_pe": 17.93
+        "sector_pe": 17.23
       }
     }
   },
   "research_path": "issues/madhur-knit-crafts-320db3/research.json",
   "schema_version": "3.0.0",
   "slug": "madhur-knit-crafts-320db3",
-  "source_dataset_version": "v2026.08.29-0814",
+  "source_dataset_version": "v2026.09.01-0641",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-01T06:38:29+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-29T08:07:54+00:00",
+      "snapshot_at": "2026-09-01T06:34:51+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-08-29T08:08:06+00:00",
+      "snapshot_at": "2026-09-01T06:34:59+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.4700"
+  },
   "subscription_path": "issues/madhur-knit-crafts-320db3/subscription.json",
   "timeline": {
     "close_date": "2026-08-27",
+    "listing_date": "2026-09-01",
     "open_date": "2026-08-24"
   },
   "url_path": "/ipos/madhur-knit-crafts/"

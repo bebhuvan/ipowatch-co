@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.08.29-0814",
+  "dataset_version": "v3.2026.09.01-0641",
   "documents": {
     "drhp_url": "https://www.bseindia.com/downloads/ipo/374703/IPO%20Prior/HyTechEngineersDRHP_20250905072529.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/374703/IPO%20Open/6RHP_20260820182623.pdf"
@@ -52,6 +52,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -60,7 +76,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,25 +94,28 @@
     }
   },
   "filings_path": "issues/hy-tech-engineers-71544f/filings.json",
-  "generated_at": "2026-08-29T08:14:38+00:00",
+  "generated_at": "2026-09-01T06:41:17+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:25994540",
-      "bse:prior_id:244763",
-      "bse:createdby:374703"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/hy-tech-engineers-ltd/htel/544891/"
     ],
     "board_type": "Main Board",
     "company_name": "Hy-Tech Engineers Limited",
     "issue_type": "IPO",
     "slug": "hy-tech-engineers-71544f",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "HTEL"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 4262,
+    "current_price_paise": 7559
+  },
   "market_path": "issues/hy-tech-engineers-71544f/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 5300,
+    "issue_size_paise": 135734086500,
     "price_band_lower_paise": 5000,
     "price_band_upper_paise": 5300
   },
@@ -96,7 +123,7 @@
   "prospectus_facts_path": "issues/hy-tech-engineers-71544f/prospectus_facts.json",
   "provenance_path": "issues/hy-tech-engineers-71544f/provenance.json",
   "public_contract": "ipo-watch.site_v3",
-  "public_slug": "hy-tech-engineers",
+  "public_slug": "hy-tech-engineers-2026",
   "research": {
     "tijori": {
       "business_description": "Hy-Tech Engineers Ltd., founded in 1978, is a leading Indian manufacturer of hydraulic fittings, serving automotive, construction, agriculture and industrial sectors. It operates multiple manufacturing facilities and exports to global markets.",
@@ -136,35 +163,35 @@
       "peers": [
         {
           "company_name": "HTEL",
-          "market_cap": "503",
+          "market_cap": "0",
           "net_sales_cr": 189,
           "pat_cr": 22.59,
-          "pb": 4.12,
-          "pe": 22.26
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "AEROFLEX",
-          "market_cap": "7,104",
+          "market_cap": "7,178",
           "net_sales_cr": 441,
           "pat_cr": 55.53,
-          "pb": 15.44,
-          "pe": 102.87
+          "pb": 15.57,
+          "pe": 103.68
         },
         {
           "company_name": "DYNAMATECH",
-          "market_cap": "7,817",
+          "market_cap": "7,755",
           "net_sales_cr": 1621,
           "pat_cr": 32.41,
-          "pb": 9.84,
-          "pe": 184.08
+          "pb": 10.28,
+          "pe": 192.17
         },
         {
           "company_name": "YUKEN",
-          "market_cap": "1,274",
+          "market_cap": "1,351",
           "net_sales_cr": 462,
           "pat_cr": 14.47,
-          "pb": 3.37,
-          "pe": 80.52
+          "pb": 3.6,
+          "pe": 85.97
         }
       ],
       "revenue_mix": {
@@ -206,36 +233,60 @@
         "market_cap": "₹502",
         "pb": 4.12,
         "pe": 22.25,
-        "sector_pb": 3.0,
-        "sector_pe": 26.31
+        "sector_pb": 2.96,
+        "sector_pe": 26.4
       }
     }
   },
   "research_path": "issues/hy-tech-engineers-71544f/research.json",
   "schema_version": "3.0.0",
   "slug": "hy-tech-engineers-71544f",
-  "source_dataset_version": "v2026.08.29-0814",
+  "source_dataset_version": "v2026.09.01-0641",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-08-29T08:08:12+00:00",
+      "snapshot_at": "2026-09-01T06:35:02+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-01T06:35:17+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-01T06:38:29+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-08-29T08:07:54+00:00",
+      "snapshot_at": "2026-09-01T06:34:51+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-01T06:35:00+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "244.4100"
+  },
   "subscription_path": "issues/hy-tech-engineers-71544f/subscription.json",
   "timeline": {
     "close_date": "2026-08-27",
+    "listing_date": "2026-09-01",
     "open_date": "2026-08-24"
   },
-  "url_path": "/ipos/hy-tech-engineers/"
+  "url_path": "/ipos/hy-tech-engineers-2026/"
 }

@@ -7,13 +7,102 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.08.29-0814",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.09.01-0641",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-09-01T06:39:13+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 7045668,
+          "price_paise": 17700
+        },
+        {
+          "cumulative_quantity": 7046508,
+          "price_paise": 17600
+        },
+        {
+          "cumulative_quantity": 7048524,
+          "price_paise": 17500
+        },
+        {
+          "cumulative_quantity": 7048608,
+          "price_paise": 17400
+        },
+        {
+          "cumulative_quantity": 7050624,
+          "price_paise": 17300
+        },
+        {
+          "cumulative_quantity": 7051632,
+          "price_paise": 17200
+        },
+        {
+          "cumulative_quantity": 7052220,
+          "price_paise": 17100
+        },
+        {
+          "cumulative_quantity": 7056420,
+          "price_paise": 17000
+        },
+        {
+          "cumulative_quantity": 7057092,
+          "price_paise": 16900
+        },
+        {
+          "cumulative_quantity": 7064484,
+          "price_paise": 16800
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "01-Sep-2026 12:06:00"
+    },
+    {
+      "observed_at": "2026-09-01T06:39:13+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 4284924,
+          "price_paise": 17700
+        },
+        {
+          "cumulative_quantity": 4285176,
+          "price_paise": 17600
+        },
+        {
+          "cumulative_quantity": 4285764,
+          "price_paise": 17500
+        },
+        {
+          "cumulative_quantity": 4285848,
+          "price_paise": 17300
+        },
+        {
+          "cumulative_quantity": 4286184,
+          "price_paise": 17200
+        },
+        {
+          "cumulative_quantity": 4286352,
+          "price_paise": 17100
+        },
+        {
+          "cumulative_quantity": 4287780,
+          "price_paise": 17000
+        },
+        {
+          "cumulative_quantity": 4289628,
+          "price_paise": 16800
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "01-Sep-2026 12:06:31"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-08-29T08:14:38+00:00",
+  "generated_at": "2026-09-01T06:41:17+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "deepa-jewellers-799f11",
   "language": "en-IN",
@@ -24,61 +113,60 @@
     {
       "categories": {
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 1023120,
+          "shares_offered": 4009394,
+          "times": 0.2551807081070107
+        },
+        "nii_gt_10l": {
+          "shares_bid": 646128,
+          "shares_offered": 1336464,
+          "times": 0.4834608339618576
         },
         "qib": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 3528,
+          "shares_offered": 5155438,
+          "times": 6.843259486390875
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 6035232,
+          "shares_offered": 9355253,
+          "times": 0.6451169198737864
         }
       },
-      "observed_at": "2026-08-29T08:14:34+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-09-01T06:39:12+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 01-Sep-2026 12:06:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 7061880,
+        "shares_offered": 1,
+        "times": 0.3813092650492695
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/deepa-jewellers-799f11.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.08.29-0814",
+  "source_dataset_version": "v2026.09.01-0641",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7922",
+      "endpoint": "consolidated_bid_details_deepa",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_deepa",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_deepa",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

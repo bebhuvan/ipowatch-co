@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.01-0641",
+  "dataset_version": "v3.2026.09.02-0618",
   "documents": {
     "drhp_url": "https://www.bseindia.com/downloads/ipo/374703/IPO%20Prior/HyTechEngineersDRHP_20250905072529.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/374703/IPO%20Open/6RHP_20260820182623.pdf"
@@ -58,7 +58,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -94,7 +106,7 @@
     }
   },
   "filings_path": "issues/hy-tech-engineers-71544f/filings.json",
-  "generated_at": "2026-09-01T06:41:17+00:00",
+  "generated_at": "2026-09-02T06:18:35+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -108,8 +120,11 @@
     "symbol": "HTEL"
   },
   "listing_performance": {
-    "current_gain_bps": 4262,
-    "current_price_paise": 7559
+    "current_gain_bps": 4858,
+    "current_price_paise": 7875,
+    "listing_close_price_paise": 7559,
+    "listing_gain_bps": 4262,
+    "listing_open_price_paise": 7500
   },
   "market_path": "issues/hy-tech-engineers-71544f/market.json",
   "parties": {},
@@ -163,35 +178,35 @@
       "peers": [
         {
           "company_name": "HTEL",
-          "market_cap": "0",
+          "market_cap": "717",
           "net_sales_cr": 189,
           "pat_cr": 22.59,
-          "pb": null,
-          "pe": null
+          "pb": 5.88,
+          "pe": 31.74
         },
         {
           "company_name": "AEROFLEX",
-          "market_cap": "7,178",
+          "market_cap": "7,032",
           "net_sales_cr": 441,
           "pat_cr": 55.53,
-          "pb": 15.57,
-          "pe": 103.68
+          "pb": 16.34,
+          "pe": 108.84
         },
         {
           "company_name": "DYNAMATECH",
-          "market_cap": "7,755",
+          "market_cap": "7,972",
           "net_sales_cr": 1621,
           "pat_cr": 32.41,
-          "pb": 10.28,
-          "pe": 192.17
+          "pb": 9.97,
+          "pe": 186.54
         },
         {
           "company_name": "YUKEN",
-          "market_cap": "1,351",
+          "market_cap": "1,344",
           "net_sales_cr": 462,
           "pat_cr": 14.47,
-          "pb": 3.6,
-          "pe": 85.97
+          "pb": 3.55,
+          "pe": 84.59
         }
       ],
       "revenue_mix": {
@@ -233,48 +248,55 @@
         "market_cap": "₹502",
         "pb": 4.12,
         "pe": 22.25,
-        "sector_pb": 2.96,
-        "sector_pe": 26.4
+        "sector_pb": 2.98,
+        "sector_pe": 26.71
       }
     }
   },
   "research_path": "issues/hy-tech-engineers-71544f/research.json",
   "schema_version": "3.0.0",
   "slug": "hy-tech-engineers-71544f",
-  "source_dataset_version": "v2026.09.01-0641",
+  "source_dataset_version": "v2026.09.02-0618",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-01T06:35:02+00:00",
+      "snapshot_at": "2026-09-02T06:13:04+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-09-01T06:35:17+00:00",
+      "snapshot_at": "2026-09-02T06:13:15+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-09-01T06:38:29+00:00",
+      "snapshot_at": "2026-09-02T06:16:41+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-01T06:34:51+00:00",
+      "snapshot_at": "2026-09-02T06:12:50+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-09-01T16:53:49+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-01T06:35:00+00:00",
+      "snapshot_at": "2026-09-02T06:12:59+00:00",
       "source": "nse",
       "url": null
     }

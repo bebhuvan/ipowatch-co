@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.01-0641",
+  "dataset_version": "v3.2026.09.02-0618",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE16W401027_28AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_30092025232853_AELDRHP.pdf",
@@ -72,7 +72,7 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
@@ -81,6 +81,10 @@
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -116,7 +120,7 @@
     }
   },
   "filings_path": "issues/augmont-enterprises-dda518/filings.json",
-  "generated_at": "2026-09-01T06:41:17+00:00",
+  "generated_at": "2026-09-02T06:18:35+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -131,10 +135,11 @@
     "symbol": "AUGMONT"
   },
   "listing_performance": {
-    "current_gain_bps": 1026,
-    "current_price_paise": 86885,
+    "current_gain_bps": 993,
+    "current_price_paise": 86625,
     "listing_close_price_paise": 90775,
-    "listing_gain_bps": 1520
+    "listing_gain_bps": 1520,
+    "listing_open_price_paise": 96100
   },
   "market_path": "issues/augmont-enterprises-dda518/market.json",
   "parties": {},
@@ -188,11 +193,11 @@
       "peers": [
         {
           "company_name": "AUGMONT",
-          "market_cap": "8,294",
+          "market_cap": "7,915",
           "net_sales_cr": 94186,
           "pat_cr": 333,
-          "pb": 9.15,
-          "pe": 24.84
+          "pb": 8.73,
+          "pe": 23.7
         },
         {
           "company_name": "EIGHTY",
@@ -204,27 +209,27 @@
         },
         {
           "company_name": "AJCJEWEL",
-          "market_cap": "110",
+          "market_cap": "111",
           "net_sales_cr": 220,
           "pat_cr": 2.86,
-          "pb": 3.21,
-          "pe": 14.39
+          "pb": 3.07,
+          "pe": 13.84
         },
         {
           "company_name": "SHANTIGOLD",
-          "market_cap": "1,858",
+          "market_cap": "1,868",
           "net_sales_cr": 1106,
           "pat_cr": 55.84,
-          "pb": 3.17,
-          "pe": 10.16
+          "pb": 3.01,
+          "pe": 9.67
         },
         {
           "company_name": "RADHIKAJWE",
-          "market_cap": "812",
+          "market_cap": "839",
           "net_sales_cr": 587,
           "pat_cr": 60.12,
-          "pb": 2.0,
-          "pe": 10.02
+          "pb": 2.11,
+          "pe": 10.56
         }
       ],
       "revenue_mix": {
@@ -295,55 +300,62 @@
         "market_cap": "₹7,200",
         "pb": 7.72,
         "pe": 20.67,
-        "sector_pb": 2.04,
-        "sector_pe": 14.99
+        "sector_pb": 2.13,
+        "sector_pe": 15.47
       }
     }
   },
   "research_path": "issues/augmont-enterprises-dda518/research.json",
   "schema_version": "3.0.0",
   "slug": "augmont-enterprises-dda518",
-  "source_dataset_version": "v2026.09.01-0641",
+  "source_dataset_version": "v2026.09.02-0618",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-01T06:35:02+00:00",
+      "snapshot_at": "2026-09-02T06:13:04+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-09-01T06:35:17+00:00",
+      "snapshot_at": "2026-09-02T06:13:15+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-09-01T06:38:29+00:00",
+      "snapshot_at": "2026-09-02T06:16:41+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-01T06:34:51+00:00",
+      "snapshot_at": "2026-09-02T06:12:50+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-09-01T16:53:49+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-01T06:34:59+00:00",
+      "snapshot_at": "2026-09-02T06:12:58+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-01T06:35:00+00:00",
+      "snapshot_at": "2026-09-02T06:12:59+00:00",
       "source": "nse",
       "url": null
     }

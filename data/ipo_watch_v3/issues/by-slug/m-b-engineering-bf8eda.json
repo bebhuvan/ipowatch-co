@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.01-0641",
+  "dataset_version": "v3.2026.09.02-0618",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE08N601015_05AUG2025.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/akshaya_18022025103918_DRHP.pdf",
@@ -90,6 +90,10 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -97,6 +101,10 @@
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -112,7 +120,7 @@
     }
   },
   "filings_path": "issues/m-b-engineering-bf8eda/filings.json",
-  "generated_at": "2026-09-01T06:41:17+00:00",
+  "generated_at": "2026-09-02T06:18:35+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -127,8 +135,8 @@
     "symbol": "MBEL"
   },
   "listing_performance": {
-    "current_gain_bps": -3058,
-    "current_price_paise": 26725,
+    "current_gain_bps": -3101,
+    "current_price_paise": 26560,
     "listing_close_price_paise": 40915,
     "listing_gain_bps": 627,
     "listing_open_price_paise": 38500
@@ -137,6 +145,7 @@
   "parties": {},
   "pricing": {
     "issue_price_paise": 38500,
+    "issue_size_paise": 650206287500,
     "price_band_lower_paise": 36600,
     "price_band_upper_paise": 38500
   },
@@ -159,13 +168,13 @@
             "period": "Mar 2024"
           },
           {
-            "debt_cr": 186.133,
+            "debt_cr": 186.1329,
             "net_sales_cr": 988.5543,
             "pat_cr": 77.0475,
             "period": "Mar 2025"
           },
           {
-            "debt_cr": null,
+            "debt_cr": 78.978,
             "net_sales_cr": 1259.7219,
             "pat_cr": 92.6358,
             "period": "Mar 2026"
@@ -184,31 +193,31 @@
       "peers": [
         {
           "company_name": "MBEL",
-          "market_cap": "1,558",
+          "market_cap": "1,536",
           "net_sales_cr": 1259,
           "pat_cr": 92.64,
-          "pb": 2.33,
-          "pe": 15.88
+          "pb": 2.31,
+          "pe": 15.69
         },
         {
           "company_name": "INTERARCH",
-          "market_cap": "2,854",
+          "market_cap": "2,870",
           "net_sales_cr": 1898,
           "pat_cr": 134,
-          "pb": 3.25,
-          "pe": 21.29
+          "pb": 3.29,
+          "pe": 21.57
         },
         {
           "company_name": "BRPL",
-          "market_cap": "206",
+          "market_cap": "210",
           "net_sales_cr": 154,
           "pat_cr": 10.54,
-          "pb": 4.86,
-          "pe": 18.34
+          "pb": 4.74,
+          "pe": 17.9
         },
         {
           "company_name": "BIRLANU",
-          "market_cap": "1,088",
+          "market_cap": "1,084",
           "net_sales_cr": 3730,
           "pat_cr": -119.56,
           "pb": 0.98,
@@ -216,10 +225,10 @@
         },
         {
           "company_name": "EVERESTIND",
-          "market_cap": "699",
+          "market_cap": "664",
           "net_sales_cr": 1416,
           "pat_cr": -101.69,
-          "pb": 1.39,
+          "pb": 1.36,
           "pe": null
         }
       ],
@@ -282,60 +291,69 @@
         "market_cap": "₹2,199",
         "pb": 7.18,
         "pe": 23.75,
-        "sector_pb": 3.09,
-        "sector_pe": 18.44
+        "sector_pb": 3.04,
+        "sector_pe": 18.74
       }
     }
   },
   "research_path": "issues/m-b-engineering-bf8eda/research.json",
   "schema_version": "3.0.0",
   "slug": "m-b-engineering-bf8eda",
-  "source_dataset_version": "v2026.09.01-0641",
+  "source_dataset_version": "v2026.09.02-0618",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-01T06:35:02+00:00",
+      "snapshot_at": "2026-09-02T06:13:04+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2025",
-      "snapshot_at": "2026-09-01T06:35:17+00:00",
+      "snapshot_at": "2026-09-02T06:13:14+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000400",
+      "snapshot_at": "2026-09-02T06:16:41+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-01T06:34:51+00:00",
+      "snapshot_at": "2026-09-02T06:12:50+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "performance",
-      "snapshot_at": "2026-08-31T19:17:31+00:00",
+      "snapshot_at": "2026-09-01T16:53:49+00:00",
       "source": "yahoo",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-01T06:34:59+00:00",
+      "snapshot_at": "2026-09-02T06:12:58+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-01T06:34:59+00:00",
+      "snapshot_at": "2026-09-02T06:12:58+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "36.2000"
+  },
   "subscription_path": "issues/m-b-engineering-bf8eda/subscription.json",
   "timeline": {
     "close_date": "2025-08-01",

@@ -9,10 +9,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.01-0641",
+  "dataset_version": "v3.2026.09.02-0618",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Lumino_DRHP.zip",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/306897/IPO%20Open/RHPSigned_20260824183611.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE185Q01025_01SEP2026.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/LuminoIndustriesLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
@@ -20,9 +21,13 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -33,6 +38,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,7 +79,7 @@
     }
   },
   "filings_path": "issues/lumino-61ba1c/filings.json",
-  "generated_at": "2026-09-01T06:41:17+00:00",
+  "generated_at": "2026-09-02T06:18:35+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -80,6 +89,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "Lumino Industries Limited",
+    "isin": "INE185Q01025",
     "issue_type": "IPO",
     "slug": "lumino-61ba1c",
     "status": "Closed",
@@ -125,7 +135,7 @@
         ]
       },
       "isin": "INE185Q01025",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "lumino",
       "offer_split": {
         "fresh_issue_percent": "72%",
@@ -144,31 +154,31 @@
         },
         {
           "company_name": "APARINDS",
-          "market_cap": "74,453",
+          "market_cap": "72,847",
           "net_sales_cr": 22902,
           "pat_cr": 976,
-          "pb": 13.75,
-          "pe": 62.74
+          "pb": 13.51,
+          "pe": 61.66
         },
         {
           "company_name": "BAJEL",
-          "market_cap": "2,231",
+          "market_cap": "2,217",
           "net_sales_cr": 2791,
           "pat_cr": 20.28,
-          "pb": 2.99,
-          "pe": 101.49
+          "pb": 2.88,
+          "pe": 97.66
         },
         {
           "company_name": "KPIL",
-          "market_cap": "23,650",
+          "market_cap": "24,080",
           "net_sales_cr": 27143,
           "pat_cr": 1040,
-          "pb": 3.09,
-          "pe": 21.11
+          "pb": 3.1,
+          "pe": 21.19
         },
         {
           "company_name": "KEC",
-          "market_cap": "11,328",
+          "market_cap": "11,097",
           "net_sales_cr": 23505,
           "pat_cr": 605,
           "pb": 1.8,
@@ -268,41 +278,34 @@
         "market_cap": "₹2,497",
         "pb": 3.42,
         "pe": 15.61,
-        "sector_pb": 3.66,
-        "sector_pe": 31.91
+        "sector_pb": 3.61,
+        "sector_pe": 31.73
       }
     }
   },
   "research_path": "issues/lumino-61ba1c/research.json",
   "schema_version": "3.0.0",
   "slug": "lumino-61ba1c",
-  "source_dataset_version": "v2026.09.01-0641",
+  "source_dataset_version": "v2026.09.02-0618",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-01T06:35:02+00:00",
+      "snapshot_at": "2026-09-02T06:13:04+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-01T06:34:51+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-09-01T06:34:51+00:00",
+      "snapshot_at": "2026-09-02T06:12:50+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-01T06:34:59+00:00",
+      "snapshot_at": "2026-09-02T06:12:58+00:00",
       "source": "nse",
       "url": null
     }

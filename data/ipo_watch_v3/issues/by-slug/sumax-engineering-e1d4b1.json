@@ -9,15 +9,24 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.01-0641",
+  "dataset_version": "v3.2026.09.02-0618",
   "documents": {
-    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/Sumax_Engineering_Limited.zip"
+    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/Sumax_Engineering_Limited.zip",
+    "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/SumaxEngineeringLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "documents.rhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -43,6 +52,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -51,7 +72,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -61,20 +90,29 @@
     }
   },
   "filings_path": "issues/sumax-engineering-e1d4b1/filings.json",
-  "generated_at": "2026-09-01T06:41:17+00:00",
+  "generated_at": "2026-09-02T06:18:35+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:auto-ancillaries-spare-partsaccessories/sumaxengineering/SEL11",
+      "moneycontrol:company_code:13521341"
+    ],
     "board_type": "SME Board",
     "company_name": "Sumax Engineering Limited",
     "issue_type": "IPO",
     "slug": "sumax-engineering-e1d4b1",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "SUMAX"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 1109,
+    "current_price_paise": 11220
+  },
   "market_path": "issues/sumax-engineering-e1d4b1/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 10100,
+    "issue_size_paise": 53400720000,
     "price_band_lower_paise": 9500,
     "price_band_upper_paise": 10100
   },
@@ -122,11 +160,11 @@
       "peers": [
         {
           "company_name": "SUMAX",
-          "market_cap": "192",
+          "market_cap": "0",
           "net_sales_cr": 147,
           "pat_cr": 12.76,
-          "pb": 3.12,
-          "pe": 15.05
+          "pb": null,
+          "pe": null
         }
       ],
       "revenue_mix": {
@@ -268,35 +306,52 @@
         "market_cap": "₹192",
         "pb": 3.12,
         "pe": 15.06,
-        "sector_pb": 2.93,
-        "sector_pe": 24.65
+        "sector_pb": 2.91,
+        "sector_pe": 25.59
       }
     }
   },
   "research_path": "issues/sumax-engineering-e1d4b1/research.json",
   "schema_version": "3.0.0",
   "slug": "sumax-engineering-e1d4b1",
-  "source_dataset_version": "v2026.09.01-0641",
+  "source_dataset_version": "v2026.09.02-0618",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-02T06:16:41+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-01T06:34:51+00:00",
+      "snapshot_at": "2026-09-02T06:12:50+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-09-01T06:34:59+00:00",
+      "snapshot_at": "2026-09-02T06:12:58+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_sme",
+      "snapshot_at": "2026-09-02T06:12:58+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "151.7400"
+  },
   "subscription_path": "issues/sumax-engineering-e1d4b1/subscription.json",
   "timeline": {
     "close_date": "2026-08-28",
+    "listing_date": "2026-09-02",
     "open_date": "2026-08-25"
   },
   "url_path": "/ipos/sumax-engineering/"

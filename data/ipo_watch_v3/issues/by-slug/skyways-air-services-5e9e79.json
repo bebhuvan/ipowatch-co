@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.01-0641",
+  "dataset_version": "v3.2026.09.02-0618",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0PX301025_31AUG2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_01072025120634_DRHPSkyways.pdf",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +120,7 @@
     }
   },
   "filings_path": "issues/skyways-air-services-5e9e79/filings.json",
-  "generated_at": "2026-09-01T06:41:17+00:00",
+  "generated_at": "2026-09-02T06:18:35+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,8 +135,11 @@
     "symbol": "SKYWAYS"
   },
   "listing_performance": {
-    "current_gain_bps": -449,
-    "current_price_paise": 13180
+    "current_gain_bps": -901,
+    "current_price_paise": 12556,
+    "listing_close_price_paise": 12565,
+    "listing_gain_bps": -895,
+    "listing_open_price_paise": 12400
   },
   "market_path": "issues/skyways-air-services-5e9e79/market.json",
   "parties": {},
@@ -178,43 +193,43 @@
       "peers": [
         {
           "company_name": "SKYWAYS",
-          "market_cap": "0",
+          "market_cap": "1,826",
           "net_sales_cr": 2812,
           "pat_cr": 41.01,
-          "pb": null,
-          "pe": null
+          "pb": 5.49,
+          "pe": 44.53
         },
         {
           "company_name": "DELHIVERY",
-          "market_cap": "35,230",
+          "market_cap": "34,537",
           "net_sales_cr": 10508,
           "pat_cr": 152,
-          "pb": 3.54,
-          "pe": 366.83
+          "pb": 3.57,
+          "pe": 369.24
         },
         {
           "company_name": "TVSSCS",
-          "market_cap": "5,818",
+          "market_cap": "5,593",
           "net_sales_cr": 11002,
           "pat_cr": 114,
-          "pb": 2.76,
-          "pe": 86.6
+          "pb": 2.71,
+          "pe": 85.17
         },
         {
           "company_name": "MAHLOG",
-          "market_cap": "3,895",
+          "market_cap": "3,872",
           "net_sales_cr": 6999,
           "pat_cr": 2.29,
-          "pb": 3.31,
-          "pe": 100.93
+          "pb": 3.28,
+          "pe": 100.0
         },
         {
           "company_name": "SHADOWFAX",
-          "market_cap": "14,425",
+          "market_cap": "15,079",
           "net_sales_cr": 4202,
           "pat_cr": 111,
-          "pb": 8.68,
-          "pe": 135.61
+          "pb": 8.64,
+          "pe": 134.98
         }
       ],
       "revenue_mix": {
@@ -373,54 +388,61 @@
         "pb": 6.03,
         "pe": 31.57,
         "sector_pb": 1.65,
-        "sector_pe": 14.61
+        "sector_pe": 14.74
       }
     }
   },
   "research_path": "issues/skyways-air-services-5e9e79/research.json",
   "schema_version": "3.0.0",
   "slug": "skyways-air-services-5e9e79",
-  "source_dataset_version": "v2026.09.01-0641",
+  "source_dataset_version": "v2026.09.02-0618",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-01T06:35:02+00:00",
+      "snapshot_at": "2026-09-02T06:13:04+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-09-01T06:35:17+00:00",
+      "snapshot_at": "2026-09-02T06:13:15+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-09-01T06:38:29+00:00",
+      "snapshot_at": "2026-09-02T06:16:41+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-01T06:34:51+00:00",
+      "snapshot_at": "2026-09-02T06:12:50+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-09-01T16:53:49+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-01T06:34:59+00:00",
+      "snapshot_at": "2026-09-02T06:12:58+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-01T06:35:00+00:00",
+      "snapshot_at": "2026-09-02T06:12:59+00:00",
       "source": "nse",
       "url": null
     }

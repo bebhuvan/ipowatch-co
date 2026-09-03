@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.02-0618",
+  "dataset_version": "v3.2026.09.03-0616",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -37,6 +37,10 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -57,13 +61,21 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     }
   },
   "filings_path": "issues/monika-alcobev-88d88d/filings.json",
-  "generated_at": "2026-09-02T06:18:35+00:00",
+  "generated_at": "2026-09-03T06:16:52+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -73,18 +85,20 @@
     "company_name": "MONIKA ALCOBEV LIMITED",
     "issue_type": "IPO",
     "slug": "monika-alcobev-88d88d",
-    "status": "Listed"
+    "status": "Listed",
+    "symbol": "MAL01"
   },
   "listing_performance": {
-    "current_gain_bps": -4058,
-    "current_price_paise": 16995,
+    "current_gain_bps": -4266,
+    "current_price_paise": 16400,
     "listing_close_price_paise": 28800,
     "listing_gain_bps": 70
   },
   "market_path": "issues/monika-alcobev-88d88d/market.json",
   "parties": {},
   "pricing": {
-    "issue_price_paise": 28600
+    "issue_price_paise": 28600,
+    "issue_size_paise": 165628320000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/monika-alcobev-88d88d/prospectus_facts.json",
@@ -130,35 +144,35 @@
       "peers": [
         {
           "company_name": "MONIKA",
-          "market_cap": "319",
+          "market_cap": "351",
           "net_sales_cr": 301,
           "pat_cr": 32.14,
-          "pb": 1.31,
-          "pe": 9.92
+          "pb": 1.44,
+          "pe": 10.92
         },
         {
           "company_name": "SDBL",
-          "market_cap": "1,497",
+          "market_cap": "1,481",
           "net_sales_cr": 1442,
           "pat_cr": 95.95,
-          "pb": 1.9,
+          "pb": 1.94,
           "pe": null
         },
         {
           "company_name": "SULA",
-          "market_cap": "1,242",
+          "market_cap": "1,251",
           "net_sales_cr": 555,
           "pat_cr": 25.65,
           "pb": 2.13,
-          "pe": 50.51
+          "pe": 50.49
         },
         {
           "company_name": "GLOBUSSPR",
-          "market_cap": "2,872",
+          "market_cap": "2,882",
           "net_sales_cr": 2710,
           "pat_cr": 91.79,
-          "pb": 2.64,
-          "pe": 28.67
+          "pb": 2.62,
+          "pe": 28.39
         }
       ],
       "revenue_mix": {
@@ -233,25 +247,34 @@
         "market_cap": "₹613",
         "pb": 6.39,
         "pe": 19.08,
-        "sector_pb": 2.12,
-        "sector_pe": 50.15
+        "sector_pb": 2.13,
+        "sector_pe": 50.51
       }
     }
   },
   "research_path": "issues/monika-alcobev-88d88d/research.json",
   "schema_version": "3.0.0",
   "slug": "monika-alcobev-88d88d",
-  "source_dataset_version": "v2026.09.02-0618",
+  "source_dataset_version": "v2026.09.03-0616",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_sme_2025",
-      "snapshot_at": "2026-09-02T06:13:14+00:00",
+      "snapshot_at": "2026-09-03T06:12:10+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000420",
+      "snapshot_at": "2026-09-03T06:14:58+00:00",
+      "source": "moneycontrol",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "3.7800"
+  },
   "subscription_path": "issues/monika-alcobev-88d88d/subscription.json",
   "timeline": {
     "listing_date": "2025-07-22"

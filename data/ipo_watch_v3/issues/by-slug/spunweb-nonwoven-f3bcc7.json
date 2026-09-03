@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.02-0618",
+  "dataset_version": "v3.2026.09.03-0616",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_5345_15052025161248.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/SpunwebNonwovenLimited_PROSP.pdf",
@@ -28,6 +28,10 @@
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -53,9 +57,25 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
@@ -64,6 +84,10 @@
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -79,9 +103,13 @@
     }
   },
   "filings_path": "issues/spunweb-nonwoven-f3bcc7/filings.json",
-  "generated_at": "2026-09-02T06:18:35+00:00",
+  "generated_at": "2026-09-03T06:16:52+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:textiles/spunwebnonwoven/SNL03",
+      "moneycontrol:company_code:16030609"
+    ],
     "board_type": "SME Board",
     "company_name": "Spunweb Nonwoven Limited",
     "issue_type": "IPO",
@@ -89,11 +117,16 @@
     "status": "Listed",
     "symbol": "SPUNWEB"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 531,
+    "current_price_paise": 10110,
+    "listing_gain_bps": 5729
+  },
   "market_path": "issues/spunweb-nonwoven-f3bcc7/market.json",
   "parties": {},
   "pricing": {
     "issue_price_paise": 9600,
+    "issue_size_paise": 60975360000,
     "price_band_lower_paise": 9000,
     "price_band_upper_paise": 9600
   },
@@ -141,27 +174,27 @@
       "peers": [
         {
           "company_name": "SPUNWEB",
-          "market_cap": "243",
+          "market_cap": "244",
           "net_sales_cr": 226,
           "pat_cr": 10.79,
           "pb": null,
-          "pe": 10.55
+          "pe": 10.56
         },
         {
           "company_name": "ABCOTS",
           "market_cap": "469",
           "net_sales_cr": 298,
           "pat_cr": 10.21,
-          "pb": 3.06,
-          "pe": 33.64
+          "pb": 3.09,
+          "pe": 33.89
         },
         {
           "company_name": "FIBERWEB",
-          "market_cap": "77",
+          "market_cap": "75",
           "net_sales_cr": 101,
           "pat_cr": 15.0,
-          "pb": 0.43,
-          "pe": 14.38
+          "pb": 0.42,
+          "pe": 14.23
         }
       ],
       "revenue_mix": {
@@ -336,31 +369,40 @@
         "pb": 5.14,
         "pe": 21.44,
         "sector_pb": 1.22,
-        "sector_pe": 17.57
+        "sector_pe": 17.58
       }
     }
   },
   "research_path": "issues/spunweb-nonwoven-f3bcc7/research.json",
   "schema_version": "3.0.0",
   "slug": "spunweb-nonwoven-f3bcc7",
-  "source_dataset_version": "v2026.09.02-0618",
+  "source_dataset_version": "v2026.09.03-0616",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000420",
+      "snapshot_at": "2026-09-03T06:14:58+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-02T06:12:50+00:00",
+      "snapshot_at": "2026-09-03T06:11:28+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-09-02T06:12:58+00:00",
+      "snapshot_at": "2026-09-03T06:11:36+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "233.3500"
+  },
   "subscription_path": "issues/spunweb-nonwoven-f3bcc7/subscription.json",
   "timeline": {
     "close_date": "2025-07-16",

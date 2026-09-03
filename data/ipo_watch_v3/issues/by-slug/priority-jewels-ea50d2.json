@@ -9,10 +9,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.02-0618",
+  "dataset_version": "v3.2026.09.03-0616",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_30042025230755_DRHP.pdf",
-    "rhp_url": "https://www.bseindia.com/downloads/ipo/323417/IPO%20Open/Priority_Jewels_Limited_RHP_Signed_20260826112329.pdf"
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE15EH01014_03SEP2026.pdf",
+    "rhp_url": "https://nsearchives.nseindia.com/corporate/PriorityJewelsLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
@@ -20,9 +21,13 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -33,6 +38,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,7 +79,7 @@
     }
   },
   "filings_path": "issues/priority-jewels-ea50d2/filings.json",
-  "generated_at": "2026-09-02T06:18:35+00:00",
+  "generated_at": "2026-09-03T06:16:52+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -80,6 +89,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "Priority Jewels Limited",
+    "isin": "INE15EH01014",
     "issue_type": "IPO",
     "slug": "priority-jewels-ea50d2",
     "status": "Closed",
@@ -125,7 +135,7 @@
         ]
       },
       "isin": "INE15EH01014",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "priority jewels",
       "offer_split": {
         "fresh_issue_percent": "100%",
@@ -144,19 +154,19 @@
         },
         {
           "company_name": "KHAZANCHI",
-          "market_cap": "1,918",
+          "market_cap": "1,901",
           "net_sales_cr": 2049,
           "pat_cr": 89.42,
-          "pb": 5.48,
-          "pe": 18.62
+          "pb": 5.31,
+          "pe": 18.06
         },
         {
           "company_name": "RBZJEWEL",
-          "market_cap": "696",
+          "market_cap": "677",
           "net_sales_cr": 636,
           "pat_cr": 54.8,
-          "pb": 2.26,
-          "pe": 11.93
+          "pb": 2.15,
+          "pe": 11.36
         },
         {
           "company_name": "AGOL",
@@ -247,41 +257,34 @@
         "market_cap": "₹360",
         "pb": 2.47,
         "pe": 20.4,
-        "sector_pb": 2.13,
-        "sector_pe": 15.96
+        "sector_pb": 2.21,
+        "sector_pe": 15.47
       }
     }
   },
   "research_path": "issues/priority-jewels-ea50d2/research.json",
   "schema_version": "3.0.0",
   "slug": "priority-jewels-ea50d2",
-  "source_dataset_version": "v2026.09.02-0618",
+  "source_dataset_version": "v2026.09.03-0616",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-02T06:13:04+00:00",
+      "snapshot_at": "2026-09-03T06:11:59+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-02T06:12:50+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-09-02T06:12:49+00:00",
+      "snapshot_at": "2026-09-03T06:11:28+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-02T06:12:58+00:00",
+      "snapshot_at": "2026-09-03T06:11:35+00:00",
       "source": "nse",
       "url": null
     }

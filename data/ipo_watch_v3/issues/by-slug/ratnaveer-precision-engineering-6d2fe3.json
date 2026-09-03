@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.02-0618",
+  "dataset_version": "v3.2026.09.03-0616",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -67,7 +67,7 @@
     }
   },
   "filings_path": "issues/ratnaveer-precision-engineering-6d2fe3/filings.json",
-  "generated_at": "2026-09-02T06:18:35+00:00",
+  "generated_at": "2026-09-03T06:16:52+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -86,7 +86,7 @@
   "parties": {},
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 20630,
+    "issue_size_shares": 134943,
     "price_band_lower_paise": 26400,
     "price_band_upper_paise": 26400
   },
@@ -97,31 +97,54 @@
   "public_slug": "ratnaveer-precision-engineering",
   "schema_version": "3.0.0",
   "slug": "ratnaveer-precision-engineering-6d2fe3",
-  "source_dataset_version": "v2026.09.02-0618",
+  "source_dataset_version": "v2026.09.03-0616",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-09-02T06:13:00+00:00",
+      "snapshot_at": "2026-09-03T06:11:38+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-09-02T06:13:00+00:00",
+      "snapshot_at": "2026-09-03T06:11:58+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "rights_active",
-      "snapshot_at": "2026-09-02T06:12:54+00:00",
+      "snapshot_at": "2026-09-03T06:11:32+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "data_availability": {
+      "expected_product_feed": "nse.rights_active_or_forthcoming",
+      "reason": "NSE rights issue feed currently provides identity and offer-window fields only for this row; subscription/demand fields are null.",
+      "source_refs": [
+        {
+          "endpoint": "public_issue",
+          "snapshot_at": "2026-09-03T06:11:38+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue_details",
+          "snapshot_at": "2026-09-03T06:11:58+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "rights_active",
+          "snapshot_at": "2026-09-03T06:11:32+00:00",
+          "source": "nse"
+        }
+      ],
+      "state": "exchange_not_provided"
+    }
+  },
   "subscription_path": "issues/ratnaveer-precision-engineering-6d2fe3/subscription.json",
   "timeline": {
     "close_date": "2026-09-09",

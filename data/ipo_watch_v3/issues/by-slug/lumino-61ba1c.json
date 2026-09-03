@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.02-0618",
+  "dataset_version": "v3.2026.09.03-0616",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE185Q01025_02SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Lumino_DRHP.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE185Q01025_01SEP2026.pdf",
     "rhp_url": "https://nsearchives.nseindia.com/corporate/LuminoIndustriesLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +108,29 @@
     }
   },
   "filings_path": "issues/lumino-61ba1c/filings.json",
-  "generated_at": "2026-09-02T06:18:35+00:00",
+  "generated_at": "2026-09-03T06:16:52+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:56951573",
-      "bse:prior_id:221495",
-      "bse:createdby:306897"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/lumino-industries-ltd/lumino/544894/"
     ],
     "board_type": "Main Board",
     "company_name": "Lumino Industries Limited",
     "isin": "INE185Q01025",
     "issue_type": "IPO",
     "slug": "lumino-61ba1c",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "LUMINO"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 4378,
+    "current_price_paise": 11790
+  },
   "market_path": "issues/lumino-61ba1c/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 8200,
+    "issue_size_paise": 700000002800,
     "price_band_lower_paise": 7800,
     "price_band_upper_paise": 8200
   },
@@ -146,27 +178,27 @@
       "peers": [
         {
           "company_name": "LUMINO",
-          "market_cap": "2,497",
+          "market_cap": "0",
           "net_sales_cr": 2041,
           "pat_cr": 159,
-          "pb": 3.42,
-          "pe": 15.61
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "APARINDS",
           "market_cap": "72,847",
           "net_sales_cr": 22902,
           "pat_cr": 976,
-          "pb": 13.51,
-          "pe": 61.66
+          "pb": 13.05,
+          "pe": 59.56
         },
         {
           "company_name": "BAJEL",
-          "market_cap": "2,217",
+          "market_cap": "2,154",
           "net_sales_cr": 2791,
           "pat_cr": 20.28,
-          "pb": 2.88,
-          "pe": 97.66
+          "pb": 2.87,
+          "pe": 97.21
         },
         {
           "company_name": "KPIL",
@@ -181,8 +213,8 @@
           "market_cap": "11,097",
           "net_sales_cr": 23505,
           "pat_cr": 605,
-          "pb": 1.8,
-          "pe": 20.04
+          "pb": 1.76,
+          "pe": 19.61
         }
       ],
       "revenue_mix": {
@@ -278,42 +310,66 @@
         "market_cap": "₹2,497",
         "pb": 3.42,
         "pe": 15.61,
-        "sector_pb": 3.61,
-        "sector_pe": 31.73
+        "sector_pb": 3.62,
+        "sector_pe": 32.49
       }
     }
   },
   "research_path": "issues/lumino-61ba1c/research.json",
   "schema_version": "3.0.0",
   "slug": "lumino-61ba1c",
-  "source_dataset_version": "v2026.09.02-0618",
+  "source_dataset_version": "v2026.09.03-0616",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-02T06:13:04+00:00",
+      "snapshot_at": "2026-09-03T06:11:59+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-03T06:12:10+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-03T06:14:58+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-02T06:12:50+00:00",
+      "snapshot_at": "2026-09-03T06:11:28+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-02T06:12:58+00:00",
+      "snapshot_at": "2026-09-03T06:11:35+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-03T06:11:36+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "118.1200"
+  },
   "subscription_path": "issues/lumino-61ba1c/subscription.json",
   "timeline": {
     "close_date": "2026-08-31",
+    "listing_date": "2026-09-03",
     "open_date": "2026-08-27"
   },
   "url_path": "/ipos/lumino/"

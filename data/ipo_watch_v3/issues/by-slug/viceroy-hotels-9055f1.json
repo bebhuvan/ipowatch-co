@@ -9,10 +9,18 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.02-0618",
+  "dataset_version": "v3.2026.09.03-0616",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "identity.board_type": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -33,9 +41,21 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "pricing.issue_size_shares": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -47,9 +67,14 @@
     }
   },
   "filings_path": "issues/viceroy-hotels-9055f1/filings.json",
-  "generated_at": "2026-09-02T06:18:35+00:00",
+  "generated_at": "2026-09-03T06:16:52+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "bse:ipo_no:7938",
+      "bse:scrip_code:4784"
+    ],
+    "board_type": "Main Board",
     "company_name": "Viceroy Hotels Limited",
     "issue_type": "Rights",
     "slug": "viceroy-hotels-9055f1",
@@ -60,7 +85,10 @@
   "market_path": "issues/viceroy-hotels-9055f1/market.json",
   "parties": {},
   "pricing": {
-    "issue_size_shares": 531503
+    "face_value_paise": 1000,
+    "issue_size_shares": 531503,
+    "price_band_lower_paise": 11500,
+    "price_band_upper_paise": 11500
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/viceroy-hotels-9055f1/prospectus_facts.json",
@@ -69,12 +97,33 @@
   "public_slug": "viceroy-hotels",
   "schema_version": "3.0.0",
   "slug": "viceroy-hotels-9055f1",
-  "source_dataset_version": "v2026.09.02-0618",
+  "source_dataset_version": "v2026.09.03-0616",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-09-03T06:11:38+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-09-03T06:11:58+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "rights_active",
+      "snapshot_at": "2026-09-03T06:11:32+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "rights_past",
-      "snapshot_at": "2026-09-02T06:12:55+00:00",
+      "snapshot_at": "2026-09-03T06:11:32+00:00",
       "source": "nse",
       "url": null
     }
@@ -85,8 +134,23 @@
       "reason": "NSE rights issue feed currently provides identity and offer-window fields only for this row; subscription/demand fields are null.",
       "source_refs": [
         {
+          "endpoint": "public_issue",
+          "snapshot_at": "2026-09-03T06:11:38+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "public_issue_details",
+          "snapshot_at": "2026-09-03T06:11:58+00:00",
+          "source": "bse"
+        },
+        {
+          "endpoint": "rights_active",
+          "snapshot_at": "2026-09-03T06:11:32+00:00",
+          "source": "nse"
+        },
+        {
           "endpoint": "rights_past",
-          "snapshot_at": "2026-09-02T06:12:55+00:00",
+          "snapshot_at": "2026-09-03T06:11:32+00:00",
           "source": "nse"
         }
       ],

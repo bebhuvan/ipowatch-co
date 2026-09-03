@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.02-0618",
+  "dataset_version": "v3.2026.09.03-0616",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -23,15 +23,15 @@
     },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -39,31 +39,43 @@
     },
     "identity.symbol": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "pricing.face_value_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "timeline.open_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     }
   },
   "filings_path": "issues/gandhi-special-tubes-8baa5a/filings.json",
-  "generated_at": "2026-09-02T06:18:35+00:00",
+  "generated_at": "2026-09-03T06:16:52+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -71,17 +83,19 @@
       "bse:scrip_code:513108"
     ],
     "board_type": "Main Board",
-    "company_name": "Gandhi Special Tubes Ltd-$",
+    "company_name": "Gandhi Special Tubes Limited",
     "issue_type": "Buyback",
     "slug": "gandhi-special-tubes-8baa5a",
-    "status": "Open",
-    "symbol": "GANDHI SP TU"
+    "status": "Closed",
+    "symbol": "gandhitube"
   },
   "listing_performance": {},
   "market_path": "issues/gandhi-special-tubes-8baa5a/market.json",
   "parties": {},
   "pricing": {
     "face_value_paise": 500,
+    "issue_price_paise": 90000,
+    "issue_size_shares": 868100,
     "price_band_lower_paise": 90000,
     "price_band_upper_paise": 90000
   },
@@ -89,23 +103,44 @@
   "prospectus_facts_path": "issues/gandhi-special-tubes-8baa5a/prospectus_facts.json",
   "provenance_path": "issues/gandhi-special-tubes-8baa5a/provenance.json",
   "public_contract": "ipo-watch.site_v3",
-  "public_slug": "gandhi-special-tubes-2026",
+  "public_slug": "gandhi-special-tubes",
   "schema_version": "3.0.0",
   "slug": "gandhi-special-tubes-8baa5a",
-  "source_dataset_version": "v2026.09.02-0618",
+  "source_dataset_version": "v2026.09.03-0616",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "public_issue",
-      "snapshot_at": "2026-09-02T06:13:00+00:00",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-09-03T06:11:58+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "public_issue_details",
-      "snapshot_at": "2026-09-02T06:13:00+00:00",
-      "source": "bse",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-09-03T06:11:32+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-09-03T06:11:32+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-09-03T06:11:32+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-09-03T06:11:32+00:00",
+      "source": "nse",
       "url": null
     }
   ],
@@ -116,17 +151,38 @@
       "source_refs": [
         {
           "endpoint": "public_issue_details",
-          "snapshot_at": "2026-09-02T12:52:50+00:00",
+          "snapshot_at": "2026-09-03T06:11:58+00:00",
           "source": "bse"
+        },
+        {
+          "endpoint": "tender_past",
+          "snapshot_at": "2026-09-03T06:11:32+00:00",
+          "source": "nse"
+        },
+        {
+          "endpoint": "tender_past",
+          "snapshot_at": "2026-09-03T06:11:32+00:00",
+          "source": "nse"
+        },
+        {
+          "endpoint": "tender_past",
+          "snapshot_at": "2026-09-03T06:11:32+00:00",
+          "source": "nse"
+        },
+        {
+          "endpoint": "tender_past",
+          "snapshot_at": "2026-09-03T06:11:32+00:00",
+          "source": "nse"
         }
       ],
       "state": "not_applicable_to_ipo_subscription_book"
-    }
+    },
+    "overall_times_x": "1.8100"
   },
   "subscription_path": "issues/gandhi-special-tubes-8baa5a/subscription.json",
   "timeline": {
     "close_date": "2026-09-02",
     "open_date": "2026-08-27"
   },
-  "url_path": "/buybacks/gandhi-special-tubes-2026/"
+  "url_path": "/buybacks/gandhi-special-tubes/"
 }

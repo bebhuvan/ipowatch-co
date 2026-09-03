@@ -1,6 +1,6 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/provenance.schema.json",
-  "dataset_version": "v3.2026.09.02-0618",
+  "dataset_version": "v3.2026.09.03-0616",
   "field_provenance": {
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -12,15 +12,15 @@
     },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
@@ -28,27 +28,39 @@
     },
     "identity.symbol": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "pricing.face_value_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "timeline.open_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     }
   },
   "findings": {
@@ -56,25 +68,46 @@
     "info": [],
     "review": []
   },
-  "generated_at": "2026-09-02T06:18:35+00:00",
+  "generated_at": "2026-09-03T06:16:52+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "gandhi-special-tubes-8baa5a",
-  "source_dataset_version": "v2026.09.02-0618",
+  "source_dataset_version": "v2026.09.03-0616",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "public_issue",
-      "snapshot_at": "2026-09-02T06:13:00+00:00",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-09-03T06:11:58+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "public_issue_details",
-      "snapshot_at": "2026-09-02T06:13:00+00:00",
-      "source": "bse",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-09-03T06:11:32+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-09-03T06:11:32+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-09-03T06:11:32+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "tender_past",
+      "snapshot_at": "2026-09-03T06:11:32+00:00",
+      "source": "nse",
       "url": null
     }
   ],

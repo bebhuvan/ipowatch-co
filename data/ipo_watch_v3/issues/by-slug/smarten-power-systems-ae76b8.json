@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.02-0618",
+  "dataset_version": "v3.2026.09.03-0616",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_5237_22042025202258.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/SmartenPowerSystemsLimited_PROSP.zip"
@@ -23,6 +23,10 @@
     "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -48,9 +52,29 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -66,9 +90,13 @@
     }
   },
   "filings_path": "issues/smarten-power-systems-ae76b8/filings.json",
-  "generated_at": "2026-09-02T06:18:35+00:00",
+  "generated_at": "2026-09-03T06:16:52+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:electrodeselectrical-equipments/smartenpowersystems/SPS06",
+      "moneycontrol:company_code:13150387"
+    ],
     "board_type": "SME Board",
     "company_name": "Smarten Power Systems Limited",
     "issue_type": "IPO",
@@ -76,11 +104,16 @@
     "status": "Listed",
     "symbol": "SMARTEN"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -4450,
+    "current_price_paise": 5550,
+    "listing_gain_bps": 4400
+  },
   "market_path": "issues/smarten-power-systems-ae76b8/market.json",
   "parties": {},
   "pricing": {
-    "issue_price_paise": 10000
+    "issue_price_paise": 10000,
+    "issue_size_paise": 71244000000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/smarten-power-systems-ae76b8/prospectus_facts.json",
@@ -134,19 +167,19 @@
         },
         {
           "company_name": "GPECO",
-          "market_cap": "498",
+          "market_cap": "496",
           "net_sales_cr": 246,
           "pat_cr": 10.36,
           "pb": null,
-          "pe": 12.3
+          "pe": 12.36
         },
         {
           "company_name": "SEL",
-          "market_cap": "71",
+          "market_cap": "70",
           "net_sales_cr": 33.49,
           "pat_cr": 1.66,
           "pb": null,
-          "pe": 18.47
+          "pe": 14.64
         }
       ],
       "revenue_mix": {
@@ -325,31 +358,40 @@
         "pb": 4.93,
         "pe": 14.88,
         "sector_pb": 1.98,
-        "sector_pe": 20.62
+        "sector_pe": 24.09
       }
     }
   },
   "research_path": "issues/smarten-power-systems-ae76b8/research.json",
   "schema_version": "3.0.0",
   "slug": "smarten-power-systems-ae76b8",
-  "source_dataset_version": "v2026.09.02-0618",
+  "source_dataset_version": "v2026.09.03-0616",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000420",
+      "snapshot_at": "2026-09-03T06:14:58+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-02T06:12:50+00:00",
+      "snapshot_at": "2026-09-03T06:11:28+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-09-02T06:12:58+00:00",
+      "snapshot_at": "2026-09-03T06:11:36+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "5.2600"
+  },
   "subscription_path": "issues/smarten-power-systems-ae76b8/subscription.json",
   "timeline": {
     "close_date": "2025-07-09",

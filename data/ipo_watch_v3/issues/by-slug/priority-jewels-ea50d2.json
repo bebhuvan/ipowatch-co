@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.03-0616",
+  "dataset_version": "v3.2026.09.05-0612",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE15EH01014_03SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_30042025230755_DRHP.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE15EH01014_03SEP2026.pdf",
     "rhp_url": "https://nsearchives.nseindia.com/corporate/PriorityJewelsLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,30 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +98,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +116,31 @@
     }
   },
   "filings_path": "issues/priority-jewels-ea50d2/filings.json",
-  "generated_at": "2026-09-03T06:16:52+00:00",
+  "generated_at": "2026-09-05T06:12:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:21425913",
-      "bse:prior_id:230775",
-      "bse:createdby:323417"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/priority-jewels-ltd/priority/544899/"
     ],
     "board_type": "Main Board",
     "company_name": "Priority Jewels Limited",
     "isin": "INE15EH01014",
     "issue_type": "IPO",
     "slug": "priority-jewels-ea50d2",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "PRIORITY"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 1822,
+    "current_price_paise": 23645,
+    "listing_close_price_paise": 23645,
+    "listing_gain_bps": 1822
+  },
   "market_path": "issues/priority-jewels-ea50d2/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 20000,
+    "issue_size_paise": 91500000000,
     "price_band_lower_paise": 19000,
     "price_band_upper_paise": 20000
   },
@@ -146,35 +188,35 @@
       "peers": [
         {
           "company_name": "PRIORITY",
-          "market_cap": "360",
+          "market_cap": "0",
           "net_sales_cr": 538,
           "pat_cr": 17.82,
-          "pb": 2.47,
-          "pe": 20.4
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "KHAZANCHI",
-          "market_cap": "1,901",
+          "market_cap": "1,866",
           "net_sales_cr": 2049,
           "pat_cr": 89.42,
-          "pb": 5.31,
-          "pe": 18.06
+          "pb": 5.37,
+          "pe": 18.28
         },
         {
           "company_name": "RBZJEWEL",
-          "market_cap": "677",
+          "market_cap": "771",
           "net_sales_cr": 636,
           "pat_cr": 54.8,
-          "pb": 2.15,
-          "pe": 11.36
+          "pb": 2.57,
+          "pe": 13.57
         },
         {
           "company_name": "AGOL",
-          "market_cap": "133",
+          "market_cap": "132",
           "net_sales_cr": 317,
           "pat_cr": 12.04,
-          "pb": 0.8,
-          "pe": 6.44
+          "pb": 0.79,
+          "pe": 6.39
         }
       ],
       "revenue_mix": {
@@ -257,42 +299,59 @@
         "market_cap": "₹360",
         "pb": 2.47,
         "pe": 20.4,
-        "sector_pb": 2.21,
-        "sector_pe": 15.47
+        "sector_pb": 2.13,
+        "sector_pe": 17.64
       }
     }
   },
   "research_path": "issues/priority-jewels-ea50d2/research.json",
   "schema_version": "3.0.0",
   "slug": "priority-jewels-ea50d2",
-  "source_dataset_version": "v2026.09.03-0616",
+  "source_dataset_version": "v2026.09.05-0612",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-03T06:11:59+00:00",
+      "snapshot_at": "2026-09-05T06:07:08+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-05T06:07:20+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-05T06:10:30+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-03T06:11:28+00:00",
+      "snapshot_at": "2026-09-05T06:06:53+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-03T06:11:35+00:00",
+      "snapshot_at": "2026-09-05T06:07:02+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "100.4500"
+  },
   "subscription_path": "issues/priority-jewels-ea50d2/subscription.json",
   "timeline": {
     "close_date": "2026-09-01",
+    "listing_date": "2026-09-04",
     "open_date": "2026-08-28"
   },
   "url_path": "/ipos/priority-jewels/"

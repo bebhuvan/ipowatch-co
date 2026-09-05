@@ -1,60 +1,78 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/provenance.schema.json",
-  "dataset_version": "v3.2026.09.03-0616",
+  "dataset_version": "v3.2026.09.05-0612",
   "field_provenance": {
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "identity.board_type": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "nse"
+      "source": "bse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "nse"
+      "source": "bse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "nse"
+      "source": "bse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
-    "identity.symbol": {
+    "pricing.face_value_paise": {
       "rule_id": "E.SRC.002",
-      "source": "nse"
+      "source": "bse"
+    },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
-      "source": "nse"
+      "source": "bse"
     },
     "timeline.open_date": {
       "rule_id": "E.SRC.002",
-      "source": "nse"
+      "source": "bse"
     }
   },
   "findings": {
     "blocking": [],
     "info": [],
-    "review": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "review": []
   },
-  "generated_at": "2026-09-03T06:16:52+00:00",
+  "generated_at": "2026-09-05T06:12:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "jaykay-enterprises-bfa6d7",
-  "source_dataset_version": "v2026.09.03-0616",
+  "source_dataset_version": "v2026.09.05-0612",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "rights_forthcoming",
-      "snapshot_at": "2026-09-03T06:11:32+00:00",
-      "source": "nse",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-09-05T06:07:05+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-09-05T06:07:06+00:00",
+      "source": "bse",
       "url": null
     }
   ],
-  "validation_state": "review"
+  "validation_state": "clean"
 }

@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.03-0616",
+  "dataset_version": "v3.2026.09.05-0612",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0DRI01029_03SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/-",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE0DRI01029_02SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/330873/IPO%20Open/RedHerringProspectusESDSIPO_20260826202141.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,30 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +98,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +116,31 @@
     }
   },
   "filings_path": "issues/esds-software-solution-168931/filings.json",
-  "generated_at": "2026-09-03T06:16:52+00:00",
+  "generated_at": "2026-09-05T06:12:49+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:59403662",
-      "bse:prior_id:228855",
-      "bse:createdby:330873"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/esds-software-solution-ltd/esds/544898/"
     ],
     "board_type": "Main Board",
     "company_name": "ESDS Software Solution Limited",
     "isin": "INE0DRI01029",
     "issue_type": "IPO",
     "slug": "esds-software-solution-168931",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "ESDS"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 10875,
+    "current_price_paise": 89555,
+    "listing_close_price_paise": 89555,
+    "listing_gain_bps": 10875
+  },
   "market_path": "issues/esds-software-solution-168931/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 42900,
+    "issue_size_paise": 720000009300,
     "price_band_lower_paise": 40800,
     "price_band_upper_paise": 42900
   },
@@ -146,43 +188,43 @@
       "peers": [
         {
           "company_name": "ESDS",
-          "market_cap": "5,028",
+          "market_cap": "0",
           "net_sales_cr": 472,
           "pat_cr": 120,
-          "pb": 9.25,
-          "pe": 41.61
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "E2E",
-          "market_cap": "12,779",
+          "market_cap": "12,201",
           "net_sales_cr": 163,
           "pat_cr": 47.49,
-          "pb": 7.43,
-          "pe": 401.68
+          "pb": 7.24,
+          "pe": 391.58
         },
         {
           "company_name": "BBOX",
-          "market_cap": "12,812",
+          "market_cap": "12,804",
           "net_sales_cr": 6321,
           "pat_cr": 217,
-          "pb": 10.01,
-          "pe": 56.97
+          "pb": 9.95,
+          "pe": 56.65
         },
         {
           "company_name": "AURIONPRO",
-          "market_cap": "3,840",
+          "market_cap": "3,795",
           "net_sales_cr": 1172,
           "pat_cr": 186,
-          "pb": 2.21,
-          "pe": 36.64
+          "pb": 2.18,
+          "pe": 18.61
         },
         {
           "company_name": "NETWEB",
-          "market_cap": "30,502",
+          "market_cap": "31,345",
           "net_sales_cr": 2183,
           "pat_cr": 205,
-          "pb": 42.01,
-          "pe": 116.58
+          "pb": 43.34,
+          "pe": 120.25
         }
       ],
       "revenue_mix": {
@@ -300,55 +342,79 @@
         "pb": 9.25,
         "pe": 41.62,
         "sector_pb": 2.44,
-        "sector_pe": 24.44
+        "sector_pe": 25.39
       }
     }
   },
   "research_path": "issues/esds-software-solution-168931/research.json",
   "schema_version": "3.0.0",
   "slug": "esds-software-solution-168931",
-  "source_dataset_version": "v2026.09.03-0616",
+  "source_dataset_version": "v2026.09.05-0612",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-03T06:11:59+00:00",
+      "snapshot_at": "2026-09-05T06:07:08+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-05T06:07:20+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-05T06:10:30+00:00",
+      "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-03T06:11:28+00:00",
+      "snapshot_at": "2026-09-05T06:06:53+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-03T06:11:59+00:00",
+      "snapshot_at": "2026-09-05T06:07:08+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-03T06:11:35+00:00",
+      "snapshot_at": "2026-09-05T06:07:02+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-03T06:11:35+00:00",
+      "snapshot_at": "2026-09-05T06:07:02+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-05T06:07:04+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "135.8800"
+  },
   "subscription_path": "issues/esds-software-solution-168931/subscription.json",
   "timeline": {
     "close_date": "2026-09-01",
+    "listing_date": "2026-09-04",
     "open_date": "2026-08-28"
   },
   "url_path": "/ipos/esds-software-solution/"

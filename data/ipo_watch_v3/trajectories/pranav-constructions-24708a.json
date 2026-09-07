@@ -8,8 +8,81 @@
   },
   "dataset": "ipo-watch.trajectory.schema",
   "dataset_version": "v3.2026.09.05-0612",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-09-07T08:52:09+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 53791920,
+          "price_paise": 12400
+        },
+        {
+          "cumulative_quantity": 53794800,
+          "price_paise": 12300
+        },
+        {
+          "cumulative_quantity": 53797920,
+          "price_paise": 12200
+        },
+        {
+          "cumulative_quantity": 53801760,
+          "price_paise": 12100
+        },
+        {
+          "cumulative_quantity": 53816040,
+          "price_paise": 12000
+        },
+        {
+          "cumulative_quantity": 53818680,
+          "price_paise": 11900
+        },
+        {
+          "cumulative_quantity": 55632960,
+          "price_paise": 11800
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "07-Sep-2026 14:20:04"
+    },
+    {
+      "observed_at": "2026-09-07T08:52:10+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 82482120,
+          "price_paise": 12400
+        },
+        {
+          "cumulative_quantity": 82494600,
+          "price_paise": 12300
+        },
+        {
+          "cumulative_quantity": 82509720,
+          "price_paise": 12200
+        },
+        {
+          "cumulative_quantity": 82515480,
+          "price_paise": 12100
+        },
+        {
+          "cumulative_quantity": 82544280,
+          "price_paise": 12000
+        },
+        {
+          "cumulative_quantity": 82550160,
+          "price_paise": 11900
+        },
+        {
+          "cumulative_quantity": 84384960,
+          "price_paise": 11800
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "07-Sep-2026 14:18:00"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
@@ -24,48 +97,33 @@
     {
       "categories": {
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 27792840,
+          "shares_offered": 4440395,
+          "times": 6.2590918150299695
+        },
+        "nii_gt_10l": {
+          "shares_bid": 12077760,
+          "shares_offered": 1480131,
+          "times": 8.15992638489431
         },
         "qib": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 939000,
+          "shares_offered": 4701558,
+          "times": 0.19972102864624874
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 55523160,
+          "shares_offered": 13321184,
+          "times": 4.168034913413102
         }
       },
-      "observed_at": "2026-09-05T06:12:29+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-09-07T08:52:09+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 07-Sep-2026 14:18:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 8,
+        "shares_offered": 2,
+        "times": 3.7508118300662994
       }
     }
   ],
@@ -76,9 +134,23 @@
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7943",
+      "endpoint": "consolidated_bid_details_pranav",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_pranav",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_pranav",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

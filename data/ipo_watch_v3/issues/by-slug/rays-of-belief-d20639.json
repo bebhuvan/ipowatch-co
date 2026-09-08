@@ -5,23 +5,23 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.05-0612",
+  "dataset_version": "v3.2026.09.08-0623",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE1FCO01014_07SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/RaysofBeliefLimited_UDRHP_I.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE1FCO01014_04SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/371820/IPO%20Open/00RaysofBeliefLimitedRHP_20260831192817.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,28 +61,61 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
+    },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "timeline.listing_date": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     }
   },
   "filings_path": "issues/rays-of-belief-d20639/filings.json",
-  "generated_at": "2026-09-05T06:12:49+00:00",
+  "generated_at": "2026-09-08T06:23:55+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:53599375",
-      "bse:prior_id:242964",
-      "bse:createdby:371820"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/rays-of-belief-ltd/momsbelief/544906/"
     ],
     "board_type": "Main Board",
-    "company_name": "Rays Of Belief Limited",
+    "company_name": "Rays of Belief Limited",
     "isin": "INE1FCO01014",
     "issue_type": "IPO",
     "slug": "rays-of-belief-d20639",
-    "status": "Filed"
+    "status": "Listed",
+    "symbol": "MOMSBELIEF"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -335,
+    "current_price_paise": 23100
+  },
   "market_path": "issues/rays-of-belief-d20639/market.json",
   "parties": {},
-  "pricing": {},
+  "pricing": {
+    "issue_price_paise": 23900,
+    "issue_size_paise": 124997000000
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/rays-of-belief-d20639/prospectus_facts.json",
   "provenance_path": "issues/rays-of-belief-d20639/provenance.json",
@@ -127,19 +160,19 @@
       "peers": [
         {
           "company_name": "MOMSBELIEF",
-          "market_cap": "500",
+          "market_cap": "0",
           "net_sales_cr": 81.66,
           "pat_cr": 4.96,
-          "pb": 16.23,
-          "pe": 100.83
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "RAINBOW",
-          "market_cap": "14,646",
+          "market_cap": "14,675",
           "net_sales_cr": 1703,
           "pat_cr": 278,
-          "pb": 8.89,
-          "pe": 51.32
+          "pb": 9.04,
+          "pe": 52.18
         }
       ],
       "revenue_mix": {
@@ -249,40 +282,58 @@
         "market_cap": "₹499",
         "pb": 16.21,
         "pe": 100.74,
-        "sector_pb": 3.81,
-        "sector_pe": 48.17
+        "sector_pb": 3.8,
+        "sector_pe": 47.88
       }
     }
   },
   "research_path": "issues/rays-of-belief-d20639/research.json",
   "schema_version": "3.0.0",
   "slug": "rays-of-belief-d20639",
-  "source_dataset_version": "v2026.09.05-0612",
+  "source_dataset_version": "v2026.09.08-0623",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-05T06:07:08+00:00",
+      "snapshot_at": "2026-09-08T06:17:46+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-08T06:17:58+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-08T06:21:17+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-05T06:07:02+00:00",
+      "snapshot_at": "2026-09-08T06:17:33+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-05T06:07:02+00:00",
+      "snapshot_at": "2026-09-08T06:17:33+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "107.7100"
+  },
   "subscription_path": "issues/rays-of-belief-d20639/subscription.json",
-  "timeline": {},
+  "timeline": {
+    "listing_date": "2026-09-07"
+  },
   "url_path": "/ipos/rays-of-belief/"
 }

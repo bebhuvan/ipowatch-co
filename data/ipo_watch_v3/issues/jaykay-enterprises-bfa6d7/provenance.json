@@ -1,6 +1,6 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/provenance.schema.json",
-  "dataset_version": "v3.2026.09.05-0612",
+  "dataset_version": "v3.2026.09.08-0623",
   "field_provenance": {
     "identity.aliases": {
       "rule_id": "E.SRC.002",
@@ -12,23 +12,31 @@
     },
     "identity.company_name": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.slug": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "pricing.face_value_paise": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
     },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
@@ -40,11 +48,11 @@
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     },
     "timeline.open_date": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "nse"
     }
   },
   "findings": {
@@ -52,25 +60,32 @@
     "info": [],
     "review": []
   },
-  "generated_at": "2026-09-05T06:12:49+00:00",
+  "generated_at": "2026-09-08T06:23:55+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "public_contract": "ipo-watch.site_v3",
   "schema_version": "3.0.0",
   "slug": "jaykay-enterprises-bfa6d7",
-  "source_dataset_version": "v2026.09.05-0612",
+  "source_dataset_version": "v2026.09.08-0623",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-09-05T06:07:05+00:00",
+      "snapshot_at": "2026-09-08T06:17:36+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-09-05T06:07:06+00:00",
+      "snapshot_at": "2026-09-08T06:17:38+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "rights_active",
+      "snapshot_at": "2026-09-08T06:17:30+00:00",
+      "source": "nse",
       "url": null
     }
   ],

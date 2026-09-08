@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.05-0612",
+  "dataset_version": "v3.2026.09.08-0623",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6385_18122025184420.zip",
     "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/ShantiInorganicsLimited_RHP.zip"
@@ -23,6 +23,10 @@
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -48,6 +52,26 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -56,7 +80,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -66,20 +98,30 @@
     }
   },
   "filings_path": "issues/shanti-inorganics-cbd741/filings.json",
-  "generated_at": "2026-09-05T06:12:49+00:00",
+  "generated_at": "2026-09-08T06:23:55+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:speciality-chemicals/shantiinorganics/SIL34",
+      "moneycontrol:company_code:12080120"
+    ],
     "board_type": "SME Board",
     "company_name": "Shanti Inorganics Limited",
     "issue_type": "IPO",
     "slug": "shanti-inorganics-cbd741",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "SHANTIINOR"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 9639,
+    "current_price_paise": 16300,
+    "listing_gain_bps": 9000
+  },
   "market_path": "issues/shanti-inorganics-cbd741/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 8300,
+    "issue_size_paise": 47236960000,
     "price_band_lower_paise": 7900,
     "price_band_upper_paise": 8300
   },
@@ -127,42 +169,42 @@
       "peers": [
         {
           "company_name": "SHANTIINOR",
-          "market_cap": "143",
+          "market_cap": "286",
           "net_sales_cr": 71.22,
           "pat_cr": 10.22,
-          "pb": 2.82,
-          "pe": 13.99
+          "pb": 5.93,
+          "pe": 27.94
         },
         {
           "company_name": "GUJALKALI",
-          "market_cap": "5,308",
+          "market_cap": "5,306",
           "net_sales_cr": 4358,
           "pat_cr": -2.41,
-          "pb": 1.02,
-          "pe": 80.0
+          "pb": 1.0,
+          "pe": 78.52
         },
         {
           "company_name": "AARTIIND",
-          "market_cap": "18,200",
+          "market_cap": "17,843",
           "net_sales_cr": 8286,
           "pat_cr": 419,
-          "pb": 3.06,
-          "pe": 34.27
+          "pb": 2.99,
+          "pe": 33.54
         },
         {
           "company_name": "GHCL",
-          "market_cap": "4,030",
+          "market_cap": "4,028",
           "net_sales_cr": 3064,
           "pat_cr": 472,
-          "pb": 1.13,
-          "pe": 8.53
+          "pb": 1.12,
+          "pe": 8.44
         },
         {
           "company_name": "CHEMFAB",
-          "market_cap": "509",
+          "market_cap": "518",
           "net_sales_cr": 311,
           "pat_cr": -3.43,
-          "pb": 1.36,
+          "pb": 1.35,
           "pe": null
         }
       ],
@@ -289,42 +331,45 @@
         "market_cap": "₹143",
         "pb": 2.82,
         "pe": 14.01,
-        "sector_pb": 1.9,
-        "sector_pe": 25.59
+        "sector_pb": 1.93,
+        "sector_pe": 26.03
       }
     }
   },
   "research_path": "issues/shanti-inorganics-cbd741/research.json",
   "schema_version": "3.0.0",
   "slug": "shanti-inorganics-cbd741",
-  "source_dataset_version": "v2026.09.05-0612",
+  "source_dataset_version": "v2026.09.08-0623",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-08T06:21:17+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-05T06:06:53+00:00",
+      "snapshot_at": "2026-09-08T06:17:26+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-09-05T06:07:03+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-05T06:07:04+00:00",
+      "snapshot_at": "2026-09-08T06:17:34+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "132.3000"
+  },
   "subscription_path": "issues/shanti-inorganics-cbd741/subscription.json",
   "timeline": {
     "close_date": "2026-09-02",
+    "listing_date": "2026-09-07",
     "open_date": "2026-08-31"
   },
   "url_path": "/ipos/shanti-inorganics/"

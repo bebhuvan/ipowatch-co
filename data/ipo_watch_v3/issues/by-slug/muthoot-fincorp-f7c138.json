@@ -14,7 +14,7 @@
     ]
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.05-0612",
+  "dataset_version": "v3.2026.09.08-0623",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/DRHPMuthoot.zip"
   },
@@ -47,22 +47,29 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
+    },
+    "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "timeline.open_date": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     }
   },
   "filings_path": "issues/muthoot-fincorp-f7c138/filings.json",
-  "generated_at": "2026-09-05T06:12:49+00:00",
+  "generated_at": "2026-09-08T06:23:55+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:948016",
-      "bse:prior_id:276600",
-      "bse:createdby:10054"
+      "bse:ipo_no:7953",
+      "bse:scrip_code:4802"
     ],
     "board_type": "Main Board",
     "company_name": "Muthoot Fincorp Limited",
     "issue_type": "IPO",
     "slug": "muthoot-fincorp-f7c138",
-    "status": "Filed"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/muthoot-fincorp-f7c138/market.json",
@@ -75,25 +82,42 @@
   "public_slug": "muthoot-fincorp",
   "schema_version": "3.0.0",
   "slug": "muthoot-fincorp-f7c138",
-  "source_dataset_version": "v2026.09.05-0612",
+  "source_dataset_version": "v2026.09.08-0623",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-05T06:07:08+00:00",
+      "snapshot_at": "2026-09-08T06:17:46+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-09-08T06:17:36+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-09-08T06:17:38+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-05T06:07:02+00:00",
+      "snapshot_at": "2026-09-08T06:17:33+00:00",
       "source": "nse",
       "url": null
     }
   ],
   "subscription": {},
   "subscription_path": "issues/muthoot-fincorp-f7c138/subscription.json",
-  "timeline": {},
+  "timeline": {
+    "close_date": "2026-09-22",
+    "open_date": "2026-09-08"
+  },
   "url_path": "/ipos/muthoot-fincorp/"
 }

@@ -9,10 +9,21 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.05-0612",
-  "documents": {},
+  "dataset_version": "v3.2026.09.08-0623",
+  "documents": {
+    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AVON_DP.pdf",
+    "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AVON_PROSP.pdf"
+  },
   "exchange_details": {},
   "field_provenance": {
+    "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "yahoo"
@@ -22,6 +33,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,7 +94,7 @@
     }
   },
   "filings_path": "issues/avsl-5f7ebb/filings.json",
-  "generated_at": "2026-09-05T06:12:49+00:00",
+  "generated_at": "2026-09-08T06:23:55+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -87,6 +102,7 @@
     ],
     "board_type": "SME Board",
     "company_name": "AVSL Industries Limited",
+    "isin": "INE522V01011",
     "issue_type": "IPO",
     "slug": "avsl-5f7ebb",
     "status": "Listed",
@@ -111,20 +127,34 @@
   "public_slug": "avsl",
   "schema_version": "3.0.0",
   "slug": "avsl-5f7ebb",
-  "source_dataset_version": "v2026.09.05-0612",
+  "source_dataset_version": "v2026.09.08-0623",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-05T06:06:53+00:00",
+      "snapshot_at": "2026-09-08T06:17:26+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "performance",
-      "snapshot_at": "2026-09-04T16:36:54+00:00",
+      "snapshot_at": "2026-09-07T17:56:23+00:00",
       "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_sme",
+      "snapshot_at": "2026-09-08T06:17:34+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_sme",
+      "snapshot_at": "2026-09-08T06:17:34+00:00",
+      "source": "nse",
       "url": null
     }
   ],

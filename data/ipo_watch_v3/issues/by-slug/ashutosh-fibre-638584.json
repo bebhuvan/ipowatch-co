@@ -9,15 +9,24 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.05-0612",
+  "dataset_version": "v3.2026.09.08-0623",
   "documents": {
-    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6426_23122025150302.zip"
+    "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6426_23122025150302.zip",
+    "rhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AshutoshFibreLimited_RHP.zip"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "documents.rhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -43,6 +52,26 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -51,7 +80,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -61,20 +98,30 @@
     }
   },
   "filings_path": "issues/ashutosh-fibre-638584/filings.json",
-  "generated_at": "2026-09-05T06:12:49+00:00",
+  "generated_at": "2026-09-08T06:23:55+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:miscellaneous/ashutoshfibre/AFL05",
+      "moneycontrol:company_code:16491149"
+    ],
     "board_type": "SME Board",
     "company_name": "Ashutosh Fibre Limited",
     "issue_type": "IPO",
     "slug": "ashutosh-fibre-638584",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "ASHUTOSH"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 6777,
+    "current_price_paise": 15435,
+    "listing_gain_bps": 5217
+  },
   "market_path": "issues/ashutosh-fibre-638584/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 9200,
+    "issue_size_paise": 56348160000,
     "price_band_lower_paise": 8700,
     "price_band_upper_paise": 9200
   },
@@ -122,39 +169,39 @@
       "peers": [
         {
           "company_name": "ASHUTOSH",
-          "market_cap": "201",
+          "market_cap": "322",
           "net_sales_cr": 117,
           "pat_cr": 16.04,
-          "pb": 3.87,
-          "pe": 12.53
+          "pb": 6.2,
+          "pe": 20.04
         },
         {
           "company_name": "RSWM",
-          "market_cap": "1,045",
+          "market_cap": "1,039",
           "net_sales_cr": 4554,
           "pat_cr": 52.01,
-          "pb": 0.77,
-          "pe": 16.51
+          "pb": 0.74,
+          "pe": 15.99
         },
         {
           "company_name": "RELCHEMQ",
-          "market_cap": "87",
+          "market_cap": "89",
           "net_sales_cr": 358,
           "pat_cr": 4.05,
           "pb": 0.61,
-          "pe": 15.63
+          "pe": 15.7
         },
         {
           "company_name": "GARFIBRES",
           "market_cap": "7,816",
           "net_sales_cr": 1528,
           "pat_cr": 198,
-          "pb": 5.77,
-          "pe": 37.21
+          "pb": 5.9,
+          "pe": 38.07
         },
         {
           "company_name": "CEDAAR",
-          "market_cap": "19",
+          "market_cap": "18",
           "net_sales_cr": 207,
           "pat_cr": 12.04,
           "pb": null,
@@ -313,41 +360,44 @@
         "pb": 3.88,
         "pe": 12.54,
         "sector_pb": 1.22,
-        "sector_pe": 17.21
+        "sector_pe": 17.62
       }
     }
   },
   "research_path": "issues/ashutosh-fibre-638584/research.json",
   "schema_version": "3.0.0",
   "slug": "ashutosh-fibre-638584",
-  "source_dataset_version": "v2026.09.05-0612",
+  "source_dataset_version": "v2026.09.08-0623",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-08T06:21:17+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-05T06:06:53+00:00",
+      "snapshot_at": "2026-09-08T06:17:26+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-09-05T06:07:03+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-05T06:07:04+00:00",
+      "snapshot_at": "2026-09-08T06:17:34+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "124.4400"
+  },
   "subscription_path": "issues/ashutosh-fibre-638584/subscription.json",
   "timeline": {
     "close_date": "2026-09-02",
+    "listing_date": "2026-09-07",
     "open_date": "2026-08-31"
   },
   "url_path": "/ipos/ashutosh-fibre/"

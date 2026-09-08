@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.05-0612",
+  "dataset_version": "v3.2026.09.08-0623",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE15EH01014_03SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_30042025230755_DRHP.pdf",
@@ -72,7 +72,7 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
@@ -81,6 +81,10 @@
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -116,7 +120,7 @@
     }
   },
   "filings_path": "issues/priority-jewels-ea50d2/filings.json",
-  "generated_at": "2026-09-05T06:12:49+00:00",
+  "generated_at": "2026-09-08T06:23:55+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -131,10 +135,11 @@
     "symbol": "PRIORITY"
   },
   "listing_performance": {
-    "current_gain_bps": 1822,
-    "current_price_paise": 23645,
+    "current_gain_bps": 1496,
+    "current_price_paise": 22992,
     "listing_close_price_paise": 23645,
-    "listing_gain_bps": 1822
+    "listing_gain_bps": 1822,
+    "listing_open_price_paise": 23000
   },
   "market_path": "issues/priority-jewels-ea50d2/market.json",
   "parties": {},
@@ -188,35 +193,35 @@
       "peers": [
         {
           "company_name": "PRIORITY",
-          "market_cap": "0",
+          "market_cap": "408",
           "net_sales_cr": 538,
           "pat_cr": 17.82,
-          "pb": null,
-          "pe": null
+          "pb": 2.94,
+          "pe": 22.89
         },
         {
           "company_name": "KHAZANCHI",
-          "market_cap": "1,866",
+          "market_cap": "1,890",
           "net_sales_cr": 2049,
           "pat_cr": 89.42,
-          "pb": 5.37,
-          "pe": 18.28
+          "pb": 5.42,
+          "pe": 18.45
         },
         {
           "company_name": "RBZJEWEL",
-          "market_cap": "771",
+          "market_cap": "803",
           "net_sales_cr": 636,
           "pat_cr": 54.8,
-          "pb": 2.57,
-          "pe": 13.57
+          "pb": 2.54,
+          "pe": 13.43
         },
         {
           "company_name": "AGOL",
-          "market_cap": "132",
+          "market_cap": "133",
           "net_sales_cr": 317,
           "pat_cr": 12.04,
-          "pb": 0.79,
-          "pe": 6.39
+          "pb": 0.8,
+          "pe": 6.47
         }
       ],
       "revenue_mix": {
@@ -299,48 +304,55 @@
         "market_cap": "₹360",
         "pb": 2.47,
         "pe": 20.4,
-        "sector_pb": 2.13,
-        "sector_pe": 17.64
+        "sector_pb": 2.27,
+        "sector_pe": 17.38
       }
     }
   },
   "research_path": "issues/priority-jewels-ea50d2/research.json",
   "schema_version": "3.0.0",
   "slug": "priority-jewels-ea50d2",
-  "source_dataset_version": "v2026.09.05-0612",
+  "source_dataset_version": "v2026.09.08-0623",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-05T06:07:08+00:00",
+      "snapshot_at": "2026-09-08T06:17:46+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-09-05T06:07:20+00:00",
+      "snapshot_at": "2026-09-08T06:17:58+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-09-05T06:10:30+00:00",
+      "snapshot_at": "2026-09-08T06:21:17+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-05T06:06:53+00:00",
+      "snapshot_at": "2026-09-08T06:17:26+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-09-07T17:56:23+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-05T06:07:02+00:00",
+      "snapshot_at": "2026-09-08T06:17:33+00:00",
       "source": "nse",
       "url": null
     }

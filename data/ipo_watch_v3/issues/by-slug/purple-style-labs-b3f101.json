@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.05-0612",
+  "dataset_version": "v3.2026.09.08-0623",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0I1B01016_04SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_22092025202833_PurpleStyleLabsLimitedDRHP.pdf",
@@ -66,6 +66,26 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -78,32 +98,40 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "timeline.listing_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "timeline.open_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     }
   },
   "filings_path": "issues/purple-style-labs-b3f101/filings.json",
-  "generated_at": "2026-09-05T06:12:49+00:00",
+  "generated_at": "2026-09-08T06:23:55+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:87045125",
-      "bse:prior_id:246617",
-      "bse:createdby:378936"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/purple-style-labs-ltd/perniaspop/544901/"
     ],
     "board_type": "Main Board",
     "company_name": "Purple Style Labs Limited",
     "isin": "INE0I1B01016",
     "issue_type": "IPO",
     "slug": "purple-style-labs-b3f101",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "PERNIASPOP"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -548,
+    "current_price_paise": 54350,
+    "listing_close_price_paise": 56805,
+    "listing_gain_bps": -121
+  },
   "market_path": "issues/purple-style-labs-b3f101/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 57500,
     "price_band_lower_paise": 54600,
     "price_band_upper_paise": 57500
   },
@@ -151,26 +179,26 @@
       "peers": [
         {
           "company_name": "PERNIASPOP",
-          "market_cap": "4,604",
+          "market_cap": "4,548",
           "net_sales_cr": 557,
           "pat_cr": -285.4,
-          "pb": -88.06,
-          "pe": 0
+          "pb": 0.0,
+          "pe": null
         },
         {
           "company_name": "MANYAVAR",
-          "market_cap": "13,836",
-          "net_sales_cr": 1386,
-          "pat_cr": 388,
-          "pb": 9.06,
-          "pe": 35.86
+          "market_cap": "14,439",
+          "net_sales_cr": 1435,
+          "pat_cr": 375,
+          "pb": 7.25,
+          "pe": 36.93
         },
         {
           "company_name": "ABFRL",
-          "market_cap": "6,155",
+          "market_cap": "6,460",
           "net_sales_cr": 8176,
           "pat_cr": -775.89,
-          "pb": 1.05,
+          "pb": 1.11,
           "pe": null
         }
       ],
@@ -213,41 +241,41 @@
         "market_cap": "₹4,603",
         "pb": 0,
         "pe": 0,
-        "sector_pb": 2.32,
-        "sector_pe": 19.54
+        "sector_pb": 2.2,
+        "sector_pe": 19.19
       }
     }
   },
   "research_path": "issues/purple-style-labs-b3f101/research.json",
   "schema_version": "3.0.0",
   "slug": "purple-style-labs-b3f101",
-  "source_dataset_version": "v2026.09.05-0612",
+  "source_dataset_version": "v2026.09.08-0623",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-05T06:07:08+00:00",
+      "snapshot_at": "2026-09-08T06:17:46+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-08T06:17:58+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-05T06:06:53+00:00",
+      "snapshot_at": "2026-09-08T06:17:26+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-05T06:07:02+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-05T06:07:04+00:00",
+      "snapshot_at": "2026-09-08T06:17:33+00:00",
       "source": "nse",
       "url": null
     }
@@ -256,6 +284,7 @@
   "subscription_path": "issues/purple-style-labs-b3f101/subscription.json",
   "timeline": {
     "close_date": "2026-09-02",
+    "listing_date": "2026-09-07",
     "open_date": "2026-08-31"
   },
   "url_path": "/ipos/purple-style-labs/"

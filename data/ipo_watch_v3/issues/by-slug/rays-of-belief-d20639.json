@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.08-0623",
+  "dataset_version": "v3.2026.09.09-0633",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE1FCO01014_07SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/RaysofBeliefLimited_UDRHP_I.pdf",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -92,7 +104,7 @@
     }
   },
   "filings_path": "issues/rays-of-belief-d20639/filings.json",
-  "generated_at": "2026-09-08T06:23:55+00:00",
+  "generated_at": "2026-09-09T06:33:06+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -107,8 +119,11 @@
     "symbol": "MOMSBELIEF"
   },
   "listing_performance": {
-    "current_gain_bps": -335,
-    "current_price_paise": 23100
+    "current_gain_bps": -446,
+    "current_price_paise": 22834,
+    "listing_close_price_paise": 22825,
+    "listing_gain_bps": -450,
+    "listing_open_price_paise": 23900
   },
   "market_path": "issues/rays-of-belief-d20639/market.json",
   "parties": {},
@@ -160,19 +175,19 @@
       "peers": [
         {
           "company_name": "MOMSBELIEF",
-          "market_cap": "0",
+          "market_cap": "477",
           "net_sales_cr": 81.66,
           "pat_cr": 4.96,
-          "pb": null,
-          "pe": null
+          "pb": 15.48,
+          "pe": 96.21
         },
         {
           "company_name": "RAINBOW",
-          "market_cap": "14,675",
+          "market_cap": "14,722",
           "net_sales_cr": 1703,
           "pat_cr": 278,
-          "pb": 9.04,
-          "pe": 52.18
+          "pb": 8.93,
+          "pe": 51.58
         }
       ],
       "revenue_mix": {
@@ -282,48 +297,55 @@
         "market_cap": "₹499",
         "pb": 16.21,
         "pe": 100.74,
-        "sector_pb": 3.8,
-        "sector_pe": 47.88
+        "sector_pb": 3.75,
+        "sector_pe": 48.07
       }
     }
   },
   "research_path": "issues/rays-of-belief-d20639/research.json",
   "schema_version": "3.0.0",
   "slug": "rays-of-belief-d20639",
-  "source_dataset_version": "v2026.09.08-0623",
+  "source_dataset_version": "v2026.09.09-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-08T06:17:46+00:00",
+      "snapshot_at": "2026-09-09T06:25:14+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-09-08T06:17:58+00:00",
+      "snapshot_at": "2026-09-09T06:25:28+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-09-08T06:21:17+00:00",
+      "snapshot_at": "2026-09-09T06:28:42+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-09-08T16:52:30+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-08T06:17:33+00:00",
+      "snapshot_at": "2026-09-09T06:25:05+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-08T06:17:33+00:00",
+      "snapshot_at": "2026-09-09T06:25:05+00:00",
       "source": "nse",
       "url": null
     }

@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.08-0623",
+  "dataset_version": "v3.2026.09.09-0633",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0MLS01022_30SEP2025.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Epack_DRHP.zip",
@@ -90,6 +90,10 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -97,6 +101,10 @@
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -112,7 +120,7 @@
     }
   },
   "filings_path": "issues/epack-prefab-technologies-1ae36a/filings.json",
-  "generated_at": "2026-09-08T06:23:55+00:00",
+  "generated_at": "2026-09-09T06:33:06+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -127,8 +135,8 @@
     "symbol": "EPACKPEB"
   },
   "listing_performance": {
-    "current_gain_bps": 1296,
-    "current_price_paise": 23044,
+    "current_gain_bps": 1471,
+    "current_price_paise": 23400,
     "listing_close_price_paise": 19110,
     "listing_gain_bps": -632,
     "listing_open_price_paise": 19500
@@ -137,6 +145,7 @@
   "parties": {},
   "pricing": {
     "issue_price_paise": 20400,
+    "issue_size_paise": 503999992800,
     "price_band_lower_paise": 19400,
     "price_band_upper_paise": 20400
   },
@@ -184,43 +193,43 @@
       "peers": [
         {
           "company_name": "EPACKPEB",
-          "market_cap": "2,326",
+          "market_cap": "2,357",
           "net_sales_cr": 1133,
           "pat_cr": 59.32,
-          "pb": 3.15,
-          "pe": 24.45
+          "pb": 3.21,
+          "pe": 24.87
         },
         {
           "company_name": "PENIND",
-          "market_cap": "2,298",
+          "market_cap": "2,452",
           "net_sales_cr": 3620,
           "pat_cr": 138,
-          "pb": 2.05,
-          "pe": 16.77
+          "pb": 2.11,
+          "pe": 17.24
         },
         {
           "company_name": "EVERESTIND",
-          "market_cap": "687",
+          "market_cap": "679",
           "net_sales_cr": 1416,
           "pat_cr": -101.69,
-          "pb": 1.37,
+          "pb": 1.39,
           "pe": null
         },
         {
           "company_name": "INTERARCH",
-          "market_cap": "2,873",
+          "market_cap": "2,949",
           "net_sales_cr": 1898,
           "pat_cr": 134,
-          "pb": 3.24,
-          "pe": 21.27
+          "pb": 3.35,
+          "pe": 21.94
         },
         {
           "company_name": "BEARDSELL",
-          "market_cap": "100",
+          "market_cap": "98",
           "net_sales_cr": 268,
           "pat_cr": 9.83,
-          "pb": 1.08,
-          "pe": 9.22
+          "pb": 1.07,
+          "pe": 9.05
         }
       ],
       "revenue_mix": {
@@ -247,60 +256,76 @@
         "market_cap": "₹2,049",
         "pb": 5.79,
         "pe": 34.54,
-        "sector_pb": 2.76,
-        "sector_pe": 18.5
+        "sector_pb": 2.74,
+        "sector_pe": 18.19
       }
     }
   },
   "research_path": "issues/epack-prefab-technologies-1ae36a/research.json",
   "schema_version": "3.0.0",
   "slug": "epack-prefab-technologies-1ae36a",
-  "source_dataset_version": "v2026.09.08-0623",
+  "source_dataset_version": "v2026.09.09-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-08T06:17:46+00:00",
+      "snapshot_at": "2026-09-09T06:25:14+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2025",
-      "snapshot_at": "2026-09-08T06:17:57+00:00",
+      "snapshot_at": "2026-09-09T06:25:26+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000300",
+      "snapshot_at": "2026-09-09T06:28:42+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000320",
+      "snapshot_at": "2026-09-09T06:28:42+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-08T06:17:26+00:00",
+      "snapshot_at": "2026-09-09T06:24:59+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "performance",
-      "snapshot_at": "2026-09-07T17:56:23+00:00",
+      "snapshot_at": "2026-09-08T16:52:30+00:00",
       "source": "yahoo",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-08T06:17:33+00:00",
+      "snapshot_at": "2026-09-09T06:25:05+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-08T06:17:33+00:00",
+      "snapshot_at": "2026-09-09T06:25:05+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "3.0700"
+  },
   "subscription_path": "issues/epack-prefab-technologies-1ae36a/subscription.json",
   "timeline": {
     "close_date": "2025-09-26",

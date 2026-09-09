@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.08-0623",
+  "dataset_version": "v3.2026.09.09-0633",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0I1B01016_04SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_22092025202833_PurpleStyleLabsLimitedDRHP.pdf",
@@ -72,7 +72,7 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
-      "source": "bse"
+      "source": "yahoo"
     },
     "listing_performance.listing_close_price_paise": {
       "rule_id": "E.SRC.002",
@@ -81,6 +81,10 @@
     "listing_performance.listing_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +112,7 @@
     }
   },
   "filings_path": "issues/purple-style-labs-b3f101/filings.json",
-  "generated_at": "2026-09-08T06:23:55+00:00",
+  "generated_at": "2026-09-09T06:33:06+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,10 +127,11 @@
     "symbol": "PERNIASPOP"
   },
   "listing_performance": {
-    "current_gain_bps": -548,
-    "current_price_paise": 54350,
+    "current_gain_bps": -308,
+    "current_price_paise": 55730,
     "listing_close_price_paise": 56805,
-    "listing_gain_bps": -121
+    "listing_gain_bps": -121,
+    "listing_open_price_paise": 53500
   },
   "market_path": "issues/purple-style-labs-b3f101/market.json",
   "parties": {},
@@ -179,7 +184,7 @@
       "peers": [
         {
           "company_name": "PERNIASPOP",
-          "market_cap": "4,548",
+          "market_cap": "4,457",
           "net_sales_cr": 557,
           "pat_cr": -285.4,
           "pb": 0.0,
@@ -187,18 +192,18 @@
         },
         {
           "company_name": "MANYAVAR",
-          "market_cap": "14,439",
+          "market_cap": "14,077",
           "net_sales_cr": 1435,
           "pat_cr": 375,
-          "pb": 7.25,
-          "pe": 36.93
+          "pb": 7.17,
+          "pe": 36.48
         },
         {
           "company_name": "ABFRL",
-          "market_cap": "6,460",
+          "market_cap": "6,377",
           "net_sales_cr": 8176,
           "pat_cr": -775.89,
-          "pb": 1.11,
+          "pb": 1.09,
           "pe": null
         }
       ],
@@ -241,41 +246,48 @@
         "market_cap": "₹4,603",
         "pb": 0,
         "pe": 0,
-        "sector_pb": 2.2,
-        "sector_pe": 19.19
+        "sector_pb": 2.35,
+        "sector_pe": 19.13
       }
     }
   },
   "research_path": "issues/purple-style-labs-b3f101/research.json",
   "schema_version": "3.0.0",
   "slug": "purple-style-labs-b3f101",
-  "source_dataset_version": "v2026.09.08-0623",
+  "source_dataset_version": "v2026.09.09-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-08T06:17:46+00:00",
+      "snapshot_at": "2026-09-09T06:25:14+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-09-08T06:17:58+00:00",
+      "snapshot_at": "2026-09-09T06:25:28+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-08T06:17:26+00:00",
+      "snapshot_at": "2026-09-09T06:24:59+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-09-08T16:52:30+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-08T06:17:33+00:00",
+      "snapshot_at": "2026-09-09T06:25:05+00:00",
       "source": "nse",
       "url": null
     }

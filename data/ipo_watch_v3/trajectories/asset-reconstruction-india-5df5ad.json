@@ -7,13 +7,86 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.09.08-0623",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.09.09-0633",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-09-09T06:29:33+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 4652574,
+          "price_paise": 13900
+        },
+        {
+          "cumulative_quantity": 4652895,
+          "price_paise": 13800
+        },
+        {
+          "cumulative_quantity": 4655142,
+          "price_paise": 13700
+        },
+        {
+          "cumulative_quantity": 4655463,
+          "price_paise": 13600
+        },
+        {
+          "cumulative_quantity": 4657282,
+          "price_paise": 13500
+        },
+        {
+          "cumulative_quantity": 4658780,
+          "price_paise": 13400
+        },
+        {
+          "cumulative_quantity": 4659529,
+          "price_paise": 13300
+        },
+        {
+          "cumulative_quantity": 4662418,
+          "price_paise": 13200
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "09-Sep-2026 11:51:00"
+    },
+    {
+      "observed_at": "2026-09-09T06:29:33+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 2928483,
+          "price_paise": 13900
+        },
+        {
+          "cumulative_quantity": 2930516,
+          "price_paise": 13700
+        },
+        {
+          "cumulative_quantity": 2931158,
+          "price_paise": 13500
+        },
+        {
+          "cumulative_quantity": 2932656,
+          "price_paise": 13400
+        },
+        {
+          "cumulative_quantity": 2933084,
+          "price_paise": 13300
+        },
+        {
+          "cumulative_quantity": 2934582,
+          "price_paise": 13200
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "09-Sep-2026 11:56:51"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-09-08T06:23:55+00:00",
+  "generated_at": "2026-09-09T06:33:06+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "asset-reconstruction-india-5df5ad",
   "language": "en-IN",
@@ -24,61 +97,60 @@
     {
       "categories": {
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 744506,
+          "shares_offered": 7909792,
+          "times": 0.09412459897807679
+        },
+        "nii_gt_10l": {
+          "shares_bid": 472512,
+          "shares_offered": 2636597,
+          "times": 0.17921282623017473
         },
         "qib": {
           "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_offered": 10546389,
+          "times": 0.0
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 3964778,
+          "shares_offered": 18456182,
+          "times": 0.21482113689602758
         }
       },
-      "observed_at": "2026-09-08T13:05:08+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-09-09T06:29:32+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 09-Sep-2026 11:54:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 4709284,
+        "shares_offered": 3,
+        "times": 0.12758012809962885
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/asset-reconstruction-india-5df5ad.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.09.08-0623",
+  "source_dataset_version": "v2026.09.09-0633",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7950",
+      "endpoint": "consolidated_bid_details_arcil",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_arcil",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_arcil",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

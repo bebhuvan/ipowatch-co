@@ -5,22 +5,565 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.08-0623",
+  "dataset_version": "v3.2026.09.09-0633",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6405_23062026211729.zip"
   },
-  "exchange_details": {},
+  "exchange_details": {
+    "nse": {
+      "bid_details": {
+        "data": {
+          "data": [
+            {
+              "category": "Category",
+              "noOfshareBid": "No. of shares bid for",
+              "noofapplication": "No. of applications received",
+              "srNo": "Sr.No."
+            },
+            {
+              "category": "Qualified Institutional Buyers(QIBs)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1"
+            },
+            {
+              "category": "Foreign Institutional Investors(FIIs)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(a)"
+            },
+            {
+              "category": "Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(b)"
+            },
+            {
+              "category": "Mutual funds",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(c)"
+            },
+            {
+              "category": "Others",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(d)"
+            },
+            {
+              "category": "Non Institutional Investors",
+              "noOfshareBid": "4800",
+              "noofapplication": "1",
+              "srNo": "2"
+            },
+            {
+              "category": "Corporates",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2(a)"
+            },
+            {
+              "category": "Individuals(IND category bidding for more than 2 Lots)",
+              "noOfshareBid": "4800",
+              "noofapplication": "1",
+              "srNo": "2(b)"
+            },
+            {
+              "category": "others",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2(c)"
+            },
+            {
+              "category": "Individual Investors (IND category bidding for 2 Lots)",
+              "noOfshareBid": "86400",
+              "noofapplication": "36",
+              "srNo": "3"
+            },
+            {
+              "category": "Total",
+              "noOfshareBid": "91200",
+              "noofapplication": "37",
+              "srNo": null
+            }
+          ],
+          "updateTime": "Updated as on 09-Sep-2026 11:56:51 hrs"
+        },
+        "snapshot_at": "2026-09-09T06:30:21+00:00",
+        "url": "https://www.nseindia.com/api/ipo-bid-details?symbol=VINOD&series=SME"
+      },
+      "consolidated_bid_details": {
+        "data": {
+          "dataList": [
+            {
+              "category": "Category",
+              "noOfShareOffered": "No.of shares offered/reserved",
+              "noOfSharesBid": "No. of shares bid for",
+              "noOfTotalMeant": "No. of times of total meant for the category",
+              "srNo": "Sr.No."
+            },
+            {
+              "category": "Qualified Institutional Buyers(QIBs)",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "0.00",
+              "srNo": "1"
+            },
+            {
+              "category": "Foreign Institutional Investors(FIIs)",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "1(a)"
+            },
+            {
+              "category": "Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "1(b)"
+            },
+            {
+              "category": "Mutual funds",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "1(c)"
+            },
+            {
+              "category": "Others",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "1(d)"
+            },
+            {
+              "category": "Non Institutional Investors",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "4800",
+              "noOfTotalMeant": "0.00",
+              "srNo": "2"
+            },
+            {
+              "category": "Corporates",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "2(a)"
+            },
+            {
+              "category": "Individuals(Other than RIIs)",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "4800",
+              "noOfTotalMeant": "",
+              "srNo": "2(b)"
+            },
+            {
+              "category": "others",
+              "noOfShareOffered": "",
+              "noOfSharesBid": "0",
+              "noOfTotalMeant": "",
+              "srNo": "2(c)"
+            },
+            {
+              "category": "Total",
+              "noOfShareOffered": "0.0",
+              "noOfSharesBid": "4800.0",
+              "noOfTotalMeant": "0.00",
+              "srNo": null
+            }
+          ],
+          "heading": null,
+          "symbol": null,
+          "updateTime": "Updated as on 09-Sep-2026 11:54:00"
+        },
+        "snapshot_at": "2026-09-09T06:30:21+00:00",
+        "url": "https://www.nseindia.com/api/ipo-active-category?symbol=VINOD"
+      },
+      "demand_data": {
+        "all": {
+          "data": [
+            {
+              "company": "Vinod Texworld Limited",
+              "cumQty": "93,600",
+              "price": "94",
+              "symbol": "VINOD",
+              "timestamp": "09-SEP-2026 11:57:00"
+            }
+          ],
+          "snapshot_at": "2026-09-09T06:30:21+00:00",
+          "url": "https://www.nseindia.com/api/ipo-chart-demand?symbol=VINOD&exchange=ALL"
+        },
+        "nse": {
+          "data": [
+            {
+              "company": "Vinod Texworld Limited",
+              "cumQty": "93,600",
+              "price": "94",
+              "symbol": "VINOD",
+              "timestamp": "09-Sep-2026 11:58:35"
+            }
+          ],
+          "snapshot_at": "2026-09-09T06:30:21+00:00",
+          "url": "https://www.nseindia.com/api/ipo-chart-demand?symbol=VINOD&exchange=NSE"
+        }
+      },
+      "issue_detail": {
+        "data": {
+          "activeCat": {
+            "dataList": [
+              {
+                "category": "Category",
+                "noOfShareOffered": "No.of shares offered/reserved",
+                "noOfSharesBid": "No. of shares bid for",
+                "noOfTotalMeant": "No. of times of total meant for the category",
+                "srNo": "Sr.No."
+              },
+              {
+                "category": "Qualified Institutional Buyers(QIBs)",
+                "noOfShareOffered": "0",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "0.00",
+                "srNo": "1"
+              },
+              {
+                "category": "Foreign Institutional Investors(FIIs)",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "1(a)"
+              },
+              {
+                "category": "Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "1(b)"
+              },
+              {
+                "category": "Mutual funds",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "1(c)"
+              },
+              {
+                "category": "Others",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "1(d)"
+              },
+              {
+                "category": "Non Institutional Investors",
+                "noOfShareOffered": "0",
+                "noOfSharesBid": "4800",
+                "noOfTotalMeant": "0.00",
+                "srNo": "2"
+              },
+              {
+                "category": "Corporates",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "2(a)"
+              },
+              {
+                "category": "Individuals(Other than RIIs)",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "4800",
+                "noOfTotalMeant": "",
+                "srNo": "2(b)"
+              },
+              {
+                "category": "others",
+                "noOfShareOffered": "",
+                "noOfSharesBid": "0",
+                "noOfTotalMeant": "",
+                "srNo": "2(c)"
+              },
+              {
+                "category": "Total",
+                "noOfShareOffered": "0.0",
+                "noOfSharesBid": "4800.0",
+                "noOfTotalMeant": "0.00",
+                "srNo": null
+              }
+            ],
+            "heading": null,
+            "symbol": null,
+            "updateTime": "Updated as on 09-Sep-2026 11:54:00"
+          },
+          "bidDetails": [
+            {
+              "category": "Qualified Institutional Buyers(QIBs)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1"
+            },
+            {
+              "category": "Foreign Institutional Investors(FIIs)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(a)"
+            },
+            {
+              "category": "Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(b)"
+            },
+            {
+              "category": "Mutual funds",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(c)"
+            },
+            {
+              "category": "Others",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "1(d)"
+            },
+            {
+              "category": "Non Institutional Investors",
+              "noOfshareBid": "4800",
+              "noofapplication": "1",
+              "srNo": "2"
+            },
+            {
+              "category": "Corporates",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2(a)"
+            },
+            {
+              "category": "Individuals(IND category bidding for more than 2 Lots)",
+              "noOfshareBid": "4800",
+              "noofapplication": "1",
+              "srNo": "2(b)"
+            },
+            {
+              "category": "others",
+              "noOfshareBid": "0",
+              "noofapplication": "0",
+              "srNo": "2(c)"
+            },
+            {
+              "category": "Individual Investors (IND category bidding for 2 Lots)",
+              "noOfshareBid": "86400",
+              "noofapplication": "36",
+              "srNo": "3"
+            },
+            {
+              "category": "Total",
+              "noOfshareBid": "91200",
+              "noofapplication": "37",
+              "srNo": null
+            }
+          ],
+          "companyName": "VINOD",
+          "demandDataBSE": [
+            {
+              "company": "Vinod Texworld Limited",
+              "cumQty": "93,600",
+              "price": "94",
+              "symbol": "VINOD",
+              "timestamp": "09-SEP-2026 11:57:00"
+            }
+          ],
+          "demandDataNSE": [
+            {
+              "company": "Vinod Texworld Limited",
+              "cumQty": "93,600",
+              "price": "94",
+              "symbol": "VINOD",
+              "timestamp": "09-Sep-2026 11:58:35"
+            }
+          ],
+          "demandGraph": {
+            "TOTAL_BIDS": "93600",
+            "graphData": [
+              {
+                "type": "94",
+                "value": "0.936"
+              }
+            ],
+            "graphLogic": "https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf",
+            "heading1": "Vinod Texworld Limited- Graphical display of bids received *",
+            "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+            "noOfShare": "Cumulative Demand(no. of shares in lakhs)",
+            "noOfTimesIssueSubscribed": "0.02",
+            "note": " Cumulative (NSE) bid quantity at each price point includes the quantity (NSE) bidded at that relevant price point and all valid bids above that price point.",
+            "plotData": {
+              "94": "93,600"
+            },
+            "timestamp": "As on 09-Sep-2026 11:58:35 IST",
+            "totalBidAtCutOff": "-",
+            "totalBidRecieved": "93600",
+            "totalIssueSize": "4556400"
+          },
+          "demandGraphALL": {
+            "TOTAL_BIDS": "93600",
+            "graphData": [
+              {
+                "type": "94",
+                "value": "0.936"
+              }
+            ],
+            "graphLogic": "https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf",
+            "heading1": "Vinod Texworld Limited- Graphical display of bids received *",
+            "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+            "noOfShare": "Cumulative Demand(no. of shares in lakhs)",
+            "noOfTimesIssueSubscribed": "0.02",
+            "note": "Cumulative bid quantity at each price point includes the quantity bid at that relevant price point and all valid bids at the next higher price point.  The graph is updated every hour.",
+            "plotData": {
+              "94": "93,600"
+            },
+            "timestamp": "As on 09-Sep-2026 11:57:00 IST",
+            "totalBidAtCutOff": "-",
+            "totalBidRecieved": "93600",
+            "totalIssueSize": "4556400"
+          },
+          "issueInfo": {
+            "dataList": [
+              {
+                "title": null,
+                "value": "\"*As per SEBI circular no SEBI/HO/CFD/DIL2/CIR/P/2019/76 dated 28 June 2019 all are requested to comply with the provisions of the aforementioned circular which states as below: Intermediaries shall retain physical application forms submitted by retail individual investors with UPI as a payment mechanism, for a period of six months and thereafter forward the same to the issuer/ Registrar to Issue. However in case of Electronic forms printouts of such applications need not be retained or sent to the issuer. Intermediaries shall, at all times, maintain the electronic records relating to such forms for a minimum period of three years.\""
+              },
+              {
+                "title": "Symbol",
+                "value": "VINOD"
+              },
+              {
+                "title": "Issue Period",
+                "value": "09-Sep-2026 to 11-Sep-2026"
+              },
+              {
+                "title": "Cut-off time for UPI Mandate Confirmation",
+                "value": "11-Sep-2026 (upto 5:00 PM) The cut-off time for UPI mandate acceptance is 05:00 PM on last day of IPO bidding. Further bids with confirmed status of mandate amount blocked (RC100) shall be considered as valid applications and hence investors are advised to submit their UPI applications in IPO well in advance to avoid any last minute technical/systemic constraints that may hamper their ability to participate in IPOs by successfully accepting the mandate."
+              },
+              {
+                "title": "Issue Size",
+                "value": "\"Initial Public Offer of 45,56,400 Equity Shares at the aggregating to 4,283.02 lakhs.\""
+              },
+              {
+                "title": "Issue Type",
+                "value": "Fixed Price"
+              },
+              {
+                "title": "Price Range",
+                "value": "Rs. 94 per equity share"
+              },
+              {
+                "title": "Face Value",
+                "value": "Rs.10 per Equity Share"
+              },
+              {
+                "title": "Lot Size",
+                "value": "1200 Equity Shares"
+              },
+              {
+                "title": "Tick Size",
+                "value": "Re.1"
+              },
+              {
+                "title": "IPO Market Timings",
+                "value": "10.00 a.m. to 5.00 p.m. (Bidding Timings on Issue Closure upto 4:00 P.M.)"
+              },
+              {
+                "title": "Book Running Lead Managers",
+                "value": "Novus Capital Advisors Private Limited (Formerly known as Fast Track Finsec Private Limited)"
+              },
+              {
+                "title": "Sponsor Bank",
+                "value": "Kotak Mahindra Bank"
+              },
+              {
+                "title": "Categories",
+                "value": "\"FI, IC, MF, FII, OTH, CO, IND and NOH\""
+              },
+              {
+                "title": "Sub-Categories applicable for UPI",
+                "value": "IND  (Up to Rs. 5 lacs)"
+              },
+              {
+                "title": "Name of the Registrar",
+                "value": "Kfin Technologies Limited"
+              },
+              {
+                "title": "Address of the Registrar",
+                "value": "\"Selenium Tower-B, Plot 31 & 32, Gachibowli, Financial District, Nanakramguda, Serilingampally, Hyderabad-500032, Telangana \""
+              },
+              {
+                "title": "Contact person name number and Email id",
+                "value": "\"M. Murali Krishna, +91 40 6716 2222, vinodtex.ipo@kfintech.com  \""
+              },
+              {
+                "title": "e-form link",
+                "value": "https://bidcollection.nseindia.com/asba"
+              },
+              {
+                "title": "Branches of Self Certified Syndicate Banks (SCSBs) where syndicate / sub syndicate member to submit ASBA form",
+                "value": "<a href=http://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=35 target=new>SCSB List</a>"
+              },
+              {
+                "title": "Prospectus",
+                "value": "https://nsearchives.nseindia.com/content/ipo/PROSPECTUS_VINOD.zip"
+              },
+              {
+                "title": "Ratios / Basis of Issue Price",
+                "value": "https://nsearchives.nseindia.com/content/ipo/RATIOS_VINOD.zip"
+              },
+              {
+                "title": "Sample Application Forms",
+                "value": "https://nsearchives.nseindia.com/content/ipo/FORMS_VINOD.zip"
+              },
+              {
+                "title": "Security Parameters ",
+                "value": "https://nsearchives.nseindia.com/content/ipo/LIVE_PARAMETERS_VINOD.zip"
+              },
+              {
+                "title": "Processing of ASBA Applications",
+                "value": "<a href=https://archives.nseindia.com/content/circulars/IPO53197.pdf target=new>NSE Circular on ASBA Application Processing</a>"
+              },
+              {
+                "title": "Remark",
+                "value": "\"The dedicated window provided for bid modification (modification of selected fields viz. DP ID/Client ID or Pan ID, Bank code and Location code) on T+1 day (T being last day of bidding) shall not be available now. The bid modification of selected fields shall be allowed during bidding period of IPO only.\""
+              },
+              {
+                "title": "List of mobile applications accepting UPI as Payment Option",
+                "value": "<a href=https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=43 target=new>Mobile APP for UPI</a>"
+              },
+              {
+                "title": "Video link  for UPI based ASBA process",
+                "value": "<a href=https://youtu.be/UJ394m2Q3rg target=new>UPI Based ASBA Process</a>"
+              },
+              {
+                "title": "Video link  for BHIM UPI Registration",
+                "value": "<a href=https://youtu.be/cIUJOIH0x4c target=new>BHIM UPI Registration</a>"
+              }
+            ],
+            "heading": "Vinod Texworld Limited",
+            "symbol": "VINOD"
+          },
+          "metaInfo": {}
+        },
+        "snapshot_at": "2026-09-09T06:30:20+00:00",
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=VINOD&series=SME"
+      }
+    }
+  },
   "field_provenance": {
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -48,6 +591,50 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "parties.lead_managers": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "parties.registrar": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "parties.sponsor_bank": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.market_lot": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.tick_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "subscription.by_exchange.nse": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -58,20 +645,36 @@
     }
   },
   "filings_path": "issues/vinod-texworld-366ce1/filings.json",
-  "generated_at": "2026-09-08T06:23:55+00:00",
+  "generated_at": "2026-09-09T06:33:06+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "nse:symbol:VINOD"
+    ],
     "board_type": "SME Board",
     "company_name": "Vinod Texworld Limited",
     "issue_type": "IPO",
     "slug": "vinod-texworld-366ce1",
-    "status": "Upcoming",
+    "status": "Open",
     "symbol": "VINOD"
   },
   "listing_performance": {},
   "market_path": "issues/vinod-texworld-366ce1/market.json",
-  "parties": {},
-  "pricing": {},
+  "parties": {
+    "lead_managers": [
+      "Novus Capital Advisors Private Limited (Formerly known as Fast Track Finsec Private Limited)"
+    ],
+    "registrar": "Kfin Technologies Limited",
+    "sponsor_bank": "Kotak Mahindra Bank"
+  },
+  "pricing": {
+    "face_value_paise": 1000,
+    "issue_size_shares": 4556400,
+    "market_lot": 1200,
+    "price_band_lower_paise": 9400,
+    "price_band_upper_paise": 9400,
+    "tick_size_paise": 100
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/vinod-texworld-366ce1/prospectus_facts.json",
   "provenance_path": "issues/vinod-texworld-366ce1/provenance.json",
@@ -87,13 +690,13 @@
           {
             "debt_cr": 47.0091,
             "net_sales_cr": 271.488,
-            "pat_cr": 5.2968,
+            "pat_cr": 5.4864,
             "period": "Mar 2024"
           },
           {
             "debt_cr": 66.2776,
             "net_sales_cr": 335.3693,
-            "pat_cr": 9.2076,
+            "pat_cr": 9.2336,
             "period": "Mar 2025"
           },
           {
@@ -132,11 +735,11 @@
         },
         {
           "company_name": "BORANA",
-          "market_cap": "816",
+          "market_cap": "856",
           "net_sales_cr": 290,
           "pat_cr": 40.2,
-          "pb": 3.07,
-          "pe": 12.55
+          "pb": 3.04,
+          "pe": 12.42
         }
       ],
       "revenue_mix": {
@@ -282,32 +885,208 @@
         "market_cap": "₹151",
         "pb": 3.55,
         "pe": 14.59,
-        "sector_pb": 1.22,
-        "sector_pe": 17.83
+        "sector_pb": 1.25,
+        "sector_pe": 17.48
       }
     }
   },
   "research_path": "issues/vinod-texworld-366ce1/research.json",
   "schema_version": "3.0.0",
   "slug": "vinod-texworld-366ce1",
-  "source_dataset_version": "v2026.09.08-0623",
+  "source_dataset_version": "v2026.09.09-0633",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-09-08T06:17:25+00:00",
+      "endpoint": "bid_details_vinod_sme",
+      "snapshot_at": "2026-09-09T06:30:21+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_vinod",
+      "snapshot_at": "2026-09-09T06:30:21+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "issue_detail_vinod_sme",
+      "snapshot_at": "2026-09-09T06:30:20+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_current_issue",
+      "snapshot_at": "2026-09-09T06:24:58+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-09-08T06:17:34+00:00",
+      "snapshot_at": "2026-09-09T06:25:06+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "by_exchange": {
+      "nse": {
+        "categories": [
+          {
+            "applications": 0,
+            "category": "qib",
+            "shares_bid": 0,
+            "shares_offered": 0,
+            "times_x": "0.0000"
+          },
+          {
+            "applications": 0,
+            "category": "qib_fii",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "applications": 0,
+            "category": "qib_dfi",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "applications": 0,
+            "category": "qib_mf",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "applications": 0,
+            "category": "qib_other",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "applications": 1,
+            "category": "nii",
+            "shares_bid": 4800,
+            "shares_offered": 0,
+            "times_x": "0.0000"
+          },
+          {
+            "applications": 36,
+            "category": "retail",
+            "shares_bid": 4800,
+            "shares_offered": null,
+            "times_x": null
+          }
+        ],
+        "total_times_x": null
+      }
+    },
+    "consolidated": {
+      "basis": "computed_nse_bse",
+      "categories": [
+        {
+          "applications": 0,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": "0.0000"
+            }
+          },
+          "category": "qib",
+          "shares_bid": 0,
+          "shares_offered": 0,
+          "times_x": "0.0000"
+        },
+        {
+          "applications": 0,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": null
+            }
+          },
+          "category": "qib_fii",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "applications": 0,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": null
+            }
+          },
+          "category": "qib_dfi",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "applications": 0,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": null
+            }
+          },
+          "category": "qib_mf",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "applications": 0,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 0,
+              "times_x": null
+            }
+          },
+          "category": "qib_other",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "applications": 1,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 4800,
+              "times_x": "0.0000"
+            }
+          },
+          "category": "nii",
+          "shares_bid": 4800,
+          "shares_offered": 0,
+          "times_x": "0.0000"
+        },
+        {
+          "applications": 36,
+          "by_exchange": {
+            "nse": {
+              "shares_bid": 4800,
+              "times_x": null
+            }
+          },
+          "category": "retail",
+          "shares_bid": 4800,
+          "shares_offered": null,
+          "times_x": null
+        }
+      ],
+      "total_times_x": null
+    },
+    "overall_times_x": "0.0200"
+  },
   "subscription_path": "issues/vinod-texworld-366ce1/subscription.json",
   "timeline": {
     "close_date": "2026-09-11",

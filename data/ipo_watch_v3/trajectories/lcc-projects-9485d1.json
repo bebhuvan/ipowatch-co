@@ -7,13 +7,90 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.09.08-0623",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.09.09-0633",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-09-09T06:29:21+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 8358288,
+          "price_paise": 14600
+        },
+        {
+          "cumulative_quantity": 8359308,
+          "price_paise": 14500
+        },
+        {
+          "cumulative_quantity": 8360226,
+          "price_paise": 14400
+        },
+        {
+          "cumulative_quantity": 8360328,
+          "price_paise": 14300
+        },
+        {
+          "cumulative_quantity": 8361450,
+          "price_paise": 14200
+        },
+        {
+          "cumulative_quantity": 8361756,
+          "price_paise": 14100
+        },
+        {
+          "cumulative_quantity": 8363490,
+          "price_paise": 14000
+        },
+        {
+          "cumulative_quantity": 8368080,
+          "price_paise": 13900
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "09-Sep-2026 11:51:00"
+    },
+    {
+      "observed_at": "2026-09-09T06:29:21+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 6867762,
+          "price_paise": 14600
+        },
+        {
+          "cumulative_quantity": 6868374,
+          "price_paise": 14500
+        },
+        {
+          "cumulative_quantity": 6868680,
+          "price_paise": 14400
+        },
+        {
+          "cumulative_quantity": 6869292,
+          "price_paise": 14200
+        },
+        {
+          "cumulative_quantity": 6869394,
+          "price_paise": 14100
+        },
+        {
+          "cumulative_quantity": 6870006,
+          "price_paise": 14000
+        },
+        {
+          "cumulative_quantity": 6872556,
+          "price_paise": 13900
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "09-Sep-2026 11:56:51"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-09-08T06:23:55+00:00",
+  "generated_at": "2026-09-09T06:33:06+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "lcc-projects-9485d1",
   "language": "en-IN",
@@ -24,61 +101,60 @@
     {
       "categories": {
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 602412,
+          "shares_offered": 4521923,
+          "times": 0.13322031357013378
+        },
+        "nii_gt_10l": {
+          "shares_bid": 425034,
+          "shares_offered": 1507307,
+          "times": 0.2819823698821806
         },
         "qib": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 3204228,
+          "shares_offered": 5854205,
+          "times": 0.5473378537307798
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 4632432,
+          "shares_offered": 10551153,
+          "times": 0.4390450977253386
         }
       },
-      "observed_at": "2026-09-08T13:05:04+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-09-09T06:29:21+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 09-Sep-2026 11:54:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 8439072,
+        "shares_offered": 2,
+        "times": 0.40325697351700873
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/lcc-projects-9485d1.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.09.08-0623",
+  "source_dataset_version": "v2026.09.09-0633",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7949",
+      "endpoint": "consolidated_bid_details_lccproject",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_lccproject",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_lccproject",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

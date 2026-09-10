@@ -1,6 +1,14 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 18600,
+        "quantity": 570600
+      }
+    ]
+  },
   "core_path": "issues/maharaja-speedex-india-400ba9/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +17,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.09-0633",
+  "dataset_version": "v3.2026.09.10-0632",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -85,6 +97,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -95,7 +111,7 @@
     }
   },
   "filings_path": "issues/maharaja-speedex-india-400ba9/filings.json",
-  "generated_at": "2026-09-09T06:33:06+00:00",
+  "generated_at": "2026-09-10T06:32:13+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -106,7 +122,7 @@
     "company_name": "Maharaja & Speedex India Limited",
     "issue_type": "IPO",
     "slug": "maharaja-speedex-india-400ba9",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/maharaja-speedex-india-400ba9/market.json",
@@ -119,7 +135,7 @@
   },
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 4308000,
+    "issue_size_shares": 3081000,
     "market_lot": 600,
     "min_bid_qty": 1200,
     "price_band_lower_paise": 17700,
@@ -178,19 +194,19 @@
         },
         {
           "company_name": "BOROLTD",
-          "market_cap": "3,048",
+          "market_cap": "3,054",
           "net_sales_cr": 1107,
           "pat_cr": 74.23,
           "pb": 3.44,
-          "pe": 43.51
+          "pe": 43.6
         },
         {
           "company_name": "CELLO",
-          "market_cap": "7,760",
+          "market_cap": "7,605",
           "net_sales_cr": 2323,
           "pat_cr": 331,
-          "pb": 2.87,
-          "pe": 24.8
+          "pb": 2.82,
+          "pe": 24.31
         }
       ],
       "revenue_mix": {
@@ -232,55 +248,55 @@
         "market_cap": "₹304",
         "pb": 10.53,
         "pe": 19.82,
-        "sector_pb": 2.79,
-        "sector_pe": 31.82
+        "sector_pb": 2.89,
+        "sector_pe": 31.95
       }
     }
   },
   "research_path": "issues/maharaja-speedex-india-400ba9/research.json",
   "schema_version": "3.0.0",
   "slug": "maharaja-speedex-india-400ba9",
-  "source_dataset_version": "v2026.09.09-0633",
+  "source_dataset_version": "v2026.09.10-0632",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7962",
-      "snapshot_at": "2026-09-09T06:32:20+00:00",
+      "snapshot_at": "2026-09-10T06:31:40+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7962",
-      "snapshot_at": "2026-09-09T06:32:21+00:00",
+      "snapshot_at": "2026-09-10T06:31:41+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7962",
-      "snapshot_at": "2026-09-09T06:32:22+00:00",
+      "snapshot_at": "2026-09-10T06:31:41+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7962",
-      "snapshot_at": "2026-09-09T06:32:18+00:00",
+      "snapshot_at": "2026-09-10T06:31:37+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-09-09T06:25:08+00:00",
+      "snapshot_at": "2026-09-10T06:23:32+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-09-09T06:25:08+00:00",
+      "snapshot_at": "2026-09-10T06:23:33+00:00",
       "source": "bse",
       "url": null
     }
@@ -292,8 +308,8 @@
           {
             "category": "qib",
             "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_offered": 818400,
+            "times_x": "0.0000"
           },
           {
             "category": "qib_fii",
@@ -321,15 +337,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 454200,
+            "shares_offered": 829800,
+            "times_x": "0.5474"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 116400,
+            "shares_offered": 1432800,
+            "times_x": "0.0812"
           },
           {
             "category": "employee",
@@ -344,7 +360,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": null
+        "total_times_x": "0.1852"
       }
     },
     "consolidated": {
@@ -353,8 +369,8 @@
         {
           "category": "qib",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 818400,
+          "times_x": "0.0000"
         },
         {
           "category": "qib_fii",
@@ -382,27 +398,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 454200,
+          "shares_offered": 829800,
+          "times_x": "0.5474"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 442800,
+          "shares_offered": 408600,
+          "times_x": "1.0837"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 11400,
+          "shares_offered": 205200,
+          "times_x": "0.0556"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 116400,
+          "shares_offered": 1432800,
+          "times_x": "0.0812"
         },
         {
           "category": "employee",
@@ -423,8 +439,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": null
-    }
+      "total_times_x": "0.1852"
+    },
+    "overall_times_x": "0.1852"
   },
   "subscription_path": "issues/maharaja-speedex-india-400ba9/subscription.json",
   "timeline": {

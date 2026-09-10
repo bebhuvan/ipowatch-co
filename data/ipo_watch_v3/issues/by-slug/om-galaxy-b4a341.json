@@ -1,6 +1,14 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 9000,
+        "quantity": 4084800
+      }
+    ]
+  },
   "core_path": "issues/om-galaxy-b4a341/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +17,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.09-0633",
+  "dataset_version": "v3.2026.09.10-0632",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -89,6 +101,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -99,7 +115,7 @@
     }
   },
   "filings_path": "issues/om-galaxy-b4a341/filings.json",
-  "generated_at": "2026-09-09T06:33:06+00:00",
+  "generated_at": "2026-09-10T06:32:13+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -110,7 +126,7 @@
     "company_name": "OM GALAXY LIMITED",
     "issue_type": "IPO",
     "slug": "om-galaxy-b4a341",
-    "status": "Upcoming",
+    "status": "Open",
     "symbol": "OM GALAXY LIMITED"
   },
   "listing_performance": {},
@@ -124,7 +140,7 @@
   },
   "pricing": {
     "face_value_paise": 500,
-    "issue_size_shares": 11667200,
+    "issue_size_shares": 8345600,
     "market_lot": 1600,
     "min_bid_qty": 3200,
     "price_band_lower_paise": 8500,
@@ -183,19 +199,19 @@
         },
         {
           "company_name": "MACPLASQ",
-          "market_cap": "166",
+          "market_cap": "163",
           "net_sales_cr": 388,
           "pat_cr": 8.56,
-          "pb": 1.21,
+          "pb": 1.19,
           "pe": null
         },
         {
           "company_name": "SUPREMEIND",
-          "market_cap": "44,738",
+          "market_cap": "44,580",
           "net_sales_cr": 11217,
           "pat_cr": 953,
-          "pb": 7.25,
-          "pe": 43.33
+          "pb": 7.23,
+          "pe": 43.18
         }
       ],
       "revenue_mix": {
@@ -258,55 +274,55 @@
         "market_cap": "₹304",
         "pb": 3.77,
         "pe": 18.33,
-        "sector_pb": 3.06,
-        "sector_pe": 27.34
+        "sector_pb": 3.03,
+        "sector_pe": 27.82
       }
     }
   },
   "research_path": "issues/om-galaxy-b4a341/research.json",
   "schema_version": "3.0.0",
   "slug": "om-galaxy-b4a341",
-  "source_dataset_version": "v2026.09.09-0633",
+  "source_dataset_version": "v2026.09.10-0632",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7960",
-      "snapshot_at": "2026-09-09T06:32:11+00:00",
+      "snapshot_at": "2026-09-10T06:31:32+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7960",
-      "snapshot_at": "2026-09-09T06:32:12+00:00",
+      "snapshot_at": "2026-09-10T06:31:34+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7960",
-      "snapshot_at": "2026-09-09T06:32:12+00:00",
+      "snapshot_at": "2026-09-10T06:31:34+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7960",
-      "snapshot_at": "2026-09-09T06:32:10+00:00",
+      "snapshot_at": "2026-09-10T06:31:31+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-09-09T06:25:08+00:00",
+      "snapshot_at": "2026-09-10T06:23:32+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-09-09T06:25:08+00:00",
+      "snapshot_at": "2026-09-10T06:23:33+00:00",
       "source": "bse",
       "url": null
     }
@@ -317,13 +333,13 @@
         "categories": [
           {
             "category": "qib",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 4000000,
+            "shares_offered": 2216000,
+            "times_x": "1.8051"
           },
           {
             "category": "qib_fii",
-            "shares_bid": null,
+            "shares_bid": 4000000,
             "shares_offered": null,
             "times_x": null
           },
@@ -347,15 +363,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 24000,
+            "shares_offered": 2248000,
+            "times_x": "0.0107"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 60800,
+            "shares_offered": 3881600,
+            "times_x": "0.0157"
           },
           {
             "category": "employee",
@@ -370,7 +386,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": null
+        "total_times_x": "0.4895"
       }
     },
     "consolidated": {
@@ -378,13 +394,13 @@
       "categories": [
         {
           "category": "qib",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 4000000,
+          "shares_offered": 2216000,
+          "times_x": "1.8051"
         },
         {
           "category": "qib_fii",
-          "shares_bid": null,
+          "shares_bid": 4000000,
           "shares_offered": null,
           "times_x": null
         },
@@ -408,27 +424,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 24000,
+          "shares_offered": 2248000,
+          "times_x": "0.0107"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 24000,
+          "shares_offered": 1108800,
+          "times_x": "0.0216"
         },
         {
           "category": "nii_lte_10l",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 555200,
+          "times_x": "0.0000"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 60800,
+          "shares_offered": 3881600,
+          "times_x": "0.0157"
         },
         {
           "category": "employee",
@@ -449,8 +465,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": null
-    }
+      "total_times_x": "0.4895"
+    },
+    "overall_times_x": "0.4895"
   },
   "subscription_path": "issues/om-galaxy-b4a341/subscription.json",
   "timeline": {

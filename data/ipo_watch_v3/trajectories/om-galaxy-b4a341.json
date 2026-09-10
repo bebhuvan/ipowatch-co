@@ -7,13 +7,13 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.09.09-0633",
+  "dataset_version": "v3.2026.09.10-0632",
   "demand_curve_count": 0,
   "demand_curves": [],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-09-09T06:33:06+00:00",
+  "generated_at": "2026-09-10T06:32:13+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "om-galaxy-b4a341",
   "language": "en-IN",
@@ -23,15 +23,20 @@
   "observations": [
     {
       "categories": {
-        "nii": {
+        "employee": {
           "shares_bid": 0,
           "shares_offered": null,
           "times": null
         },
+        "nii": {
+          "shares_bid": 24000,
+          "shares_offered": 2248000,
+          "times": 0.0107
+        },
         "qib": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 4000000,
+          "shares_offered": 2216000,
+          "times": 1.8051
         },
         "qib_dfi": {
           "shares_bid": null,
@@ -39,7 +44,7 @@
           "times": null
         },
         "qib_fii": {
-          "shares_bid": null,
+          "shares_bid": 4000000,
           "shares_offered": null,
           "times": null
         },
@@ -54,26 +59,45 @@
           "times": null
         },
         "retail": {
+          "shares_bid": 60800,
+          "shares_offered": 3881600,
+          "times": 0.0157
+        },
+        "shareholder": {
           "shares_bid": 0,
           "shares_offered": null,
           "times": null
         }
       },
-      "observed_at": "2026-09-09T13:11:08+00:00",
+      "observed_at": "2026-09-10T06:31:34+00:00",
       "source": "bse",
-      "source_updated_at": null,
+      "source_updated_at": "9/10/2026 11:59:56",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 4084800,
+        "shares_offered": 8345600,
+        "times": 0.4895
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/om-galaxy-b4a341.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.09.09-0633",
+  "source_dataset_version": "v2026.09.10-0632",
   "sources": [
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_7960",
+      "snapshot_at": "",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_new_7960",
+      "snapshot_at": "",
+      "source": "bse",
+      "url": null
+    },
     {
       "confidence": "primary",
       "endpoint": "demand_schedule_7960",

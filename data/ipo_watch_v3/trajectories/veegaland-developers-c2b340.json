@@ -7,13 +7,106 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.09.09-0633",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.09.10-0632",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-09-10T06:27:55+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 1877208,
+          "price_paise": 14000
+        },
+        {
+          "cumulative_quantity": 1877529,
+          "price_paise": 13800
+        },
+        {
+          "cumulative_quantity": 1878064,
+          "price_paise": 13600
+        },
+        {
+          "cumulative_quantity": 1881167,
+          "price_paise": 13500
+        },
+        {
+          "cumulative_quantity": 1881595,
+          "price_paise": 13300
+        },
+        {
+          "cumulative_quantity": 1881702,
+          "price_paise": 13200
+        },
+        {
+          "cumulative_quantity": 1883307,
+          "price_paise": 13100
+        },
+        {
+          "cumulative_quantity": 1888122,
+          "price_paise": 13000
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "10-Sep-2026 11:54:26"
+    },
+    {
+      "observed_at": "2026-09-10T06:27:56+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 2532476,
+          "price_paise": 14000
+        },
+        {
+          "cumulative_quantity": 2532583,
+          "price_paise": 13900
+        },
+        {
+          "cumulative_quantity": 2533546,
+          "price_paise": 13800
+        },
+        {
+          "cumulative_quantity": 2534081,
+          "price_paise": 13700
+        },
+        {
+          "cumulative_quantity": 2535258,
+          "price_paise": 13600
+        },
+        {
+          "cumulative_quantity": 2540929,
+          "price_paise": 13500
+        },
+        {
+          "cumulative_quantity": 2541036,
+          "price_paise": 13400
+        },
+        {
+          "cumulative_quantity": 2541892,
+          "price_paise": 13300
+        },
+        {
+          "cumulative_quantity": 2542427,
+          "price_paise": 13200
+        },
+        {
+          "cumulative_quantity": 2544353,
+          "price_paise": 13100
+        },
+        {
+          "cumulative_quantity": 2551629,
+          "price_paise": 13000
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "10-Sep-2026 11:54:00"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-09-09T06:33:06+00:00",
+  "generated_at": "2026-09-10T06:32:13+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "veegaland-developers-c2b340",
   "language": "en-IN",
@@ -24,61 +117,60 @@
     {
       "categories": {
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 293715,
+          "shares_offered": 2423077,
+          "times": 0.12121571043759649
+        },
+        "nii_gt_10l": {
+          "shares_bid": 138351,
+          "shares_offered": 807692,
+          "times": 0.17129177953972555
         },
         "qib": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 7490,
+          "shares_offered": 3230768,
+          "times": 0.002318334216508273
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 2243041,
+          "shares_offered": 5653847,
+          "times": 0.3967282807617539
         }
       },
-      "observed_at": "2026-09-09T13:11:13+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-09-10T06:27:55+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 10-Sep-2026 11:54:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 2544246,
+        "shares_offered": 1,
+        "times": 0.22500135306126132
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/veegaland-developers-c2b340.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.09.09-0633",
+  "source_dataset_version": "v2026.09.10-0632",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7959",
+      "endpoint": "consolidated_bid_details_veegaland",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_veegaland",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_veegaland",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

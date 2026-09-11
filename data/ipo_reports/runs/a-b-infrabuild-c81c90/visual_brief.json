@@ -7,15 +7,15 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.08.22-0340",
-  "estimated_cost_usd": 0.00093954,
+  "dataset_version": "v2026.09.11-0649",
+  "estimated_cost_usd": 0.0,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-08-22T03:40:48+00:00",
+  "generated_at": "2026-09-11T06:49:20+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
-  "model": "deepseek-v4-flash",
+  "model": "deepseek-flash",
   "notes": "Stage-6 visual brief.",
   "schema_url_self": null,
   "schema_version": "1.0.0",
@@ -24,41 +24,78 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules and two rule weights; serif throughout; single accent colour (e.g. deep blue) for table headers and pull-quote rule.",
-      "Tables should be full-width with right-aligned numeric columns; pull-quote set in larger serif with a left rule.",
-      "No decorative imagery; keep the layout clean and newspaper-like."
+      "Serif throughout, hairline rules, two rule weights; single accent colour for the pull-quote rule and table header rule.",
+      "Financials table: right-align all numeric columns, keep the ₹ crore unit in the stub column, no zebra striping.",
+      "Peer comparison table: render the 'Status in the excerpts' column in italic to signal it is editorial annotation, not filing data.",
+      "Industry snapshot: stat strip as three equal columns above the growth bars; label the 2020 bar 'projected' in the accent colour.",
+      "No icons, no imagery, no charts beyond the specified bars."
     ],
     "formulas": [],
-    "industry_snapshot": null,
+    "industry_snapshot": {
+      "after_paragraph": "The filing defines its sector broadly: infrastructure and const",
+      "growth_bars": [
+        {
+          "value": "US$160B",
+          "width_pct": 74,
+          "year": "2017"
+        },
+        {
+          "projected": true,
+          "value": "US$215B",
+          "width_pct": 100,
+          "year": "2020"
+        }
+      ],
+      "growth_bars_label": "Logistics sector — projected growth at 10.5% CAGR",
+      "growth_bars_source": "DRHP, p.22 and p.59",
+      "rationale": "The industry section is a wall of cited macro figures; a stat strip and one proportional bar make the demand case scannable without adding any number not already in the draft.",
+      "split_bar": null,
+      "split_bar_label": null,
+      "split_bar_note": null,
+      "stats": [
+        {
+          "desc": "Share of India's GDP\nat constant prices",
+          "val": "~8%"
+        },
+        {
+          "desc": "Infrastructure investment\nrequirement, by 2022",
+          "val": "₹50 trillion"
+        },
+        {
+          "desc": "FDI into construction\ndevelopment, Apr 2000–Dec 2017",
+          "val": "US$24.67B"
+        }
+      ]
+    },
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "The client list is dominated by public bodies: Municipal Corporation of Greater Mumbai",
-        "quote": "Western Railway alone made up 52% of orders on hand",
-        "rationale": "A single, stark concentration figure that the prose cannot carry as effectively as a pull quote."
+        "after_paragraph": "One name on that list is not like the others. Western Rail",
+        "quote": "It accounts for 52% of the orders on hand [^drhp-p65], and revenue from key customers for the year ended March 31, 2018 was 57% of total revenue [^drhp-p67].",
+        "rationale": "Customer concentration is the single disclosed fact that most changes how a reader weighs the whole filing."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "A B Infrabuild proposes a public issue of 44,28,000 equity shares of face value ₹10 each. The issue price is not yet fixed (shown as ₹[●] in the DRHP). [^drhp-p29] The stated object is to meet working capital requirements of ₹1,130 lakh (₹11.3 crore) plus general corporate purposes, the amount for which is not disclosed. [^drhp-p48] The lead manager is Mark Corporate Advisors Private Limited; the registrar is Bigshare Services Private Limited. [^drhp-p31] The DRHP does not explicitly show an offer-for-sale component; every clue points to a fresh issue, but the split is not spelled out in the provided facts. [^drhp-p29]",
-        "rationale": "A sidebar condenses the offer's key terms (size, price, object, managers) into a scannable reference, complementing the prose.",
+        "body_markdown": "44,28,000 equity shares of ₹10 face value each, at an issue price left as ₹[•] [^drhp-p29]. The excerpts do not state whether this is a fresh issue or an offer for sale, and name no selling shareholder. Objects: ₹1,130 lakhs (₹11.30 crore) for working capital, and general corporate purposes with the amount left blank [^drhp-p48]. Lead manager: Mark Corporate Advisors Private Limited; registrar: Bigshare Services Private Limited [^drhp-p31]. No independent appraisal and no monitoring agency for the proceeds [^drhp-p18].",
+        "rationale": "The offer mechanics are scattered across four pages; a compact block lets the reader hold the terms before the analysis.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The balance sheet leans on short-term debt. Short-term borrowings rose",
+        "after_paragraph": "The filing presents five years of restated financials, from FY",
         "columns": [
-          "₹ crore",
+          "₹ crore unless stated",
           "FY2014",
           "FY2015",
           "FY2016",
           "FY2017",
           "FY2018"
         ],
-        "footnote": "Source: DRHP pages 26, 27 and 111. Figures converted from ₹ lakh to ₹ crore. [^drhp-p26] [^drhp-p27] [^drhp-p111]",
-        "rationale": "The five-year trend of shrinking revenue and rising short-term debt is the core financial story; a table makes the pattern visible at a glance.",
+        "footnote": "Revenue and profit after tax [^drhp-p27]; EBITDA [^drhp-p111]; total assets and borrowings [^drhp-p26].",
+        "rationale": "The five-year shape — falling revenue, rising FY2018 profit, borrowings shifted to the short end — is the report's central financial claim and cannot be read off prose.",
         "rows": [
           [
             "Revenue from operations",
@@ -77,12 +114,20 @@
             "9.29"
           ],
           [
-            "Net profit after adjustments",
+            "Profit after tax",
             "0.96",
             "0.78",
             "0.33",
             "0.16",
             "3.15"
+          ],
+          [
+            "Total assets",
+            "70.62",
+            "72.67",
+            "62.95",
+            "75.37",
+            "82.32"
           ],
           [
             "Long-term borrowings",
@@ -101,33 +146,88 @@
             "35.37"
           ]
         ],
-        "title": "Restated financials, FY2014–FY2018"
+        "title": "Five years of restated financials"
       },
       {
-        "after_paragraph": "The basis-for-issue-price section discloses earnings per share of ₹1.31",
+        "after_paragraph": "The section headed Comparison of Accounting Ratios with Peer",
         "columns": [
-          "Metric",
-          "FY2016",
-          "FY2017",
-          "FY2018"
+          "Disclosed item",
+          "Value",
+          "Status in the excerpts"
         ],
-        "footnote": "Source: DRHP page 54. [^drhp-p54]",
-        "rationale": "The dramatic FY2018 jump in EPS and RoNW is a key disclosed data point; a compact table isolates it from the prose.",
+        "footnote": "Peer ratios [^drhp-p54] [^drhp-p55]; issue price and multiple [^drhp-p55].",
+        "rationale": "The filing's peer table is unusable as extracted; rendering it as a table makes the missing inputs visible rather than burying them in prose.",
         "rows": [
           [
-            "Earnings per share (₹)",
-            "1.31",
-            "0.63",
-            "12.59"
+            "Peer comparison ratio",
+            "3.82",
+            "Company not named; column heading not disclosed"
           ],
           [
-            "Return on net worth (%)",
-            "4.14",
-            "1.97",
-            "28.14"
+            "Peer comparison ratio",
+            "12.39",
+            "Company not named; column heading not disclosed"
+          ],
+          [
+            "Peer comparison ratio",
+            "28.14",
+            "Company not named; column heading not disclosed"
+          ],
+          [
+            "Peer comparison ratio",
+            "44.71",
+            "Company not named; column heading not disclosed"
+          ],
+          [
+            "Issue price",
+            "₹[•]",
+            "Redacted in the filing"
+          ],
+          [
+            "Issue price as multiple of ₹10 face value",
+            "[•] times",
+            "Redacted in the filing"
           ]
         ],
-        "title": "Per-share metrics, FY2016–FY2018"
+        "title": "Peer comparison: what the excerpts actually disclose"
+      },
+      {
+        "after_paragraph": "Control is concentrated in one person. Amit Bholanath Mishra",
+        "columns": [
+          "Holder",
+          "Shares",
+          "Pre-issue stake"
+        ],
+        "footnote": "Promoter holding [^drhp-p100]; Sakerwala [^drhp-p98]; whole-time directors [^drhp-p93].",
+        "rationale": "Concentration of control is a single fact best shown as a shareholding ladder; the 90.949% against 300 shares is the point.",
+        "rows": [
+          [
+            "Amit Bholanath Mishra (promoter, managing director)",
+            "74,95,476",
+            "90.949%"
+          ],
+          [
+            "Hatim Sakerwala",
+            "not disclosed",
+            "9%"
+          ],
+          [
+            "Bharat kumar Parmar (whole-time director)",
+            "300",
+            "not disclosed"
+          ],
+          [
+            "Shree Prakash Singh (whole-time director)",
+            "300",
+            "not disclosed"
+          ],
+          [
+            "Mukesh Pandey (whole-time director)",
+            "300",
+            "not disclosed"
+          ]
+        ],
+        "title": "Who holds the equity"
       }
     ],
     "timeline": null

@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.10-0632",
+  "dataset_version": "v3.2026.09.11-0634",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_7041_11082026143246.zip"
   },
@@ -18,6 +18,10 @@
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -43,6 +47,18 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -51,7 +67,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -61,20 +85,29 @@
     }
   },
   "filings_path": "issues/qualiance-international-e6b994/filings.json",
-  "generated_at": "2026-09-10T06:32:13+00:00",
+  "generated_at": "2026-09-11T06:34:52+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:textilesapparel/qualianceinternational/QIL",
+      "moneycontrol:company_code:16070404"
+    ],
     "board_type": "SME Board",
     "company_name": "Qualiance International Limited",
     "issue_type": "IPO",
     "slug": "qualiance-international-e6b994",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "QUALIANCE"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 8591,
+    "current_price_paise": 23610
+  },
   "market_path": "issues/qualiance-international-e6b994/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 12700,
+    "issue_size_paise": 45110400000,
     "price_band_lower_paise": 12000,
     "price_band_upper_paise": 12700
   },
@@ -122,27 +155,27 @@
       "peers": [
         {
           "company_name": "QUALIANCE",
-          "market_cap": "171",
+          "market_cap": "0",
           "net_sales_cr": 76.89,
           "pat_cr": 11.87,
-          "pb": 4.93,
-          "pe": 14.41
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "GOKEX",
-          "market_cap": "5,742",
+          "market_cap": "5,746",
           "net_sales_cr": 3987,
           "pat_cr": 100,
-          "pb": 2.66,
-          "pe": 55.81
+          "pb": 2.63,
+          "pe": 55.17
         },
         {
           "company_name": "SPAL",
           "market_cap": "2,536",
           "net_sales_cr": 1578,
           "pat_cr": 101,
-          "pb": 2.68,
-          "pe": 24.07
+          "pb": 2.73,
+          "pe": 24.55
         }
       ],
       "revenue_mix": {
@@ -217,35 +250,52 @@
         "market_cap": "₹170",
         "pb": 4.93,
         "pe": 14.39,
-        "sector_pb": 1.24,
-        "sector_pe": 17.71
+        "sector_pb": 1.23,
+        "sector_pe": 17.37
       }
     }
   },
   "research_path": "issues/qualiance-international-e6b994/research.json",
   "schema_version": "3.0.0",
   "slug": "qualiance-international-e6b994",
-  "source_dataset_version": "v2026.09.10-0632",
+  "source_dataset_version": "v2026.09.11-0634",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-11T06:29:41+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-10T06:23:21+00:00",
+      "snapshot_at": "2026-09-11T06:25:38+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-11T06:25:48+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-09-10T06:23:29+00:00",
+      "snapshot_at": "2026-09-11T06:25:47+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "426.7800"
+  },
   "subscription_path": "issues/qualiance-international-e6b994/subscription.json",
   "timeline": {
     "close_date": "2026-09-08",
+    "listing_date": "2026-09-11",
     "open_date": "2026-09-04"
   },
   "url_path": "/ipos/qualiance-international/"

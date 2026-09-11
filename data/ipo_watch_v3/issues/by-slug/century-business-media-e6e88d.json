@@ -1,6 +1,19 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 7000,
+        "quantity": 185600
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 7400,
+        "quantity": 182400
+      }
+    ]
+  },
   "core_path": "issues/century-business-media-e6e88d/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +22,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.10-0632",
+  "dataset_version": "v3.2026.09.11-0634",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -85,6 +102,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -95,7 +116,7 @@
     }
   },
   "filings_path": "issues/century-business-media-e6e88d/filings.json",
-  "generated_at": "2026-09-10T06:32:13+00:00",
+  "generated_at": "2026-09-11T06:34:52+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -106,7 +127,7 @@
     "company_name": "CENTURY BUSINESS MEDIA LIMITED",
     "issue_type": "IPO",
     "slug": "century-business-media-e6e88d",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/century-business-media-e6e88d/market.json",
@@ -119,7 +140,7 @@
   },
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 2312000,
+    "issue_size_shares": 1657600,
     "market_lot": 1600,
     "min_bid_qty": 3200,
     "price_band_lower_paise": 7000,
@@ -178,27 +199,27 @@
         },
         {
           "company_name": "BRIGHT",
-          "market_cap": "768",
+          "market_cap": "777",
           "net_sales_cr": 126,
           "pat_cr": 19.08,
           "pb": null,
-          "pe": 31.95
+          "pe": 32.3
         },
         {
           "company_name": "SIGNPOST",
-          "market_cap": "1,449",
+          "market_cap": "1,431",
           "net_sales_cr": 575,
           "pat_cr": 70.11,
-          "pb": 5.04,
-          "pe": 19.7
+          "pb": 4.97,
+          "pe": 19.47
         },
         {
           "company_name": "SIMCA",
-          "market_cap": "314",
+          "market_cap": "313",
           "net_sales_cr": 74.94,
           "pat_cr": 9.98,
           "pb": null,
-          "pe": 18.88
+          "pe": 18.81
         }
       ],
       "revenue_mix": {
@@ -315,55 +336,55 @@
         "market_cap": "₹64.83",
         "pb": 3.6,
         "pe": 11.67,
-        "sector_pb": 1.62,
-        "sector_pe": 13.71
+        "sector_pb": 1.67,
+        "sector_pe": 13.93
       }
     }
   },
   "research_path": "issues/century-business-media-e6e88d/research.json",
   "schema_version": "3.0.0",
   "slug": "century-business-media-e6e88d",
-  "source_dataset_version": "v2026.09.10-0632",
+  "source_dataset_version": "v2026.09.11-0634",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7961",
-      "snapshot_at": "2026-09-10T06:31:12+00:00",
+      "snapshot_at": "2026-09-11T06:34:40+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7961",
-      "snapshot_at": "2026-09-10T06:31:15+00:00",
+      "snapshot_at": "2026-09-11T06:34:42+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7961",
-      "snapshot_at": "2026-09-10T06:31:15+00:00",
+      "snapshot_at": "2026-09-11T06:34:42+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7961",
-      "snapshot_at": "2026-09-10T06:31:12+00:00",
+      "snapshot_at": "2026-09-11T06:34:39+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-09-10T06:23:32+00:00",
+      "snapshot_at": "2026-09-11T06:25:49+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-09-10T06:23:33+00:00",
+      "snapshot_at": "2026-09-11T06:25:49+00:00",
       "source": "bse",
       "url": null
     }
@@ -375,8 +396,8 @@
           {
             "category": "qib",
             "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_offered": 438400,
+            "times_x": "0.0000"
           },
           {
             "category": "qib_fii",
@@ -404,15 +425,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 134400,
+            "shares_offered": 448000,
+            "times_x": "0.3000"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
-            "shares_offered": null,
-            "times_x": null
+            "shares_bid": 51200,
+            "shares_offered": 771200,
+            "times_x": "0.0664"
           },
           {
             "category": "employee",
@@ -427,7 +448,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": null
+        "total_times_x": "0.1120"
       }
     },
     "consolidated": {
@@ -436,8 +457,8 @@
         {
           "category": "qib",
           "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_offered": 438400,
+          "times_x": "0.0000"
         },
         {
           "category": "qib_fii",
@@ -465,27 +486,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 134400,
+          "shares_offered": 448000,
+          "times_x": "0.3000"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 129600,
+          "shares_offered": 220800,
+          "times_x": "0.5870"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 4800,
+          "shares_offered": 110400,
+          "times_x": "0.0435"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times_x": null
+          "shares_bid": 51200,
+          "shares_offered": 771200,
+          "times_x": "0.0664"
         },
         {
           "category": "employee",
@@ -506,8 +527,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": null
-    }
+      "total_times_x": "0.1120"
+    },
+    "overall_times_x": "0.1120"
   },
   "subscription_path": "issues/century-business-media-e6e88d/subscription.json",
   "timeline": {

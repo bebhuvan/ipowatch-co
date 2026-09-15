@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.11-0634",
+  "dataset_version": "v3.2026.09.15-0634",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0H4201019_11SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/PCPL.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE0H4201019_10SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/335516/IPO%20Open/6RHPSigned_20260903150028.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +108,29 @@
     }
   },
   "filings_path": "issues/pranav-constructions-24708a/filings.json",
-  "generated_at": "2026-09-11T06:34:52+00:00",
+  "generated_at": "2026-09-15T06:34:16+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:62833057",
-      "bse:prior_id:224994",
-      "bse:createdby:335516"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/pranav-constructions-ltd/pranav/544909/"
     ],
     "board_type": "Main Board",
     "company_name": "Pranav Constructions Limited",
     "isin": "INE0H4201019",
     "issue_type": "IPO",
     "slug": "pranav-constructions-24708a",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "PRANAV"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 452,
+    "current_price_paise": 12960
+  },
   "market_path": "issues/pranav-constructions-24708a/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 12400,
+    "issue_size_paise": 351025176800,
     "price_band_lower_paise": 11800,
     "price_band_upper_paise": 12400
   },
@@ -146,43 +178,43 @@
       "peers": [
         {
           "company_name": "PRANAV",
-          "market_cap": "1,397",
+          "market_cap": "0",
           "net_sales_cr": 761,
           "pat_cr": 71.33,
-          "pb": 5.66,
-          "pe": 19.59
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "RUSTOMJEE",
-          "market_cap": "4,465",
+          "market_cap": "4,361",
           "net_sales_cr": 2634,
           "pat_cr": 78.86,
-          "pb": 1.55,
-          "pe": 37.66
+          "pb": 1.52,
+          "pe": 37.12
         },
         {
           "company_name": "GODREJPROP",
-          "market_cap": "56,028",
+          "market_cap": "52,564",
           "net_sales_cr": 5131,
           "pat_cr": 1850,
-          "pb": 2.94,
-          "pe": 35.18
+          "pb": 2.74,
+          "pe": 32.85
         },
         {
           "company_name": "LODHA",
-          "market_cap": "1,16,454",
+          "market_cap": "1,11,226",
           "net_sales_cr": 16676,
           "pat_cr": 3428,
-          "pb": 5.03,
-          "pe": 28.39
+          "pb": 4.78,
+          "pe": 26.96
         },
         {
           "company_name": "SURAJEST",
-          "market_cap": "822",
+          "market_cap": "835",
           "net_sales_cr": 549,
           "pat_cr": 100,
-          "pb": 0.86,
-          "pe": 9.28
+          "pb": 0.84,
+          "pe": 9.1
         }
       ],
       "revenue_mix": {
@@ -232,42 +264,66 @@
         "market_cap": "₹1,396",
         "pb": 5.66,
         "pe": 19.58,
-        "sector_pb": 1.43,
-        "sector_pe": 24.29
+        "sector_pb": 1.42,
+        "sector_pe": 24.19
       }
     }
   },
   "research_path": "issues/pranav-constructions-24708a/research.json",
   "schema_version": "3.0.0",
   "slug": "pranav-constructions-24708a",
-  "source_dataset_version": "v2026.09.11-0634",
+  "source_dataset_version": "v2026.09.15-0634",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-11T06:25:53+00:00",
+      "snapshot_at": "2026-09-15T06:28:09+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-15T06:28:28+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-15T06:31:44+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-11T06:25:38+00:00",
+      "snapshot_at": "2026-09-15T06:27:42+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-11T06:25:46+00:00",
+      "snapshot_at": "2026-09-15T06:27:53+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-15T06:27:56+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "121.0000"
+  },
   "subscription_path": "issues/pranav-constructions-24708a/subscription.json",
   "timeline": {
     "close_date": "2026-09-09",
+    "listing_date": "2026-09-15",
     "open_date": "2026-09-07"
   },
   "url_path": "/ipos/pranav-constructions/"

@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.11-0634",
+  "dataset_version": "v3.2026.09.15-0634",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_06092025170827_DRHP.pdf",
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE644Q01039_11SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/309439/IPO%20Open/RHPsigned_20260904154907.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -33,6 +38,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,7 +79,7 @@
     }
   },
   "filings_path": "issues/glass-wall-systems-india-92bf54/filings.json",
-  "generated_at": "2026-09-11T06:34:52+00:00",
+  "generated_at": "2026-09-15T06:34:16+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -80,6 +89,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "Glass Wall Systems (India) Limited",
+    "isin": "INE644Q01039",
     "issue_type": "IPO",
     "slug": "glass-wall-systems-india-92bf54",
     "status": "Closed",
@@ -125,7 +135,7 @@
         ]
       },
       "isin": "INE644Q01039",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "glass wall systems india",
       "offer_split": {
         "fresh_issue_percent": "14%",
@@ -144,11 +154,11 @@
         },
         {
           "company_name": "INNOVATORS",
-          "market_cap": "215",
+          "market_cap": "212",
           "net_sales_cr": 221,
           "pat_cr": 16.01,
           "pb": null,
-          "pe": 15.85
+          "pe": 15.66
         }
       ],
       "revenue_mix": {
@@ -240,41 +250,41 @@
         "market_cap": "₹1,600",
         "pb": 6.16,
         "pe": 19.1,
-        "sector_pb": 2.76,
-        "sector_pe": 24.1
+        "sector_pb": 2.77,
+        "sector_pe": 23.36
       }
     }
   },
   "research_path": "issues/glass-wall-systems-india-92bf54/research.json",
   "schema_version": "3.0.0",
   "slug": "glass-wall-systems-india-92bf54",
-  "source_dataset_version": "v2026.09.11-0634",
+  "source_dataset_version": "v2026.09.15-0634",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-11T06:25:53+00:00",
+      "snapshot_at": "2026-09-15T06:28:09+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-11T06:25:38+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-09-11T06:25:38+00:00",
+      "snapshot_at": "2026-09-15T06:27:42+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-11T06:25:46+00:00",
+      "snapshot_at": "2026-09-15T06:27:53+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_equity",
+      "snapshot_at": "2026-09-15T06:27:53+00:00",
       "source": "nse",
       "url": null
     }

@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.11-0634",
+  "dataset_version": "v3.2026.09.15-0634",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_24012026145418_KanoharDRHP.pdf",
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE877D01025_11SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/385327/IPO%20Open/RHPSigned_20260904172444.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -33,6 +38,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,7 +79,7 @@
     }
   },
   "filings_path": "issues/kanohar-electricals-fee013/filings.json",
-  "generated_at": "2026-09-11T06:34:52+00:00",
+  "generated_at": "2026-09-15T06:34:16+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -80,6 +89,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "Kanohar Electricals Limited",
+    "isin": "INE877D01025",
     "issue_type": "IPO",
     "slug": "kanohar-electricals-fee013",
     "status": "Closed",
@@ -125,7 +135,7 @@
         ]
       },
       "isin": "INE877D01025",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "kanohar electricals",
       "offer_split": {
         "fresh_issue_percent": "29%",
@@ -222,40 +232,26 @@
   "research_path": "issues/kanohar-electricals-fee013/research.json",
   "schema_version": "3.0.0",
   "slug": "kanohar-electricals-fee013",
-  "source_dataset_version": "v2026.09.11-0634",
+  "source_dataset_version": "v2026.09.15-0634",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-11T06:25:53+00:00",
+      "snapshot_at": "2026-09-15T06:28:09+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-11T06:25:38+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-09-11T06:25:38+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-11T06:25:48+00:00",
+      "snapshot_at": "2026-09-15T06:27:42+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-11T06:25:46+00:00",
+      "snapshot_at": "2026-09-15T06:27:53+00:00",
       "source": "nse",
       "url": null
     }

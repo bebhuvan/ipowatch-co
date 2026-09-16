@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.15-0634",
+  "dataset_version": "v3.2026.09.16-0633",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE455U01024_15SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/d_Prasol.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE455U01024_11SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/322750/IPO%20Open/RHP_20260904184904.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +108,29 @@
     }
   },
   "filings_path": "issues/prasol-chemicals-d22d87/filings.json",
-  "generated_at": "2026-09-15T06:34:16+00:00",
+  "generated_at": "2026-09-16T06:33:57+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:16258305",
-      "bse:prior_id:249327",
-      "bse:createdby:322750"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/prasol-chemicals-ltd/prasolchem/544912/"
     ],
     "board_type": "Main Board",
     "company_name": "Prasol Chemicals Limited",
     "isin": "INE455U01024",
     "issue_type": "IPO",
     "slug": "prasol-chemicals-d22d87",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "PRASOLCHEM"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -58,
+    "current_price_paise": 67205
+  },
   "market_path": "issues/prasol-chemicals-d22d87/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 67600,
+    "issue_size_paise": 499999952400,
     "price_band_lower_paise": 64300,
     "price_band_upper_paise": 67600
   },
@@ -146,43 +178,43 @@
       "peers": [
         {
           "company_name": "PRASOLCHEM",
-          "market_cap": "4,001",
+          "market_cap": "0",
           "net_sales_cr": 1232,
           "pat_cr": 83.12,
-          "pb": 8.92,
-          "pe": 48.13
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "AARTIIND",
           "market_cap": "17,852",
           "net_sales_cr": 8286,
           "pat_cr": 419,
-          "pb": 3.0,
-          "pe": 33.62
+          "pb": 2.86,
+          "pe": 32.05
         },
         {
           "company_name": "ATUL",
           "market_cap": "18,385",
           "net_sales_cr": 6273,
           "pat_cr": 677,
-          "pb": 2.95,
-          "pe": 23.11
+          "pb": 2.87,
+          "pe": 22.47
         },
         {
           "company_name": "LXCHEM",
           "market_cap": "4,887",
           "net_sales_cr": 2846,
           "pat_cr": 79.36,
-          "pb": 2.46,
-          "pe": 38.88
+          "pb": 2.34,
+          "pe": 37.01
         },
         {
           "company_name": "VINATIORGA",
           "market_cap": "13,429",
           "net_sales_cr": 2226,
           "pat_cr": 443,
-          "pb": 4.25,
-          "pe": 29.95
+          "pb": 4.14,
+          "pe": 29.18
         }
       ],
       "revenue_mix": {
@@ -279,55 +311,79 @@
         "pb": 8.92,
         "pe": 48.13,
         "sector_pb": 1.91,
-        "sector_pe": 24.77
+        "sector_pe": 24.03
       }
     }
   },
   "research_path": "issues/prasol-chemicals-d22d87/research.json",
   "schema_version": "3.0.0",
   "slug": "prasol-chemicals-d22d87",
-  "source_dataset_version": "v2026.09.15-0634",
+  "source_dataset_version": "v2026.09.16-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-15T06:28:09+00:00",
+      "snapshot_at": "2026-09-16T06:27:51+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-16T06:28:12+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-16T06:31:33+00:00",
+      "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-15T06:27:42+00:00",
+      "snapshot_at": "2026-09-16T06:27:36+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-15T06:28:09+00:00",
+      "snapshot_at": "2026-09-16T06:27:51+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-15T06:27:53+00:00",
+      "snapshot_at": "2026-09-16T06:27:45+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-15T06:27:53+00:00",
+      "snapshot_at": "2026-09-16T06:27:45+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-16T06:27:47+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "3.3000"
+  },
   "subscription_path": "issues/prasol-chemicals-d22d87/subscription.json",
   "timeline": {
     "close_date": "2026-09-10",
+    "listing_date": "2026-09-16",
     "open_date": "2026-09-08"
   },
   "url_path": "/ipos/prasol-chemicals/"

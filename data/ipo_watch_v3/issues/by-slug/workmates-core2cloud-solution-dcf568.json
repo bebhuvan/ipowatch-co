@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.15-0634",
+  "dataset_version": "v3.2026.09.16-0633",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -37,6 +37,10 @@
       "rule_id": "inference:timeline",
       "source": "inferred"
     },
+    "identity.symbol": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -57,13 +61,21 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     }
   },
   "filings_path": "issues/workmates-core2cloud-solution-dcf568/filings.json",
-  "generated_at": "2026-09-15T06:34:16+00:00",
+  "generated_at": "2026-09-16T06:33:57+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -73,18 +85,20 @@
     "company_name": "WORKMATES CORE2CLOUD SOLUTION LIMITED",
     "issue_type": "IPO",
     "slug": "workmates-core2cloud-solution-dcf568",
-    "status": "Listed"
+    "status": "Listed",
+    "symbol": "WCSL"
   },
   "listing_performance": {
-    "current_gain_bps": 11895,
-    "current_price_paise": 44665,
+    "current_gain_bps": 11150,
+    "current_price_paise": 43145,
     "listing_close_price_paise": 36825,
     "listing_gain_bps": 8051
   },
   "market_path": "issues/workmates-core2cloud-solution-dcf568/market.json",
   "parties": {},
   "pricing": {
-    "issue_price_paise": 20400
+    "issue_price_paise": 20400,
+    "issue_size_paise": 69841440000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/workmates-core2cloud-solution-dcf568/prospectus_facts.json",
@@ -130,35 +144,35 @@
       "peers": [
         {
           "company_name": "WORKMATES",
-          "market_cap": "607",
+          "market_cap": "577",
           "net_sales_cr": 107,
           "pat_cr": 13.93,
           "pb": null,
-          "pe": 38.16
+          "pe": 36.25
         },
         {
           "company_name": "PERSISTENT",
           "market_cap": "87,353",
           "net_sales_cr": 14748,
           "pat_cr": 1865,
-          "pb": 11.15,
-          "pe": 45.42
+          "pb": 11.02,
+          "pe": 44.91
         },
         {
           "company_name": "ORIENTTECH",
           "market_cap": "1,146",
           "net_sales_cr": 869,
           "pat_cr": 4.57,
-          "pb": 3.41,
-          "pe": 250.73
+          "pb": 3.29,
+          "pe": 242.46
         },
         {
           "company_name": "LTM",
           "market_cap": "1,27,581",
           "net_sales_cr": 42307,
           "pat_cr": 5018,
-          "pb": 5.31,
-          "pe": 24.39
+          "pb": 5.36,
+          "pe": 24.62
         }
       ],
       "revenue_mix": {
@@ -208,17 +222,26 @@
   "research_path": "issues/workmates-core2cloud-solution-dcf568/research.json",
   "schema_version": "3.0.0",
   "slug": "workmates-core2cloud-solution-dcf568",
-  "source_dataset_version": "v2026.09.15-0634",
+  "source_dataset_version": "v2026.09.16-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_sme_2025",
-      "snapshot_at": "2026-09-15T06:28:28+00:00",
+      "snapshot_at": "2026-09-16T06:28:12+00:00",
       "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000260",
+      "snapshot_at": "2026-09-16T06:31:33+00:00",
+      "source": "moneycontrol",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "131.6000"
+  },
   "subscription_path": "issues/workmates-core2cloud-solution-dcf568/subscription.json",
   "timeline": {
     "listing_date": "2025-11-17"

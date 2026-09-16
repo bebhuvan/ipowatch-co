@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.15-0634",
+  "dataset_version": "v3.2026.09.16-0633",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
@@ -39,7 +39,7 @@
     },
     "identity.symbol": {
       "rule_id": "E.SRC.002",
-      "source": "yahoo"
+      "source": "moneycontrol"
     },
     "listing_performance.current_gain_bps": {
       "rule_id": "E.SRC.002",
@@ -65,13 +65,21 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
     }
   },
   "filings_path": "issues/manoj-ceramic-509b7a/filings.json",
-  "generated_at": "2026-09-15T06:34:16+00:00",
+  "generated_at": "2026-09-16T06:33:57+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -94,7 +102,8 @@
   "market_path": "issues/manoj-ceramic-509b7a/market.json",
   "parties": {},
   "pricing": {
-    "issue_price_paise": 6200
+    "issue_price_paise": 6200,
+    "issue_size_paise": 14470800000
   },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/manoj-ceramic-509b7a/prospectus_facts.json",
@@ -103,24 +112,33 @@
   "public_slug": "manoj-ceramic",
   "schema_version": "3.0.0",
   "slug": "manoj-ceramic-509b7a",
-  "source_dataset_version": "v2026.09.15-0634",
+  "source_dataset_version": "v2026.09.16-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_sme_2024",
-      "snapshot_at": "2026-09-15T06:28:26+00:00",
+      "snapshot_at": "2026-09-16T06:28:10+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000920",
+      "snapshot_at": "2026-09-16T06:31:33+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "performance",
-      "snapshot_at": "2026-09-14T18:14:32+00:00",
+      "snapshot_at": "2026-09-15T17:17:40+00:00",
       "source": "yahoo",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "8.6000"
+  },
   "subscription_path": "issues/manoj-ceramic-509b7a/subscription.json",
   "timeline": {
     "listing_date": "2024-01-02"

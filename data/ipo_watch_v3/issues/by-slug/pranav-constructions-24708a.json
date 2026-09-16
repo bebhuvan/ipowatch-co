@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.15-0634",
+  "dataset_version": "v3.2026.09.16-0633",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0H4201019_11SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/PCPL.zip",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +120,7 @@
     }
   },
   "filings_path": "issues/pranav-constructions-24708a/filings.json",
-  "generated_at": "2026-09-15T06:34:16+00:00",
+  "generated_at": "2026-09-16T06:33:57+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,8 +135,11 @@
     "symbol": "PRANAV"
   },
   "listing_performance": {
-    "current_gain_bps": 452,
-    "current_price_paise": 12960
+    "current_gain_bps": 645,
+    "current_price_paise": 13200,
+    "listing_close_price_paise": 12960,
+    "listing_gain_bps": 452,
+    "listing_open_price_paise": 16500
   },
   "market_path": "issues/pranav-constructions-24708a/market.json",
   "parties": {},
@@ -178,43 +193,43 @@
       "peers": [
         {
           "company_name": "PRANAV",
-          "market_cap": "0",
+          "market_cap": "1,460",
           "net_sales_cr": 761,
           "pat_cr": 71.33,
-          "pb": null,
-          "pe": null
+          "pb": 5.92,
+          "pe": 20.46
         },
         {
           "company_name": "RUSTOMJEE",
           "market_cap": "4,361",
           "net_sales_cr": 2634,
           "pat_cr": 78.86,
-          "pb": 1.52,
-          "pe": 37.12
+          "pb": 1.49,
+          "pe": 36.28
         },
         {
           "company_name": "GODREJPROP",
           "market_cap": "52,564",
           "net_sales_cr": 5131,
           "pat_cr": 1850,
-          "pb": 2.74,
-          "pe": 32.85
+          "pb": 2.61,
+          "pe": 31.25
         },
         {
           "company_name": "LODHA",
           "market_cap": "1,11,226",
           "net_sales_cr": 16676,
           "pat_cr": 3428,
-          "pb": 4.78,
-          "pe": 26.96
+          "pb": 4.59,
+          "pe": 25.92
         },
         {
           "company_name": "SURAJEST",
           "market_cap": "835",
           "net_sales_cr": 549,
           "pat_cr": 100,
-          "pb": 0.84,
-          "pe": 9.1
+          "pb": 0.82,
+          "pe": 8.84
         }
       ],
       "revenue_mix": {
@@ -265,54 +280,61 @@
         "pb": 5.66,
         "pe": 19.58,
         "sector_pb": 1.42,
-        "sector_pe": 24.19
+        "sector_pe": 23.7
       }
     }
   },
   "research_path": "issues/pranav-constructions-24708a/research.json",
   "schema_version": "3.0.0",
   "slug": "pranav-constructions-24708a",
-  "source_dataset_version": "v2026.09.15-0634",
+  "source_dataset_version": "v2026.09.16-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-15T06:28:09+00:00",
+      "snapshot_at": "2026-09-16T06:27:51+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-09-15T06:28:28+00:00",
+      "snapshot_at": "2026-09-16T06:28:12+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-09-15T06:31:44+00:00",
+      "snapshot_at": "2026-09-16T06:31:33+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-15T06:27:42+00:00",
+      "snapshot_at": "2026-09-16T06:27:36+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-09-15T17:17:40+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-15T06:27:53+00:00",
+      "snapshot_at": "2026-09-16T06:27:45+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-15T06:27:56+00:00",
+      "snapshot_at": "2026-09-16T06:27:47+00:00",
       "source": "nse",
       "url": null
     }

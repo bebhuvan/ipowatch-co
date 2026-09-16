@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.15-0634",
+  "dataset_version": "v3.2026.09.16-0633",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_21022025223341_LCCPROJECTSLIMITEDDRHP.pdf",
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE1FPN01026_15SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/351700/IPO%20Open/RHPSigned_20260907202147.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -33,6 +38,10 @@
       "source": "nse"
     },
     "identity.company_name": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "identity.isin": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -70,7 +79,7 @@
     }
   },
   "filings_path": "issues/lcc-projects-9485d1/filings.json",
-  "generated_at": "2026-09-15T06:34:16+00:00",
+  "generated_at": "2026-09-16T06:33:57+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -80,6 +89,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "LCC Projects Limited",
+    "isin": "INE1FPN01026",
     "issue_type": "IPO",
     "slug": "lcc-projects-9485d1",
     "status": "Closed",
@@ -125,7 +135,7 @@
         ]
       },
       "isin": "INE1FPN01026",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "lcc projects",
       "offer_split": {
         "fresh_issue_percent": "61%",
@@ -147,7 +157,7 @@
           "market_cap": "449",
           "net_sales_cr": 1237,
           "pat_cr": 58.6,
-          "pb": 0.71,
+          "pb": 0.63,
           "pe": null
         },
         {
@@ -155,8 +165,8 @@
           "market_cap": "3,632",
           "net_sales_cr": 1145,
           "pat_cr": 182,
-          "pb": 2.95,
-          "pe": 20.07
+          "pb": 2.81,
+          "pe": 19.15
         }
       ],
       "revenue_mix": {
@@ -295,33 +305,40 @@
         "pb": 4.76,
         "pe": 14.76,
         "sector_pb": 1.4,
-        "sector_pe": 13.64
+        "sector_pe": 13.5
       }
     }
   },
   "research_path": "issues/lcc-projects-9485d1/research.json",
   "schema_version": "3.0.0",
   "slug": "lcc-projects-9485d1",
-  "source_dataset_version": "v2026.09.15-0634",
+  "source_dataset_version": "v2026.09.16-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-15T06:28:09+00:00",
+      "snapshot_at": "2026-09-16T06:27:51+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-15T06:27:42+00:00",
+      "snapshot_at": "2026-09-16T06:27:36+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-15T06:27:53+00:00",
+      "snapshot_at": "2026-09-16T06:27:45+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_equity",
+      "snapshot_at": "2026-09-16T06:27:45+00:00",
       "source": "nse",
       "url": null
     }

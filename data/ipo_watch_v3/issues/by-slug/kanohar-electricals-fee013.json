@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.15-0634",
+  "dataset_version": "v3.2026.09.16-0633",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE877D01025_15SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_24012026145418_KanoharDRHP.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE877D01025_11SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/385327/IPO%20Open/RHPSigned_20260904172444.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +108,29 @@
     }
   },
   "filings_path": "issues/kanohar-electricals-fee013/filings.json",
-  "generated_at": "2026-09-15T06:34:16+00:00",
+  "generated_at": "2026-09-16T06:33:57+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:23206967",
-      "bse:prior_id:257805",
-      "bse:createdby:385327"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/kanohar-electricals-ltd/kanohar/544911/"
     ],
     "board_type": "Main Board",
     "company_name": "Kanohar Electricals Limited",
     "isin": "INE877D01025",
     "issue_type": "IPO",
     "slug": "kanohar-electricals-fee013",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "KANOHAR"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 1722,
+    "current_price_paise": 74080
+  },
   "market_path": "issues/kanohar-electricals-fee013/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 63200,
+    "issue_size_paise": 1055740263200,
     "price_band_lower_paise": 60100,
     "price_band_upper_paise": 63200
   },
@@ -146,43 +178,43 @@
       "peers": [
         {
           "company_name": "KANOHAR",
-          "market_cap": "5,005",
+          "market_cap": "0",
           "net_sales_cr": 653,
           "pat_cr": 129,
-          "pb": 13.42,
-          "pe": 38.58
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "POWERINDIA",
-          "market_cap": "1,39,511",
+          "market_cap": "1,40,026",
           "net_sales_cr": 8147,
           "pat_cr": 987,
-          "pb": 26.95,
-          "pe": 121.27
+          "pb": 26.35,
+          "pe": 118.56
         },
         {
           "company_name": "BHEL",
-          "market_cap": "1,47,100",
+          "market_cap": "1,49,938",
           "net_sales_cr": 33782,
           "pat_cr": 1600,
-          "pb": 5.63,
-          "pe": 60.47
+          "pb": 5.51,
+          "pe": 59.26
         },
         {
           "company_name": "SCHNEIDER",
-          "market_cap": "29,366",
+          "market_cap": "29,355",
           "net_sales_cr": 2890,
           "pat_cr": 212,
-          "pb": 37.92,
-          "pe": 159.8
+          "pb": 36.84,
+          "pe": 155.27
         },
         {
           "company_name": "CGPOWER",
-          "market_cap": "1,43,287",
+          "market_cap": "1,43,366",
           "net_sales_cr": 12417,
           "pat_cr": 1206,
-          "pb": 17.98,
-          "pe": 114.63
+          "pb": 16.96,
+          "pe": 108.13
         }
       ],
       "revenue_mix": {
@@ -224,42 +256,66 @@
         "market_cap": "₹5,004",
         "pb": 13.42,
         "pe": 38.58,
-        "sector_pb": 3.98,
-        "sector_pe": 32.61
+        "sector_pb": 4.14,
+        "sector_pe": 32.8
       }
     }
   },
   "research_path": "issues/kanohar-electricals-fee013/research.json",
   "schema_version": "3.0.0",
   "slug": "kanohar-electricals-fee013",
-  "source_dataset_version": "v2026.09.15-0634",
+  "source_dataset_version": "v2026.09.16-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-15T06:28:09+00:00",
+      "snapshot_at": "2026-09-16T06:27:51+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-16T06:28:12+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-16T06:31:33+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-15T06:27:42+00:00",
+      "snapshot_at": "2026-09-16T06:27:36+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-16T06:27:47+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-15T06:27:53+00:00",
+      "snapshot_at": "2026-09-16T06:27:45+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "90.5900"
+  },
   "subscription_path": "issues/kanohar-electricals-fee013/subscription.json",
   "timeline": {
     "close_date": "2026-09-10",
+    "listing_date": "2026-09-16",
     "open_date": "2026-09-08"
   },
   "url_path": "/ipos/kanohar-electricals/"

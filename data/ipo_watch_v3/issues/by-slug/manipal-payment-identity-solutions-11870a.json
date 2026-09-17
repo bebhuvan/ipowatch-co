@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.16-0633",
+  "dataset_version": "v3.2026.09.17-0633",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE241U01028_16SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Manipal Payment UDRHP-1.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE241U01028_15SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/306237/IPO%20Open/RHP_20260907201013.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +108,29 @@
     }
   },
   "filings_path": "issues/manipal-payment-identity-solutions-11870a/filings.json",
-  "generated_at": "2026-09-16T06:33:57+00:00",
+  "generated_at": "2026-09-17T06:33:28+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:60916871",
-      "bse:prior_id:236540",
-      "bse:createdby:306237"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/manipal-payment-and-identity-solutions-ltd/mpimanipal/544916/"
     ],
     "board_type": "Main Board",
     "company_name": "Manipal Payment and Identity Solutions Limited",
     "isin": "INE241U01028",
     "issue_type": "IPO",
     "slug": "manipal-payment-identity-solutions-11870a",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "MPIMANIPAL"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -575,
+    "current_price_paise": 31950
+  },
   "market_path": "issues/manipal-payment-identity-solutions-11870a/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 33900,
+    "issue_size_paise": 805000010700,
     "price_band_lower_paise": 32200,
     "price_band_upper_paise": 33900
   },
@@ -146,19 +178,19 @@
       "peers": [
         {
           "company_name": "MPIMANIPAL",
-          "market_cap": "7,858",
+          "market_cap": "0",
           "net_sales_cr": 1326,
           "pat_cr": 253,
-          "pb": 9.92,
-          "pe": 31.0
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "STYL",
-          "market_cap": "6,250",
+          "market_cap": "5,798",
           "net_sales_cr": 1441,
           "pat_cr": 240,
-          "pb": 4.09,
-          "pe": 22.09
+          "pb": 4.1,
+          "pe": 22.16
         }
       ],
       "revenue_mix": {
@@ -275,42 +307,66 @@
         "market_cap": "₹7,858",
         "pb": 9.92,
         "pe": 31.0,
-        "sector_pb": 3.06,
-        "sector_pe": 28.9
+        "sector_pb": 2.95,
+        "sector_pe": 28.18
       }
     }
   },
   "research_path": "issues/manipal-payment-identity-solutions-11870a/research.json",
   "schema_version": "3.0.0",
   "slug": "manipal-payment-identity-solutions-11870a",
-  "source_dataset_version": "v2026.09.16-0633",
+  "source_dataset_version": "v2026.09.17-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-16T06:27:51+00:00",
+      "snapshot_at": "2026-09-17T06:27:52+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-17T06:28:09+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-17T06:31:19+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-16T06:27:36+00:00",
+      "snapshot_at": "2026-09-17T06:27:38+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-16T06:27:45+00:00",
+      "snapshot_at": "2026-09-17T06:27:46+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-17T06:27:48+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.4200"
+  },
   "subscription_path": "issues/manipal-payment-identity-solutions-11870a/subscription.json",
   "timeline": {
     "close_date": "2026-09-11",
+    "listing_date": "2026-09-17",
     "open_date": "2026-09-09"
   },
   "url_path": "/ipos/manipal-payment-identity-solutions/"

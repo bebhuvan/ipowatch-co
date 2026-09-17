@@ -5,16 +5,11 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.16-0633",
+  "dataset_version": "v3.2026.09.17-0633",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6405_23062026211729.zip"
   },
@@ -23,6 +18,10 @@
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -48,7 +47,27 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -58,20 +77,30 @@
     }
   },
   "filings_path": "issues/vinod-texworld-366ce1/filings.json",
-  "generated_at": "2026-09-16T06:33:57+00:00",
+  "generated_at": "2026-09-17T06:33:28+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:textilesapparel/vinodtexworld/VTL05",
+      "moneycontrol:company_code:16030613"
+    ],
     "board_type": "SME Board",
     "company_name": "Vinod Texworld Limited",
     "issue_type": "IPO",
     "slug": "vinod-texworld-366ce1",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "VINOD"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -500,
+    "current_price_paise": 8930
+  },
   "market_path": "issues/vinod-texworld-366ce1/market.json",
   "parties": {},
-  "pricing": {},
+  "pricing": {
+    "issue_price_paise": 9400,
+    "issue_size_paise": 42830160000
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/vinod-texworld-366ce1/prospectus_facts.json",
   "provenance_path": "issues/vinod-texworld-366ce1/provenance.json",
@@ -116,27 +145,27 @@
       "peers": [
         {
           "company_name": "VINOD",
-          "market_cap": "152",
+          "market_cap": "0",
           "net_sales_cr": 342,
           "pat_cr": 10.41,
-          "pb": 3.55,
-          "pe": 14.6
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "JAKHARIA",
-          "market_cap": "74",
+          "market_cap": "73",
           "net_sales_cr": 62.72,
           "pat_cr": 3.27,
           "pb": null,
-          "pe": 22.53
+          "pe": 22.34
         },
         {
           "company_name": "BORANA",
-          "market_cap": "833",
+          "market_cap": "810",
           "net_sales_cr": 388,
           "pat_cr": 64.61,
-          "pb": 2.88,
-          "pe": 11.76
+          "pb": 2.9,
+          "pe": 11.86
         }
       ],
       "revenue_mix": {
@@ -282,35 +311,52 @@
         "market_cap": "₹151",
         "pb": 3.55,
         "pe": 14.59,
-        "sector_pb": 1.23,
-        "sector_pe": 17.39
+        "sector_pb": 1.2,
+        "sector_pe": 17.05
       }
     }
   },
   "research_path": "issues/vinod-texworld-366ce1/research.json",
   "schema_version": "3.0.0",
   "slug": "vinod-texworld-366ce1",
-  "source_dataset_version": "v2026.09.16-0633",
+  "source_dataset_version": "v2026.09.17-0633",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-17T06:31:19+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-16T06:27:36+00:00",
+      "snapshot_at": "2026-09-17T06:27:38+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-09-16T06:27:46+00:00",
+      "snapshot_at": "2026-09-17T06:27:47+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-17T06:27:48+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "3.0000"
+  },
   "subscription_path": "issues/vinod-texworld-366ce1/subscription.json",
   "timeline": {
     "close_date": "2026-09-11",
+    "listing_date": "2026-09-17",
     "open_date": "2026-09-09"
   },
   "url_path": "/ipos/vinod-texworld/"

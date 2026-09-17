@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.16-0633",
+  "dataset_version": "v3.2026.09.17-0633",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE877D01025_15SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_24012026145418_KanoharDRHP.pdf",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +120,7 @@
     }
   },
   "filings_path": "issues/kanohar-electricals-fee013/filings.json",
-  "generated_at": "2026-09-16T06:33:57+00:00",
+  "generated_at": "2026-09-17T06:33:28+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,8 +135,11 @@
     "symbol": "KANOHAR"
   },
   "listing_performance": {
-    "current_gain_bps": 1722,
-    "current_price_paise": 74080
+    "current_gain_bps": 1891,
+    "current_price_paise": 75150,
+    "listing_close_price_paise": 75130,
+    "listing_gain_bps": 1888,
+    "listing_open_price_paise": 68550
   },
   "market_path": "issues/kanohar-electricals-fee013/market.json",
   "parties": {},
@@ -159,7 +174,7 @@
             "period": "Mar 2025"
           },
           {
-            "debt_cr": null,
+            "debt_cr": 39.039,
             "net_sales_cr": 653.839,
             "pat_cr": 129.733,
             "period": "Mar 2026"
@@ -178,43 +193,43 @@
       "peers": [
         {
           "company_name": "KANOHAR",
-          "market_cap": "0",
+          "market_cap": "5,949",
           "net_sales_cr": 653,
           "pat_cr": 129,
-          "pb": null,
-          "pe": null
+          "pb": 15.96,
+          "pe": 45.86
         },
         {
           "company_name": "POWERINDIA",
-          "market_cap": "1,40,026",
+          "market_cap": "1,33,472",
           "net_sales_cr": 8147,
           "pat_cr": 987,
-          "pb": 26.35,
-          "pe": 118.56
+          "pb": 26.07,
+          "pe": 117.3
         },
         {
           "company_name": "BHEL",
-          "market_cap": "1,49,938",
+          "market_cap": "1,43,182",
           "net_sales_cr": 33782,
           "pat_cr": 1600,
-          "pb": 5.51,
-          "pe": 59.26
+          "pb": 5.46,
+          "pe": 58.69
         },
         {
           "company_name": "SCHNEIDER",
-          "market_cap": "29,355",
+          "market_cap": "28,153",
           "net_sales_cr": 2890,
           "pat_cr": 212,
-          "pb": 36.84,
-          "pe": 155.27
+          "pb": 36.97,
+          "pe": 155.82
         },
         {
           "company_name": "CGPOWER",
-          "market_cap": "1,43,366",
+          "market_cap": "1,34,709",
           "net_sales_cr": 12417,
           "pat_cr": 1206,
-          "pb": 16.96,
-          "pe": 108.13
+          "pb": 16.83,
+          "pe": 107.34
         }
       ],
       "revenue_mix": {
@@ -256,55 +271,62 @@
         "market_cap": "₹5,004",
         "pb": 13.42,
         "pe": 38.58,
-        "sector_pb": 4.14,
-        "sector_pe": 32.8
+        "sector_pb": 4.05,
+        "sector_pe": 32.69
       }
     }
   },
   "research_path": "issues/kanohar-electricals-fee013/research.json",
   "schema_version": "3.0.0",
   "slug": "kanohar-electricals-fee013",
-  "source_dataset_version": "v2026.09.16-0633",
+  "source_dataset_version": "v2026.09.17-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-16T06:27:51+00:00",
+      "snapshot_at": "2026-09-17T06:27:52+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-09-16T06:28:12+00:00",
+      "snapshot_at": "2026-09-17T06:28:09+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-09-16T06:31:33+00:00",
+      "snapshot_at": "2026-09-17T06:31:19+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-16T06:27:36+00:00",
+      "snapshot_at": "2026-09-17T06:27:38+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-16T06:27:47+00:00",
+      "snapshot_at": "2026-09-17T06:27:48+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-09-16T17:17:30+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-16T06:27:45+00:00",
+      "snapshot_at": "2026-09-17T06:27:46+00:00",
       "source": "nse",
       "url": null
     }

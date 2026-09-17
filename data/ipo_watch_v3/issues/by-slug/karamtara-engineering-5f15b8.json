@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.16-0633",
+  "dataset_version": "v3.2026.09.17-0633",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE590T01012_16SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Karamtara_DRHP.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE590T01012_15SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/321860/IPO%20Open/6RHP_20260907205638.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +108,29 @@
     }
   },
   "filings_path": "issues/karamtara-engineering-5f15b8/filings.json",
-  "generated_at": "2026-09-16T06:33:57+00:00",
+  "generated_at": "2026-09-17T06:33:28+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:91092882",
-      "bse:prior_id:221724",
-      "bse:createdby:321860"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/karamtara-engineering-ltd/karamtara/544917/"
     ],
     "board_type": "Main Board",
     "company_name": "Karamtara Engineering Limited",
     "isin": "INE590T01012",
     "issue_type": "IPO",
     "slug": "karamtara-engineering-5f15b8",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "KARAMTARA"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 3856,
+    "current_price_paise": 35195
+  },
   "market_path": "issues/karamtara-engineering-5f15b8/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 25400,
+    "issue_size_paise": 875000002600,
     "price_band_lower_paise": 24100,
     "price_band_upper_paise": 25400
   },
@@ -146,43 +178,43 @@
       "peers": [
         {
           "company_name": "KARAMTARA",
-          "market_cap": "8,174",
+          "market_cap": "0",
           "net_sales_cr": 4311,
           "pat_cr": 228,
-          "pb": 6.7,
-          "pe": 35.73
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "INOXWIND",
-          "market_cap": "13,214",
+          "market_cap": "12,766",
           "net_sales_cr": 4397,
           "pat_cr": 405,
-          "pb": 2.03,
-          "pe": 37.64
+          "pb": 2.02,
+          "pe": 37.36
         },
         {
           "company_name": "WAAREEENER",
-          "market_cap": "75,580",
+          "market_cap": "73,056",
           "net_sales_cr": 26536,
           "pat_cr": 3711,
-          "pb": 5.09,
-          "pe": 19.26
+          "pb": 4.99,
+          "pe": 18.87
         },
         {
           "company_name": "KPGEL",
-          "market_cap": "1,320",
+          "market_cap": "1,332",
           "net_sales_cr": 694,
           "pat_cr": 73.49,
           "pb": null,
-          "pe": 9.73
+          "pe": 9.81
         },
         {
           "company_name": "SUZLON",
-          "market_cap": "60,701",
+          "market_cap": "58,666",
           "net_sales_cr": 16731,
           "pat_cr": 3163,
-          "pb": 6.22,
-          "pe": 18.73
+          "pb": 6.12,
+          "pe": 18.42
         }
       ],
       "revenue_mix": {
@@ -320,42 +352,66 @@
         "market_cap": "₹8,174",
         "pb": 6.7,
         "pe": 35.73,
-        "sector_pb": 2.86,
-        "sector_pe": 18.88
+        "sector_pb": 2.79,
+        "sector_pe": 18.87
       }
     }
   },
   "research_path": "issues/karamtara-engineering-5f15b8/research.json",
   "schema_version": "3.0.0",
   "slug": "karamtara-engineering-5f15b8",
-  "source_dataset_version": "v2026.09.16-0633",
+  "source_dataset_version": "v2026.09.17-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-16T06:27:51+00:00",
+      "snapshot_at": "2026-09-17T06:27:52+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-17T06:28:09+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-17T06:31:19+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-16T06:27:36+00:00",
+      "snapshot_at": "2026-09-17T06:27:38+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-16T06:27:45+00:00",
+      "snapshot_at": "2026-09-17T06:27:46+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-17T06:27:48+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "62.6300"
+  },
   "subscription_path": "issues/karamtara-engineering-5f15b8/subscription.json",
   "timeline": {
     "close_date": "2026-09-11",
+    "listing_date": "2026-09-17",
     "open_date": "2026-09-09"
   },
   "url_path": "/ipos/karamtara-engineering/"

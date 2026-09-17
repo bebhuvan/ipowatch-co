@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.16-0633",
+  "dataset_version": "v3.2026.09.17-0633",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE08T701025_16SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Rentomojo.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE08T701025_15SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/309854/IPO%20Open/RHPSigned_20260907182144.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +108,29 @@
     }
   },
   "filings_path": "issues/rentomojo-3ae341/filings.json",
-  "generated_at": "2026-09-16T06:33:57+00:00",
+  "generated_at": "2026-09-17T06:33:28+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:85220189",
-      "bse:prior_id:263230",
-      "bse:createdby:309854"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/rentomojo-ltd/rentomojo/544915/"
     ],
     "board_type": "Main Board",
     "company_name": "Rentomojo Limited",
     "isin": "INE08T701025",
     "issue_type": "IPO",
     "slug": "rentomojo-3ae341",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "RENTOMOJO"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 2772,
+    "current_price_paise": 51600
+  },
   "market_path": "issues/rentomojo-3ae341/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 40400,
+    "issue_size_paise": 1255567360000,
     "price_band_lower_paise": 38400,
     "price_band_upper_paise": 40400
   },
@@ -146,11 +178,11 @@
       "peers": [
         {
           "company_name": "RENTOMOJO",
-          "market_cap": "4,206",
+          "market_cap": "0",
           "net_sales_cr": 386,
           "pat_cr": 104,
-          "pb": 14.22,
-          "pe": 40.33
+          "pb": null,
+          "pe": null
         }
       ],
       "revenue_mix": {
@@ -225,7 +257,7 @@
         "market_cap": "₹4,206",
         "pb": 14.22,
         "pe": 40.33,
-        "sector_pb": 2.24,
+        "sector_pb": 2.29,
         "sector_pe": 23.98
       }
     }
@@ -233,34 +265,58 @@
   "research_path": "issues/rentomojo-3ae341/research.json",
   "schema_version": "3.0.0",
   "slug": "rentomojo-3ae341",
-  "source_dataset_version": "v2026.09.16-0633",
+  "source_dataset_version": "v2026.09.17-0633",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-16T06:27:51+00:00",
+      "snapshot_at": "2026-09-17T06:27:52+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-17T06:28:09+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-17T06:31:19+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-16T06:27:36+00:00",
+      "snapshot_at": "2026-09-17T06:27:38+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-17T06:27:48+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-16T06:27:45+00:00",
+      "snapshot_at": "2026-09-17T06:27:46+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "72.8800"
+  },
   "subscription_path": "issues/rentomojo-3ae341/subscription.json",
   "timeline": {
     "close_date": "2026-09-11",
+    "listing_date": "2026-09-17",
     "open_date": "2026-09-09"
   },
   "url_path": "/ipos/rentomojo/"

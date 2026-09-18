@@ -9,14 +9,19 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.17-0633",
+  "dataset_version": "v3.2026.09.18-0626",
   "documents": {
+    "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE1JTV01015_17SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_30122025221828_VDLDRHP30122025.pdf",
     "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE1JTV01015_17SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/353238/IPO%20Open/RHPSigned_20260908171630.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "documents.basis_allotment_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -61,6 +66,22 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -69,7 +90,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -79,26 +108,29 @@
     }
   },
   "filings_path": "issues/veegaland-developers-c2b340/filings.json",
-  "generated_at": "2026-09-17T06:33:28+00:00",
+  "generated_at": "2026-09-18T06:27:00+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:12567212",
-      "bse:prior_id:255589",
-      "bse:createdby:353238"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/veegaland-developers-ltd/veegaland/544923/"
     ],
     "board_type": "Main Board",
     "company_name": "Veegaland Developers Limited",
     "isin": "INE1JTV01015",
     "issue_type": "IPO",
     "slug": "veegaland-developers-c2b340",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "VEEGALAND"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 450,
+    "current_price_paise": 14630
+  },
   "market_path": "issues/veegaland-developers-c2b340/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 14000,
+    "issue_size_paise": 210000000000,
     "price_band_lower_paise": 13000,
     "price_band_upper_paise": 14000
   },
@@ -146,27 +178,27 @@
       "peers": [
         {
           "company_name": "VEEGALAND",
-          "market_cap": "682",
+          "market_cap": "0",
           "net_sales_cr": 250,
           "pat_cr": 26.61,
-          "pb": 2.56,
-          "pe": 25.63
+          "pb": null,
+          "pe": null
         },
         {
           "company_name": "SHRIRAMPPS",
           "market_cap": "1,203",
           "net_sales_cr": 823,
           "pat_cr": 77.2,
-          "pb": 0.82,
-          "pe": 13.19
+          "pb": 0.85,
+          "pe": 13.53
         },
         {
           "company_name": "PURVA",
-          "market_cap": "4,858",
+          "market_cap": "4,987",
           "net_sales_cr": 3739,
           "pat_cr": 64.88,
-          "pb": 2.79,
-          "pe": 31.11
+          "pb": 2.9,
+          "pe": 32.31
         }
       ],
       "revenue_mix": {
@@ -208,42 +240,66 @@
         "market_cap": "₹682",
         "pb": 2.56,
         "pe": 25.64,
-        "sector_pb": 1.43,
-        "sector_pe": 23.62
+        "sector_pb": 1.41,
+        "sector_pe": 23.65
       }
     }
   },
   "research_path": "issues/veegaland-developers-c2b340/research.json",
   "schema_version": "3.0.0",
   "slug": "veegaland-developers-c2b340",
-  "source_dataset_version": "v2026.09.17-0633",
+  "source_dataset_version": "v2026.09.18-0626",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-17T06:27:52+00:00",
+      "snapshot_at": "2026-09-18T06:21:08+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-18T06:21:22+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-18T06:24:40+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-17T06:27:38+00:00",
+      "snapshot_at": "2026-09-18T06:20:51+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-17T06:27:46+00:00",
+      "snapshot_at": "2026-09-18T06:21:00+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_advertisements",
+      "snapshot_at": "2026-09-18T06:21:02+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "13.5500"
+  },
   "subscription_path": "issues/veegaland-developers-c2b340/subscription.json",
   "timeline": {
     "close_date": "2026-09-15",
+    "listing_date": "2026-09-18",
     "open_date": "2026-09-10"
   },
   "url_path": "/ipos/veegaland-developers/"

@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.17-0633",
+  "dataset_version": "v3.2026.09.18-0626",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE1FPN01026_16SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_21022025223341_LCCPROJECTSLIMITEDDRHP.pdf",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +120,7 @@
     }
   },
   "filings_path": "issues/lcc-projects-9485d1/filings.json",
-  "generated_at": "2026-09-17T06:33:28+00:00",
+  "generated_at": "2026-09-18T06:27:00+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,8 +135,11 @@
     "symbol": "LCCPROJECT"
   },
   "listing_performance": {
-    "current_gain_bps": 1832,
-    "current_price_paise": 17275
+    "current_gain_bps": 1651,
+    "current_price_paise": 17010,
+    "listing_close_price_paise": 17275,
+    "listing_gain_bps": 1832,
+    "listing_open_price_paise": 18900
   },
   "market_path": "issues/lcc-projects-9485d1/market.json",
   "parties": {},
@@ -178,27 +193,27 @@
       "peers": [
         {
           "company_name": "LCCPROJECT",
-          "market_cap": "0",
+          "market_cap": "5,004",
           "net_sales_cr": 3600,
           "pat_cr": 283,
-          "pb": null,
-          "pe": null
+          "pb": 5.63,
+          "pe": 17.66
         },
         {
           "company_name": "VPRPL",
-          "market_cap": "401",
+          "market_cap": "396",
           "net_sales_cr": 1237,
           "pat_cr": 58.6,
-          "pb": 0.63,
+          "pb": 0.66,
           "pe": null
         },
         {
           "company_name": "EIEL",
-          "market_cap": "3,426",
+          "market_cap": "3,421",
           "net_sales_cr": 1145,
           "pat_cr": 182,
-          "pb": 2.78,
-          "pe": 18.9
+          "pb": 2.84,
+          "pe": 19.32
         }
       ],
       "revenue_mix": {
@@ -344,54 +359,61 @@
   "research_path": "issues/lcc-projects-9485d1/research.json",
   "schema_version": "3.0.0",
   "slug": "lcc-projects-9485d1",
-  "source_dataset_version": "v2026.09.17-0633",
+  "source_dataset_version": "v2026.09.18-0626",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-17T06:27:52+00:00",
+      "snapshot_at": "2026-09-18T06:21:08+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-09-17T06:28:09+00:00",
+      "snapshot_at": "2026-09-18T06:21:22+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-09-17T06:31:19+00:00",
+      "snapshot_at": "2026-09-18T06:24:40+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-17T06:27:38+00:00",
+      "snapshot_at": "2026-09-18T06:20:51+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-09-17T17:17:06+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_equity",
+      "snapshot_at": "2026-09-18T06:21:00+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-17T06:27:46+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-17T06:27:46+00:00",
+      "snapshot_at": "2026-09-18T06:21:00+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-17T06:27:48+00:00",
+      "snapshot_at": "2026-09-18T06:21:02+00:00",
       "source": "nse",
       "url": null
     }

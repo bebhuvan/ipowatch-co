@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.09.16-0642",
+  "dataset_version": "v2026.09.18-0639",
   "estimated_cost_usd": 0.0,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-09-16T06:42:25+00:00",
+  "generated_at": "2026-09-18T06:39:51+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,17 +24,18 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Serif throughout, hairline rules in two weights; single accent colour for the industry stat strip and pull-quote rule.",
-      "Financials table: right-align all numeric columns, parentheses for negatives, no zebra striping.",
-      "Industry snapshot sits between the market-size paragraph and the sub-segment table; keep it scannable, not decorative."
+      "Serif throughout, hairline rules in two weights, single accent colour; no icons or decorative imagery.",
+      "Render the financials table with negative figures in parentheses and a hairline rule between the FY2017 and H1 FY2018 rows to mark the period break.",
+      "The industry snapshot sits between the opening industry paragraph and the growth-rate paragraph; keep the two sizing figures (₹1,000B and ₹1,443B) visibly distinct so the unreconciled discrepancy is not flattened.",
+      "Pull-quote set in the accent colour, no quotation marks beyond the sentence itself, no attribution line."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "CRISIL Research estimated the Indian chemicals industry, excluding pharmaceuticals and fertilisers, at ₹5,800–6,200 billion in fiscal 2017",
+      "after_paragraph": "Specialty chemicals sit inside the wider Indian chemicals",
       "growth_bars": [
         {
           "value": "10–12% CAGR",
-          "width_pct": 71,
+          "width_pct": 79,
           "year": "FY2014–17"
         },
         {
@@ -44,152 +45,104 @@
           "year": "Forecast"
         }
       ],
-      "growth_bars_label": "Specialty chemicals — growth, actual vs forecast",
-      "growth_bars_source": "CRISIL Research, as disclosed in the filing [^drhp-p94]",
-      "rationale": "Three headline numbers plus the fragmentation split tell the reader what kind of field this company competes in before the prose explains it.",
+      "growth_bars_label": "Specialty chemicals segment — actual vs forecast growth",
+      "growth_bars_source": "CRISIL Research, cited in the filing, p.94",
+      "rationale": "The industry section carries three sizing figures, a growth forecast and a fragmentation split that the prose states but cannot make scannable; the strip and bars let the reader see the market before reading the caveats.",
       "split_bar": {
-        "left_label": "Large / organised players",
-        "left_pct": 25,
-        "right_label": "SMEs (70–75%)"
+        "left_label": "SMEs",
+        "left_pct": 72.5,
+        "right_label": "Others"
       },
-      "split_bar_label": "Market structure — SME share of the field",
-      "split_bar_note": "The filing describes the industry as highly fragmented, with SMEs holding 70–75% market share and only a few Indian players able to compete with global majors on product development [^drhp-p94] [^drhp-p95].",
+      "split_bar_label": "Industry structure — SME share of market",
+      "split_bar_note": "Small and medium enterprises hold 70–75% of the market; the filing concedes only a few Indian players can compete with global majors on product development.",
       "stats": [
         {
-          "desc": "Indian chemicals industry\nFY2017, ex-pharma & fertiliser",
+          "desc": "India chemicals industry\nexcl. pharma & fertiliser, FY2017",
           "val": "₹5,800–6,200B"
         },
         {
-          "desc": "Specialty chemicals\n~17% of the industry",
+          "desc": "Specialty chemicals\n~17% of the above",
           "val": "~₹1,000B"
         },
         {
-          "desc": "SME share of market\nhighly fragmented field",
-          "val": "70–75%"
+          "desc": "Forecast CAGR\nspecialty chemicals, going forward",
+          "val": "12–14%"
         }
       ]
     },
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Customer concentration is the sharpest number in this section.",
-        "quote": "The top 10 customers accounted for around 59%, 57% and 59% of revenue from operations in FY2017, FY2016 and FY2015 respectively [^drhp-p128].",
-        "rationale": "Three-fifths of revenue with ten buyers who have no contractual obligation to return is the single most consequential disclosed fact."
+        "after_paragraph": "Customer concentration is disclosed, and it is high. The top ten",
+        "quote": "The top ten customers accounted for about 59% of revenue from operations in FY2017, 57% in FY2016 and 59% in FY2015.",
+        "rationale": "Three years of near-identical concentration is the single most decision-relevant disclosed fact and the prose cannot make the flatness land as hard as the number does."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The issue lists on NSE EMERGE, the SME platform of the National Stock Exchange, with Vivro Financial Services Private Limited as lead manager and Link Intime India Private Limited as registrar [^drhp-p54] [^drhp-p55]. The objects are capital expenditure for a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat; general corporate purposes; and creating a public trading market for the equity shares [^drhp-p75]. The extracts do not carry the total issue size, the price band, the fresh-issue versus offer-for-sale split, any selling shareholder, the bid dates or the lot size.",
-        "rationale": "Consolidates the offer mechanics and, crucially, states what the filing does not disclose so the reader does not infer it.",
+        "body_markdown": "The proceeds have two named uses: capital expenditure on a new manufacturing facility at Plot 336, GIDC Waghodia, Vadodara, Gujarat, and general corporate purposes [^drhp-p75]. A third object is structural — listing on the SME platform of NSE, NSE EMERGE, to create a public trading market for the shares [^drhp-p75]. The excerpt does not disclose the split between a fresh issue and an offer for sale, any selling shareholder, the total issue size, the price band, or the amount allocated to each object. None of those should be estimated [^drhp-p75].",
+        "rationale": "Collects the offer's stated objects and the filing's silences in one scannable block, so the reader knows exactly what is and is not on the table.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The profit record has a shape: two loss years, then a turn.",
+        "after_paragraph": "The restated statements cover six periods, not five: the six",
         "columns": [
           "Period",
           "PAT (₹ crore)",
           "Basic EPS (₹)",
-          "Total assets (₹ crore)",
-          "Operating cash flow (₹ crore)"
+          "Operating cash flow (₹ crore)",
+          "Total assets (₹ crore)"
         ],
-        "footnote": "PAT [^drhp-p49]; EPS [^drhp-p177]; total assets [^drhp-p175]; operating cash flow [^drhp-p50]. Filing reports in ₹ lakh; converted at ₹1 crore = ₹100 lakh.",
-        "rationale": "Six periods of restated numbers are the spine of the report and read faster as a grid than as prose.",
+        "footnote": "PAT [^drhp-p49]; basic EPS [^drhp-p177]; operating cash flow [^drhp-p50]; total assets [^drhp-p175]. Figures reported in ₹ lakh and converted at 100 lakh to a crore.",
+        "rationale": "Six periods of restated numbers are the spine of any IPO read; the FY2017 cash-flow reversal only reads as a reversal when the years sit side by side.",
         "rows": [
           [
-            "Six months to Sep 30, 2017",
-            "1.33",
-            "1.48",
-            "34.25",
-            "1.25"
-          ],
-          [
-            "FY2017",
-            "1.75",
-            "2.43",
-            "32.74",
-            "(3.50)"
-          ],
-          [
-            "FY2016",
-            "0.90",
-            "1.46",
-            "27.67",
-            "8.03"
-          ],
-          [
-            "FY2015",
-            "1.50",
-            "2.47",
-            "25.93",
-            "4.22"
+            "FY2013",
+            "(0.27)",
+            "(0.45)",
+            "2.01",
+            "30.19"
           ],
           [
             "FY2014",
             "(0.12)",
             "(0.20)",
-            "26.79",
-            "1.28"
+            "1.28",
+            "26.79"
           ],
           [
-            "FY2013",
-            "(0.27)",
-            "(0.45)",
-            "30.19",
-            "2.01"
+            "FY2015",
+            "1.50",
+            "2.47",
+            "4.22",
+            "25.93"
+          ],
+          [
+            "FY2016",
+            "0.90",
+            "1.46",
+            "8.03",
+            "27.67"
+          ],
+          [
+            "FY2017",
+            "1.75",
+            "2.43",
+            "(3.50)",
+            "32.74"
+          ],
+          [
+            "H1 FY2018 (to 30 Sep 2017)",
+            "1.33",
+            "1.48",
+            "1.25",
+            "34.25"
           ]
         ],
-        "title": "Six periods of restated financials"
-      },
-      {
-        "after_paragraph": "The headline rate hides a spread. Inside specialty chemicals, the sub-segments the filing breaks out grow at different speeds:",
-        "columns": [
-          "Sub-segment",
-          "Forecast growth (CAGR)",
-          "Source"
-        ],
-        "footnote": "CRISIL Research forecasts as disclosed in the filing [^drhp-p94].",
-        "rationale": "Seven sub-segment rates are a comparison, not a narrative; the spread is the point.",
-        "rows": [
-          [
-            "Textile chemicals",
-            "12%",
-            "[^drhp-p94]"
-          ],
-          [
-            "Surfactants",
-            "13%",
-            "[^drhp-p94]"
-          ],
-          [
-            "Polymer additives",
-            "10%",
-            "[^drhp-p94]"
-          ],
-          [
-            "Construction chemicals",
-            "15%",
-            "[^drhp-p94]"
-          ],
-          [
-            "Water chemicals",
-            "15%",
-            "[^drhp-p94]"
-          ],
-          [
-            "Personal care ingredients",
-            "15%",
-            "[^drhp-p94]"
-          ],
-          [
-            "Flavours and fragrances",
-            "12%",
-            "[^drhp-p94]"
-          ]
-        ],
-        "title": "Specialty chemical sub-segment growth forecasts"
+        "title": "Restated financials, six periods"
       }
     ],
     "timeline": null

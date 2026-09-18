@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.17-0633",
+  "dataset_version": "v3.2026.09.18-0626",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE148G01016_16SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_02082025000744_ASSETRECONSTRUCTIONCOMPANYINDIALIMITEDDRHP.pdf",
@@ -72,7 +72,19 @@
     },
     "listing_performance.current_price_paise": {
       "rule_id": "E.SRC.002",
+      "source": "yahoo"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
       "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_open_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "yahoo"
     },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
@@ -108,7 +120,7 @@
     }
   },
   "filings_path": "issues/asset-reconstruction-india-5df5ad/filings.json",
-  "generated_at": "2026-09-17T06:33:28+00:00",
+  "generated_at": "2026-09-18T06:27:00+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -123,8 +135,11 @@
     "symbol": "ARCIL"
   },
   "listing_performance": {
-    "current_gain_bps": -223,
-    "current_price_paise": 13590
+    "current_gain_bps": -142,
+    "current_price_paise": 13702,
+    "listing_close_price_paise": 13705,
+    "listing_gain_bps": -140,
+    "listing_open_price_paise": 13900
   },
   "market_path": "issues/asset-reconstruction-india-5df5ad/market.json",
   "parties": {},
@@ -178,27 +193,27 @@
       "peers": [
         {
           "company_name": "ARCIL",
-          "market_cap": "0",
+          "market_cap": "4,453",
           "net_sales_cr": 721,
           "pat_cr": 351,
-          "pb": null,
-          "pe": null
+          "pb": 1.18,
+          "pe": 12.66
         },
         {
           "company_name": "EDELWEISS",
-          "market_cap": "12,087",
+          "market_cap": "11,993",
           "net_sales_cr": 10416,
           "pat_cr": 546,
-          "pb": 2.59,
-          "pe": 19.92
+          "pb": 2.62,
+          "pe": 20.15
         },
         {
           "company_name": "PIRAMALFIN",
-          "market_cap": "52,673",
+          "market_cap": "52,115",
           "net_sales_cr": 11852,
           "pat_cr": 1504,
-          "pb": 1.85,
-          "pe": 30.89
+          "pb": 1.9,
+          "pe": 31.68
         }
       ],
       "revenue_mix": {
@@ -315,7 +330,7 @@
         "market_cap": "₹4,516",
         "pb": 1.19,
         "pe": 14.0,
-        "sector_pb": 5.29,
+        "sector_pb": 5.23,
         "sector_pe": 30.4
       }
     }
@@ -323,54 +338,61 @@
   "research_path": "issues/asset-reconstruction-india-5df5ad/research.json",
   "schema_version": "3.0.0",
   "slug": "asset-reconstruction-india-5df5ad",
-  "source_dataset_version": "v2026.09.17-0633",
+  "source_dataset_version": "v2026.09.18-0626",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-17T06:27:52+00:00",
+      "snapshot_at": "2026-09-18T06:21:08+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_performance_mainboard_2026",
-      "snapshot_at": "2026-09-17T06:28:09+00:00",
+      "snapshot_at": "2026-09-18T06:21:22+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "listed_ipos_page_000000",
-      "snapshot_at": "2026-09-17T06:31:19+00:00",
+      "snapshot_at": "2026-09-18T06:24:40+00:00",
       "source": "moneycontrol",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-17T06:27:38+00:00",
+      "snapshot_at": "2026-09-18T06:20:51+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "performance",
+      "snapshot_at": "2026-09-17T17:17:06+00:00",
+      "source": "yahoo",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_equity",
+      "snapshot_at": "2026-09-18T06:21:00+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-17T06:27:46+00:00",
-      "source": "nse",
-      "url": null
-    },
-    {
-      "confidence": "primary",
-      "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-17T06:27:46+00:00",
+      "snapshot_at": "2026-09-18T06:21:00+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-17T06:27:48+00:00",
+      "snapshot_at": "2026-09-18T06:21:02+00:00",
       "source": "nse",
       "url": null
     }

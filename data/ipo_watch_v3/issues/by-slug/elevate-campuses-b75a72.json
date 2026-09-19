@@ -5,16 +5,11 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.18-0626",
+  "dataset_version": "v3.2026.09.19-0625",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_29092025062424_ProjectScholarspaceConsolidatedDRHP.pdf"
   },
@@ -47,27 +42,96 @@
     "identity.status": {
       "rule_id": "inference:timeline",
       "source": "inferred"
+    },
+    "parties.lead_managers": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "parties.registrar": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "parties.sponsor_bank": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.face_value_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_size_shares": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.market_lot": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.min_bid_qty": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.tick_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "subscription.by_exchange.bse": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "subscription.consolidated": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "timeline.open_date": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
     }
   },
   "filings_path": "issues/elevate-campuses-b75a72/filings.json",
-  "generated_at": "2026-09-18T06:27:00+00:00",
+  "generated_at": "2026-09-19T06:25:34+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:53528897",
-      "bse:prior_id:247365",
-      "bse:createdby:304620"
+      "bse:ipo_no:7987",
+      "bse:scrip_code:4838"
     ],
     "board_type": "Main Board",
     "company_name": "Elevate Campuses Limited",
     "issue_type": "IPO",
     "slug": "elevate-campuses-b75a72",
-    "status": "Filed"
+    "status": "Upcoming"
   },
   "listing_performance": {},
   "market_path": "issues/elevate-campuses-b75a72/market.json",
-  "parties": {},
-  "pricing": {},
+  "parties": {
+    "lead_managers": [
+      "JM Financial Limited"
+    ],
+    "registrar": "KFin Technologies Limited",
+    "sponsor_bank": "ICICI BANK"
+  },
+  "pricing": {
+    "face_value_paise": 100,
+    "issue_size_shares": 61224489,
+    "market_lot": 41,
+    "min_bid_qty": 41,
+    "price_band_lower_paise": 34300,
+    "price_band_upper_paise": 36200,
+    "tick_size_paise": 100
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/elevate-campuses-b75a72/prospectus_facts.json",
   "provenance_path": "issues/elevate-campuses-b75a72/provenance.json",
@@ -75,25 +139,209 @@
   "public_slug": "elevate-campuses",
   "schema_version": "3.0.0",
   "slug": "elevate-campuses-b75a72",
-  "source_dataset_version": "v2026.09.18-0626",
+  "source_dataset_version": "v2026.09.19-0625",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "bid_details_7987",
+      "snapshot_at": "2026-09-19T06:25:24+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "consolidated_bid_details_7987",
+      "snapshot_at": "2026-09-19T06:25:25+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "issue_detail_7987",
+      "snapshot_at": "2026-09-19T06:25:23+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-18T06:21:08+00:00",
+      "snapshot_at": "2026-09-19T06:20:09+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue",
+      "snapshot_at": "2026-09-19T06:20:04+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "public_issue_details",
+      "snapshot_at": "2026-09-19T06:20:06+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-18T06:21:00+00:00",
+      "snapshot_at": "2026-09-19T06:20:01+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "by_exchange": {
+      "bse": {
+        "categories": [
+          {
+            "category": "qib",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "qib_fii",
+            "shares_bid": null,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "qib_dfi",
+            "shares_bid": null,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "qib_mf",
+            "shares_bid": null,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "qib_other",
+            "shares_bid": null,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "nii",
+            "shares_bid": 0,
+            "shares_offered": 0,
+            "times_x": null
+          },
+          {
+            "category": "nii_gt_10l",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "nii_lte_10l",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "retail",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "employee",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          },
+          {
+            "category": "shareholder",
+            "shares_bid": 0,
+            "shares_offered": null,
+            "times_x": null
+          }
+        ],
+        "total_times_x": null
+      }
+    },
+    "consolidated": {
+      "basis": "exchange_published",
+      "categories": [
+        {
+          "category": "qib",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "qib_fii",
+          "shares_bid": null,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "qib_dfi",
+          "shares_bid": null,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "qib_mf",
+          "shares_bid": null,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "qib_other",
+          "shares_bid": null,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "nii",
+          "shares_bid": 0,
+          "shares_offered": 0,
+          "times_x": null
+        },
+        {
+          "category": "nii_gt_10l",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "nii_lte_10l",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "retail",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "employee",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        },
+        {
+          "category": "shareholder",
+          "shares_bid": 0,
+          "shares_offered": null,
+          "times_x": null
+        }
+      ],
+      "total_times_x": null
+    }
+  },
   "subscription_path": "issues/elevate-campuses-b75a72/subscription.json",
-  "timeline": {},
+  "timeline": {
+    "close_date": "2026-09-25",
+    "open_date": "2026-09-23"
+  },
   "url_path": "/ipos/elevate-campuses/"
 }

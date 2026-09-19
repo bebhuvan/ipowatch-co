@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.09.17-0649",
+  "dataset_version": "v2026.09.19-0638",
   "estimated_cost_usd": 0.0,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-09-17T06:49:23+00:00",
+  "generated_at": "2026-09-19T06:38:22+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,31 +24,43 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Serif throughout, hairline rules, single accent colour; no icons or decorative imagery.",
-      "Render the financials table with FY2018 as the rightmost column and a rule above the header row.",
-      "The industry snapshot sits between the market-size paragraph and the competition paragraph; keep it to three stats on one line."
+      "Use hairline rules and two rule weights; serif throughout; single accent colour for the pull-quote and table header.",
+      "The financials table should sit directly after the paragraph introducing the ₹ lakhs-to-₹ crore conversion, with the footnote line set in small caps.",
+      "The industry snapshot sits between the first and second paragraphs of the market section; keep the stat strip to three numbers and the growth bars proportional to value."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "The filing places the company in infrastructure and c",
-      "growth_bars": null,
-      "growth_bars_label": null,
-      "growth_bars_source": null,
-      "rationale": "Three disclosed market-size figures that frame the demand case without repeating the prose.",
+      "after_paragraph": "Infrastructure here means power, bridges, dams, roads and urban infrastructure development, the physical build-out of the country",
+      "growth_bars": [
+        {
+          "value": "US$160B",
+          "width_pct": 74,
+          "year": "2017"
+        },
+        {
+          "projected": true,
+          "value": "US$215B",
+          "width_pct": 100,
+          "year": "2020"
+        }
+      ],
+      "growth_bars_label": "Logistics sector — forecast growth at 10.5% CAGR",
+      "growth_bars_source": "DRHP industry section, p.59",
+      "rationale": "The industry section is a wall of programme names and ten-year numbers; a stat strip and one growth bar make the scale and the near-term forecast legible without adding facts.",
       "split_bar": null,
       "split_bar_label": null,
       "split_bar_note": null,
       "stats": [
         {
-          "desc": "Infrastructure investment\nneeded by 2022 [^drhp-p22]",
-          "val": "₹50 trillion"
-        },
-        {
-          "desc": "Construction share of India's GDP\nat constant prices [^drhp-p58]",
+          "desc": "Infrastructure contribution\nto India's GDP at constant prices",
           "val": "~8%"
         },
         {
-          "desc": "FDI into construction development,\nApr 2000–Dec 2017 [^drhp-p59]",
+          "desc": "Infrastructure investment\nrequirement by 2022",
+          "val": "₹50 trillion"
+        },
+        {
+          "desc": "FDI in construction sector\nApr 2000 – Dec 2017",
           "val": "US$24.67B"
         }
       ]
@@ -56,32 +68,32 @@
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Concentration is the defining feature of the order bo",
-        "quote": "Western Railway accounts for 52% of orders on hand [^drhp-p65]. Indian Railways as a whole was the largest customer at 57% of revenue in Fiscal 2018 [^drhp-p12].",
-        "rationale": "Two numbers that carry the concentration risk more sharply than the surrounding prose."
+        "after_paragraph": "Two concentrations define the business, and they are the same concentration seen from two angles.",
+        "quote": "Western Railway has been a client since 2006 and is the largest exposure, at 52% of orders on hand [^drhp-p67][^drhp-p65].",
+        "rationale": "A single counterparty carrying more than half the order book is the sharpest disclosed fact in the filing and the prose cannot make it land as hard as a pull-quote."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The company is offering 44,28,000 equity shares of ₹10 face value each, at an issue price printed as ₹[•] [^drhp-p29]. The price will be [•] times the ₹10 face value [^drhp-p55]. Proceeds are earmarked for working capital of ₹1,130 lakhs, or ₹11.30 crore, and general corporate purposes, where the amount is left as [x] and is not disclosed [^drhp-p48]. The Lead Manager is Mark Corporate Advisors Private Limited and the Registrar to the Issue is Bigshare Services Private Limited [^drhp-p31]. The excerpts do not state whether the shares are entirely a fresh issue or include an offer for sale.",
-        "rationale": "Gives the reader the offer's basic terms in one block before the objects and pricing discussion.",
+        "body_markdown": "The issue is 44,28,000 equity shares of ₹10 face value, at an issue price the filing leaves as ₹[●] [^drhp-p29]. The split between fresh issue and offer for sale is not stated in these excerpts, and no selling shareholder is named [^drhp-p29]. ₹1,130 lakhs (₹11.30 crore) is earmarked for working capital; general corporate purposes carries no disclosed amount [^drhp-p48]. Mark Corporate Advisors Private Limited is lead manager and Bigshare Services Private Limited is registrar [^drhp-p31]. No monitoring agency has been appointed; the filing says proceeds are at management's discretion, monitored by the audit committee [^drhp-p18].",
+        "rationale": "Consolidates the offer mechanics and the blanks in the filing into one scannable block, so the reader can see exactly what is and is not disclosed.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The restated statements present five periods, and the ex",
+        "after_paragraph": "The filing reports in ₹ lakhs; every figure below is converted to ₹ crore by dividing by 100.",
         "columns": [
-          "₹ crore",
+          "₹ crore, as restated",
           "FY2014",
           "FY2015",
           "FY2016",
           "FY2017",
           "FY2018"
         ],
-        "footnote": "Revenue from operations and restated net profit after adjustments [^drhp-p27]; profit before interest, depreciation and tax [^drhp-p111]; total assets, long term borrowings and short term borrowings [^drhp-p26].",
-        "rationale": "The divergence between a falling top line and a rising bottom line is the report's central claim; the table lets the reader see it in one glance.",
+        "footnote": "Restated statements: [^drhp-p26][^drhp-p27][^drhp-p111]",
+        "rationale": "The five-year divergence between falling revenue and rising earnings is the report's central puzzle; a table lets the reader see it at a glance.",
         "rows": [
           [
             "Revenue from operations",
@@ -92,7 +104,7 @@
             "60.53"
           ],
           [
-            "Profit before interest, depreciation and tax",
+            "EBITDA",
             "7.84",
             "9.46",
             "7.83",
@@ -100,7 +112,7 @@
             "9.29"
           ],
           [
-            "Restated net profit after adjustments",
+            "Net profit after adjustments",
             "0.96",
             "0.78",
             "0.33",
@@ -116,7 +128,7 @@
             "82.32"
           ],
           [
-            "Long term borrowings",
+            "Long-term borrowings",
             "5.87",
             "6.73",
             "1.89",
@@ -124,7 +136,7 @@
             "1.33"
           ],
           [
-            "Short term borrowings",
+            "Short-term borrowings",
             "30.82",
             "32.28",
             "30.21",
@@ -133,44 +145,6 @@
           ]
         ],
         "title": "Five years of restated financials"
-      },
-      {
-        "after_paragraph": "One person owns almost the whole company. Promoter Amit",
-        "columns": [
-          "Holder",
-          "Shares",
-          "Share of capital"
-        ],
-        "footnote": "Promoter holding [^drhp-p100]; director holdings [^drhp-p93]; Hatim Sakerwala holding [^drhp-p98].",
-        "rationale": "Ownership concentration is the single fact that determines what a public shareholder can influence; a table states it without editorialising.",
-        "rows": [
-          [
-            "Amit Bholanath Mishra (Promoter, Managing Director)",
-            "74,95,476",
-            "90.949% [^drhp-p100]"
-          ],
-          [
-            "Bharat kumar Parmar (Whole Time Director)",
-            "300",
-            "Not disclosed [^drhp-p93]"
-          ],
-          [
-            "Shree Prakash Singh (Whole Time Director)",
-            "300",
-            "Not disclosed [^drhp-p93]"
-          ],
-          [
-            "Mukesh Pandey (Whole Time Director)",
-            "300",
-            "Not disclosed [^drhp-p93]"
-          ],
-          [
-            "Hatim Sakerwala",
-            "Not disclosed",
-            "9% [^drhp-p98]"
-          ]
-        ],
-        "title": "Pre-issue shareholding"
       }
     ],
     "timeline": null

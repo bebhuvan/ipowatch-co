@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.19-0625",
+  "dataset_version": "v3.2026.09.22-0641",
   "documents": {
     "basis_allotment_url": "https://nsearchives.nseindia.com/corporate/ADV_INE0KWF01020_18SEP2026.pdf",
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_25062025062718_MANIKAPLASTECHLIMITEDDRHP.pdf",
@@ -66,6 +66,30 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_close_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
+    "pricing.issue_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -74,7 +98,15 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "timeline.close_date": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "timeline.listing_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -84,26 +116,31 @@
     }
   },
   "filings_path": "issues/manika-plastech-55d021/filings.json",
-  "generated_at": "2026-09-19T06:25:34+00:00",
+  "generated_at": "2026-09-22T06:41:38+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
-      "bse:scrip_code:92007373",
-      "bse:prior_id:236179",
-      "bse:createdby:363917"
+      "bse:stock_page:https://www.bseindia.com/stock-share-price/manika-plastech-ltd/manika/544929/"
     ],
     "board_type": "Main Board",
     "company_name": "Manika Plastech Limited",
     "isin": "INE0KWF01020",
     "issue_type": "IPO",
     "slug": "manika-plastech-55d021",
-    "status": "Closed",
+    "status": "Listed",
     "symbol": "MANIKA"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": -281,
+    "current_price_paise": 4179,
+    "listing_close_price_paise": 4300,
+    "listing_gain_bps": 0
+  },
   "market_path": "issues/manika-plastech-55d021/market.json",
   "parties": {},
   "pricing": {
+    "issue_price_paise": 4300,
+    "issue_size_paise": 125499997800,
     "price_band_lower_paise": 4000,
     "price_band_upper_paise": 4300
   },
@@ -154,32 +191,32 @@
           "market_cap": "501",
           "net_sales_cr": 435,
           "pat_cr": 22.4,
-          "pb": 3.2,
+          "pb": 3.39,
           "pe": 22.36
         },
         {
           "company_name": "HITECHCORP",
-          "market_cap": "555",
+          "market_cap": "558",
           "net_sales_cr": 561,
           "pat_cr": 8.94,
-          "pb": 1.94,
-          "pe": 31.42
+          "pb": 1.88,
+          "pe": 30.46
         },
         {
           "company_name": "MOLDTKPAC",
-          "market_cap": "2,188",
+          "market_cap": "2,186",
           "net_sales_cr": 886,
           "pat_cr": 72.87,
-          "pb": 3.2,
-          "pe": 29.0
+          "pb": 3.11,
+          "pe": 28.17
         },
         {
           "company_name": "SHAILY",
-          "market_cap": "14,241",
+          "market_cap": "14,485",
           "net_sales_cr": 990,
           "pat_cr": 169,
-          "pb": 19.95,
-          "pe": 80.89
+          "pb": 20.95,
+          "pe": 84.93
         }
       ],
       "revenue_mix": {
@@ -275,49 +312,66 @@
         "market_cap": "₹501",
         "pb": 3.2,
         "pe": 22.36,
-        "sector_pb": 1.58,
-        "sector_pe": 18.0
+        "sector_pb": 1.64,
+        "sector_pe": 17.89
       }
     }
   },
   "research_path": "issues/manika-plastech-55d021/research.json",
   "schema_version": "3.0.0",
   "slug": "manika-plastech-55d021",
-  "source_dataset_version": "v2026.09.19-0625",
+  "source_dataset_version": "v2026.09.22-0641",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-19T06:20:09+00:00",
+      "snapshot_at": "2026-09-22T06:35:43+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
+      "endpoint": "ipo_performance_mainboard_2026",
+      "snapshot_at": "2026-09-22T06:35:55+00:00",
+      "source": "bse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "listed_ipos_page_000000",
+      "snapshot_at": "2026-09-22T06:39:25+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-19T06:19:55+00:00",
+      "snapshot_at": "2026-09-22T06:35:30+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-19T06:20:01+00:00",
+      "snapshot_at": "2026-09-22T06:35:38+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_advertisements",
-      "snapshot_at": "2026-09-19T06:20:03+00:00",
+      "snapshot_at": "2026-09-22T06:35:40+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "28.1400"
+  },
   "subscription_path": "issues/manika-plastech-55d021/subscription.json",
   "timeline": {
     "close_date": "2026-09-16",
+    "listing_date": "2026-09-21",
     "open_date": "2026-09-11"
   },
   "url_path": "/ipos/manika-plastech/"

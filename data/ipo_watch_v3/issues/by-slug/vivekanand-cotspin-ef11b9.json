@@ -1,6 +1,39 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 3500,
+        "quantity": 546000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 3600,
+        "quantity": 540000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 3700,
+        "quantity": 534000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 3500,
+        "quantity": 540000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 3600,
+        "quantity": 534000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 3700,
+        "quantity": 528000
+      }
+    ]
+  },
   "core_path": "issues/vivekanand-cotspin-ef11b9/core.json",
   "data_quality": {
     "errors": [],
@@ -9,12 +42,16 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.19-0625",
+  "dataset_version": "v3.2026.09.22-0641",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/Registration_25022025142722_DRHP_VCL_25022025_1.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "documents.drhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -105,7 +142,7 @@
     }
   },
   "filings_path": "issues/vivekanand-cotspin-ef11b9/filings.json",
-  "generated_at": "2026-09-19T06:25:34+00:00",
+  "generated_at": "2026-09-22T06:41:38+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -116,7 +153,7 @@
     "company_name": "Vivekanand Cotspin Limited",
     "issue_type": "IPO",
     "slug": "vivekanand-cotspin-ef11b9",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/vivekanand-cotspin-ef11b9/market.json",
@@ -141,56 +178,232 @@
   "provenance_path": "issues/vivekanand-cotspin-ef11b9/provenance.json",
   "public_contract": "ipo-watch.site_v3",
   "public_slug": "vivekanand-cotspin",
+  "research": {
+    "tijori": {
+      "business_description": "Vivekanand Cotspin Ltd. is engaged in cotton processing and yarn manufacturing through cotton ginning and spinning. Its product portfolio includes cotton bales, cotton seeds and cotton yarn, catering to domestic and international textile markets",
+      "company_name": "Vivekanand Cotspin Ltd.",
+      "financials": {
+        "unit": "INR crore",
+        "yearly_results": [
+          {
+            "debt_cr": 54.7591,
+            "net_sales_cr": 290.4669,
+            "pat_cr": 4.0738,
+            "period": "Mar 2025"
+          },
+          {
+            "debt_cr": 44.9952,
+            "net_sales_cr": 408.0101,
+            "pat_cr": 3.6878,
+            "period": "Mar 2026"
+          }
+        ]
+      },
+      "isin": "INE1JJP01018",
+      "matched_on": "normalized_company_name",
+      "normalized_name": "vivekanand cotspin",
+      "offer_split": {
+        "fresh_issue_percent": "100%",
+        "fresh_issue_value": "22 Cr",
+        "ofs_percent": "0%",
+        "ofs_value": "0 Cr"
+      },
+      "peers": [
+        {
+          "company_name": "VIVEKANAND",
+          "market_cap": "82",
+          "net_sales_cr": 408,
+          "pat_cr": 3.69,
+          "pb": 2.83,
+          "pe": 22.24
+        },
+        {
+          "company_name": "DEEPAKSPIN",
+          "market_cap": "101",
+          "net_sales_cr": 534,
+          "pat_cr": 3.64,
+          "pb": 0.44,
+          "pe": 9.89
+        },
+        {
+          "company_name": "LAGNAM",
+          "market_cap": "128",
+          "net_sales_cr": 604,
+          "pat_cr": 14.39,
+          "pb": 0.98,
+          "pe": 7.29
+        }
+      ],
+      "revenue_mix": {
+        "historical": [
+          {
+            "points": [
+              {
+                "percent": 52.18,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 32.37,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 27.53,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Cotton Yarn"
+          },
+          {
+            "points": [
+              {
+                "percent": 38.74,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 55.7,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 59.56,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Cotton Bales"
+          },
+          {
+            "points": [
+              {
+                "percent": 6.71,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 9.87,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 9.54,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Cotton Seed"
+          },
+          {
+            "points": [
+              {
+                "percent": 2.3,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 2.05,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 3.16,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Cotton Yarn Waste"
+          }
+        ],
+        "latest": [
+          {
+            "percent": 52.18,
+            "segment": "Cotton Yarn"
+          },
+          {
+            "percent": 38.74,
+            "segment": "Cotton Bales"
+          },
+          {
+            "percent": 6.71,
+            "segment": "Cotton Seed"
+          },
+          {
+            "percent": 2.3,
+            "segment": "Cotton Yarn Waste"
+          },
+          {
+            "percent": 0.07,
+            "segment": "Others"
+          }
+        ]
+      },
+      "sector": "Textile",
+      "shareholding": {
+        "promoter": {
+          "post_ipo": "73",
+          "pre_ipo": "100"
+        },
+        "public": {
+          "post_ipo": "27",
+          "pre_ipo": null
+        }
+      },
+      "source": "tijori",
+      "source_quality": "third_party_enrichment_not_primary_filing",
+      "source_url": "https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/",
+      "symbol": "VIVEKANAND",
+      "valuation": {
+        "ipo_size": "22 Cr",
+        "market_cap": "₹82.33",
+        "pb": 2.85,
+        "pe": 22.32,
+        "sector_pb": 1.21,
+        "sector_pe": 16.63
+      }
+    }
+  },
+  "research_path": "issues/vivekanand-cotspin-ef11b9/research.json",
   "schema_version": "3.0.0",
   "slug": "vivekanand-cotspin-ef11b9",
-  "source_dataset_version": "v2026.09.19-0625",
+  "source_dataset_version": "v2026.09.22-0641",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7981",
-      "snapshot_at": "2026-09-19T06:25:11+00:00",
+      "snapshot_at": "2026-09-22T06:40:59+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7981",
-      "snapshot_at": "2026-09-19T06:25:12+00:00",
+      "snapshot_at": "2026-09-22T06:40:59+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7981",
-      "snapshot_at": "2026-09-19T06:25:12+00:00",
+      "snapshot_at": "2026-09-22T06:41:00+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7981",
-      "snapshot_at": "2026-09-19T06:25:11+00:00",
+      "snapshot_at": "2026-09-22T06:40:58+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-09-19T06:20:04+00:00",
+      "snapshot_at": "2026-09-22T06:35:41+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-09-19T06:20:06+00:00",
+      "snapshot_at": "2026-09-22T06:35:42+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-09-19T06:20:02+00:00",
+      "snapshot_at": "2026-09-22T06:35:39+00:00",
       "source": "nse",
       "url": null
     }
@@ -231,15 +444,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
+            "shares_bid": 258000,
             "shares_offered": 1155000,
-            "times_x": "0.0000"
+            "times_x": "0.2234"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
+            "shares_bid": 288000,
             "shares_offered": 2001000,
-            "times_x": "0.0000"
+            "times_x": "0.1439"
           },
           {
             "category": "employee",
@@ -254,7 +467,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": "0.0000"
+        "total_times_x": "0.1270"
       }
     },
     "consolidated": {
@@ -292,27 +505,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
+          "shares_bid": 258000,
           "shares_offered": 1155000,
-          "times_x": "0.0000"
+          "times_x": "0.2234"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 0,
+          "shares_bid": 174000,
           "shares_offered": 570000,
-          "times_x": "0.0000"
+          "times_x": "0.3053"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
+          "shares_bid": 84000,
           "shares_offered": 285000,
-          "times_x": "0.0000"
+          "times_x": "0.2947"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
+          "shares_bid": 282000,
           "shares_offered": 2001000,
-          "times_x": "0.0000"
+          "times_x": "0.1409"
         },
         {
           "category": "employee",
@@ -333,9 +546,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": "0.0000"
+      "total_times_x": "0.1256"
     },
-    "overall_times_x": "0.0000"
+    "overall_times_x": "0.1256"
   },
   "subscription_path": "issues/vivekanand-cotspin-ef11b9/subscription.json",
   "timeline": {

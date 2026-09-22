@@ -9,7 +9,7 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.19-0625",
+  "dataset_version": "v3.2026.09.22-0641",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_5304_21032025134015.zip",
     "prospectus_url": "https://nsearchives.nseindia.com/emerge/corporates/content/RamaTelecomLimited_PROSP.pdf",
@@ -28,6 +28,10 @@
     "documents.rhp_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "identity.aliases": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "identity.board_type": {
       "rule_id": "E.SRC.002",
@@ -53,9 +57,25 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "listing_performance.current_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.current_price_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
+    "listing_performance.listing_gain_bps": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
+    },
     "pricing.issue_price_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "pricing.issue_size_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "pricing.price_band_lower_paise": {
       "rule_id": "E.SRC.002",
@@ -64,6 +84,10 @@
     "pricing.price_band_upper_paise": {
       "rule_id": "E.SRC.002",
       "source": "nse"
+    },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "moneycontrol"
     },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
@@ -79,9 +103,13 @@
     }
   },
   "filings_path": "issues/rama-telecom-5124ac/filings.json",
-  "generated_at": "2026-09-19T06:25:34+00:00",
+  "generated_at": "2026-09-22T06:41:38+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
+    "aliases": [
+      "moneycontrol:slug:transmission-towersequipments/ramatelecom/RTL05",
+      "moneycontrol:company_code:15140169"
+    ],
     "board_type": "SME Board",
     "company_name": "Rama Telecom Limited",
     "issue_type": "IPO",
@@ -89,11 +117,16 @@
     "status": "Listed",
     "symbol": "RTL"
   },
-  "listing_performance": {},
+  "listing_performance": {
+    "current_gain_bps": 2132,
+    "current_price_paise": 8250,
+    "listing_gain_bps": 588
+  },
   "market_path": "issues/rama-telecom-5124ac/market.json",
   "parties": {},
   "pricing": {
     "issue_price_paise": 6800,
+    "issue_size_paise": 25132800000,
     "price_band_lower_paise": 6500,
     "price_band_upper_paise": 6800
   },
@@ -141,19 +174,19 @@
       "peers": [
         {
           "company_name": "RTL",
-          "market_cap": "104",
+          "market_cap": "109",
           "net_sales_cr": 50.11,
           "pat_cr": 2.91,
-          "pb": 2.48,
-          "pe": 35.64
+          "pb": 2.6,
+          "pe": 37.46
         },
         {
           "company_name": "SARTELE",
-          "market_cap": "396",
+          "market_cap": "368",
           "net_sales_cr": 349,
           "pat_cr": 46.9,
-          "pb": 0.46,
-          "pe": 5.52
+          "pb": 0.43,
+          "pe": 5.13
         }
       ],
       "revenue_mix": {
@@ -245,32 +278,41 @@
         "market_cap": "₹89.76",
         "pb": 5.45,
         "pe": 30.87,
-        "sector_pb": 2.08,
-        "sector_pe": 13.84
+        "sector_pb": 2.02,
+        "sector_pe": 14.04
       }
     }
   },
   "research_path": "issues/rama-telecom-5124ac/research.json",
   "schema_version": "3.0.0",
   "slug": "rama-telecom-5124ac",
-  "source_dataset_version": "v2026.09.19-0625",
+  "source_dataset_version": "v2026.09.22-0641",
   "sources": [
     {
       "confidence": "primary",
+      "endpoint": "listed_ipos_page_000480",
+      "snapshot_at": "2026-09-22T06:39:25+00:00",
+      "source": "moneycontrol",
+      "url": null
+    },
+    {
+      "confidence": "primary",
       "endpoint": "ipo_public_past_issues",
-      "snapshot_at": "2026-09-19T06:19:55+00:00",
+      "snapshot_at": "2026-09-22T06:35:30+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_sme",
-      "snapshot_at": "2026-09-19T06:20:02+00:00",
+      "snapshot_at": "2026-09-22T06:35:39+00:00",
       "source": "nse",
       "url": null
     }
   ],
-  "subscription": {},
+  "subscription": {
+    "overall_times_x": "1.5800"
+  },
   "subscription_path": "issues/rama-telecom-5124ac/subscription.json",
   "timeline": {
     "close_date": "2025-06-27",

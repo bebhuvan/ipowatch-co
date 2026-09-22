@@ -1,6 +1,29 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 11000,
+        "quantity": 902400
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 11300,
+        "quantity": 900000
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 11500,
+        "quantity": 897600
+      },
+      {
+        "cumulative_quantity": null,
+        "price_paise": 11600,
+        "quantity": 891600
+      }
+    ]
+  },
   "core_path": "issues/fx-multitech-3b90af/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +32,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.19-0625",
+  "dataset_version": "v3.2026.09.22-0641",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -107,7 +134,7 @@
     }
   },
   "filings_path": "issues/fx-multitech-3b90af/filings.json",
-  "generated_at": "2026-09-19T06:25:34+00:00",
+  "generated_at": "2026-09-22T06:41:38+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -118,7 +145,7 @@
     "company_name": "FX MULTITECH LIMITED",
     "issue_type": "IPO",
     "slug": "fx-multitech-3b90af",
-    "status": "Upcoming",
+    "status": "Open",
     "symbol": "FX MULTITECH LIMITED"
   },
   "listing_performance": {},
@@ -147,49 +174,264 @@
   "provenance_path": "issues/fx-multitech-3b90af/provenance.json",
   "public_contract": "ipo-watch.site_v3",
   "public_slug": "fx-multitech",
+  "research": {
+    "tijori": {
+      "business_description": "FX Multitech Ltd., incorporated in 2008, is engaged in the distribution and export of HVAC and industrial refrigeration products, including compressors, controls, automation products, heat exchangers, evaporators, refrigerants and ancillary products.",
+      "company_name": "FX Multitech Ltd.",
+      "financials": {
+        "unit": "INR crore",
+        "yearly_results": [
+          {
+            "debt_cr": 11.2432,
+            "net_sales_cr": 68.5174,
+            "pat_cr": 4.1778,
+            "period": "Mar 2024"
+          },
+          {
+            "debt_cr": 21.8974,
+            "net_sales_cr": 102.006,
+            "pat_cr": 9.55,
+            "period": "Mar 2025"
+          },
+          {
+            "debt_cr": 26.1147,
+            "net_sales_cr": 126.1393,
+            "pat_cr": 11.8025,
+            "period": "Mar 2026"
+          }
+        ]
+      },
+      "isin": "INE1D0M01019",
+      "matched_on": "normalized_company_name",
+      "normalized_name": "fx multitech",
+      "offer_split": {
+        "fresh_issue_percent": "92%",
+        "fresh_issue_value": "41 Cr",
+        "ofs_percent": "8%",
+        "ofs_value": "4 Cr"
+      },
+      "peers": [
+        {
+          "company_name": "FXML",
+          "market_cap": "167",
+          "net_sales_cr": 126,
+          "pat_cr": 11.8,
+          "pb": 4.39,
+          "pe": 13.8
+        },
+        {
+          "company_name": "BLUESTARCO",
+          "market_cap": "32,062",
+          "net_sales_cr": 12401,
+          "pat_cr": 527,
+          "pb": 9.38,
+          "pe": 63.19
+        },
+        {
+          "company_name": "AMBER",
+          "market_cap": "25,142",
+          "net_sales_cr": 12186,
+          "pat_cr": 177,
+          "pb": 5.73,
+          "pe": 260.85
+        }
+      ],
+      "revenue_mix": {
+        "historical": [
+          {
+            "points": [
+              {
+                "percent": 36.35,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 39.13,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 43.37,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Compressors"
+          },
+          {
+            "points": [
+              {
+                "percent": 18.99,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 20.8,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 23.07,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Refrigeration & AirConditioning Controls"
+          },
+          {
+            "points": [
+              {
+                "percent": 15.96,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 16.47,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 0.0,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Industrial Chiller"
+          },
+          {
+            "points": [
+              {
+                "percent": 15.37,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 11.52,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 15.25,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Refrigerants and Ancillary Products"
+          },
+          {
+            "points": [
+              {
+                "percent": 6.0,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 5.79,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 8.32,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Variable Frequency Drives and Automation"
+          }
+        ],
+        "latest": [
+          {
+            "percent": 36.35,
+            "segment": "Compressors"
+          },
+          {
+            "percent": 18.99,
+            "segment": "Refrigeration & AirConditioning Controls"
+          },
+          {
+            "percent": 15.96,
+            "segment": "Industrial Chiller"
+          },
+          {
+            "percent": 15.37,
+            "segment": "Refrigerants and Ancillary Products"
+          },
+          {
+            "percent": 6.0,
+            "segment": "Variable Frequency Drives and Automation"
+          },
+          {
+            "percent": 3.32,
+            "segment": "Cold Room Evaporators"
+          },
+          {
+            "percent": 2.12,
+            "segment": "Industrial Refrigeration Controls"
+          },
+          {
+            "percent": 1.68,
+            "segment": "Heat Exchanger"
+          },
+          {
+            "percent": 0.21,
+            "segment": "Others"
+          }
+        ]
+      },
+      "sector": "Air Conditioners",
+      "shareholding": {
+        "promoter": {
+          "post_ipo": "73",
+          "pre_ipo": "100"
+        },
+        "public": {
+          "post_ipo": "27",
+          "pre_ipo": null
+        }
+      },
+      "source": "tijori",
+      "source_quality": "third_party_enrichment_not_primary_filing",
+      "source_url": "https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/",
+      "symbol": "FXML",
+      "valuation": {
+        "ipo_size": "45 Cr",
+        "market_cap": "₹166",
+        "pb": 4.38,
+        "pe": 13.76,
+        "sector_pb": 7.54,
+        "sector_pe": 83.31
+      }
+    }
+  },
+  "research_path": "issues/fx-multitech-3b90af/research.json",
   "schema_version": "3.0.0",
   "slug": "fx-multitech-3b90af",
-  "source_dataset_version": "v2026.09.19-0625",
+  "source_dataset_version": "v2026.09.22-0641",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7980",
-      "snapshot_at": "2026-09-19T06:25:09+00:00",
+      "snapshot_at": "2026-09-22T06:40:56+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7980",
-      "snapshot_at": "2026-09-19T06:25:09+00:00",
+      "snapshot_at": "2026-09-22T06:40:57+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7980",
-      "snapshot_at": "2026-09-19T06:25:09+00:00",
+      "snapshot_at": "2026-09-22T06:40:57+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7980",
-      "snapshot_at": "2026-09-19T06:25:08+00:00",
+      "snapshot_at": "2026-09-22T06:40:56+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-09-19T06:20:04+00:00",
+      "snapshot_at": "2026-09-22T06:35:41+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-09-19T06:20:06+00:00",
+      "snapshot_at": "2026-09-22T06:35:42+00:00",
       "source": "bse",
       "url": null
     }
@@ -230,15 +472,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 666000,
+            "shares_bid": 720000,
             "shares_offered": 754800,
-            "times_x": "0.8824"
+            "times_x": "0.9539"
           },
           {
             "category": "retail",
-            "shares_bid": 86400,
+            "shares_bid": 182400,
             "shares_offered": 1298400,
-            "times_x": "0.0665"
+            "times_x": "0.1405"
           },
           {
             "category": "employee",
@@ -253,7 +495,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": "0.2690"
+        "total_times_x": "0.3226"
       }
     },
     "consolidated": {
@@ -291,27 +533,27 @@
         },
         {
           "category": "nii",
-          "shares_bid": 666000,
+          "shares_bid": 720000,
           "shares_offered": 754800,
-          "times_x": "0.8824"
+          "times_x": "0.9539"
         },
         {
           "category": "nii_gt_10l",
-          "shares_bid": 644400,
+          "shares_bid": 687600,
           "shares_offered": 372000,
-          "times_x": "1.7323"
+          "times_x": "1.8484"
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 21600,
+          "shares_bid": 32400,
           "shares_offered": 186000,
-          "times_x": "0.1161"
+          "times_x": "0.1742"
         },
         {
           "category": "retail",
-          "shares_bid": 86400,
+          "shares_bid": 182400,
           "shares_offered": 1298400,
-          "times_x": "0.0665"
+          "times_x": "0.1405"
         },
         {
           "category": "employee",
@@ -332,9 +574,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": "0.2690"
+      "total_times_x": "0.3226"
     },
-    "overall_times_x": "0.2690"
+    "overall_times_x": "0.3226"
   },
   "subscription_path": "issues/fx-multitech-3b90af/subscription.json",
   "timeline": {

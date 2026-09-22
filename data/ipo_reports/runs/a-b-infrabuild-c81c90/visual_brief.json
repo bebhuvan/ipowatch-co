@@ -7,11 +7,11 @@
     "warnings": []
   },
   "dataset": "ipo-watch.visual_brief.schema",
-  "dataset_version": "v2026.09.19-0638",
+  "dataset_version": "v2026.09.22-0659",
   "estimated_cost_usd": 0.0,
   "field_provenance": {},
   "freshness": {},
-  "generated_at": "2026-09-19T06:38:22+00:00",
+  "generated_at": "2026-09-22T06:59:48+00:00",
   "generated_by": "ipo_portal.orchestrator/0.1.0",
   "language": "en-IN",
   "license": "Data is aggregated from public exchange filings (NSE, BSE) and SEBI disclosures. Source endpoints retain their original copyright. Derivative aggregations are released under CC-BY-4.0 with attribution to IPO Watch. Use at your own risk; verify against original filings before making investment decisions.",
@@ -24,76 +24,84 @@
   "time_zone": "Asia/Kolkata",
   "visual_brief": {
     "design_notes": [
-      "Use hairline rules and two rule weights; serif throughout; single accent colour for the pull-quote and table header.",
-      "The financials table should sit directly after the paragraph introducing the ₹ lakhs-to-₹ crore conversion, with the footnote line set in small caps.",
-      "The industry snapshot sits between the first and second paragraphs of the market section; keep the stat strip to three numbers and the growth bars proportional to value."
+      "Serif throughout, hairline rules, two rule weights; single accent colour for table headers and stat values.",
+      "Financial tables: right-align all figures, use tabular numerals, keep the ₹ crore unit in the column header only.",
+      "Industry snapshot stat strip: three equal columns separated by hairline rules, values in the accent colour, descriptors in small caps.",
+      "Growth bars: label the projected bar distinctly (e.g. lighter fill or an asterisk) to signal it is a projection, not actuals.",
+      "Pull-quotes: set in larger serif with a hairline rule above, no quotation-mark ornamentation beyond the marks themselves.",
+      "The 'as captured' table should read as a disclosure-gap exhibit — muted styling, no accent colour, so it does not look like a normal peer comparison."
     ],
     "formulas": [],
     "industry_snapshot": {
-      "after_paragraph": "Infrastructure here means power, bridges, dams, roads and urban infrastructure development, the physical build-out of the country",
+      "after_paragraph": "Infrastructure and construction, as the filing defines it, covers power, bridges, dams, roads and urban infrastructure development",
       "growth_bars": [
         {
-          "value": "US$160B",
+          "value": "US$160bn",
           "width_pct": 74,
           "year": "2017"
         },
         {
           "projected": true,
-          "value": "US$215B",
+          "value": "US$215bn",
           "width_pct": 100,
           "year": "2020"
         }
       ],
-      "growth_bars_label": "Logistics sector — forecast growth at 10.5% CAGR",
-      "growth_bars_source": "DRHP industry section, p.59",
-      "rationale": "The industry section is a wall of programme names and ten-year numbers; a stat strip and one growth bar make the scale and the near-term forecast legible without adding facts.",
+      "growth_bars_label": "Logistics sector — projected growth at 10.5% CAGR",
+      "growth_bars_source": "DRHP industry chapter, p.59",
+      "rationale": "The industry chapter's headline sizing and growth figures are scattered across pages 22, 58, 59 and 60; a stat strip and one growth bar make the demand backdrop scannable without repeating the prose.",
       "split_bar": null,
       "split_bar_label": null,
       "split_bar_note": null,
       "stats": [
         {
-          "desc": "Infrastructure contribution\nto India's GDP at constant prices",
-          "val": "~8%"
-        },
-        {
-          "desc": "Infrastructure investment\nrequirement by 2022",
+          "desc": "Infrastructure investment\nneeded by 2022 (US$777.73bn)",
           "val": "₹50 trillion"
         },
         {
-          "desc": "FDI in construction sector\nApr 2000 – Dec 2017",
-          "val": "US$24.67B"
+          "desc": "Construction sector share\nof India's GDP, constant prices",
+          "val": "~8%"
+        },
+        {
+          "desc": "Infrastructure spending\nas share of GDP, 12th Plan",
+          "val": "9.0%"
         }
       ]
     },
     "lead_image": null,
     "pull_quotes": [
       {
-        "after_paragraph": "Two concentrations define the business, and they are the same concentration seen from two angles.",
-        "quote": "Western Railway has been a client since 2006 and is the largest exposure, at 52% of orders on hand [^drhp-p67][^drhp-p65].",
-        "rationale": "A single counterparty carrying more than half the order book is the sharpest disclosed fact in the filing and the prose cannot make it land as hard as a pull-quote."
+        "after_paragraph": "Then the concentration. Western Railway has been a client since 2006",
+        "quote": "Western Railway has been a client since 2006 and accounts for 52% of the orders on hand.",
+        "rationale": "A single disclosed number — one client, half the order book — that the surrounding prose cannot make land as hard as the figure alone."
+      },
+      {
+        "after_paragraph": "The filing states plainly that the company had negative cash flow in recent financial years",
+        "quote": "the company had negative cash flow in recent financial years and that sustained negative cash flow could adversely affect the business, financial condition and results of operations",
+        "rationale": "The filing's own admission of negative cash flow is the sharpest single disclosed fact in the risk section and deserves to stand alone."
       }
     ],
     "sidebars": [
       {
         "after_section_slug": "offer",
-        "body_markdown": "The issue is 44,28,000 equity shares of ₹10 face value, at an issue price the filing leaves as ₹[●] [^drhp-p29]. The split between fresh issue and offer for sale is not stated in these excerpts, and no selling shareholder is named [^drhp-p29]. ₹1,130 lakhs (₹11.30 crore) is earmarked for working capital; general corporate purposes carries no disclosed amount [^drhp-p48]. Mark Corporate Advisors Private Limited is lead manager and Bigshare Services Private Limited is registrar [^drhp-p31]. No monitoring agency has been appointed; the filing says proceeds are at management's discretion, monitored by the audit committee [^drhp-p18].",
-        "rationale": "Consolidates the offer mechanics and the blanks in the filing into one scannable block, so the reader can see exactly what is and is not disclosed.",
+        "body_markdown": "The offer is 44,28,000 equity shares of ₹10 face value each, at a price the filing prints as ₹[•], not disclosed in the material available [^drhp-p29]. The excerpt presents a single line and does not split fresh issue from offer for sale, and no selling shareholder is named [^drhp-p29]. Of the objects, one is quantified: ₹1,130 lakhs (₹11.30 crore) to meet working capital requirements; the general corporate purposes amount is redacted [^drhp-p48]. No independent appraiser and no monitoring agency have been appointed, and deployment is at the discretion of the management and board, monitored by the audit committee [^drhp-p18]. Lead manager: Mark Corporate Advisors Private Limited; registrar: Bigshare Services Private Limited [^drhp-p31].",
+        "rationale": "Consolidates the offer's structural facts — size, price status, objects, oversight, intermediaries — into one scannable block the narrative sections cannot carry together.",
         "title": "The offer at a glance"
       }
     ],
     "tables": [
       {
-        "after_paragraph": "The filing reports in ₹ lakhs; every figure below is converted to ₹ crore by dividing by 100.",
+        "after_paragraph": "The filing presents five years of restated financials, from FY2014 to FY2018. Every figure in the filing is in ₹ lakhs; converted to ₹ crore, the shape is this.",
         "columns": [
-          "₹ crore, as restated",
+          "₹ crore",
           "FY2014",
           "FY2015",
           "FY2016",
           "FY2017",
           "FY2018"
         ],
-        "footnote": "Restated statements: [^drhp-p26][^drhp-p27][^drhp-p111]",
-        "rationale": "The five-year divergence between falling revenue and rising earnings is the report's central puzzle; a table lets the reader see it at a glance.",
+        "footnote": "Revenue from operations [^drhp-p27]. Profit before interest, depreciation and tax [^drhp-p111]. Net profit after adjustments [^drhp-p27].",
+        "rationale": "The three series together carry the report's central tension — falling revenue against a spiking bottom line — which prose alone cannot show at a glance.",
         "rows": [
           [
             "Revenue from operations",
@@ -104,7 +112,7 @@
             "60.53"
           ],
           [
-            "EBITDA",
+            "Profit before interest, depreciation and tax",
             "7.84",
             "9.46",
             "7.83",
@@ -118,7 +126,23 @@
             "0.33",
             "0.16",
             "3.15"
-          ],
+          ]
+        ],
+        "title": "Five years of restated financials"
+      },
+      {
+        "after_paragraph": "The balance sheet explains where the money sits.",
+        "columns": [
+          "₹ crore",
+          "FY2014",
+          "FY2015",
+          "FY2016",
+          "FY2017",
+          "FY2018"
+        ],
+        "footnote": "Total assets, as restated [^drhp-p26]. Long-term borrowings [^drhp-p26]. Short-term borrowings [^drhp-p26].",
+        "rationale": "The divergence between rising short-term and falling long-term borrowings is the funding-structure point the prose argues; the table proves it.",
+        "rows": [
           [
             "Total assets",
             "70.62",
@@ -144,7 +168,55 @@
             "35.37"
           ]
         ],
-        "title": "Five years of restated financials"
+        "title": "Balance sheet: assets and borrowings"
+      },
+      {
+        "after_paragraph": "The filing does carry the machinery for a peer comparison: accounting-ratio tables appear in the material captured from pages 54 and 55",
+        "columns": [
+          "As captured",
+          "Figure",
+          "What it is"
+        ],
+        "footnote": "Accounting-ratio tables and peer comparison [^drhp-p54] [^drhp-p55]. Issue price and multiple of face value [^drhp-p55].",
+        "rationale": "Renders the filing's own comparison machinery honestly — showing exactly what is disclosed and what is redacted, so the reader sees the gap rather than a fabricated peer table.",
+        "rows": [
+          [
+            "Basis for issue price, FY2016",
+            "4.14",
+            "Metric label not captured"
+          ],
+          [
+            "Basis for issue price, FY2017",
+            "1.97",
+            "Metric label not captured"
+          ],
+          [
+            "Basis for issue price, FY2018",
+            "28.14",
+            "Metric label not captured"
+          ],
+          [
+            "Basis for issue price, FY2018",
+            "12.59 / 3.82",
+            "Metric labels not captured"
+          ],
+          [
+            "Peer comparison",
+            "12.39 / 44.71",
+            "Metric labels and peer names not captured"
+          ],
+          [
+            "Issue price",
+            "₹[•]",
+            "Redacted"
+          ],
+          [
+            "Issue price as multiple of face value",
+            "[•]",
+            "Redacted"
+          ]
+        ],
+        "title": "Issue price basis and peer comparison — as captured"
       }
     ],
     "timeline": null

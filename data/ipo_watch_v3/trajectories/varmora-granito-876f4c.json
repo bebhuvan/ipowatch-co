@@ -7,13 +7,102 @@
     "warnings": []
   },
   "dataset": "ipo-watch.trajectory.schema",
-  "dataset_version": "v3.2026.09.19-0625",
-  "demand_curve_count": 0,
-  "demand_curves": [],
+  "dataset_version": "v3.2026.09.22-0641",
+  "demand_curve_count": 2,
+  "demand_curves": [
+    {
+      "observed_at": "2026-09-22T06:39:55+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 1963339,
+          "price_paise": 14800
+        },
+        {
+          "cumulative_quantity": 1963743,
+          "price_paise": 14700
+        },
+        {
+          "cumulative_quantity": 1964349,
+          "price_paise": 14600
+        },
+        {
+          "cumulative_quantity": 1967379,
+          "price_paise": 14500
+        },
+        {
+          "cumulative_quantity": 1969500,
+          "price_paise": 14400
+        },
+        {
+          "cumulative_quantity": 1970207,
+          "price_paise": 14300
+        },
+        {
+          "cumulative_quantity": 1973338,
+          "price_paise": 14200
+        },
+        {
+          "cumulative_quantity": 1975257,
+          "price_paise": 14100
+        },
+        {
+          "cumulative_quantity": 1986973,
+          "price_paise": 14000
+        }
+      ],
+      "scope": "all",
+      "source": "nse",
+      "source_updated_at": "22-Sep-2026 12:06:00"
+    },
+    {
+      "observed_at": "2026-09-22T06:39:55+00:00",
+      "points": [
+        {
+          "cumulative_quantity": 1319666,
+          "price_paise": 14800
+        },
+        {
+          "cumulative_quantity": 1319767,
+          "price_paise": 14700
+        },
+        {
+          "cumulative_quantity": 1320272,
+          "price_paise": 14600
+        },
+        {
+          "cumulative_quantity": 1321989,
+          "price_paise": 14500
+        },
+        {
+          "cumulative_quantity": 1322898,
+          "price_paise": 14400
+        },
+        {
+          "cumulative_quantity": 1323504,
+          "price_paise": 14300
+        },
+        {
+          "cumulative_quantity": 1324716,
+          "price_paise": 14200
+        },
+        {
+          "cumulative_quantity": 1325625,
+          "price_paise": 14100
+        },
+        {
+          "cumulative_quantity": 1333604,
+          "price_paise": 14000
+        }
+      ],
+      "scope": "nse",
+      "source": "nse",
+      "source_updated_at": "22-Sep-2026 12:08:00"
+    }
+  ],
   "field_provenance": {},
   "freshness": {},
   "frozen_at": null,
-  "generated_at": "2026-09-19T06:25:34+00:00",
+  "generated_at": "2026-09-22T06:41:38+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "issue_slug": "varmora-granito-876f4c",
   "language": "en-IN",
@@ -24,61 +113,60 @@
     {
       "categories": {
         "nii": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 143925,
+          "shares_offered": 7361217,
+          "times": 0.019551794220982754
+        },
+        "nii_gt_10l": {
+          "shares_bid": 137158,
+          "shares_offered": 2453739,
+          "times": 0.055897550635988585
         },
         "qib": {
           "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_dfi": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_fii": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_mf": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
-        },
-        "qib_other": {
-          "shares_bid": null,
-          "shares_offered": null,
-          "times": null
+          "shares_offered": 9365510,
+          "times": 0.0
         },
         "retail": {
-          "shares_bid": 0,
-          "shares_offered": null,
-          "times": null
+          "shares_bid": 1841129,
+          "shares_offered": 17176172,
+          "times": 0.1071908804825662
         }
       },
-      "observed_at": "2026-09-21T16:02:07+00:00",
-      "source": "bse",
-      "source_updated_at": null,
+      "observed_at": "2026-09-22T06:39:55+00:00",
+      "source": "nse",
+      "source_updated_at": "Updated as on 22-Sep-2026 12:06:00",
       "total": {
-        "shares_bid": 0,
-        "shares_offered": null,
-        "times": null
+        "shares_bid": 1985054,
+        "shares_offered": 3,
+        "times": 0.0585511581177763
       }
     }
   ],
   "public_contract": "ipo-watch.site_v3",
   "schema_url_self": "data/ipo_watch_v3/trajectories/varmora-granito-876f4c.json",
   "schema_version": "3.0.0",
-  "source_dataset_version": "v2026.09.19-0625",
+  "source_dataset_version": "v2026.09.22-0641",
   "sources": [
     {
       "confidence": "primary",
-      "endpoint": "demand_schedule_7986",
+      "endpoint": "consolidated_bid_details_varmora",
       "snapshot_at": "",
-      "source": "bse",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_all_varmora",
+      "snapshot_at": "",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "demand_data_nse_varmora",
+      "snapshot_at": "",
+      "source": "nse",
       "url": null
     }
   ],

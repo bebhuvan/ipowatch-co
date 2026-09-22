@@ -5,23 +5,23 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.19-0625",
+  "dataset_version": "v3.2026.09.22-0641",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Jindal_supreme.zip",
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE1DLO01028_21SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/386492/IPO%20Open/Jindal_Supreme_RHP_20260911124412.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -41,6 +41,10 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "identity.isin": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -57,6 +61,14 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -67,7 +79,7 @@
     }
   },
   "filings_path": "issues/jindal-supreme-india-4a973e/filings.json",
-  "generated_at": "2026-09-19T06:25:34+00:00",
+  "generated_at": "2026-09-22T06:41:38+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -77,6 +89,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "Jindal Supreme (India) Limited",
+    "isin": "INE1DLO01028",
     "issue_type": "IPO",
     "slug": "jindal-supreme-india-4a973e",
     "status": "Closed",
@@ -85,7 +98,10 @@
   "listing_performance": {},
   "market_path": "issues/jindal-supreme-india-4a973e/market.json",
   "parties": {},
-  "pricing": {},
+  "pricing": {
+    "price_band_lower_paise": 8800,
+    "price_band_upper_paise": 9300
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/jindal-supreme-india-4a973e/prospectus_facts.json",
   "provenance_path": "issues/jindal-supreme-india-4a973e/provenance.json",
@@ -119,7 +135,7 @@
         ]
       },
       "isin": "INE1DLO01028",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "jindal supreme india",
       "offer_split": {
         "fresh_issue_percent": "80%",
@@ -138,27 +154,27 @@
         },
         {
           "company_name": "VSTL",
-          "market_cap": "215",
+          "market_cap": "213",
           "net_sales_cr": 1149,
           "pat_cr": 8.79,
-          "pb": 1.1,
-          "pe": 28.59
+          "pb": 1.07,
+          "pe": 27.73
         },
         {
           "company_name": "SAMBHV",
-          "market_cap": "3,778",
+          "market_cap": "4,363",
           "net_sales_cr": 2413,
           "pat_cr": 142,
-          "pb": 3.61,
-          "pe": 23.08
+          "pb": 4.33,
+          "pe": 27.7
         },
         {
           "company_name": "HITECH",
-          "market_cap": "1,491",
+          "market_cap": "1,546",
           "net_sales_cr": 3067,
           "pat_cr": 72.86,
-          "pb": 1.12,
-          "pe": 19.92
+          "pb": 1.14,
+          "pe": 20.2
         }
       ],
       "revenue_mix": {
@@ -291,41 +307,41 @@
         "market_cap": "₹474",
         "pb": 4.52,
         "pe": 21.06,
-        "sector_pb": 3.41,
-        "sector_pe": 36.3
+        "sector_pb": 3.46,
+        "sector_pe": 38.81
       }
     }
   },
   "research_path": "issues/jindal-supreme-india-4a973e/research.json",
   "schema_version": "3.0.0",
   "slug": "jindal-supreme-india-4a973e",
-  "source_dataset_version": "v2026.09.19-0625",
+  "source_dataset_version": "v2026.09.22-0641",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-19T06:20:09+00:00",
+      "snapshot_at": "2026-09-22T06:35:43+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-09-19T06:19:54+00:00",
+      "endpoint": "ipo_public_past_issues",
+      "snapshot_at": "2026-09-22T06:35:30+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-19T06:20:01+00:00",
+      "snapshot_at": "2026-09-22T06:35:38+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-19T06:20:01+00:00",
+      "snapshot_at": "2026-09-22T06:35:38+00:00",
       "source": "nse",
       "url": null
     }

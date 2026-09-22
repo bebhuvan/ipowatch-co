@@ -1,6 +1,14 @@
 {
   "$schema": "https://ipo-watch.local/schema/v3/issue-core.schema.json",
-  "book_building": {},
+  "book_building": {
+    "demand_schedule": [
+      {
+        "cumulative_quantity": null,
+        "price_paise": 10600,
+        "quantity": 79200
+      }
+    ]
+  },
   "core_path": "issues/himalaya-nutravedics-india-c5d41f/core.json",
   "data_quality": {
     "errors": [],
@@ -9,10 +17,14 @@
     "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.19-0625",
+  "dataset_version": "v3.2026.09.22-0641",
   "documents": {},
   "exchange_details": {},
   "field_provenance": {
+    "book_building.demand_schedule": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "identity.aliases": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -85,6 +97,10 @@
       "rule_id": "E.SRC.002",
       "source": "bse"
     },
+    "subscription.overall_times_x": {
+      "rule_id": "E.SRC.002",
+      "source": "bse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "bse"
@@ -95,7 +111,7 @@
     }
   },
   "filings_path": "issues/himalaya-nutravedics-india-c5d41f/filings.json",
-  "generated_at": "2026-09-19T06:25:34+00:00",
+  "generated_at": "2026-09-22T06:41:38+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -106,7 +122,7 @@
     "company_name": "Himalaya Nutravedics India Limited",
     "issue_type": "IPO",
     "slug": "himalaya-nutravedics-india-c5d41f",
-    "status": "Upcoming"
+    "status": "Open"
   },
   "listing_performance": {},
   "market_path": "issues/himalaya-nutravedics-india-c5d41f/market.json",
@@ -119,7 +135,7 @@
   },
   "pricing": {
     "face_value_paise": 1000,
-    "issue_size_shares": 2499600,
+    "issue_size_shares": 1789200,
     "market_lot": 1200,
     "min_bid_qty": 2400,
     "price_band_lower_paise": 10000,
@@ -131,49 +147,210 @@
   "provenance_path": "issues/himalaya-nutravedics-india-c5d41f/provenance.json",
   "public_contract": "ipo-watch.site_v3",
   "public_slug": "himalaya-nutravedics-india",
+  "research": {
+    "tijori": {
+      "business_description": "Himalaya Nutravedics India Ltd., incorporated in 2022, is engaged in the manufacturing, marketing and distribution of Ayurvedic and nutraceutical formulations, along with third-party contract manufacturing, across wellness and therapeutic segments.",
+      "company_name": "Himalaya Nutravedics India Ltd.",
+      "financials": {
+        "unit": "INR crore",
+        "yearly_results": [
+          {
+            "debt_cr": 3.2351,
+            "net_sales_cr": 14.4256,
+            "pat_cr": 0.426,
+            "period": "Mar 2024"
+          },
+          {
+            "debt_cr": 1.7595,
+            "net_sales_cr": 20.9965,
+            "pat_cr": 2.2318,
+            "period": "Mar 2025"
+          },
+          {
+            "debt_cr": 5.1318,
+            "net_sales_cr": 43.0675,
+            "pat_cr": 7.3897,
+            "period": "Mar 2026"
+          }
+        ]
+      },
+      "isin": "INE1OTR01013",
+      "matched_on": "normalized_company_name",
+      "normalized_name": "himalaya nutravedics india",
+      "offer_split": {
+        "fresh_issue_percent": "100%",
+        "fresh_issue_value": "26 Cr",
+        "ofs_percent": "0%",
+        "ofs_value": "0 Cr"
+      },
+      "peers": [
+        {
+          "company_name": "HNIL",
+          "market_cap": "93",
+          "net_sales_cr": 43.07,
+          "pat_cr": 7.39,
+          "pb": 5.68,
+          "pe": 12.59
+        },
+        {
+          "company_name": "JSLL",
+          "market_cap": "6,335",
+          "net_sales_cr": 801,
+          "pat_cr": 221,
+          "pb": 13.53,
+          "pe": 26.73
+        },
+        {
+          "company_name": "SANDUPHQ",
+          "market_cap": "36",
+          "net_sales_cr": 69.93,
+          "pat_cr": 1.77,
+          "pb": 0.82,
+          "pe": 20.41
+        }
+      ],
+      "revenue_mix": {
+        "historical": [
+          {
+            "points": [
+              {
+                "percent": 59.73,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 58.43,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 65.09,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Softgel Capsules"
+          },
+          {
+            "points": [
+              {
+                "percent": 29.93,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 26.94,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 3.26,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Medicated Oils"
+          },
+          {
+            "points": [
+              {
+                "percent": 7.69,
+                "timestamp_ms": 1772323200000.0
+              },
+              {
+                "percent": 5.97,
+                "timestamp_ms": 1740787200000.0
+              },
+              {
+                "percent": 14.45,
+                "timestamp_ms": 1709251200000.0
+              }
+            ],
+            "segment": "Tablets"
+          }
+        ],
+        "latest": [
+          {
+            "percent": 59.73,
+            "segment": "Softgel Capsules"
+          },
+          {
+            "percent": 29.93,
+            "segment": "Medicated Oils"
+          },
+          {
+            "percent": 7.69,
+            "segment": "Tablets"
+          },
+          {
+            "percent": 2.65,
+            "segment": "Others"
+          }
+        ]
+      },
+      "sector": "Pharmaceuticals",
+      "shareholding": {
+        "promoter": {
+          "post_ipo": "68",
+          "pre_ipo": "95"
+        },
+        "public": {
+          "post_ipo": "32",
+          "pre_ipo": "5"
+        }
+      },
+      "source": "tijori",
+      "source_quality": "third_party_enrichment_not_primary_filing",
+      "source_url": "https://b2b.tijorifinance.com/b2b/v1/in/api/kite-screener/ipo/",
+      "symbol": "HNIL",
+      "valuation": {
+        "ipo_size": "26 Cr",
+        "market_cap": "₹93.35",
+        "pb": 5.7,
+        "pe": 12.63,
+        "sector_pb": 2.85,
+        "sector_pe": 30.2
+      }
+    }
+  },
+  "research_path": "issues/himalaya-nutravedics-india-c5d41f/research.json",
   "schema_version": "3.0.0",
   "slug": "himalaya-nutravedics-india-c5d41f",
-  "source_dataset_version": "v2026.09.19-0625",
+  "source_dataset_version": "v2026.09.22-0641",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "bid_details_7983",
-      "snapshot_at": "2026-09-19T06:25:18+00:00",
+      "snapshot_at": "2026-09-22T06:41:32+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_7983",
-      "snapshot_at": "2026-09-19T06:25:18+00:00",
+      "snapshot_at": "2026-09-22T06:41:33+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "consolidated_bid_details_new_7983",
-      "snapshot_at": "2026-09-19T06:25:19+00:00",
+      "snapshot_at": "2026-09-22T06:41:34+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "issue_detail_7983",
-      "snapshot_at": "2026-09-19T06:25:17+00:00",
+      "snapshot_at": "2026-09-22T06:41:32+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue",
-      "snapshot_at": "2026-09-19T06:20:04+00:00",
+      "snapshot_at": "2026-09-22T06:35:41+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "public_issue_details",
-      "snapshot_at": "2026-09-19T06:20:06+00:00",
+      "snapshot_at": "2026-09-22T06:35:42+00:00",
       "source": "bse",
       "url": null
     }
@@ -214,15 +391,15 @@
           },
           {
             "category": "nii",
-            "shares_bid": 0,
+            "shares_bid": 21600,
             "shares_offered": 482400,
-            "times_x": "0.0000"
+            "times_x": "0.0448"
           },
           {
             "category": "retail",
-            "shares_bid": 0,
+            "shares_bid": 57600,
             "shares_offered": 832800,
-            "times_x": "0.0000"
+            "times_x": "0.0692"
           },
           {
             "category": "employee",
@@ -237,7 +414,7 @@
             "times_x": null
           }
         ],
-        "total_times_x": "0.0000"
+        "total_times_x": "0.0443"
       }
     },
     "consolidated": {
@@ -275,9 +452,9 @@
         },
         {
           "category": "nii",
-          "shares_bid": 0,
+          "shares_bid": 21600,
           "shares_offered": 482400,
-          "times_x": "0.0000"
+          "times_x": "0.0448"
         },
         {
           "category": "nii_gt_10l",
@@ -287,15 +464,15 @@
         },
         {
           "category": "nii_lte_10l",
-          "shares_bid": 0,
+          "shares_bid": 21600,
           "shares_offered": 118800,
-          "times_x": "0.0000"
+          "times_x": "0.1818"
         },
         {
           "category": "retail",
-          "shares_bid": 0,
+          "shares_bid": 57600,
           "shares_offered": 832800,
-          "times_x": "0.0000"
+          "times_x": "0.0692"
         },
         {
           "category": "employee",
@@ -316,9 +493,9 @@
           "times_x": null
         }
       ],
-      "total_times_x": "0.0000"
+      "total_times_x": "0.0443"
     },
-    "overall_times_x": "0.0000"
+    "overall_times_x": "0.0443"
   },
   "subscription_path": "issues/himalaya-nutravedics-india-c5d41f/subscription.json",
   "timeline": {

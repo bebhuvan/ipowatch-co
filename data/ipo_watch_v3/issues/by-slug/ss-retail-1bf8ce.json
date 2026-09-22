@@ -5,23 +5,23 @@
   "data_quality": {
     "errors": [],
     "info": [],
-    "state": "review",
-    "warnings": [
-      {
-        "class": "thin.no_pricing",
-        "message": "No pricing"
-      }
-    ]
+    "state": "clean",
+    "warnings": []
   },
   "dataset": "ipo-watch.site_v3.issue",
-  "dataset_version": "v3.2026.09.19-0625",
+  "dataset_version": "v3.2026.09.22-0641",
   "documents": {
     "drhp_url": "https://nsearchives.nseindia.com/corporate/Registration_28122025051512_SSRL-DRHP.pdf",
+    "prospectus_url": "https://nsearchives.nseindia.com/corporate/FP_INE1EQW01028_21SEP2026.pdf",
     "rhp_url": "https://www.bseindia.com/downloads/ipo/300306/IPO%20Open/RHP_20260911230738.pdf"
   },
   "exchange_details": {},
   "field_provenance": {
     "documents.drhp_url": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "documents.prospectus_url": {
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
@@ -41,6 +41,10 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "identity.isin": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "identity.issue_type": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -57,6 +61,14 @@
       "rule_id": "E.SRC.002",
       "source": "nse"
     },
+    "pricing.price_band_lower_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
+    "pricing.price_band_upper_paise": {
+      "rule_id": "E.SRC.002",
+      "source": "nse"
+    },
     "timeline.close_date": {
       "rule_id": "E.SRC.002",
       "source": "nse"
@@ -67,7 +79,7 @@
     }
   },
   "filings_path": "issues/ss-retail-1bf8ce/filings.json",
-  "generated_at": "2026-09-19T06:25:34+00:00",
+  "generated_at": "2026-09-22T06:41:38+00:00",
   "generated_by": "ipo_portal.site_v3.export/3.0.0",
   "identity": {
     "aliases": [
@@ -77,6 +89,7 @@
     ],
     "board_type": "Main Board",
     "company_name": "SS Retail Limited",
+    "isin": "INE1EQW01028",
     "issue_type": "IPO",
     "slug": "ss-retail-1bf8ce",
     "status": "Closed",
@@ -85,7 +98,10 @@
   "listing_performance": {},
   "market_path": "issues/ss-retail-1bf8ce/market.json",
   "parties": {},
-  "pricing": {},
+  "pricing": {
+    "price_band_lower_paise": 40300,
+    "price_band_upper_paise": 42400
+  },
   "prospectus_available": true,
   "prospectus_facts_path": "issues/ss-retail-1bf8ce/prospectus_facts.json",
   "provenance_path": "issues/ss-retail-1bf8ce/provenance.json",
@@ -119,7 +135,7 @@
         ]
       },
       "isin": "INE1EQW01028",
-      "matched_on": "normalized_company_name",
+      "matched_on": "isin",
       "normalized_name": "ss retail",
       "offer_split": {
         "fresh_issue_percent": "72%",
@@ -138,35 +154,35 @@
         },
         {
           "company_name": "AVL",
-          "market_cap": "8,009",
+          "market_cap": "8,227",
           "net_sales_cr": 2671,
           "pat_cr": 116,
-          "pb": 11.86,
-          "pe": 58.77
+          "pb": 11.81,
+          "pe": 58.5
         },
         {
           "company_name": "EMIL",
-          "market_cap": "6,985",
+          "market_cap": "7,551",
           "net_sales_cr": 7183,
           "pat_cr": 107,
-          "pb": 4.37,
-          "pe": 34.49
+          "pb": 4.56,
+          "pe": 35.96
         },
         {
           "company_name": "MTL",
-          "market_cap": "116",
+          "market_cap": "110",
           "net_sales_cr": 115,
           "pat_cr": 5.74,
           "pb": null,
-          "pe": 11.5
+          "pe": 11.01
         },
         {
           "company_name": "REDTAPE",
-          "market_cap": "6,484",
+          "market_cap": "6,507",
           "net_sales_cr": 2418,
           "pat_cr": 240,
-          "pb": 6.42,
-          "pe": 26.61
+          "pb": 6.3,
+          "pe": 26.11
         }
       ],
       "revenue_mix": {
@@ -300,34 +316,41 @@
         "market_cap": "₹3,152",
         "pb": 13.98,
         "pe": 53.18,
-        "sector_pb": 2.31,
-        "sector_pe": 20.27
+        "sector_pb": 2.33,
+        "sector_pe": 20.05
       }
     }
   },
   "research_path": "issues/ss-retail-1bf8ce/research.json",
   "schema_version": "3.0.0",
   "slug": "ss-retail-1bf8ce",
-  "source_dataset_version": "v2026.09.19-0625",
+  "source_dataset_version": "v2026.09.22-0641",
   "sources": [
     {
       "confidence": "primary",
       "endpoint": "ipo_documents",
-      "snapshot_at": "2026-09-19T06:20:09+00:00",
+      "snapshot_at": "2026-09-22T06:35:43+00:00",
       "source": "bse",
       "url": null
     },
     {
       "confidence": "primary",
-      "endpoint": "ipo_upcoming",
-      "snapshot_at": "2026-09-19T06:19:54+00:00",
+      "endpoint": "ipo_public_past_issues",
+      "snapshot_at": "2026-09-22T06:35:30+00:00",
       "source": "nse",
       "url": null
     },
     {
       "confidence": "primary",
       "endpoint": "offer_documents_equity",
-      "snapshot_at": "2026-09-19T06:20:01+00:00",
+      "snapshot_at": "2026-09-22T06:35:38+00:00",
+      "source": "nse",
+      "url": null
+    },
+    {
+      "confidence": "primary",
+      "endpoint": "offer_documents_equity",
+      "snapshot_at": "2026-09-22T06:35:38+00:00",
       "source": "nse",
       "url": null
     }
